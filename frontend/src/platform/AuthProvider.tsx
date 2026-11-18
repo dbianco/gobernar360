@@ -22,7 +22,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   /** Replace the user and drop every cached answer, which belonged to the previous identity. */
   const replaceMe = useCallback(
-    (me: Me | null) => {
+    async (me: Me | null) => {
+      // A profile refresh still in flight would otherwise land afterwards and restore
+      // the previous identity, e.g. showing a signed-out user as signed in.
+      await queryClient.cancelQueries({ queryKey: ME_KEY })
       queryClient.removeQueries({ predicate: (query) => query.queryKey[0] !== 'me' })
       queryClient.setQueryData(ME_KEY, me)
     },
@@ -34,14 +37,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       me: data ?? null,
       isLoading,
       login: async (email, password) => {
-        replaceMe(await api<Me>('/auth/login', { method: 'POST', body: { email, password } }))
+        await replaceMe(
+          await api<Me>('/auth/login', { method: 'POST', body: { email, password } }),
+        )
       },
       logout: async () => {
         await api('/auth/logout', { method: 'POST' })
-        replaceMe(null)
+        await replaceMe(null)
       },
       setActiveMunicipality: async (municipalityId) => {
-        replaceMe(
+        await replaceMe(
           await api<Me>('/auth/active-municipality', {
             method: 'POST',
             body: { municipality_id: municipalityId },

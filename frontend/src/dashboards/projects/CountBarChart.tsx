@@ -23,7 +23,7 @@ export function CountBarChart({ title, rows }: { title: string; rows: CountRow[]
 
   return (
     <Paper withBorder p="md" component="section">
-      <Group justify="space-between" mb="xs" wrap="nowrap">
+      <Group justify="space-between" mb="xs">
         <Title order={4}>{title}</Title>
         {rows.length > 0 && (
           <Button variant="subtle" size="compact-xs" onClick={() => setAsTable(!asTable)}>

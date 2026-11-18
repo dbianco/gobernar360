@@ -23,7 +23,8 @@
     "in_use": "No se puede eliminar porque está siendo usado por otros registros.",
     "invalid_reference": "Alguno de los datos seleccionados ya no existe.",
     "validation_error": "Revisá los datos ingresados.",
-    "network": "No se pudo conectar con el servidor."
+    "network": "No se pudo conectar con el servidor.",
+    "not_authenticated": "Tu sesión terminó. Volvé a ingresar."
   },
   "login": {
     "title": "Ingresar a gobernar360",

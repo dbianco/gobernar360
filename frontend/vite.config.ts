@@ -7,8 +7,9 @@ export default defineConfig({
   server: {
     port: 5173,
     strictPort: true,
+    host: 'localhost',
     // The API sets a same-site session cookie, so the browser must see one origin.
-    proxy: { '/api': 'http://localhost:8000' },
+    proxy: { '/api': process.env.GOBERNAR360_API_URL ?? 'http://localhost:8000' },
   },
   test: {
     environment: 'jsdom',

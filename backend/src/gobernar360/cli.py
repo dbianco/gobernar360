@@ -40,3 +40,19 @@ def create_operator(
             )
         )
     typer.echo(f"Operator {normalized} created.")
+
+
+@app.command()
+def seed_demo(
+    reset: Annotated[
+        bool, typer.Option("--reset", help="Delete ALL existing data before loading the demo.")
+    ] = False,
+) -> None:
+    """Load demo municipalities, users and projects. Never run this against real data."""
+    from gobernar360.seed import DEMO_PASSWORD
+    from gobernar360.seed import seed_demo as load_demo
+
+    if load_demo(reset=reset):
+        typer.echo(f"Demo data loaded. Every demo account uses the password: {DEMO_PASSWORD}")
+    else:
+        typer.echo("Demo data already present; nothing changed.")
