@@ -89,10 +89,21 @@ def tenant_session(municipality_id: uuid.UUID) -> Iterator[Session]:
     after a commit the session would see no tenant rows at all.
     """
     with Session(get_engine(), expire_on_commit=False) as session, session.begin():
-        session.execute(
-            text("SELECT set_config(:name, :value, true)"),
-            {"name": TENANT_SETTING, "value": str(municipality_id)},
-        )
+        set_tenant(session, municipality_id)
+        yield session
+
+
+def set_tenant(session: Session, municipality_id: uuid.UUID) -> None:
+    """Scope the session's current transaction to one municipality."""
+    session.execute(
+        text("SELECT set_config(:name, :value, true)"),
+        {"name": TENANT_SETTING, "value": str(municipality_id)},
+    )
+
+
+def get_db() -> Iterator[Session]:
+    """FastAPI dependency: one session and one transaction per request."""
+    with platform_session() as session:
         yield session
 
 
