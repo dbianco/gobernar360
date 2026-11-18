@@ -1,0 +1,69 @@
+{
+  "app": {
+    "name": "gobernar360",
+    "loading": "Cargando…",
+    "logout": "Cerrar sesión",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "confirm": "Confirmar",
+    "all": "Todos",
+    "none": "—",
+    "yes": "Sí",
+    "no": "No"
+  },
+  "errors": {
+    "generic": "Ocurrió un error. Intentá de nuevo.",
+    "invalid_credentials": "El email o la contraseña no son correctos.",
+    "forbidden": "No tenés permiso para realizar esta acción.",
+    "not_found": "No se encontró el registro.",
+    "conflict": "La operación no se puede realizar en el estado actual.",
+    "in_use": "No se puede eliminar porque está siendo usado por otros registros.",
+    "invalid_reference": "Alguno de los datos seleccionados ya no existe.",
+    "validation_error": "Revisá los datos ingresados.",
+    "network": "No se pudo conectar con el servidor."
+  },
+  "login": {
+    "title": "Ingresar a gobernar360",
+    "email": "Email",
+    "password": "Contraseña",
+    "submit": "Ingresar"
+  },
+  "nav": {
+    "overview": "Resumen general",
+    "users": "Usuarios",
+    "platform": "Plataforma",
+    "dashboards": "Tableros",
+    "municipality": "Municipio",
+    "openMenu": "Abrir menú"
+  },
+  "municipality": {
+    "choose": "Elegí el municipio con el que querés trabajar",
+    "noneTitle": "Todavía no pertenecés a ningún municipio",
+    "noneBody": "Pedile al administrador de tu municipio que te agregue como usuario."
+  },
+  "overview": {
+    "title": "Resumen general",
+    "emptyTitle": "No tenés tableros habilitados",
+    "emptyBody": "Pedile al administrador de tu municipio que te dé acceso a un tablero.",
+    "noData": "Este tablero todavía no tiene datos cargados.",
+    "open": "Abrir tablero",
+    "indicators": {
+      "projects.active": "Proyectos activos",
+      "projects.finished": "Proyectos finalizados",
+      "projects.delayed": "Proyectos retrasados",
+      "projects.average_progress": "Avance promedio",
+      "projects.milestones_in_alert": "Hitos en alerta",
+      "projects.budget_executed_ratio": "Presupuesto ejecutado"
+    }
+  },
+  "dashboards": {
+    "forbiddenTitle": "No tenés acceso a este tablero",
+    "forbiddenBody": "Pedile al administrador de tu municipio que te habilite."
+  },
+  "projects": {
+    "title": "Proyectos"
+  }
+}
