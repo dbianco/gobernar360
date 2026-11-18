@@ -12,7 +12,6 @@ from sqlalchemy import select
 
 from gobernar360.core.errors import invalid_reference, validation_error
 from gobernar360.dashboards.projects.access import Editor, Viewer
-from gobernar360.dashboards.projects.clock import Today
 from gobernar360.dashboards.projects.models import (
     Axis,
     Department,
@@ -26,6 +25,7 @@ from gobernar360.dashboards.projects.models import (
     Term,
 )
 from gobernar360.dashboards.projects.rules import (
+    FINISHED,
     MilestoneState,
     effective_status,
     milestone_in_alert,
@@ -48,6 +48,7 @@ from gobernar360.dashboards.projects.schemas import (
 )
 from gobernar360.dashboards.projects.sdgs import SDG_NUMBERS
 from gobernar360.platform.access import RequestContext
+from gobernar360.platform.clock import Today
 from gobernar360.platform.tenant_crud import (
     create_entity,
     delete_entity,
@@ -71,15 +72,15 @@ def project_progress(project: Project) -> int:
     return progress_percent(project.status, milestone_states(project), project.manual_progress)
 
 
-def _milestone_out(milestone: Milestone, today: date) -> MilestoneOut:
+def _milestone_out(milestone: Milestone, project: Project, today: date) -> MilestoneOut:
+    state = MilestoneState(milestone.due_date, milestone.completed_on)
     return MilestoneOut(
         id=milestone.id,
         name=milestone.name,
         due_date=milestone.due_date,
         completed_on=milestone.completed_on,
-        in_alert=milestone_in_alert(
-            MilestoneState(milestone.due_date, milestone.completed_on), today
-        ),
+        # A finished project no longer raises alerts for milestones left open.
+        in_alert=project.status != FINISHED and milestone_in_alert(state, today),
     )
 
 
@@ -109,7 +110,7 @@ def project_out(project: Project, today: date) -> ProjectOut:
         progress=project_progress(project),
         manual_progress=project.manual_progress,
         sdgs=sorted(sdg.sdg_number for sdg in project.sdgs),
-        milestones=[_milestone_out(m, today) for m in project.milestones],
+        milestones=[_milestone_out(m, project, today) for m in project.milestones],
     )
 
 
@@ -250,9 +251,9 @@ def delete_project(project_id: uuid.UUID, ctx: Editor) -> None:
 def create_milestone(
     project_id: uuid.UUID, payload: MilestoneIn, ctx: Editor, today: Today
 ) -> MilestoneOut:
-    get_or_404(ctx, Project, project_id)
+    project = get_or_404(ctx, Project, project_id)
     milestone = Milestone(project_id=project_id, **payload.model_dump())
-    return _milestone_out(create_entity(ctx, milestone, payload.model_dump()), today)
+    return _milestone_out(create_entity(ctx, milestone, payload.model_dump()), project, today)
 
 
 @router.patch("/milestones/{milestone_id}")
@@ -261,7 +262,8 @@ def update_milestone(
 ) -> MilestoneOut:
     milestone = get_or_404(ctx, Milestone, milestone_id)
     changes = payload.model_dump(exclude_unset=True)
-    return _milestone_out(update_entity(ctx, milestone, changes), today)
+    project = get_or_404(ctx, Project, milestone.project_id)
+    return _milestone_out(update_entity(ctx, milestone, changes), project, today)
 
 
 @router.delete("/milestones/{milestone_id}", status_code=204)

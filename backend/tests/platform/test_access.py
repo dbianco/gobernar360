@@ -27,7 +27,7 @@ def _demo_module() -> DashboardModule:
     def settings(ctx: RequestContext = Depends(require_dashboard("demo", AccessLevel.ADMIN))):
         return {"ok": True}
 
-    return DashboardModule(key="demo", router=router, get_summary=lambda ctx: [])
+    return DashboardModule(key="demo", router=router, get_summary=lambda ctx, today: [])
 
 
 @pytest.fixture

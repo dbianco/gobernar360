@@ -52,6 +52,8 @@ def demo_dashboard():
     from gobernar360.dashboards import registry
     from gobernar360.dashboards.registry import DashboardModule
 
-    registry.register(DashboardModule(key="demo", router=APIRouter(), get_summary=lambda ctx: []))
+    registry.register(
+        DashboardModule(key="demo", router=APIRouter(), get_summary=lambda ctx, today: [])
+    )
     yield "demo"
     registry.unregister("demo")

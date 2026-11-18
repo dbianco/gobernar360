@@ -4,8 +4,8 @@ import pytest
 from sqlalchemy import func, select
 
 from gobernar360.core.db import tenant_session
-from gobernar360.dashboards.projects.clock import get_today
 from gobernar360.dashboards.projects.models import Project
+from gobernar360.platform.clock import get_today
 from gobernar360.platform.models import AuditLog
 from tests.factories import login, make_municipality
 from tests.projects.factories import (

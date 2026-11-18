@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
+from datetime import date
 from typing import TYPE_CHECKING
 
 from fastapi import APIRouter
@@ -25,7 +26,8 @@ class SummaryIndicator:
 class DashboardModule:
     key: str
     router: APIRouter
-    get_summary: Callable[[RequestContext], list[SummaryIndicator]]
+    # Headline indicators for the general overview, as of the given date.
+    get_summary: Callable[[RequestContext, date], list[SummaryIndicator]]
 
 
 _modules: dict[str, DashboardModule] = {}

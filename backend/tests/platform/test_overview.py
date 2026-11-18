@@ -1,0 +1,76 @@
+from datetime import date
+
+from gobernar360.platform.clock import get_today
+from tests.factories import login, make_membership, make_municipality, make_user
+from tests.projects.factories import (
+    make_axis,
+    make_department,
+    make_project,
+    make_term,
+    projects_member,
+)
+
+
+def test_overview_includes_projects_indicators_for_a_viewer(client):
+    client.app.dependency_overrides[get_today] = lambda: date(2025, 6, 15)
+    municipality = projects_member("viewer")
+    old_term = make_term(municipality, name="Gestión 2019-2023", start_year=2019, end_year=2023)
+    term = make_term(municipality)
+    axis, department = make_axis(municipality, term), make_department(municipality)
+    make_project(municipality, term, axis, department, name="Uno", status="finished")
+    make_project(
+        municipality,
+        term,
+        axis,
+        department,
+        name="Dos",
+        status="in_progress",
+        end_date=date(2025, 6, 1),
+        planned_budget=200,
+        executed_budget=50,
+        milestones=[(date(2025, 5, 1), None)],
+    )
+    make_project(
+        municipality, old_term, make_axis(municipality, old_term), department, name="Viejo"
+    )
+    login(client, "ana@noetinger.test")
+
+    response = client.get("/api/overview")
+
+    assert response.status_code == 200
+    assert response.json() == [
+        {
+            "dashboard_key": "projects",
+            "indicators": [
+                {"key": "projects.active", "value": 1, "unit": None},
+                {"key": "projects.finished", "value": 1, "unit": None},
+                {"key": "projects.delayed", "value": 1, "unit": None},
+                {"key": "projects.average_progress", "value": 50, "unit": "percent"},
+                {"key": "projects.milestones_in_alert", "value": 1, "unit": None},
+                {"key": "projects.budget_executed_ratio", "value": 0.25, "unit": "ratio"},
+            ],
+        }
+    ]
+
+
+def test_overview_omits_dashboards_the_user_cannot_see(client):
+    projects_member(None)
+    login(client, "ana@noetinger.test")
+
+    assert client.get("/api/overview").json() == []
+
+
+def test_overview_for_municipality_without_terms_has_empty_indicators(client):
+    projects_member("viewer")
+    login(client, "ana@noetinger.test")
+
+    assert client.get("/api/overview").json() == [{"dashboard_key": "projects", "indicators": []}]
+
+
+def test_overview_requires_an_active_municipality(client):
+    user = make_user("ana@noetinger.test")
+    make_membership(user, make_municipality("Noetinger"))
+    make_membership(user, make_municipality("Saira"))
+    login(client, "ana@noetinger.test")
+
+    assert client.get("/api/overview").status_code == 403
