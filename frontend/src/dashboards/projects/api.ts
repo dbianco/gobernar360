@@ -1,8 +1,7 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { useCallback, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 import { api, type Query } from '../../api/client'
-import { errorMessage } from '../../platform/errorMessage'
+import { useAction as usePlatformAction } from '../../platform/useAction'
 import type {
   AnnualBudget,
   Axis,
@@ -46,38 +45,8 @@ export const useSummary = (termId: string, filters: ProjectFilters) =>
 export const useIndicators = (termId: string) =>
   useGet<Indicator[]>('indicators', '/indicators', { term_id: termId })
 
-/**
- * Runs a change against the API. On success every projects query (and the general
- * overview) is refreshed; on failure `error` holds a message to show.
- */
-export function useAction() {
-  const queryClient = useQueryClient()
-  const [error, setError] = useState<string | null>(null)
-  const [pending, setPending] = useState(false)
-
-  const run = useCallback(
-    async <T>(action: () => Promise<T>): Promise<T | undefined> => {
-      setPending(true)
-      setError(null)
-      try {
-        const result = await action()
-        await Promise.all([
-          queryClient.invalidateQueries({ queryKey: [KEY] }),
-          queryClient.invalidateQueries({ queryKey: ['overview'] }),
-        ])
-        return result
-      } catch (caught) {
-        setError(errorMessage(caught))
-        return undefined
-      } finally {
-        setPending(false)
-      }
-    },
-    [queryClient],
-  )
-
-  return { run, error, pending, clearError: () => setError(null) }
-}
+/** Changes to projects data refresh every projects query and the general overview. */
+export const useAction = () => usePlatformAction([KEY, 'overview'])
 
 export const send = <T = unknown>(
   method: 'POST' | 'PUT' | 'PATCH' | 'DELETE',

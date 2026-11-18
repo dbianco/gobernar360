@@ -1,7 +1,7 @@
 import { AppShell as Shell, Burger, Button, Group, NavLink, Text, Title } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { useTranslation } from 'react-i18next'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Link, Navigate, Outlet, useLocation } from 'react-router-dom'
 
 import { dashboards } from '../dashboards/registry'
 import { useAuth } from './authContext'
@@ -38,7 +38,9 @@ export function AppShell() {
 
   let content = <Outlet />
   if (!membership && !onPlatformPages) {
-    content = me.memberships.length > 0 ? <MunicipalityChooser /> : <NoMunicipality />
+    if (me.memberships.length > 0) content = <MunicipalityChooser />
+    // Operators who belong to no municipality only have the platform page.
+    else content = isOperator ? <Navigate to="/platform" replace /> : <NoMunicipality />
   }
 
   return (

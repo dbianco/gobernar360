@@ -1,5 +1,5 @@
 import { Center, Loader } from '@mantine/core'
-import { Suspense } from 'react'
+import { type ReactNode, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
@@ -8,7 +8,10 @@ import { dashboards } from './dashboards/registry'
 import { AppShell } from './platform/AppShell'
 import { useAuth } from './platform/authContext'
 import { LoginPage } from './platform/LoginPage'
+import { OperatorPage } from './platform/OperatorPage'
 import { RequireDashboard } from './platform/RequireDashboard'
+import { activeMembership, type Me } from './platform/types'
+import { UsersAdminPage } from './platform/UsersAdminPage'
 
 function PageLoader() {
   const { t } = useTranslation()
@@ -26,6 +29,12 @@ function SignedIn() {
   return <AppShell />
 }
 
+function Only({ when, children }: { when: (me: Me) => boolean; children: ReactNode }) {
+  const { me } = useAuth()
+  if (!me || !when(me)) return <Navigate to="/" replace />
+  return <>{children}</>
+}
+
 export default function App() {
   const { isLoading } = useAuth()
   if (isLoading) return <PageLoader />
@@ -35,6 +44,22 @@ export default function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route element={<SignedIn />}>
         <Route index element={<OverviewPage />} />
+        <Route
+          path="admin/users"
+          element={
+            <Only when={(me) => activeMembership(me)?.is_admin === true}>
+              <UsersAdminPage />
+            </Only>
+          }
+        />
+        <Route
+          path="platform"
+          element={
+            <Only when={(me) => me.user.is_platform_operator}>
+              <OperatorPage />
+            </Only>
+          }
+        />
         {dashboards.map((dashboard) => (
           <Route
             key={dashboard.key}

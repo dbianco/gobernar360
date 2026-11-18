@@ -19,7 +19,7 @@
     "invalid_credentials": "El email o la contraseña no son correctos.",
     "forbidden": "No tenés permiso para realizar esta acción.",
     "not_found": "No se encontró el registro.",
-    "conflict": "La operación no se puede realizar en el estado actual.",
+    "conflict": "La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.",
     "in_use": "No se puede eliminar porque está siendo usado por otros registros.",
     "invalid_reference": "Alguno de los datos seleccionados ya no existe.",
     "validation_error": "Revisá los datos ingresados.",
@@ -224,5 +224,46 @@
       "17": "Alianzas para lograr los objetivos"
     },
     "sdgLabel": "ODS {{number}}: {{title}}"
+  },
+  "users": {
+    "title": "Usuarios del municipio",
+    "add": "Agregar usuario",
+    "name": "Nombre y apellido",
+    "email": "Email",
+    "password": "Contraseña inicial",
+    "passwordHint": "Mínimo 10 caracteres. Si la persona ya tiene una cuenta, conserva su contraseña actual.",
+    "passwordTooShort": "La contraseña debe tener al menos 10 caracteres.",
+    "admin": "Administrador del municipio",
+    "adminNamed": "Administrador: {{name}}",
+    "accessNamed": "{{dashboard}}: {{name}}",
+    "accessTo": "Acceso a {{dashboard}}",
+    "remove": "Quitar",
+    "removeNamed": "Quitar a {{name}}",
+    "removeConfirm": "¿Quitar a {{name}} de este municipio?",
+    "levels": {
+      "none": "Sin acceso",
+      "viewer": "Lectura",
+      "editor": "Carga",
+      "admin": "Administración"
+    },
+    "adminHasAll": "Administración (por ser administrador)"
+  },
+  "platform": {
+    "title": "Municipios de la plataforma",
+    "add": "Crear municipio",
+    "name": "Nombre",
+    "slug": "Identificador",
+    "slugHint": "Minúsculas, números y guiones. Ejemplo: villa-maria",
+    "kind": "Tipo",
+    "kinds": {
+      "municipality": "Municipio",
+      "commune": "Comuna"
+    },
+    "dashboardsFor": "Tableros habilitados",
+    "dashboardIn": "{{dashboard}} en {{name}}",
+    "createAdmin": "Crear administrador",
+    "createAdminFor": "Crear administrador de {{name}}",
+    "adminCreated": "Administrador creado: {{email}}",
+    "empty": "Todavía no hay municipios cargados."
   }
 }

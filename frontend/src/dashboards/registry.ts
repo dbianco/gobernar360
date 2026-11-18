@@ -20,3 +20,8 @@ export const dashboards: DashboardEntry[] = [
     routes: lazy(() => import('./projects/routes')),
   },
 ]
+
+/** Translation key of a dashboard's name, or undefined for a key this build does not know. */
+export function dashboardLabelKey(key: string): string | undefined {
+  return dashboards.find((dashboard) => dashboard.key === key)?.labelKey
+}
