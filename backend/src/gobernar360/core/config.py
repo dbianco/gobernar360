@@ -1,0 +1,26 @@
+"""Runtime settings, read from GOBERNAR360_* environment variables."""
+
+from functools import lru_cache
+
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="GOBERNAR360_", env_file=".env", extra="ignore")
+
+    # The API connects as a role that owns no tables, so row-level security applies to it.
+    database_url: str = (
+        "postgresql+psycopg://gobernar360_app:gobernar360_app@localhost:5434/gobernar360"
+    )
+    # Owner role, used only for migrations.
+    admin_database_url: str = (
+        "postgresql+psycopg://gobernar360:gobernar360@localhost:5434/gobernar360"
+    )
+    session_ttl_hours: int = 12
+    cookie_secure: bool = False
+    cors_origins: list[str] = ["http://localhost:5173"]
+
+
+@lru_cache
+def get_settings() -> Settings:
+    return Settings()
