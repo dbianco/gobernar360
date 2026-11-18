@@ -1,8 +1,9 @@
 """Request and response shapes of the projects dashboard."""
 
 import uuid
+from datetime import date
 from decimal import Decimal
-from typing import Annotated, Self
+from typing import Annotated, Any, ClassVar, Literal, Self
 
 from pydantic import (
     BaseModel,
@@ -24,6 +25,21 @@ Money = Annotated[
 
 class OrmModel(BaseModel):
     model_config = ConfigDict(from_attributes=True)
+
+
+class PatchModel(BaseModel):
+    """Partial update: absent fields are left alone; only `nullable` ones may be set to null."""
+
+    nullable: ClassVar[frozenset[str]] = frozenset()
+
+    @model_validator(mode="before")
+    @classmethod
+    def required_fields_are_not_cleared(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            cleared = sorted(k for k, v in data.items() if v is None and k not in cls.nullable)
+            if cleared:
+                raise ValueError(f"{', '.join(cleared)} cannot be null")
+        return data
 
 
 class NamedRef(OrmModel):
@@ -103,3 +119,138 @@ class OwnerIn(BaseModel):
 class OwnerOut(OrmModel):
     id: uuid.UUID
     full_name: str
+
+
+Priority = Literal["A+", "A", "B", "C"]
+StoredStatus = Literal["not_started", "in_progress", "finished"]
+EffectiveStatus = Literal["not_started", "in_progress", "delayed", "finished"]
+SdgNumber = Annotated[int, Field(ge=1, le=17)]
+Progress = Annotated[int, Field(ge=0, le=100)]
+Measure = Annotated[Decimal, Field(max_digits=18, decimal_places=4)]
+
+
+class ProjectIn(BaseModel):
+    term_id: uuid.UUID
+    name: Name
+    description: Annotated[str, Field(max_length=5000)] = ""
+    axis_id: uuid.UUID
+    objective_id: uuid.UUID | None = None
+    department_id: uuid.UUID
+    owner_id: uuid.UUID | None = None
+    program_id: uuid.UUID | None = None
+    priority: Priority
+    year: Year
+    start_date: date | None = None
+    end_date: date | None = None
+    planned_budget: Money = Decimal("0")
+    executed_budget: Money = Decimal("0")
+    status: StoredStatus = "not_started"
+    manual_progress: Progress | None = None
+    sdgs: list[SdgNumber] = []
+
+
+class ProjectPatch(PatchModel):
+    """Only the fields present in the request are changed; the term cannot be changed."""
+
+    nullable = frozenset(
+        {"objective_id", "owner_id", "program_id", "start_date", "end_date", "manual_progress"}
+    )
+
+    name: Name | None = None
+    description: Annotated[str, Field(max_length=5000)] | None = None
+    axis_id: uuid.UUID | None = None
+    objective_id: uuid.UUID | None = None
+    department_id: uuid.UUID | None = None
+    owner_id: uuid.UUID | None = None
+    program_id: uuid.UUID | None = None
+    priority: Priority | None = None
+    year: Year | None = None
+    start_date: date | None = None
+    end_date: date | None = None
+    planned_budget: Money | None = None
+    executed_budget: Money | None = None
+    status: StoredStatus | None = None
+    manual_progress: Progress | None = None
+    sdgs: list[SdgNumber] | None = None
+
+
+class MilestoneIn(BaseModel):
+    name: Name
+    due_date: date
+    completed_on: date | None = None
+
+
+class MilestonePatch(PatchModel):
+    nullable = frozenset({"completed_on"})
+
+    name: Name | None = None
+    due_date: date | None = None
+    completed_on: date | None = None
+
+
+class MilestoneOut(BaseModel):
+    id: uuid.UUID
+    name: str
+    due_date: date
+    completed_on: date | None
+    in_alert: bool
+
+
+class OwnerRef(OrmModel):
+    id: uuid.UUID
+    full_name: str
+
+
+class ProjectOut(BaseModel):
+    id: uuid.UUID
+    term_id: uuid.UUID
+    name: str
+    description: str
+    axis: NamedRef
+    objective: NamedRef | None
+    department: NamedRef
+    owner: OwnerRef | None
+    program: NamedRef | None
+    priority: str
+    year: int
+    start_date: date | None
+    end_date: date | None
+    planned_budget: Money
+    executed_budget: Money
+    status: StoredStatus
+    effective_status: EffectiveStatus
+    progress: int
+    manual_progress: int | None
+    sdgs: list[int]
+    milestones: list[MilestoneOut]
+
+
+class IndicatorIn(BaseModel):
+    objective_id: uuid.UUID
+    name: Name
+    unit: Annotated[str, StringConstraints(strip_whitespace=True, max_length=50)] = ""
+    baseline: Measure | None = None
+    target: Measure | None = None
+    current_value: Measure | None = None
+
+
+class IndicatorPatch(PatchModel):
+    nullable = frozenset({"baseline", "target", "current_value"})
+
+    objective_id: uuid.UUID | None = None
+    name: Name | None = None
+    unit: Annotated[str, StringConstraints(strip_whitespace=True, max_length=50)] | None = None
+    baseline: Measure | None = None
+    target: Measure | None = None
+    current_value: Measure | None = None
+
+
+class IndicatorOut(BaseModel):
+    id: uuid.UUID
+    name: str
+    unit: str
+    baseline: float | None
+    target: float | None
+    current_value: float | None
+    objective: NamedRef
+    axis: NamedRef
