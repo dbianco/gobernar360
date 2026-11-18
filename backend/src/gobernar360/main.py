@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from gobernar360.core.config import get_settings
 from gobernar360.core.errors import error_response, install_error_handlers
-from gobernar360.dashboards import registry
+from gobernar360.dashboards import projects, registry
 from gobernar360.platform import admin_router, auth_router, operator_router
 
 CSRF_HEADER = "x-requested-with"
@@ -46,6 +46,8 @@ def create_app() -> FastAPI:
     @api.get("/health")
     def health() -> dict[str, str]:
         return {"status": "ok"}
+
+    registry.register(projects.module)
 
     api.include_router(auth_router.router)
     api.include_router(operator_router.router)

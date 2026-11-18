@@ -16,7 +16,9 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-import gobernar360.platform.models  # noqa: E402, F401  (registers tables on Base.metadata)
+# Importing the model modules registers their tables on Base.metadata.
+import gobernar360.dashboards.projects.models  # noqa: E402, F401
+import gobernar360.platform.models  # noqa: E402, F401
 from gobernar360.core.config import get_settings  # noqa: E402
 from gobernar360.core.db import Base  # noqa: E402
 

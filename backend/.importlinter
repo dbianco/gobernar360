@@ -1,0 +1,19 @@
+[importlinter]
+root_package = gobernar360
+
+# List every dashboard module here. They may use core, platform and the
+# registry, but never each other.
+[importlinter:contract:dashboards-are-independent]
+name = Dashboard modules do not import each other
+type = independence
+modules =
+    gobernar360.dashboards.projects
+
+[importlinter:contract:platform-does-not-depend-on-dashboards]
+name = Core and platform do not depend on any dashboard module
+type = forbidden
+source_modules =
+    gobernar360.core
+    gobernar360.platform
+forbidden_modules =
+    gobernar360.dashboards.projects
