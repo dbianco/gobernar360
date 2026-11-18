@@ -107,3 +107,16 @@ it('sets the total budget of a year', async () => {
   await waitFor(() => expect(requests).toHaveLength(1))
   expect(requests[0].body).toEqual({ year: 2024, total_amount: '5000000' })
 })
+
+it('shows an error instead of an empty catalog when loading fails', async () => {
+  mockCatalogs()
+  mockApiError('get', `${BASE}/terms`, 500, 'generic')
+  mockApiError('get', `${BASE}/departments`, 500, 'generic')
+  renderApp(<ParametersPage />, { me: makeMe({ dashboards: { projects: 'admin' } }) })
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  expect(screen.queryByText(t('projects.parameters.empty'))).not.toBeInTheDocument()
+  expect(
+    screen.queryByRole('button', { name: t('projects.parameters.addTerm') }),
+  ).not.toBeInTheDocument()
+})

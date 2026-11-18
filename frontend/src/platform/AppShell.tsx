@@ -1,4 +1,13 @@
-import { AppShell as Shell, Burger, Button, Group, NavLink, Text, Title } from '@mantine/core'
+import {
+  Anchor,
+  AppShell as Shell,
+  Burger,
+  Button,
+  Group,
+  NavLink,
+  Text,
+  Title,
+} from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { useTranslation } from 'react-i18next'
 import { Link, Navigate, Outlet, useLocation } from 'react-router-dom'
@@ -20,7 +29,10 @@ export function AppShell() {
   const granted = new Set(me.dashboards.map((dashboard) => dashboard.key))
   const visibleDashboards = dashboards.filter((dashboard) => granted.has(dashboard.key))
   const isOperator = me.user.is_platform_operator
-  const onPlatformPages = location.pathname.startsWith('/platform')
+  // Pages that do not need an active municipality.
+  const onPlatformPages = ['/platform', '/account'].some((path) =>
+    location.pathname.startsWith(path),
+  )
 
   const isActive = (path: string) =>
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path)
@@ -67,9 +79,9 @@ export function AppShell() {
             )}
           </Group>
           <Group gap="sm" wrap="nowrap">
-            <Text size="sm" visibleFrom="sm">
+            <Anchor component={Link} to="/account" size="sm" title={t('account.link')}>
               {me.user.full_name}
-            </Text>
+            </Anchor>
             <Button variant="subtle" size="xs" onClick={() => void logout()}>
               {t('app.logout')}
             </Button>

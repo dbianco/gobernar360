@@ -10,6 +10,7 @@ import { ParametersPage } from './ParametersPage'
 import { ProjectDetailPage } from './ProjectDetailPage'
 import { ProjectsPage } from './ProjectsPage'
 import { SummaryPage } from './SummaryPage'
+import { useTerm } from './termContext'
 import { TermProvider, TermSelect } from './TermProvider'
 
 const BASE_PATH = '/d/projects'
@@ -22,15 +23,23 @@ function TermScreens() {
         <Group>
           <TermSelect />
         </Group>
-        <Routes>
-          <Route index element={<SummaryPage />} />
-          <Route path="projects" element={<ProjectsPage />} />
-          <Route path="projects/:id" element={<ProjectDetailPage />} />
-          <Route path="indicators" element={<IndicatorsPage />} />
-          <Route path="*" element={<Navigate to={BASE_PATH} replace />} />
-        </Routes>
+        <ScreensOfTerm />
       </Stack>
     </TermProvider>
+  )
+}
+
+function ScreensOfTerm() {
+  const { term } = useTerm()
+  // Keyed by term so filters chosen for one term are not carried into another.
+  return (
+    <Routes key={term.id}>
+      <Route index element={<SummaryPage />} />
+      <Route path="projects" element={<ProjectsPage />} />
+      <Route path="projects/:id" element={<ProjectDetailPage />} />
+      <Route path="indicators" element={<IndicatorsPage />} />
+      <Route path="*" element={<Navigate to={BASE_PATH} replace />} />
+    </Routes>
   )
 }
 

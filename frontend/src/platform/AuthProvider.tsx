@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { type ReactNode, useCallback, useMemo } from 'react'
+import { type ReactNode, useCallback, useEffect, useMemo } from 'react'
 
-import { api, ApiError } from '../api/client'
+import { api, ApiError, setSessionLostHandler } from '../api/client'
 import { AuthContext, type AuthState } from './authContext'
 import type { Me } from './types'
 
@@ -18,7 +18,13 @@ async function fetchMe(): Promise<Me | null> {
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const queryClient = useQueryClient()
-  const { data, isLoading } = useQuery({ queryKey: ME_KEY, queryFn: fetchMe, staleTime: 60_000 })
+  const { data, isLoading } = useQuery({
+    queryKey: ME_KEY,
+    queryFn: fetchMe,
+    staleTime: 60_000,
+    // Access changed by an administrator shows up when the user returns to the tab.
+    refetchOnWindowFocus: true,
+  })
 
   /** Replace the user and drop every cached answer, which belonged to the previous identity. */
   const replaceMe = useCallback(
@@ -32,6 +38,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [queryClient],
   )
 
+  // An expired or revoked session sends the user back to the login page.
+  useEffect(() => {
+    setSessionLostHandler(() => void replaceMe(null))
+    return () => setSessionLostHandler(null)
+  }, [replaceMe])
+
   const state = useMemo<AuthState>(
     () => ({
       me: data ?? null,
@@ -42,7 +54,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         )
       },
       logout: async () => {
-        await api('/auth/logout', { method: 'POST' })
+        try {
+          await api('/auth/logout', { method: 'POST' })
+        } catch {
+          // The session may already be gone or the server unreachable; sign out here regardless.
+        }
         await replaceMe(null)
       },
       setActiveMunicipality: async (municipalityId) => {

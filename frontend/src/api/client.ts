@@ -36,6 +36,13 @@ export function downloadUrl(path: string, query?: Query): string {
   return withQuery(path, query)
 }
 
+let onSessionLost: (() => void) | null = null
+
+/** Register what to do when the API says the session is no longer valid. */
+export function setSessionLostHandler(handler: (() => void) | null) {
+  onSessionLost = handler
+}
+
 export async function api<T = unknown>(path: string, options: RequestOptions = {}): Promise<T> {
   const headers: Record<string, string> = {
     // The API rejects unsafe requests without this header (CSRF protection).
@@ -59,6 +66,8 @@ export async function api<T = unknown>(path: string, options: RequestOptions = {
   const payload = await response.json().catch(() => null)
   if (!response.ok) {
     const error = payload?.error
+    // Sign-in and profile checks answer 401 as part of normal use; anything else lost its session.
+    if (response.status === 401 && !path.startsWith('/auth/')) onSessionLost?.()
     throw new ApiError(
       response.status,
       error?.code ?? 'generic',

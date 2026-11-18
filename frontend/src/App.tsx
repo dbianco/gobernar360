@@ -5,6 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { OverviewPage } from './dashboards/overview/OverviewPage'
 import { dashboards } from './dashboards/registry'
+import { AccountPage } from './platform/AccountPage'
 import { AppShell } from './platform/AppShell'
 import { useAuth } from './platform/authContext'
 import { LoginPage } from './platform/LoginPage'
@@ -44,6 +45,7 @@ export default function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route element={<SignedIn />}>
         <Route index element={<OverviewPage />} />
+        <Route path="account" element={<AccountPage />} />
         <Route
           path="admin/users"
           element={

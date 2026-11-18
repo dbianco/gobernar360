@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Group,
+  Loader,
   NativeSelect,
   SimpleGrid,
   Stack,
@@ -14,6 +15,7 @@ import {
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { errorMessage } from '../../platform/errorMessage'
 import {
   send,
   useAction,
@@ -135,6 +137,7 @@ function TermsTab({ terms, selected, run }: { terms: Term[]; selected?: Term; ru
           </Button>
         </Group>
       </form>
+      {budgets.isError && <Alert color="red">{errorMessage(budgets.error)}</Alert>}
       {selected && budgets.data && (
         <Stack gap="xs">
           <Title order={5}>
@@ -167,6 +170,9 @@ function AxesTab({ term, run }: { term?: Term; run: Run }) {
   const label = (key: string, options?: Record<string, unknown>) =>
     t(`projects.parameters.${key}`, options ?? {})
   if (!term) return <Text c="dimmed">{label('noTerm')}</Text>
+  const failed = [axes, objectives].find((query) => query.isError)
+  if (failed) return <Alert color="red">{errorMessage(failed.error)}</Alert>
+  if (axes.isLoading || objectives.isLoading) return <Loader aria-label={t('app.loading')} />
 
   return (
     <EditableList
@@ -203,6 +209,11 @@ export function ParametersPage() {
   const termList = terms.data ?? []
   const selected = termList.find((term) => term.id === termId) ?? latestTerm(termList)
   const label = (key: string) => t(`projects.parameters.${key}`)
+
+  const catalogs = [terms, departments, programs, owners]
+  const failed = catalogs.find((query) => query.isError)
+  if (failed) return <Alert color="red">{errorMessage(failed.error)}</Alert>
+  if (catalogs.some((query) => query.isLoading)) return <Loader aria-label={t('app.loading')} />
 
   return (
     <Stack>

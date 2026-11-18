@@ -5,7 +5,7 @@ import { expect, it, vi } from 'vitest'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { ProjectForm } from './ProjectForm'
-import { makeProject, TERM } from './testData'
+import { makeProject, OLD_TERM, TERM } from './testData'
 import { BASE, renderProjects } from './testRender'
 
 const label = (key: string) => t(`projects.form.${key}`)
@@ -109,4 +109,17 @@ it('hides manual progress once the project has milestones', async () => {
   await screen.findByRole('textbox', { name: label('name') })
 
   expect(screen.queryByLabelText(label('manualProgress'))).not.toBeInTheDocument()
+})
+
+it("edits a project with the catalogs of the project's own term", async () => {
+  // The project belongs to the old term while the newer one is selected on screen.
+  const project = makeProject({ term_id: OLD_TERM.id, year: 2020 })
+  const { catalogRequests } = renderProjects(
+    <ProjectForm project={project} onSaved={vi.fn()} onCancel={vi.fn()} />,
+  )
+
+  await screen.findByRole('option', { name: '2020' })
+
+  expect(catalogRequests.axes.at(-1)?.url.searchParams.get('term_id')).toBe(OLD_TERM.id)
+  expect(screen.getByRole('combobox', { name: label('year') })).toHaveValue('2020')
 })

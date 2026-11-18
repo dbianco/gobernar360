@@ -1,6 +1,6 @@
 import pytest
 
-from tests.factories import login, make_municipality, make_user
+from tests.factories import login, make_user
 
 
 @pytest.fixture
@@ -112,17 +112,3 @@ def test_operator_creates_first_admin_of_a_municipality(operator_client, client)
     me = login(client, "admin@noetinger.test", "long-password-1").json()
     assert me["memberships"][0]["is_admin"] is True
     assert me["active_municipality_id"] == municipality_id
-
-
-def test_existing_user_becomes_admin_without_changing_their_password(operator_client, client):
-    make_user("ana@noetinger.test")
-    municipality = make_municipality("Saira")
-
-    response = operator_client.post(
-        f"/api/platform/municipalities/{municipality.id}/admins",
-        json={"email": "ana@noetinger.test", "full_name": "Ana", "password": "another-password"},
-    )
-
-    assert response.status_code == 201
-    client.post("/api/auth/logout")
-    login(client, "ana@noetinger.test")  # original password still works

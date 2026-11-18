@@ -266,5 +266,15 @@
     "createAdminFor": "Crear administrador de {{name}}",
     "adminCreated": "Administrador creado: {{email}}",
     "empty": "Todavía no hay municipios cargados."
+  },
+  "account": {
+    "title": "Cambiar contraseña",
+    "link": "Mi cuenta",
+    "current": "Contraseña actual",
+    "new": "Contraseña nueva",
+    "newHint": "Mínimo 10 caracteres.",
+    "submit": "Cambiar contraseña",
+    "done": "La contraseña se cambió. Las demás sesiones abiertas se cerraron.",
+    "wrongCurrent": "La contraseña actual no es correcta."
   }
 }

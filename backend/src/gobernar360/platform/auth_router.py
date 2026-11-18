@@ -5,13 +5,14 @@ from datetime import UTC, datetime, timedelta
 
 from fastapi import APIRouter, Response
 from pydantic import BaseModel
-from sqlalchemy import select
+from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
 from gobernar360.core.config import get_settings
 from gobernar360.core.errors import ApiError, forbidden
 from gobernar360.core.security import (
     DUMMY_PASSWORD_HASH,
+    hash_password,
     new_session_token,
     normalize_email,
     verify_password,
@@ -25,7 +26,13 @@ from gobernar360.platform.access import (
 )
 from gobernar360.platform.models import Membership, User
 from gobernar360.platform.models import Session as SessionRow
-from gobernar360.platform.schemas import DashboardAccessOut, Me, MembershipOut, UserOut
+from gobernar360.platform.schemas import (
+    DashboardAccessOut,
+    Me,
+    MembershipOut,
+    Password,
+    UserOut,
+)
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -114,3 +121,21 @@ def set_active_municipality(
     session_row.active_municipality_id = payload.municipality_id
     db.flush()
     return build_me(db, user, session_row)
+
+
+class PasswordChangeIn(BaseModel):
+    current_password: str
+    new_password: Password
+
+
+@router.post("/password", status_code=204)
+def change_password(
+    payload: PasswordChangeIn, db: Db, user: CurrentUser, session_row: CurrentSession
+) -> None:
+    """Change the signed-in user's password and sign out their other sessions."""
+    if not verify_password(payload.current_password, user.password_hash):
+        raise ApiError(403, "invalid_credentials", "The current password is incorrect.")
+    user.password_hash = hash_password(payload.new_password)
+    db.execute(
+        delete(SessionRow).where(SessionRow.user_id == user.id, SessionRow.id != session_row.id)
+    )

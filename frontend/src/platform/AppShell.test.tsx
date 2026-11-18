@@ -5,7 +5,7 @@ import { expect, it } from 'vitest'
 import App from '../App'
 import { makeMe, NOETINGER, SAIRA } from '../test/fixtures'
 import { renderApp, t } from '../test/render'
-import { mockApi } from '../test/server'
+import { mockApi, mockApiError } from '../test/server'
 
 const navigation = async () => within(await screen.findByRole('navigation'))
 
@@ -97,4 +97,21 @@ it('signs the user out', async () => {
 
   expect(await screen.findByRole('heading', { name: t('login.title') })).toBeInTheDocument()
   expect(requests).toHaveLength(1)
+})
+
+it('returns to the login page when the session has expired', async () => {
+  mockApiError('get', '/overview', 401, 'not_authenticated')
+  renderApp(<App />, { me: makeMe() })
+
+  expect(await screen.findByRole('heading', { name: t('login.title') })).toBeInTheDocument()
+})
+
+it('signs out locally even when the request fails', async () => {
+  mockApi('get', '/overview', [])
+  mockApiError('post', '/auth/logout', 500, 'generic')
+  renderApp(<App />, { me: makeMe() })
+
+  await userEvent.setup().click(await screen.findByRole('button', { name: t('app.logout') }))
+
+  expect(await screen.findByRole('heading', { name: t('login.title') })).toBeInTheDocument()
 })

@@ -13,6 +13,7 @@ import {
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { errorMessage } from '../../platform/errorMessage'
 import {
   send,
   useAction,
@@ -59,7 +60,9 @@ export function ProjectForm(props: {
   onCancel: () => void
 }) {
   const { t } = useTranslation()
-  const { term } = useTerm()
+  const { term: selectedTerm, terms } = useTerm()
+  // An existing project is edited within its own term, whichever term is on screen.
+  const term = terms.find((candidate) => candidate.id === props.project?.term_id) ?? selectedTerm
   const years = termYears(term)
   const [values, setValues] = useState<ProjectInput>(() => {
     const thisYear = new Date().getFullYear()
@@ -71,6 +74,7 @@ export function ProjectForm(props: {
   const owners = useOwners()
   const programs = usePrograms()
   const action = useAction()
+  const catalogError = [axes, objectives, departments, owners, programs].find((q) => q.isError)
 
   const set = <K extends keyof ProjectInput>(field: K, value: ProjectInput[K]) =>
     setValues((current) => ({ ...current, [field]: value }))
@@ -97,6 +101,7 @@ export function ProjectForm(props: {
     <form onSubmit={submit}>
       <Stack>
         {action.error && <Alert color="red">{action.error}</Alert>}
+        {catalogError && <Alert color="red">{errorMessage(catalogError.error)}</Alert>}
         <TextInput
           label={label('name')}
           required

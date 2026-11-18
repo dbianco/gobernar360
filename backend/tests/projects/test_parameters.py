@@ -191,3 +191,20 @@ def test_parameter_change_is_audited(client):
         ("delete", "projects_departments"),
     ]
     assert entries[1].changes == {"name": "Salud y Ambiente"}
+
+
+def test_term_cannot_be_shortened_past_its_projects_or_budgets(client):
+    municipality = _admin(client)
+    term = make_term(municipality)  # 2023-2027
+    make_project(
+        municipality, term, make_axis(municipality, term), make_department(municipality), year=2027
+    )
+    client.put(f"{BASE}/terms/{term.id}/budgets", json={"year": 2023, "total_amount": "10"})
+
+    cut_end = client.patch(f"{BASE}/terms/{term.id}", json={"end_year": 2026})
+    cut_start = client.patch(f"{BASE}/terms/{term.id}", json={"start_year": 2024})
+    extend = client.patch(f"{BASE}/terms/{term.id}", json={"end_year": 2028})
+
+    assert (cut_end.status_code, cut_start.status_code) == (409, 409)
+    assert cut_end.json()["error"]["code"] == "in_use"
+    assert extend.status_code == 200

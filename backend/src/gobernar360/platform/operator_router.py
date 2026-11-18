@@ -13,6 +13,7 @@ from gobernar360.core.security import hash_password
 from gobernar360.dashboards import registry
 from gobernar360.platform.access import Db, require_operator
 from gobernar360.platform.models import Membership, Municipality, MunicipalityDashboard, User
+from gobernar360.platform.models import Session as SessionRow
 from gobernar360.platform.schemas import Email, FullName, MunicipalityOut, Password, UserOut
 
 router = APIRouter(prefix="/platform", tags=["platform"], dependencies=[Depends(require_operator)])
@@ -109,7 +110,6 @@ def create_municipality_admin(municipality_id: uuid.UUID, payload: AdminIn, db: 
     _get_municipality(db, municipality_id)
     user = db.scalar(select(User).where(User.email == payload.email))
     if user is None:
-        # An existing account keeps its own name and password.
         user = User(
             email=payload.email,
             full_name=payload.full_name,
@@ -117,6 +117,12 @@ def create_municipality_admin(municipality_id: uuid.UUID, payload: AdminIn, db: 
         )
         db.add(user)
         db.flush()
+    else:
+        # The email may have been registered earlier by someone else who chose its
+        # password. The operator's password replaces it and every open session ends,
+        # so only the person the operator hands the password to can use the account.
+        user.password_hash = hash_password(payload.password)
+        db.execute(delete(SessionRow).where(SessionRow.user_id == user.id))
     membership = db.scalar(
         select(Membership).where(
             Membership.user_id == user.id, Membership.municipality_id == municipality_id

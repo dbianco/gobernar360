@@ -1,6 +1,7 @@
-import { Group, NativeSelect } from '@mantine/core'
+import { Alert, Group, NativeSelect } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
+import { errorMessage } from '../../platform/errorMessage'
 import { useAxes, useDepartments, useOwners } from './api'
 import { termYears, useTerm } from './termContext'
 import { EFFECTIVE_STATUSES, PRIORITIES, type ProjectFilters } from './types'
@@ -34,6 +35,9 @@ export function FilterBar(props: {
   )
   const named = (items?: { id: string; name: string }[]) =>
     (items ?? []).map((item) => ({ value: item.id, label: item.name }))
+
+  const failed = [axes, departments, owners].find((query) => query.isError)
+  if (failed) return <Alert color="red">{errorMessage(failed.error)}</Alert>
 
   return (
     <Group align="flex-end" gap="sm">

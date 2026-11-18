@@ -4,9 +4,9 @@ programs and owners. Reading needs viewer access; changing them needs dashboard 
 import uuid
 
 from fastapi import APIRouter
-from sqlalchemy import select
+from sqlalchemy import or_, select
 
-from gobernar360.core.errors import validation_error
+from gobernar360.core.errors import in_use, validation_error
 from gobernar360.dashboards.projects.access import Admin, Viewer
 from gobernar360.dashboards.projects.models import (
     AnnualBudget,
@@ -15,6 +15,7 @@ from gobernar360.dashboards.projects.models import (
     Objective,
     Owner,
     Program,
+    Project,
     Term,
 )
 from gobernar360.dashboards.projects.schemas import (
@@ -65,6 +66,13 @@ def update_term(term_id: uuid.UUID, payload: TermPatch, ctx: Admin) -> TermOut:
     end_year = changes.get("end_year", term.end_year)
     if end_year < start_year:
         raise validation_error("end_year must not be before start_year.")
+    # Projects and budgets must stay inside the term, or they could no longer be edited.
+    for model in (Project, AnnualBudget):
+        outside = select(model.id).where(
+            model.term_id == term_id, or_(model.year < start_year, model.year > end_year)
+        )
+        if ctx.db.scalar(outside.limit(1)) is not None:
+            raise in_use("The term has projects or budgets in the years being removed.")
     return update_entity(ctx, term, changes)
 
 
