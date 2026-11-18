@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from gobernar360.core.config import get_settings
 from gobernar360.core.errors import error_response, install_error_handlers
 from gobernar360.dashboards import registry
-from gobernar360.platform import auth_router
+from gobernar360.platform import admin_router, auth_router, operator_router
 
 CSRF_HEADER = "x-requested-with"
 CSRF_HEADER_VALUE = "gobernar360"
@@ -48,6 +48,8 @@ def create_app() -> FastAPI:
         return {"status": "ok"}
 
     api.include_router(auth_router.router)
+    api.include_router(operator_router.router)
+    api.include_router(admin_router.router)
     for module in registry.all_modules():
         api.include_router(module.router, prefix=f"/dashboards/{module.key}", tags=[module.key])
     app.include_router(api)

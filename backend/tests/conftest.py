@@ -42,3 +42,16 @@ def clean_database(migrated_database):
 def client():
     with TestClient(create_app(), headers={"X-Requested-With": "gobernar360"}) as test_client:
         yield test_client
+
+
+@pytest.fixture
+def demo_dashboard():
+    """Registers an empty dashboard module under the key 'demo'."""
+    from fastapi import APIRouter
+
+    from gobernar360.dashboards import registry
+    from gobernar360.dashboards.registry import DashboardModule
+
+    registry.register(DashboardModule(key="demo", router=APIRouter(), get_summary=lambda ctx: []))
+    yield "demo"
+    registry.unregister("demo")
