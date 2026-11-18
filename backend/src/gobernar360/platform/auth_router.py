@@ -16,10 +16,16 @@ from gobernar360.core.security import (
     normalize_email,
     verify_password,
 )
-from gobernar360.platform.access import SESSION_COOKIE, CurrentSession, CurrentUser, Db
+from gobernar360.platform.access import (
+    SESSION_COOKIE,
+    CurrentSession,
+    CurrentUser,
+    Db,
+    effective_levels,
+)
 from gobernar360.platform.models import Membership, User
 from gobernar360.platform.models import Session as SessionRow
-from gobernar360.platform.schemas import Me, MembershipOut, UserOut
+from gobernar360.platform.schemas import DashboardAccessOut, Me, MembershipOut, UserOut
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -47,7 +53,12 @@ def build_me(db: Session, user: User, session_row: SessionRow) -> Me:
         user=UserOut.model_validate(user),
         memberships=[MembershipOut.model_validate(m) for m in memberships],
         active_municipality_id=active_id,
-        dashboards=[],
+        dashboards=[
+            DashboardAccessOut(key=key, level=level.name.lower())
+            for m in memberships
+            if m.municipality_id == active_id
+            for key, level in effective_levels(db, m).items()
+        ],
     )
 
 

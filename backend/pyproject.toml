@@ -44,4 +44,9 @@ select = ["E", "F", "I", "UP", "B"]
 
 [tool.ruff.lint.flake8-bugbear]
 # FastAPI declares dependencies as call expressions in argument defaults.
-extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.Cookie"]
+extend-immutable-calls = [
+    "fastapi.Depends",
+    "fastapi.Query",
+    "fastapi.Cookie",
+    "gobernar360.platform.access.require_dashboard",
+]
