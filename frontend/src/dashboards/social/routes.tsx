@@ -6,7 +6,11 @@ import { useAuth } from '../../platform/authContext'
 import { RequireDashboard } from '../../platform/RequireDashboard'
 import { hasLevel } from '../../platform/types'
 import { BASE_PATH } from './api'
+import { HouseholdDetailPage } from './HouseholdDetailPage'
+import { HouseholdsPage } from './HouseholdsPage'
 import { ParametersPage } from './ParametersPage'
+import { PeoplePage } from './PeoplePage'
+import { PersonDetailPage } from './PersonDetailPage'
 
 const SECTIONS = [
   'summary',
@@ -44,6 +48,10 @@ export default function SocialRoutes() {
       </Tabs>
       <Routes>
         <Route index element={null} />
+        <Route path="people" element={<PeoplePage />} />
+        <Route path="people/:id" element={<PersonDetailPage />} />
+        <Route path="households" element={<HouseholdsPage />} />
+        <Route path="households/:id" element={<HouseholdDetailPage />} />
         <Route
           path="parameters"
           element={

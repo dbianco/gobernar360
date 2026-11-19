@@ -705,7 +705,8 @@
       "noMatches": "No hay personas registradas que coincidan.",
       "moreMatches": "Hay más coincidencias: escribí algo más para acotar.",
       "chooseNamed": "Elegir a {{name}}",
-      "change": "Cambiar"
+      "change": "Cambiar",
+      "pick": "Elegir"
     },
     "households": {
       "create": "Cargar nuevo grupo familiar",
@@ -752,8 +753,7 @@
       "editNamed": "Editar la entrega de {{name}}",
       "deleteNamed": "Eliminar la entrega de {{name}}",
       "deleteConfirm": "¿Eliminar esta entrega?",
-      "download": "Descargar prestaciones",
-      "mostRecent": "Se muestran los {{count}} registros más recientes."
+      "download": "Descargar prestaciones"
     },
     "interventions": {
       "title": "Intervenciones",
@@ -818,6 +818,7 @@
       "peopleCount": "Personas",
       "noNeighborhood": "Sin barrio",
       "yearHint": "El año se aplica a las prestaciones y las intervenciones."
-    }
+    },
+    "mostRecent": "Se muestran los {{count}} registros más recientes."
   }
 }
