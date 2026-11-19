@@ -39,14 +39,14 @@ export function EditableList(props: {
 
   return (
     <Stack gap="xs">
-      {props.items.length === 0 && !props.hideEmpty && <Text c="dimmed">{t('projects.parameters.empty')}</Text>}
+      {props.items.length === 0 && !props.hideEmpty && <Text c="dimmed">{t('app.list.empty')}</Text>}
       {props.items.map((item) => (
         <Stack key={item.id} gap={4}>
           {renaming?.id === item.id ? (
             <form onSubmit={(event) => void rename(event, item)}>
               <Group gap="xs">
                 <TextInput
-                  aria-label={t('projects.parameters.renameNamed', { name: item.name })}
+                  aria-label={t('app.list.renameNamed', { name: item.name })}
                   autoFocus
                   maxLength={200}
                   value={renaming.name}
@@ -67,7 +67,7 @@ export function EditableList(props: {
                 <Button
                   size="compact-xs"
                   variant="default"
-                  aria-label={t('projects.parameters.renameNamed', { name: item.name })}
+                  aria-label={t('app.list.renameNamed', { name: item.name })}
                   onClick={() => setRenaming({ id: item.id, name: item.name })}
                 >
                   {t('app.edit')}
@@ -76,7 +76,7 @@ export function EditableList(props: {
                   size="compact-xs"
                   variant="subtle"
                   color="red"
-                  aria-label={t('projects.parameters.deleteNamed', { name: item.name })}
+                  aria-label={t('app.list.deleteNamed', { name: item.name })}
                   onClick={() => void props.onDelete(item)}
                 >
                   {t('app.delete')}

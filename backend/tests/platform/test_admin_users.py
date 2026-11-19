@@ -174,3 +174,31 @@ def test_non_admin_cannot_manage_users(client, municipality):
 
     assert client.get("/api/admin/users").status_code == 403
     assert client.post("/api/admin/users", json=_new_user()).status_code == 403
+
+
+def test_member_grants_of_a_disabled_dashboard_are_hidden_and_do_not_block_edits(
+    admin_client, municipality
+):
+    from gobernar360.platform.models import MunicipalityDashboard
+    from tests.factories import admin_session
+
+    member = make_membership(
+        make_user("carla@noetinger.test"),
+        municipality,
+        grants={"demo": "viewer", "projects": "editor"},
+    )
+    with admin_session() as session, session.begin():
+        session.delete(session.get(MunicipalityDashboard, (municipality.id, "projects")))
+
+    listed = next(
+        m
+        for m in admin_client.get("/api/admin/users").json()
+        if m["membership_id"] == str(member.id)
+    )
+    response = admin_client.patch(
+        f"/api/admin/users/{member.id}", json={"grants": listed["grants"] | {"demo": "editor"}}
+    )
+
+    assert listed["grants"] == {"demo": "viewer"}
+    assert response.status_code == 200
+    assert response.json()["grants"] == {"demo": "editor"}

@@ -12,7 +12,12 @@
     "all": "Todos",
     "none": "—",
     "yes": "Sí",
-    "no": "No"
+    "no": "No",
+    "list": {
+      "empty": "Todavía no hay elementos cargados.",
+      "renameNamed": "Renombrar {{name}}",
+      "deleteNamed": "Eliminar {{name}}"
+    }
   },
   "errors": {
     "generic": "Ocurrió un error. Intentá de nuevo.",
@@ -200,9 +205,6 @@
       "addObjective": "Agregar objetivo",
       "newObjectiveFor": "Nuevo objetivo de {{name}}",
       "newItem": "Nuevo nombre",
-      "empty": "Todavía no hay elementos cargados.",
-      "deleteNamed": "Eliminar {{name}}",
-      "renameNamed": "Renombrar {{name}}",
       "noTerm": "Primero cargá una gestión."
     },
     "sdg": {

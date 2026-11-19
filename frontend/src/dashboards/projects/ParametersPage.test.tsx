@@ -27,7 +27,7 @@ it('explains that a parameter in use cannot be deleted', async () => {
   await openTab(user, 'departments')
   await user.click(
     await screen.findByRole('button', {
-      name: t('projects.parameters.deleteNamed', { name: 'Obras Públicas' }),
+      name: t('app.list.deleteNamed', { name: 'Obras Públicas' }),
     }),
   )
 
@@ -115,7 +115,7 @@ it('shows an error instead of an empty catalog when loading fails', async () => 
   renderApp(<ParametersPage />, { me: makeMe({ dashboards: { projects: 'admin' } }) })
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
-  expect(screen.queryByText(t('projects.parameters.empty'))).not.toBeInTheDocument()
+  expect(screen.queryByText(t('app.list.empty'))).not.toBeInTheDocument()
   expect(
     screen.queryByRole('button', { name: t('projects.parameters.addTerm') }),
   ).not.toBeInTheDocument()

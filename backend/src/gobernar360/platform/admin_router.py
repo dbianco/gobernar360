@@ -49,14 +49,17 @@ class MemberPatch(BaseModel):
     grants: dict[str, GrantLevel] | None = None
 
 
-def _out(membership: Membership) -> MemberOut:
+def _out(ctx: RequestContext, membership: Membership) -> MemberOut:
+    # Grants left over from a dashboard that was later disabled are not shown: the
+    # client sends back the whole map on every edit, and they would be rejected.
+    enabled = enabled_dashboard_keys(ctx.db, ctx.municipality_id)
     return MemberOut(
         membership_id=membership.id,
         user=MemberUserOut(
             id=membership.user.id, email=membership.user.email, full_name=membership.user.full_name
         ),
         is_admin=membership.is_admin,
-        grants={grant.dashboard_key: grant.level for grant in membership.grants},
+        grants={g.dashboard_key: g.level for g in membership.grants if g.dashboard_key in enabled},
     )
 
 
@@ -107,7 +110,9 @@ def list_members(ctx: AdminContext) -> list[MemberOut]:
     memberships = ctx.db.scalars(
         select(Membership).where(Membership.municipality_id == ctx.municipality_id)
     ).unique()
-    return sorted((_out(m) for m in memberships), key=lambda member: member.user.full_name.lower())
+    return sorted(
+        (_out(ctx, m) for m in memberships), key=lambda member: member.user.full_name.lower()
+    )
 
 
 @router.post("/users", status_code=201)
@@ -143,7 +148,7 @@ def add_member(payload: MemberIn, ctx: AdminContext) -> MemberOut:
         membership,
         {"email": user.email, "is_admin": payload.is_admin, "grants": payload.grants},
     )
-    return _out(membership)
+    return _out(ctx, membership)
 
 
 @router.patch("/users/{membership_id}")
@@ -158,7 +163,7 @@ def update_member(membership_id: uuid.UUID, payload: MemberPatch, ctx: AdminCont
         membership.is_admin = payload.is_admin
     ctx.db.flush()
     record_change(ctx, "update", membership, payload.model_dump(exclude_none=True))
-    return _out(membership)
+    return _out(ctx, membership)
 
 
 @router.delete("/users/{membership_id}", status_code=204)

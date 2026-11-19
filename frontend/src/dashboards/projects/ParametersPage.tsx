@@ -15,6 +15,7 @@ import {
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { EditableList, type ListItem } from '../../platform/EditableList'
 import { errorMessage } from '../../platform/errorMessage'
 import {
   send,
@@ -27,7 +28,6 @@ import {
   usePrograms,
   useTerms,
 } from './api'
-import { EditableList, type ListItem } from './EditableList'
 import { latestTerm, termYears } from './termContext'
 import type { Term } from './types'
 
