@@ -8,6 +8,7 @@ name = Dashboard modules do not import each other
 type = independence
 modules =
     gobernar360.dashboards.projects
+    gobernar360.dashboards.environment
 
 [importlinter:contract:platform-does-not-depend-on-dashboards]
 name = Core and platform do not depend on any dashboard module
@@ -17,3 +18,5 @@ source_modules =
     gobernar360.platform
 forbidden_modules =
     gobernar360.dashboards.projects
+    gobernar360.dashboards.environment
+    gobernar360.dashboards.environment
