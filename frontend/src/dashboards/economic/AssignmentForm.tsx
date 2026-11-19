@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 import { errorMessage } from '../../platform/errorMessage'
 import { send, useAction, useTools } from './api'
-import { todayIso } from './format'
+import { todayIso } from '../../platform/format'
 import type { Assignment } from './types'
 
 export type AssignmentTarget = { actor_id: string } | { person_id: string }

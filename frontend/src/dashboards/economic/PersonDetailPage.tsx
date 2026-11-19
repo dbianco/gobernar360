@@ -22,8 +22,8 @@ import { formatDate } from '../../platform/format'
 import { hasLevel } from '../../platform/types'
 import { BASE_PATH, send, useAction, usePerson } from './api'
 import { AssignmentsPanel } from './AssignmentsPanel'
-import { Field } from './Field'
-import { formatDni } from './format'
+import { Field } from '../../platform/Field'
+import { formatDni } from '../../platform/format'
 import { PersonForm } from './PersonForm'
 
 /** Everything the dashboard knows about one person, and the tools they received. */
@@ -75,12 +75,12 @@ export function PersonDetailPage() {
           </Group>
           <Paper withBorder p="md">
             <SimpleGrid cols={{ base: 1, xs: 2, md: 3 }}>
-              <Field label={label('dni')}>{formatDni(data.person.dni)}</Field>
-              <Field label={label('birthDate')}>{formatDate(data.person.birth_date)}</Field>
-              <Field label={label('phone')}>{data.person.phone}</Field>
-              <Field label={label('email')}>{data.person.email}</Field>
-              <Field label={label('address')}>{data.person.address}</Field>
-              <Field label={label('neighborhood')}>{data.person.neighborhood}</Field>
+              <Field label={t('people.dni')}>{formatDni(data.person.dni)}</Field>
+              <Field label={t('people.birthDate')}>{formatDate(data.person.birth_date)}</Field>
+              <Field label={t('people.phone')}>{data.person.phone}</Field>
+              <Field label={t('people.email')}>{data.person.email}</Field>
+              <Field label={t('people.address')}>{data.person.address}</Field>
+              <Field label={t('people.neighborhood')}>{data.person.neighborhood}</Field>
               <Field label={label('employmentStatus')}>
                 {t(`economic.employmentStatuses.${data.employment_status}`)}
               </Field>

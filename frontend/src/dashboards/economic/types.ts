@@ -1,3 +1,7 @@
+import type { Lookup, Person } from '../../platform/people/types'
+
+export type { Lookup, Person }
+
 export interface Named {
   id: string
   name: string
@@ -15,20 +19,6 @@ export interface Tool extends Named {
   audience: Audience
   category: Named
   subcategory: Named | null
-}
-
-/** A person's data in the municipality's registry, shared by every dashboard. */
-export interface Person {
-  id: string
-  first_name: string
-  last_name: string
-  full_name: string
-  dni: string | null
-  birth_date: string | null
-  phone: string
-  email: string
-  address: string
-  neighborhood: string
 }
 
 export const EMPLOYMENT_STATUSES = [
@@ -84,11 +74,6 @@ export interface Assignment {
 export interface Page<T> {
   items: T[]
   total: number
-}
-
-export interface Lookup {
-  person: Person | null
-  registered_id: string | null
 }
 
 export interface ToolCount {

@@ -24,7 +24,7 @@ import { hasLevel } from '../../platform/types'
 import { ActorForm } from './ActorForm'
 import { BASE_PATH, send, useAction, useActor, usePeople } from './api'
 import { AssignmentsPanel } from './AssignmentsPanel'
-import { Field } from './Field'
+import { Field } from '../../platform/Field'
 import { formatCuit } from './format'
 import { type ActorDetail, type Role, ROLES } from './types'
 

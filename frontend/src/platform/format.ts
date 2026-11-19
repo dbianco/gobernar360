@@ -33,3 +33,15 @@ export function formatDate(value: string | null | undefined): string {
   const [year, month, day] = value.split('-')
   return `${day}/${month}/${year}`
 }
+
+/** 12345678 -> 12.345.678 */
+export function formatDni(dni: string | null): string {
+  return dni ? dni.replace(/\B(?=(\d{3})+(?!\d))/g, '.') : EMPTY
+}
+
+/** Today's date as YYYY-MM-DD in the browser's time zone. */
+export function todayIso(): string {
+  const now = new Date()
+  const pad = (value: number) => String(value).padStart(2, '0')
+  return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`
+}

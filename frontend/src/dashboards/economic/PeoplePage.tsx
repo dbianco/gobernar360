@@ -20,7 +20,7 @@ import { errorMessage } from '../../platform/errorMessage'
 import { Pager } from '../../platform/Pager'
 import { hasLevel } from '../../platform/types'
 import { BASE_PATH, PAGE_SIZE, usePeople } from './api'
-import { formatDni } from './format'
+import { formatDni } from '../../platform/format'
 import { PersonForm } from './PersonForm'
 import { EMPLOYMENT_STATUSES } from './types'
 
@@ -75,11 +75,11 @@ export function PeoplePage() {
           <Table highlightOnHover>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th>{label('fullName')}</Table.Th>
-                <Table.Th>{label('dni')}</Table.Th>
+                <Table.Th>{t('people.fullName')}</Table.Th>
+                <Table.Th>{t('people.dni')}</Table.Th>
                 <Table.Th>{label('employmentStatus')}</Table.Th>
                 <Table.Th>{label('occupation')}</Table.Th>
-                <Table.Th>{label('neighborhood')}</Table.Th>
+                <Table.Th>{t('people.neighborhood')}</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>

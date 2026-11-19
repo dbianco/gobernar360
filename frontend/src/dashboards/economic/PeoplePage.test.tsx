@@ -54,12 +54,12 @@ it('registers a new person', async () => {
   const requests = mockApi('post', `${BASE}/people`, makePerson(), 201)
   const { user, form } = await openForm()
 
-  await user.type(form.getByRole('textbox', { name: label('dni') }), '30.111.222')
-  await user.type(form.getByRole('textbox', { name: label('firstName') }), 'Elena')
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '30.111.222')
+  await user.type(form.getByRole('textbox', { name: t('people.firstName') }), 'Elena')
   await waitFor(() => expect(lookups).toHaveLength(1))
   expect(lookups[0].url.searchParams.get('dni')).toBe('30111222')
-  await user.type(form.getByRole('textbox', { name: label('lastName') }), 'Paz')
-  await user.type(form.getByRole('textbox', { name: label('neighborhood') }), 'Sur')
+  await user.type(form.getByRole('textbox', { name: t('people.lastName') }), 'Paz')
+  await user.type(form.getByRole('textbox', { name: t('people.neighborhood') }), 'Sur')
   await user.selectOptions(form.getByLabelText(label('employmentStatus')), 'employed')
   await user.type(form.getByRole('textbox', { name: label('occupation') }), 'Cuidadora')
   await user.click(form.getByRole('button', { name: t('app.save') }))
@@ -87,14 +87,14 @@ it('fills the form with the registry data of a known document', async () => {
   const requests = mockApi('post', `${BASE}/people`, makePerson(), 201)
   const { user, form } = await openForm()
 
-  await user.type(form.getByRole('textbox', { name: label('dni') }), '12345678')
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '12345678')
   await user.tab()
 
   expect(
-    await form.findByText(label('inRegistry', { name: 'Domínguez, Mirta' })),
+    await form.findByText(t('people.inRegistry', { name: 'Domínguez, Mirta' })),
   ).toBeInTheDocument()
-  expect(form.getByRole('textbox', { name: label('firstName') })).toHaveValue('Mirta')
-  expect(form.getByRole('textbox', { name: label('address') })).toHaveValue('Belgrano 45')
+  expect(form.getByRole('textbox', { name: t('people.firstName') })).toHaveValue('Mirta')
+  expect(form.getByRole('textbox', { name: t('people.address') })).toHaveValue('Belgrano 45')
   await user.click(form.getByRole('button', { name: t('app.save') }))
 
   await waitFor(() => expect(requests).toHaveLength(1))
@@ -109,12 +109,12 @@ it('looks the document up before saving when the field never lost focus', async 
   const requests = mockApi('post', `${BASE}/people`, makePerson(), 201)
   const { user, form } = await openForm()
 
-  await user.type(form.getByRole('textbox', { name: label('firstName') }), 'M')
-  await user.type(form.getByRole('textbox', { name: label('lastName') }), 'D')
-  await user.type(form.getByRole('textbox', { name: label('dni') }), '12345678{Enter}')
+  await user.type(form.getByRole('textbox', { name: t('people.firstName') }), 'M')
+  await user.type(form.getByRole('textbox', { name: t('people.lastName') }), 'D')
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '12345678{Enter}')
 
   expect(
-    await form.findByText(label('inRegistry', { name: 'Domínguez, Mirta' })),
+    await form.findByText(t('people.inRegistry', { name: 'Domínguez, Mirta' })),
   ).toBeInTheDocument()
   expect(requests).toHaveLength(0)
 })
@@ -123,13 +123,13 @@ it('points to the existing record when the person is already in the dashboard', 
   mockApi('get', `${BASE}/people/lookup`, { person: makeRegistryPerson(), registered_id: 'ep-1' })
   const { user, form } = await openForm()
 
-  await user.type(form.getByRole('textbox', { name: label('dni') }), '12345678')
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '12345678')
   await user.tab()
 
   expect(
-    await form.findByText(label('alreadyRegistered', { name: 'Pérez, Juana' })),
+    await form.findByText(t('people.alreadyRegistered', { name: 'Pérez, Juana' })),
   ).toBeInTheDocument()
-  expect(form.getByRole('link', { name: label('openExisting') })).toHaveAttribute(
+  expect(form.getByRole('link', { name: t('people.openExisting') })).toHaveAttribute(
     'href',
     '/d/economic/people/ep-1',
   )
@@ -141,11 +141,11 @@ it('rejects a malformed document without calling the server', async () => {
   const requests = mockApi('post', `${BASE}/people`, makePerson(), 201)
   const { user, form } = await openForm()
 
-  await user.type(form.getByRole('textbox', { name: label('firstName') }), 'Elena')
-  await user.type(form.getByRole('textbox', { name: label('lastName') }), 'Paz')
-  await user.type(form.getByRole('textbox', { name: label('dni') }), '12{Enter}')
+  await user.type(form.getByRole('textbox', { name: t('people.firstName') }), 'Elena')
+  await user.type(form.getByRole('textbox', { name: t('people.lastName') }), 'Paz')
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '12{Enter}')
 
-  expect(await form.findByText(label('dniInvalid'))).toBeInTheDocument()
+  expect(await form.findByText(t('people.dniInvalid'))).toBeInTheDocument()
   expect(lookups).toHaveLength(0)
   expect(requests).toHaveLength(0)
 })
@@ -160,18 +160,18 @@ it('drops the registry data again when the document is corrected', async () => {
   const requests = mockApi('post', `${BASE}/people`, makePerson(), 201)
   const { user, form } = await openForm()
 
-  await user.type(form.getByRole('textbox', { name: label('firstName') }), 'Elena')
-  await user.type(form.getByRole('textbox', { name: label('dni') }), '12345678')
+  await user.type(form.getByRole('textbox', { name: t('people.firstName') }), 'Elena')
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '12345678')
   await user.tab()
-  await form.findByText(label('inRegistry', { name: 'Domínguez, Mirta' }))
-  expect(form.getByRole('textbox', { name: label('address') })).toHaveValue('Belgrano 45')
+  await form.findByText(t('people.inRegistry', { name: 'Domínguez, Mirta' }))
+  expect(form.getByRole('textbox', { name: t('people.address') })).toHaveValue('Belgrano 45')
 
-  await user.type(form.getByRole('textbox', { name: label('dni') }), '{Backspace}9')
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '{Backspace}9')
 
-  expect(form.getByRole('textbox', { name: label('firstName') })).toHaveValue('Elena')
-  expect(form.getByRole('textbox', { name: label('address') })).toHaveValue('')
-  expect(form.getByRole('textbox', { name: label('lastName') })).toHaveValue('')
-  await user.type(form.getByRole('textbox', { name: label('lastName') }), 'Paz')
+  expect(form.getByRole('textbox', { name: t('people.firstName') })).toHaveValue('Elena')
+  expect(form.getByRole('textbox', { name: t('people.address') })).toHaveValue('')
+  expect(form.getByRole('textbox', { name: t('people.lastName') })).toHaveValue('')
+  await user.type(form.getByRole('textbox', { name: t('people.lastName') }), 'Paz')
   await user.click(form.getByRole('button', { name: t('app.save') }))
 
   await waitFor(() => expect(requests).toHaveLength(1))

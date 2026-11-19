@@ -50,8 +50,8 @@ it('edits the common and the economic data', async () => {
 
   await user.click(await screen.findByRole('button', { name: t('app.edit') }))
   const form = within(await screen.findByRole('dialog'))
-  expect(form.getByText(label('commonHint'))).toBeInTheDocument()
-  await user.clear(form.getByRole('textbox', { name: label('dni') }))
+  expect(form.getByText(t('people.commonHint'))).toBeInTheDocument()
+  await user.clear(form.getByRole('textbox', { name: t('people.dni') }))
   await user.clear(form.getByRole('textbox', { name: label('occupation') }))
   await user.type(form.getByRole('textbox', { name: label('occupation') }), 'Modista')
   await user.click(form.getByRole('button', { name: t('app.save') }))
