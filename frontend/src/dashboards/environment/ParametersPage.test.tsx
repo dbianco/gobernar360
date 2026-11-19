@@ -123,3 +123,25 @@ it('shows an error instead of empty lists when loading fails', async () => {
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
   expect(screen.queryByText(t('app.list.empty'))).toBeNull()
 })
+
+it('reads a dotted target as thousands and rejects an ambiguous one', async () => {
+  const requests = mockApi('post', `${BASE}/variables`, MONTHLY, 201)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addVariable') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: label('name') }), 'Consumo')
+  await user.type(form.getByLabelText(label('target')), '1.5')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('environment.invalidNumber'))).toBeInTheDocument()
+  expect(requests).toHaveLength(0)
+
+  await user.clear(form.getByLabelText(label('target')))
+  await user.type(form.getByLabelText(label('target')), '420.000')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toMatchObject({ target: '420000' })
+})

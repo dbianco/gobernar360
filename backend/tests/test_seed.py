@@ -123,3 +123,21 @@ def test_seeded_environment_data_stays_inside_noetinger(client):
     login(client, "admin@comuna-demo.test", DEMO_PASSWORD)
 
     assert client.get("/api/dashboards/environment/variables").json() == []
+
+
+def test_seed_demo_survives_a_demo_database_without_the_second_municipality():
+    seed_demo()
+    with admin_session() as session, session.begin():
+        for model in (Value, Variable, Subcategory):
+            session.execute(delete(model))
+        for model in (DashboardGrant, MunicipalityDashboard):
+            session.execute(delete(model).where(model.dashboard_key == "environment"))
+        commune = session.scalar(select(Municipality).where(Municipality.slug == "comuna-demo"))
+        commune.slug = "renombrada"
+
+    assert seed_demo() is True
+
+    with platform_session() as db:
+        noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+    with tenant_session(noetinger_id) as db:
+        assert _count(db, Variable) >= 8

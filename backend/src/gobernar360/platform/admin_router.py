@@ -82,8 +82,15 @@ def _check_grants(ctx: RequestContext, grants: dict[str, str]) -> None:
         )
 
 
-def _set_grants(membership: Membership, grants: dict[str, str]) -> None:
-    membership.grants = [
+def _set_grants(ctx: RequestContext, membership: Membership, grants: dict[str, str]) -> None:
+    """Replace the member's grants on the enabled dashboards.
+
+    Grants on dashboards that are currently disabled are invisible to the client, so
+    they are kept: the member gets their access back if the dashboard is enabled again.
+    """
+    enabled = enabled_dashboard_keys(ctx.db, ctx.municipality_id)
+    hidden = [grant for grant in membership.grants if grant.dashboard_key not in enabled]
+    membership.grants = hidden + [
         DashboardGrant(dashboard_key=key, level=level) for key, level in grants.items()
     ]
 
@@ -138,7 +145,7 @@ def add_member(payload: MemberIn, ctx: AdminContext) -> MemberOut:
     membership = Membership(
         user_id=user.id, municipality_id=ctx.municipality_id, is_admin=payload.is_admin
     )
-    _set_grants(membership, payload.grants)
+    _set_grants(ctx, membership, payload.grants)
     ctx.db.add(membership)
     ctx.db.flush()
     ctx.db.refresh(membership)
@@ -158,7 +165,7 @@ def update_member(membership_id: uuid.UUID, payload: MemberPatch, ctx: AdminCont
         _ensure_not_last_admin(ctx, membership)
     if payload.grants is not None:
         _check_grants(ctx, payload.grants)
-        _set_grants(membership, payload.grants)
+        _set_grants(ctx, membership, payload.grants)
     if payload.is_admin is not None:
         membership.is_admin = payload.is_admin
     ctx.db.flush()

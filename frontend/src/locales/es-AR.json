@@ -342,7 +342,7 @@
       "variable": "Variable",
       "monthly": "Variables mensuales",
       "annual": "Variables anuales",
-      "hint": "Cada valor se guarda al salir de la celda. Para borrar un valor, dejá la celda vacía.",
+      "hint": "Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.",
       "cell": "{{variable}} — {{period}}",
       "empty": "No hay variables para cargar."
     },
@@ -366,7 +366,8 @@
       "noMatch": "No hay variables que coincidan con los filtros.",
       "yearFigure": "Valor de {{year}}: {{value}} ({{how}}).",
       "yearTarget": "Meta anual: {{target}}."
-    }
+    },
+    "invalidNumber": "No es un número válido. Usá coma para los decimales, por ejemplo 1.250,5."
   },
   "users": {
     "title": "Usuarios del municipio",

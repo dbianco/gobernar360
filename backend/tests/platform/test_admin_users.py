@@ -202,3 +202,10 @@ def test_member_grants_of_a_disabled_dashboard_are_hidden_and_do_not_block_edits
     assert listed["grants"] == {"demo": "viewer"}
     assert response.status_code == 200
     assert response.json()["grants"] == {"demo": "editor"}
+    # The hidden grant survives, so access comes back if the dashboard is enabled again.
+    with admin_session() as session:
+        stored = session.get(type(member), member.id).grants
+        assert {g.dashboard_key: g.level for g in stored} == {
+            "demo": "editor",
+            "projects": "editor",
+        }

@@ -68,7 +68,7 @@ ENVIRONMENT_VARIABLES = {
     "water": {
         "Calidad del agua": [
             ("Muestras de agua aptas para consumo", "%", "monthly", "average",
-             "higher_is_better", "external", "95", "96.5"),
+             "higher_is_better", "external", "88", "90"),
         ],
         "Consumo": [
             ("Consumo de agua por habitante", "l/día", "monthly", "average",
@@ -573,7 +573,9 @@ def _seed_environment(today: date) -> bool:
         noetinger = db.scalar(select(Municipality).where(Municipality.slug == "noetinger"))
         commune = db.scalar(select(Municipality).where(Municipality.slug == "comuna-demo"))
         added = _enable_environment(db, noetinger)
-        _enable_environment(db, commune)
+        # An older demo database may no longer have the second municipality.
+        if commune is not None:
+            _enable_environment(db, commune)
         noetinger_id = noetinger.id
     if added:
         _seed_noetinger_environment(noetinger_id, today)

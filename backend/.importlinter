@@ -19,4 +19,3 @@ source_modules =
 forbidden_modules =
     gobernar360.dashboards.projects
     gobernar360.dashboards.environment
-    gobernar360.dashboards.environment

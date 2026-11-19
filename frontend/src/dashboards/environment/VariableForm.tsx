@@ -3,6 +3,7 @@ import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { send, useAction } from './api'
+import { numberText, parseNumber } from './numbers'
 import {
   AGGREGATIONS,
   DIRECTIONS,
@@ -11,9 +12,6 @@ import {
   type Subcategory,
   type Variable,
 } from './types'
-
-/** People type decimals with a comma; the API takes a dot. Empty means "no target". */
-const numberOrNull = (text: string) => (text.trim() === '' ? null : text.trim().replace(',', '.'))
 
 /** Create a variable in one of the given subcategories, or edit an existing one. */
 export function VariableForm(props: {
@@ -30,9 +28,8 @@ export function VariableForm(props: {
   const [name, setName] = useState(editing?.name ?? '')
   const [unit, setUnit] = useState(editing?.unit ?? '')
   const [frequency, setFrequency] = useState<string>(editing?.frequency ?? 'monthly')
-  const [target, setTarget] = useState(
-    editing?.target == null ? '' : String(editing.target).replace('.', ','),
-  )
+  const [target, setTarget] = useState(numberText(editing?.target))
+  const [targetInvalid, setTargetInvalid] = useState(false)
   const [direction, setDirection] = useState<string>(editing?.direction ?? 'higher_is_better')
   const [source, setSource] = useState<string>(editing?.source ?? 'municipal')
   const [aggregation, setAggregation] = useState<string>(editing?.annual_aggregation ?? 'sum')
@@ -42,11 +39,14 @@ export function VariableForm(props: {
 
   async function submit(event: FormEvent) {
     event.preventDefault()
+    const parsedTarget = parseNumber(target)
+    setTargetInvalid(parsedTarget === undefined)
+    if (parsedTarget === undefined) return
     const body = {
       subcategory_id: subcategoryId,
       name,
       unit,
-      target: numberOrNull(target),
+      target: parsedTarget,
       direction,
       source,
       annual_aggregation: aggregation,
@@ -96,7 +96,7 @@ export function VariableForm(props: {
             label={label('target')}
             description={label('targetHint')}
             inputMode="decimal"
-            pattern="-?[0-9]+([.,][0-9]{1,4})?"
+            error={targetInvalid ? t('environment.invalidNumber') : undefined}
             value={target}
             onChange={(event) => setTarget(event.currentTarget.value)}
           />

@@ -1,9 +1,10 @@
 import { screen, waitFor } from '@testing-library/react'
+import { delay, http, HttpResponse } from 'msw'
 import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi, mockApiError } from '../../test/server'
+import { mockApi, mockApiError, server } from '../../test/server'
 import { EntryPage } from './EntryPage'
 import { ANNUAL, makeValue, MONTHLY } from './testData'
 import { BASE, renderEnvironment } from './testRender'
@@ -156,4 +157,63 @@ it('explains that there is nothing to load before variables exist', async () => 
   renderEnvironment(<EntryPage />, { variables: [] })
 
   expect(await screen.findByText(t('environment.entry.empty'))).toBeInTheDocument()
+})
+
+it.each([
+  ['33.000', '33000'],
+  ['1.234,5', '1234.5'],
+  ['-1.000.000,25', '-1000000.25'],
+])('reads the dot in %s as a thousands separator', async (typed, sent) => {
+  mockApi('get', `${BASE}/values`, [])
+  const requests = mockApi('put', `${BASE}/values`, makeValue())
+  renderEnvironment(<EntryPage />)
+  const user = userEvent.setup()
+
+  await user.type(await screen.findByLabelText(monthCell(6)), typed)
+  await user.tab()
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toMatchObject({ value: sent })
+})
+
+it.each(['1500.5', '1.5', '12.34,5', '1,23456'])(
+  'rejects %s instead of guessing what the dot means',
+  async (typed) => {
+    mockApi('get', `${BASE}/values`, [])
+    const requests = mockApi('put', `${BASE}/values`, makeValue())
+    renderEnvironment(<EntryPage />)
+    const user = userEvent.setup()
+
+    const cell = await screen.findByLabelText(monthCell(6))
+    await user.type(cell, typed)
+    await user.tab()
+
+    expect(cell).toHaveAttribute('aria-invalid', 'true')
+    expect(requests).toHaveLength(0)
+  },
+)
+
+it('keeps what is typed while an earlier save of the same cell is still in flight', async () => {
+  mockApi('get', `${BASE}/values`, [])
+  const sent: unknown[] = []
+  server.use(
+    http.put(`*/api${BASE}/values`, async ({ request }) => {
+      sent.push(((await request.json()) as { value: string }).value)
+      await delay(150)
+      return HttpResponse.json(makeValue())
+    }),
+  )
+  renderEnvironment(<EntryPage />)
+  const user = userEvent.setup()
+
+  const cell = await screen.findByLabelText(monthCell(7))
+  await user.type(cell, '5')
+  await user.tab()
+  await user.type(cell, '6')
+  await waitFor(() => expect(sent).toEqual(['5']))
+  await delay(250)
+
+  expect(cell).toHaveValue('56')
+  await user.tab()
+  await waitFor(() => expect(sent).toEqual(['5', '56']))
 })

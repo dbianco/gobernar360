@@ -1,17 +1,13 @@
 import { Alert, Group, Loader, NativeSelect, Stack, Table, Text, TextInput, Title } from '@mantine/core'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { errorMessage } from '../../platform/errorMessage'
 import { send, useAction, useValues, useVariables } from './api'
+import { numberText, parseNumber } from './numbers'
 import { CATEGORIES, type Category, MONTHS, type Variable, WHOLE_YEAR } from './types'
 import { currentYear } from './years'
 import { YearSelect } from './YearSelect'
-
-const NUMBER = /^-?\d+([.,]\d{1,4})?$/
-
-/** Numbers are shown and typed with a decimal comma; the API uses a dot. */
-const shown = (value: number | undefined) => (value === undefined ? '' : String(value).replace('.', ','))
 
 /**
  * One period of one variable. It saves when the person leaves the cell, and only if the
@@ -22,26 +18,33 @@ function Cell(props: {
   value: number | undefined
   onSave: (value: string | null) => Promise<boolean>
 }) {
-  const stored = shown(props.value)
+  const stored = numberText(props.value)
   // null while the cell shows what is stored; text while it holds an unsaved edit.
   const [draft, setDraft] = useState<string | null>(null)
   const [invalid, setInvalid] = useState(false)
 
+  // What the field holds right now, readable after an await.
+  const latest = useRef<string | null>(null)
+
+  function edit(text: string | null) {
+    latest.current = text
+    setDraft(text)
+  }
+
   async function commit() {
-    if (draft === null) return
-    const text = draft.trim()
-    if (text === stored) {
-      setDraft(null)
-      setInvalid(false)
-      return
+    const committed = draft
+    if (committed === null) return
+    // Typing that continued while the save was running must not be thrown away.
+    const settle = (failed: boolean, done: boolean) => {
+      if (latest.current !== committed) return
+      setInvalid(failed)
+      if (done) edit(null)
     }
-    if (text !== '' && !NUMBER.test(text)) {
-      setInvalid(true)
-      return
-    }
-    const saved = await props.onSave(text === '' ? null : text.replace(',', '.'))
-    setInvalid(!saved)
-    if (saved) setDraft(null)
+    if (committed.trim() === stored) return settle(false, true)
+    const value = parseNumber(committed)
+    if (value === undefined) return settle(true, false)
+    const saved = await props.onSave(value)
+    settle(!saved, saved)
   }
 
   return (
@@ -53,7 +56,10 @@ function Cell(props: {
       inputMode="decimal"
       miw={76}
       value={draft ?? stored}
-      onChange={(event) => setDraft(event.currentTarget.value)}
+      onChange={(event) => {
+        edit(event.currentTarget.value)
+        setInvalid(false)
+      }}
       onBlur={() => void commit()}
     />
   )
