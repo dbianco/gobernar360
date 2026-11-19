@@ -5,8 +5,12 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 import { useAuth } from '../../platform/authContext'
 import { RequireDashboard } from '../../platform/RequireDashboard'
 import { hasLevel } from '../../platform/types'
+import { ActorDetailPage } from './ActorDetailPage'
+import { ActorsPage } from './ActorsPage'
 import { BASE_PATH } from './api'
 import { ParametersPage } from './ParametersPage'
+import { PeoplePage } from './PeoplePage'
+import { PersonDetailPage } from './PersonDetailPage'
 
 const SECTIONS = ['summary', 'actors', 'people', 'assignments', 'reports'] as const
 const Pending = () => null
@@ -38,10 +42,10 @@ export default function EconomicRoutes() {
       </Tabs>
       <Routes>
         <Route index element={<Pending />} />
-        <Route path="actors" element={<Pending />} />
-        <Route path="actors/:id" element={<Pending />} />
-        <Route path="people" element={<Pending />} />
-        <Route path="people/:id" element={<Pending />} />
+        <Route path="actors" element={<ActorsPage />} />
+        <Route path="actors/:id" element={<ActorDetailPage />} />
+        <Route path="people" element={<PeoplePage />} />
+        <Route path="people/:id" element={<PersonDetailPage />} />
         <Route path="assignments" element={<Pending />} />
         <Route path="reports" element={<Pending />} />
         <Route

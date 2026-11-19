@@ -1,9 +1,9 @@
 import { NativeSelect } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
-const YEARS_BACK = 10
+import { currentYear } from './years'
 
-export const currentYear = () => new Date().getFullYear()
+const YEARS_BACK = 10
 
 /** Chooses the year being looked at: next year down to ten years ago. */
 export function YearSelect(props: { value: number; onChange: (year: number) => void }) {
