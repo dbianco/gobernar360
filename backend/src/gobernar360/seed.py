@@ -1,4 +1,4 @@
-"""Demo data: two municipalities with users of every role and a populated projects dashboard.
+"""Demo data: two municipalities with users of every role and populated dashboards.
 
 For local development, demos and end-to-end tests only: every account shares a known password.
 """
@@ -11,6 +11,7 @@ from sqlalchemy.orm import Session
 
 from gobernar360.core.db import Base, get_admin_engine, platform_session, tenant_session
 from gobernar360.core.security import hash_password
+from gobernar360.dashboards.environment.models import Subcategory, Value, Variable
 from gobernar360.dashboards.projects.models import (
     AnnualBudget,
     Axis,
@@ -34,6 +35,68 @@ from gobernar360.platform.models import (
 
 DEMO_PASSWORD = "gobernar360-demo"
 PROJECTS = "projects"
+ENVIRONMENT = "environment"
+
+# category -> subcategory -> variables as (name, unit, frequency, aggregation, direction,
+# source, target, typical value per period). Air is left empty on purpose, to show how a
+# category without variables looks.
+ENVIRONMENT_VARIABLES = {
+    "energy": {
+        "Consumo eléctrico": [
+            ("Consumo eléctrico de edificios municipales", "kWh", "monthly", "sum",
+             "lower_is_better", "external", "420000", "33000"),
+            ("Luminarias LED instaladas", "luminarias", "annual", "sum",
+             "higher_is_better", "municipal", "1200", "1250"),
+        ],
+        "Energías renovables": [
+            ("Energía solar generada", "kWh", "monthly", "sum",
+             "higher_is_better", "municipal", "60000", "3500"),
+        ],
+    },
+    "waste": {
+        "Recolección": [
+            ("Residuos enviados a disposición final", "t", "monthly", "sum",
+             "lower_is_better", "municipal", "6000", "470"),
+            ("Material reciclado recuperado", "t", "monthly", "sum",
+             "higher_is_better", "municipal", "300", "22"),
+        ],
+        "Economía circular": [
+            ("Cooperativas de recuperadores urbanos", "cooperativas", "annual", "sum",
+             "higher_is_better", "municipal", None, "2"),
+        ],
+    },
+    "water": {
+        "Calidad del agua": [
+            ("Muestras de agua aptas para consumo", "%", "monthly", "average",
+             "higher_is_better", "external", "95", "96.5"),
+        ],
+        "Consumo": [
+            ("Consumo de agua por habitante", "l/día", "monthly", "average",
+             "lower_is_better", "external", "250", "265"),
+        ],
+    },
+    "mobility": {
+        "Movilidad sustentable": [
+            ("Ciclovías habilitadas", "km", "annual", "sum",
+             "higher_is_better", "municipal", "12", "8"),
+        ],
+    },
+    "biodiversity": {
+        "Arbolado urbano": [
+            ("Árboles plantados", "árboles", "monthly", "sum",
+             "higher_is_better", "municipal", "500", "55"),
+        ],
+    },
+    "governance": {
+        "Planificación": [
+            # Never loaded: shows a variable the municipality is not measuring yet.
+            ("Capacitaciones ambientales al personal", "capacitaciones", "annual", "sum",
+             "higher_is_better", "municipal", None, None),
+        ],
+    },
+}  # fmt: skip
+# Month-to-month variation applied to the typical value, so charts are not flat.
+SEASONALITY = (1.08, 1.04, 0.98, 0.95, 0.97, 1.05, 1.1, 1.06, 0.96, 0.93, 0.95, 1.02)
 
 AXES = {
     "Ciudad con calidad de vida": ["Mejorar el espacio público", "Ampliar los servicios básicos"],
@@ -440,13 +503,94 @@ def _seed_commune_projects(municipality_id, today: date) -> None:
             )
 
 
+def _seed_noetinger_environment(municipality_id, today: date) -> None:
+    """Variables with last year complete and this year loaded up to last month."""
+    with tenant_session(municipality_id) as db:
+
+        def add(entity):
+            entity.municipality_id = municipality_id
+            db.add(entity)
+            db.flush()
+            return entity
+
+        for category, subcategories in ENVIRONMENT_VARIABLES.items():
+            for subcategory_name, rows in subcategories.items():
+                subcategory = add(Subcategory(category=category, name=subcategory_name))
+                for name, unit, frequency, aggregation, direction, source, target, typical in rows:
+                    variable = add(
+                        Variable(
+                            subcategory_id=subcategory.id,
+                            name=name,
+                            unit=unit,
+                            frequency=frequency,
+                            annual_aggregation=aggregation,
+                            direction=direction,
+                            source=source,
+                            target=Decimal(target) if target else None,
+                        )
+                    )
+                    if typical is None:
+                        continue
+                    if frequency == "annual":
+                        periods = [(today.year - 1, 0, Decimal("0.8")), (today.year, 0, Decimal(1))]
+                    else:
+                        periods = [
+                            (year, month, Decimal(str(SEASONALITY[month - 1])))
+                            for year, last_month in (
+                                (today.year - 1, 12),
+                                (today.year, today.month - 1),
+                            )
+                            for month in range(1, last_month + 1)
+                        ]
+                    for year, period, factor in periods:
+                        value = (Decimal(typical) * factor).quantize(Decimal("0.01"))
+                        add(Value(variable_id=variable.id, year=year, period=period, value=value))
+
+
+def _enable_environment(db: Session, municipality: Municipality) -> bool:
+    """Enable the environment dashboard and give it to whoever has the projects one.
+
+    Returns False when it was already enabled, so older demo databases gain the
+    dashboard once and are otherwise left alone.
+    """
+    if db.get(MunicipalityDashboard, (municipality.id, ENVIRONMENT)):
+        return False
+    db.add(MunicipalityDashboard(municipality_id=municipality.id, dashboard_key=ENVIRONMENT))
+    memberships = db.scalars(
+        select(Membership).where(Membership.municipality_id == municipality.id)
+    ).unique()
+    for membership in memberships:
+        for grant in list(membership.grants):
+            if grant.dashboard_key == PROJECTS:
+                membership.grants.append(
+                    DashboardGrant(dashboard_key=ENVIRONMENT, level=grant.level)
+                )
+    return True
+
+
+def _seed_environment(today: date) -> bool:
+    with platform_session() as db:
+        noetinger = db.scalar(select(Municipality).where(Municipality.slug == "noetinger"))
+        commune = db.scalar(select(Municipality).where(Municipality.slug == "comuna-demo"))
+        added = _enable_environment(db, noetinger)
+        _enable_environment(db, commune)
+        noetinger_id = noetinger.id
+    if added:
+        _seed_noetinger_environment(noetinger_id, today)
+    return added
+
+
 def seed_demo(reset: bool = False) -> bool:
     """Load the demo data. Returns False when it was already present and nothing changed."""
     if reset:
         _reset()
+    today = date.today()
     with platform_session() as db:
-        if db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger")):
-            return False
+        already_seeded = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+    if already_seeded:
+        # Only add what newer versions of the demo bring.
+        return _seed_environment(today)
+    with platform_session() as db:
         _user(db, "operador@gobernar360.test", "Operador de la plataforma", operator=True)
 
         noetinger = _municipality(db, "Noetinger", "noetinger", "municipality")
@@ -459,7 +603,7 @@ def seed_demo(reset: bool = False) -> bool:
         _member(db, commune, "admin@comuna-demo.test", "Andrés Administrador", admin=True)
         noetinger_id, commune_id = noetinger.id, commune.id
 
-    today = date.today()
     _seed_noetinger_projects(noetinger_id, today)
     _seed_commune_projects(commune_id, today)
+    _seed_environment(today)
     return True

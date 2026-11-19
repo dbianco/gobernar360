@@ -48,7 +48,7 @@ def seed_demo(
         bool, typer.Option("--reset", help="Delete ALL existing data before loading the demo.")
     ] = False,
 ) -> None:
-    """Load demo municipalities, users and projects. Never run this against real data."""
+    """Load demo municipalities, users and dashboard data. Never run this against real data."""
     from gobernar360.seed import DEMO_PASSWORD
     from gobernar360.seed import seed_demo as load_demo
 
