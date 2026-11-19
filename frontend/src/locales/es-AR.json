@@ -62,7 +62,11 @@
       "projects.delayed": "Proyectos retrasados",
       "projects.average_progress": "Avance promedio",
       "projects.milestones_in_alert": "Hitos en alerta",
-      "projects.budget_executed_ratio": "Presupuesto ejecutado"
+      "projects.budget_executed_ratio": "Presupuesto ejecutado",
+      "environment.variables": "Variables ambientales",
+      "environment.load_completion": "Cargas del año realizadas",
+      "environment.targets_met": "Metas ambientales cumplidas",
+      "environment.targets_missed": "Metas ambientales no cumplidas"
     }
   },
   "dashboards": {
@@ -227,6 +231,84 @@
       "17": "Alianzas para lograr los objetivos"
     },
     "sdgLabel": "ODS {{number}}: {{title}}"
+  },
+  "environment": {
+    "title": "Ambiental",
+    "year": "Año",
+    "tabs": {
+      "summary": "Resumen",
+      "tracking": "Seguimiento",
+      "entry": "Carga",
+      "parameters": "Parámetros"
+    },
+    "categories": {
+      "energy": "Energía",
+      "waste": "Residuos",
+      "water": "Agua",
+      "air": "Aire",
+      "mobility": "Movilidad",
+      "biodiversity": "Biodiversidad",
+      "governance": "Gobernanza"
+    },
+    "frequencies": {
+      "monthly": "Mensual",
+      "annual": "Anual"
+    },
+    "directions": {
+      "higher_is_better": "Más es mejor",
+      "lower_is_better": "Menos es mejor"
+    },
+    "sources": {
+      "municipal": "Municipal",
+      "external": "Externa"
+    },
+    "aggregations": {
+      "sum": "Suma de los meses",
+      "average": "Promedio de los meses",
+      "last": "Último mes cargado"
+    },
+    "summary": {
+      "variables": "Variables",
+      "loads": "Cargas del año",
+      "loadsHint": "Valores cargados sobre los esperados en el año.",
+      "targetsMet": "Metas cumplidas",
+      "targetsMissed": "Metas no cumplidas",
+      "variable": "Variable",
+      "subcategory": "Subcategoría",
+      "value": "Valor / meta",
+      "achievement": "Cumplimiento",
+      "loadsColumn": "Cargas",
+      "categoryLoads": "{{loaded}} de {{expected}} cargas",
+      "met": "Cumplida",
+      "missed": "No cumplida",
+      "withoutVariables": "Categorías sin variables:",
+      "download": "Descargar valores",
+      "emptyTitle": "Todavía no hay variables definidas",
+      "emptyViewerBody": "Pedile al administrador del tablero que defina las variables a medir.",
+      "goToParameters": "Ir a parámetros"
+    },
+    "parameters": {
+      "category": "Categoría",
+      "subcategories": "Subcategorías",
+      "newSubcategory": "Nueva subcategoría",
+      "variables": "Variables",
+      "addVariable": "Agregar variable",
+      "editVariable": "Editar variable",
+      "needsSubcategory": "Para definir variables primero agregá una subcategoría.",
+      "noVariables": "Esta categoría todavía no tiene variables.",
+      "name": "Nombre",
+      "subcategory": "Subcategoría",
+      "unit": "Unidad",
+      "frequency": "Frecuencia de carga",
+      "frequencyFixed": "No se puede cambiar una vez creada la variable.",
+      "target": "Meta anual",
+      "targetHint": "Opcional.",
+      "direction": "Sentido",
+      "source": "Fuente del dato",
+      "aggregation": "Valor del año",
+      "editNamed": "Editar variable: {{name}}",
+      "deleteNamed": "Eliminar variable: {{name}}"
+    }
   },
   "users": {
     "title": "Usuarios del municipio",
