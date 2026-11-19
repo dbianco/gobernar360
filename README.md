@@ -37,7 +37,7 @@ deletes everything first).
 
 | Email | Role |
 |---|---|
-| `operador@gobernar360.test` | Platform operator: creates municipalities, enables dashboards |
+| `operador@gobernar360.test` | Platform operator (super-admin): creates and configures municipalities |
 | `admin@noetinger.test` | Administrator of Noetinger: manages its users and every dashboard |
 | `carga@noetinger.test` | Projects and environment dashboards, data entry |
 | `lectura@noetinger.test` | Projects and environment dashboards, read only |
@@ -46,6 +46,18 @@ deletes everything first).
 
 For a real installation create the first operator with
 `uv run gobernar360 create-operator --email ... --full-name ...`.
+
+### Who administers what
+
+Municipalities are independent: no municipality can see another one's data.
+
+- The **platform operator** creates municipalities and configures each one: name and
+  kind, enabled dashboards, and users (add, permissions, administrators, remove, set a
+  new password). The operator sees configuration only, never dashboard data, unless
+  added as a user of that municipality.
+- A **municipality administrator** manages a subset of that for their own municipality:
+  its users and their permissions. They cannot rename it, enable dashboards or change
+  passwords (accounts are shared between municipalities).
 
 ## Tests
 
