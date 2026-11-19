@@ -390,7 +390,13 @@
       "editor": "Carga",
       "admin": "Administración"
     },
-    "adminHasAll": "Administración (por ser administrador)"
+    "adminHasAll": "Administración (por ser administrador)",
+    "passwordHintOperator": "Mínimo 10 caracteres. Si la persona ya tiene una cuenta, esta contraseña reemplaza la anterior y se cierran sus sesiones.",
+    "setPassword": "Cambiar contraseña",
+    "setPasswordNamed": "Cambiar contraseña de {{name}}",
+    "newPassword": "Contraseña nueva",
+    "newPasswordHint": "Mínimo 10 caracteres. Se cierran todas las sesiones abiertas de la cuenta.",
+    "passwordChanged": "Contraseña cambiada: {{name}}"
   },
   "platform": {
     "title": "Municipios de la plataforma",
@@ -404,11 +410,17 @@
       "commune": "Comuna"
     },
     "dashboardsFor": "Tableros habilitados",
-    "dashboardIn": "{{dashboard}} en {{name}}",
-    "createAdmin": "Crear administrador",
-    "createAdminFor": "Crear administrador de {{name}}",
-    "adminCreated": "Administrador creado: {{email}}",
-    "empty": "Todavía no hay municipios cargados."
+    "empty": "Todavía no hay municipios cargados.",
+    "configure": "Configurar",
+    "configureNamed": "Configurar {{name}}",
+    "back": "← Municipios",
+    "details": "Datos del municipio",
+    "saveDetails": "Guardar datos",
+    "detailsSaved": "Datos guardados.",
+    "dashboardsHint": "Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.",
+    "users": "Usuarios",
+    "notFound": "El municipio no existe.",
+    "noDashboards": "Sin tableros habilitados"
   },
   "account": {
     "title": "Cambiar contraseña",

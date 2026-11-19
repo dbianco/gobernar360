@@ -19,18 +19,20 @@ import { useAction } from './useAction'
 
 const MIN_PASSWORD_LENGTH = 10
 
-/**
- * Creates an account. By default it adds a member to the active municipality with
- * per-dashboard access; with `adminOf` it creates the administrator of that municipality.
- */
+/** Adds a member, with per-dashboard access, to the municipality that `base` names. */
 export function UserForm(props: {
+  /** API prefix of the municipality: "/admin" or "/platform/municipalities/{id}". */
+  base: string
+  /** Query-key prefix to refresh after saving. */
+  scope?: string
   dashboards: string[]
   onDone: (email: string) => void
   onCancel?: () => void
-  adminOf?: string
+  /** The server replaces the password of an account that already exists (operators). */
+  replacesPassword?: boolean
 }) {
   const { t } = useTranslation()
-  const action = useAction(['admin', 'platform'])
+  const action = useAction([props.scope ?? 'admin'])
   const levelOptions = useLevelOptions()
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
@@ -46,19 +48,16 @@ export function UserForm(props: {
       return
     }
     setPasswordError(null)
-    const account = { email: email.trim(), full_name: fullName.trim(), password }
+    const account = {
+      email: email.trim(),
+      full_name: fullName.trim(),
+      password,
+    }
     const saved = await action.run(async () => {
-      if (props.adminOf) {
-        await api(`/platform/municipalities/${props.adminOf}/admins`, {
-          method: 'POST',
-          body: account,
-        })
-      } else {
-        await api('/admin/users', {
-          method: 'POST',
-          body: { ...account, is_admin: isAdmin, grants },
-        })
-      }
+      await api(`${props.base}/users`, {
+        method: 'POST',
+        body: { ...account, is_admin: isAdmin, grants: isAdmin ? {} : grants },
+      })
       return true
     })
     if (saved) props.onDone(account.email)
@@ -84,40 +83,40 @@ export function UserForm(props: {
         />
         <PasswordInput
           label={t('users.password')}
-          description={t('users.passwordHint')}
+          description={t(
+            props.replacesPassword ? 'users.passwordHintOperator' : 'users.passwordHint',
+          )}
           required
           autoComplete="new-password"
           error={passwordError}
           value={password}
           onChange={(event) => setPassword(event.currentTarget.value)}
         />
-        {!props.adminOf && (
-          <>
-            <Checkbox
-              label={t('users.admin')}
-              checked={isAdmin}
-              onChange={(event) => setIsAdmin(event.currentTarget.checked)}
+        <Checkbox
+          label={t('users.admin')}
+          checked={isAdmin}
+          onChange={(event) => setIsAdmin(event.currentTarget.checked)}
+        />
+        {!isAdmin &&
+          props.dashboards.map((key) => (
+            <NativeSelect
+              key={key}
+              label={t('users.accessTo', {
+                dashboard: t(dashboardLabelKey(key) ?? key),
+              })}
+              value={grants[key] ?? ''}
+              data={levelOptions}
+              onChange={(event) => {
+                const level = event.currentTarget.value as AccessLevel | ''
+                setGrants((current) => {
+                  const next = { ...current }
+                  if (level) next[key] = level
+                  else delete next[key]
+                  return next
+                })
+              }}
             />
-            {!isAdmin &&
-              props.dashboards.map((key) => (
-                <NativeSelect
-                  key={key}
-                  label={t('users.accessTo', { dashboard: t(dashboardLabelKey(key) ?? key) })}
-                  value={grants[key] ?? ''}
-                  data={levelOptions}
-                  onChange={(event) => {
-                    const level = event.currentTarget.value as AccessLevel | ''
-                    setGrants((current) => {
-                      const next = { ...current }
-                      if (level) next[key] = level
-                      else delete next[key]
-                      return next
-                    })
-                  }}
-                />
-              ))}
-          </>
-        )}
+          ))}
         <Group justify="flex-end">
           {props.onCancel && (
             <Button variant="default" onClick={props.onCancel}>

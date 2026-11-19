@@ -35,7 +35,10 @@ const accessSelect = (name: string) =>
   })
 
 it("changes a user's access level for a dashboard", async () => {
-  const requests = mockApi('patch', '/admin/users/ms-2', { ...CARLA, grants: { projects: 'editor' } })
+  const requests = mockApi('patch', '/admin/users/ms-2', {
+    ...CARLA,
+    grants: { projects: 'editor' },
+  })
   renderUsers()
 
   const select = await accessSelect('Carla Carga')
@@ -47,12 +50,27 @@ it("changes a user's access level for a dashboard", async () => {
 })
 
 it('removes access by choosing no access', async () => {
-  const requests = mockApi('patch', '/admin/users/ms-2', { ...CARLA, grants: {} })
+  const requests = mockApi('patch', '/admin/users/ms-2', {
+    ...CARLA,
+    grants: {},
+  })
   renderUsers()
 
   await userEvent.setup().selectOptions(await accessSelect('Carla Carga'), t('users.levels.none'))
 
   await waitFor(() => expect(requests[0]?.body).toEqual({ grants: {} }))
+})
+
+it('offers no way to change passwords', async () => {
+  renderUsers()
+
+  await accessSelect('Carla Carga')
+  expect(
+    screen.queryByRole('button', {
+      name: t('users.setPasswordNamed', { name: 'Carla Carga' }),
+    }),
+  ).toBeNull()
+  expect(screen.queryByText(t('users.passwordHintOperator'))).toBeNull()
 })
 
 it('shows that administrators already have full access', async () => {
@@ -66,11 +84,11 @@ it('shows the conflict message when removing the last admin', async () => {
   mockApiError('delete', '/admin/users/ms-1', 409, 'conflict')
   renderUsers()
 
-  await userEvent
-    .setup()
-    .click(
-      await screen.findByRole('button', { name: t('users.removeNamed', { name: 'Ana Gómez' }) }),
-    )
+  await userEvent.setup().click(
+    await screen.findByRole('button', {
+      name: t('users.removeNamed', { name: 'Ana Gómez' }),
+    }),
+  )
 
   expect(await screen.findByText(t('errors.conflict'))).toBeInTheDocument()
 })
@@ -80,11 +98,11 @@ it('does not remove a user when the confirmation is declined', async () => {
   const requests = mockApi('delete', '/admin/users/ms-2', null, 204)
   renderUsers()
 
-  await userEvent
-    .setup()
-    .click(
-      await screen.findByRole('button', { name: t('users.removeNamed', { name: 'Carla Carga' }) }),
-    )
+  await userEvent.setup().click(
+    await screen.findByRole('button', {
+      name: t('users.removeNamed', { name: 'Carla Carga' }),
+    }),
+  )
 
   expect(requests).toHaveLength(0)
 })

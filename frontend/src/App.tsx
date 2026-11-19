@@ -9,6 +9,7 @@ import { AccountPage } from './platform/AccountPage'
 import { AppShell } from './platform/AppShell'
 import { useAuth } from './platform/authContext'
 import { LoginPage } from './platform/LoginPage'
+import { MunicipalityPage } from './platform/MunicipalityPage'
 import { OperatorPage } from './platform/OperatorPage'
 import { RequireDashboard } from './platform/RequireDashboard'
 import { activeMembership, type Me } from './platform/types'
@@ -59,6 +60,14 @@ export default function App() {
           element={
             <Only when={(me) => me.user.is_platform_operator}>
               <OperatorPage />
+            </Only>
+          }
+        />
+        <Route
+          path="platform/municipalities/:id"
+          element={
+            <Only when={(me) => me.user.is_platform_operator}>
+              <MunicipalityPage />
             </Only>
           }
         />

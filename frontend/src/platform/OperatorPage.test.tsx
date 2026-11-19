@@ -17,7 +17,12 @@ function renderOperator() {
 }
 
 it('creates a municipality', async () => {
-  const requests = mockApi('post', '/platform/municipalities', { ...NOETINGER, dashboards: [] }, 201)
+  const requests = mockApi(
+    'post',
+    '/platform/municipalities',
+    { ...NOETINGER, dashboards: [] },
+    201,
+  )
   renderOperator()
   const user = userEvent.setup()
 
@@ -30,55 +35,20 @@ it('creates a municipality', async () => {
   await user.click(screen.getByRole('button', { name: t('platform.add') }))
 
   await waitFor(() => expect(requests).toHaveLength(1))
-  expect(requests[0].body).toEqual({ name: 'Villa María', slug: 'villa-maria', kind: 'commune' })
-})
-
-it('enables a dashboard for a municipality', async () => {
-  const requests = mockApi('put', `/platform/municipalities/${NOETINGER.id}/dashboards`, {
-    ...NOETINGER,
-    dashboards: ['projects'],
-  })
-  renderOperator()
-
-  const checkbox = await screen.findByRole('checkbox', {
-    name: t('platform.dashboardIn', { dashboard: t('projects.title'), name: NOETINGER.name }),
-  })
-  expect(checkbox).not.toBeChecked()
-  await userEvent.setup().click(checkbox)
-
-  await waitFor(() => expect(requests).toHaveLength(1))
-  expect(requests[0].body).toEqual({ keys: ['projects'] })
-})
-
-it('creates the first administrator of a municipality', async () => {
-  const requests = mockApi(
-    'post',
-    `/platform/municipalities/${NOETINGER.id}/admins`,
-    { id: 'u-9', email: 'admin@noetinger.test', full_name: 'Ana Admin', is_platform_operator: false },
-    201,
-  )
-  renderOperator()
-  const user = userEvent.setup()
-
-  await user.click(
-    await screen.findByRole('button', {
-      name: t('platform.createAdminFor', { name: NOETINGER.name }),
-    }),
-  )
-  await user.type(await screen.findByRole('textbox', { name: t('users.name') }), 'Ana Admin')
-  await user.type(screen.getByRole('textbox', { name: t('users.email') }), 'admin@noetinger.test')
-  await user.type(screen.getByLabelText(t('users.password'), { exact: false }), 'long-password-1')
-  await user.click(screen.getByRole('button', { name: t('app.save') }))
-
-  await waitFor(() => expect(requests).toHaveLength(1))
   expect(requests[0].body).toEqual({
-    email: 'admin@noetinger.test',
-    full_name: 'Ana Admin',
-    password: 'long-password-1',
+    name: 'Villa María',
+    slug: 'villa-maria',
+    kind: 'commune',
   })
-  expect(
-    await screen.findByText(t('platform.adminCreated', { email: 'admin@noetinger.test' })),
-  ).toBeInTheDocument()
+})
+
+it('links each municipality to its configuration', async () => {
+  renderOperator()
+
+  const link = await screen.findByRole('link', {
+    name: t('platform.configureNamed', { name: NOETINGER.name }),
+  })
+  expect(link).toHaveAttribute('href', `/platform/municipalities/${NOETINGER.id}`)
 })
 
 it('lands operators without a municipality on the platform page', async () => {

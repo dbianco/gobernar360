@@ -15,7 +15,7 @@ async function fill(user: ReturnType<typeof userEvent.setup>, password: string) 
 
 it('rejects passwords shorter than ten characters', async () => {
   const requests = mockApi('post', '/admin/users', {}, 201)
-  renderApp(<UserForm dashboards={['projects']} onDone={vi.fn()} />, { me: makeMe() })
+  renderApp(<UserForm base="/admin" dashboards={['projects']} onDone={vi.fn()} />, { me: makeMe() })
   const user = userEvent.setup()
 
   await fill(user, 'short')
@@ -28,12 +28,14 @@ it('rejects passwords shorter than ten characters', async () => {
 it('creates a user with the chosen access', async () => {
   const requests = mockApi('post', '/admin/users', {}, 201)
   const onDone = vi.fn()
-  renderApp(<UserForm dashboards={['projects']} onDone={onDone} />, { me: makeMe() })
+  renderApp(<UserForm base="/admin" dashboards={['projects']} onDone={onDone} />, { me: makeMe() })
   const user = userEvent.setup()
 
   await fill(user, 'long-password-1')
   await user.selectOptions(
-    screen.getByRole('combobox', { name: t('users.accessTo', { dashboard: t('projects.title') }) }),
+    screen.getByRole('combobox', {
+      name: t('users.accessTo', { dashboard: t('projects.title') }),
+    }),
     t('users.levels.editor'),
   )
   await user.click(screen.getByRole('button', { name: t('app.save') }))

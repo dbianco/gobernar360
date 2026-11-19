@@ -1,50 +1,35 @@
 import {
   Alert,
+  Anchor,
   Button,
-  Checkbox,
   Group,
   Loader,
-  Modal,
   NativeSelect,
   Paper,
   Stack,
+  Table,
   Text,
   TextInput,
   Title,
 } from '@mantine/core'
-import { useQuery } from '@tanstack/react-query'
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 import { api } from '../api/client'
 import { dashboardLabelKey } from '../dashboards/registry'
 import { errorMessage } from './errorMessage'
-import type { Municipality } from './types'
+import { KINDS, useMunicipalities } from './operatorApi'
 import { useAction } from './useAction'
-import { UserForm } from './UserForm'
 
-interface MunicipalityDetail extends Municipality {
-  dashboards: string[]
-}
-
-/** Platform operator: municipalities, the dashboards each one has, and their administrators. */
+/** Platform operator: the municipalities of the platform and the form to add one. */
 export function OperatorPage() {
   const { t } = useTranslation()
-  const municipalities = useQuery({
-    queryKey: ['platform', 'municipalities'],
-    queryFn: () => api<MunicipalityDetail[]>('/platform/municipalities'),
-  })
-  const registered = useQuery({
-    queryKey: ['platform', 'dashboards'],
-    queryFn: () => api<string[]>('/platform/dashboards'),
-  })
+  const municipalities = useMunicipalities()
   const action = useAction(['platform', 'me'])
   const [name, setName] = useState('')
   const [slug, setSlug] = useState('')
-  const [kind, setKind] = useState('municipality')
-  const [adminFor, setAdminFor] = useState<MunicipalityDetail | null>(null)
-  const [notice, setNotice] = useState<string | null>(null)
-  const dashboardName = (key: string) => t(dashboardLabelKey(key) ?? key)
+  const [kind, setKind] = useState<string>('municipality')
 
   async function create(event: FormEvent) {
     event.preventDefault()
@@ -60,18 +45,6 @@ export function OperatorPage() {
     }
   }
 
-  function toggle(municipality: MunicipalityDetail, key: string, enabled: boolean) {
-    const keys = enabled
-      ? [...municipality.dashboards, key]
-      : municipality.dashboards.filter((existing) => existing !== key)
-    void action.run(() =>
-      api(`/platform/municipalities/${municipality.id}/dashboards`, {
-        method: 'PUT',
-        body: { keys },
-      }),
-    )
-  }
-
   return (
     <Stack>
       <Title order={2}>{t('platform.title')}</Title>
@@ -80,51 +53,54 @@ export function OperatorPage() {
           {action.error}
         </Alert>
       )}
-      {notice && (
-        <Alert color="green" withCloseButton onClose={() => setNotice(null)}>
-          {notice}
-        </Alert>
-      )}
       {municipalities.isLoading && <Loader aria-label={t('app.loading')} />}
       {municipalities.isError && <Alert color="red">{errorMessage(municipalities.error)}</Alert>}
       {municipalities.data?.length === 0 && <Text c="dimmed">{t('platform.empty')}</Text>}
-      {municipalities.data?.map((municipality) => (
-        <Paper key={municipality.id} withBorder p="md">
-          <Group justify="space-between" align="flex-start">
-            <Stack gap={4}>
-              <Title order={4}>{municipality.name}</Title>
-              <Text size="sm" c="dimmed">
-                {t(`platform.kinds.${municipality.kind}`)} · {municipality.slug}
-              </Text>
-            </Stack>
-            <Button
-              variant="default"
-              size="xs"
-              aria-label={t('platform.createAdminFor', { name: municipality.name })}
-              onClick={() => setAdminFor(municipality)}
-            >
-              {t('platform.createAdmin')}
-            </Button>
-          </Group>
-          <Text size="sm" mt="sm" mb={4}>
-            {t('platform.dashboardsFor')}
-          </Text>
-          <Group>
-            {registered.data?.map((key) => (
-              <Checkbox
-                key={key}
-                label={dashboardName(key)}
-                aria-label={t('platform.dashboardIn', {
-                  dashboard: dashboardName(key),
-                  name: municipality.name,
-                })}
-                checked={municipality.dashboards.includes(key)}
-                onChange={(event) => toggle(municipality, key, event.currentTarget.checked)}
-              />
-            ))}
-          </Group>
-        </Paper>
-      ))}
+      {municipalities.data && municipalities.data.length > 0 && (
+        <Table.ScrollContainer minWidth={560}>
+          <Table verticalSpacing="sm">
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th>{t('platform.name')}</Table.Th>
+                <Table.Th>{t('platform.kind')}</Table.Th>
+                <Table.Th>{t('platform.dashboardsFor')}</Table.Th>
+                <Table.Th />
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>
+              {municipalities.data.map((municipality) => (
+                <Table.Tr key={municipality.id}>
+                  <Table.Td>
+                    <Text>{municipality.name}</Text>
+                    <Text size="sm" c="dimmed">
+                      {municipality.slug}
+                    </Text>
+                  </Table.Td>
+                  <Table.Td>{t(`platform.kinds.${municipality.kind}`)}</Table.Td>
+                  <Table.Td>
+                    {municipality.dashboards.length === 0
+                      ? t('platform.noDashboards')
+                      : municipality.dashboards
+                          .map((key) => t(dashboardLabelKey(key) ?? key))
+                          .join(', ')}
+                  </Table.Td>
+                  <Table.Td ta="right">
+                    <Anchor
+                      component={Link}
+                      to={`/platform/municipalities/${municipality.id}`}
+                      aria-label={t('platform.configureNamed', {
+                        name: municipality.name,
+                      })}
+                    >
+                      {t('platform.configure')}
+                    </Anchor>
+                  </Table.Td>
+                </Table.Tr>
+              ))}
+            </Table.Tbody>
+          </Table>
+        </Table.ScrollContainer>
+      )}
 
       <Paper withBorder p="md">
         <form onSubmit={(event) => void create(event)}>
@@ -149,10 +125,10 @@ export function OperatorPage() {
               label={t('platform.kind')}
               value={kind}
               onChange={(event) => setKind(event.currentTarget.value)}
-              data={[
-                { value: 'municipality', label: t('platform.kinds.municipality') },
-                { value: 'commune', label: t('platform.kinds.commune') },
-              ]}
+              data={KINDS.map((value) => ({
+                value,
+                label: t(`platform.kinds.${value}`),
+              }))}
             />
             <Button type="submit" loading={action.pending}>
               {t('platform.add')}
@@ -160,24 +136,6 @@ export function OperatorPage() {
           </Group>
         </form>
       </Paper>
-
-      <Modal
-        opened={adminFor !== null}
-        onClose={() => setAdminFor(null)}
-        title={adminFor ? t('platform.createAdminFor', { name: adminFor.name }) : ''}
-      >
-        {adminFor && (
-          <UserForm
-            dashboards={[]}
-            adminOf={adminFor.id}
-            onCancel={() => setAdminFor(null)}
-            onDone={(email) => {
-              setAdminFor(null)
-              setNotice(t('platform.adminCreated', { email }))
-            }}
-          />
-        )}
-      </Modal>
     </Stack>
   )
 }
