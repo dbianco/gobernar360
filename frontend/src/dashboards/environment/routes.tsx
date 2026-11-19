@@ -6,8 +6,10 @@ import { useAuth } from '../../platform/authContext'
 import { RequireDashboard } from '../../platform/RequireDashboard'
 import { hasLevel } from '../../platform/types'
 import { BASE_PATH } from './api'
+import { EntryPage } from './EntryPage'
 import { ParametersPage } from './ParametersPage'
 import { SummaryPage } from './SummaryPage'
+import { TrackingPage } from './TrackingPage'
 
 export default function EnvironmentRoutes() {
   const { t } = useTranslation()
@@ -36,6 +38,15 @@ export default function EnvironmentRoutes() {
       </Tabs>
       <Routes>
         <Route index element={<SummaryPage />} />
+        <Route path="tracking" element={<TrackingPage />} />
+        <Route
+          path="entry"
+          element={
+            <RequireDashboard dashboardKey="environment" min="editor">
+              <EntryPage />
+            </RequireDashboard>
+          }
+        />
         <Route
           path="parameters"
           element={

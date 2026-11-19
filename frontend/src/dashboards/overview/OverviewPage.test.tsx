@@ -43,3 +43,27 @@ it('shows an empty state when the user has no dashboards', async () => {
 
   expect(await screen.findByText(t('overview.emptyTitle'))).toBeInTheDocument()
 })
+
+it('renders the environment indicators with their own labels', async () => {
+  mockApi('get', '/overview', [
+    {
+      dashboard_key: 'environment',
+      indicators: [
+        { key: 'environment.variables', value: 12, unit: null },
+        { key: 'environment.load_completion', value: 0.24, unit: 'ratio' },
+        { key: 'environment.targets_met', value: 3, unit: null },
+        { key: 'environment.targets_missed', value: 1, unit: null },
+      ],
+    },
+  ])
+  renderApp(<OverviewPage />, { me: makeMe({ dashboards: { environment: 'viewer' } }) })
+
+  expect(await screen.findByRole('heading', { name: t('environment.title') })).toBeInTheDocument()
+  const cards = document.querySelectorAll('[data-indicator]')
+  expect([...cards].map((card) => card.textContent)).toEqual([
+    'Variables ambientales12',
+    'Cargas del año realizadas24 %',
+    'Metas ambientales cumplidas3',
+    'Metas ambientales no cumplidas1',
+  ])
+})
