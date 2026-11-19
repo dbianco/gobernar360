@@ -6,7 +6,7 @@ from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
-from gobernar360.platform.api_types import Name, OrmModel, PatchModel
+from gobernar360.platform.api_types import Name, OrmModel, PatchModel, Year
 from gobernar360.platform.people import PersonIn, PersonOut, PersonPatch
 
 Relationship = Literal[
@@ -205,3 +205,46 @@ class InterventionOut(BaseModel):
     performed_by: str
     # None when the reader may not see it.
     description: str | None
+
+
+class BenefitCount(BaseModel):
+    benefit: str
+    category: str
+    deliveries: int
+    # Sum of the quantities delivered.
+    units: int
+
+
+class NameCount(BaseModel):
+    # None groups the records that have no value for the dimension.
+    name: str | None
+    count: int
+
+
+class MonthCount(BaseModel):
+    month: int
+    count: int
+
+
+class SummaryOut(BaseModel):
+    year: Year
+    people: int
+    households: int
+    # People who received at least one benefit in the year.
+    people_with_deliveries: int
+    deliveries: int
+    units: int
+    interventions: int
+    people_with_interventions: int
+    benefits: list[BenefitCount]
+    intervention_types: list[NameCount]
+
+
+class ReportsOut(BaseModel):
+    year: Year
+    deliveries_by_category: list[NameCount]
+    deliveries_by_month: list[MonthCount]
+    interventions_by_type: list[NameCount]
+    interventions_by_month: list[MonthCount]
+    people_by_neighborhood: list[NameCount]
+    deliveries_by_neighborhood: list[NameCount]

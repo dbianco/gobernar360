@@ -2,13 +2,15 @@
 
 from fastapi import APIRouter
 
-from gobernar360.dashboards.registry import DashboardModule, SummaryIndicator
+from gobernar360.dashboards.registry import DashboardModule
 from gobernar360.dashboards.social import (
     deliveries_router,
+    export,
     households_router,
     interventions_router,
     parameters_router,
     people_router,
+    summary,
 )
 from gobernar360.dashboards.social.access import KEY
 
@@ -18,10 +20,7 @@ router.include_router(people_router.router)
 router.include_router(households_router.router)
 router.include_router(deliveries_router.router)
 router.include_router(interventions_router.router)
+router.include_router(summary.router)
+router.include_router(export.router)
 
-
-def _no_summary(ctx, today) -> list[SummaryIndicator]:
-    return []
-
-
-module = DashboardModule(key=KEY, router=router, get_summary=_no_summary)
+module = DashboardModule(key=KEY, router=router, get_summary=summary.get_summary)
