@@ -5,17 +5,26 @@ import { useTranslation } from 'react-i18next'
 import { errorMessage } from '../../platform/errorMessage'
 import { send, useAction, useTools } from './api'
 import { todayIso } from './format'
+import type { Assignment } from './types'
 
 export type AssignmentTarget = { actor_id: string } | { person_id: string }
 
-/** Assign one of the tools offered to this kind of recipient. */
-export function AssignmentForm(props: { target: AssignmentTarget; onDone: () => void }) {
+/**
+ * Assign one of the tools offered to this kind of recipient, or correct the date
+ * and the note of an existing assignment.
+ */
+export function AssignmentForm(props: {
+  target: AssignmentTarget
+  assignment?: Assignment
+  onDone: () => void
+}) {
   const { t } = useTranslation()
   const action = useAction()
   const tools = useTools()
   const [toolId, setToolId] = useState('')
-  const [date, setDate] = useState(todayIso)
-  const [note, setNote] = useState('')
+  const editing = props.assignment
+  const [date, setDate] = useState(() => editing?.date ?? todayIso())
+  const [note, setNote] = useState(editing?.note ?? '')
   const label = (key: string) => t(`economic.assignments.${key}`)
   const audience = 'actor_id' in props.target ? 'actors' : 'people'
   const offered = (tools.data ?? [])
@@ -25,7 +34,9 @@ export function AssignmentForm(props: { target: AssignmentTarget; onDone: () => 
   async function submit(event: FormEvent) {
     event.preventDefault()
     const saved = await action.run(() =>
-      send('POST', '/assignments', { tool_id: toolId, ...props.target, date, note }),
+      editing
+        ? send('PATCH', `/assignments/${editing.id}`, { date, note })
+        : send('POST', '/assignments', { tool_id: toolId, ...props.target, date, note }),
     )
     if (saved) props.onDone()
   }
@@ -35,18 +46,30 @@ export function AssignmentForm(props: { target: AssignmentTarget; onDone: () => 
       <Stack>
         {action.error && <Alert color="red">{action.error}</Alert>}
         {tools.isError && <Alert color="red">{errorMessage(tools.error)}</Alert>}
-        {tools.data && offered.length === 0 && <Text c="dimmed">{label('noTools')}</Text>}
-        <NativeSelect
-          label={label('tool')}
-          required
-          withAsterisk={false}
-          value={toolId}
-          onChange={(event) => setToolId(event.currentTarget.value)}
-          data={[
-            { value: '', label: label('chooseTool') },
-            ...offered.map((tool) => ({ value: tool.id, label: tool.name })),
-          ]}
-        />
+        {!editing && tools.data && offered.length === 0 && (
+          <Text c="dimmed">{label('noTools')}</Text>
+        )}
+        {editing ? (
+          <TextInput
+            label={label('tool')}
+            description={label('toolFixed')}
+            disabled
+            value={editing.tool.name}
+            readOnly
+          />
+        ) : (
+          <NativeSelect
+            label={label('tool')}
+            required
+            withAsterisk={false}
+            value={toolId}
+            onChange={(event) => setToolId(event.currentTarget.value)}
+            data={[
+              { value: '', label: label('chooseTool') },
+              ...offered.map((tool) => ({ value: tool.id, label: tool.name })),
+            ]}
+          />
+        )}
         <TextInput
           label={label('date')}
           type="date"
@@ -65,7 +88,11 @@ export function AssignmentForm(props: { target: AssignmentTarget; onDone: () => 
           <Button variant="default" onClick={props.onDone}>
             {t('app.cancel')}
           </Button>
-          <Button type="submit" loading={action.pending} disabled={offered.length === 0}>
+          <Button
+            type="submit"
+            loading={action.pending}
+            disabled={!editing && offered.length === 0}
+          >
             {t('app.save')}
           </Button>
         </Group>

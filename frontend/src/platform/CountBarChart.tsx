@@ -60,7 +60,7 @@ export function CountBarChart({
             <YAxis
               type="category"
               dataKey="name"
-              width={Math.min(220, Math.max(60, longestName * 7))}
+              width={Math.min(240, Math.max(60, longestName * 8 + 12))}
               tickLine={false}
               axisLine={false}
               tick={{ fill: MUTED, fontSize: 13 }}

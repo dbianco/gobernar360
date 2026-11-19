@@ -287,3 +287,12 @@ def test_actor_changes_are_audited(client):
         ("delete", "economic_actors"),
     ]
     assert entries[1].changes == {"phone": "555"}
+
+
+def test_actor_search_ignores_accents(client):
+    municipality = _editor(client)
+    make_actor(municipality, "Panadería La Espiga")
+
+    assert _names(client.get(f"{BASE}/actors", params={"q": "panaderia"})) == [
+        "Panadería La Espiga"
+    ]

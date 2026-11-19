@@ -6,6 +6,7 @@ import { errorMessage } from '../../platform/errorMessage'
 import { formatDate } from '../../platform/format'
 import { send, useAction, useAssignments } from './api'
 import { AssignmentForm, type AssignmentTarget } from './AssignmentForm'
+import type { Assignment } from './types'
 
 const MOST_RECENT = 200
 
@@ -15,6 +16,7 @@ export function AssignmentsPanel(props: { target: AssignmentTarget; canEdit: boo
   const action = useAction()
   const assignments = useAssignments({ ...props.target, limit: MOST_RECENT })
   const [adding, setAdding] = useState(false)
+  const [editing, setEditing] = useState<Assignment | null>(null)
   const label = (key: string, options = {}) => t(`economic.assignments.${key}`, options)
 
   function remove(id: string) {
@@ -50,15 +52,25 @@ export function AssignmentsPanel(props: { target: AssignmentTarget; canEdit: boo
                 <Table.Td>{assignment.note}</Table.Td>
                 <Table.Td ta="right">
                   {props.canEdit && (
-                    <Button
-                      size="compact-xs"
-                      variant="subtle"
-                      color="red"
-                      aria-label={label('deleteNamed', { name: assignment.tool.name })}
-                      onClick={() => remove(assignment.id)}
-                    >
-                      {t('app.delete')}
-                    </Button>
+                    <Group gap="xs" justify="flex-end" wrap="nowrap">
+                      <Button
+                        size="compact-xs"
+                        variant="default"
+                        aria-label={label('editNamed', { name: assignment.tool.name })}
+                        onClick={() => setEditing(assignment)}
+                      >
+                        {t('app.edit')}
+                      </Button>
+                      <Button
+                        size="compact-xs"
+                        variant="subtle"
+                        color="red"
+                        aria-label={label('deleteNamed', { name: assignment.tool.name })}
+                        onClick={() => remove(assignment.id)}
+                      >
+                        {t('app.delete')}
+                      </Button>
+                    </Group>
                   )}
                 </Table.Td>
               </Table.Tr>
@@ -68,6 +80,15 @@ export function AssignmentsPanel(props: { target: AssignmentTarget; canEdit: boo
       )}
       <Modal opened={adding} onClose={() => setAdding(false)} title={label('add')}>
         {adding && <AssignmentForm target={props.target} onDone={() => setAdding(false)} />}
+      </Modal>
+      <Modal opened={editing !== null} onClose={() => setEditing(null)} title={label('editTitle')}>
+        {editing && (
+          <AssignmentForm
+            target={props.target}
+            assignment={editing}
+            onDone={() => setEditing(null)}
+          />
+        )}
       </Modal>
     </Stack>
   )

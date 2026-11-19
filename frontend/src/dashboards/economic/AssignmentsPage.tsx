@@ -4,6 +4,7 @@ import {
   Button,
   Group,
   Loader,
+  Modal,
   NativeSelect,
   Stack,
   Table,
@@ -22,11 +23,16 @@ import { hasLevel } from '../../platform/types'
 import { currentYear } from '../../platform/years'
 import { YearSelect } from '../../platform/YearSelect'
 import { BASE, BASE_PATH, PAGE_SIZE, send, useAction, useAssignments, useTools } from './api'
+import { AssignmentForm } from './AssignmentForm'
 import type { Assignment } from './types'
 
 const recipientOf = (assignment: Assignment) =>
   assignment.actor
-    ? { kind: 'actor', name: assignment.actor.name, to: `${BASE_PATH}/actors/${assignment.actor.id}` }
+    ? {
+        kind: 'actor',
+        name: assignment.actor.name,
+        to: `${BASE_PATH}/actors/${assignment.actor.id}`,
+      }
     : {
         kind: 'person',
         name: assignment.person?.full_name ?? '',
@@ -42,6 +48,7 @@ export function AssignmentsPage() {
   const [year, setYear] = useState(currentYear)
   const [toolId, setToolId] = useState('')
   const [offset, setOffset] = useState(0)
+  const [editing, setEditing] = useState<Assignment | null>(null)
   const assignments = useAssignments({ year, tool_id: toolId, limit: PAGE_SIZE, offset })
   const canEdit = hasLevel(me, 'economic', 'editor')
   const label = (key: string, options = {}) => t(`economic.assignments.${key}`, options)
@@ -110,15 +117,25 @@ export function AssignmentsPage() {
                     <Table.Td>{assignment.note}</Table.Td>
                     <Table.Td ta="right">
                       {canEdit && (
-                        <Button
-                          size="compact-xs"
-                          variant="subtle"
-                          color="red"
-                          aria-label={label('deleteNamed', { name: recipient.name })}
-                          onClick={() => remove(assignment.id)}
-                        >
-                          {t('app.delete')}
-                        </Button>
+                        <Group gap="xs" justify="flex-end" wrap="nowrap">
+                          <Button
+                            size="compact-xs"
+                            variant="default"
+                            aria-label={label('editNamed', { name: recipient.name })}
+                            onClick={() => setEditing(assignment)}
+                          >
+                            {t('app.edit')}
+                          </Button>
+                          <Button
+                            size="compact-xs"
+                            variant="subtle"
+                            color="red"
+                            aria-label={label('deleteNamed', { name: recipient.name })}
+                            onClick={() => remove(assignment.id)}
+                          >
+                            {t('app.delete')}
+                          </Button>
+                        </Group>
                       )}
                     </Table.Td>
                   </Table.Tr>
@@ -136,6 +153,19 @@ export function AssignmentsPage() {
           onChange={setOffset}
         />
       )}
+      <Modal opened={editing !== null} onClose={() => setEditing(null)} title={label('editTitle')}>
+        {editing && (
+          <AssignmentForm
+            target={
+              editing.actor
+                ? { actor_id: editing.actor.id }
+                : { person_id: editing.person?.id ?? '' }
+            }
+            assignment={editing}
+            onDone={() => setEditing(null)}
+          />
+        )}
+      </Modal>
     </Stack>
   )
 }

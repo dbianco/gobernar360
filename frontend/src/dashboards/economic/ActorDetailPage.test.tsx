@@ -127,3 +127,21 @@ it('deletes the actor after confirming and returns to the list', async () => {
   expect(await screen.findByText('actor list')).toBeInTheDocument()
   expect(requests).toHaveLength(1)
 })
+
+it('corrects the note of an assignment from the actor', async () => {
+  const requests = mockApi('patch', `${BASE}/assignments/as-1`, makeAssignment())
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(
+    await screen.findByRole('button', {
+      name: assignment('editNamed', { name: 'Microcrédito productivo' }),
+    }),
+  )
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: assignment('note') }), ' pagada')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toEqual({ date: '2026-03-10', note: 'Primera cuota pagada' })
+})

@@ -149,3 +149,33 @@ it('rejects a malformed document without calling the server', async () => {
   expect(lookups).toHaveLength(0)
   expect(requests).toHaveLength(0)
 })
+
+it('drops the registry data again when the document is corrected', async () => {
+  const known = makeRegistryPerson({ first_name: 'Mirta', last_name: 'Domínguez' })
+  mockApi('get', `${BASE}/people/lookup`, ({ url }) =>
+    url.searchParams.get('dni') === '12345678'
+      ? { person: known, registered_id: null }
+      : { person: null, registered_id: null },
+  )
+  const requests = mockApi('post', `${BASE}/people`, makePerson(), 201)
+  const { user, form } = await openForm()
+
+  await user.type(form.getByRole('textbox', { name: label('firstName') }), 'Elena')
+  await user.type(form.getByRole('textbox', { name: label('dni') }), '12345678')
+  await user.tab()
+  await form.findByText(label('inRegistry', { name: 'Domínguez, Mirta' }))
+  expect(form.getByRole('textbox', { name: label('address') })).toHaveValue('Belgrano 45')
+
+  await user.type(form.getByRole('textbox', { name: label('dni') }), '{Backspace}9')
+
+  expect(form.getByRole('textbox', { name: label('firstName') })).toHaveValue('Elena')
+  expect(form.getByRole('textbox', { name: label('address') })).toHaveValue('')
+  expect(form.getByRole('textbox', { name: label('lastName') })).toHaveValue('')
+  await user.type(form.getByRole('textbox', { name: label('lastName') }), 'Paz')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toMatchObject({
+    person: { first_name: 'Elena', last_name: 'Paz', dni: '12345679', address: '', birth_date: null },
+  })
+})

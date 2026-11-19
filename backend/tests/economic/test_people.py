@@ -314,3 +314,13 @@ def test_people_of_another_municipality_are_not_reachable(client):
     assert created.status_code == 201
     assert created.json()["person"]["id"] != str(foreign.person_id)
     assert _count(municipality, Person) == 1
+
+
+def test_search_ignores_accents(client):
+    municipality = _editor(client)
+    make_economic_person(municipality, "Juana", "Pérez")
+    make_economic_person(municipality, "Raul", "Gomez")
+
+    assert _names(client.get(f"{BASE}/people", params={"q": "perez"})) == ["Pérez, Juana"]
+    assert _names(client.get(f"{BASE}/people", params={"q": "PÉREZ"})) == ["Pérez, Juana"]
+    assert _names(client.get(f"{BASE}/people", params={"q": "raúl gómez"})) == ["Gomez, Raul"]

@@ -1,4 +1,4 @@
-import { screen, waitFor, within } from '@testing-library/react'
+import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it, vi } from 'vitest'
 
@@ -76,4 +76,24 @@ it('says when the year has no assignments', async () => {
   renderEconomic(<AssignmentsPage />)
 
   expect(await screen.findByText(label('emptyYear'))).toBeInTheDocument()
+})
+
+it('lets an editor correct the date and the note of an assignment', async () => {
+  mockApi('get', `${BASE}/assignments`, page([makeAssignment()]))
+  const requests = mockApi('patch', `${BASE}/assignments/as-1`, makeAssignment())
+  renderEconomic(<AssignmentsPage />)
+  const user = userEvent.setup()
+
+  await user.click(
+    await screen.findByRole('button', { name: label('editNamed', { name: 'Panadería La Espiga' }) }),
+  )
+  const form = within(await screen.findByRole('dialog'))
+  expect(form.getByLabelText(label('tool'))).toBeDisabled()
+  expect(form.getByLabelText(label('tool'))).toHaveValue('Microcrédito productivo')
+  expect(form.getByRole('textbox', { name: label('note') })).toHaveValue('Primera cuota')
+  fireEvent.change(form.getByLabelText(label('date')), { target: { value: '2026-03-12' } })
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toEqual({ date: '2026-03-12', note: 'Primera cuota' })
 })

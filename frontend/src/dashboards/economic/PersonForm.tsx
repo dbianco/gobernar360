@@ -9,7 +9,7 @@ import {
   Stack,
   TextInput,
 } from '@mantine/core'
-import { type FormEvent, useState } from 'react'
+import { type FormEvent, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
@@ -51,9 +51,24 @@ export function PersonForm(props: { person?: EconomicPerson; onDone: () => void 
   const [lookup, setLookup] = useState<{ dni: string; result: Lookup } | null>(null)
   const [lookupError, setLookupError] = useState<string | null>(null)
   const label = (key: string, options = {}) => t(`economic.people.${key}`, options)
+  // What the form held before the registry's data replaced it, and for which document.
+  const [filled, setFilled] = useState<{ dni: string; before: Common } | null>(null)
+  // The document as typed right now, readable after a lookup comes back.
+  const typedDni = useRef(common.dni)
   const set = (field: CommonField) => (event: { currentTarget: { value: string } }) => {
     const value = event.currentTarget.value
     setCommon((current) => ({ ...current, [field]: value }))
+  }
+  function changeDni(event: { currentTarget: { value: string } }) {
+    const value = event.currentTarget.value
+    typedDni.current = value
+    if (filled && normaliseDni(value) !== filled.dni) {
+      // Another document is another person: the registry's data must not stay behind.
+      setCommon({ ...filled.before, dni: value })
+      setFilled(null)
+    } else {
+      setCommon((current) => ({ ...current, dni: value }))
+    }
   }
   const dni = normaliseDni(common.dni)
   const known = lookup?.dni === dni ? lookup.result : null
@@ -72,11 +87,16 @@ export function PersonForm(props: { person?: EconomicPerson; onDone: () => void 
       setLookupError(errorMessage(error))
       return false
     }
+    // The document was edited while the registry answered: this answer is about another one.
+    if (normaliseDni(typedDni.current) !== dni) return false
     setLookupError(null)
     setLookup({ dni, result })
     if (result.person === null) return true
     // Show what the registry has and let the person review it before saving.
-    setCommon({ ...commonValues(result.person), dni: common.dni })
+    if (result.registered_id === null) {
+      setFilled({ dni, before: common })
+      setCommon({ ...commonValues(result.person), dni: common.dni })
+    }
     return false
   }
 
@@ -130,7 +150,7 @@ export function PersonForm(props: { person?: EconomicPerson; onDone: () => void 
               maxLength={12}
               error={dniInvalid ? label('dniInvalid') : undefined}
               value={common.dni}
-              onChange={set('dni')}
+              onChange={changeDni}
               onBlur={() => void checkDni()}
             />
             <TextInput

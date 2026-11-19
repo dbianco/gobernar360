@@ -603,7 +603,10 @@
       "noTools": "No hay herramientas disponibles para este destinatario. Las carga el administrador del tablero en Parámetros.",
       "deleteNamed": "Eliminar la asignación de {{name}}",
       "deleteConfirm": "¿Eliminar esta asignación?",
-      "download": "Descargar asignaciones"
+      "download": "Descargar asignaciones",
+      "editNamed": "Editar la asignación de {{name}}",
+      "editTitle": "Editar asignación",
+      "toolFixed": "La herramienta y el destinatario no se cambian: si están mal, eliminá la asignación y cargala de nuevo."
     },
     "summary": {
       "actors": "Actores económicos",

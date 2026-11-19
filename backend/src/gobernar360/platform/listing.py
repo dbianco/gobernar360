@@ -44,6 +44,9 @@ def page_of(ctx: RequestContext, query: Select[Any], paging: Paging) -> dict[str
 
 
 def contains(column: Any, text: str) -> ColumnElement[bool]:
-    """Case-insensitive "contains", with the text's wildcards taken literally."""
+    """ "Contains" ignoring case and accents, with the text's wildcards taken literally.
+
+    People search "perez" for "Pérez"; missing them leads to loading the person twice.
+    """
     escaped = text.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
-    return column.ilike(f"%{escaped}%", escape="\\")
+    return func.unaccent(column).ilike(func.unaccent(f"%{escaped}%"), escape="\\")
