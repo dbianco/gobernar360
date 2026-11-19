@@ -1,28 +1,32 @@
-"""Platform operator: municipalities, their enabled dashboards and first administrators."""
+"""Platform operator: municipalities, their enabled dashboards and their users."""
 
 import uuid
 from typing import Annotated, Literal
 
 from fastapi import APIRouter, Depends
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
+from gobernar360.core.db import set_tenant
 from gobernar360.core.errors import conflict, not_found, validation_error
-from gobernar360.core.security import hash_password
 from gobernar360.dashboards import registry
-from gobernar360.platform.access import Db, require_operator
-from gobernar360.platform.models import Membership, Municipality, MunicipalityDashboard, User
-from gobernar360.platform.models import Session as SessionRow
-from gobernar360.platform.schemas import Email, FullName, MunicipalityOut, Password, UserOut
+from gobernar360.platform import members
+from gobernar360.platform.access import CurrentUser, Db, RequestContext, require_operator
+from gobernar360.platform.audit import record_change
+from gobernar360.platform.models import Municipality, MunicipalityDashboard, User
+from gobernar360.platform.schemas import MunicipalityOut, Password
 
 router = APIRouter(prefix="/platform", tags=["platform"], dependencies=[Depends(require_operator)])
+
+
+MunicipalityKind = Literal["municipality", "commune"]
 
 
 class MunicipalityIn(BaseModel):
     name: Annotated[str, Field(min_length=1, max_length=200)]
     slug: Annotated[str, Field(pattern=r"^[a-z0-9]+(-[a-z0-9]+)*$", max_length=100)]
-    kind: Literal["municipality", "commune"]
+    kind: MunicipalityKind
 
 
 class MunicipalityDetail(MunicipalityOut):
@@ -33,9 +37,18 @@ class DashboardKeysIn(BaseModel):
     keys: list[str]
 
 
-class AdminIn(BaseModel):
-    email: Email
-    full_name: FullName
+class MunicipalityPatch(BaseModel):
+    """The slug identifies the municipality and cannot be changed."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    name: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=200)] = (
+        None
+    )
+    kind: MunicipalityKind = None
+
+
+class PasswordIn(BaseModel):
     password: Password
 
 
@@ -105,32 +118,40 @@ def set_enabled_dashboards(
     return _detail(db, municipality)
 
 
-@router.post("/municipalities/{municipality_id}/admins", status_code=201)
-def create_municipality_admin(municipality_id: uuid.UUID, payload: AdminIn, db: Db) -> UserOut:
-    _get_municipality(db, municipality_id)
-    user = db.scalar(select(User).where(User.email == payload.email))
-    if user is None:
-        user = User(
-            email=payload.email,
-            full_name=payload.full_name,
-            password_hash=hash_password(payload.password),
-        )
-        db.add(user)
-        db.flush()
-    else:
-        # The email may have been registered earlier by someone else who chose its
-        # password. The operator's password replaces it and every open session ends,
-        # so only the person the operator hands the password to can use the account.
-        user.password_hash = hash_password(payload.password)
-        db.execute(delete(SessionRow).where(SessionRow.user_id == user.id))
-    membership = db.scalar(
-        select(Membership).where(
-            Membership.user_id == user.id, Membership.municipality_id == municipality_id
-        )
-    )
-    if membership is None:
-        db.add(Membership(user_id=user.id, municipality_id=municipality_id, is_admin=True))
-    else:
-        membership.is_admin = True
+@router.patch("/municipalities/{municipality_id}")
+def update_municipality(
+    municipality_id: uuid.UUID, payload: MunicipalityPatch, db: Db
+) -> MunicipalityDetail:
+    municipality = _get_municipality(db, municipality_id)
+    for field, value in payload.model_dump(exclude_unset=True).items():
+        setattr(municipality, field, value)
     db.flush()
-    return UserOut.model_validate(user)
+    return _detail(db, municipality)
+
+
+def get_operator_context(municipality_id: uuid.UUID, db: Db, user: CurrentUser) -> RequestContext:
+    """The operator acting on the municipality named in the path, without being a member."""
+    _get_municipality(db, municipality_id)
+    # Scopes the transaction so the audit trail of the municipality can be written.
+    set_tenant(db, municipality_id)
+    return RequestContext(user=user, municipality_id=municipality_id, membership=None, db=db)
+
+
+OperatorContext = Annotated[RequestContext, Depends(get_operator_context)]
+
+router.include_router(
+    members.build_router(get_operator_context, replace_existing_password=True),
+    prefix="/municipalities/{municipality_id}",
+)
+
+
+@router.put("/municipalities/{municipality_id}/users/{membership_id}/password", status_code=204)
+def set_member_password(
+    membership_id: uuid.UUID, payload: PasswordIn, ctx: OperatorContext
+) -> None:
+    """Only the operator may do this: accounts are shared between municipalities, so a
+    municipality administrator could otherwise take over someone else's account."""
+    membership = members.get_membership(ctx, membership_id)
+    members.set_password(ctx, ctx.db.get(User, membership.user_id), payload.password)
+    record_change(ctx, "update", membership, {"password": "changed"})
+    ctx.db.flush()

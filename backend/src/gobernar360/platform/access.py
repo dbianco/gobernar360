@@ -64,11 +64,13 @@ class RequestContext:
     """A signed-in member acting inside their active municipality.
 
     `db` is already scoped to that municipality by row-level security.
+    `membership` is None when a platform operator manages the municipality from
+    outside; such a context never reaches dashboard routes.
     """
 
     user: User
     municipality_id: uuid.UUID
-    membership: Membership
+    membership: Membership | None
     db: Session
 
 

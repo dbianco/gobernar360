@@ -19,8 +19,13 @@ def test_operator_created_admin_gets_the_operator_password_even_if_the_email_was
     _operator(client)
 
     response = client.post(
-        f"/api/platform/municipalities/{beta.id}/admins",
-        json={"email": "intendente@beta.test", "full_name": "Intendente", "password": NEW_PASSWORD},
+        f"/api/platform/municipalities/{beta.id}/users",
+        json={
+            "email": "intendente@beta.test",
+            "full_name": "Intendente",
+            "password": NEW_PASSWORD,
+            "is_admin": True,
+        },
     )
     client.post("/api/auth/logout")
 
@@ -43,13 +48,49 @@ def test_operator_created_admin_invalidates_sessions_of_the_preexisting_account(
     _operator(client)
 
     client.post(
-        f"/api/platform/municipalities/{beta.id}/admins",
-        json={"email": "intendente@beta.test", "full_name": "Intendente", "password": NEW_PASSWORD},
+        f"/api/platform/municipalities/{beta.id}/users",
+        json={
+            "email": "intendente@beta.test",
+            "full_name": "Intendente",
+            "password": NEW_PASSWORD,
+            "is_admin": True,
+        },
     )
 
     client.cookies.clear()
     client.cookies.set("g360_session", stale_cookie)
     assert client.get("/api/auth/me").status_code == 401
+
+
+def test_municipality_admin_adding_a_registered_email_does_not_change_its_password(client):
+    make_user("intendente@beta.test", password="chosen-by-its-owner")
+    alfa = make_municipality("Alfa")
+    make_membership(make_user("admin@alfa.test"), alfa, admin=True)
+    login(client, "admin@alfa.test")
+
+    response = client.post(
+        "/api/admin/users",
+        json={"email": "intendente@beta.test", "full_name": "Otro", "password": NEW_PASSWORD},
+    )
+    client.post("/api/auth/logout")
+
+    assert response.status_code == 201
+    login(client, "intendente@beta.test", "chosen-by-its-owner")
+
+
+def test_operator_adding_someone_who_is_already_a_member_changes_nothing(client):
+    beta = make_municipality("Beta")
+    make_membership(make_user("intendente@beta.test"), beta, admin=True)
+    _operator(client)
+
+    response = client.post(
+        f"/api/platform/municipalities/{beta.id}/users",
+        json={"email": "intendente@beta.test", "full_name": "X", "password": NEW_PASSWORD},
+    )
+    client.post("/api/auth/logout")
+
+    assert response.status_code == 409
+    login(client, "intendente@beta.test")
 
 
 def test_user_changes_their_own_password(client):
