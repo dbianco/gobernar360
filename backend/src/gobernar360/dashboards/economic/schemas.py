@@ -1,5 +1,6 @@
 """Request and response shapes of the economic dashboard."""
 
+import datetime as dt
 import re
 import uuid
 from typing import Annotated, Any, ClassVar, Literal
@@ -11,9 +12,10 @@ from pydantic import (
     ConfigDict,
     Field,
     StringConstraints,
+    model_validator,
 )
 
-from gobernar360.platform.api_types import Name, OrmModel, PatchModel
+from gobernar360.platform.api_types import Name, OrmModel, PatchModel, Year
 from gobernar360.platform.people import PersonIn, PersonOut, PersonPatch
 
 Audience = Literal["actors", "people", "both"]
@@ -186,3 +188,87 @@ class PersonActorOut(OrmModel):
 
 class PersonDetail(EconomicPersonOut):
     actors: list[PersonActorOut]
+
+
+class PersonRef(OrmModel):
+    id: uuid.UUID
+    full_name: str
+
+
+class AssignmentIn(BaseModel):
+    tool_id: uuid.UUID
+    actor_id: uuid.UUID | None = None
+    person_id: uuid.UUID | None = None
+    date: dt.date
+    note: LongText = ""
+
+    @model_validator(mode="after")
+    def has_exactly_one_recipient(self) -> "AssignmentIn":
+        if (self.actor_id is None) == (self.person_id is None):
+            raise ValueError("exactly one of actor_id and person_id is required")
+        return self
+
+
+class AssignmentPatch(PatchModel):
+    """Who received which tool is fixed; a wrong assignment is deleted and loaded again."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    date: dt.date | None = None
+    note: LongText | None = None
+
+
+class AssignmentOut(OrmModel):
+    id: uuid.UUID
+    date: dt.date
+    note: str
+    tool: NamedRef
+    actor: NamedRef | None
+    person: PersonRef | None
+
+
+class RecipientCount(BaseModel):
+    total: int
+    # How many of them received at least one tool in the year.
+    with_assignments: int
+
+
+class ToolCount(BaseModel):
+    tool: str
+    category: str
+    count: int
+
+
+class SummaryOut(BaseModel):
+    year: Year
+    actors: RecipientCount
+    people: RecipientCount
+    tools: int
+    assignments: int
+    actor_tools: list[ToolCount]
+    person_tools: list[ToolCount]
+
+
+class NameCount(BaseModel):
+    # None groups the records that have no value for the dimension.
+    name: str | None
+    count: int
+
+
+class StatusCount(BaseModel):
+    status: str
+    count: int
+
+
+class MonthCount(BaseModel):
+    month: int
+    count: int
+
+
+class ReportsOut(BaseModel):
+    year: Year
+    actors_by_type: list[NameCount]
+    actors_by_sector: list[NameCount]
+    people_by_employment_status: list[StatusCount]
+    assignments_by_category: list[NameCount]
+    assignments_by_month: list[MonthCount]

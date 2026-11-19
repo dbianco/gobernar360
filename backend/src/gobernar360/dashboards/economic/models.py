@@ -149,6 +149,10 @@ class EconomicPerson(TenantMixin, AuditMixin, Base):
 
     person: Mapped[Person] = relationship(lazy="joined")
 
+    @property
+    def full_name(self) -> str:
+        return self.person.full_name
+
 
 class ActorPerson(TenantMixin, AuditMixin, Base):
     __tablename__ = "economic_actor_people"
