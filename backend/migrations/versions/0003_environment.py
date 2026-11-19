@@ -44,7 +44,7 @@ def upgrade() -> None:
         sa.Column("created_by", sa.Uuid(), nullable=True),
         sa.Column("updated_by", sa.Uuid(), nullable=True),
         sa.CheckConstraint(
-            "category IN ('energy', 'waste', 'water', 'air', 'mobility', 'biodiversity', 'governance')",
+            "category IN ('energy', 'waste', 'water', 'air', 'mobility', 'biodiversity', 'governance')",  # noqa: E501
             name="category_valid",
         ),
         sa.ForeignKeyConstraint(["created_by"], ["users.id"], ondelete="SET NULL"),

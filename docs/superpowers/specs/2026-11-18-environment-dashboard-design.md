@@ -60,9 +60,9 @@ Clave del tablero: `environment`. Tablas con prefijo `environment_`, todas con
 
 - **Valor del año:** para una variable anual, su valor. Para una mensual, la suma, el
   promedio o el último mes cargado, según la variable. Sin cargas no hay valor.
-- **Cumplimiento:** con sentido "más es mejor", valor ÷ meta. Con "menos es mejor",
-  meta ÷ valor (100 % si el valor es 0). Sin meta, sin valor o con meta 0 en "más es
-  mejor", no se calcula.
+- **Cumplimiento:** con sentido "más es mejor", valor ÷ meta (puede superar el 100 %). Con
+  "menos es mejor" la meta es un tope: 100 % mientras el valor no la supere y meta ÷ valor
+  cuando la supera. Sin meta, sin valor o con meta 0 en "más es mejor", no se calcula.
 - **Meta cumplida:** valor ≥ meta ("más es mejor") o valor ≤ meta ("menos es mejor").
 - **Cargas:** cargadas sobre esperadas en el año: 12 por variable mensual, 1 por anual.
 - No se puede borrar una subcategoría con variables ni una variable con valores.
