@@ -48,6 +48,14 @@ def dni_exists() -> ApiError:
     return ApiError(409, "dni_exists", "Another person already has this document number.")
 
 
+def household_has_head() -> ApiError:
+    return ApiError(409, "household_has_head", "This household already has a head.")
+
+
+def in_another_household() -> ApiError:
+    return ApiError(409, "in_another_household", "This person belongs to another household.")
+
+
 def in_use(message: str = "The resource is referenced by other records.") -> ApiError:
     return ApiError(409, "in_use", message)
 
