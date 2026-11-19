@@ -25,6 +25,12 @@ export const dashboards: DashboardEntry[] = [
     basePath: '/d/environment',
     routes: lazy(() => import('./environment/routes')),
   },
+  {
+    key: 'economic',
+    labelKey: 'economic.title',
+    basePath: '/d/economic',
+    routes: lazy(() => import('./economic/routes')),
+  },
 ]
 
 /** Translation key of a dashboard's name, or undefined for a key this build does not know. */

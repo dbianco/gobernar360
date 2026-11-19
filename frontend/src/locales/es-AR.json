@@ -17,7 +17,34 @@
       "empty": "Todavía no hay elementos cargados.",
       "renameNamed": "Renombrar {{name}}",
       "deleteNamed": "Eliminar {{name}}"
-    }
+    },
+    "year": "Año",
+    "search": "Buscar",
+    "view": "Ver",
+    "pager": {
+      "range": "{{from}}–{{to}} de {{total}}",
+      "previous": "Anterior",
+      "next": "Siguiente"
+    },
+    "chart": {
+      "showTable": "Ver como tabla",
+      "showChart": "Ver como gráfico",
+      "noData": "Sin datos para mostrar."
+    },
+    "monthNames": [
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre"
+    ]
   },
   "errors": {
     "generic": "Ocurrió un error. Intentá de nuevo.",
@@ -30,7 +57,9 @@
     "validation_error": "Revisá los datos ingresados.",
     "network": "No se pudo conectar con el servidor.",
     "not_authenticated": "Tu sesión terminó. Volvé a ingresar.",
-    "account_exists": "Ya existe una cuenta con ese email. Pedile al administrador de la plataforma que la agregue a tu municipio."
+    "account_exists": "Ya existe una cuenta con ese email. Pedile al administrador de la plataforma que la agregue a tu municipio.",
+    "dni_exists": "Ya hay otra persona con ese DNI en el padrón del municipio.",
+    "already_registered": "Esa persona ya está registrada en este tablero."
   },
   "login": {
     "title": "Ingresar a gobernar360",
@@ -67,7 +96,11 @@
       "environment.variables": "Variables ambientales",
       "environment.load_completion": "Cargas del año realizadas",
       "environment.targets_met": "Metas ambientales cumplidas",
-      "environment.targets_missed": "Metas ambientales no cumplidas"
+      "environment.targets_missed": "Metas ambientales no cumplidas",
+      "economic.actors": "Actores económicos",
+      "economic.people": "Personas registradas",
+      "economic.tools": "Herramientas de apoyo",
+      "economic.assignments_year": "Asignaciones del año"
     }
   },
   "dashboards": {
@@ -435,5 +468,171 @@
     "submit": "Cambiar contraseña",
     "done": "La contraseña se cambió. Las demás sesiones abiertas se cerraron.",
     "wrongCurrent": "La contraseña actual no es correcta."
+  },
+  "economic": {
+    "title": "Económico",
+    "tabs": {
+      "summary": "Resumen",
+      "actors": "Actores",
+      "people": "Personas",
+      "assignments": "Asignaciones",
+      "reports": "Reportes",
+      "parameters": "Parámetros"
+    },
+    "audiences": {
+      "both": "Actores y personas",
+      "actors": "Solo actores",
+      "people": "Solo personas"
+    },
+    "employmentStatuses": {
+      "unknown": "Sin datos",
+      "employed": "En relación de dependencia",
+      "self_employed": "Independiente",
+      "unemployed": "Desocupado/a",
+      "student": "Estudiante",
+      "retired": "Jubilado/a",
+      "other": "Otra"
+    },
+    "roles": {
+      "owner": "Titular",
+      "contact": "Contacto",
+      "employee": "Empleado/a"
+    },
+    "parameters": {
+      "actorTypes": "Tipos de actor",
+      "newActorType": "Nuevo tipo de actor",
+      "sectors": "Sectores",
+      "newSector": "Nuevo sector",
+      "categories": "Categorías de herramientas",
+      "categoriesHint": "Cada categoría puede tener subcategorías.",
+      "newCategory": "Nueva categoría",
+      "newSubcategoryFor": "Nueva subcategoría de {{name}}",
+      "tools": "Herramientas",
+      "addTool": "Agregar herramienta",
+      "editTool": "Editar herramienta",
+      "needsCategory": "Creá una categoría para poder cargar herramientas.",
+      "noTools": "Todavía no hay herramientas cargadas.",
+      "name": "Nombre",
+      "description": "Descripción",
+      "category": "Categoría",
+      "subcategory": "Subcategoría",
+      "noSubcategory": "Sin subcategoría",
+      "audience": "Destinatarios",
+      "editNamed": "Editar {{name}}",
+      "deleteNamed": "Eliminar {{name}}"
+    },
+    "actors": {
+      "create": "Cargar nuevo actor económico",
+      "createTitle": "Nuevo actor económico",
+      "editTitle": "Editar actor económico",
+      "empty": "No hay actores que coincidan.",
+      "searchHint": "Nombre o CUIT",
+      "name": "Nombre",
+      "type": "Tipo",
+      "sector": "Sector",
+      "cuit": "CUIT",
+      "cuitHint": "11 dígitos, con o sin guiones.",
+      "cuitInvalid": "El CUIT tiene que tener 11 dígitos.",
+      "address": "Domicilio",
+      "phone": "Teléfono",
+      "email": "Email",
+      "employees": "Empleados",
+      "notes": "Notas",
+      "noType": "Sin tipo",
+      "noSector": "Sin sector",
+      "allTypes": "Todos los tipos",
+      "allSectors": "Todos los sectores",
+      "back": "Volver a actores",
+      "deleteConfirm": "¿Eliminar el actor \"{{name}}\"? Se quitan también sus vínculos con personas.",
+      "people": "Personas vinculadas",
+      "noPeople": "Todavía no tiene personas vinculadas.",
+      "linkPerson": "Vincular persona",
+      "findPerson": "Buscar persona",
+      "findPersonHint": "Nombre, apellido o DNI de una persona ya registrada en el tablero.",
+      "noMatches": "No hay personas registradas que coincidan.",
+      "role": "Rol",
+      "link": "Vincular",
+      "linkNamed": "Vincular a {{name}}",
+      "unlinkNamed": "Desvincular a {{name}}",
+      "unlink": "Desvincular"
+    },
+    "people": {
+      "create": "Cargar nueva persona",
+      "createTitle": "Nueva persona",
+      "editTitle": "Editar persona",
+      "empty": "No hay personas que coincidan.",
+      "searchHint": "Nombre, apellido o DNI",
+      "fullName": "Apellido y nombre",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "dni": "DNI",
+      "dniHint": "Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.",
+      "dniInvalid": "El DNI tiene que tener entre 6 y 9 dígitos.",
+      "birthDate": "Fecha de nacimiento",
+      "phone": "Teléfono",
+      "email": "Email",
+      "address": "Domicilio",
+      "neighborhood": "Barrio",
+      "employmentStatus": "Situación laboral",
+      "occupation": "Ocupación",
+      "allStatuses": "Todas las situaciones",
+      "inRegistry": "{{name}} ya está en el padrón del municipio. Revisá sus datos y guardá para incorporarla a este tablero.",
+      "alreadyRegistered": "{{name}} ya está registrada en este tablero.",
+      "openExisting": "Abrir su ficha",
+      "commonHint": "Estos datos son del padrón del municipio: los comparten todos los tableros que trabajan con esta persona.",
+      "back": "Volver a personas",
+      "deleteConfirm": "¿Quitar a {{name}} de este tablero? Se quitan también sus vínculos con actores.",
+      "remove": "Quitar del tablero",
+      "actors": "Actores vinculados",
+      "noActors": "No está vinculada a ningún actor."
+    },
+    "assignments": {
+      "title": "Herramientas asignadas",
+      "empty": "Todavía no hay herramientas asignadas.",
+      "emptyYear": "No hay asignaciones en el año elegido.",
+      "add": "Asignar herramienta",
+      "tool": "Herramienta",
+      "chooseTool": "Elegí una herramienta",
+      "date": "Fecha",
+      "note": "Nota",
+      "recipient": "Destinatario",
+      "kind": "Tipo",
+      "actor": "Actor",
+      "person": "Persona",
+      "allTools": "Todas las herramientas",
+      "noTools": "No hay herramientas disponibles para este destinatario. Las carga el administrador del tablero en Parámetros.",
+      "deleteNamed": "Eliminar la asignación de {{name}}",
+      "deleteConfirm": "¿Eliminar esta asignación?",
+      "download": "Descargar asignaciones"
+    },
+    "summary": {
+      "actors": "Actores económicos",
+      "people": "Personas",
+      "tools": "Herramientas",
+      "assignments": "Asignaciones del año",
+      "withAssignments": "{{count}} con herramientas asignadas en el año",
+      "actorTools": "Herramientas asignadas a actores",
+      "personTools": "Herramientas asignadas a personas",
+      "tool": "Herramienta",
+      "category": "Categoría",
+      "count": "Asignaciones",
+      "noAssignments": "Sin asignaciones en el año.",
+      "emptyTitle": "Todavía no hay datos cargados",
+      "emptyViewerBody": "Cuando el equipo cargue actores, personas y herramientas, vas a ver el resumen acá.",
+      "downloadActors": "Descargar actores",
+      "downloadPeople": "Descargar personas",
+      "downloadAssignments": "Descargar asignaciones"
+    },
+    "reports": {
+      "actorsByType": "Actores por tipo",
+      "actorsBySector": "Actores por sector",
+      "peopleByStatus": "Personas por situación laboral",
+      "assignmentsByCategory": "Asignaciones por categoría",
+      "assignmentsByMonth": "Asignaciones por mes",
+      "actorsCount": "Actores",
+      "peopleCount": "Personas",
+      "assignmentsCount": "Asignaciones",
+      "yearHint": "El año se aplica a las asignaciones."
+    }
   }
 }
