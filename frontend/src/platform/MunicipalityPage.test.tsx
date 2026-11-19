@@ -5,7 +5,7 @@ import { expect, it } from 'vitest'
 import App from '../App'
 import { makeMe, NOETINGER } from '../test/fixtures'
 import { renderApp, t } from '../test/render'
-import { mockApi } from '../test/server'
+import { mockApi, mockApiError } from '../test/server'
 
 const OPERATOR = makeMe({ isOperator: true, municipalities: [] })
 const BASE = `/platform/municipalities/${NOETINGER.id}`
@@ -106,7 +106,6 @@ it('adds an administrator', async () => {
     within(dialog).getByLabelText(t('users.password'), { exact: false }),
     'long-password-1',
   )
-  expect(within(dialog).getByText(t('users.passwordHintOperator'))).toBeInTheDocument()
   await user.click(within(dialog).getByRole('checkbox', { name: t('users.admin') }))
   await user.click(within(dialog).getByRole('button', { name: t('app.save') }))
 
@@ -117,6 +116,46 @@ it('adds an administrator', async () => {
     password: 'long-password-1',
     is_admin: true,
     grants: {},
+  })
+})
+
+async function submitExistingAccount(user: ReturnType<typeof userEvent.setup>) {
+  mockApiError('post', `${BASE}/users`, 409, 'account_exists')
+  renderPage()
+  await user.click(await screen.findByRole('button', { name: t('users.add') }))
+  const dialog = await screen.findByRole('dialog')
+  await user.type(within(dialog).getByRole('textbox', { name: t('users.name') }), 'Otra Persona')
+  await user.type(
+    within(dialog).getByRole('textbox', { name: t('users.email') }),
+    'otra@saira.test',
+  )
+  await user.type(
+    within(dialog).getByLabelText(t('users.password'), { exact: false }),
+    'long-password-1',
+  )
+  await user.click(within(dialog).getByRole('button', { name: t('app.save') }))
+  await within(dialog).findByText(t('users.accountExists'))
+  return dialog
+}
+
+it.each([
+  ['keepPassword', 'keep_password'],
+  ['replacePassword', 'replace_password'],
+])('asks what to do with an account that already exists: %s', async (button, choice) => {
+  const user = userEvent.setup()
+  const dialog = await submitExistingAccount(user)
+  const requests = mockApi('post', `${BASE}/users`, CARLA, 201)
+
+  await user.click(within(dialog).getByRole('button', { name: t(`users.${button}`) }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toEqual({
+    email: 'otra@saira.test',
+    full_name: 'Otra Persona',
+    password: 'long-password-1',
+    is_admin: false,
+    grants: {},
+    existing_account: choice,
   })
 })
 

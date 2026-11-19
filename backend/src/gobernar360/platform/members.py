@@ -7,13 +7,13 @@ the context dependency passed to build_router() decides.
 
 import uuid
 from collections.abc import Callable
-from typing import Annotated
+from typing import Annotated, Literal
 
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from sqlalchemy import delete, func, select
 
-from gobernar360.core.errors import conflict, not_found, validation_error
+from gobernar360.core.errors import account_exists, conflict, not_found, validation_error
 from gobernar360.core.security import hash_password
 from gobernar360.platform.access import RequestContext, enabled_dashboard_keys
 from gobernar360.platform.audit import record_change
@@ -41,6 +41,8 @@ class MemberIn(BaseModel):
     password: Password
     is_admin: bool = False
     grants: dict[str, GrantLevel] = {}
+    # What to do when the email already has an account. Only the operator may choose.
+    existing_account: Literal["keep_password", "replace_password"] | None = None
 
 
 class MemberPatch(BaseModel):
@@ -113,14 +115,15 @@ def set_password(ctx: RequestContext, user: User, password: str) -> None:
 
 
 def build_router(
-    context: Callable[..., RequestContext], replace_existing_password: bool = False
+    context: Callable[..., RequestContext], may_add_existing_accounts: bool = False
 ) -> APIRouter:
     """Member-management routes for whoever `context` lets through.
 
-    Accounts are shared between municipalities, so the email being added may already
-    be registered, with a password chosen by someone else. A municipality administrator
-    must not be able to change it; with `replace_existing_password` (the operator) the
-    password in the request replaces it, so only the person it is handed to can sign in.
+    Accounts are shared between municipalities, and whoever registered an email first
+    chose its password. Attaching such an account to a municipality could therefore
+    give a stranger access to it, so a municipality administrator cannot do it. With
+    `may_add_existing_accounts` (the operator) the request must say whether the
+    account keeps its password or gets the one in the request.
     """
     router = APIRouter()
     MemberContext = Annotated[RequestContext, Depends(context)]  # noqa: N806
@@ -141,6 +144,7 @@ def build_router(
     @router.post("/users", status_code=201)
     def add_member(payload: MemberIn, ctx: MemberContext) -> MemberOut:
         _check_grants(ctx, payload.grants)
+        password_replaced = False
         user = ctx.db.scalar(select(User).where(User.email == payload.email))
         if user is None:
             user = User(
@@ -156,9 +160,11 @@ def build_router(
             )
         ):
             raise conflict("This user already belongs to the municipality.")
-        elif replace_existing_password:
+        elif not may_add_existing_accounts or payload.existing_account is None:
+            raise account_exists()
+        elif payload.existing_account == "replace_password":
             set_password(ctx, user, payload.password)
-        # Otherwise an account that already exists keeps its own name and password.
+            password_replaced = True
 
         membership = Membership(
             user_id=user.id, municipality_id=ctx.municipality_id, is_admin=payload.is_admin
@@ -167,12 +173,10 @@ def build_router(
         ctx.db.add(membership)
         ctx.db.flush()
         ctx.db.refresh(membership)
-        record_change(
-            ctx,
-            "create",
-            membership,
-            {"email": user.email, "is_admin": payload.is_admin, "grants": payload.grants},
-        )
+        changes = {"email": user.email, "is_admin": payload.is_admin, "grants": payload.grants}
+        if password_replaced:
+            changes["password"] = "replaced"
+        record_change(ctx, "create", membership, changes)
         return _out(ctx, membership)
 
     @router.patch("/users/{membership_id}")

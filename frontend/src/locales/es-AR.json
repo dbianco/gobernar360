@@ -29,7 +29,8 @@
     "invalid_reference": "Alguno de los datos seleccionados ya no existe.",
     "validation_error": "Revisá los datos ingresados.",
     "network": "No se pudo conectar con el servidor.",
-    "not_authenticated": "Tu sesión terminó. Volvé a ingresar."
+    "not_authenticated": "Tu sesión terminó. Volvé a ingresar.",
+    "account_exists": "Ya existe una cuenta con ese email. Pedile al administrador de la plataforma que la agregue a tu municipio."
   },
   "login": {
     "title": "Ingresar a gobernar360",
@@ -375,7 +376,7 @@
     "name": "Nombre y apellido",
     "email": "Email",
     "password": "Contraseña inicial",
-    "passwordHint": "Mínimo 10 caracteres. Si la persona ya tiene una cuenta, conserva su contraseña actual.",
+    "passwordHint": "Mínimo 10 caracteres.",
     "passwordTooShort": "La contraseña debe tener al menos 10 caracteres.",
     "admin": "Administrador del municipio",
     "adminNamed": "Administrador: {{name}}",
@@ -391,12 +392,15 @@
       "admin": "Administración"
     },
     "adminHasAll": "Administración (por ser administrador)",
-    "passwordHintOperator": "Mínimo 10 caracteres. Si la persona ya tiene una cuenta, esta contraseña reemplaza la anterior y se cierran sus sesiones.",
     "setPassword": "Cambiar contraseña",
     "setPasswordNamed": "Cambiar contraseña de {{name}}",
     "newPassword": "Contraseña nueva",
     "newPasswordHint": "Mínimo 10 caracteres. Se cierran todas las sesiones abiertas de la cuenta.",
-    "passwordChanged": "Contraseña cambiada: {{name}}"
+    "passwordChanged": "Contraseña cambiada: {{name}}",
+    "accountExists": "Ya existe una cuenta con este email",
+    "accountExistsHint": "Si no estás seguro de que la contraseña actual la eligió esta persona, reemplazala por la que escribiste: se cierran sus sesiones abiertas.",
+    "keepPassword": "Agregar y conservar su contraseña",
+    "replacePassword": "Agregar y reemplazar su contraseña"
   },
   "platform": {
     "title": "Municipios de la plataforma",

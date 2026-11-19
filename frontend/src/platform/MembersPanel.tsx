@@ -224,7 +224,7 @@ export function MembersPanel(props: {
           <UserForm
             base={base}
             scope={scope[0]}
-            replacesPassword={props.canSetPassword}
+            mayAddExisting={props.canSetPassword}
             dashboards={dashboards.data ?? []}
             onDone={() => setAdding(false)}
             onCancel={() => setAdding(false)}

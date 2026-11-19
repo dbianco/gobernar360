@@ -4,7 +4,7 @@ import { expect, it, vi } from 'vitest'
 
 import { makeMe } from '../test/fixtures'
 import { renderApp, t } from '../test/render'
-import { mockApi } from '../test/server'
+import { mockApi, mockApiError } from '../test/server'
 import { UserForm } from './UserForm'
 
 async function fill(user: ReturnType<typeof userEvent.setup>, password: string) {
@@ -48,4 +48,18 @@ it('creates a user with the chosen access', async () => {
     is_admin: false,
     grants: { projects: 'editor' },
   })
+})
+
+it('tells an administrator that an existing account must be added by the platform', async () => {
+  mockApiError('post', '/admin/users', 409, 'account_exists')
+  const onDone = vi.fn()
+  renderApp(<UserForm base="/admin" dashboards={['projects']} onDone={onDone} />, { me: makeMe() })
+  const user = userEvent.setup()
+
+  await fill(user, 'long-password-1')
+  await user.click(screen.getByRole('button', { name: t('app.save') }))
+
+  expect(await screen.findByText(t('errors.account_exists'))).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: t('users.keepPassword') })).toBeNull()
+  expect(onDone).not.toHaveBeenCalled()
 })

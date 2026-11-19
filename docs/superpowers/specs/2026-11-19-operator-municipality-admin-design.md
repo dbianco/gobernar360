@@ -24,9 +24,16 @@ subconjunto: solo los usuarios y permisos del suyo. Ningún municipio ve datos d
    rol de administrador y quitar. Vale la regla de que el municipio conserva al menos un
    administrador una vez que tiene uno.
 3. El operador puede poner una contraseña nueva a un usuario de un municipio; eso cierra
-   todas las sesiones de esa cuenta. Reemplaza al alta de "primer administrador", que
-   pisaba la contraseña de una cuenta existente, y que se elimina: el primer administrador
-   se crea como cualquier usuario, marcándolo administrador.
+   todas las sesiones de esa cuenta. El alta de "primer administrador" se elimina: el
+   primer administrador se crea como cualquier usuario, marcándolo administrador.
+4. Cuentas que ya existen. Las cuentas son globales y la contraseña la eligió quien
+   registró el email primero, que puede no ser su dueño. Por eso:
+   - El administrador de un municipio no puede agregar un email que ya tiene cuenta; se
+     le indica que lo pida al operador. (Antes podía, y eso permitía que quien había
+     registrado el email entrara al municipio ajeno.)
+   - El operador sí puede, y debe elegir: conservar la contraseña de la cuenta o
+     reemplazarla por la que escribe, lo que cierra sus sesiones. El reemplazo queda en
+     auditoría.
 
 ## Fuera de alcance
 
@@ -34,8 +41,8 @@ subconjunto: solo los usuarios y permisos del suyo. Ningún municipio ve datos d
 - Que el administrador local cambie nombre, tipo o tableros de su municipio.
 - Que el operador vea datos de los tableros: solo ve configuración. Para ver datos se
   agrega como usuario del municipio.
-- Cuentas separadas por municipio: las cuentas siguen siendo globales, y quien agrega un
-  email ya registrado ve el nombre con que se registró.
+- Cuentas separadas por municipio: las cuentas siguen siendo globales. Quien intenta
+  agregar un email ya registrado se entera de que existe una cuenta, nada más.
 - Que el administrador local cambie contraseñas: como las cuentas son globales, le
   permitiría tomar la cuenta de alguien de otro municipio.
 

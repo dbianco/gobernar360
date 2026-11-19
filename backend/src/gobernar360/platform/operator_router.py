@@ -140,7 +140,7 @@ def get_operator_context(municipality_id: uuid.UUID, db: Db, user: CurrentUser) 
 OperatorContext = Annotated[RequestContext, Depends(get_operator_context)]
 
 router.include_router(
-    members.build_router(get_operator_context, replace_existing_password=True),
+    members.build_router(get_operator_context, may_add_existing_accounts=True),
     prefix="/municipalities/{municipality_id}",
 )
 

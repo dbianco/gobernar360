@@ -70,7 +70,6 @@ it('offers no way to change passwords', async () => {
       name: t('users.setPasswordNamed', { name: 'Carla Carga' }),
     }),
   ).toBeNull()
-  expect(screen.queryByText(t('users.passwordHintOperator'))).toBeNull()
 })
 
 it('shows that administrators already have full access', async () => {

@@ -36,6 +36,10 @@ def conflict(message: str) -> ApiError:
     return ApiError(409, "conflict", message)
 
 
+def account_exists() -> ApiError:
+    return ApiError(409, "account_exists", "An account with this email already exists.")
+
+
 def in_use(message: str = "The resource is referenced by other records.") -> ApiError:
     return ApiError(409, "in_use", message)
 

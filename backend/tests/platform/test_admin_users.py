@@ -58,16 +58,20 @@ def test_creating_user_with_existing_email_in_same_municipality_returns_conflict
     assert response.json()["error"]["code"] == "conflict"
 
 
-def test_existing_user_of_another_municipality_gets_a_second_membership(admin_client, client):
+def test_admin_cannot_add_an_account_that_already_exists_elsewhere(admin_client, client):
+    # Whoever registered the email first chose its password, so letting an administrator
+    # attach it to their municipality would hand that person access to it.
     other = make_municipality("Saira")
     make_membership(make_user("carla@noetinger.test"), other)
 
     response = admin_client.post("/api/admin/users", json=_new_user())
+    forced = admin_client.post("/api/admin/users", json=_new_user(existing_account="keep_password"))
 
-    assert response.status_code == 201
+    assert (response.status_code, forced.status_code) == (409, 409)
+    assert response.json()["error"]["code"] == "account_exists"
     client.post("/api/auth/logout")
-    me = login(client, "carla@noetinger.test").json()  # keeps their original password
-    assert sorted(m["municipality"]["name"] for m in me["memberships"]) == ["Noetinger", "Saira"]
+    me = login(client, "carla@noetinger.test").json()
+    assert [m["municipality"]["name"] for m in me["memberships"]] == ["Saira"]
 
 
 def test_grant_for_a_dashboard_that_is_not_enabled_is_rejected(admin_client):

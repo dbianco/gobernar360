@@ -56,8 +56,9 @@ Municipalities are independent: no municipality can see another one's data.
   new password). The operator sees configuration only, never dashboard data, unless
   added as a user of that municipality.
 - A **municipality administrator** manages a subset of that for their own municipality:
-  its users and their permissions. They cannot rename it, enable dashboards or change
-  passwords (accounts are shared between municipalities).
+  its users and their permissions. They cannot rename it, enable dashboards, change
+  passwords or add an email that already has an account: accounts are shared between
+  municipalities, so those are left to the operator.
 
 ## Tests
 
