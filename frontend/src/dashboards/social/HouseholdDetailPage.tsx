@@ -42,10 +42,10 @@ function AddMemberPanel(props: {
 }) {
   const { t } = useTranslation()
   const options = useRelationshipOptions()
-  // A household usually starts with its head; after that, most additions are children.
-  const [relationship, setRelationship] = useState<Relationship>(
-    props.household.head ? 'child' : 'head',
-  )
+  // What the member picked for the next addition; until they pick, a household
+  // starts with its head and after that most additions are children.
+  const [chosen, setChosen] = useState<Relationship | null>(null)
+  const relationship = chosen ?? (props.household.head ? 'child' : 'head')
   const label = (key: string, options = {}) => t(`social.households.${key}`, options)
   const members = new Set(props.household.members.map((member) => member.id))
 
@@ -58,7 +58,7 @@ function AddMemberPanel(props: {
             <NativeSelect
               label={label('relationship')}
               value={relationship}
-              onChange={(event) => setRelationship(event.currentTarget.value as Relationship)}
+              onChange={(event) => setChosen(event.currentTarget.value as Relationship)}
               data={options}
             />
             <Button variant="default" onClick={props.onClose}>
@@ -77,7 +77,10 @@ function AddMemberPanel(props: {
               size="compact-sm"
               aria-label={label('addNamed', { name: person.person.full_name })}
               loading={props.pending}
-              onClick={() => void props.run(person.id, relationship)}
+              onClick={() =>
+                // The choice was for this person: the next one starts from the default again.
+                void props.run(person.id, relationship).then((saved) => saved && setChosen(null))
+              }
             >
               {label('add')}
             </Button>

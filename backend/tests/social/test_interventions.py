@@ -1,5 +1,9 @@
 from datetime import date
 
+from sqlalchemy import select
+
+from gobernar360.core.db import tenant_session
+from gobernar360.platform.models import AuditLog
 from tests.factories import login, make_membership, make_municipality, make_user
 from tests.social.factories import (
     BASE,
@@ -228,3 +232,28 @@ def test_interventions_of_another_municipality_are_not_reachable(client):
         == 404
     )
     assert client.delete(f"{BASE}/interventions/{foreign.id}").status_code == 404
+
+
+def test_the_audit_trail_does_not_keep_the_reserved_text(client):
+    municipality = _editor(client)
+    body = {
+        "intervention_type_id": str(make_intervention_type(municipality).id),
+        "person_id": str(make_social_person(municipality).id),
+        "date": "2026-03-10",
+        "description": SECRET,
+    }
+
+    created = client.post(f"{BASE}/interventions", json=body).json()
+    client.patch(
+        f"{BASE}/interventions/{created['id']}",
+        json={"description": f"{SECRET} Se deriva.", "performed_by": "Equipo"},
+    )
+    client.delete(f"{BASE}/interventions/{created['id']}")
+
+    with tenant_session(municipality.id) as db:
+        entries = db.scalars(select(AuditLog).order_by(AuditLog.created_at)).all()
+    assert [e.action for e in entries] == ["create", "update", "delete"]
+    assert all("violencia" not in str(e.changes) for e in entries)
+    # The trail still says that the description was written and later changed.
+    assert entries[0].changes["description"] == "[reserved]"
+    assert entries[1].changes == {"description": "[reserved]", "performed_by": "Equipo"}

@@ -8,8 +8,10 @@ leaves it out for readers below editor level.
 import uuid
 from collections.abc import Iterable
 from datetime import date
+from typing import Any
 
 from fastapi import APIRouter
+from fastapi.encoders import jsonable_encoder
 from sqlalchemy import ColumnElement, select
 
 from gobernar360.dashboards.social.access import Editor, Viewer, reads_reserved_text
@@ -23,20 +25,25 @@ from gobernar360.dashboards.social.schemas import (
 )
 from gobernar360.platform.access import RequestContext
 from gobernar360.platform.api_types import Year
+from gobernar360.platform.audit import apply_audit_fields, record_change
 from gobernar360.platform.listing import Page, PagingParams, page_of
-from gobernar360.platform.tenant_crud import (
-    create_entity,
-    delete_entity,
-    get_or_404,
-    resolve,
-    update_entity,
-)
+from gobernar360.platform.tenant_crud import create_entity, delete_entity, get_or_404, resolve
 
 router = APIRouter()
 
 
 def in_year(year: int) -> ColumnElement[bool]:
     return Intervention.date.between(date(year, 1, 1), date(year, 12, 31))
+
+
+def _for_audit(changes: dict[str, Any]) -> dict[str, Any]:
+    """What the audit trail keeps of a change: that the description was written, not its text.
+
+    The trail outlives the record, and reserved text must not survive there.
+    """
+    if "description" not in changes:
+        return changes
+    return jsonable_encoder(changes | {"description": "[reserved]"})
 
 
 def present(ctx: RequestContext, interventions: Iterable[Intervention]) -> list[InterventionOut]:
@@ -85,7 +92,9 @@ def list_interventions(
 def create_intervention(payload: InterventionIn, ctx: Editor) -> InterventionOut:
     resolve(ctx, InterventionType, payload.intervention_type_id, "intervention_type_id")
     resolve(ctx, SocialPerson, payload.person_id, "person_id")
-    intervention = create_entity(ctx, Intervention(**payload.model_dump()), payload.model_dump())
+    intervention = create_entity(
+        ctx, Intervention(**payload.model_dump()), _for_audit(payload.model_dump())
+    )
     ctx.db.refresh(intervention)
     return present(ctx, [intervention])[0]
 
@@ -95,7 +104,12 @@ def update_intervention(
     intervention_id: uuid.UUID, payload: InterventionPatch, ctx: Editor
 ) -> InterventionOut:
     intervention = get_or_404(ctx, Intervention, intervention_id)
-    update_entity(ctx, intervention, payload.model_dump(exclude_unset=True))
+    changes = payload.model_dump(exclude_unset=True)
+    for field, value in changes.items():
+        setattr(intervention, field, value)
+    apply_audit_fields(ctx, intervention, creating=False)
+    ctx.db.flush()
+    record_change(ctx, "update", intervention, _for_audit(jsonable_encoder(changes)))
     ctx.db.refresh(intervention)
     return present(ctx, [intervention])[0]
 

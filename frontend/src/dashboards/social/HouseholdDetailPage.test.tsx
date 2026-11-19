@@ -164,3 +164,47 @@ it('deletes the household after confirming', async () => {
   expect(await screen.findByText('households list')).toBeInTheDocument()
   expect(requests).toHaveLength(1)
 })
+
+it('offers the first member as head and the following ones as children', async () => {
+  const head = { id: 'sp-2', full_name: 'Gómez, Luis' }
+  const withHead = makeHouseholdDetail({
+    head,
+    members: [{ ...head, dni: null, relationship: 'head' }],
+  })
+  const ana = makePerson({
+    id: 'sp-3',
+    person: makeRegistryPerson({ id: 'p-3', full_name: 'Gómez, Ana' }),
+    household: null,
+    relationship: null,
+  })
+  const puts = mockApi('put', `${BASE}/households/h-1/members/sp-2`, withHead)
+  // The household has nobody until the first member is added.
+  mockApi('get', `${BASE}/households/h-1`, () =>
+    puts.length ? withHead : makeHouseholdDetail({ head: null, members: [], member_count: 0 }),
+  )
+  mockApi('get', `${BASE}/deliveries`, page([]))
+  mockApi('get', `${BASE}/interventions`, page([]))
+  mockApi('get', `${BASE}/people`, page([LUIS, ana]))
+  const next = mockApi('put', `${BASE}/households/h-1/members/sp-3`, withHead)
+  renderSocial(
+    <Routes>
+      <Route path="/d/social/households/:id" element={<HouseholdDetailPage />} />
+    </Routes>,
+    { route: '/d/social/households/h-1' },
+  )
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addMember') }))
+  expect(screen.getByLabelText(label('relationship'))).toHaveValue('head')
+  await user.type(screen.getByRole('textbox', { name: t('social.people.find') }), 'gom')
+  await user.click(
+    await screen.findByRole('button', { name: label('addNamed', { name: 'Gómez, Luis' }) }),
+  )
+  await waitFor(() => expect(puts).toHaveLength(1))
+  expect(puts[0].body).toEqual({ relationship: 'head' })
+
+  await waitFor(() => expect(screen.getByLabelText(label('relationship'))).toHaveValue('child'))
+  await user.click(screen.getByRole('button', { name: label('addNamed', { name: 'Gómez, Ana' }) }))
+  await waitFor(() => expect(next).toHaveLength(1))
+  expect(next[0].body).toEqual({ relationship: 'child' })
+})
