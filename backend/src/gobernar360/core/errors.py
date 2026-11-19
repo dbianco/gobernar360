@@ -40,6 +40,10 @@ def account_exists() -> ApiError:
     return ApiError(409, "account_exists", "An account with this email already exists.")
 
 
+def already_registered() -> ApiError:
+    return ApiError(409, "already_registered", "This person is already registered here.")
+
+
 def dni_exists() -> ApiError:
     return ApiError(409, "dni_exists", "Another person already has this document number.")
 
