@@ -3,13 +3,15 @@
 Workspace of management dashboards for local governments (municipalities and
 communes). Each dashboard is an independent module, enabled per municipality
 and granted per user. Today it ships the platform base (municipalities, users,
-per-dashboard access), the Projects and Environment dashboards, and a general
-overview.
+per-dashboard access, people registry), the Projects, Environment and Economic
+dashboards, and a general overview.
 
 - Platform and Projects: design `docs/superpowers/specs/2026-11-18-gobernar360-platform-design.md`,
   plan `docs/superpowers/plans/2026-11-18-platform-base-and-projects-dashboard.md`
 - Environment: design `docs/superpowers/specs/2026-11-18-environment-dashboard-design.md`,
   plan `docs/superpowers/plans/2026-11-18-environment-dashboard.md`
+- Economic and people registry: design `docs/superpowers/specs/2026-11-19-economic-dashboard-design.md`,
+  plan `docs/superpowers/plans/2026-11-19-economic-dashboard.md`
 - Functional reference: `tableros-de-gestion-portal-ril.md`
 
 ## Quick start
@@ -39,8 +41,8 @@ deletes everything first).
 |---|---|
 | `operador@gobernar360.test` | Platform operator (super-admin): creates and configures municipalities |
 | `admin@noetinger.test` | Administrator of Noetinger: manages its users and every dashboard |
-| `carga@noetinger.test` | Projects and environment dashboards, data entry |
-| `lectura@noetinger.test` | Projects and environment dashboards, read only |
+| `carga@noetinger.test` | Projects, environment and economic dashboards, data entry |
+| `lectura@noetinger.test` | Projects, environment and economic dashboards, read only |
 | `sinacceso@noetinger.test` | Member of Noetinger with no dashboard access |
 | `admin@comuna-demo.test` | Administrator of a second municipality (Comuna Demo) |
 
@@ -83,6 +85,17 @@ npm run e2e              # browser tests; starts its own API and web server on p
 - `backend/src/gobernar360/dashboards/<key>`: one package per dashboard, registered through
   `DashboardModule` (`dashboards/registry.py`).
 - `frontend/src/platform`, `frontend/src/dashboards/<key>`: the same split in the web app.
+
+### People registry
+
+Each municipality has one registry of people (`people` table, `platform/people.py`), shared
+by the dashboards that work with residents. It has no screen or routes of its own:
+
+- A dashboard keeps its own data about a person in a link table (`economic_people`) and
+  points every other table at that link, so it only lists and opens people it incorporated.
+- The rest of the registry is reachable only by exact document number, to reuse a person
+  another dashboard already loaded instead of duplicating them.
+- Removing a person from the last dashboard that uses them deletes them from the registry.
 
 Data of different municipalities lives in the same database and is separated by
 PostgreSQL row-level security: every tenant table has `municipality_id`, and the
