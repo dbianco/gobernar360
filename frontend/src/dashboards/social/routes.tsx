@@ -6,11 +6,15 @@ import { useAuth } from '../../platform/authContext'
 import { RequireDashboard } from '../../platform/RequireDashboard'
 import { hasLevel } from '../../platform/types'
 import { BASE_PATH } from './api'
+import { DeliveriesPage } from './DeliveriesPage'
 import { HouseholdDetailPage } from './HouseholdDetailPage'
 import { HouseholdsPage } from './HouseholdsPage'
+import { InterventionsPage } from './InterventionsPage'
 import { ParametersPage } from './ParametersPage'
 import { PeoplePage } from './PeoplePage'
 import { PersonDetailPage } from './PersonDetailPage'
+import { ReportsPage } from './ReportsPage'
+import { SummaryPage } from './SummaryPage'
 
 const SECTIONS = [
   'summary',
@@ -47,11 +51,14 @@ export default function SocialRoutes() {
         </Tabs.List>
       </Tabs>
       <Routes>
-        <Route index element={null} />
+        <Route index element={<SummaryPage />} />
         <Route path="people" element={<PeoplePage />} />
         <Route path="people/:id" element={<PersonDetailPage />} />
         <Route path="households" element={<HouseholdsPage />} />
         <Route path="households/:id" element={<HouseholdDetailPage />} />
+        <Route path="deliveries" element={<DeliveriesPage />} />
+        <Route path="interventions" element={<InterventionsPage />} />
+        <Route path="reports" element={<ReportsPage />} />
         <Route
           path="parameters"
           element={
