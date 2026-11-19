@@ -1,9 +1,10 @@
 """Request and response shapes of the social dashboard."""
 
+import datetime as dt
 import uuid
 from typing import Annotated, Any, Literal
 
-from pydantic import BaseModel, ConfigDict, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 
 from gobernar360.platform.api_types import Name, OrmModel, PatchModel
 from gobernar360.platform.people import PersonIn, PersonOut, PersonPatch
@@ -21,6 +22,7 @@ Relationship = Literal[
 ]
 
 LongText = Annotated[str, StringConstraints(strip_whitespace=True, max_length=5000)]
+Quantity = Annotated[int, Field(ge=1, le=1_000_000)]
 
 
 def _text(max_length: int) -> Any:
@@ -135,3 +137,71 @@ class MemberOut(OrmModel):
 
 class HouseholdDetail(HouseholdOut):
     members: list[MemberOut]
+
+
+class BenefitRef(OrmModel):
+    id: uuid.UUID
+    name: str
+    category: NamedRef
+
+
+class DeliveryIn(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    benefit_id: uuid.UUID
+    person_id: uuid.UUID
+    date: dt.date
+    quantity: Quantity = 1
+    note: LongText = ""
+
+
+class DeliveryPatch(PatchModel):
+    """Who received what is fixed; a wrong delivery is deleted and loaded again."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    date: dt.date | None = None
+    quantity: Quantity | None = None
+    note: LongText | None = None
+
+
+class DeliveryOut(OrmModel):
+    id: uuid.UUID
+    date: dt.date
+    quantity: int
+    note: str
+    benefit: BenefitRef
+    person: PersonRef
+
+
+class InterventionIn(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    intervention_type_id: uuid.UUID
+    person_id: uuid.UUID
+    date: dt.date
+    description: LongText = ""
+    performed_by: _text(200) = ""
+
+
+class InterventionPatch(PatchModel):
+    """The person and the type are fixed; a wrong intervention is deleted and loaded again."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    date: dt.date | None = None
+    description: LongText | None = None
+    performed_by: _text(200) | None = None
+
+
+class InterventionOut(BaseModel):
+    """Built by `interventions_router.present`, never straight from the row,
+    so the reserved text cannot reach a reader by accident."""
+
+    id: uuid.UUID
+    date: dt.date
+    intervention_type: NamedRef
+    person: PersonRef
+    performed_by: str
+    # None when the reader may not see it.
+    description: str | None
