@@ -14,6 +14,15 @@ from gobernar360.dashboards.economic.models import (
 )
 from gobernar360.dashboards.environment.models import Subcategory, Value, Variable
 from gobernar360.dashboards.projects.models import Milestone, Project
+from gobernar360.dashboards.social.models import (
+    Benefit,
+    BenefitCategory,
+    Delivery,
+    Household,
+    Intervention,
+    InterventionType,
+    SocialPerson,
+)
 from gobernar360.platform.models import (
     DashboardGrant,
     Municipality,
@@ -69,6 +78,7 @@ def test_seeded_accounts_can_sign_in_with_their_roles(client):
         {"key": "economic", "level": "editor"},
         {"key": "environment", "level": "editor"},
         {"key": "projects", "level": "editor"},
+        {"key": "social", "level": "editor"},
     ]
     assert no_access["dashboards"] == []
     assert operator["user"]["is_platform_operator"] is True
@@ -157,7 +167,18 @@ def test_seed_demo_survives_a_demo_database_without_the_second_municipality():
 
 
 # Children first, so the rows can be deleted without tripping foreign keys.
+SOCIAL_MODELS = (
+    Delivery,
+    Intervention,
+    SocialPerson,
+    Household,
+    Benefit,
+    BenefitCategory,
+    InterventionType,
+)
+# The social dashboard came later and shares the registry, so it goes first.
 ECONOMIC_MODELS = (
+    *SOCIAL_MODELS,
     Assignment,
     ActorPerson,
     EconomicPerson,
@@ -178,7 +199,7 @@ def test_seed_demo_adds_the_economic_dashboard_to_an_older_demo_database():
         for model in ECONOMIC_MODELS:
             session.execute(delete(model))
         for model in (DashboardGrant, MunicipalityDashboard):
-            session.execute(delete(model).where(model.dashboard_key == "economic"))
+            session.execute(delete(model).where(model.dashboard_key.in_(["economic", "social"])))
     with platform_session() as db:
         noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
         users_before = _count(db, User)
@@ -194,7 +215,8 @@ def test_seed_demo_adds_the_economic_dashboard_to_an_older_demo_database():
     with tenant_session(noetinger_id) as db:
         assert (_count(db, Project), _count(db, Variable)) == (projects_before, variables_before)
         assert _count(db, Actor) >= 10
-        assert _count(db, EconomicPerson) == _count(db, Person) >= 10
+        assert _count(db, Person) >= _count(db, EconomicPerson) >= 10
+        assert _count(db, SocialPerson) >= 12
 
 
 def test_seeded_economic_summary_has_actors_people_and_assignments(client):
@@ -225,3 +247,78 @@ def test_seeded_economic_data_stays_inside_noetinger(client):
     assert client.get("/api/dashboards/economic/actors").json() == {"items": [], "total": 0}
     assert client.get("/api/dashboards/economic/people").json() == {"items": [], "total": 0}
     assert client.get("/api/dashboards/economic/tools").json() == []
+
+
+def test_seed_demo_adds_the_social_dashboard_to_an_older_demo_database():
+    seed_demo()
+    # A database seeded before the social dashboard existed.
+    with admin_session() as session, session.begin():
+        for model in SOCIAL_MODELS:
+            session.execute(delete(model))
+        session.execute(delete(Person).where(Person.id.not_in(select(EconomicPerson.person_id))))
+        for model in (DashboardGrant, MunicipalityDashboard):
+            session.execute(delete(model).where(model.dashboard_key == "social"))
+    with platform_session() as db:
+        noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+        users_before = _count(db, User)
+    with tenant_session(noetinger_id) as db:
+        before = [_count(db, model) for model in (Project, Variable, Actor, EconomicPerson)]
+
+    changed = seed_demo()
+    changed_again = seed_demo()
+
+    assert (changed, changed_again) == (True, False)
+    with platform_session() as db:
+        assert _count(db, User) == users_before
+    with tenant_session(noetinger_id) as db:
+        assert [_count(db, model) for model in (Project, Variable, Actor, EconomicPerson)] == before
+        assert _count(db, SocialPerson) >= 12
+
+
+def test_seeded_social_summary_has_people_households_and_records(client):
+    seed_demo()
+    login(client, "lectura@noetinger.test", DEMO_PASSWORD)
+
+    summary = client.get("/api/dashboards/social/summary").json()
+    reports = client.get("/api/dashboards/social/reports").json()
+
+    assert summary["people"] >= 12
+    assert summary["households"] >= 4
+    assert 0 < summary["people_with_deliveries"] < summary["people"]
+    assert summary["deliveries"] >= 8 and summary["units"] > summary["deliveries"]
+    assert summary["interventions"] >= 5
+    assert len(summary["benefits"]) >= 3 and len(summary["intervention_types"]) >= 3
+    assert len(reports["people_by_neighborhood"]) >= 3
+    last_year = client.get(
+        "/api/dashboards/social/summary", params={"year": summary["year"] - 1}
+    ).json()
+    assert last_year["deliveries"] > 0 and last_year["interventions"] > 0
+    households = client.get("/api/dashboards/social/households").json()["items"]
+    assert any(h["head"] for h in households) and all(h["member_count"] for h in households)
+
+
+def test_seeded_social_people_share_the_registry_with_economic():
+    seed_demo()
+
+    with platform_session() as db:
+        noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+    with tenant_session(noetinger_id) as db:
+        shared = db.scalar(
+            select(func.count())
+            .select_from(SocialPerson)
+            .where(SocialPerson.person_id.in_(select(EconomicPerson.person_id)))
+        )
+        documents = db.scalars(select(Person.dni).where(Person.dni.is_not(None))).all()
+        assert shared >= 2
+        assert _count(db, SocialPerson) > shared
+        assert len(documents) == len(set(documents))
+
+
+def test_seeded_social_data_stays_inside_noetinger(client):
+    seed_demo()
+    login(client, "admin@comuna-demo.test", DEMO_PASSWORD)
+
+    assert client.get("/api/dashboards/social/people").json() == {"items": [], "total": 0}
+    assert client.get("/api/dashboards/social/households").json() == {"items": [], "total": 0}
+    assert client.get("/api/dashboards/social/benefits").json() == []
+    assert client.get("/api/dashboards/social/interventions").json() == {"items": [], "total": 0}

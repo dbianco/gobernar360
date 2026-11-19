@@ -36,6 +36,15 @@ from gobernar360.dashboards.projects.models import (
     ProjectSdg,
     Term,
 )
+from gobernar360.dashboards.social.models import (
+    Benefit,
+    BenefitCategory,
+    Delivery,
+    Household,
+    Intervention,
+    InterventionType,
+    SocialPerson,
+)
 from gobernar360.platform.models import (
     DashboardGrant,
     Membership,
@@ -49,6 +58,167 @@ DEMO_PASSWORD = "gobernar360-demo"
 PROJECTS = "projects"
 ENVIRONMENT = "environment"
 ECONOMIC = "economic"
+SOCIAL = "social"
+
+# category -> benefits as (name, description)
+SOCIAL_BENEFITS = {
+    "Alimentos": [
+        ("Módulo alimentario", "Caja mensual de alimentos secos."),
+        ("Leche fortificada", "Por kilo, para niños y embarazadas."),
+    ],
+    "Hábitat": [
+        ("Chapas", "Por unidad, para mejoras de techo."),
+        ("Materiales de construcción", "Bolsas de cemento y cal."),
+    ],
+    "Salud": [
+        ("Medicamentos", "Cobertura de recetas del dispensario."),
+        ("Anteojos", ""),
+    ],
+    "Abrigo": [("Frazadas", "")],
+    "Documentación": [("Trámite de DNI", "Pago de la tasa del trámite.")],
+}
+SOCIAL_INTERVENTION_TYPES = (
+    "Entrevista presencial",
+    "Entrevista telefónica",
+    "Visita a domicilio",
+    "Acompañamiento",
+    "Articulación con otras áreas",
+)
+# (name, address, neighborhood)
+SOCIAL_HOUSEHOLDS = [
+    ("Familia Sosa", "Los Álamos 320", "Sur"),
+    ("Familia Moyano", "Pasaje 3 casa 14", "Oeste"),
+    ("Familia Paz", "Mitre 780", "Sur"),
+    ("Familia Ledesma", "Calle 12 s/n", "Norte"),
+    ("Familia Quiroga", "Zona rural, camino a Saira", "Zona rural"),
+]
+# (first name, last name, DNI, year of birth, neighborhood, household, relationship).
+# Diego Sosa, Julián Moyano and Elena Paz are also in the economic dashboard: same person,
+# one registry row.
+SOCIAL_PEOPLE = [
+    ("Diego", "Sosa", "36987654", 1992, "Sur", "Familia Sosa", "head"),
+    ("Romina", "Vega", "37555444", 1993, "Sur", "Familia Sosa", "partner"),
+    ("Mateo", "Sosa", "55111222", 2016, "Sur", "Familia Sosa", "child"),
+    ("Abril", "Sosa", "57333444", 2019, "Sur", "Familia Sosa", "child"),
+    ("Julián", "Moyano", "40111222", 1997, "Oeste", "Familia Moyano", "child"),
+    ("Norma", "Moyano", "16222333", 1963, "Oeste", "Familia Moyano", "head"),
+    ("Elena", "Paz", "30222111", 1983, "Sur", "Familia Paz", "head"),
+    ("Brisa", "Paz", "50444555", 2010, "Sur", "Familia Paz", "child"),
+    ("Ramón", "Paz", "10999888", 1952, "Sur", "Familia Paz", "parent"),
+    ("Graciela", "Ledesma", "25666777", 1976, "Norte", "Familia Ledesma", "head"),
+    ("Kevin", "Ledesma", "45888999", 2004, "Norte", "Familia Ledesma", "child"),
+    ("Pedro", "Quiroga", "13444555", 1958, "Zona rural", "Familia Quiroga", "head"),
+    ("Olga", "Quiroga", "13777666", 1959, "Zona rural", "Familia Quiroga", "partner"),
+    ("Ángel", "Farías", "20555111", 1968, "Centro", None, None),
+    ("Micaela", "Torres", "43222888", 2001, "Norte", None, None),
+    ("Juan", "Sin Datos", None, None, "", None, None),
+]
+# (benefit, person as "first last", quantity, days before today; None: a fixed date last
+# year as (month, day))
+SOCIAL_DELIVERIES = [
+    ("Módulo alimentario", "Diego Sosa", 1, 12, None),
+    ("Módulo alimentario", "Diego Sosa", 1, 43, None),
+    ("Módulo alimentario", "Diego Sosa", 1, 74, None),
+    ("Leche fortificada", "Romina Vega", 4, 12, None),
+    ("Módulo alimentario", "Norma Moyano", 1, 20, None),
+    ("Medicamentos", "Norma Moyano", 2, 51, None),
+    ("Módulo alimentario", "Elena Paz", 2, 15, None),
+    ("Anteojos", "Brisa Paz", 1, 95, None),
+    ("Medicamentos", "Ramón Paz", 3, 33, None),
+    ("Chapas", "Graciela Ledesma", 12, 60, None),
+    ("Materiales de construcción", "Graciela Ledesma", 6, 58, None),
+    ("Frazadas", "Pedro Quiroga", 3, 130, None),
+    ("Módulo alimentario", "Pedro Quiroga", 1, 25, None),
+    ("Trámite de DNI", "Micaela Torres", 1, 8, None),
+    ("Módulo alimentario", "Ángel Farías", 1, 18, None),
+    ("Módulo alimentario", "Diego Sosa", 1, None, (10, 14)),
+    ("Frazadas", "Elena Paz", 4, None, (6, 3)),
+    ("Chapas", "Pedro Quiroga", 8, None, (8, 21)),
+    ("Módulo alimentario", "Norma Moyano", 1, None, (11, 5)),
+]
+# (type, person, days before today or fixed date last year, done by, description)
+SOCIAL_INTERVENTIONS = [
+    (
+        "Visita a domicilio",
+        "Diego Sosa",
+        40,
+        None,
+        "Lic. Marta Ruiz",
+        "Vivienda con filtraciones en el techo. Se gestiona entrega de chapas.",
+    ),
+    (
+        "Entrevista presencial",
+        "Romina Vega",
+        14,
+        None,
+        "Lic. Marta Ruiz",
+        "Consulta por vacante en jardín maternal para la hija menor.",
+    ),
+    (
+        "Articulación con otras áreas",
+        "Julián Moyano",
+        22,
+        None,
+        "Téc. Pablo Ibarra",
+        "Derivado a Desarrollo Económico para la bolsa de empleo.",
+    ),
+    (
+        "Acompañamiento",
+        "Norma Moyano",
+        50,
+        None,
+        "Lic. Marta Ruiz",
+        "Acompañamiento al turno de cardiología en el hospital regional.",
+    ),
+    (
+        "Entrevista telefónica",
+        "Elena Paz",
+        9,
+        None,
+        "Téc. Pablo Ibarra",
+        "Seguimiento de la situación laboral. Continúa como cuidadora informal.",
+    ),
+    (
+        "Visita a domicilio",
+        "Ramón Paz",
+        35,
+        None,
+        "Lic. Marta Ruiz",
+        "Adulto mayor con movilidad reducida. Se evalúa solicitud de silla de ruedas.",
+    ),
+    (
+        "Visita a domicilio",
+        "Graciela Ledesma",
+        62,
+        None,
+        "Téc. Pablo Ibarra",
+        "Relevamiento habitacional previo a la entrega de materiales.",
+    ),
+    (
+        "Entrevista presencial",
+        "Micaela Torres",
+        8,
+        None,
+        "Lic. Marta Ruiz",
+        "No cuenta con DNI actualizado. Se inicia el trámite.",
+    ),
+    (
+        "Visita a domicilio",
+        "Pedro Quiroga",
+        None,
+        (8, 20),
+        "Lic. Marta Ruiz",
+        "Daños por tormenta en la vivienda rural.",
+    ),
+    (
+        "Entrevista presencial",
+        "Diego Sosa",
+        None,
+        (10, 10),
+        "Téc. Pablo Ibarra",
+        "Primera entrevista. Grupo familiar sin ingresos formales.",
+    ),
+]
 
 ECONOMIC_ACTOR_TYPES = ("Comercio", "Industria", "Emprendimiento", "Servicios", "Cooperativa")
 ECONOMIC_SECTORS = ("Alimentos", "Metalmecánica", "Textil", "Agro", "Turismo", "Construcción")
@@ -737,6 +907,75 @@ def _seed_noetinger_economic(municipality_id, today: date) -> None:
             )
 
 
+def _seed_noetinger_social(municipality_id, today: date) -> None:
+    """Households, people, deliveries and interventions over this year and the last one."""
+    with tenant_session(municipality_id) as db:
+
+        def add(entity):
+            entity.municipality_id = municipality_id
+            db.add(entity)
+            db.flush()
+            return entity
+
+        def on(days_ago, last_year) -> date:
+            if last_year:
+                return date(today.year - 1, *last_year)
+            # Early in the year "days ago" would fall in the previous one.
+            return max(today - timedelta(days=days_ago), date(today.year, 1, 1))
+
+        benefits = {}
+        for category_name, rows in SOCIAL_BENEFITS.items():
+            category = add(BenefitCategory(name=category_name))
+            for name, description in rows:
+                benefits[name] = add(
+                    Benefit(category_id=category.id, name=name, description=description)
+                )
+        types = {name: add(InterventionType(name=name)) for name in SOCIAL_INTERVENTION_TYPES}
+        households = {
+            name: add(Household(name=name, address=address, neighborhood=neighborhood))
+            for name, address, neighborhood in SOCIAL_HOUSEHOLDS
+        }
+        people = {}
+        for first, last, dni, born, neighborhood, household, relationship in SOCIAL_PEOPLE:
+            # Someone another dashboard already loaded is the same person, not a new one.
+            person = dni and db.scalar(select(Person).where(Person.dni == dni))
+            person = person or add(
+                Person(
+                    first_name=first,
+                    last_name=last,
+                    dni=dni,
+                    birth_date=date(born, 6, 15) if born else None,
+                    neighborhood=neighborhood,
+                )
+            )
+            people[f"{first} {last}"] = add(
+                SocialPerson(
+                    person_id=person.id,
+                    household_id=households[household].id if household else None,
+                    relationship=relationship,
+                )
+            )
+        for benefit, person, quantity, days_ago, last_year in SOCIAL_DELIVERIES:
+            add(
+                Delivery(
+                    benefit_id=benefits[benefit].id,
+                    person_id=people[person].id,
+                    quantity=quantity,
+                    date=on(days_ago, last_year),
+                )
+            )
+        for kind, person, days_ago, last_year, performed_by, description in SOCIAL_INTERVENTIONS:
+            add(
+                Intervention(
+                    intervention_type_id=types[kind].id,
+                    person_id=people[person].id,
+                    date=on(days_ago, last_year),
+                    performed_by=performed_by,
+                    description=description,
+                )
+            )
+
+
 def _enable_dashboard(db: Session, municipality: Municipality, key: str) -> bool:
     """Enable a newer dashboard and give it to whoever has the projects one.
 
@@ -776,6 +1015,8 @@ def _seed_newer_dashboards(today: date) -> bool:
     added = [
         _seed_newer_dashboard(ENVIRONMENT, _seed_noetinger_environment, today),
         _seed_newer_dashboard(ECONOMIC, _seed_noetinger_economic, today),
+        # After the economic one: both share the people registry.
+        _seed_newer_dashboard(SOCIAL, _seed_noetinger_social, today),
     ]
     return any(added)
 
