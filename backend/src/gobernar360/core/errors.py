@@ -40,6 +40,10 @@ def account_exists() -> ApiError:
     return ApiError(409, "account_exists", "An account with this email already exists.")
 
 
+def dni_exists() -> ApiError:
+    return ApiError(409, "dni_exists", "Another person already has this document number.")
+
+
 def in_use(message: str = "The resource is referenced by other records.") -> ApiError:
     return ApiError(409, "in_use", message)
 

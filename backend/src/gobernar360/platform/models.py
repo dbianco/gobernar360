@@ -1,12 +1,14 @@
-"""Platform tables: municipalities, users, sessions, memberships, grants and audit log."""
+"""Platform tables: municipalities, users, sessions, memberships, grants, audit log and the
+people registry."""
 
 import uuid
-from datetime import datetime
+from datetime import date, datetime
 from typing import Any
 
 from sqlalchemy import (
     Boolean,
     CheckConstraint,
+    Date,
     DateTime,
     ForeignKey,
     String,
@@ -18,7 +20,7 @@ from sqlalchemy import (
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from gobernar360.core.db import Base, TenantMixin, created_at_column, uuid_pk
+from gobernar360.core.db import AuditMixin, Base, TenantMixin, created_at_column, uuid_pk
 
 MUNICIPALITY_KINDS = ("municipality", "commune")
 GRANT_LEVELS = ("viewer", "editor", "admin")
@@ -131,3 +133,33 @@ class AuditLog(TenantMixin, Base):
     entity_id: Mapped[str] = mapped_column(String(100), nullable=False)
     changes: Mapped[dict[str, Any] | None] = mapped_column(JSONB, nullable=True)
     created_at: Mapped[datetime] = created_at_column()
+
+
+def _text(length: int) -> Mapped[str]:
+    return mapped_column(String(length), nullable=False, default="", server_default="")
+
+
+class Person(TenantMixin, AuditMixin, Base):
+    """A resident in the municipality's single registry of people.
+
+    Dashboards keep their own data about a person in their own tables and only
+    show the people they incorporated.
+    """
+
+    __tablename__ = "people"
+    __table_args__ = (UniqueConstraint("municipality_id", "dni"),)
+
+    id: Mapped[uuid.UUID] = uuid_pk()
+    first_name: Mapped[str] = mapped_column(String(100), nullable=False)
+    last_name: Mapped[str] = mapped_column(String(100), nullable=False)
+    # Digits only. People without a known document have none.
+    dni: Mapped[str | None] = mapped_column(String(20), nullable=True)
+    birth_date: Mapped[date | None] = mapped_column(Date, nullable=True)
+    phone: Mapped[str] = _text(50)
+    email: Mapped[str] = _text(200)
+    address: Mapped[str] = _text(200)
+    neighborhood: Mapped[str] = _text(100)
+
+    @property
+    def full_name(self) -> str:
+        return f"{self.last_name}, {self.first_name}"
