@@ -11,6 +11,17 @@ from sqlalchemy.orm import Session
 
 from gobernar360.core.db import Base, get_admin_engine, platform_session, tenant_session
 from gobernar360.core.security import hash_password
+from gobernar360.dashboards.economic.models import (
+    Actor,
+    ActorPerson,
+    ActorType,
+    Assignment,
+    EconomicPerson,
+    Sector,
+    Tool,
+    ToolCategory,
+    ToolSubcategory,
+)
 from gobernar360.dashboards.environment.models import Subcategory, Value, Variable
 from gobernar360.dashboards.projects.models import (
     AnnualBudget,
@@ -30,12 +41,117 @@ from gobernar360.platform.models import (
     Membership,
     Municipality,
     MunicipalityDashboard,
+    Person,
     User,
 )
 
 DEMO_PASSWORD = "gobernar360-demo"
 PROJECTS = "projects"
 ENVIRONMENT = "environment"
+ECONOMIC = "economic"
+
+ECONOMIC_ACTOR_TYPES = ("Comercio", "Industria", "Emprendimiento", "Servicios", "Cooperativa")
+ECONOMIC_SECTORS = ("Alimentos", "Metalmecánica", "Textil", "Agro", "Turismo", "Construcción")
+# category -> subcategory (None: directly under the category) -> tools as (name, audience,
+# description).
+ECONOMIC_TOOLS = {
+    "Financiamiento": {
+        "Microcréditos": [
+            ("Microcrédito productivo", "both", "Hasta $ 1.500.000 a tasa subsidiada."),
+        ],
+        "Subsidios": [
+            ("Subsidio de tasa para inversión", "actors", "Bonificación de tasa bancaria."),
+        ],
+    },
+    "Capacitación": {
+        "Gestión": [
+            ("Curso de costos y precios", "both", "Cuatro encuentros presenciales."),
+        ],
+        "Oficios": [
+            ("Taller de oficios", "people", "Electricidad, soldadura y gastronomía."),
+        ],
+    },
+    "Empleo": {
+        None: [
+            ("Bolsa de empleo municipal", "people", "Intermediación con empresas locales."),
+        ],
+    },
+    "Comercialización": {
+        "Ferias": [
+            ("Feria de emprendedores", "actors", "Puesto en la feria mensual de la plaza."),
+        ],
+    },
+}
+# (name, type, sector, CUIT, employees, address)
+ECONOMIC_ACTORS = [
+    ("Panadería La Espiga", "Comercio", "Alimentos", "30711111118", 6, "San Martín 245"),
+    ("Metalúrgica Noetinger SRL", "Industria", "Metalmecánica", "30722222226", 38, "Ruta 2 km 4"),
+    ("Agroservicios del Centro", "Servicios", "Agro", "30733333334", 12, "Av. Centenario 810"),
+    ("Tejidos Doña Rosa", "Emprendimiento", "Textil", "27244444442", 1, "Belgrano 132"),
+    ("Cooperativa de Trabajo El Molino", "Cooperativa", "Alimentos", "30755555550", 21, ""),
+    ("Hospedaje Los Aromos", "Servicios", "Turismo", "", 4, "Bv. Argentino 55"),
+    ("Corralón Sarmiento", "Comercio", "Construcción", "30777777776", 9, "Sarmiento 990"),
+    ("Dulces del Monte", "Emprendimiento", "Alimentos", "", 2, "Zona rural"),
+    ("Tornería Giménez", "Industria", "Metalmecánica", "20288888883", 5, "Parque industrial"),
+    ("Almacén Don Pepe", "Comercio", "Alimentos", "", None, "Rivadavia 410"),
+    ("Estudio Contable Rivas", "Servicios", None, "", 3, "25 de Mayo 78"),
+    ("Vivero El Ceibo", None, "Agro", "", 2, "Camino a Saira"),
+]
+# (first name, last name, DNI, year of birth, neighborhood, employment status, occupation)
+ECONOMIC_PEOPLE = [
+    ("Rosa", "Aguirre", "24444444", 1975, "Centro", "self_employed", "Tejedora"),
+    ("Marcos", "Giménez", "28888888", 1981, "Norte", "self_employed", "Tornero"),
+    ("Lucía", "Fernández", "33123456", 1988, "Centro", "employed", "Administrativa"),
+    ("Diego", "Sosa", "36987654", 1992, "Sur", "unemployed", "Soldador"),
+    ("Paula", "Rivas", "27456123", 1979, "Centro", "self_employed", "Contadora"),
+    ("Julián", "Moyano", "40111222", 1997, "Oeste", "unemployed", ""),
+    ("Carla", "Benítez", "41222333", 1998, "Norte", "student", "Estudiante de gastronomía"),
+    ("Hugo", "Peralta", "17555666", 1965, "Sur", "employed", "Panadero"),
+    ("Mirta", "Domínguez", "14333222", 1960, "Centro", "retired", "Docente jubilada"),
+    ("Nicolás", "Ortiz", "38777111", 1994, "Oeste", "employed", "Operario"),
+    ("Valeria", "Luna", "35666999", 1990, "Norte", "self_employed", "Productora de dulces"),
+    ("Sergio", "Acosta", None, None, "Zona rural", "unknown", ""),
+    ("Elena", "Paz", "30222111", 1983, "Sur", "other", "Cuidadora"),
+    ("Tomás", "Herrera", "42999000", 2000, "Centro", "student", ""),
+]
+# (actor, person as "first last", role)
+ECONOMIC_LINKS = [
+    ("Tejidos Doña Rosa", "Rosa Aguirre", "owner"),
+    ("Tornería Giménez", "Marcos Giménez", "owner"),
+    ("Estudio Contable Rivas", "Paula Rivas", "owner"),
+    ("Panadería La Espiga", "Hugo Peralta", "employee"),
+    ("Metalúrgica Noetinger SRL", "Nicolás Ortiz", "employee"),
+    ("Metalúrgica Noetinger SRL", "Lucía Fernández", "contact"),
+    ("Dulces del Monte", "Valeria Luna", "owner"),
+]
+# (tool, recipient, days before today; None: a fixed date last year as (month, day))
+ECONOMIC_ASSIGNMENTS = [
+    ("Microcrédito productivo", "Panadería La Espiga", 20, None),
+    ("Microcrédito productivo", "Tejidos Doña Rosa", 75, None),
+    ("Microcrédito productivo", "Dulces del Monte", 140, None),
+    ("Subsidio de tasa para inversión", "Metalúrgica Noetinger SRL", 45, None),
+    ("Subsidio de tasa para inversión", "Tornería Giménez", None, (9, 12)),
+    ("Curso de costos y precios", "Tejidos Doña Rosa", 30, None),
+    ("Curso de costos y precios", "Almacén Don Pepe", 30, None),
+    ("Curso de costos y precios", "Dulces del Monte", 30, None),
+    ("Feria de emprendedores", "Tejidos Doña Rosa", 10, None),
+    ("Feria de emprendedores", "Dulces del Monte", 10, None),
+    ("Feria de emprendedores", "Vivero El Ceibo", 100, None),
+    ("Feria de emprendedores", "Tejidos Doña Rosa", None, (11, 8)),
+    ("Microcrédito productivo", "Corralón Sarmiento", None, (5, 20)),
+    ("Taller de oficios", "Diego Sosa", 60, None),
+    ("Taller de oficios", "Julián Moyano", 60, None),
+    ("Taller de oficios", "Carla Benítez", 60, None),
+    ("Taller de oficios", "Tomás Herrera", None, (8, 3)),
+    ("Bolsa de empleo municipal", "Diego Sosa", 15, None),
+    ("Bolsa de empleo municipal", "Julián Moyano", 5, None),
+    ("Bolsa de empleo municipal", "Elena Paz", 120, None),
+    ("Bolsa de empleo municipal", "Nicolás Ortiz", None, (3, 14)),
+    ("Curso de costos y precios", "Valeria Luna", 30, None),
+    ("Curso de costos y precios", "Rosa Aguirre", 30, None),
+    ("Microcrédito productivo", "Marcos Giménez", 200, None),
+    ("Microcrédito productivo", "Valeria Luna", None, (10, 2)),
+]
 
 # category -> subcategory -> variables as (name, unit, frequency, aggregation, direction,
 # source, target, typical value per period). Air is left empty on purpose, to show how a
@@ -547,39 +663,121 @@ def _seed_noetinger_environment(municipality_id, today: date) -> None:
                         add(Value(variable_id=variable.id, year=year, period=period, value=value))
 
 
-def _enable_environment(db: Session, municipality: Municipality) -> bool:
-    """Enable the environment dashboard and give it to whoever has the projects one.
+def _seed_noetinger_economic(municipality_id, today: date) -> None:
+    """Actors, people, tools and assignments spread over this year and the last one."""
+    with tenant_session(municipality_id) as db:
+
+        def add(entity):
+            entity.municipality_id = municipality_id
+            db.add(entity)
+            db.flush()
+            return entity
+
+        actor_types = {name: add(ActorType(name=name)) for name in ECONOMIC_ACTOR_TYPES}
+        sectors = {name: add(Sector(name=name)) for name in ECONOMIC_SECTORS}
+        tools = {}
+        for category_name, subcategories in ECONOMIC_TOOLS.items():
+            category = add(ToolCategory(name=category_name))
+            for subcategory_name, rows in subcategories.items():
+                subcategory = subcategory_name and add(
+                    ToolSubcategory(category_id=category.id, name=subcategory_name)
+                )
+                for name, audience, description in rows:
+                    tools[name] = add(
+                        Tool(
+                            category_id=category.id,
+                            subcategory_id=subcategory.id if subcategory else None,
+                            name=name,
+                            audience=audience,
+                            description=description,
+                        )
+                    )
+        actors = {}
+        for name, actor_type, sector, cuit, employees, address in ECONOMIC_ACTORS:
+            actors[name] = add(
+                Actor(
+                    name=name,
+                    actor_type_id=actor_types[actor_type].id if actor_type else None,
+                    sector_id=sectors[sector].id if sector else None,
+                    cuit=cuit,
+                    employee_count=employees,
+                    address=address,
+                )
+            )
+        people = {}
+        for first, last, dni, born, neighborhood, status, occupation in ECONOMIC_PEOPLE:
+            person = add(
+                Person(
+                    first_name=first,
+                    last_name=last,
+                    dni=dni,
+                    birth_date=date(born, 6, 15) if born else None,
+                    neighborhood=neighborhood,
+                )
+            )
+            people[f"{first} {last}"] = add(
+                EconomicPerson(person_id=person.id, employment_status=status, occupation=occupation)
+            )
+        for actor, person, role in ECONOMIC_LINKS:
+            add(ActorPerson(actor_id=actors[actor].id, person_id=people[person].id, role=role))
+        start_of_year = date(today.year, 1, 1)
+        for tool, recipient, days_ago, last_year in ECONOMIC_ASSIGNMENTS:
+            if last_year:
+                on = date(today.year - 1, *last_year)
+            else:
+                # Early in the year "days ago" would fall in the previous one.
+                on = max(today - timedelta(days=days_ago), start_of_year)
+            add(
+                Assignment(
+                    tool_id=tools[tool].id,
+                    actor_id=actors[recipient].id if recipient in actors else None,
+                    person_id=people[recipient].id if recipient in people else None,
+                    date=on,
+                )
+            )
+
+
+def _enable_dashboard(db: Session, municipality: Municipality, key: str) -> bool:
+    """Enable a newer dashboard and give it to whoever has the projects one.
 
     Returns False when it was already enabled, so older demo databases gain the
     dashboard once and are otherwise left alone.
     """
-    if db.get(MunicipalityDashboard, (municipality.id, ENVIRONMENT)):
+    if db.get(MunicipalityDashboard, (municipality.id, key)):
         return False
-    db.add(MunicipalityDashboard(municipality_id=municipality.id, dashboard_key=ENVIRONMENT))
+    db.add(MunicipalityDashboard(municipality_id=municipality.id, dashboard_key=key))
     memberships = db.scalars(
         select(Membership).where(Membership.municipality_id == municipality.id)
     ).unique()
     for membership in memberships:
         for grant in list(membership.grants):
             if grant.dashboard_key == PROJECTS:
-                membership.grants.append(
-                    DashboardGrant(dashboard_key=ENVIRONMENT, level=grant.level)
-                )
+                membership.grants.append(DashboardGrant(dashboard_key=key, level=grant.level))
     return True
 
 
-def _seed_environment(today: date) -> bool:
+def _seed_newer_dashboard(key: str, seed_noetinger, today: date) -> bool:
+    """Add a dashboard that came after the first demo: enabled in both municipalities,
+    with data only in Noetinger. Returns False when the demo already had it."""
     with platform_session() as db:
         noetinger = db.scalar(select(Municipality).where(Municipality.slug == "noetinger"))
         commune = db.scalar(select(Municipality).where(Municipality.slug == "comuna-demo"))
-        added = _enable_environment(db, noetinger)
+        added = _enable_dashboard(db, noetinger, key)
         # An older demo database may no longer have the second municipality.
         if commune is not None:
-            _enable_environment(db, commune)
+            _enable_dashboard(db, commune, key)
         noetinger_id = noetinger.id
     if added:
-        _seed_noetinger_environment(noetinger_id, today)
+        seed_noetinger(noetinger_id, today)
     return added
+
+
+def _seed_newer_dashboards(today: date) -> bool:
+    added = [
+        _seed_newer_dashboard(ENVIRONMENT, _seed_noetinger_environment, today),
+        _seed_newer_dashboard(ECONOMIC, _seed_noetinger_economic, today),
+    ]
+    return any(added)
 
 
 def seed_demo(reset: bool = False) -> bool:
@@ -591,7 +789,7 @@ def seed_demo(reset: bool = False) -> bool:
         already_seeded = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
     if already_seeded:
         # Only add what newer versions of the demo bring.
-        return _seed_environment(today)
+        return _seed_newer_dashboards(today)
     with platform_session() as db:
         _user(db, "operador@gobernar360.test", "Operador de la plataforma", operator=True)
 
@@ -607,5 +805,5 @@ def seed_demo(reset: bool = False) -> bool:
 
     _seed_noetinger_projects(noetinger_id, today)
     _seed_commune_projects(commune_id, today)
-    _seed_environment(today)
+    _seed_newer_dashboards(today)
     return True
