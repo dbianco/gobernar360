@@ -6,6 +6,8 @@ import { downloadUrl } from '../../api/client'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatMoney, formatPercent, formatRatio } from '../../platform/format'
 import { StatCard } from '../../platform/StatCard'
+import { StatusStrip } from '../../platform/status/StatusStrip'
+import { currentYear } from '../../platform/years'
 import { BASE, useSummary } from './api'
 import { CountBarChart } from './CountBarChart'
 import { FilterBar } from './FilterBar'
@@ -22,6 +24,8 @@ export function SummaryPage() {
 
   return (
     <Stack>
+      {/* Projects are looked at by term, not by year, so the strip shows the current year. */}
+      <StatusStrip dashboardKey="projects" year={currentYear()} />
       <FilterBar filters={filters} onChange={setFilters} />
       <Group gap="lg">
         <Anchor href={downloadUrl(`${BASE}/export/projects.csv`, { term_id: term.id, ...filters })}>

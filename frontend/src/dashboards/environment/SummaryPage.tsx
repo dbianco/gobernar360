@@ -19,6 +19,7 @@ import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatNumber, formatRatio } from '../../platform/format'
 import { StatCard } from '../../platform/StatCard'
+import { StatusStrip } from '../../platform/status/StatusStrip'
 import { hasLevel } from '../../platform/types'
 import { BASE, BASE_PATH, useSummary } from './api'
 import type { CategorySummary, VariableSummary } from './types'
@@ -99,6 +100,7 @@ export function SummaryPage() {
 
   return (
     <Stack>
+      <StatusStrip dashboardKey="environment" year={year} />
       <Group align="flex-end" gap="lg">
         <YearSelect value={year} onChange={setYear} />
         <Anchor href={downloadUrl(`${BASE}/export/values.csv`, { year })}>

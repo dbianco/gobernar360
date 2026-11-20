@@ -1,7 +1,10 @@
 import { http, HttpResponse, type JsonBodyType } from 'msw'
 import { setupServer } from 'msw/node'
 
-export const server = setupServer()
+// Every dashboard summary shows its status strip; tests that care about it mock this themselves.
+export const server = setupServer(
+  http.get('*/api/dashboards/:key/status', () => HttpResponse.json([])),
+)
 
 type Method = 'get' | 'post' | 'put' | 'patch' | 'delete'
 

@@ -19,6 +19,7 @@ import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatNumber } from '../../platform/format'
 import { StatCard } from '../../platform/StatCard'
+import { StatusStrip } from '../../platform/status/StatusStrip'
 import { hasLevel } from '../../platform/types'
 import { currentYear } from '../../platform/years'
 import { YearSelect } from '../../platform/YearSelect'
@@ -87,6 +88,7 @@ export function SummaryPage() {
 
   return (
     <Stack>
+      <StatusStrip dashboardKey="social" year={year} />
       <Group align="flex-end" gap="lg">
         <YearSelect value={year} onChange={setYear} />
         {download('people', 'downloadPeople')}

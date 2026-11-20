@@ -61,7 +61,8 @@
     "dni_exists": "Ya hay otra persona con ese DNI en el padrón del municipio.",
     "already_registered": "Esa persona ya está registrada en este tablero.",
     "household_has_head": "El grupo ya tiene un referente.",
-    "in_another_household": "Esa persona ya está en otro grupo familiar. Quitala primero de ese grupo."
+    "in_another_household": "Esa persona ya está en otro grupo familiar. Quitala primero de ese grupo.",
+    "future_month": "No se puede asignar un estado a un mes que todavía no empezó."
   },
   "login": {
     "title": "Ingresar a gobernar360",
@@ -820,5 +821,46 @@
       "yearHint": "El año se aplica a las prestaciones y las intervenciones."
     },
     "mostRecent": "Se muestran los {{count}} registros más recientes."
+  },
+  "status": {
+    "title": "Estado mensual",
+    "hint": "El color lo asigna quien administra el tablero.",
+    "states": {
+      "green": "En orden",
+      "yellow": "Con atención",
+      "red": "Crítico",
+      "none": "Sin estado"
+    },
+    "clear": "Quitar estado",
+    "monthLabel": "{{month}}: {{state}}",
+    "monthYear": "{{month}} {{year}}",
+    "months": {
+      "1": "Enero",
+      "2": "Febrero",
+      "3": "Marzo",
+      "4": "Abril",
+      "5": "Mayo",
+      "6": "Junio",
+      "7": "Julio",
+      "8": "Agosto",
+      "9": "Septiembre",
+      "10": "Octubre",
+      "11": "Noviembre",
+      "12": "Diciembre"
+    },
+    "monthsShort": {
+      "1": "Ene",
+      "2": "Feb",
+      "3": "Mar",
+      "4": "Abr",
+      "5": "May",
+      "6": "Jun",
+      "7": "Jul",
+      "8": "Ago",
+      "9": "Sep",
+      "10": "Oct",
+      "11": "Nov",
+      "12": "Dic"
+    }
   }
 }
