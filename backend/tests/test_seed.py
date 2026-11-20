@@ -25,6 +25,7 @@ from gobernar360.dashboards.social.models import (
 )
 from gobernar360.platform.models import (
     DashboardGrant,
+    DashboardStatus,
     Municipality,
     MunicipalityDashboard,
     Person,
@@ -322,3 +323,41 @@ def test_seeded_social_data_stays_inside_noetinger(client):
     assert client.get("/api/dashboards/social/households").json() == {"items": [], "total": 0}
     assert client.get("/api/dashboards/social/benefits").json() == []
     assert client.get("/api/dashboards/social/interventions").json() == {"items": [], "total": 0}
+
+
+def test_seeded_noetinger_has_lights_in_every_dashboard(client):
+    seed_demo()
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+
+    overview = client.get("/api/overview").json()
+
+    assert {section["dashboard_key"] for section in overview} == {
+        "projects",
+        "environment",
+        "economic",
+        "social",
+    }
+    assert all(len(section["status"]) == 6 for section in overview)
+    colors = {light["color"] for section in overview for light in section["status"]}
+    assert colors == {"green", "yellow", "red"}
+
+
+def test_seeded_lights_stay_inside_noetinger(client):
+    seed_demo()
+    login(client, "admin@comuna-demo.test", DEMO_PASSWORD)
+
+    assert all(section["status"] == [] for section in client.get("/api/overview").json())
+
+
+def test_seed_demo_adds_lights_to_an_older_demo_database_once():
+    seed_demo()
+    # A database seeded before status lights existed.
+    with admin_session() as session, session.begin():
+        session.execute(delete(DashboardStatus))
+
+    changed = seed_demo()
+    changed_again = seed_demo()
+
+    assert (changed, changed_again) == (True, False)
+    with admin_session() as session:
+        assert _count(session, DashboardStatus) == 24

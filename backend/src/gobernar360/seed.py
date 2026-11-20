@@ -47,6 +47,7 @@ from gobernar360.dashboards.social.models import (
 )
 from gobernar360.platform.models import (
     DashboardGrant,
+    DashboardStatus,
     Membership,
     Municipality,
     MunicipalityDashboard,
@@ -59,6 +60,14 @@ PROJECTS = "projects"
 ENVIRONMENT = "environment"
 ECONOMIC = "economic"
 SOCIAL = "social"
+
+# Status lights of the current month and the five before it, newest first.
+STATUS_LIGHTS = {
+    PROJECTS: ("yellow", "green", "green", "yellow", "red", "green"),
+    ENVIRONMENT: ("green", "green", "yellow", "green", "green", "yellow"),
+    ECONOMIC: ("red", "yellow", "yellow", "green", "green", "green"),
+    SOCIAL: ("green", "yellow", "green", "green", "red", "yellow"),
+}
 
 # category -> benefits as (name, description)
 SOCIAL_BENEFITS = {
@@ -1011,12 +1020,35 @@ def _seed_newer_dashboard(key: str, seed_noetinger, today: date) -> bool:
     return added
 
 
+def _seed_noetinger_status(today: date) -> bool:
+    """Give Noetinger its recent status lights. Returns False when it already has some."""
+    with platform_session() as db:
+        noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+    with tenant_session(noetinger_id) as db:
+        if db.scalar(select(DashboardStatus.id).limit(1)):
+            return False
+        for key, colors in STATUS_LIGHTS.items():
+            for months_ago, color in enumerate(colors):
+                index = today.year * 12 + today.month - 1 - months_ago
+                db.add(
+                    DashboardStatus(
+                        municipality_id=noetinger_id,
+                        dashboard_key=key,
+                        year=index // 12,
+                        month=index % 12 + 1,
+                        color=color,
+                    )
+                )
+    return True
+
+
 def _seed_newer_dashboards(today: date) -> bool:
     added = [
         _seed_newer_dashboard(ENVIRONMENT, _seed_noetinger_environment, today),
         _seed_newer_dashboard(ECONOMIC, _seed_noetinger_economic, today),
         # After the economic one: both share the people registry.
         _seed_newer_dashboard(SOCIAL, _seed_noetinger_social, today),
+        _seed_noetinger_status(today),
     ]
     return any(added)
 
