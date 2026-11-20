@@ -23,6 +23,13 @@ from gobernar360.dashboards.economic.models import (
     ToolSubcategory,
 )
 from gobernar360.dashboards.environment.models import Subcategory, Value, Variable
+from gobernar360.dashboards.procedures.models import (
+    Area,
+    Procedure,
+    ProcedureRequirement,
+    Requirement,
+    Source,
+)
 from gobernar360.dashboards.projects.models import (
     AnnualBudget,
     Axis,
@@ -60,6 +67,7 @@ PROJECTS = "projects"
 ENVIRONMENT = "environment"
 ECONOMIC = "economic"
 SOCIAL = "social"
+PROCEDURES = "procedures"
 
 # Status lights of the current month and the five before it, newest first.
 STATUS_LIGHTS = {
@@ -67,7 +75,212 @@ STATUS_LIGHTS = {
     ENVIRONMENT: ("green", "green", "yellow", "green", "green", "yellow"),
     ECONOMIC: ("red", "yellow", "yellow", "green", "green", "green"),
     SOCIAL: ("green", "yellow", "green", "green", "red", "yellow"),
+    PROCEDURES: ("yellow", "yellow", "red", "yellow", "green", "green"),
 }
+# Dashboards whose lights were added to existing demo databases in one go.
+FIRST_LIT_DASHBOARDS = (PROJECTS, ENVIRONMENT, ECONOMIC, SOCIAL)
+
+PROCEDURE_AREAS = (
+    "Rentas",
+    "Obras Privadas",
+    "Tránsito",
+    "Comercio e Industria",
+    "Desarrollo Social",
+)
+# name, level, area
+PROCEDURE_SOURCES = [
+    ("Rentas municipal", "municipal", "Rentas"),
+    ("Catastro municipal", "municipal", "Obras Privadas"),
+    ("Habilitaciones comerciales", "municipal", "Comercio e Industria"),
+    ("Juzgado de Faltas municipal", "municipal", "Tránsito"),
+    ("Registro Civil de Córdoba", "provincial", None),
+    ("Dirección General de Rentas de Córdoba", "provincial", None),
+    ("Registro General de la Provincia", "provincial", None),
+    ("ARCA", "national", None),
+    ("RENAPER", "national", None),
+    ("ANSES", "national", None),
+    ("Colegio de Arquitectos", "other", None),
+]
+# name: (source, description)
+PROCEDURE_REQUIREMENTS = {
+    "DNI": ("RENAPER", "Documento Nacional de Identidad del solicitante."),
+    "Libre deuda municipal": ("Rentas municipal", "Certificado de no adeudar tasas."),
+    "Libre deuda de multas": ("Juzgado de Faltas municipal", "Sin infracciones impagas."),
+    "Plano aprobado": ("Catastro municipal", "Plano de la propiedad visado por el municipio."),
+    "Nomenclatura catastral": ("Catastro municipal", "Identificación de la parcela."),
+    "Habilitación comercial vigente": ("Habilitaciones comerciales", ""),
+    "Constancia de CUIT": ("ARCA", "Constancia de inscripción."),
+    "Inscripción en Ingresos Brutos": ("Dirección General de Rentas de Córdoba", ""),
+    "Partida de nacimiento": ("Registro Civil de Córdoba", ""),
+    "Escritura o título de propiedad": ("Registro General de la Provincia", ""),
+    "Certificación negativa": ("ANSES", "Acredita que no se perciben otros beneficios."),
+    "Plano firmado por profesional": ("Colegio de Arquitectos", "Con visado del colegio."),
+    "Formulario de solicitud": (None, "Lo completa el solicitante."),
+    "Foto carnet": (None, ""),
+    "Certificado de domicilio": (None, ""),
+    "Contrato de alquiler": (None, "Cuando el local no es propio."),
+}
+# name, area, audience, channel, cost (None = free), days, yearly volume, active, requirements
+PROCEDURE_ROWS = [
+    (
+        "Habilitación comercial",
+        "Comercio e Industria",
+        "organizations",
+        "in_person",
+        25000,
+        20,
+        180,
+        True,
+        (
+            "Formulario de solicitud",
+            "DNI",
+            "Constancia de CUIT",
+            "Inscripción en Ingresos Brutos",
+            "Libre deuda municipal",
+            "Plano aprobado",
+            "Contrato de alquiler",
+        ),
+    ),
+    (
+        "Renovación de habilitación comercial",
+        "Comercio e Industria",
+        "organizations",
+        "both",
+        12000,
+        10,
+        420,
+        True,
+        ("Habilitación comercial vigente", "Libre deuda municipal", "Constancia de CUIT"),
+    ),
+    (
+        "Licencia de conducir por primera vez",
+        "Tránsito",
+        "people",
+        "in_person",
+        18000,
+        5,
+        650,
+        True,
+        ("DNI", "Foto carnet", "Libre deuda de multas", "Certificado de domicilio"),
+    ),
+    (
+        "Renovación de licencia de conducir",
+        "Tránsito",
+        "people",
+        "both",
+        15000,
+        3,
+        1900,
+        True,
+        ("DNI", "Libre deuda de multas", "Libre deuda municipal"),
+    ),
+    (
+        "Permiso de obra",
+        "Obras Privadas",
+        "both",
+        "in_person",
+        40000,
+        30,
+        140,
+        True,
+        (
+            "Formulario de solicitud",
+            "DNI",
+            "Escritura o título de propiedad",
+            "Plano firmado por profesional",
+            "Nomenclatura catastral",
+            "Libre deuda municipal",
+        ),
+    ),
+    (
+        "Final de obra",
+        "Obras Privadas",
+        "both",
+        "in_person",
+        20000,
+        20,
+        90,
+        True,
+        ("Plano aprobado", "Nomenclatura catastral", "Libre deuda municipal"),
+    ),
+    ("Certificado de libre deuda", "Rentas", "both", "online", None, 1, 2600, True, ("DNI",)),
+    (
+        "Exención de tasas para jubilados",
+        "Rentas",
+        "people",
+        "in_person",
+        None,
+        15,
+        310,
+        True,
+        (
+            "Formulario de solicitud",
+            "DNI",
+            "Certificación negativa",
+            "Escritura o título de propiedad",
+        ),
+    ),
+    (
+        "Plan de pago de tasas",
+        "Rentas",
+        "both",
+        "both",
+        None,
+        2,
+        780,
+        True,
+        ("Formulario de solicitud", "DNI"),
+    ),
+    (
+        "Tarifa social de servicios",
+        "Desarrollo Social",
+        "people",
+        "in_person",
+        None,
+        10,
+        520,
+        True,
+        ("DNI", "Certificación negativa", "Certificado de domicilio", "Partida de nacimiento"),
+    ),
+    (
+        "Permiso de uso de espacio público",
+        "Comercio e Industria",
+        "both",
+        "in_person",
+        8000,
+        7,
+        160,
+        True,
+        (
+            "Formulario de solicitud",
+            "DNI",
+            "Habilitación comercial vigente",
+            "Libre deuda municipal",
+        ),
+    ),
+    (
+        "Certificado de numeración domiciliaria",
+        "Obras Privadas",
+        "both",
+        "online",
+        None,
+        3,
+        230,
+        True,
+        ("Nomenclatura catastral", "DNI"),
+    ),
+    (
+        "Carnet de manipulación de alimentos",
+        "Comercio e Industria",
+        "people",
+        "in_person",
+        5000,
+        5,
+        None,
+        False,
+        ("DNI", "Foto carnet"),
+    ),
+]
 
 # category -> benefits as (name, description)
 SOCIAL_BENEFITS = {
@@ -1020,26 +1233,92 @@ def _seed_newer_dashboard(key: str, seed_noetinger, today: date) -> bool:
     return added
 
 
+def _add_lights(db: Session, municipality_id, key: str, today: date) -> None:
+    """The dashboard's light for the current month and the five before it."""
+    for months_ago, color in enumerate(STATUS_LIGHTS[key]):
+        index = today.year * 12 + today.month - 1 - months_ago
+        db.add(
+            DashboardStatus(
+                municipality_id=municipality_id,
+                dashboard_key=key,
+                year=index // 12,
+                month=index % 12 + 1,
+                color=color,
+            )
+        )
+
+
 def _seed_noetinger_status(today: date) -> bool:
-    """Give Noetinger its recent status lights. Returns False when it already has some."""
+    """Give Noetinger's first dashboards their recent status lights.
+
+    Returns False when it already has some. Dashboards added later bring their own.
+    """
     with platform_session() as db:
         noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
     with tenant_session(noetinger_id) as db:
-        if db.scalar(select(DashboardStatus.id).limit(1)):
+        already_lit = db.scalar(
+            select(DashboardStatus.id)
+            .where(DashboardStatus.dashboard_key.in_(FIRST_LIT_DASHBOARDS))
+            .limit(1)
+        )
+        if already_lit:
             return False
-        for key, colors in STATUS_LIGHTS.items():
-            for months_ago, color in enumerate(colors):
-                index = today.year * 12 + today.month - 1 - months_ago
-                db.add(
-                    DashboardStatus(
-                        municipality_id=noetinger_id,
-                        dashboard_key=key,
-                        year=index // 12,
-                        month=index % 12 + 1,
-                        color=color,
+        for key in FIRST_LIT_DASHBOARDS:
+            _add_lights(db, noetinger_id, key, today)
+    return True
+
+
+def _seed_noetinger_procedures(municipality_id, today: date) -> None:
+    """The inventory of procedures, with requirements shared between them, and its lights."""
+    with tenant_session(municipality_id) as db:
+
+        def add(entity):
+            entity.municipality_id = municipality_id
+            db.add(entity)
+            db.flush()
+            return entity
+
+        areas = {name: add(Area(name=name)) for name in PROCEDURE_AREAS}
+        sources = {
+            name: add(Source(name=name, level=level, area_id=areas[area].id if area else None))
+            for name, level, area in PROCEDURE_SOURCES
+        }
+        requirements = {
+            name: add(
+                Requirement(
+                    name=name,
+                    description=description,
+                    source_id=sources[source].id if source else None,
+                )
+            )
+            for name, (source, description) in PROCEDURE_REQUIREMENTS.items()
+        }
+        for name, area, audience, channel, cost, days, volume, active, asked in PROCEDURE_ROWS:
+            online = channel != "in_person"
+            procedure = add(
+                Procedure(
+                    name=name,
+                    area_id=areas[area].id,
+                    audience=audience,
+                    channel=channel,
+                    url="https://noetinger.example/tramites" if online else "",
+                    is_free=cost is None,
+                    cost=cost,
+                    duration_days=days,
+                    annual_volume=volume,
+                    is_active=active,
+                )
+            )
+            for requirement in asked:
+                add(
+                    ProcedureRequirement(
+                        procedure_id=procedure.id,
+                        requirement_id=requirements[requirement].id,
+                        mandatory=requirement != "Contrato de alquiler",
+                        format="digital" if channel == "online" else "paper",
                     )
                 )
-    return True
+        _add_lights(db, municipality_id, PROCEDURES, today)
 
 
 def _seed_newer_dashboards(today: date) -> bool:
@@ -1049,6 +1328,7 @@ def _seed_newer_dashboards(today: date) -> bool:
         # After the economic one: both share the people registry.
         _seed_newer_dashboard(SOCIAL, _seed_noetinger_social, today),
         _seed_noetinger_status(today),
+        _seed_newer_dashboard(PROCEDURES, _seed_noetinger_procedures, today),
     ]
     return any(added)
 

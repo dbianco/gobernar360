@@ -13,6 +13,13 @@ from gobernar360.dashboards.economic.models import (
     ToolSubcategory,
 )
 from gobernar360.dashboards.environment.models import Subcategory, Value, Variable
+from gobernar360.dashboards.procedures.models import (
+    Area,
+    Procedure,
+    ProcedureRequirement,
+    Requirement,
+    Source,
+)
 from gobernar360.dashboards.projects.models import Milestone, Project
 from gobernar360.dashboards.social.models import (
     Benefit,
@@ -78,6 +85,7 @@ def test_seeded_accounts_can_sign_in_with_their_roles(client):
     assert editor["dashboards"] == [
         {"key": "economic", "level": "editor"},
         {"key": "environment", "level": "editor"},
+        {"key": "procedures", "level": "editor"},
         {"key": "projects", "level": "editor"},
         {"key": "social", "level": "editor"},
     ]
@@ -336,6 +344,7 @@ def test_seeded_noetinger_has_lights_in_every_dashboard(client):
         "environment",
         "economic",
         "social",
+        "procedures",
     }
     assert all(len(section["status"]) == 6 for section in overview)
     colors = {light["color"] for section in overview for light in section["status"]}
@@ -361,3 +370,56 @@ def test_seed_demo_adds_lights_to_an_older_demo_database_once():
     assert (changed, changed_again) == (True, False)
     with admin_session() as session:
         assert _count(session, DashboardStatus) == 24
+
+
+PROCEDURES_API = "/api/dashboards/procedures"
+
+
+def test_seeded_procedures_inventory_shows_opportunities(client):
+    seed_demo()
+    login(client, "lectura@noetinger.test", DEMO_PASSWORD)
+
+    summary = client.get(f"{PROCEDURES_API}/summary").json()
+    opportunities = client.get(f"{PROCEDURES_API}/opportunities").json()
+
+    assert summary["procedures"] >= 10
+    assert 0 < summary["online"] < summary["procedures"]
+    assert len(summary["top_requirements"]) == 10
+    levels = [row["source"]["level"] for row in opportunities["sources"]]
+    assert levels.count("municipal") >= 3
+    assert {"provincial", "national"} <= set(levels)
+    assert opportunities["without_source"]["procedures"] > 0
+    inactive = client.get(f"{PROCEDURES_API}/procedures", params={"active": "false"}).json()
+    assert inactive["total"] >= 1
+
+
+def test_seeded_procedures_stay_inside_noetinger(client):
+    seed_demo()
+    login(client, "admin@comuna-demo.test", DEMO_PASSWORD)
+
+    assert client.get(f"{PROCEDURES_API}/summary").json()["procedures"] == 0
+    assert client.get(f"{PROCEDURES_API}/areas").json() == []
+
+
+def test_seed_demo_adds_the_procedures_dashboard_to_an_older_demo_database():
+    seed_demo()
+    # A database seeded before the procedures dashboard existed.
+    with admin_session() as session, session.begin():
+        for model in (ProcedureRequirement, Procedure, Requirement, Source, Area):
+            session.execute(delete(model))
+        for model in (DashboardGrant, MunicipalityDashboard, DashboardStatus):
+            session.execute(delete(model).where(model.dashboard_key == "procedures"))
+    with admin_session() as session:
+        lights_before = _count(session, DashboardStatus)
+
+    changed = seed_demo()
+    changed_again = seed_demo()
+
+    assert (changed, changed_again) == (True, False)
+    with admin_session() as session:
+        assert _count(session, Procedure) >= 10
+        assert _count(session, DashboardStatus) == lights_before + 6
+        procedures_count = _count(session, Procedure)
+    seed_demo()
+    with admin_session() as session:
+        assert _count(session, Procedure) == procedures_count
