@@ -1,0 +1,119 @@
+import { expect, type Page, test } from '@playwright/test'
+
+import { login, sidebar, statValue } from './helpers.ts'
+
+const NEW_PROCEDURE = 'Permiso de poda'
+
+async function openDashboard(page: Page) {
+  await sidebar(page).getByRole('link', { name: 'Trámites' }).click()
+  await expect(page.getByRole('heading', { name: 'Trámites', level: 2 })).toBeVisible()
+}
+
+/** Yearly volume the opportunities report attributes to a source. */
+async function volumeOf(page: Page, source: string): Promise<number> {
+  const row = page.getByRole('row', { name: new RegExp(`^${source}`) })
+  await expect(row).toBeVisible()
+  return Number((await row.getByRole('cell').last().innerText()).replace(/\D/g, ''))
+}
+
+test('editor adds a procedure with a requirement and the opportunities grow', async ({ page }) => {
+  await login(page, 'carga@noetinger.test')
+  await openDashboard(page)
+  const proceduresBefore = await statValue(page, 'Trámites vigentes')
+  await page.getByRole('tab', { name: 'Oportunidades' }).click()
+  const volumeBefore = await volumeOf(page, 'Rentas municipal')
+
+  await page.getByRole('tab', { name: 'Trámites' }).click()
+  await page.getByRole('button', { name: 'Agregar trámite' }).click()
+  const form = page.getByRole('dialog')
+  await form.getByLabel('Nombre').fill(NEW_PROCEDURE)
+  await form.getByLabel('Área responsable').selectOption({ label: 'Obras Privadas' })
+  await form.getByLabel('Cantidad estimada por año').fill('75')
+  await form.getByRole('button', { name: 'Guardar' }).click()
+  await page.getByRole('link', { name: NEW_PROCEDURE }).click()
+
+  await expect(page.getByText('Este trámite todavía no tiene requisitos cargados.')).toBeVisible()
+  await page.getByRole('button', { name: 'Agregar requisito' }).click()
+  const link = page.getByRole('dialog')
+  await link.getByLabel('Requisito').selectOption({ label: 'Libre deuda municipal' })
+  await link.getByRole('button', { name: 'Guardar' }).click()
+  const row = page.getByRole('row', { name: /Libre deuda municipal/ })
+  await expect(row).toContainText('Rentas municipal')
+
+  await page.getByRole('tab', { name: 'Oportunidades' }).click()
+  await expect.poll(() => volumeOf(page, 'Rentas municipal')).toBe(volumeBefore + 75)
+  await page.getByRole('tab', { name: 'Resumen' }).click()
+  await expect.poll(() => statValue(page, 'Trámites vigentes')).toBe(proceduresBefore + 1)
+})
+
+test('a procedure taken out of service leaves the counts', async ({ page }) => {
+  await login(page, 'carga@noetinger.test')
+  await openDashboard(page)
+  const proceduresBefore = await statValue(page, 'Trámites vigentes')
+
+  await page.getByRole('tab', { name: 'Trámites' }).click()
+  await page.getByRole('textbox', { name: 'Buscar' }).fill('poda')
+  await page.getByRole('link', { name: NEW_PROCEDURE }).click()
+  await page.getByRole('button', { name: 'Editar', exact: true }).click()
+  await page.getByRole('dialog').getByRole('checkbox', { name: 'Vigente' }).uncheck()
+  await page.getByRole('dialog').getByRole('button', { name: 'Guardar' }).click()
+  await expect(page.getByText('Dado de baja')).toBeVisible()
+
+  await page.getByRole('tab', { name: 'Resumen' }).click()
+  await expect.poll(() => statValue(page, 'Trámites vigentes')).toBe(proceduresBefore - 1)
+})
+
+test('viewer reads the inventory but cannot change it', async ({ page }) => {
+  await login(page, 'lectura@noetinger.test')
+  await openDashboard(page)
+
+  await expect(page.getByRole('tab', { name: 'Parámetros' })).toHaveCount(0)
+  await page.getByRole('tab', { name: 'Trámites' }).click()
+  await expect(page.getByRole('link', { name: 'Habilitación comercial', exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Agregar trámite' })).toHaveCount(0)
+  await page.getByRole('tab', { name: 'Requisitos' }).click()
+  await expect(page.getByRole('row', { name: /^DNI/ })).toContainText('RENAPER')
+  await expect(page.getByRole('button', { name: 'Agregar requisito' })).toHaveCount(0)
+  const refused = await page.request.post('/api/dashboards/procedures/requirements', {
+    data: { name: 'x' },
+    headers: { 'X-Requested-With': 'gobernar360' },
+  })
+  expect(refused.status()).toBe(403)
+})
+
+test('admin adds a source and uses it in a requirement', async ({ page }) => {
+  await login(page, 'admin@noetinger.test')
+  await openDashboard(page)
+
+  await page.getByRole('tab', { name: 'Parámetros' }).click()
+  await page.getByRole('button', { name: 'Agregar fuente' }).click()
+  const source = page.getByRole('dialog')
+  await source.getByLabel('Nombre').fill('Registro de la Propiedad Automotor')
+  await source.getByLabel('Nivel').selectOption({ label: 'Nacional' })
+  await expect(source.getByLabel('Área')).toHaveCount(0)
+  await source.getByRole('button', { name: 'Guardar' }).click()
+  await expect(page.getByRole('row', { name: /Registro de la Propiedad Automotor/ })).toContainText(
+    'Nacional',
+  )
+
+  await page.getByRole('tab', { name: 'Requisitos' }).click()
+  await page.getByRole('button', { name: 'Agregar requisito' }).click()
+  const requirement = page.getByRole('dialog')
+  await requirement.getByLabel('Requisito').fill('Título del automotor')
+  await requirement
+    .getByLabel('Fuente')
+    .selectOption({ label: 'Registro de la Propiedad Automotor (Nacional)' })
+  await requirement.getByRole('button', { name: 'Guardar' }).click()
+  await expect(page.getByRole('row', { name: /Título del automotor/ })).toContainText(
+    'Registro de la Propiedad Automotor',
+  )
+})
+
+test('the other municipality has the dashboard and none of this data', async ({ page }) => {
+  await login(page, 'admin@comuna-demo.test')
+  await openDashboard(page)
+
+  await expect(page.getByText('Todavía no hay trámites cargados')).toBeVisible()
+  await page.getByRole('tab', { name: 'Requisitos' }).click()
+  await expect(page.getByText('Todavía no hay requisitos cargados.')).toBeVisible()
+})

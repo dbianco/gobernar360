@@ -3,8 +3,8 @@
 Workspace of management dashboards for local governments (municipalities and
 communes). Each dashboard is an independent module, enabled per municipality
 and granted per user. Today it ships the platform base (municipalities, users,
-per-dashboard access, people registry), the Projects, Environment, Economic and
-Social dashboards, and a general overview.
+per-dashboard access, people registry, monthly status lights), the Projects, Environment,
+Economic, Social and Procedures dashboards, and a general overview.
 
 - Platform and Projects: design `docs/superpowers/specs/2026-11-18-gobernar360-platform-design.md`,
   plan `docs/superpowers/plans/2026-11-18-platform-base-and-projects-dashboard.md`
@@ -14,6 +14,11 @@ Social dashboards, and a general overview.
   plan `docs/superpowers/plans/2026-11-19-economic-dashboard.md`
 - Social: design `docs/superpowers/specs/2026-11-19-social-dashboard-design.md`,
   plan `docs/superpowers/plans/2026-11-19-social-dashboard.md`
+- Status lights, menu icons and column help: design
+  `docs/superpowers/specs/2026-11-20-status-lights-and-ui-design.md`,
+  plan `docs/superpowers/plans/2026-11-20-status-lights-and-ui.md`
+- Procedures: design `docs/superpowers/specs/2026-11-20-procedures-dashboard-design.md`,
+  plan `docs/superpowers/plans/2026-11-20-procedures-dashboard.md`
 - Functional reference: `tableros-de-gestion-portal-ril.md`
 
 ## Quick start
@@ -113,6 +118,22 @@ with interventions is built by `interventions_router.present`.
 Data of different municipalities lives in the same database and is separated by
 PostgreSQL row-level security: every tenant table has `municipality_id`, and the
 API role can only see rows of the municipality set for the current transaction.
+
+### Procedures dashboard
+
+An inventory, not case tracking: the procedures the municipality offers, what each asks
+for, and who already holds that data.
+
+- Requirements come from a single list per municipality and each points at its source
+  (municipal, provincial, national or other); a requirement without a source is something
+  the person brings themselves.
+- The opportunities report ranks sources by how much asking for their data weighs on
+  procedures: requirements asked, distinct procedures and their estimated yearly volume,
+  each procedure counted once. Municipal sources come first.
+- Only procedures marked as active count in the summary, the report and the overview.
+- Editors load procedures and requirements; areas and sources are for dashboard admins.
+  Access is per dashboard, not per area: the area is a field of the procedure.
+- A procedure's link only accepts `http(s)` addresses, because the screen renders it as a link.
 
 ### Status lights
 
