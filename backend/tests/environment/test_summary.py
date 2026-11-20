@@ -137,6 +137,7 @@ def test_overview_includes_environment_indicators(client):
                 {"key": "environment.targets_met", "value": 1, "unit": None},
                 {"key": "environment.targets_missed", "value": 1, "unit": None},
             ],
+            "status": [],
         }
     ]
 
@@ -146,5 +147,5 @@ def test_overview_has_no_environment_indicators_before_any_variable_exists(clien
     login(client, "ana@noetinger.test")
 
     assert client.get("/api/overview").json() == [
-        {"dashboard_key": "environment", "indicators": []}
+        {"dashboard_key": "environment", "indicators": [], "status": []}
     ]

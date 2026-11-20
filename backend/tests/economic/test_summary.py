@@ -164,6 +164,7 @@ def test_overview_shows_the_economic_indicators(client):
                 {"key": "economic.tools", "value": 2, "unit": None},
                 {"key": "economic.assignments_year", "value": 7, "unit": None},
             ],
+            "status": [],
         }
     ]
 
@@ -171,4 +172,6 @@ def test_overview_shows_the_economic_indicators(client):
 def test_overview_of_an_empty_economic_dashboard_has_no_indicators(client):
     _viewer(client)
 
-    assert client.get("/api/overview").json() == [{"dashboard_key": "economic", "indicators": []}]
+    assert client.get("/api/overview").json() == [
+        {"dashboard_key": "economic", "indicators": [], "status": []}
+    ]

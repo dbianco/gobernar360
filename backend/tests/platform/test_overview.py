@@ -1,7 +1,8 @@
 from datetime import date
 
 from gobernar360.platform.clock import get_today
-from tests.factories import login, make_membership, make_municipality, make_user
+from gobernar360.platform.models import DashboardStatus
+from tests.factories import admin_session, login, make_membership, make_municipality, make_user
 from tests.projects.factories import (
     make_axis,
     make_department,
@@ -49,6 +50,7 @@ def test_overview_includes_projects_indicators_for_a_viewer(client):
                 {"key": "projects.milestones_in_alert", "value": 1, "unit": None},
                 {"key": "projects.budget_executed_ratio", "value": 0.25, "unit": "ratio"},
             ],
+            "status": [],
         }
     ]
 
@@ -64,7 +66,9 @@ def test_overview_for_municipality_without_terms_has_empty_indicators(client):
     projects_member("viewer")
     login(client, "ana@noetinger.test")
 
-    assert client.get("/api/overview").json() == [{"dashboard_key": "projects", "indicators": []}]
+    assert client.get("/api/overview").json() == [
+        {"dashboard_key": "projects", "indicators": [], "status": []}
+    ]
 
 
 def test_overview_requires_an_active_municipality(client):
@@ -74,3 +78,35 @@ def test_overview_requires_an_active_municipality(client):
     login(client, "ana@noetinger.test")
 
     assert client.get("/api/overview").status_code == 403
+
+
+def test_overview_includes_recent_lights_newest_first(client):
+    client.app.dependency_overrides[get_today] = lambda: date(2025, 2, 10)
+    municipality = projects_member("viewer")
+    lights = [(2024, 6, "red"), (2024, 11, "yellow"), (2025, 1, "green"), (2025, 3, "red")]
+    with admin_session() as session, session.begin():
+        for year, month, color in lights:
+            session.add(
+                DashboardStatus(
+                    municipality_id=municipality.id,
+                    dashboard_key="projects",
+                    year=year,
+                    month=month,
+                    color=color,
+                )
+            )
+        session.add(
+            DashboardStatus(
+                municipality_id=municipality.id,
+                dashboard_key="environment",
+                year=2025,
+                month=2,
+                color="red",
+            )
+        )
+    login(client, "ana@noetinger.test")
+
+    assert client.get("/api/overview").json()[0]["status"] == [
+        {"year": 2025, "month": 1, "color": "green"},
+        {"year": 2024, "month": 11, "color": "yellow"},
+    ]

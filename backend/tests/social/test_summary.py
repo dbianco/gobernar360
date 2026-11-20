@@ -172,6 +172,7 @@ def test_overview_shows_the_social_indicators(client):
                 {"key": "social.deliveries_year", "value": 5, "unit": None},
                 {"key": "social.interventions_year", "value": 3, "unit": None},
             ],
+            "status": [],
         }
     ]
 
@@ -179,4 +180,6 @@ def test_overview_shows_the_social_indicators(client):
 def test_overview_of_an_empty_social_dashboard_has_no_indicators(client):
     _viewer(client)
 
-    assert client.get("/api/overview").json() == [{"dashboard_key": "social", "indicators": []}]
+    assert client.get("/api/overview").json() == [
+        {"dashboard_key": "social", "indicators": [], "status": []}
+    ]
