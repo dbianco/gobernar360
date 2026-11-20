@@ -114,6 +114,27 @@ Data of different municipalities lives in the same database and is separated by
 PostgreSQL row-level security: every tenant table has `municipality_id`, and the
 API role can only see rows of the municipality set for the current transaction.
 
+### Status lights
+
+Each dashboard has a monthly traffic light (green, yellow or red) that its administrators
+set by hand: it is their own reading of the month, not something computed from the
+indicators. A month may be left without one, and months that have not started cannot be set.
+
+- The light lives in the platform (`platform/status.py`, `platform/status_router.py`,
+  table `dashboard_statuses`), so a new dashboard gets it without code of its own.
+- `<StatusStrip dashboardKey year />` at the top of a dashboard's summary shows the twelve
+  months and lets administrators change them.
+- The general overview shows, per dashboard, its icon on the color of the latest month that
+  has a light and the lights set in the five months before it.
+- A light is never shown by color alone: every state has its own mark and its name.
+
+### Table header help
+
+Every named column of a dashboard table is rendered with `<HelpTh help={...}>`, which adds an
+info icon explaining the column. Help texts live under `<dashboard>.help.*` in the locale
+file. `dashboards/tableHeaders.test.ts` fails when a dashboard table uses a plain
+`<Table.Th>` for a named column.
+
 ### Adding a dashboard
 
 1. Backend: create `dashboards/<key>/` exposing `module = DashboardModule(...)`, register it in
@@ -121,7 +142,9 @@ API role can only see rows of the municipality set for the current transaction.
    its tables in the migration, and add the package to both contracts in `backend/.importlinter`.
    Helpers shared by dashboards live in `platform` (`tenant_crud`, `api_types`, `csv_export`).
 2. Frontend: create `src/dashboards/<key>/` with a default-exported routes component and add an
-   entry to `src/dashboards/registry.ts`; put its texts in `src/locales/es-AR.json`.
+   entry (with its icon) to `src/dashboards/registry.ts`; put its texts in
+   `src/locales/es-AR.json`. Put `<StatusStrip>` at the top of its summary and use `<HelpTh>` for
+   table headers.
 3. The operator enables it per municipality; administrators grant it per user.
 
 Configuration is read from `GOBERNAR360_*` environment variables; see
