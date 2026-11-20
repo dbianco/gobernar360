@@ -107,7 +107,11 @@
       "social.people": "Personas asistidas",
       "social.households": "Grupos familiares",
       "social.deliveries_year": "Prestaciones del año",
-      "social.interventions_year": "Intervenciones del año"
+      "social.interventions_year": "Intervenciones del año",
+      "procedures.active": "Trámites vigentes",
+      "procedures.online_ratio": "Trámites con canal en línea",
+      "procedures.requirements": "Requisitos cargados",
+      "procedures.sources": "Fuentes cargadas"
     },
     "lights": "Estado de los tableros"
   },
@@ -996,5 +1000,215 @@
   },
   "help": {
     "about": "Qué significa {{column}}"
+  },
+  "procedures": {
+    "title": "Trámites",
+    "tabs": {
+      "summary": "Resumen",
+      "procedures": "Trámites",
+      "requirements": "Requisitos",
+      "opportunities": "Oportunidades",
+      "parameters": "Parámetros"
+    },
+    "levels": {
+      "municipal": "Municipal",
+      "provincial": "Provincial",
+      "national": "Nacional",
+      "other": "Otro"
+    },
+    "audiences": {
+      "both": "Personas y organizaciones",
+      "people": "Personas",
+      "organizations": "Organizaciones"
+    },
+    "channels": {
+      "in_person": "Presencial",
+      "online": "En línea",
+      "both": "Presencial y en línea"
+    },
+    "formats": {
+      "paper": "En papel",
+      "digital": "Digital"
+    },
+    "parameters": {
+      "areas": "Áreas",
+      "areasHint": "Oficinas del municipio que llevan trámites o guardan datos.",
+      "newArea": "Nueva área",
+      "sources": "Fuentes",
+      "sourcesHint": "Quién emite o guarda cada dato o documento que se pide.",
+      "addSource": "Agregar fuente",
+      "editSource": "Editar fuente",
+      "noSources": "Todavía no hay fuentes cargadas.",
+      "name": "Nombre",
+      "level": "Nivel",
+      "area": "Área",
+      "noArea": "Sin área",
+      "editNamed": "Editar fuente: {{name}}",
+      "deleteNamed": "Eliminar fuente: {{name}}"
+    },
+    "requirements": {
+      "search": "Buscar requisito",
+      "add": "Agregar requisito",
+      "addTitle": "Nuevo requisito",
+      "editTitle": "Editar requisito",
+      "empty": "Todavía no hay requisitos cargados.",
+      "noMatches": "Ningún requisito coincide con la búsqueda.",
+      "name": "Requisito",
+      "description": "Descripción",
+      "source": "Fuente",
+      "level": "Nivel",
+      "usage": "Trámites",
+      "noSource": "Lo aporta el solicitante",
+      "sourceField": "Fuente",
+      "sourceHint": "Quién emite o guarda este dato. Dejalo sin fuente si lo aporta el solicitante.",
+      "editNamed": "Editar requisito: {{name}}",
+      "deleteNamed": "Eliminar requisito: {{name}}"
+    },
+    "list": {
+      "searchHint": "Nombre del trámite",
+      "area": "Área",
+      "allAreas": "Todas las áreas",
+      "channel": "Canal",
+      "allChannels": "Todos los canales",
+      "state": "Vigencia",
+      "allStates": "Todos",
+      "onlyActive": "Vigentes",
+      "onlyInactive": "Dados de baja",
+      "create": "Agregar trámite",
+      "createTitle": "Nuevo trámite",
+      "empty": "No hay trámites que coincidan.",
+      "needsArea": "Para cargar trámites primero hay que definir las áreas en Parámetros.",
+      "name": "Trámite",
+      "cost": "Costo",
+      "days": "Plazo",
+      "volume": "Por año",
+      "requirements": "Requisitos",
+      "free": "Gratuito",
+      "daysValue": "{{count}} días",
+      "inactive": "Dado de baja"
+    },
+    "form": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "area": "Área responsable",
+      "audience": "Dirigido a",
+      "channel": "Canal",
+      "url": "Enlace para hacerlo en línea",
+      "urlHint": "Dirección completa, empezando con https://",
+      "isFree": "Es gratuito",
+      "cost": "Costo en pesos",
+      "days": "Plazo estimado en días",
+      "volume": "Cantidad estimada por año",
+      "isActive": "Vigente"
+    },
+    "detail": {
+      "back": "Volver a trámites",
+      "edit": "Editar",
+      "editTitle": "Editar trámite",
+      "delete": "Eliminar trámite",
+      "confirmDelete": "¿Eliminar este trámite y su lista de requisitos? Los requisitos siguen en la lista común.",
+      "area": "Área responsable",
+      "audience": "Dirigido a",
+      "channel": "Canal",
+      "url": "Enlace",
+      "cost": "Costo",
+      "days": "Plazo estimado",
+      "volume": "Cantidad estimada por año",
+      "description": "Descripción",
+      "requirements": "Requisitos que se piden",
+      "noRequirements": "Este trámite todavía no tiene requisitos cargados.",
+      "addRequirement": "Agregar requisito",
+      "addRequirementTitle": "Agregar requisito al trámite",
+      "editRequirementTitle": "Cambiar cómo se pide",
+      "allAdded": "Todos los requisitos de la lista ya están en este trámite. Agregá más en la pestaña Requisitos.",
+      "requirement": "Requisito",
+      "source": "Fuente",
+      "mandatory": "Obligatorio",
+      "format": "Cómo se pide",
+      "note": "Nota",
+      "optional": "Opcional",
+      "noSource": "Lo aporta el solicitante",
+      "editNamed": "Cambiar requisito: {{name}}",
+      "removeNamed": "Quitar requisito: {{name}}",
+      "remove": "Quitar"
+    },
+    "summary": {
+      "downloadProcedures": "Descargar trámites",
+      "downloadRequirements": "Descargar requisitos por trámite",
+      "emptyTitle": "Todavía no hay trámites cargados",
+      "emptyViewerBody": "Cuando el equipo cargue trámites, vas a ver acá el resumen.",
+      "goToProcedures": "Cargar trámites",
+      "procedures": "Trámites vigentes",
+      "online": "Con canal en línea",
+      "onlineHint": "{{percent}} de los vigentes",
+      "averageRequirements": "Requisitos por trámite",
+      "averageHint": "Promedio entre los vigentes",
+      "requirements": "Requisitos cargados",
+      "sources": "Fuentes cargadas",
+      "byArea": "Trámites por área",
+      "byChannel": "Trámites por canal",
+      "countLabel": "Trámites",
+      "topRequirements": "Requisitos más pedidos",
+      "noTopRequirements": "Ningún trámite vigente tiene requisitos cargados.",
+      "requirement": "Requisito",
+      "source": "Fuente",
+      "count": "Trámites",
+      "noSource": "Lo aporta el solicitante"
+    },
+    "opportunities": {
+      "intro": "Cada fuente con lo que se le pide al solicitante que ella ya tiene. Arriba, las del propio municipio: son datos que ya están en casa.",
+      "download": "Descargar oportunidades",
+      "empty": "Ningún trámite vigente pide requisitos con fuente cargada.",
+      "source": "Fuente",
+      "level": "Nivel",
+      "area": "Área",
+      "requirements": "Requisitos",
+      "procedures": "Trámites",
+      "volume": "Gestiones por año",
+      "withoutSource": "Lo aporta el solicitante",
+      "withoutSourceTitle": "Sin fuente"
+    },
+    "help": {
+      "parametersPage": {
+        "name": "Organismo u oficina que emite o guarda el dato.",
+        "level": "Si la fuente es del propio municipio, de la provincia, de la nación o de otro tipo.",
+        "area": "Área del municipio a la que pertenece la fuente. Solo aplica a fuentes municipales."
+      },
+      "requirementsPage": {
+        "name": "Documento o dato que se le pide al solicitante.",
+        "source": "Quién emite o guarda ese dato. Si no tiene fuente, lo aporta el solicitante.",
+        "level": "Nivel de gobierno de la fuente.",
+        "usage": "En cuántos trámites se pide, incluidos los dados de baja."
+      },
+      "proceduresPage": {
+        "name": "Nombre del trámite. Al hacer clic se abre su ficha.",
+        "area": "Área del municipio responsable del trámite.",
+        "channel": "Cómo se hace: en una oficina, por internet o de las dos formas.",
+        "cost": "Lo que paga el solicitante, o si es gratuito.",
+        "days": "Días estimados desde que se inicia hasta que se resuelve.",
+        "volume": "Cuántas veces se hace el trámite en un año, estimado.",
+        "requirements": "Cantidad de requisitos que se piden."
+      },
+      "procedureDetailPage": {
+        "requirement": "Documento o dato que se pide.",
+        "source": "Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.",
+        "mandatory": "Si hay que presentarlo siempre o solo en algunos casos.",
+        "format": "Si hoy se presenta en papel o se acepta en formato digital.",
+        "note": "Aclaración sobre cómo se pide en este trámite."
+      },
+      "summaryPage": {
+        "requirement": "Documento o dato que se pide.",
+        "source": "Quién emite o guarda ese dato.",
+        "count": "Trámites vigentes que lo piden."
+      },
+      "opportunitiesPage": {
+        "source": "Organismo u oficina que ya tiene el dato.",
+        "level": "Municipal: el dato ya está en el municipio. Provincial, nacional u otro: habría que acordar el acceso.",
+        "area": "Área municipal a la que pertenece la fuente.",
+        "requirements": "Cuántos requisitos distintos de esta fuente se piden en trámites vigentes.",
+        "procedures": "En cuántos trámites vigentes distintos se pide algo de esta fuente.",
+        "volume": "Suma de la cantidad anual estimada de esos trámites. Cada trámite cuenta una sola vez."
+      }
+    }
   }
 }
