@@ -18,6 +18,7 @@ import { downloadUrl } from '../../api/client'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatNumber } from '../../platform/format'
+import { HelpTh } from '../../platform/HelpTh'
 import { StatCard } from '../../platform/StatCard'
 import { StatusStrip } from '../../platform/status/StatusStrip'
 import { hasLevel } from '../../platform/types'
@@ -28,8 +29,8 @@ import { BASE, BASE_PATH, useSummary } from './api'
 function CountTable(props: {
   title: string
   empty: string
-  /** Column headers; those after the first `textColumns` hold numbers. */
-  columns: string[]
+  /** Column headers with their explanation; those after the first `textColumns` hold numbers. */
+  columns: { label: string; help: string }[]
   textColumns: number
   rows: (string | number)[][]
 }) {
@@ -49,9 +50,9 @@ function CountTable(props: {
           <Table.Thead>
             <Table.Tr>
               {props.columns.map((column, index) => (
-                <Table.Th key={column} ta={align(index)}>
-                  {column}
-                </Table.Th>
+                <HelpTh key={column.label} help={column.help} ta={align(index)}>
+                  {column.label}
+                </HelpTh>
               ))}
             </Table.Tr>
           </Table.Thead>
@@ -59,7 +60,7 @@ function CountTable(props: {
             {props.rows.map((row) => (
               <Table.Tr key={row.slice(0, props.textColumns).join('/')}>
                 {row.map((value, index) => (
-                  <Table.Td key={props.columns[index]} ta={align(index)}>
+                  <Table.Td key={props.columns[index].label} ta={align(index)}>
                     {cell(value)}
                   </Table.Td>
                 ))}
@@ -80,6 +81,10 @@ export function SummaryPage() {
   const summary = useSummary(year)
   const data = summary.data
   const label = (key: string, options = {}) => t(`social.summary.${key}`, options)
+  const column = (key: string) => ({
+    label: label(key),
+    help: t(`social.help.summaryPage.${key}`),
+  })
   const isEmpty =
     data && data.people + data.households + data.deliveries + data.interventions === 0
   const download = (name: string, key: string, query?: { year: number }) => (
@@ -149,12 +154,7 @@ export function SummaryPage() {
             <CountTable
               title={label('benefits')}
               empty={label('noDeliveries')}
-              columns={[
-                label('benefit'),
-                label('category'),
-                label('deliveriesCount'),
-                label('unitsCount'),
-              ]}
+              columns={['benefit', 'category', 'deliveriesCount', 'unitsCount'].map(column)}
               textColumns={2}
               rows={data.benefits.map((row) => [
                 row.benefit,
@@ -166,7 +166,7 @@ export function SummaryPage() {
             <CountTable
               title={label('interventionTypes')}
               empty={label('noInterventions')}
-              columns={[label('type'), label('count')]}
+              columns={['type', 'count'].map(column)}
               textColumns={1}
               rows={data.intervention_types.map((row) => [row.name ?? t('app.none'), row.count])}
             />

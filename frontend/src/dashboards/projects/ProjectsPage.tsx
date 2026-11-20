@@ -14,6 +14,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatPercent } from '../../platform/format'
@@ -49,13 +50,27 @@ export function ProjectsPage() {
           <Table highlightOnHover>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th>{t('projects.list.name')}</Table.Th>
-                <Table.Th>{t('projects.filters.axis')}</Table.Th>
-                <Table.Th>{t('projects.filters.department')}</Table.Th>
-                <Table.Th>{t('projects.filters.owner')}</Table.Th>
-                <Table.Th>{t('projects.filters.priority')}</Table.Th>
-                <Table.Th>{t('projects.filters.status')}</Table.Th>
-                <Table.Th>{t('projects.list.progress')}</Table.Th>
+                <HelpTh help={t('projects.help.projectsPage.name')}>
+                  {t('projects.list.name')}
+                </HelpTh>
+                <HelpTh help={t('projects.help.projectsPage.axis')}>
+                  {t('projects.filters.axis')}
+                </HelpTh>
+                <HelpTh help={t('projects.help.projectsPage.department')}>
+                  {t('projects.filters.department')}
+                </HelpTh>
+                <HelpTh help={t('projects.help.projectsPage.owner')}>
+                  {t('projects.filters.owner')}
+                </HelpTh>
+                <HelpTh help={t('projects.help.projectsPage.priority')}>
+                  {t('projects.filters.priority')}
+                </HelpTh>
+                <HelpTh help={t('projects.help.projectsPage.status')}>
+                  {t('projects.filters.status')}
+                </HelpTh>
+                <HelpTh help={t('projects.help.projectsPage.progress')}>
+                  {t('projects.list.progress')}
+                </HelpTh>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>

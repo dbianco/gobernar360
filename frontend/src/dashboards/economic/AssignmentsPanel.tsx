@@ -2,6 +2,7 @@ import { Alert, Button, Group, Loader, Modal, Stack, Table, Text, Title } from '
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { HelpTh } from '../../platform/HelpTh'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatDate } from '../../platform/format'
 import { send, useAction, useAssignments } from './api'
@@ -38,9 +39,9 @@ export function AssignmentsPanel(props: { target: AssignmentTarget; canEdit: boo
         <Table>
           <Table.Thead>
             <Table.Tr>
-              <Table.Th>{label('date')}</Table.Th>
-              <Table.Th>{label('tool')}</Table.Th>
-              <Table.Th>{label('note')}</Table.Th>
+              <HelpTh help={t('economic.help.assignmentsPanel.date')}>{label('date')}</HelpTh>
+              <HelpTh help={t('economic.help.assignmentsPanel.tool')}>{label('tool')}</HelpTh>
+              <HelpTh help={t('economic.help.assignmentsPanel.note')}>{label('note')}</HelpTh>
               <Table.Th />
             </Table.Tr>
           </Table.Thead>

@@ -272,7 +272,25 @@
       "16": "Paz, justicia e instituciones sólidas",
       "17": "Alianzas para lograr los objetivos"
     },
-    "sdgLabel": "ODS {{number}}: {{title}}"
+    "sdgLabel": "ODS {{number}}: {{title}}",
+    "help": {
+      "indicatorsPage": {
+        "name": "Indicador estratégico: lo que se mide para saber si un objetivo avanza.",
+        "axis": "Eje de gobierno al que pertenece el objetivo.",
+        "objective": "Objetivo de la gestión que este indicador mide.",
+        "currentValue": "Último valor cargado del indicador.",
+        "achievement": "Avance desde la línea de base hacia la meta, en porcentaje."
+      },
+      "projectsPage": {
+        "name": "Nombre del proyecto. Al hacer clic se abre su ficha.",
+        "axis": "Eje de gobierno al que aporta el proyecto.",
+        "department": "Área del municipio que lleva adelante el proyecto.",
+        "owner": "Persona responsable del proyecto.",
+        "priority": "Importancia que la gestión le dio al proyecto: A+, A, B o C.",
+        "status": "Sin iniciar, en implementación o finalizado. Se marca retrasado si venció su fecha de fin o tiene algún hito vencido.",
+        "progress": "Porcentaje de hitos finalizados. Si el proyecto no tiene hitos, es el avance cargado a mano."
+      }
+    }
   },
   "environment": {
     "title": "Ambiental",
@@ -409,7 +427,29 @@
       "yearFigure": "Valor de {{year}}: {{value}} ({{how}}).",
       "yearTarget": "Meta anual: {{target}}."
     },
-    "invalidNumber": "No es un número válido. Usá coma para los decimales, por ejemplo 1.250,5."
+    "invalidNumber": "No es un número válido. Usá coma para los decimales, por ejemplo 1.250,5.",
+    "help": {
+      "entryPage": {
+        "variable": "Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros."
+      },
+      "parametersPage": {
+        "name": "Lo que el municipio mide, por ejemplo el consumo eléctrico de un edificio.",
+        "subcategory": "División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.",
+        "frequency": "Cada cuánto se carga un valor: una vez por mes o una vez por año.",
+        "target": "Valor anual que se busca alcanzar o no superar. Sin meta, la variable solo se registra."
+      },
+      "seriesChart": {
+        "period": "Mes o año al que corresponde el valor.",
+        "value": "Valor cargado para ese período, en la unidad de la variable."
+      },
+      "summaryPage": {
+        "variable": "Lo que el municipio mide, con su unidad.",
+        "subcategory": "División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.",
+        "value": "Total del año elegido. Si la variable tiene meta, se muestra a continuación para comparar.",
+        "achievement": "Qué parte de la meta anual se alcanzó, y si la meta se cumple o no.",
+        "loadsColumn": "Valores cargados sobre los esperados en el año: 12 si la variable es mensual, 1 si es anual."
+      }
+    }
   },
   "users": {
     "title": "Usuarios del municipio",
@@ -629,6 +669,45 @@
       "peopleCount": "Personas",
       "assignmentsCount": "Asignaciones",
       "yearHint": "El año se aplica a las asignaciones."
+    },
+    "help": {
+      "actorsPage": {
+        "name": "Nombre o razón social del comercio, industria o emprendimiento.",
+        "type": "Clase de actor económico, según la lista que define el municipio en Parámetros.",
+        "sector": "Rubro de actividad del actor, según la lista de sectores del municipio.",
+        "cuit": "Clave Única de Identificación Tributaria del actor, si está cargada.",
+        "employees": "Cantidad de personas que trabajan en el actor, según el último dato cargado."
+      },
+      "assignmentsPage": {
+        "date": "Día en que se otorgó la herramienta.",
+        "tool": "Programa, crédito, capacitación u otra herramienta que el municipio otorgó.",
+        "recipient": "Actor económico o persona que recibió la herramienta.",
+        "kind": "Indica si quien la recibió es un actor económico o una persona.",
+        "note": "Aclaración libre sobre la asignación."
+      },
+      "assignmentsPanel": {
+        "date": "Día en que se otorgó la herramienta.",
+        "tool": "Programa, crédito, capacitación u otra herramienta que el municipio otorgó.",
+        "note": "Aclaración libre sobre la asignación."
+      },
+      "parametersPage": {
+        "name": "Nombre de la herramienta que el municipio ofrece.",
+        "category": "Grupo general al que pertenece la herramienta.",
+        "subcategory": "División de la categoría, para agrupar herramientas parecidas.",
+        "audience": "A quién se puede otorgar: actores económicos, personas o ambos."
+      },
+      "peoplePage": {
+        "fullName": "Apellido y nombre de la persona, tal como figura en el padrón del municipio.",
+        "dni": "Documento Nacional de Identidad. Identifica a la persona en el padrón del municipio.",
+        "employmentStatus": "Si la persona trabaja, busca trabajo o no está activa, según el último dato cargado.",
+        "occupation": "Oficio o actividad a la que se dedica la persona.",
+        "neighborhood": "Barrio del domicilio de la persona."
+      },
+      "summaryPage": {
+        "tool": "Herramienta que el municipio ofrece.",
+        "category": "Grupo general al que pertenece la herramienta.",
+        "count": "Veces que la herramienta se otorgó en el año elegido."
+      }
     }
   },
   "people": {
@@ -821,7 +900,56 @@
       "noNeighborhood": "Sin barrio",
       "yearHint": "El año se aplica a las prestaciones y las intervenciones."
     },
-    "mostRecent": "Se muestran los {{count}} registros más recientes."
+    "mostRecent": "Se muestran los {{count}} registros más recientes.",
+    "help": {
+      "householdDetailPage": {
+        "fullName": "Apellido y nombre del integrante.",
+        "dni": "Documento Nacional de Identidad del integrante.",
+        "relationship": "Vínculo del integrante con el referente del grupo. Cada grupo tiene un solo referente."
+      },
+      "householdsPage": {
+        "name": "Nombre con el que el equipo identifica al grupo familiar.",
+        "address": "Domicilio donde vive el grupo.",
+        "neighborhood": "Barrio del domicilio del grupo.",
+        "head": "Integrante de referencia del grupo, con quien se trata habitualmente.",
+        "members": "Cantidad de personas que integran el grupo."
+      },
+      "parametersPage": {
+        "name": "Nombre de la prestación que el área entrega.",
+        "category": "Grupo al que pertenece la prestación, por ejemplo Alimentos.",
+        "description": "Detalle de qué incluye la prestación."
+      },
+      "peoplePage": {
+        "fullName": "Apellido y nombre de la persona, tal como figura en el padrón del municipio.",
+        "dni": "Documento Nacional de Identidad. Identifica a la persona en el padrón del municipio.",
+        "neighborhood": "Barrio del domicilio de la persona.",
+        "household": "Grupo familiar al que pertenece la persona. Una persona está en un solo grupo.",
+        "relationship": "Vínculo de la persona con el referente de su grupo familiar."
+      },
+      "deliveries": {
+        "date": "Día en que se entregó la prestación.",
+        "person": "Persona que recibió la prestación.",
+        "benefit": "Lo que se entregó.",
+        "category": "Grupo al que pertenece la prestación.",
+        "quantity": "Unidades entregadas en esa oportunidad.",
+        "note": "Aclaración libre sobre la entrega."
+      },
+      "interventions": {
+        "date": "Día en que se hizo la intervención.",
+        "person": "Persona con la que se intervino.",
+        "type": "Clase de intervención, según la lista que define el área en Parámetros.",
+        "performedBy": "Integrante del equipo que hizo la intervención.",
+        "description": "Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado»."
+      },
+      "summaryPage": {
+        "benefit": "Prestación entregada.",
+        "category": "Grupo al que pertenece la prestación.",
+        "deliveriesCount": "Veces que se entregó la prestación en el año elegido.",
+        "unitsCount": "Suma de las unidades entregadas en el año elegido.",
+        "type": "Clase de intervención.",
+        "count": "Intervenciones de ese tipo hechas en el año elegido."
+      }
+    }
   },
   "status": {
     "title": "Estado mensual",
@@ -863,5 +991,8 @@
       "11": "Nov",
       "12": "Dic"
     }
+  },
+  "help": {
+    "about": "Qué significa {{column}}"
   }
 }

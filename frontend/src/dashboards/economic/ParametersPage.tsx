@@ -14,6 +14,7 @@ import {
 import { type ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { HelpTh } from '../../platform/HelpTh'
 import { EditableList } from '../../platform/EditableList'
 import { errorMessage } from '../../platform/errorMessage'
 import {
@@ -129,10 +130,16 @@ export function ParametersPage() {
             <Table>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>{label('name')}</Table.Th>
-                  <Table.Th>{label('category')}</Table.Th>
-                  <Table.Th>{label('subcategory')}</Table.Th>
-                  <Table.Th>{label('audience')}</Table.Th>
+                  <HelpTh help={t('economic.help.parametersPage.name')}>{label('name')}</HelpTh>
+                  <HelpTh help={t('economic.help.parametersPage.category')}>
+                    {label('category')}
+                  </HelpTh>
+                  <HelpTh help={t('economic.help.parametersPage.subcategory')}>
+                    {label('subcategory')}
+                  </HelpTh>
+                  <HelpTh help={t('economic.help.parametersPage.audience')}>
+                    {label('audience')}
+                  </HelpTh>
                   <Table.Th />
                 </Table.Tr>
               </Table.Thead>

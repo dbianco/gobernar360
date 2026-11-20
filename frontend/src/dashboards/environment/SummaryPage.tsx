@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { downloadUrl } from '../../api/client'
+import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatNumber, formatRatio } from '../../platform/format'
@@ -54,11 +55,17 @@ function CategoryTable({ category }: { category: CategorySummary }) {
         <Table>
           <Table.Thead>
             <Table.Tr>
-              <Table.Th>{label('variable')}</Table.Th>
-              <Table.Th>{label('subcategory')}</Table.Th>
-              <Table.Th>{label('value')}</Table.Th>
-              <Table.Th>{label('achievement')}</Table.Th>
-              <Table.Th>{label('loadsColumn')}</Table.Th>
+              <HelpTh help={t('environment.help.summaryPage.variable')}>{label('variable')}</HelpTh>
+              <HelpTh help={t('environment.help.summaryPage.subcategory')}>
+                {label('subcategory')}
+              </HelpTh>
+              <HelpTh help={t('environment.help.summaryPage.value')}>{label('value')}</HelpTh>
+              <HelpTh help={t('environment.help.summaryPage.achievement')}>
+                {label('achievement')}
+              </HelpTh>
+              <HelpTh help={t('environment.help.summaryPage.loadsColumn')}>
+                {label('loadsColumn')}
+              </HelpTh>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>

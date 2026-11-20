@@ -2,6 +2,7 @@ import { Alert, Group, Loader, NativeSelect, Stack, Table, Text, TextInput, Titl
 import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { HelpTh } from '../../platform/HelpTh'
 import { errorMessage } from '../../platform/errorMessage'
 import { send, useAction, useValues, useVariables } from './api'
 import { numberText, parseNumber } from './numbers'
@@ -145,7 +146,9 @@ export function EntryPage() {
             <Table verticalSpacing={4} horizontalSpacing={4}>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>{label('variable')}</Table.Th>
+                  <HelpTh help={t('environment.help.entryPage.variable')}>
+                    {label('variable')}
+                  </HelpTh>
                   {MONTHS.map((month) => (
                     <Table.Th key={month}>{t(`environment.monthsShort.${month}`)}</Table.Th>
                   ))}
@@ -171,7 +174,7 @@ export function EntryPage() {
           <Table verticalSpacing={4} maw={480}>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th>{label('variable')}</Table.Th>
+                <HelpTh help={t('environment.help.entryPage.variable')}>{label('variable')}</HelpTh>
                 <Table.Th>{year}</Table.Th>
               </Table.Tr>
             </Table.Thead>

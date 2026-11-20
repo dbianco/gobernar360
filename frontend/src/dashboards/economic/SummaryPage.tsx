@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { downloadUrl } from '../../api/client'
+import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatNumber } from '../../platform/format'
@@ -41,9 +42,11 @@ function ToolTable({ title, rows }: { title: string; rows: ToolCount[] }) {
         <Table aria-label={title}>
           <Table.Thead>
             <Table.Tr>
-              <Table.Th>{label('tool')}</Table.Th>
-              <Table.Th>{label('category')}</Table.Th>
-              <Table.Th ta="right">{label('count')}</Table.Th>
+              <HelpTh help={t('economic.help.summaryPage.tool')}>{label('tool')}</HelpTh>
+              <HelpTh help={t('economic.help.summaryPage.category')}>{label('category')}</HelpTh>
+              <HelpTh help={t('economic.help.summaryPage.count')} ta="right">
+                {label('count')}
+              </HelpTh>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>

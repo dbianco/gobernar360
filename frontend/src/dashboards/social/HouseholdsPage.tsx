@@ -14,6 +14,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { Pager } from '../../platform/Pager'
@@ -56,11 +57,15 @@ export function HouseholdsPage() {
           <Table highlightOnHover>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th>{label('name')}</Table.Th>
-                <Table.Th>{label('address')}</Table.Th>
-                <Table.Th>{label('neighborhood')}</Table.Th>
-                <Table.Th>{label('head')}</Table.Th>
-                <Table.Th ta="right">{label('members')}</Table.Th>
+                <HelpTh help={t('social.help.householdsPage.name')}>{label('name')}</HelpTh>
+                <HelpTh help={t('social.help.householdsPage.address')}>{label('address')}</HelpTh>
+                <HelpTh help={t('social.help.householdsPage.neighborhood')}>
+                  {label('neighborhood')}
+                </HelpTh>
+                <HelpTh help={t('social.help.householdsPage.head')}>{label('head')}</HelpTh>
+                <HelpTh help={t('social.help.householdsPage.members')} ta="right">
+                  {label('members')}
+                </HelpTh>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>

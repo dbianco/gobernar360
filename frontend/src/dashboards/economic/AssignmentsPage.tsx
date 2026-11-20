@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { downloadUrl } from '../../api/client'
+import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatDate } from '../../platform/format'
@@ -93,11 +94,13 @@ export function AssignmentsPage() {
           <Table>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th>{label('date')}</Table.Th>
-                <Table.Th>{label('tool')}</Table.Th>
-                <Table.Th>{label('recipient')}</Table.Th>
-                <Table.Th>{label('kind')}</Table.Th>
-                <Table.Th>{label('note')}</Table.Th>
+                <HelpTh help={t('economic.help.assignmentsPage.date')}>{label('date')}</HelpTh>
+                <HelpTh help={t('economic.help.assignmentsPage.tool')}>{label('tool')}</HelpTh>
+                <HelpTh help={t('economic.help.assignmentsPage.recipient')}>
+                  {label('recipient')}
+                </HelpTh>
+                <HelpTh help={t('economic.help.assignmentsPage.kind')}>{label('kind')}</HelpTh>
+                <HelpTh help={t('economic.help.assignmentsPage.note')}>{label('note')}</HelpTh>
                 <Table.Th />
               </Table.Tr>
             </Table.Thead>

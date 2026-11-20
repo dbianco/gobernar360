@@ -13,6 +13,7 @@ import {
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { HelpTh } from '../../platform/HelpTh'
 import { EditableList } from '../../platform/EditableList'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatNumber } from '../../platform/format'
@@ -78,10 +79,16 @@ export function ParametersPage() {
           <Table>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th>{label('name')}</Table.Th>
-                <Table.Th>{label('subcategory')}</Table.Th>
-                <Table.Th>{label('frequency')}</Table.Th>
-                <Table.Th>{label('target')}</Table.Th>
+                <HelpTh help={t('environment.help.parametersPage.name')}>{label('name')}</HelpTh>
+                <HelpTh help={t('environment.help.parametersPage.subcategory')}>
+                  {label('subcategory')}
+                </HelpTh>
+                <HelpTh help={t('environment.help.parametersPage.frequency')}>
+                  {label('frequency')}
+                </HelpTh>
+                <HelpTh help={t('environment.help.parametersPage.target')}>
+                  {label('target')}
+                </HelpTh>
                 <Table.Th />
               </Table.Tr>
             </Table.Thead>

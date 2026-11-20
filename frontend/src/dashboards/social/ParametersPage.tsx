@@ -13,6 +13,7 @@ import {
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { HelpTh } from '../../platform/HelpTh'
 import { EditableList } from '../../platform/EditableList'
 import { errorMessage } from '../../platform/errorMessage'
 import { send, useAction, useBenefitCategories, useBenefits, useInterventionTypes } from './api'
@@ -77,9 +78,13 @@ export function ParametersPage() {
             <Table>
               <Table.Thead>
                 <Table.Tr>
-                  <Table.Th>{label('name')}</Table.Th>
-                  <Table.Th>{label('category')}</Table.Th>
-                  <Table.Th>{label('description')}</Table.Th>
+                  <HelpTh help={t('social.help.parametersPage.name')}>{label('name')}</HelpTh>
+                  <HelpTh help={t('social.help.parametersPage.category')}>
+                    {label('category')}
+                  </HelpTh>
+                  <HelpTh help={t('social.help.parametersPage.description')}>
+                    {label('description')}
+                  </HelpTh>
                   <Table.Th />
                 </Table.Tr>
               </Table.Thead>

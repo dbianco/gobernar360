@@ -14,6 +14,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatDni } from '../../platform/format'
@@ -67,11 +68,15 @@ export function PeoplePage() {
           <Table highlightOnHover>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th>{t('people.fullName')}</Table.Th>
-                <Table.Th>{t('people.dni')}</Table.Th>
-                <Table.Th>{t('people.neighborhood')}</Table.Th>
-                <Table.Th>{label('household')}</Table.Th>
-                <Table.Th>{label('relationship')}</Table.Th>
+                <HelpTh help={t('social.help.peoplePage.fullName')}>{t('people.fullName')}</HelpTh>
+                <HelpTh help={t('social.help.peoplePage.dni')}>{t('people.dni')}</HelpTh>
+                <HelpTh help={t('social.help.peoplePage.neighborhood')}>
+                  {t('people.neighborhood')}
+                </HelpTh>
+                <HelpTh help={t('social.help.peoplePage.household')}>{label('household')}</HelpTh>
+                <HelpTh help={t('social.help.peoplePage.relationship')}>
+                  {label('relationship')}
+                </HelpTh>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>

@@ -3,6 +3,7 @@ import { type ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import { HelpTh } from '../../platform/HelpTh'
 import { formatDate } from '../../platform/format'
 import { BASE_PATH, send, useAction } from './api'
 import { DeliveryForm } from './DeliveryForm'
@@ -79,12 +80,16 @@ export function DeliveriesTable(props: {
         minWidth={props.showPerson ? 720 : 560}
         head={
           <>
-            <Table.Th>{label('date')}</Table.Th>
-            {props.showPerson && <Table.Th>{label('person')}</Table.Th>}
-            <Table.Th>{label('benefit')}</Table.Th>
-            <Table.Th>{label('category')}</Table.Th>
-            <Table.Th ta="right">{label('quantity')}</Table.Th>
-            <Table.Th>{label('note')}</Table.Th>
+            <HelpTh help={t('social.help.interventions.date')}>{label('date')}</HelpTh>
+            {props.showPerson && (
+              <HelpTh help={t('social.help.interventions.person')}>{label('person')}</HelpTh>
+            )}
+            <HelpTh help={t('social.help.interventions.benefit')}>{label('benefit')}</HelpTh>
+            <HelpTh help={t('social.help.interventions.category')}>{label('category')}</HelpTh>
+            <HelpTh help={t('social.help.interventions.quantity')} ta="right">
+              {label('quantity')}
+            </HelpTh>
+            <HelpTh help={t('social.help.interventions.note')}>{label('note')}</HelpTh>
             <Table.Th />
           </>
         }
@@ -153,11 +158,17 @@ export function InterventionsTable(props: {
         minWidth={props.showPerson ? 760 : 600}
         head={
           <>
-            <Table.Th>{label('date')}</Table.Th>
-            {props.showPerson && <Table.Th>{label('person')}</Table.Th>}
-            <Table.Th>{label('type')}</Table.Th>
-            <Table.Th>{label('performedBy')}</Table.Th>
-            <Table.Th>{label('description')}</Table.Th>
+            <HelpTh help={t('social.help.interventions.date')}>{label('date')}</HelpTh>
+            {props.showPerson && (
+              <HelpTh help={t('social.help.interventions.person')}>{label('person')}</HelpTh>
+            )}
+            <HelpTh help={t('social.help.interventions.type')}>{label('type')}</HelpTh>
+            <HelpTh help={t('social.help.interventions.performedBy')}>
+              {label('performedBy')}
+            </HelpTh>
+            <HelpTh help={t('social.help.interventions.description')}>
+              {label('description')}
+            </HelpTh>
             <Table.Th />
           </>
         }

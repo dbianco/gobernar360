@@ -17,6 +17,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
+import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { Field } from '../../platform/Field'
@@ -172,9 +173,15 @@ export function HouseholdDetailPage() {
                 <Table>
                   <Table.Thead>
                     <Table.Tr>
-                      <Table.Th>{t('people.fullName')}</Table.Th>
-                      <Table.Th>{t('people.dni')}</Table.Th>
-                      <Table.Th>{label('relationship')}</Table.Th>
+                      <HelpTh help={t('social.help.householdDetailPage.fullName')}>
+                        {t('people.fullName')}
+                      </HelpTh>
+                      <HelpTh help={t('social.help.householdDetailPage.dni')}>
+                        {t('people.dni')}
+                      </HelpTh>
+                      <HelpTh help={t('social.help.householdDetailPage.relationship')}>
+                        {label('relationship')}
+                      </HelpTh>
                       <Table.Th />
                     </Table.Tr>
                   </Table.Thead>

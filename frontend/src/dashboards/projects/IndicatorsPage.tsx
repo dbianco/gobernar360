@@ -15,6 +15,7 @@ import {
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatNumber, formatPercent } from '../../platform/format'
@@ -160,11 +161,19 @@ export function IndicatorsPage() {
           <Table>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th>{label('name')}</Table.Th>
-                <Table.Th>{t('projects.filters.axis')}</Table.Th>
-                <Table.Th>{label('objective')}</Table.Th>
-                <Table.Th>{label('currentValue')}</Table.Th>
-                <Table.Th>{label('achievement')}</Table.Th>
+                <HelpTh help={t('projects.help.indicatorsPage.name')}>{label('name')}</HelpTh>
+                <HelpTh help={t('projects.help.indicatorsPage.axis')}>
+                  {t('projects.filters.axis')}
+                </HelpTh>
+                <HelpTh help={t('projects.help.indicatorsPage.objective')}>
+                  {label('objective')}
+                </HelpTh>
+                <HelpTh help={t('projects.help.indicatorsPage.currentValue')}>
+                  {label('currentValue')}
+                </HelpTh>
+                <HelpTh help={t('projects.help.indicatorsPage.achievement')}>
+                  {label('achievement')}
+                </HelpTh>
                 {canEdit && <Table.Th />}
               </Table.Tr>
             </Table.Thead>

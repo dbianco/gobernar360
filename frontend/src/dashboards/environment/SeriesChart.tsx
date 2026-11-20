@@ -12,6 +12,7 @@ import {
   YAxis,
 } from 'recharts'
 
+import { HelpTh } from '../../platform/HelpTh'
 import { formatNumber } from '../../platform/format'
 
 export interface SeriesPoint {
@@ -61,8 +62,10 @@ export function SeriesChart(props: {
         <Table>
           <Table.Thead>
             <Table.Tr>
-              <Table.Th>{props.periodHeader}</Table.Th>
-              <Table.Th ta="right">{label('value')}</Table.Th>
+              <HelpTh help={t('environment.help.seriesChart.period')}>{props.periodHeader}</HelpTh>
+              <HelpTh help={t('environment.help.seriesChart.value')} ta="right">
+                {label('value')}
+              </HelpTh>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>

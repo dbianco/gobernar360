@@ -15,6 +15,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { Pager } from '../../platform/Pager'
@@ -81,11 +82,13 @@ export function ActorsPage() {
           <Table highlightOnHover>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th>{label('name')}</Table.Th>
-                <Table.Th>{label('type')}</Table.Th>
-                <Table.Th>{label('sector')}</Table.Th>
-                <Table.Th>{label('cuit')}</Table.Th>
-                <Table.Th ta="right">{label('employees')}</Table.Th>
+                <HelpTh help={t('economic.help.actorsPage.name')}>{label('name')}</HelpTh>
+                <HelpTh help={t('economic.help.actorsPage.type')}>{label('type')}</HelpTh>
+                <HelpTh help={t('economic.help.actorsPage.sector')}>{label('sector')}</HelpTh>
+                <HelpTh help={t('economic.help.actorsPage.cuit')}>{label('cuit')}</HelpTh>
+                <HelpTh help={t('economic.help.actorsPage.employees')} ta="right">
+                  {label('employees')}
+                </HelpTh>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
