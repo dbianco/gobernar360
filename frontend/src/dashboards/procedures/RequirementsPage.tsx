@@ -58,7 +58,7 @@ export function RequirementsPage() {
               {rows.map((requirement) => (
                 <Table.Tr key={requirement.id}>
                   <Table.Td>
-                    <Text>{requirement.name}</Text>
+                    <Text size="sm">{requirement.name}</Text>
                     {requirement.description && (
                       <Text size="xs" c="dimmed">
                         {requirement.description}

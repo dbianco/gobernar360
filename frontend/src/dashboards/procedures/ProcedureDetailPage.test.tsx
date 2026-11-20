@@ -5,7 +5,7 @@ import { expect, it } from 'vitest'
 
 import type { AccessLevel } from '../../platform/types'
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { ProcedureDetailPage } from './ProcedureDetailPage'
 import { FORM, makeDetail } from './testData'
 import { BASE, renderProcedures } from './testRender'
@@ -146,4 +146,19 @@ it('says so when the procedure asks for nothing yet', async () => {
   renderDetail(makeDetail({ requirements: [] }))
 
   expect(await screen.findByText(label('noRequirements'))).toBeInTheDocument()
+})
+
+it('does not offer to add a requirement until the list of requirements is known', async () => {
+  renderDetail()
+  mockApiError('get', `${BASE}/requirements`, 500, 'generic')
+
+  await screen.findByRole('heading', { name: 'Habilitación comercial' })
+
+  expect(screen.getByRole('button', { name: label('addRequirement') })).toBeDisabled()
+})
+
+it('writes a single day in the singular', async () => {
+  renderDetail(makeDetail({ duration_days: 1 }))
+
+  expect(await screen.findByText('1 día')).toBeInTheDocument()
 })

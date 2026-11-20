@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 export function RowActions(props: {
   editLabel: string
   deleteLabel: string
-  /** Text of the delete button; defaults to "Eliminar". */
+  /** Text of the delete button; defaults to the generic delete text. */
   deleteText?: string
   onEdit: () => void
   onDelete: () => void

@@ -18,7 +18,9 @@ export function RequirementLinkForm(props: {
   const { t } = useTranslation()
   const action = useAction()
   const editing = props.link
-  const [requirementId, setRequirementId] = useState(props.available[0]?.id ?? '')
+  const [chosenId, setChosenId] = useState('')
+  // Until one is chosen, the first option is what the select shows.
+  const requirementId = chosenId || (props.available[0]?.id ?? '')
   const [mandatory, setMandatory] = useState(editing?.mandatory ?? true)
   const [format, setFormat] = useState(editing?.format ?? 'paper')
   const [note, setNote] = useState(editing?.note ?? '')
@@ -57,7 +59,7 @@ export function RequirementLinkForm(props: {
           <NativeSelect
             label={label('requirement')}
             value={requirementId}
-            onChange={(event) => setRequirementId(event.currentTarget.value)}
+            onChange={(event) => setChosenId(event.currentTarget.value)}
             data={props.available.map((item) => ({ value: item.id, label: item.name }))}
           />
         )}

@@ -118,7 +118,12 @@ export function ProcedureDetailPage() {
       <Stack gap="xs" component="section">
         <Group justify="space-between">
           <Title order={4}>{label('requirements')}</Title>
-          {canEdit && <Button onClick={() => setDialog('add')}>{label('addRequirement')}</Button>}
+          {canEdit && (
+            // Without the list there is nothing to choose from yet.
+            <Button disabled={!requirements.data} onClick={() => setDialog('add')}>
+              {label('addRequirement')}
+            </Button>
+          )}
         </Group>
         {data.requirements.length === 0 && <Text c="dimmed">{label('noRequirements')}</Text>}
         {data.requirements.length > 0 && (
@@ -141,7 +146,7 @@ export function ProcedureDetailPage() {
                     <Table.Td>
                       {row.requirement.source ? (
                         <>
-                          <Text>{row.requirement.source.name}</Text>
+                          <Text size="sm">{row.requirement.source.name}</Text>
                           <Text size="xs" c="dimmed">
                             {t(`procedures.levels.${row.requirement.source.level}`)}
                           </Text>

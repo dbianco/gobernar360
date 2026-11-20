@@ -1084,8 +1084,9 @@
       "volume": "Por año",
       "requirements": "Requisitos",
       "free": "Gratuito",
-      "daysValue": "{{count}} días",
-      "inactive": "Dado de baja"
+      "inactive": "Dado de baja",
+      "daysValue_one": "{{count}} día",
+      "daysValue_other": "{{count}} días"
     },
     "form": {
       "name": "Nombre",
@@ -1165,8 +1166,7 @@
       "requirements": "Requisitos",
       "procedures": "Trámites",
       "volume": "Gestiones por año",
-      "withoutSource": "Lo aporta el solicitante",
-      "withoutSourceTitle": "Sin fuente"
+      "withoutSource": "Lo aporta el solicitante"
     },
     "help": {
       "parametersPage": {
