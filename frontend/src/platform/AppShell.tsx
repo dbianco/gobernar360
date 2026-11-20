@@ -9,6 +9,12 @@ import {
   Title,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import {
+  IconBuildingCommunity,
+  IconLayoutDashboard,
+  IconUsers,
+  type Icon,
+} from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 import { Link, Navigate, Outlet, useLocation } from 'react-router-dom'
 
@@ -36,12 +42,13 @@ export function AppShell() {
 
   const isActive = (path: string) =>
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path)
-  const link = (to: string, label: string) => (
+  const link = (to: string, label: string, LinkIcon: Icon) => (
     <NavLink
       key={to}
       component={Link}
       to={to}
       label={label}
+      leftSection={<LinkIcon size={20} stroke={1.5} aria-hidden />}
       active={isActive(to)}
       onClick={menu.close}
     />
@@ -90,10 +97,10 @@ export function AppShell() {
       </Shell.Header>
 
       <Shell.Navbar p="xs">
-        {membership && link('/', t('nav.overview'))}
-        {membership && visibleDashboards.map((d) => link(d.basePath, t(d.labelKey)))}
-        {membership?.is_admin && link('/admin/users', t('nav.users'))}
-        {isOperator && link('/platform', t('nav.platform'))}
+        {membership && link('/', t('nav.overview'), IconLayoutDashboard)}
+        {membership && visibleDashboards.map((d) => link(d.basePath, t(d.labelKey), d.icon))}
+        {membership?.is_admin && link('/admin/users', t('nav.users'), IconUsers)}
+        {isOperator && link('/platform', t('nav.platform'), IconBuildingCommunity)}
       </Shell.Navbar>
 
       <Shell.Main>{content}</Shell.Main>

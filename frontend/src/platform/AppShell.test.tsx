@@ -115,3 +115,19 @@ it('signs out locally even when the request fails', async () => {
 
   expect(await screen.findByRole('heading', { name: t('login.title') })).toBeInTheDocument()
 })
+
+it('gives every navigation link an icon', async () => {
+  mockApi('get', '/overview', [])
+  renderApp(<App />, {
+    me: makeMe({
+      isAdmin: true,
+      isOperator: true,
+      dashboards: { projects: 'admin', environment: 'admin', economic: 'admin', social: 'admin' },
+    }),
+  })
+
+  const links = (await navigation()).getAllByRole('link')
+
+  expect(links).toHaveLength(7)
+  for (const link of links) expect(link.querySelector('svg')).not.toBeNull()
+})
