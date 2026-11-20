@@ -19,6 +19,7 @@ if config.config_file_name is not None:
 # Importing the model modules registers their tables on Base.metadata.
 import gobernar360.dashboards.economic.models  # noqa: E402, F401
 import gobernar360.dashboards.environment.models  # noqa: E402, F401
+import gobernar360.dashboards.procedures.models  # noqa: E402, F401
 import gobernar360.dashboards.projects.models  # noqa: E402, F401
 import gobernar360.dashboards.social.models  # noqa: E402, F401
 import gobernar360.platform.models  # noqa: E402, F401
