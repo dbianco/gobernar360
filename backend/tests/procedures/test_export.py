@@ -35,7 +35,7 @@ def test_procedures_download_lists_every_procedure(client):
         annual_volume=300,
     )
     link_requirement(procedure, make_requirement(municipality))
-    make_procedure(municipality, area, "Baja", is_active=False)
+    make_procedure(municipality, area, "Zonificación", is_active=False)
 
     rows = _rows(client.get(f"{BASE}/export/procedures.csv"))
 
@@ -67,7 +67,7 @@ def test_procedures_download_lists_every_procedure(client):
             "yes",
             "1",
         ],
-        ["Baja", "Rentas", "both", "in_person", "", "yes", "", "", "", "no", "0"],
+        ["Zonificación", "Rentas", "both", "in_person", "", "yes", "", "", "", "no", "0"],
     ]
     assert (
         'filename="procedures.csv"'
