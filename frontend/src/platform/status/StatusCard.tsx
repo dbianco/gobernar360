@@ -34,7 +34,7 @@ export function StatusCard(props: { name: string; icon: Icon; status: DatedStatu
           )}
           {earlier.length > 0 && (
             <Group gap={6} mt={4}>
-              {earlier.toReversed().map((light) => {
+              {[...earlier].reverse().map((light) => {
                 const label = t('status.monthLabel', {
                   month: monthName(light.month),
                   state: t(`status.states.${light.color}`),

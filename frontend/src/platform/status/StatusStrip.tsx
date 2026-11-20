@@ -1,9 +1,11 @@
-import { Alert, Group, Menu, Paper, Stack, Text, UnstyledButton } from '@mantine/core'
+import { ActionIcon, Alert, Group, Menu, Paper, Stack, Text, UnstyledButton } from '@mantine/core'
+import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
 import { useAuth } from '../authContext'
 import { errorMessage } from '../errorMessage'
 import { hasLevel } from '../types'
+import { currentYear } from '../years'
 import { useDashboardStatus, useSetStatus } from './api'
 import { StatusLight } from './StatusLight'
 import { STATUS_COLORS, type StatusColor } from './types'
@@ -20,7 +22,12 @@ function hasStarted(year: number, month: number): boolean {
  * The light of each month of a year for one dashboard. Its administrators set
  * them here; everyone else only sees them.
  */
-export function StatusStrip(props: { dashboardKey: string; year: number }) {
+export function StatusStrip(props: {
+  dashboardKey: string
+  year: number
+  /** For pages without a year of their own: lets the strip move between years. */
+  onYearChange?: (year: number) => void
+}) {
   const { t } = useTranslation()
   const { me } = useAuth()
   const status = useDashboardStatus(props.dashboardKey, props.year)
@@ -97,6 +104,27 @@ export function StatusStrip(props: { dashboardKey: string; year: number }) {
           <Text fw={600} size="sm">
             {`${t('status.title')} ${props.year}`}
           </Text>
+          {props.onYearChange && (
+            <Group gap={0}>
+              <ActionIcon
+                variant="subtle"
+                size="sm"
+                aria-label={t('status.previousYear')}
+                onClick={() => props.onYearChange?.(props.year - 1)}
+              >
+                <IconChevronLeft size={16} aria-hidden />
+              </ActionIcon>
+              <ActionIcon
+                variant="subtle"
+                size="sm"
+                aria-label={t('status.nextYear')}
+                disabled={props.year >= currentYear()}
+                onClick={() => props.onYearChange?.(props.year + 1)}
+              >
+                <IconChevronRight size={16} aria-hidden />
+              </ActionIcon>
+            </Group>
+          )}
           <Text size="xs" c="dimmed">
             {t('status.hint')}
           </Text>

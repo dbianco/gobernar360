@@ -93,3 +93,23 @@ it('offers each chart as a table', async () => {
 
   expect(section.getByRole('row', { name: /Obras Públicas\s*9/ })).toBeInTheDocument()
 })
+
+it('lets the lights of an earlier year be looked at and corrected', async () => {
+  mockApi('get', `${BASE}/summary`, makeSummary())
+  const status = mockApi('get', '/dashboards/projects/status', [])
+  renderProjects(<SummaryPage />)
+  const thisYear = new Date().getFullYear()
+  await waitFor(() => expect(status[0]?.url.searchParams.get('year')).toBe(String(thisYear)))
+
+  await userEvent.click(await screen.findByRole('button', { name: t('status.previousYear') }))
+
+  await waitFor(() => expect(status.at(-1)?.url.searchParams.get('year')).toBe(String(thisYear - 1)))
+  expect(screen.getByRole('button', { name: t('status.nextYear') })).toBeEnabled()
+})
+
+it('does not offer the lights of a year that has not started', async () => {
+  mockApi('get', `${BASE}/summary`, makeSummary())
+  renderProjects(<SummaryPage />)
+
+  expect(await screen.findByRole('button', { name: t('status.nextYear') })).toBeDisabled()
+})

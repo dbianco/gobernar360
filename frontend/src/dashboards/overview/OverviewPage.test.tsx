@@ -196,3 +196,26 @@ it('still works when the browser refuses to store which sections were collapsed'
   get.mockRestore()
   set.mockRestore()
 })
+
+it('shows earlier lights in browsers without Array.prototype.toReversed', async () => {
+  const original = Array.prototype.toReversed
+  // @ts-expect-error simulating a browser older than ES2023
+  delete Array.prototype.toReversed
+  mockApi('get', '/overview', [
+    {
+      dashboard_key: 'projects',
+      indicators: [],
+      status: [
+        { year: 2025, month: 2, color: 'red' },
+        { year: 2025, month: 1, color: 'green' },
+      ],
+    },
+  ])
+  try {
+    renderOverview()
+    await screen.findByRole('heading', { name: t('projects.title') })
+    expect(lightCard('projects.title').getByRole('img')).toHaveAccessibleName(monthState(1, 'green'))
+  } finally {
+    Array.prototype.toReversed = original
+  }
+})

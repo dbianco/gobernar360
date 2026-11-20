@@ -80,16 +80,16 @@ export function DeliveriesTable(props: {
         minWidth={props.showPerson ? 720 : 560}
         head={
           <>
-            <HelpTh help={t('social.help.interventions.date')}>{label('date')}</HelpTh>
+            <HelpTh help={t('social.help.deliveries.date')}>{label('date')}</HelpTh>
             {props.showPerson && (
-              <HelpTh help={t('social.help.interventions.person')}>{label('person')}</HelpTh>
+              <HelpTh help={t('social.help.deliveries.person')}>{label('person')}</HelpTh>
             )}
-            <HelpTh help={t('social.help.interventions.benefit')}>{label('benefit')}</HelpTh>
-            <HelpTh help={t('social.help.interventions.category')}>{label('category')}</HelpTh>
-            <HelpTh help={t('social.help.interventions.quantity')} ta="right">
+            <HelpTh help={t('social.help.deliveries.benefit')}>{label('benefit')}</HelpTh>
+            <HelpTh help={t('social.help.deliveries.category')}>{label('category')}</HelpTh>
+            <HelpTh help={t('social.help.deliveries.quantity')} ta="right">
               {label('quantity')}
             </HelpTh>
-            <HelpTh help={t('social.help.interventions.note')}>{label('note')}</HelpTh>
+            <HelpTh help={t('social.help.deliveries.note')}>{label('note')}</HelpTh>
             <Table.Th />
           </>
         }

@@ -19,13 +19,14 @@ export function SummaryPage() {
   const { t } = useTranslation()
   const { term } = useTerm()
   const [filters, setFilters] = useState<ProjectFilters>({})
+  const [statusYear, setStatusYear] = useState(currentYear)
   const summary = useSummary(term.id, filters)
   const data = summary.data
 
   return (
     <Stack>
-      {/* Projects are looked at by term, not by year, so the strip shows the current year. */}
-      <StatusStrip dashboardKey="projects" year={currentYear()} />
+      {/* Projects are looked at by term, not by year, so the strip chooses its own year. */}
+      <StatusStrip dashboardKey="projects" year={statusYear} onYearChange={setStatusYear} />
       <FilterBar filters={filters} onChange={setFilters} />
       <Group gap="lg">
         <Anchor href={downloadUrl(`${BASE}/export/projects.csv`, { term_id: term.id, ...filters })}>

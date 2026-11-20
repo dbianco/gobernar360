@@ -990,7 +990,9 @@
       "10": "Oct",
       "11": "Nov",
       "12": "Dic"
-    }
+    },
+    "previousYear": "Año anterior",
+    "nextYear": "Año siguiente"
   },
   "help": {
     "about": "Qué significa {{column}}"
