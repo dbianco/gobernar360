@@ -68,6 +68,10 @@ def validation_error(message: str) -> ApiError:
     return ApiError(422, "validation_error", message)
 
 
+def future_month() -> ApiError:
+    return ApiError(422, "future_month", "A month that has not started cannot be given a status.")
+
+
 def install_error_handlers(app: FastAPI) -> None:
     @app.exception_handler(ApiError)
     async def handle_api_error(request: Request, exc: ApiError) -> JSONResponse:

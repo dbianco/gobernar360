@@ -11,6 +11,7 @@ from sqlalchemy import (
     Date,
     DateTime,
     ForeignKey,
+    Integer,
     String,
     UniqueConstraint,
     Uuid,
@@ -25,6 +26,7 @@ from gobernar360.core.db import AuditMixin, Base, TenantMixin, created_at_column
 MUNICIPALITY_KINDS = ("municipality", "commune")
 GRANT_LEVELS = ("viewer", "editor", "admin")
 AUDIT_ACTIONS = ("create", "update", "delete")
+STATUS_COLORS = ("green", "yellow", "red")
 
 
 def _in(column: str, values: tuple[str, ...]) -> str:
@@ -163,3 +165,20 @@ class Person(TenantMixin, AuditMixin, Base):
     @property
     def full_name(self) -> str:
         return f"{self.last_name}, {self.first_name}"
+
+
+class DashboardStatus(TenantMixin, AuditMixin, Base):
+    """The light a dashboard's administrator gave one month: their own reading of how it went."""
+
+    __tablename__ = "dashboard_statuses"
+    __table_args__ = (
+        UniqueConstraint("municipality_id", "dashboard_key", "year", "month"),
+        CheckConstraint("month BETWEEN 1 AND 12", name="month_valid"),
+        CheckConstraint(_in("color", STATUS_COLORS), name="color_valid"),
+    )
+
+    id: Mapped[uuid.UUID] = uuid_pk()
+    dashboard_key: Mapped[str] = mapped_column(String(50), nullable=False)
+    year: Mapped[int] = mapped_column(Integer, nullable=False)
+    month: Mapped[int] = mapped_column(Integer, nullable=False)
+    color: Mapped[str] = mapped_column(String(10), nullable=False)
