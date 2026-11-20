@@ -170,3 +170,52 @@ class LinkOut(OrmModel):
 
 class ProcedureDetail(ProcedureOut):
     requirements: list[LinkOut]
+
+
+class NameCount(BaseModel):
+    name: str
+    count: int
+
+
+class ChannelCount(BaseModel):
+    channel: str
+    count: int
+
+
+class RequirementCount(BaseModel):
+    name: str
+    # Name of its source; None when the person brings it themselves.
+    source: str | None
+    count: int
+
+
+class SummaryOut(BaseModel):
+    """Counts over the procedures currently offered."""
+
+    procedures: int
+    # Those that can be done online, fully or as one of two channels.
+    online: int
+    average_requirements: float | None
+    requirements: int
+    sources: int
+    by_area: list[NameCount]
+    by_channel: list[ChannelCount]
+    top_requirements: list[RequirementCount]
+
+
+class Reach(BaseModel):
+    """How much asking for a source's data weighs on procedures."""
+
+    requirements: int
+    procedures: int
+    # Estimated yearly volume of those procedures, each counted once.
+    annual_volume: int
+
+
+class SourceOpportunity(Reach):
+    source: SourceOut
+
+
+class OpportunitiesOut(BaseModel):
+    sources: list[SourceOpportunity]
+    without_source: Reach
