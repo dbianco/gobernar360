@@ -7,6 +7,8 @@ import { RequireDashboard } from '../../platform/RequireDashboard'
 import { hasLevel } from '../../platform/types'
 import { BASE_PATH, KEY } from './api'
 import { ParametersPage } from './ParametersPage'
+import { ProcedureDetailPage } from './ProcedureDetailPage'
+import { ProceduresPage } from './ProceduresPage'
 import { RequirementsPage } from './RequirementsPage'
 
 const SECTIONS = ['summary', 'procedures', 'requirements', 'opportunities'] as const
@@ -37,6 +39,8 @@ export default function ProceduresRoutes() {
         </Tabs.List>
       </Tabs>
       <Routes>
+        <Route path="procedures" element={<ProceduresPage />} />
+        <Route path="procedures/:id" element={<ProcedureDetailPage />} />
         <Route path="requirements" element={<RequirementsPage />} />
         <Route
           path="parameters"
