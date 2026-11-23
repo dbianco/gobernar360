@@ -9,7 +9,6 @@ import { DNI, FORM, FREE_DEBT, RENTAS_SOURCE } from './testData'
 import { BASE, renderProcedures } from './testRender'
 
 const label = (key: string, options = {}) => t(`procedures.requirements.${key}`, options)
-const last = <T,>(items: T[]) => items[items.length - 1]
 
 it('lists requirements with their source and how many procedures ask for them', async () => {
   renderProcedures(<RequirementsPage />)
@@ -22,13 +21,19 @@ it('lists requirements with their source and how many procedures ask for them', 
   expect(form.getByText(label('noSource'))).toBeInTheDocument()
 })
 
-it('searches on the server', async () => {
-  const { requests } = renderProcedures(<RequirementsPage />)
-
+it('searches by requirement or source, ignoring accents', async () => {
+  renderProcedures(<RequirementsPage />)
+  const user = userEvent.setup()
   await screen.findByRole('row', { name: /DNI/ })
-  await userEvent.type(screen.getByRole('textbox', { name: label('search') }), 'libre')
+  const search = screen.getByRole('searchbox', { name: t('app.search') })
 
-  await waitFor(() => expect(last(requests.requirements).url.searchParams.get('q')).toBe('libre'))
+  await user.type(search, 'RENTAS')
+
+  expect(screen.getByRole('row', { name: /Libre deuda municipal/ })).toBeInTheDocument()
+  expect(screen.queryByRole('row', { name: /Formulario de solicitud/ })).toBeNull()
+  await user.clear(search)
+  await user.type(search, 'no existe')
+  expect(await screen.findByText(label('noMatches'))).toBeInTheDocument()
 })
 
 it('lets an editor add a requirement with its source', async () => {
@@ -92,4 +97,26 @@ it('says so when nothing is loaded yet', async () => {
   mockApi('get', `${BASE}/requirements`, [])
 
   expect(await screen.findByText(label('empty'))).toBeInTheDocument()
+})
+
+it('keeps the form open and says why saving failed, and closes it with Escape', async () => {
+  mockApiError('post', `${BASE}/requirements`, 409, 'conflict')
+  renderProcedures(<RequirementsPage />)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('add') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: label('name') }), 'Plano aprobado')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+  expect(await form.findByText(t('errors.conflict'))).toBeInTheDocument()
+
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})
+
+it('says why the requirements cannot be loaded', async () => {
+  renderProcedures(<RequirementsPage />)
+  mockApiError('get', `${BASE}/requirements`, 500, 'boom')
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })

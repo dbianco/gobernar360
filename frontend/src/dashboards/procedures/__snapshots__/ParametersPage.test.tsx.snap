@@ -1,0 +1,455 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds an area > screen at the end 1`] = `
+"Áreas
+Oficinas del municipio que llevan trámites o guardan datos.
+Obras Privadas
+[Renombrar Obras Privadas]
+Editar
+[Eliminar Obras Privadas]
+Eliminar
+Rentas
+[Renombrar Rentas]
+Editar
+[Eliminar Rentas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Fuentes
+Quién emite o guarda cada dato o documento que se pide.
+Agregar fuente
+Buscar
+(Nombre de la fuente)
+Nombre
+[Qué significa Nombre]
+Organismo u oficina que emite o guarda el dato.
+Nivel
+[Qué significa Nivel]
+Si la fuente es del propio municipio, de la provincia, de la nación o de otro tipo.
+Área
+[Qué significa Área]
+Área del municipio a la que pertenece la fuente. Solo aplica a fuentes municipales.
+RENAPER
+Nacional
+—
+[Editar fuente: RENAPER]
+Editar
+[Eliminar fuente: RENAPER]
+Eliminar
+Rentas municipal
+Municipal
+Rentas
+[Editar fuente: Rentas municipal]
+Editar
+[Eliminar fuente: Rentas municipal]
+Eliminar"
+`;
+
+exports[`adds an area > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`closes the form with Escape without saving > screen at the end 1`] = `
+"Áreas
+Oficinas del municipio que llevan trámites o guardan datos.
+Obras Privadas
+[Renombrar Obras Privadas]
+Editar
+[Eliminar Obras Privadas]
+Eliminar
+Rentas
+[Renombrar Rentas]
+Editar
+[Eliminar Rentas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Fuentes
+Quién emite o guarda cada dato o documento que se pide.
+Agregar fuente
+Buscar
+(Nombre de la fuente)
+Nombre
+[Qué significa Nombre]
+Organismo u oficina que emite o guarda el dato.
+Nivel
+[Qué significa Nivel]
+Si la fuente es del propio municipio, de la provincia, de la nación o de otro tipo.
+Área
+[Qué significa Área]
+Área del municipio a la que pertenece la fuente. Solo aplica a fuentes municipales.
+RENAPER
+Nacional
+—
+[Editar fuente: RENAPER]
+Editar
+[Eliminar fuente: RENAPER]
+Eliminar
+Rentas municipal
+Municipal
+Rentas
+[Editar fuente: Rentas municipal]
+Editar
+[Eliminar fuente: Rentas municipal]
+Eliminar"
+`;
+
+exports[`closes the form with Escape without saving > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`creates a municipal source with its area > screen at the end 1`] = `
+"Áreas
+Oficinas del municipio que llevan trámites o guardan datos.
+Obras Privadas
+[Renombrar Obras Privadas]
+Editar
+[Eliminar Obras Privadas]
+Eliminar
+Rentas
+[Renombrar Rentas]
+Editar
+[Eliminar Rentas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Fuentes
+Quién emite o guarda cada dato o documento que se pide.
+Agregar fuente
+Buscar
+(Nombre de la fuente)
+Nombre
+[Qué significa Nombre]
+Organismo u oficina que emite o guarda el dato.
+Nivel
+[Qué significa Nivel]
+Si la fuente es del propio municipio, de la provincia, de la nación o de otro tipo.
+Área
+[Qué significa Área]
+Área del municipio a la que pertenece la fuente. Solo aplica a fuentes municipales.
+RENAPER
+Nacional
+—
+[Editar fuente: RENAPER]
+Editar
+[Eliminar fuente: RENAPER]
+Eliminar
+Rentas municipal
+Municipal
+Rentas
+[Editar fuente: Rentas municipal]
+Editar
+[Eliminar fuente: Rentas municipal]
+Eliminar"
+`;
+
+exports[`creates a municipal source with its area > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`edits a source > screen at the end 1`] = `
+"Áreas
+Oficinas del municipio que llevan trámites o guardan datos.
+Obras Privadas
+[Renombrar Obras Privadas]
+Editar
+[Eliminar Obras Privadas]
+Eliminar
+Rentas
+[Renombrar Rentas]
+Editar
+[Eliminar Rentas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Fuentes
+Quién emite o guarda cada dato o documento que se pide.
+Agregar fuente
+Buscar
+(Nombre de la fuente)
+Nombre
+[Qué significa Nombre]
+Organismo u oficina que emite o guarda el dato.
+Nivel
+[Qué significa Nivel]
+Si la fuente es del propio municipio, de la provincia, de la nación o de otro tipo.
+Área
+[Qué significa Área]
+Área del municipio a la que pertenece la fuente. Solo aplica a fuentes municipales.
+RENAPER
+Nacional
+—
+[Editar fuente: RENAPER]
+Editar
+[Eliminar fuente: RENAPER]
+Eliminar
+Rentas municipal
+Municipal
+Rentas
+[Editar fuente: Rentas municipal]
+Editar
+[Eliminar fuente: Rentas municipal]
+Eliminar"
+`;
+
+exports[`edits a source > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lists areas and sources with their level and area > screen at the end 1`] = `
+"Áreas
+Oficinas del municipio que llevan trámites o guardan datos.
+Obras Privadas
+[Renombrar Obras Privadas]
+Editar
+[Eliminar Obras Privadas]
+Eliminar
+Rentas
+[Renombrar Rentas]
+Editar
+[Eliminar Rentas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Fuentes
+Quién emite o guarda cada dato o documento que se pide.
+Agregar fuente
+Buscar
+(Nombre de la fuente)
+Nombre
+[Qué significa Nombre]
+Organismo u oficina que emite o guarda el dato.
+Nivel
+[Qué significa Nivel]
+Si la fuente es del propio municipio, de la provincia, de la nación o de otro tipo.
+Área
+[Qué significa Área]
+Área del municipio a la que pertenece la fuente. Solo aplica a fuentes municipales.
+RENAPER
+Nacional
+—
+[Editar fuente: RENAPER]
+Editar
+[Eliminar fuente: RENAPER]
+Eliminar
+Rentas municipal
+Municipal
+Rentas
+[Editar fuente: Rentas municipal]
+Editar
+[Eliminar fuente: Rentas municipal]
+Eliminar"
+`;
+
+exports[`lists areas and sources with their level and area > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`offers an area only for municipal sources > screen at the end 1`] = `
+"Áreas
+Oficinas del municipio que llevan trámites o guardan datos.
+Obras Privadas
+[Renombrar Obras Privadas]
+Editar
+[Eliminar Obras Privadas]
+Eliminar
+Rentas
+[Renombrar Rentas]
+Editar
+[Eliminar Rentas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Fuentes
+Quién emite o guarda cada dato o documento que se pide.
+Agregar fuente
+Buscar
+(Nombre de la fuente)
+Nombre
+[Qué significa Nombre]
+Organismo u oficina que emite o guarda el dato.
+Nivel
+[Qué significa Nivel]
+Si la fuente es del propio municipio, de la provincia, de la nación o de otro tipo.
+Área
+[Qué significa Área]
+Área del municipio a la que pertenece la fuente. Solo aplica a fuentes municipales.
+RENAPER
+Nacional
+—
+[Editar fuente: RENAPER]
+Editar
+[Eliminar fuente: RENAPER]
+Eliminar
+Rentas municipal
+Municipal
+Rentas
+[Editar fuente: Rentas municipal]
+Editar
+[Eliminar fuente: Rentas municipal]
+Eliminar"
+`;
+
+exports[`offers an area only for municipal sources > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`renames and deletes items of /areas > screen at the end 1`] = `
+"Áreas
+Oficinas del municipio que llevan trámites o guardan datos.
+Obras Privadas
+[Renombrar Obras Privadas]
+Editar
+[Eliminar Obras Privadas]
+Eliminar
+Rentas
+[Renombrar Rentas]
+Editar
+[Eliminar Rentas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Fuentes
+Quién emite o guarda cada dato o documento que se pide.
+Agregar fuente
+Buscar
+(Nombre de la fuente)
+Nombre
+[Qué significa Nombre]
+Organismo u oficina que emite o guarda el dato.
+Nivel
+[Qué significa Nivel]
+Si la fuente es del propio municipio, de la provincia, de la nación o de otro tipo.
+Área
+[Qué significa Área]
+Área del municipio a la que pertenece la fuente. Solo aplica a fuentes municipales.
+RENAPER
+Nacional
+—
+[Editar fuente: RENAPER]
+Editar
+[Eliminar fuente: RENAPER]
+Eliminar
+Rentas municipal
+Municipal
+Rentas
+[Editar fuente: Rentas municipal]
+Editar
+[Eliminar fuente: Rentas municipal]
+Eliminar"
+`;
+
+exports[`renames and deletes items of /areas > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says when the search matches no source > screen at the end 1`] = `
+"Áreas
+Oficinas del municipio que llevan trámites o guardan datos.
+Obras Privadas
+[Renombrar Obras Privadas]
+Editar
+[Eliminar Obras Privadas]
+Eliminar
+Rentas
+[Renombrar Rentas]
+Editar
+[Eliminar Rentas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Fuentes
+Quién emite o guarda cada dato o documento que se pide.
+Agregar fuente
+Buscar
+(Nombre de la fuente)
+[Borrar la búsqueda]
+Nada coincide con la búsqueda."
+`;
+
+exports[`says when the search matches no source > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says when there are no sources, and keeps the form open when saving fails > screen at the end 1`] = `
+"Áreas
+Oficinas del municipio que llevan trámites o guardan datos.
+Obras Privadas
+[Renombrar Obras Privadas]
+Editar
+[Eliminar Obras Privadas]
+Eliminar
+Rentas
+[Renombrar Rentas]
+Editar
+[Eliminar Rentas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Fuentes
+Quién emite o guarda cada dato o documento que se pide.
+Agregar fuente
+Todavía no hay fuentes cargadas.
+Agregar fuente
+La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
+Nombre
+Nivel
+Municipal
+Provincial
+Nacional
+Otro
+Área
+Sin área
+Obras Privadas
+Rentas
+Cancelar
+Guardar"
+`;
+
+exports[`says when there are no sources, and keeps the form open when saving fails > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why a source in use cannot be deleted > screen at the end 1`] = `
+"No se puede eliminar porque está siendo usado por otros registros.
+Áreas
+Oficinas del municipio que llevan trámites o guardan datos.
+Obras Privadas
+[Renombrar Obras Privadas]
+Editar
+[Eliminar Obras Privadas]
+Eliminar
+Rentas
+[Renombrar Rentas]
+Editar
+[Eliminar Rentas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Fuentes
+Quién emite o guarda cada dato o documento que se pide.
+Agregar fuente
+Buscar
+(Nombre de la fuente)
+Nombre
+[Qué significa Nombre]
+Organismo u oficina que emite o guarda el dato.
+Nivel
+[Qué significa Nivel]
+Si la fuente es del propio municipio, de la provincia, de la nación o de otro tipo.
+Área
+[Qué significa Área]
+Área del municipio a la que pertenece la fuente. Solo aplica a fuentes municipales.
+RENAPER
+Nacional
+—
+[Editar fuente: RENAPER]
+Editar
+[Eliminar fuente: RENAPER]
+Eliminar
+Rentas municipal
+Municipal
+Rentas
+[Editar fuente: Rentas municipal]
+Editar
+[Eliminar fuente: Rentas municipal]
+Eliminar"
+`;
+
+exports[`says why a source in use cannot be deleted > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why the catalog cannot be loaded > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
+
+exports[`says why the catalog cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;

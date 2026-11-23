@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`can be named for what it searches > screen at the end 1`] = `
+"Buscar hitos
+(x)"
+`;
+
+exports[`can be named for what it searches > screen at the start 1`] = `
+"Buscar hitos
+(x)"
+`;
+
+exports[`passes on what is typed, and offers to clear it only when there is something > screen at the end 1`] = `
+"Buscar
+(Nombre o DNI)
+[Borrar la búsqueda]"
+`;
+
+exports[`passes on what is typed, and offers to clear it only when there is something > screen at the start 1`] = `
+"Buscar
+(Nombre o DNI)"
+`;

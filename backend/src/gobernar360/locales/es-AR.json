@@ -1,0 +1,81 @@
+{
+  "dashboards": {
+    "projects": "Proyectos",
+    "environment": "Ambiental",
+    "economic": "Económico",
+    "social": "Social",
+    "procedures": "Trámites"
+  },
+  "months": {
+    "1": "enero",
+    "2": "febrero",
+    "3": "marzo",
+    "4": "abril",
+    "5": "mayo",
+    "6": "junio",
+    "7": "julio",
+    "8": "agosto",
+    "9": "septiembre",
+    "10": "octubre",
+    "11": "noviembre",
+    "12": "diciembre"
+  },
+  "dateTime": "{{date}} a las {{time}}",
+  "membersCsv": {
+    "filename": "usuarios-ejemplo.csv",
+    "columns": {
+      "email": "email",
+      "name": "nombre",
+      "admin": "administrador"
+    },
+    "yes": "sí",
+    "no": "no",
+    "levels": {
+      "viewer": "Lectura",
+      "editor": "Carga",
+      "admin": "Administración"
+    },
+    "example": {
+      "first": {
+        "email": "ana.perez@ejemplo.gob.ar",
+        "name": "Ana Pérez"
+      },
+      "second": {
+        "email": "juan.gomez@ejemplo.gob.ar",
+        "name": "Juan Gómez"
+      }
+    }
+  },
+  "email": {
+    "templates": {
+      "invitation": {
+        "subject": "Te dieron acceso a {{municipality}} en gobernar360",
+        "html": "<p>Hola, {{name}}:</p><p>{{inviter}} te dio acceso a <strong>{{municipality}}</strong> en gobernar360.</p><p>Para empezar, elegí tu contraseña en este enlace:</p><p><a href=\"{{link}}\">Elegir mi contraseña</a></p><p>El enlace se puede usar una sola vez y vence el {{expires}}. Si vence, pedile a quien te dio acceso que te envíe otro.</p><p>Si no esperabas este mensaje, podés ignorarlo.</p><p>—<br>gobernar360<br>Este mensaje se envió automáticamente; no hace falta responderlo.</p>"
+      },
+      "membership_added": {
+        "subject": "Te dieron acceso a {{municipality}} en gobernar360",
+        "html": "<p>Hola, {{name}}:</p><p>{{inviter}} te dio acceso a <strong>{{municipality}}</strong> en gobernar360. Ingresá con tu cuenta de siempre:</p><p><a href=\"{{link}}\">Ingresar a gobernar360</a></p><p>Si no recordás tu contraseña, pedí una nueva desde la pantalla de ingreso.</p><p>—<br>gobernar360<br>Este mensaje se envió automáticamente; no hace falta responderlo.</p>"
+      },
+      "password_reset": {
+        "subject": "Elegí una contraseña nueva para gobernar360",
+        "html": "<p>Hola, {{name}}:</p><p>Recibimos un pedido para cambiar la contraseña de tu cuenta de gobernar360. Elegí una nueva en este enlace:</p><p><a href=\"{{link}}\">Elegir una contraseña nueva</a></p><p>El enlace se puede usar una sola vez y vence el {{expires}}. Al guardar la contraseña nueva se cierran todas las sesiones abiertas de tu cuenta.</p><p>Si no lo pediste, ignorá este mensaje: tu contraseña no cambia.</p><p>—<br>gobernar360<br>Este mensaje se envió automáticamente; no hace falta responderlo.</p>"
+      },
+      "status_light_missing": {
+        "subject": "Falta el estado mensual de {{month}} en {{municipality}}",
+        "html": "<p>Hola:</p><p>Estos tableros de {{municipality}} todavía no tienen el estado mensual de {{month}}:</p>{{items}}<p>Quien administra {{municipality}} en gobernar360 elige quiénes reciben estos avisos. Si tenés cuenta, podés dejar de recibirlos desde <a href=\"{{account_link}}\">Mi cuenta</a>.</p><p>—<br>gobernar360<br>Este mensaje se envió automáticamente; no hace falta responderlo.</p>"
+      },
+      "milestone_overdue": {
+        "subject": "Hitos vencidos en {{municipality}}",
+        "html": "<p>Hola:</p><p>Estos hitos de proyectos de {{municipality}} pasaron su fecha sin completarse:</p>{{items}}<p>Quien administra {{municipality}} en gobernar360 elige quiénes reciben estos avisos. Si tenés cuenta, podés dejar de recibirlos desde <a href=\"{{account_link}}\">Mi cuenta</a>.</p><p>—<br>gobernar360<br>Este mensaje se envió automáticamente; no hace falta responderlo.</p>"
+      }
+    },
+    "items": {
+      "status_light_missing": "<a href=\"{{link}}\">{{dashboard}}</a>",
+      "milestone_overdue": "<a href=\"{{link}}\">{{project}}</a>: «{{milestone}}», vencía el {{due_date}}."
+    },
+    "test": {
+      "subjectPrefix": "[Prueba] ",
+      "item": "Un aviso de ejemplo"
+    }
+  }
+}

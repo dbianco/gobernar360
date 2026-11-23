@@ -175,3 +175,26 @@ def test_overview_of_an_empty_economic_dashboard_has_no_indicators(client):
     assert client.get("/api/overview").json() == [
         {"dashboard_key": "economic", "indicators": [], "status": []}
     ]
+
+
+def test_ties_are_listed_by_name(client):
+    municipality = _viewer(client)
+    finance = make_tool_category(municipality, "Financiamiento")
+    zeta, alfa = make_tool(municipality, finance, "Zeta"), make_tool(municipality, finance, "Alfa")
+    industry, shop = (
+        make_actor_type(municipality, "Industria"),
+        make_actor_type(municipality, "Comercio"),
+    )
+    services, food = make_sector(municipality, "Servicios"), make_sector(municipality, "Alimentos")
+    first = make_actor(municipality, "Uno", actor_type_id=industry.id, sector_id=services.id)
+    second = make_actor(municipality, "Dos", actor_type_id=shop.id, sector_id=food.id)
+    make_assignment(municipality, zeta, actor=first, on=date(2026, 2, 1))
+    make_assignment(municipality, alfa, actor=second, on=date(2026, 2, 1))
+
+    summary = client.get(f"{BASE}/summary", params={"year": 2026}).json()
+    reports = client.get(f"{BASE}/reports", params={"year": 2026}).json()
+
+    assert [row["tool"] for row in summary["actor_tools"]] == ["Alfa", "Zeta"]
+    assert summary["person_tools"] == []
+    assert [row["name"] for row in reports["actors_by_type"]] == ["Comercio", "Industria"]
+    assert [row["name"] for row in reports["actors_by_sector"]] == ["Alimentos", "Servicios"]

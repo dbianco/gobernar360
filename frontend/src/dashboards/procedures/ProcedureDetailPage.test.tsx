@@ -7,7 +7,7 @@ import type { AccessLevel } from '../../platform/types'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { ProcedureDetailPage } from './ProcedureDetailPage'
-import { FORM, makeDetail } from './testData'
+import { FORM, makeDetail, makeLink } from './testData'
 import { BASE, renderProcedures } from './testRender'
 import type { ProcedureDetail } from './types'
 
@@ -161,4 +161,82 @@ it('writes a single day in the singular', async () => {
   renderDetail(makeDetail({ duration_days: 1 }))
 
   expect(await screen.findByText('1 día')).toBeInTheDocument()
+})
+
+it('leaves blank what the procedure does not say, and flags requirements without source', async () => {
+  renderDetail(
+    makeDetail({
+      duration_days: null,
+      annual_volume: null,
+      is_active: false,
+      requirements: [makeLink({ requirement: FORM })],
+    }),
+    'viewer',
+  )
+
+  expect(await screen.findByText(t('procedures.list.inactive'))).toBeInTheDocument()
+  expect(screen.getByText(label('days')).nextElementSibling?.textContent).toBe(t('app.none'))
+  expect(screen.getByText(label('volume')).nextElementSibling?.textContent).toBe(t('app.none'))
+  expect(screen.getByText(label('noSource'))).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: label('delete') })).toBeNull()
+})
+
+it('stays on the procedure and says why when it cannot be deleted', async () => {
+  mockApiError('delete', URL, 409, 'in_use')
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('delete') }))
+  await user.click(await screen.findByRole('button', { name: t('app.confirm') }))
+
+  expect(await screen.findByText(t('errors.in_use'))).toBeInTheDocument()
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+  expect(screen.queryByText('list')).toBeNull()
+})
+
+it('opens the form to edit the procedure', async () => {
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('edit') }))
+
+  expect(await screen.findByRole('dialog')).toBeInTheDocument()
+})
+
+it('shows an error when the procedure cannot be loaded', async () => {
+  mockApiError('get', URL, 404, 'not_found')
+  renderProcedures(
+    <Routes>
+      <Route path="/d/procedures/procedures/:id" element={<ProcedureDetailPage />} />
+    </Routes>,
+    { route: '/d/procedures/procedures/pr-1' },
+  )
+
+  expect(await screen.findByText(t('errors.not_found'))).toBeInTheDocument()
+})
+
+it('adds the requirement chosen, and keeps the form open when saving fails', async () => {
+  const requests = mockApiError('post', `${URL}/requirements`, 409, 'conflict')
+  renderDetail(makeDetail({ requirements: [] }))
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addRequirement') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.selectOptions(form.getByLabelText(label('requirement')), FORM.id)
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('errors.conflict'))).toBeInTheDocument()
+  expect(requests[0].body).toMatchObject({ requirement_id: FORM.id })
+})
+
+it('keeps the procedure form open and says why saving failed', async () => {
+  mockApiError('patch', URL, 409, 'conflict')
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('app.edit') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('errors.conflict'))).toBeInTheDocument()
 })

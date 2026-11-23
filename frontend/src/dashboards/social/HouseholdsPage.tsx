@@ -8,7 +8,6 @@ import {
   Stack,
   Table,
   Text,
-  TextInput,
 } from '@mantine/core'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -19,31 +18,33 @@ import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { Pager } from '../../platform/Pager'
 import { hasLevel } from '../../platform/types'
-import { BASE_PATH, PAGE_SIZE, useHouseholds } from './api'
+import { BASE_PATH, useHouseholds } from './api'
 import { HouseholdForm } from './HouseholdForm'
+import { fitPage, usePaging } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
 
 /** Searchable list of the households (family groups) of the dashboard. */
 export function HouseholdsPage() {
   const { t } = useTranslation()
   const { me } = useAuth()
   const [q, setQ] = useState('')
-  const [offset, setOffset] = useState(0)
+  const paging = usePaging('social.households')
+  const { limit, offset, setOffset } = paging
   const [creating, setCreating] = useState(false)
-  const households = useHouseholds({ q, limit: PAGE_SIZE, offset })
+  const households = useHouseholds({ q, limit, offset })
+  fitPage(paging, households)
   const label = (key: string) => t(`social.households.${key}`)
 
   return (
     <Stack>
       <Group justify="space-between" align="flex-end">
-        <TextInput
-          label={t('app.search')}
-          placeholder={label('searchHint')}
-          maxLength={100}
+        <SearchInput
           value={q}
-          onChange={(event) => {
-            setQ(event.currentTarget.value)
+          onChange={(value) => {
+            setQ(value)
             setOffset(0)
           }}
+          placeholder={label('searchHint')}
         />
         {hasLevel(me, 'social', 'editor') && (
           <Button onClick={() => setCreating(true)}>{label('create')}</Button>
@@ -93,12 +94,7 @@ export function HouseholdsPage() {
         </Table.ScrollContainer>
       )}
       {households.data && (
-        <Pager
-          total={households.data.total}
-          limit={PAGE_SIZE}
-          offset={offset}
-          onChange={setOffset}
-        />
+        <Pager {...paging.pager(households.data.total)} />
       )}
       <Modal opened={creating} onClose={() => setCreating(false)} title={label('createTitle')}>
         {creating && <HouseholdForm onDone={() => setCreating(false)} />}

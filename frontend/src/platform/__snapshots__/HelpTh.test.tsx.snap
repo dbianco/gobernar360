@@ -1,0 +1,51 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`explains the column when the info icon gets keyboard focus > screen at the end 1`] = `
+"Subcategoría
+Agrupa las variables dentro de Agua.
+[Qué significa Subcategoría]
+Agrupa las variables dentro de Agua."
+`;
+
+exports[`explains the column when the info icon gets keyboard focus > screen at the start 1`] = `
+"Subcategoría
+[Qué significa Subcategoría]
+Agrupa las variables dentro de Agua."
+`;
+
+exports[`explains the column when the info icon is hovered > screen at the end 1`] = `
+"Subcategoría
+Agrupa las variables dentro de Agua.
+[Qué significa Subcategoría]
+Agrupa las variables dentro de Agua."
+`;
+
+exports[`explains the column when the info icon is hovered > screen at the start 1`] = `
+"Subcategoría
+[Qué significa Subcategoría]
+Agrupa las variables dentro de Agua."
+`;
+
+exports[`gives the info icon the explanation as its description, for screen readers > screen at the end 1`] = `
+"Subcategoría
+[Qué significa Subcategoría]
+Agrupa las variables dentro de Agua."
+`;
+
+exports[`gives the info icon the explanation as its description, for screen readers > screen at the start 1`] = `
+"Subcategoría
+[Qué significa Subcategoría]
+Agrupa las variables dentro de Agua."
+`;
+
+exports[`keeps the column name as the header and passes cell props through > screen at the end 1`] = `
+"Subcategoría
+[Qué significa Subcategoría]
+Agrupa las variables dentro de Agua."
+`;
+
+exports[`keeps the column name as the header and passes cell props through > screen at the start 1`] = `
+"Subcategoría
+[Qué significa Subcategoría]
+Agrupa las variables dentro de Agua."
+`;

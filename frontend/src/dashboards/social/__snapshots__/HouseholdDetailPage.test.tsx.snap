@@ -1,0 +1,1271 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds a member found by search, skipping people of other households > screen at the end 1`] = `
+"Volver a grupos familiares
+Familia Pérez
+Editar
+Eliminar
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Integrantes
+Buscar persona
+Nombre, apellido o DNI de una persona ya registrada en el tablero.
+Parentesco
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+Cancelar
+Gómez, Luis
+[Agregar a Gómez, Luis]
+Agregar
+Paz, Elena
+Ya está en Familia Paz
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre del integrante.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad del integrante.
+Parentesco
+[Qué significa Parentesco]
+Vínculo del integrante con el referente del grupo. Cada grupo tiene un solo referente.
+Pérez, Juana
+12.345.678
+[Parentesco de Pérez, Juana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Juana del grupo]
+Quitar
+Pérez, Ana
+—
+[Parentesco de Pérez, Ana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Ana del grupo]
+Quitar
+Prestaciones recibidas por el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones con el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`adds a member found by search, skipping people of other households > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;
+
+exports[`changes what a member is within the household > screen at the end 1`] = `
+"Volver a grupos familiares
+Familia Pérez
+Editar
+Eliminar
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Integrantes
+Agregar integrante
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre del integrante.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad del integrante.
+Parentesco
+[Qué significa Parentesco]
+Vínculo del integrante con el referente del grupo. Cada grupo tiene un solo referente.
+Pérez, Juana
+12.345.678
+[Parentesco de Pérez, Juana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Juana del grupo]
+Quitar
+Pérez, Ana
+—
+[Parentesco de Pérez, Ana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Ana del grupo]
+Quitar
+Prestaciones recibidas por el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones con el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`changes what a member is within the household > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;
+
+exports[`closes the edit form with Escape > screen at the end 1`] = `
+"Volver a grupos familiares
+Familia Pérez
+Editar
+Eliminar
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Integrantes
+Agregar integrante
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre del integrante.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad del integrante.
+Parentesco
+[Qué significa Parentesco]
+Vínculo del integrante con el referente del grupo. Cada grupo tiene un solo referente.
+Pérez, Juana
+12.345.678
+[Parentesco de Pérez, Juana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Juana del grupo]
+Quitar
+Pérez, Ana
+—
+[Parentesco de Pérez, Ana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Ana del grupo]
+Quitar
+Prestaciones recibidas por el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones con el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`closes the edit form with Escape > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;
+
+exports[`deletes the household after confirming > screen at the end 1`] = `"households list"`;
+
+exports[`deletes the household after confirming > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;
+
+exports[`edits the household > screen at the end 1`] = `
+"Volver a grupos familiares
+Familia Pérez
+Editar
+Eliminar
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Integrantes
+Agregar integrante
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre del integrante.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad del integrante.
+Parentesco
+[Qué significa Parentesco]
+Vínculo del integrante con el referente del grupo. Cada grupo tiene un solo referente.
+Pérez, Juana
+12.345.678
+[Parentesco de Pérez, Juana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Juana del grupo]
+Quitar
+Pérez, Ana
+—
+[Parentesco de Pérez, Ana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Ana del grupo]
+Quitar
+Prestaciones recibidas por el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones con el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`edits the household > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;
+
+exports[`explains that a household has a single head > screen at the end 1`] = `
+"Volver a grupos familiares
+El grupo ya tiene un referente.
+Familia Pérez
+Editar
+Eliminar
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Integrantes
+Agregar integrante
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre del integrante.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad del integrante.
+Parentesco
+[Qué significa Parentesco]
+Vínculo del integrante con el referente del grupo. Cada grupo tiene un solo referente.
+Pérez, Juana
+12.345.678
+[Parentesco de Pérez, Juana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Juana del grupo]
+Quitar
+Pérez, Ana
+—
+[Parentesco de Pérez, Ana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Ana del grupo]
+Quitar
+Prestaciones recibidas por el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones con el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`explains that a household has a single head > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;
+
+exports[`keeps it when the deletion is not confirmed > screen at the end 1`] = `
+"Volver a grupos familiares
+Familia Pérez
+Editar
+Eliminar
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Integrantes
+Agregar integrante
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre del integrante.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad del integrante.
+Parentesco
+[Qué significa Parentesco]
+Vínculo del integrante con el referente del grupo. Cada grupo tiene un solo referente.
+Pérez, Juana
+12.345.678
+[Parentesco de Pérez, Juana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Juana del grupo]
+Quitar
+Pérez, Ana
+—
+[Parentesco de Pérez, Ana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Ana del grupo]
+Quitar
+Prestaciones recibidas por el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones con el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`keeps it when the deletion is not confirmed > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;
+
+exports[`keeps the edit form open and says why saving failed > screen at the end 1`] = `
+"Volver a grupos familiares
+Familia Pérez
+Editar
+Eliminar
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Integrantes
+Agregar integrante
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre del integrante.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad del integrante.
+Parentesco
+[Qué significa Parentesco]
+Vínculo del integrante con el referente del grupo. Cada grupo tiene un solo referente.
+Pérez, Juana
+12.345.678
+[Parentesco de Pérez, Juana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Juana del grupo]
+Quitar
+Pérez, Ana
+—
+[Parentesco de Pérez, Ana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Ana del grupo]
+Quitar
+Prestaciones recibidas por el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones con el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar
+Editar grupo familiar
+Revisá los datos ingresados.
+Nombre
+(Por ejemplo: Familia Pérez)
+Domicilio
+Barrio
+Cancelar
+Guardar"
+`;
+
+exports[`keeps the edit form open and says why saving failed > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;
+
+exports[`offers the first member as head and the following ones as children > screen at the end 1`] = `
+"Volver a grupos familiares
+Familia Pérez
+Editar
+Eliminar
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Integrantes
+Buscar persona
+Nombre, apellido o DNI de una persona ya registrada en el tablero.
+Parentesco
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+Cancelar
+Gómez, Ana
+[Agregar a Gómez, Ana]
+Agregar
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre del integrante.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad del integrante.
+Parentesco
+[Qué significa Parentesco]
+Vínculo del integrante con el referente del grupo. Cada grupo tiene un solo referente.
+Gómez, Luis
+—
+[Parentesco de Gómez, Luis]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Gómez, Luis del grupo]
+Quitar
+Prestaciones recibidas por el grupo
+Todavía no hay prestaciones registradas.
+Intervenciones con el grupo
+Todavía no hay intervenciones registradas."
+`;
+
+exports[`offers the first member as head and the following ones as children > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;
+
+exports[`removes a member from the household > screen at the end 1`] = `
+"Volver a grupos familiares
+Familia Pérez
+Editar
+Eliminar
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Integrantes
+Agregar integrante
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre del integrante.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad del integrante.
+Parentesco
+[Qué significa Parentesco]
+Vínculo del integrante con el referente del grupo. Cada grupo tiene un solo referente.
+Pérez, Juana
+12.345.678
+[Parentesco de Pérez, Juana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Juana del grupo]
+Quitar
+Pérez, Ana
+—
+[Parentesco de Pérez, Ana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Ana del grupo]
+Quitar
+Prestaciones recibidas por el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones con el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`removes a member from the household > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;
+
+exports[`says why the deletion failed and stays > screen at the end 1`] = `
+"Volver a grupos familiares
+No se puede eliminar porque está siendo usado por otros registros.
+Familia Pérez
+Editar
+Eliminar
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Integrantes
+Agregar integrante
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre del integrante.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad del integrante.
+Parentesco
+[Qué significa Parentesco]
+Vínculo del integrante con el referente del grupo. Cada grupo tiene un solo referente.
+Pérez, Juana
+12.345.678
+[Parentesco de Pérez, Juana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Juana del grupo]
+Quitar
+Pérez, Ana
+—
+[Parentesco de Pérez, Ana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Ana del grupo]
+Quitar
+Prestaciones recibidas por el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones con el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`says why the deletion failed and stays > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;
+
+exports[`says why the household cannot be loaded > screen at the end 1`] = `
+"Volver a grupos familiares
+No se encontró el registro."
+`;
+
+exports[`says why the household cannot be loaded > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;
+
+exports[`searches people to add, says when none match or there are more, and closes the search > screen at the end 1`] = `
+"Volver a grupos familiares
+Familia Pérez
+Editar
+Eliminar
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Integrantes
+Agregar integrante
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre del integrante.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad del integrante.
+Parentesco
+[Qué significa Parentesco]
+Vínculo del integrante con el referente del grupo. Cada grupo tiene un solo referente.
+Pérez, Juana
+12.345.678
+[Parentesco de Pérez, Juana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Juana del grupo]
+Quitar
+Pérez, Ana
+—
+[Parentesco de Pérez, Ana]
+Referente
+Cónyuge o pareja
+Hijo/a
+Padre o madre
+Hermano/a
+Abuelo/a
+Nieto/a
+Otro familiar
+No familiar
+[Quitar a Pérez, Ana del grupo]
+Quitar
+Prestaciones recibidas por el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones con el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`searches people to add, says when none match or there are more, and closes the search > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;
+
+exports[`shows the household, its members and the history of all of them > screen at the end 1`] = `
+"Volver a grupos familiares
+Familia Pérez
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Integrantes
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre del integrante.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad del integrante.
+Parentesco
+[Qué significa Parentesco]
+Vínculo del integrante con el referente del grupo. Cada grupo tiene un solo referente.
+Pérez, Juana
+12.345.678
+Referente
+Pérez, Ana
+—
+Hijo/a
+Prestaciones recibidas por el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+Intervenciones con el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar."
+`;
+
+exports[`shows the household, its members and the history of all of them > screen at the start 1`] = `
+"Volver a grupos familiares
+[Cargando…]"
+`;

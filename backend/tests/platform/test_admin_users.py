@@ -1,6 +1,14 @@
 import pytest
 
-from tests.factories import login, make_membership, make_municipality, make_user
+from tests.factories import (
+    accept_invitation,
+    emails_to,
+    link_token,
+    login,
+    make_membership,
+    make_municipality,
+    make_user,
+)
 
 
 @pytest.fixture
@@ -20,7 +28,6 @@ def _new_user(**overrides):
     return {
         "email": "carla@noetinger.test",
         "full_name": "Carla Carga",
-        "password": "long-password-1",
         "is_admin": False,
         "grants": {"demo": "editor"},
     } | overrides
@@ -30,7 +37,7 @@ def test_admin_lists_only_users_of_the_active_municipality(admin_client):
     other = make_municipality("Saira")
     make_membership(make_user("otro@saira.test"), other)
 
-    users = admin_client.get("/api/admin/users").json()
+    users = admin_client.get("/api/admin/users").json()["items"]
 
     assert [u["user"]["email"] for u in users] == ["admin@noetinger.test"]
 
@@ -45,8 +52,27 @@ def test_admin_creates_user_with_grants(admin_client, client):
     assert response.status_code == 201
     assert response.json()["grants"] == {"demo": "editor"}
     client.post("/api/auth/logout")
+    accept_invitation(client, "carla@noetinger.test", "long-password-1")
     me = login(client, "carla@noetinger.test", "long-password-1").json()
     assert me["dashboards"] == [{"key": "demo", "level": "editor"}]
+
+
+def test_adding_a_new_email_asks_no_password_and_emails_an_invitation(admin_client, client):
+    # A password in the request is ignored: only the owner of the email chooses one.
+    admin_client.post("/api/admin/users", json=_new_user(password="typed-by-the-admin"))
+    client.post("/api/auth/logout")
+
+    signed_in = client.post(
+        "/api/auth/login",
+        json={"email": "carla@noetinger.test", "password": "typed-by-the-admin"},
+    )
+
+    assert signed_in.status_code == 401
+    [invitation] = emails_to("carla@noetinger.test")
+    assert invitation.subject == "Te dieron acceso a Noetinger en gobernar360"
+    assert "Carla Carga" in invitation.body
+    assert "Admin" in invitation.body  # who invited them
+    assert "http://localhost:5173/set-password#" in invitation.body
 
 
 def test_creating_user_with_existing_email_in_same_municipality_returns_conflict(admin_client):
@@ -55,39 +81,88 @@ def test_creating_user_with_existing_email_in_same_municipality_returns_conflict
     response = admin_client.post("/api/admin/users", json=_new_user(email=" Carla@Noetinger.TEST "))
 
     assert response.status_code == 409
-    assert response.json()["error"]["code"] == "conflict"
+    assert response.json()["error"] == {
+        "code": "conflict",
+        "message": "This user already belongs to the municipality.",
+    }
 
 
-def test_admin_cannot_add_an_account_that_already_exists_elsewhere(admin_client, client):
-    # Whoever registered the email first chose its password, so letting an administrator
-    # attach it to their municipality would hand that person access to it.
-    other = make_municipality("Saira")
-    make_membership(make_user("carla@noetinger.test"), other)
+def test_adding_an_existing_account_answers_exactly_like_a_new_one(admin_client, client):
+    # Accounts are shared between municipalities. The administrator must not learn that
+    # one existed, nor get a way into it: the owner keeps their password and is told.
+    make_membership(make_user("carla@noetinger.test"), make_municipality("Saira"))
 
-    response = admin_client.post("/api/admin/users", json=_new_user())
-    forced = admin_client.post("/api/admin/users", json=_new_user(existing_account="keep_password"))
+    existing = admin_client.post("/api/admin/users", json=_new_user(full_name="Carla"))
+    new = admin_client.post(
+        "/api/admin/users", json=_new_user(email="nueva@noetinger.test", full_name="Carla")
+    )
 
-    assert (response.status_code, forced.status_code) == (409, 409)
-    assert response.json()["error"]["code"] == "account_exists"
+    assert existing.status_code == new.status_code == 201
+    assert existing.json().keys() == new.json().keys()
+    assert [len(emails_to("carla@noetinger.test")), len(emails_to("nueva@noetinger.test"))] == [
+        1,
+        1,
+    ]
+    assert "/set-password" not in emails_to("carla@noetinger.test")[0].body
     client.post("/api/auth/logout")
     me = login(client, "carla@noetinger.test").json()
-    assert [m["municipality"]["name"] for m in me["memberships"]] == ["Saira"]
+    assert sorted(m["municipality"]["name"] for m in me["memberships"]) == ["Noetinger", "Saira"]
+
+
+def test_admin_resends_an_invitation_and_only_the_newest_link_works(admin_client, client):
+    member_id = admin_client.post("/api/admin/users", json=_new_user()).json()["membership_id"]
+
+    response = admin_client.post(f"/api/admin/users/{member_id}/invitation")
+
+    assert response.status_code == 204
+    first, second = emails_to("carla@noetinger.test")
+    client.post("/api/auth/logout")
+    stale = client.post(
+        "/api/auth/tokens/redeem",
+        json={"token": link_token(first), "password": "long-password-1"},
+    )
+    assert stale.status_code == 410
+    accept_invitation(client, "carla@noetinger.test", "long-password-1")
+
+
+def test_resending_to_an_account_with_a_password_answers_the_same_and_sends_nothing(
+    admin_client,
+):
+    make_membership(make_user("carla@noetinger.test"), make_municipality("Saira"))
+    member_id = admin_client.post("/api/admin/users", json=_new_user()).json()["membership_id"]
+
+    response = admin_client.post(f"/api/admin/users/{member_id}/invitation")
+
+    assert response.status_code == 204
+    assert len(emails_to("carla@noetinger.test")) == 1  # the notice of the first addition
+
+
+def test_admin_cannot_resend_an_invitation_for_another_municipality(admin_client):
+    foreign = make_membership(
+        make_user("otro@saira.test", password=None), make_municipality("Saira")
+    )
+
+    response = admin_client.post(f"/api/admin/users/{foreign.id}/invitation")
+
+    assert response.status_code == 404
+    assert emails_to("otro@saira.test") == []
 
 
 def test_grant_for_a_dashboard_that_is_not_enabled_is_rejected(admin_client):
-    response = admin_client.post("/api/admin/users", json=_new_user(grants={"other": "viewer"}))
+    response = admin_client.post(
+        "/api/admin/users",
+        json=_new_user(grants={"zeta": "viewer", "demo": "viewer", "other": "editor"}),
+    )
 
     assert response.status_code == 422
+    assert response.json()["error"] == {
+        "code": "validation_error",
+        "message": "Dashboards not enabled for this municipality: other, zeta.",
+    }
 
 
 def test_unknown_grant_level_is_rejected(admin_client):
     response = admin_client.post("/api/admin/users", json=_new_user(grants={"demo": "owner"}))
-
-    assert response.status_code == 422
-
-
-def test_short_password_is_rejected(admin_client):
-    response = admin_client.post("/api/admin/users", json=_new_user(password="short"))
 
     assert response.status_code == 422
 
@@ -133,6 +208,10 @@ def test_admin_cannot_edit_membership_of_another_municipality(admin_client):
 
     assert patch.status_code == 404
     assert delete.status_code == 404
+    assert patch.json()["error"] == {
+        "code": "not_found",
+        "message": "User not found in this municipality.",
+    }
 
 
 def test_admin_removes_a_member_but_not_the_user_account(admin_client, client):
@@ -140,28 +219,36 @@ def test_admin_removes_a_member_but_not_the_user_account(admin_client, client):
 
     assert admin_client.delete(f"/api/admin/users/{membership_id}").status_code == 204
 
-    assert len(admin_client.get("/api/admin/users").json()) == 1
+    assert len(admin_client.get("/api/admin/users").json()["items"]) == 1
     client.post("/api/auth/logout")
+    accept_invitation(client, "carla@noetinger.test", "long-password-1")
     me = login(client, "carla@noetinger.test", "long-password-1").json()
     assert me["memberships"] == []
 
 
 def test_last_admin_cannot_demote_or_remove_themselves(admin_client):
-    own_id = admin_client.get("/api/admin/users").json()[0]["membership_id"]
+    own_id = admin_client.get("/api/admin/users").json()["items"][0]["membership_id"]
 
     demote = admin_client.patch(f"/api/admin/users/{own_id}", json={"is_admin": False})
     remove = admin_client.delete(f"/api/admin/users/{own_id}")
 
     assert demote.status_code == 409
     assert remove.status_code == 409
-    assert demote.json()["error"]["code"] == "conflict"
+    assert (
+        demote.json()["error"]
+        == remove.json()["error"]
+        == {
+            "code": "conflict",
+            "message": "The municipality must keep at least one administrator.",
+        }
+    )
 
 
 def test_admin_can_step_down_when_another_admin_exists(admin_client):
     admin_client.post("/api/admin/users", json=_new_user(is_admin=True))
     own = next(
         u
-        for u in admin_client.get("/api/admin/users").json()
+        for u in admin_client.get("/api/admin/users").json()["items"]
         if u["user"]["email"] == "admin@noetinger.test"
     )
 
@@ -196,7 +283,7 @@ def test_member_grants_of_a_disabled_dashboard_are_hidden_and_do_not_block_edits
 
     listed = next(
         m
-        for m in admin_client.get("/api/admin/users").json()
+        for m in admin_client.get("/api/admin/users").json()["items"]
         if m["membership_id"] == str(member.id)
     )
     response = admin_client.patch(

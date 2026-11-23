@@ -25,3 +25,9 @@ export function hasLevel(me: Me | null, key: string, min: AccessLevel): boolean 
 export function activeMembership(me: Me | null) {
   return me?.memberships.find((m) => m.municipality.id === me.active_municipality_id) ?? null
 }
+
+/** One page of a list the API paginates. */
+export interface Page<T> {
+  items: T[]
+  total: number
+}

@@ -37,23 +37,26 @@ RELATIONSHIPS = (
 )
 
 
-def _fk(target: str) -> Mapped[uuid.UUID]:
+# The column helpers below run once, while the models are imported, where mutation testing
+# cannot reach them (hence the pragmas); tests/test_models_match_migrations.py checks the
+# schema they build against the migrations.
+def _fk(target: str) -> Mapped[uuid.UUID]:  # pragma: no mutate block
     return mapped_column(Uuid, ForeignKey(target, ondelete="RESTRICT"), nullable=False, index=True)
 
 
-def _in(column: str, values: tuple[str, ...]) -> str:
+def _in(column: str, values: tuple[str, ...]) -> str:  # pragma: no mutate block
     return f"{column} IN ({', '.join(repr(value) for value in values)})"
 
 
-def _name() -> Mapped[str]:
+def _name() -> Mapped[str]:  # pragma: no mutate block
     return mapped_column(String(200), nullable=False)
 
 
-def _text(length: int) -> Mapped[str]:
+def _text(length: int) -> Mapped[str]:  # pragma: no mutate block
     return mapped_column(String(length), nullable=False, default="", server_default="")
 
 
-def _long_text() -> Mapped[str]:
+def _long_text() -> Mapped[str]:  # pragma: no mutate block
     return mapped_column(Text, nullable=False, default="", server_default="")
 
 

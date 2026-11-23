@@ -1,0 +1,209 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks for no password: the person is invited by email > screen at the end 1`] = `
+"Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Acceso a Proyectos
+Sin acceso
+Lectura
+Carga
+Administración
+Guardar"
+`;
+
+exports[`asks for no password: the person is invited by email > screen at the start 1`] = `
+"Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Acceso a Proyectos
+Sin acceso
+Lectura
+Carga
+Administración
+Guardar"
+`;
+
+exports[`creates a user with the chosen access > screen at the end 1`] = `
+"Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Acceso a Proyectos
+Sin acceso
+Lectura
+Carga
+Administración
+Guardar"
+`;
+
+exports[`creates a user with the chosen access > screen at the start 1`] = `
+"Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Acceso a Proyectos
+Sin acceso
+Lectura
+Carga
+Administración
+Guardar"
+`;
+
+exports[`drops an access chosen and then taken back, and trims what was typed > screen at the end 1`] = `
+"Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Acceso a Proyectos
+Sin acceso
+Lectura
+Carga
+Administración
+Acceso a Social
+Sin acceso
+Lectura
+Carga
+Administración
+Guardar"
+`;
+
+exports[`drops an access chosen and then taken back, and trims what was typed > screen at the start 1`] = `
+"Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Acceso a Proyectos
+Sin acceso
+Lectura
+Carga
+Administración
+Acceso a Social
+Sin acceso
+Lectura
+Carga
+Administración
+Guardar"
+`;
+
+exports[`gives an administrator no separate access, sending none > screen at the end 1`] = `
+"Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Guardar"
+`;
+
+exports[`gives an administrator no separate access, sending none > screen at the start 1`] = `
+"Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Acceso a Proyectos
+Sin acceso
+Lectura
+Carga
+Administración
+Guardar"
+`;
+
+exports[`names a dashboard it has no words for by its key, and can be cancelled > screen at the end 1`] = `
+"Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Acceso a mystery
+Sin acceso
+Lectura
+Carga
+Administración
+Cancelar
+Guardar"
+`;
+
+exports[`names a dashboard it has no words for by its key, and can be cancelled > screen at the start 1`] = `
+"Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Acceso a mystery
+Sin acceso
+Lectura
+Carga
+Administración
+Cancelar
+Guardar"
+`;
+
+exports[`offers no cancel button when there is nowhere to go back to > screen at the end 1`] = `
+"Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Guardar"
+`;
+
+exports[`offers no cancel button when there is nowhere to go back to > screen at the start 1`] = `
+"Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Guardar"
+`;
+
+exports[`shows why a user could not be added > screen at the end 1`] = `
+"La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
+Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Acceso a Proyectos
+Sin acceso
+Lectura
+Carga
+Administración
+Guardar"
+`;
+
+exports[`shows why a user could not be added > screen at the start 1`] = `
+"Nombre y apellido
+*
+Email
+*
+No hace falta elegir una contraseña: le enviamos un email para que la elija.
+Administrador del municipio
+Acceso a Proyectos
+Sin acceso
+Lectura
+Carga
+Administración
+Guardar"
+`;

@@ -20,12 +20,20 @@ import { api } from '../api/client'
 import { dashboardLabelKey } from '../dashboards/registry'
 import { errorMessage } from './errorMessage'
 import { KINDS, useMunicipalities } from './operatorApi'
+import { Pager } from './Pager'
+import { useLocalTable } from './paging'
+import { SearchInput } from './SearchInput'
 import { useAction } from './useAction'
 
 /** Platform operator: the municipalities of the platform and the form to add one. */
 export function OperatorPage() {
   const { t } = useTranslation()
   const municipalities = useMunicipalities()
+  const table = useLocalTable(
+    'platform.municipalities',
+    municipalities.data,
+    (municipality) => `${municipality.name} ${municipality.slug}`,
+  )
   const action = useAction(['platform', 'me'])
   const [name, setName] = useState('')
   const [slug, setSlug] = useState('')
@@ -56,7 +64,15 @@ export function OperatorPage() {
       {municipalities.isLoading && <Loader aria-label={t('app.loading')} />}
       {municipalities.isError && <Alert color="red">{errorMessage(municipalities.error)}</Alert>}
       {municipalities.data?.length === 0 && <Text c="dimmed">{t('platform.empty')}</Text>}
-      {municipalities.data && municipalities.data.length > 0 && (
+      {table.hasItems && (
+        <SearchInput
+          value={table.query}
+          onChange={table.setQuery}
+          placeholder={t('platform.searchHint')}
+        />
+      )}
+      {table.hasItems && table.total === 0 && <Text c="dimmed">{t('app.noMatches')}</Text>}
+      {table.rows.length > 0 && (
         <Table.ScrollContainer minWidth={560}>
           <Table verticalSpacing="sm">
             <Table.Thead>
@@ -68,7 +84,7 @@ export function OperatorPage() {
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
-              {municipalities.data.map((municipality) => (
+              {table.rows.map((municipality) => (
                 <Table.Tr key={municipality.id}>
                   <Table.Td>
                     <Text>{municipality.name}</Text>
@@ -101,6 +117,7 @@ export function OperatorPage() {
           </Table>
         </Table.ScrollContainer>
       )}
+      <Pager {...table.pager} />
 
       <Paper withBorder p="md">
         <form onSubmit={(event) => void create(event)}>

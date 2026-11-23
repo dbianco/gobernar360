@@ -1,3 +1,4 @@
+import uuid
 from datetime import date
 
 import pytest
@@ -11,7 +12,10 @@ from tests.factories import login, make_municipality
 from tests.projects.factories import (
     make_axis,
     make_department,
+    make_indicator,
     make_objective,
+    make_owner,
+    make_program,
     make_project,
     make_term,
     projects_member,
@@ -380,3 +384,128 @@ def test_patch_can_clear_optional_fields(client, plan):
 
     assert response.status_code == 200
     assert (response.json()["end_date"], response.json()["manual_progress"]) == (None, None)
+
+
+def _error(response) -> tuple:
+    return response.status_code, response.json()["error"]
+
+
+@pytest.mark.parametrize(
+    "field", ["term_id", "axis_id", "objective_id", "department_id", "owner_id", "program_id"]
+)
+def test_each_reference_that_does_not_exist_is_named(client, plan, field):
+    response = client.post(f"{BASE}/projects", json=_payload(plan, **{field: str(uuid.uuid4())}))
+
+    assert _error(response) == (
+        422,
+        {
+            "code": "invalid_reference",
+            "message": f"{field} does not reference an existing record.",
+        },
+    )
+
+
+def test_a_project_may_name_its_owner_and_program(client, plan):
+    owner = make_owner(plan["municipality"])
+    program = make_program(plan["municipality"])
+    objective = make_objective(plan["municipality"], plan["axis"])
+
+    response = client.post(
+        f"{BASE}/projects",
+        json=_payload(
+            plan,
+            owner_id=str(owner.id),
+            program_id=str(program.id),
+            objective_id=str(objective.id),
+            start_date="2024-03-01",
+            end_date="2024-11-30",
+            manual_progress=40,
+        ),
+    )
+
+    assert response.status_code == 201
+    body = response.json()
+    assert (body["start_date"], body["end_date"], body["manual_progress"]) == (
+        "2024-03-01",
+        "2024-11-30",
+        40,
+    )
+    assert body["owner"] == {"id": str(owner.id), "full_name": "María Pérez"}
+    assert body["program"] == {"id": str(program.id), "name": "Plan de bacheo"}
+    assert body["objective"]["id"] == str(objective.id)
+
+
+def test_the_reasons_a_project_is_refused_are_spelled_out(client, plan):
+    other_term = make_term(
+        plan["municipality"], name="Gestión 2019-2023", start_year=2019, end_year=2023
+    )
+    other_axis = make_axis(plan["municipality"], other_term, "Eje anterior")
+    sibling_axis = make_axis(plan["municipality"], plan["term"], "Ciudad segura")
+    objective = make_objective(plan["municipality"], sibling_axis)
+
+    def refused(**changes) -> dict:
+        response = client.post(f"{BASE}/projects", json=_payload(plan, **changes))
+        assert response.status_code == 422
+        return response.json()["error"]
+
+    assert refused(axis_id=str(other_axis.id)) == {
+        "code": "invalid_reference",
+        "message": "axis_id does not belong to the project's term.",
+    }
+    assert refused(objective_id=str(objective.id)) == {
+        "code": "invalid_reference",
+        "message": "objective_id does not belong to the project's axis.",
+    }
+    assert refused(year=2022) == {
+        "code": "validation_error",
+        "message": "year must be within the term.",
+    }
+    assert refused(start_date="2024-05-01", end_date="2024-04-30") == {
+        "code": "validation_error",
+        "message": "end_date must not be before start_date.",
+    }
+
+
+@pytest.mark.parametrize("year", [2023, 2027])
+def test_the_first_and_last_years_of_the_term_are_within_it(client, plan, year):
+    assert client.post(f"{BASE}/projects", json=_payload(plan, year=year)).status_code == 201
+
+
+@pytest.mark.parametrize(
+    "dates",
+    [
+        {"start_date": "2024-05-01", "end_date": "2024-05-01"},
+        {"start_date": "2024-05-01"},
+        {"end_date": "2024-05-01"},
+    ],
+)
+def test_a_project_may_end_the_day_it_starts_or_leave_a_date_open(client, plan, dates):
+    assert client.post(f"{BASE}/projects", json=_payload(plan, **dates)).status_code == 201
+
+
+def test_indicators_are_listed_by_axis_objective_and_name_and_filtered(client, plan):
+    municipality, term = plan["municipality"], plan["term"]
+    safety = make_axis(municipality, term, "Ciudad segura")
+    lights = make_objective(municipality, safety, "Más iluminación")
+    housing = make_objective(municipality, plan["axis"], "Reducir el déficit habitacional")
+    access = make_objective(municipality, plan["axis"], "Acceso al crédito")
+    make_indicator(municipality, lights, "Luminarias LED")
+    make_indicator(municipality, housing, "Viviendas entregadas")
+    make_indicator(municipality, housing, "Lotes con servicios")
+    make_indicator(municipality, access, "Créditos otorgados")
+    old_term = make_term(municipality, name="Gestión 2019-2023", start_year=2019, end_year=2023)
+    make_indicator(
+        municipality, make_objective(municipality, make_axis(municipality, old_term, "A")), "Viejo"
+    )
+
+    def names(**params) -> list[str]:
+        return [item["name"] for item in client.get(f"{BASE}/indicators", params=params).json()]
+
+    assert names(term_id=str(term.id)) == [
+        "Créditos otorgados",
+        "Lotes con servicios",
+        "Viviendas entregadas",
+        "Luminarias LED",
+    ]
+    assert names(objective_id=str(housing.id)) == ["Lotes con servicios", "Viviendas entregadas"]
+    assert len(names()) == 5

@@ -1,0 +1,516 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds a subcategory to the chosen category > screen at the end 1`] = `
+"Categoría
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategorías
+Todavía no hay elementos cargados.
+[Nueva subcategoría]
+(Nueva subcategoría)
+Agregar
+Variables
+Para definir variables primero agregá una subcategoría."
+`;
+
+exports[`adds a subcategory to the chosen category > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`asks for a subcategory before a variable can be added > screen at the end 1`] = `
+"Categoría
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategorías
+Todavía no hay elementos cargados.
+[Nueva subcategoría]
+(Nueva subcategoría)
+Agregar
+Variables
+Para definir variables primero agregá una subcategoría."
+`;
+
+exports[`asks for a subcategory before a variable can be added > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`closes the form with Escape without saving > screen at the end 1`] = `
+"Categoría
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategorías
+Consumo eléctrico
+[Renombrar Consumo eléctrico]
+Editar
+[Eliminar Consumo eléctrico]
+Eliminar
+[Nueva subcategoría]
+(Nueva subcategoría)
+Agregar
+Variables
+Agregar variable
+Buscar
+(Variable o subcategoría)
+Nombre
+[Qué significa Nombre]
+Lo que el municipio mide, por ejemplo el consumo eléctrico de un edificio.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Frecuencia de carga
+[Qué significa Frecuencia de carga]
+Cada cuánto se carga un valor: una vez por mes o una vez por año.
+Meta anual
+[Qué significa Meta anual]
+Valor anual que se busca alcanzar o no superar. Sin meta, la variable solo se registra.
+Consumo del palacio municipal
+Consumo eléctrico
+Mensual
+12.000 kWh
+[Editar variable: Consumo del palacio municipal]
+Editar
+[Eliminar variable: Consumo del palacio municipal]
+Eliminar"
+`;
+
+exports[`closes the form with Escape without saving > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`creates a variable from the form > screen at the end 1`] = `
+"Categoría
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategorías
+Consumo eléctrico
+[Renombrar Consumo eléctrico]
+Editar
+[Eliminar Consumo eléctrico]
+Eliminar
+[Nueva subcategoría]
+(Nueva subcategoría)
+Agregar
+Variables
+Agregar variable
+Buscar
+(Variable o subcategoría)
+Nombre
+[Qué significa Nombre]
+Lo que el municipio mide, por ejemplo el consumo eléctrico de un edificio.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Frecuencia de carga
+[Qué significa Frecuencia de carga]
+Cada cuánto se carga un valor: una vez por mes o una vez por año.
+Meta anual
+[Qué significa Meta anual]
+Valor anual que se busca alcanzar o no superar. Sin meta, la variable solo se registra.
+Consumo del palacio municipal
+Consumo eléctrico
+Mensual
+12.000 kWh
+[Editar variable: Consumo del palacio municipal]
+Editar
+[Eliminar variable: Consumo del palacio municipal]
+Eliminar"
+`;
+
+exports[`creates a variable from the form > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`creates an annual variable in another subcategory, and shows a missing target as none > screen at the end 1`] = `
+"Categoría
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategorías
+Consumo eléctrico
+[Renombrar Consumo eléctrico]
+Editar
+[Eliminar Consumo eléctrico]
+Eliminar
+Alumbrado público
+[Renombrar Alumbrado público]
+Editar
+[Eliminar Alumbrado público]
+Eliminar
+[Nueva subcategoría]
+(Nueva subcategoría)
+Agregar
+Variables
+Agregar variable
+Buscar
+(Variable o subcategoría)
+Nombre
+[Qué significa Nombre]
+Lo que el municipio mide, por ejemplo el consumo eléctrico de un edificio.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Frecuencia de carga
+[Qué significa Frecuencia de carga]
+Cada cuánto se carga un valor: una vez por mes o una vez por año.
+Meta anual
+[Qué significa Meta anual]
+Valor anual que se busca alcanzar o no superar. Sin meta, la variable solo se registra.
+Consumo del palacio municipal
+Consumo eléctrico
+Mensual
+—
+[Editar variable: Consumo del palacio municipal]
+Editar
+[Eliminar variable: Consumo del palacio municipal]
+Eliminar"
+`;
+
+exports[`creates an annual variable in another subcategory, and shows a missing target as none > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`edits a variable without sending its frequency > screen at the end 1`] = `
+"Categoría
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategorías
+Consumo eléctrico
+[Renombrar Consumo eléctrico]
+Editar
+[Eliminar Consumo eléctrico]
+Eliminar
+[Nueva subcategoría]
+(Nueva subcategoría)
+Agregar
+Variables
+Agregar variable
+Buscar
+(Variable o subcategoría)
+Nombre
+[Qué significa Nombre]
+Lo que el municipio mide, por ejemplo el consumo eléctrico de un edificio.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Frecuencia de carga
+[Qué significa Frecuencia de carga]
+Cada cuánto se carga un valor: una vez por mes o una vez por año.
+Meta anual
+[Qué significa Meta anual]
+Valor anual que se busca alcanzar o no superar. Sin meta, la variable solo se registra.
+Consumo del palacio municipal
+Consumo eléctrico
+Mensual
+12.000 kWh
+[Editar variable: Consumo del palacio municipal]
+Editar
+[Eliminar variable: Consumo del palacio municipal]
+Eliminar"
+`;
+
+exports[`edits a variable without sending its frequency > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`explains that a variable with values cannot be deleted > screen at the end 1`] = `
+"Categoría
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+No se puede eliminar porque está siendo usado por otros registros.
+Subcategorías
+Consumo eléctrico
+[Renombrar Consumo eléctrico]
+Editar
+[Eliminar Consumo eléctrico]
+Eliminar
+[Nueva subcategoría]
+(Nueva subcategoría)
+Agregar
+Variables
+Agregar variable
+Buscar
+(Variable o subcategoría)
+Nombre
+[Qué significa Nombre]
+Lo que el municipio mide, por ejemplo el consumo eléctrico de un edificio.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Frecuencia de carga
+[Qué significa Frecuencia de carga]
+Cada cuánto se carga un valor: una vez por mes o una vez por año.
+Meta anual
+[Qué significa Meta anual]
+Valor anual que se busca alcanzar o no superar. Sin meta, la variable solo se registra.
+Consumo del palacio municipal
+Consumo eléctrico
+Mensual
+12.000 kWh
+[Editar variable: Consumo del palacio municipal]
+Editar
+[Eliminar variable: Consumo del palacio municipal]
+Eliminar"
+`;
+
+exports[`explains that a variable with values cannot be deleted > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`keeps the form open and says why saving failed > screen at the end 1`] = `
+"Categoría
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategorías
+Consumo eléctrico
+[Renombrar Consumo eléctrico]
+Editar
+[Eliminar Consumo eléctrico]
+Eliminar
+[Nueva subcategoría]
+(Nueva subcategoría)
+Agregar
+Variables
+Agregar variable
+Buscar
+(Variable o subcategoría)
+Nombre
+[Qué significa Nombre]
+Lo que el municipio mide, por ejemplo el consumo eléctrico de un edificio.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Frecuencia de carga
+[Qué significa Frecuencia de carga]
+Cada cuánto se carga un valor: una vez por mes o una vez por año.
+Meta anual
+[Qué significa Meta anual]
+Valor anual que se busca alcanzar o no superar. Sin meta, la variable solo se registra.
+Consumo del palacio municipal
+Consumo eléctrico
+Mensual
+12.000 kWh
+[Editar variable: Consumo del palacio municipal]
+Editar
+[Eliminar variable: Consumo del palacio municipal]
+Eliminar
+Agregar variable
+La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
+Subcategoría
+Consumo eléctrico
+Nombre
+Unidad
+Frecuencia de carga
+Mensual
+Anual
+Meta anual
+Opcional.
+Sentido
+Más es mejor
+Menos es mejor
+Fuente del dato
+Municipal
+Externa
+Valor del año
+Suma de los meses
+Promedio de los meses
+Último mes cargado
+Cancelar
+Guardar"
+`;
+
+exports[`keeps the form open and says why saving failed > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lists the subcategories and variables of the chosen category > screen at the end 1`] = `
+"Categoría
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategorías
+Calidad del agua
+[Renombrar Calidad del agua]
+Editar
+[Eliminar Calidad del agua]
+Eliminar
+[Nueva subcategoría]
+(Nueva subcategoría)
+Agregar
+Variables
+Agregar variable
+Buscar
+(Variable o subcategoría)
+Nombre
+[Qué significa Nombre]
+Lo que el municipio mide, por ejemplo el consumo eléctrico de un edificio.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Frecuencia de carga
+[Qué significa Frecuencia de carga]
+Cada cuánto se carga un valor: una vez por mes o una vez por año.
+Meta anual
+[Qué significa Meta anual]
+Valor anual que se busca alcanzar o no superar. Sin meta, la variable solo se registra.
+Puntos de monitoreo
+Calidad del agua
+Anual
+10 puntos
+[Editar variable: Puntos de monitoreo]
+Editar
+[Eliminar variable: Puntos de monitoreo]
+Eliminar"
+`;
+
+exports[`lists the subcategories and variables of the chosen category > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`reads a dotted target as thousands and rejects an ambiguous one > screen at the end 1`] = `
+"Categoría
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategorías
+Consumo eléctrico
+[Renombrar Consumo eléctrico]
+Editar
+[Eliminar Consumo eléctrico]
+Eliminar
+[Nueva subcategoría]
+(Nueva subcategoría)
+Agregar
+Variables
+Agregar variable
+Buscar
+(Variable o subcategoría)
+Nombre
+[Qué significa Nombre]
+Lo que el municipio mide, por ejemplo el consumo eléctrico de un edificio.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Frecuencia de carga
+[Qué significa Frecuencia de carga]
+Cada cuánto se carga un valor: una vez por mes o una vez por año.
+Meta anual
+[Qué significa Meta anual]
+Valor anual que se busca alcanzar o no superar. Sin meta, la variable solo se registra.
+Consumo del palacio municipal
+Consumo eléctrico
+Mensual
+12.000 kWh
+[Editar variable: Consumo del palacio municipal]
+Editar
+[Eliminar variable: Consumo del palacio municipal]
+Eliminar"
+`;
+
+exports[`reads a dotted target as thousands and rejects an ambiguous one > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`renames and deletes items of /subcategories > screen at the end 1`] = `
+"Categoría
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategorías
+Consumo eléctrico
+[Renombrar Consumo eléctrico]
+Editar
+[Eliminar Consumo eléctrico]
+Eliminar
+[Nueva subcategoría]
+(Nueva subcategoría)
+Agregar
+Variables
+Agregar variable
+Buscar
+(Variable o subcategoría)
+Nombre
+[Qué significa Nombre]
+Lo que el municipio mide, por ejemplo el consumo eléctrico de un edificio.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Frecuencia de carga
+[Qué significa Frecuencia de carga]
+Cada cuánto se carga un valor: una vez por mes o una vez por año.
+Meta anual
+[Qué significa Meta anual]
+Valor anual que se busca alcanzar o no superar. Sin meta, la variable solo se registra.
+Consumo del palacio municipal
+Consumo eléctrico
+Mensual
+12.000 kWh
+[Editar variable: Consumo del palacio municipal]
+Editar
+[Eliminar variable: Consumo del palacio municipal]
+Eliminar"
+`;
+
+exports[`renames and deletes items of /subcategories > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says when a category has subcategories but no variables, and when a search matches nothing > screen at the end 1`] = `
+"Categoría
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategorías
+Calidad del agua
+[Renombrar Calidad del agua]
+Editar
+[Eliminar Calidad del agua]
+Eliminar
+[Nueva subcategoría]
+(Nueva subcategoría)
+Agregar
+Variables
+Agregar variable
+Buscar
+(Variable o subcategoría)
+[Borrar la búsqueda]
+Nada coincide con la búsqueda."
+`;
+
+exports[`says when a category has subcategories but no variables, and when a search matches nothing > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows an error instead of empty lists when loading fails > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
+
+exports[`shows an error instead of empty lists when loading fails > screen at the start 1`] = `"[Cargando…]"`;

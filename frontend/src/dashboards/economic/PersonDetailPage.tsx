@@ -25,6 +25,7 @@ import { AssignmentsPanel } from './AssignmentsPanel'
 import { Field } from '../../platform/Field'
 import { formatDni } from '../../platform/format'
 import { PersonForm } from './PersonForm'
+import { useConfirm } from '../../platform/confirmContext'
 
 /** Everything the dashboard knows about one person, and the tools they received. */
 export function PersonDetailPage() {
@@ -39,12 +40,14 @@ export function PersonDetailPage() {
   const listPath = `${BASE_PATH}/people`
   const data = person.data
   const label = (key: string, options = {}) => t(`economic.people.${key}`, options)
+  const confirm = useConfirm()
+  const askDelete = (message: string) =>
+    confirm({ message, confirmLabel: t('app.delete'), danger: true })
 
-  async function remove() {
-    if (!data) return
-    if (!window.confirm(label('deleteConfirm', { name: data.person.full_name }))) return
+  async function remove(shown: NonNullable<typeof person.data>) {
+    if (!(await askDelete(label('deleteConfirm', { name: shown.person.full_name })))) return
     const deleted = await action.run(async () => {
-      await send('DELETE', `/people/${data.id}`)
+      await send('DELETE', `/people/${shown.id}`)
       return true
     })
     if (deleted) navigate(listPath)
@@ -67,7 +70,7 @@ export function PersonDetailPage() {
                 <Button variant="default" onClick={() => setEditing(true)}>
                   {t('app.edit')}
                 </Button>
-                <Button variant="subtle" color="red" onClick={() => void remove()}>
+                <Button variant="subtle" color="red" onClick={() => void remove(data)}>
                   {label('remove')}
                 </Button>
               </Group>

@@ -1,0 +1,285 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`explains that there is nothing to follow before variables exist > screen at the end 1`] = `"Todavía no hay variables definidas."`;
+
+exports[`explains that there is nothing to follow before variables exist > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`narrows the variables by subcategory, and says when a category has none > screen at the end 1`] = `
+"Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategoría
+Todos
+Variable
+Vista
+Mes a mes
+Año a año
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+No hay variables que coincidan con los filtros."
+`;
+
+exports[`narrows the variables by subcategory, and says when a category has none > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`offers only the variables of the chosen category and subcategory > screen at the end 1`] = `
+"Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategoría
+Todos
+Calidad del agua
+Variable
+Puntos de monitoreo
+Vista
+Mes a mes
+Año a año
+Puntos de monitoreo por año
+Ver como tabla"
+`;
+
+exports[`offers only the variables of the chosen category and subcategory > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says so when the variable has no values yet > screen at the end 1`] = `
+"Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategoría
+Todos
+Consumo eléctrico
+Calidad del agua
+Variable
+Consumo del palacio municipal
+Puntos de monitoreo
+Vista
+Mes a mes
+Año a año
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Consumo del palacio municipal en 2026
+Todavía no hay valores cargados para mostrar."
+`;
+
+exports[`says so when the variable has no values yet > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why the variables cannot be loaded > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
+
+exports[`says why the variables cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows an annual variable by year only > screen at the end 1`] = `
+"Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategoría
+Todos
+Consumo eléctrico
+Calidad del agua
+Variable
+Consumo del palacio municipal
+Puntos de monitoreo
+Vista
+Mes a mes
+Año a año
+Puntos de monitoreo por año
+Ver como gráfico
+Año
+[Qué significa Año]
+Mes o año al que corresponde el valor.
+Valor
+[Qué significa Valor]
+Valor cargado para ese período, en la unidad de la variable.
+2026
+7 puntos"
+`;
+
+exports[`shows an annual variable by year only > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows an error when the series cannot be loaded > screen at the end 1`] = `
+"Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategoría
+Todos
+Consumo eléctrico
+Calidad del agua
+Variable
+Consumo del palacio municipal
+Puntos de monitoreo
+Vista
+Mes a mes
+Año a año
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`shows an error when the series cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the twelve months of the first variable > screen at the end 1`] = `
+"Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategoría
+Todos
+Consumo eléctrico
+Calidad del agua
+Variable
+Consumo del palacio municipal
+Puntos de monitoreo
+Vista
+Mes a mes
+Año a año
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Consumo del palacio municipal en 2026
+Ver como gráfico
+Mes
+[Qué significa Mes]
+Mes o año al que corresponde el valor.
+Valor
+[Qué significa Valor]
+Valor cargado para ese período, en la unidad de la variable.
+Enero
+1.000 kWh
+Febrero
+1.100 kWh
+Marzo
+1.200 kWh
+Abril
+—
+Mayo
+—
+Junio
+—
+Julio
+—
+Agosto
+—
+Septiembre
+—
+Octubre
+—
+Noviembre
+—
+Diciembre
+—
+Valor de 2026: 3.300 kWh (suma de los meses).
+Meta anual: 12.000 kWh."
+`;
+
+exports[`shows the twelve months of the first variable > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`switches to the yearly figures > screen at the end 1`] = `
+"Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Subcategoría
+Todos
+Consumo eléctrico
+Calidad del agua
+Variable
+Consumo del palacio municipal
+Puntos de monitoreo
+Vista
+Mes a mes
+Año a año
+Consumo del palacio municipal por año
+Ver como gráfico
+Año
+[Qué significa Año]
+Mes o año al que corresponde el valor.
+Valor
+[Qué significa Valor]
+Valor cargado para ese período, en la unidad de la variable.
+2025
+13.000 kWh
+2026
+3.300 kWh"
+`;
+
+exports[`switches to the yearly figures > screen at the start 1`] = `"[Cargando…]"`;

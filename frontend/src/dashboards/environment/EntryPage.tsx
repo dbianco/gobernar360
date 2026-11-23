@@ -9,6 +9,9 @@ import { numberText, parseNumber } from './numbers'
 import { CATEGORIES, type Category, MONTHS, type Variable, WHOLE_YEAR } from './types'
 import { currentYear } from './years'
 import { YearSelect } from './YearSelect'
+import { Pager } from '../../platform/Pager'
+import { useLocalTable } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
 
 /**
  * One period of one variable. It saves when the person leaves the cell, and only if the
@@ -75,6 +78,23 @@ export function EntryPage() {
   const values = useValues(year)
   const action = useAction()
   const label = (key: string) => t(`environment.entry.${key}`)
+  const [search, setSearch] = useState('')
+  const visible = (variables.data ?? []).filter(
+    (variable) => category === '' || variable.subcategory.category === category,
+  )
+  const searchable = (variable: Variable) => `${variable.name} ${variable.subcategory.name}`
+  const monthly = useLocalTable(
+    'environment.entry.monthly',
+    visible.filter((variable) => variable.frequency === 'monthly'),
+    searchable,
+    search,
+  )
+  const annual = useLocalTable(
+    'environment.entry.annual',
+    visible.filter((variable) => variable.frequency === 'annual'),
+    searchable,
+    search,
+  )
 
   const failed = [variables, values].find((query) => query.isError)
   if (failed) return <Alert color="red">{errorMessage(failed.error)}</Alert>
@@ -82,11 +102,6 @@ export function EntryPage() {
   const stored = new Map(
     (values.data ?? []).map((value) => [`${value.variable_id}:${value.period}`, value.value]),
   )
-  const visible = (variables.data ?? []).filter(
-    (variable) => category === '' || variable.subcategory.category === category,
-  )
-  const monthly = visible.filter((variable) => variable.frequency === 'monthly')
-  const annual = visible.filter((variable) => variable.frequency === 'annual')
 
   const cell = (variable: Variable, period: number) => (
     <Cell
@@ -117,6 +132,7 @@ export function EntryPage() {
   return (
     <Stack>
       <Group align="flex-end">
+        <SearchInput value={search} onChange={setSearch} placeholder={label('searchHint')} />
         <YearSelect value={year} onChange={setYear} />
         <NativeSelect
           label={label('category')}
@@ -139,7 +155,10 @@ export function EntryPage() {
       {variables.data && values.data && visible.length === 0 && (
         <Text c="dimmed">{label('empty')}</Text>
       )}
-      {values.data && monthly.length > 0 && (
+      {values.data && visible.length > 0 && monthly.total + annual.total === 0 && (
+        <Text c="dimmed">{t('app.noMatches')}</Text>
+      )}
+      {values.data && monthly.rows.length > 0 && (
         <Stack gap="xs" component="section">
           <Title order={4}>{label('monthly')}</Title>
           <Table.ScrollContainer minWidth={1240}>
@@ -155,7 +174,7 @@ export function EntryPage() {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {monthly.map((variable) => (
+                {monthly.rows.map((variable) => (
                   <Table.Tr key={variable.id}>
                     {nameCell(variable)}
                     {MONTHS.map((month) => (
@@ -166,9 +185,10 @@ export function EntryPage() {
               </Table.Tbody>
             </Table>
           </Table.ScrollContainer>
+          <Pager {...monthly.pager} />
         </Stack>
       )}
-      {values.data && annual.length > 0 && (
+      {values.data && annual.rows.length > 0 && (
         <Stack gap="xs" component="section">
           <Title order={4}>{label('annual')}</Title>
           <Table verticalSpacing={4} maw={480}>
@@ -179,7 +199,7 @@ export function EntryPage() {
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
-              {annual.map((variable) => (
+              {annual.rows.map((variable) => (
                 <Table.Tr key={variable.id}>
                   {nameCell(variable)}
                   <Table.Td>{cell(variable, WHOLE_YEAR)}</Table.Td>
@@ -187,6 +207,7 @@ export function EntryPage() {
               ))}
             </Table.Tbody>
           </Table>
+          <Pager {...annual.pager} />
         </Stack>
       )}
     </Stack>

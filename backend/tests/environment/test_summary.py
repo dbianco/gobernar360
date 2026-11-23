@@ -149,3 +149,22 @@ def test_overview_has_no_environment_indicators_before_any_variable_exists(clien
     assert client.get("/api/overview").json() == [
         {"dashboard_key": "environment", "indicators": [], "status": []}
     ]
+
+
+def test_targets_met_and_missed_are_counted_apart(client):
+    municipality = environment_member("viewer")
+    energy, water, _ = _known_data(municipality)
+    # A second goal reached, so the counts differ: two met, one missed.
+    trees = make_variable(
+        municipality,
+        make_subcategory(municipality, "biodiversity", "Arbolado"),
+        "Árboles plantados",
+        frequency="annual",
+        target=50,
+    )
+    make_value(municipality, trees, 2026, 0, 80)
+    login(client, "ana@noetinger.test")
+
+    summary = client.get(f"{BASE}/summary", params={"year": 2026}).json()
+
+    assert (summary["targets_met"], summary["targets_missed"]) == (2, 1)

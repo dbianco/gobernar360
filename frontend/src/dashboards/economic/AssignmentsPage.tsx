@@ -23,9 +23,12 @@ import { Pager } from '../../platform/Pager'
 import { hasLevel } from '../../platform/types'
 import { currentYear } from '../../platform/years'
 import { YearSelect } from '../../platform/YearSelect'
-import { BASE, BASE_PATH, PAGE_SIZE, send, useAction, useAssignments, useTools } from './api'
+import { BASE, BASE_PATH, send, useAction, useAssignments, useTools } from './api'
 import { AssignmentForm } from './AssignmentForm'
 import type { Assignment } from './types'
+import { fitPage, usePaging } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
+import { useConfirm } from '../../platform/confirmContext'
 
 const recipientOf = (assignment: Assignment) =>
   assignment.actor
@@ -48,20 +51,34 @@ export function AssignmentsPage() {
   const tools = useTools()
   const [year, setYear] = useState(currentYear)
   const [toolId, setToolId] = useState('')
-  const [offset, setOffset] = useState(0)
+  const [q, setQ] = useState('')
+  const paging = usePaging('economic.assignments')
+  const { limit, offset, setOffset } = paging
   const [editing, setEditing] = useState<Assignment | null>(null)
-  const assignments = useAssignments({ year, tool_id: toolId, limit: PAGE_SIZE, offset })
+  const assignments = useAssignments({ q, year, tool_id: toolId, limit, offset })
+  fitPage(paging, assignments)
   const canEdit = hasLevel(me, 'economic', 'editor')
   const label = (key: string, options = {}) => t(`economic.assignments.${key}`, options)
+  const confirm = useConfirm()
+  const askDelete = (message: string) =>
+    confirm({ message, confirmLabel: t('app.delete'), danger: true })
 
-  function remove(id: string) {
-    if (!window.confirm(label('deleteConfirm'))) return
-    void action.run(() => send('DELETE', `/assignments/${id}`))
+  async function remove(id: string) {
+    if (!(await askDelete(label('deleteConfirm')))) return
+    await action.run(() => send('DELETE', `/assignments/${id}`))
   }
 
   return (
     <Stack>
       <Group align="flex-end" gap="lg">
+        <SearchInput
+          value={q}
+          onChange={(value) => {
+            setQ(value)
+            setOffset(0)
+          }}
+          placeholder={label('searchHint')}
+        />
         <YearSelect
           value={year}
           onChange={(value) => {
@@ -149,12 +166,7 @@ export function AssignmentsPage() {
         </Table.ScrollContainer>
       )}
       {assignments.data && (
-        <Pager
-          total={assignments.data.total}
-          limit={PAGE_SIZE}
-          offset={offset}
-          onChange={setOffset}
-        />
+        <Pager {...paging.pager(assignments.data.total)} />
       )}
       <Modal opened={editing !== null} onClose={() => setEditing(null)} title={label('editTitle')}>
         {editing && (

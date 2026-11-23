@@ -28,6 +28,7 @@ import { HouseholdForm } from './HouseholdForm'
 import { PersonSearch } from './PersonSearch'
 import { RecordsPanel } from './RecordsPanel'
 import { type HouseholdDetail, type Relationship, RELATIONSHIPS } from './types'
+import { useConfirm } from '../../platform/confirmContext'
 
 function useRelationshipOptions() {
   const { t } = useTranslation()
@@ -107,16 +108,18 @@ export function HouseholdDetailPage() {
   const listPath = `${BASE_PATH}/households`
   const data = household.data
   const label = (key: string, options = {}) => t(`social.households.${key}`, options)
+  const confirm = useConfirm()
+  const askDelete = (message: string) =>
+    confirm({ message, confirmLabel: t('app.delete'), danger: true })
   const memberPath = (personId: string) => `/households/${id}/members/${personId}`
 
   const setMember = (personId: string, relationship: Relationship) =>
     action.run(() => send('PUT', memberPath(personId), { relationship }))
 
-  async function remove() {
-    if (!data) return
-    if (!window.confirm(label('deleteConfirm', { name: data.name }))) return
+  async function remove(shown: NonNullable<typeof household.data>) {
+    if (!(await askDelete(label('deleteConfirm', { name: shown.name })))) return
     const deleted = await action.run(async () => {
-      await send('DELETE', `/households/${data.id}`)
+      await send('DELETE', `/households/${shown.id}`)
       return true
     })
     if (deleted) navigate(listPath)
@@ -139,7 +142,7 @@ export function HouseholdDetailPage() {
                 <Button variant="default" onClick={() => setEditing(true)}>
                   {t('app.edit')}
                 </Button>
-                <Button variant="subtle" color="red" onClick={() => void remove()}>
+                <Button variant="subtle" color="red" onClick={() => void remove(data)}>
                   {t('app.delete')}
                 </Button>
               </Group>

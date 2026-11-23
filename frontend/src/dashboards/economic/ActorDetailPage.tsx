@@ -27,6 +27,7 @@ import { AssignmentsPanel } from './AssignmentsPanel'
 import { Field } from '../../platform/Field'
 import { formatCuit } from './format'
 import { type ActorDetail, type Role, ROLES } from './types'
+import { useConfirm } from '../../platform/confirmContext'
 
 const MATCHES_SHOWN = 8
 
@@ -109,11 +110,14 @@ export function ActorDetailPage() {
   const listPath = `${BASE_PATH}/actors`
   const data = actor.data
   const label = (key: string, options = {}) => t(`economic.actors.${key}`, options)
+  const confirm = useConfirm()
+  const askDelete = (message: string) =>
+    confirm({ message, confirmLabel: t('app.delete'), danger: true })
 
-  async function remove() {
-    if (!data || !window.confirm(label('deleteConfirm', { name: data.name }))) return
+  async function remove(shown: NonNullable<typeof actor.data>) {
+    if (!(await askDelete(label('deleteConfirm', { name: shown.name })))) return
     const deleted = await action.run(async () => {
-      await send('DELETE', `/actors/${data.id}`)
+      await send('DELETE', `/actors/${shown.id}`)
       return true
     })
     if (deleted) navigate(listPath)
@@ -136,7 +140,7 @@ export function ActorDetailPage() {
                 <Button variant="default" onClick={() => setEditing(true)}>
                   {t('app.edit')}
                 </Button>
-                <Button variant="subtle" color="red" onClick={() => void remove()}>
+                <Button variant="subtle" color="red" onClick={() => void remove(data)}>
                   {t('app.delete')}
                 </Button>
               </Group>

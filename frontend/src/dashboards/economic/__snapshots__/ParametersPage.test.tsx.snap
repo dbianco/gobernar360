@@ -1,0 +1,1456 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds a subcategory under its category > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar herramientas parecidas.
+Destinatarios
+[Qué significa Destinatarios]
+A quién se puede otorgar: actores económicos, personas o ambos.
+Microcrédito productivo
+Financiamiento
+Microcréditos
+Actores y personas
+[Editar Microcrédito productivo]
+Editar
+[Eliminar Microcrédito productivo]
+Eliminar
+Feria de emprendedores
+Capacitación
+—
+Solo actores
+[Editar Feria de emprendedores]
+Editar
+[Eliminar Feria de emprendedores]
+Eliminar
+Taller de oficios
+Capacitación
+Cursos
+Solo personas
+[Editar Taller de oficios]
+Editar
+[Eliminar Taller de oficios]
+Eliminar"
+`;
+
+exports[`adds a subcategory under its category > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`adds a tool category > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar herramientas parecidas.
+Destinatarios
+[Qué significa Destinatarios]
+A quién se puede otorgar: actores económicos, personas o ambos.
+Microcrédito productivo
+Financiamiento
+Microcréditos
+Actores y personas
+[Editar Microcrédito productivo]
+Editar
+[Eliminar Microcrédito productivo]
+Eliminar
+Feria de emprendedores
+Capacitación
+—
+Solo actores
+[Editar Feria de emprendedores]
+Editar
+[Eliminar Feria de emprendedores]
+Eliminar
+Taller de oficios
+Capacitación
+Cursos
+Solo personas
+[Editar Taller de oficios]
+Editar
+[Eliminar Taller de oficios]
+Eliminar"
+`;
+
+exports[`adds a tool category > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`adds an actor type > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar herramientas parecidas.
+Destinatarios
+[Qué significa Destinatarios]
+A quién se puede otorgar: actores económicos, personas o ambos.
+Microcrédito productivo
+Financiamiento
+Microcréditos
+Actores y personas
+[Editar Microcrédito productivo]
+Editar
+[Eliminar Microcrédito productivo]
+Eliminar
+Feria de emprendedores
+Capacitación
+—
+Solo actores
+[Editar Feria de emprendedores]
+Editar
+[Eliminar Feria de emprendedores]
+Eliminar
+Taller de oficios
+Capacitación
+Cursos
+Solo personas
+[Editar Taller de oficios]
+Editar
+[Eliminar Taller de oficios]
+Eliminar"
+`;
+
+exports[`adds an actor type > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`asks for a category before any tool > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Todavía no hay elementos cargados.
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Creá una categoría para poder cargar herramientas."
+`;
+
+exports[`asks for a category before any tool > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`closes the tool form without saving > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar herramientas parecidas.
+Destinatarios
+[Qué significa Destinatarios]
+A quién se puede otorgar: actores económicos, personas o ambos.
+Microcrédito productivo
+Financiamiento
+Microcréditos
+Actores y personas
+[Editar Microcrédito productivo]
+Editar
+[Eliminar Microcrédito productivo]
+Eliminar
+Feria de emprendedores
+Capacitación
+—
+Solo actores
+[Editar Feria de emprendedores]
+Editar
+[Eliminar Feria de emprendedores]
+Eliminar
+Taller de oficios
+Capacitación
+Cursos
+Solo personas
+[Editar Taller de oficios]
+Editar
+[Eliminar Taller de oficios]
+Eliminar"
+`;
+
+exports[`closes the tool form without saving > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`creates a tool from the form > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar herramientas parecidas.
+Destinatarios
+[Qué significa Destinatarios]
+A quién se puede otorgar: actores económicos, personas o ambos.
+Microcrédito productivo
+Financiamiento
+Microcréditos
+Actores y personas
+[Editar Microcrédito productivo]
+Editar
+[Eliminar Microcrédito productivo]
+Eliminar
+Feria de emprendedores
+Capacitación
+—
+Solo actores
+[Editar Feria de emprendedores]
+Editar
+[Eliminar Feria de emprendedores]
+Eliminar
+Taller de oficios
+Capacitación
+Cursos
+Solo personas
+[Editar Taller de oficios]
+Editar
+[Eliminar Taller de oficios]
+Eliminar"
+`;
+
+exports[`creates a tool from the form > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`explains that a tool with assignments cannot be deleted > screen at the end 1`] = `
+"No se puede eliminar porque está siendo usado por otros registros.
+Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar herramientas parecidas.
+Destinatarios
+[Qué significa Destinatarios]
+A quién se puede otorgar: actores económicos, personas o ambos.
+Microcrédito productivo
+Financiamiento
+Microcréditos
+Actores y personas
+[Editar Microcrédito productivo]
+Editar
+[Eliminar Microcrédito productivo]
+Eliminar
+Feria de emprendedores
+Capacitación
+—
+Solo actores
+[Editar Feria de emprendedores]
+Editar
+[Eliminar Feria de emprendedores]
+Eliminar
+Taller de oficios
+Capacitación
+Cursos
+Solo personas
+[Editar Taller de oficios]
+Editar
+[Eliminar Taller de oficios]
+Eliminar"
+`;
+
+exports[`explains that a tool with assignments cannot be deleted > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lists the lists of the municipality and its tools > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar herramientas parecidas.
+Destinatarios
+[Qué significa Destinatarios]
+A quién se puede otorgar: actores económicos, personas o ambos.
+Microcrédito productivo
+Financiamiento
+Microcréditos
+Actores y personas
+[Editar Microcrédito productivo]
+Editar
+[Eliminar Microcrédito productivo]
+Eliminar
+Feria de emprendedores
+Capacitación
+—
+Solo actores
+[Editar Feria de emprendedores]
+Editar
+[Eliminar Feria de emprendedores]
+Eliminar
+Taller de oficios
+Capacitación
+Cursos
+Solo personas
+[Editar Taller de oficios]
+Editar
+[Eliminar Taller de oficios]
+Eliminar"
+`;
+
+exports[`lists the lists of the municipality and its tools > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`only offers the subcategories of the chosen category and edits a tool > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar herramientas parecidas.
+Destinatarios
+[Qué significa Destinatarios]
+A quién se puede otorgar: actores económicos, personas o ambos.
+Microcrédito productivo
+Financiamiento
+Microcréditos
+Actores y personas
+[Editar Microcrédito productivo]
+Editar
+[Eliminar Microcrédito productivo]
+Eliminar
+Feria de emprendedores
+Capacitación
+—
+Solo actores
+[Editar Feria de emprendedores]
+Editar
+[Eliminar Feria de emprendedores]
+Eliminar
+Taller de oficios
+Capacitación
+Cursos
+Solo personas
+[Editar Taller de oficios]
+Editar
+[Eliminar Taller de oficios]
+Eliminar"
+`;
+
+exports[`only offers the subcategories of the chosen category and edits a tool > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`picks a subcategory, keeps the form open when saving fails, and closes it with Escape > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar herramientas parecidas.
+Destinatarios
+[Qué significa Destinatarios]
+A quién se puede otorgar: actores económicos, personas o ambos.
+Microcrédito productivo
+Financiamiento
+Microcréditos
+Actores y personas
+[Editar Microcrédito productivo]
+Editar
+[Eliminar Microcrédito productivo]
+Eliminar
+Feria de emprendedores
+Capacitación
+—
+Solo actores
+[Editar Feria de emprendedores]
+Editar
+[Eliminar Feria de emprendedores]
+Eliminar
+Taller de oficios
+Capacitación
+Cursos
+Solo personas
+[Editar Taller de oficios]
+Editar
+[Eliminar Taller de oficios]
+Eliminar"
+`;
+
+exports[`picks a subcategory, keeps the form open when saving fails, and closes it with Escape > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`renames and deletes items of /actor-types > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar herramientas parecidas.
+Destinatarios
+[Qué significa Destinatarios]
+A quién se puede otorgar: actores económicos, personas o ambos.
+Microcrédito productivo
+Financiamiento
+Microcréditos
+Actores y personas
+[Editar Microcrédito productivo]
+Editar
+[Eliminar Microcrédito productivo]
+Eliminar
+Feria de emprendedores
+Capacitación
+—
+Solo actores
+[Editar Feria de emprendedores]
+Editar
+[Eliminar Feria de emprendedores]
+Eliminar
+Taller de oficios
+Capacitación
+Cursos
+Solo personas
+[Editar Taller de oficios]
+Editar
+[Eliminar Taller de oficios]
+Eliminar"
+`;
+
+exports[`renames and deletes items of /actor-types > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`renames and deletes items of /sectors > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar herramientas parecidas.
+Destinatarios
+[Qué significa Destinatarios]
+A quién se puede otorgar: actores económicos, personas o ambos.
+Microcrédito productivo
+Financiamiento
+Microcréditos
+Actores y personas
+[Editar Microcrédito productivo]
+Editar
+[Eliminar Microcrédito productivo]
+Eliminar
+Feria de emprendedores
+Capacitación
+—
+Solo actores
+[Editar Feria de emprendedores]
+Editar
+[Eliminar Feria de emprendedores]
+Eliminar
+Taller de oficios
+Capacitación
+Cursos
+Solo personas
+[Editar Taller de oficios]
+Editar
+[Eliminar Taller de oficios]
+Eliminar"
+`;
+
+exports[`renames and deletes items of /sectors > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`renames and deletes items of /tool-categories > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar herramientas parecidas.
+Destinatarios
+[Qué significa Destinatarios]
+A quién se puede otorgar: actores económicos, personas o ambos.
+Microcrédito productivo
+Financiamiento
+Microcréditos
+Actores y personas
+[Editar Microcrédito productivo]
+Editar
+[Eliminar Microcrédito productivo]
+Eliminar
+Feria de emprendedores
+Capacitación
+—
+Solo actores
+[Editar Feria de emprendedores]
+Editar
+[Eliminar Feria de emprendedores]
+Eliminar
+Taller de oficios
+Capacitación
+Cursos
+Solo personas
+[Editar Taller de oficios]
+Editar
+[Eliminar Taller de oficios]
+Eliminar"
+`;
+
+exports[`renames and deletes items of /tool-categories > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`renames and deletes items of /tool-subcategories > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar herramientas parecidas.
+Destinatarios
+[Qué significa Destinatarios]
+A quién se puede otorgar: actores económicos, personas o ambos.
+Microcrédito productivo
+Financiamiento
+Microcréditos
+Actores y personas
+[Editar Microcrédito productivo]
+Editar
+[Eliminar Microcrédito productivo]
+Eliminar
+Feria de emprendedores
+Capacitación
+—
+Solo actores
+[Editar Feria de emprendedores]
+Editar
+[Eliminar Feria de emprendedores]
+Eliminar
+Taller de oficios
+Capacitación
+Cursos
+Solo personas
+[Editar Taller de oficios]
+Editar
+[Eliminar Taller de oficios]
+Eliminar"
+`;
+
+exports[`renames and deletes items of /tool-subcategories > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says when there are categories but no tools yet > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Todavía no hay herramientas cargadas."
+`;
+
+exports[`says when there are categories but no tools yet > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`searches the tools by name or category > screen at the end 1`] = `
+"Tipos de actor
+Comercio
+[Renombrar Comercio]
+Editar
+[Eliminar Comercio]
+Eliminar
+Industria
+[Renombrar Industria]
+Editar
+[Eliminar Industria]
+Eliminar
+[Nuevo tipo de actor]
+(Nuevo tipo de actor)
+Agregar
+Sectores
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+[Nuevo sector]
+(Nuevo sector)
+Agregar
+Categorías de herramientas
+Cada categoría puede tener subcategorías.
+Capacitación
+[Renombrar Capacitación]
+Editar
+[Eliminar Capacitación]
+Eliminar
+Cursos
+[Renombrar Cursos]
+Editar
+[Eliminar Cursos]
+Eliminar
+[Nueva subcategoría de Capacitación]
+(Nueva subcategoría de Capacitación)
+Agregar
+Financiamiento
+[Renombrar Financiamiento]
+Editar
+[Eliminar Financiamiento]
+Eliminar
+Microcréditos
+[Renombrar Microcréditos]
+Editar
+[Eliminar Microcréditos]
+Eliminar
+[Nueva subcategoría de Financiamiento]
+(Nueva subcategoría de Financiamiento)
+Agregar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Herramientas
+Agregar herramienta
+Buscar
+(Herramienta o categoría)
+[Borrar la búsqueda]
+Nada coincide con la búsqueda."
+`;
+
+exports[`searches the tools by name or category > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows an error instead of empty lists when loading fails > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
+
+exports[`shows an error instead of empty lists when loading fails > screen at the start 1`] = `"[Cargando…]"`;

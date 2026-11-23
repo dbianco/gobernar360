@@ -1,0 +1,259 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`collapses and expands a section from its heading > screen at the end 1`] = `
+"Resumen general
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+Proyectos
+Abrir tablero
+Proyectos activos
+7"
+`;
+
+exports[`collapses and expands a section from its heading > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`ignores a stored list of collapsed sections that makes no sense > screen at the end 1`] = `
+"Resumen general
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+Proyectos
+Abrir tablero
+Este tablero todavía no tiene datos cargados."
+`;
+
+exports[`ignores a stored list of collapsed sections that makes no sense > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`keeps only the names in a stored list of collapsed sections > screen at the end 1`] = `
+"Resumen general
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+Proyectos
+Abrir tablero"
+`;
+
+exports[`keeps only the names in a stored list of collapsed sections > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`leaves out a dashboard this version does not know > screen at the end 1`] = `
+"Resumen general
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+Proyectos
+Abrir tablero
+Este tablero todavía no tiene datos cargados."
+`;
+
+exports[`leaves out a dashboard this version does not know > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`puts the lights before the indicator sections > screen at the end 1`] = `
+"Resumen general
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+Proyectos
+Abrir tablero
+Proyectos activos
+7"
+`;
+
+exports[`puts the lights before the indicator sections > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`remembers which sections were collapsed > screen at the end 1`] = `
+"Resumen general
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+[Ambiental]
+Ambiental
+Sin estado
+Proyectos
+Abrir tablero
+Este tablero todavía no tiene datos cargados.
+Ambiental
+Abrir tablero"
+`;
+
+exports[`remembers which sections were collapsed > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`renders indicators returned by the overview endpoint > screen at the end 1`] = `
+"Resumen general
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+Proyectos
+Abrir tablero
+Proyectos activos
+7
+Avance promedio
+42 %
+Presupuesto ejecutado
+25,6 %
+Hitos en alerta
+—"
+`;
+
+exports[`renders indicators returned by the overview endpoint > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`renders the environment indicators with their own labels > screen at the end 1`] = `
+"Resumen general
+[Estado de los tableros]
+[Ambiental]
+Ambiental
+Sin estado
+Ambiental
+Abrir tablero
+Variables ambientales
+12
+Cargas del año realizadas
+24 %
+Metas ambientales cumplidas
+3
+Metas ambientales no cumplidas
+1"
+`;
+
+exports[`renders the environment indicators with their own labels > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`says so when a dashboard has no data yet > screen at the end 1`] = `
+"Resumen general
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+Proyectos
+Abrir tablero
+Este tablero todavía no tiene datos cargados."
+`;
+
+exports[`says so when a dashboard has no data yet > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`says so when a dashboard has no light yet > screen at the end 1`] = `
+"Resumen general
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+Proyectos
+Abrir tablero
+Proyectos activos
+7"
+`;
+
+exports[`says so when a dashboard has no light yet > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`says why the overview cannot be loaded > screen at the end 1`] = `
+"Resumen general
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why the overview cannot be loaded > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`shows an empty state when the user has no dashboards > screen at the end 1`] = `
+"Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`shows an empty state when the user has no dashboards > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`shows each dashboard's latest light with its month and state, and the earlier ones > screen at the end 1`] = `
+"Resumen general
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Crítico
+Enero 2025
+[Octubre: En orden]
+Oct
+[Diciembre: Con atención]
+Dic
+Proyectos
+Abrir tablero
+Proyectos activos
+7"
+`;
+
+exports[`shows each dashboard's latest light with its month and state, and the earlier ones > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`shows earlier lights in browsers without Array.prototype.toReversed > screen at the end 1`] = `
+"Resumen general
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Crítico
+Febrero 2025
+[Enero: En orden]
+Ene
+Proyectos
+Abrir tablero
+Este tablero todavía no tiene datos cargados."
+`;
+
+exports[`shows earlier lights in browsers without Array.prototype.toReversed > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`still works when the browser refuses to store which sections were collapsed > screen at the end 1`] = `
+"Resumen general
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+Proyectos
+Abrir tablero"
+`;
+
+exports[`still works when the browser refuses to store which sections were collapsed > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;

@@ -235,3 +235,20 @@ def test_households_of_another_municipality_are_not_reachable(client):
     assert client.patch(f"{BASE}/households/{foreign.id}", json={"name": "x"}).status_code == 404
     assert client.delete(f"{BASE}/households/{foreign.id}").status_code == 404
     assert _put(client, foreign, person, "child").status_code == 404
+
+
+def test_members_who_share_a_last_name_are_listed_by_first_name(client):
+    municipality = _editor(client)
+    household = make_household(municipality)
+    for first_name in ("Zoe", "Ana", "Luis"):
+        make_social_person(
+            municipality, first_name, "Pérez", household=household, relationship="child"
+        )
+
+    members = client.get(f"{BASE}/households/{household.id}").json()["members"]
+
+    assert [member["full_name"] for member in members] == [
+        "Pérez, Ana",
+        "Pérez, Luis",
+        "Pérez, Zoe",
+    ]

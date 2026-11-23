@@ -7,7 +7,9 @@ import { MemoryRouter } from 'react-router-dom'
 
 import i18n from '../i18n'
 import { AuthProvider } from '../platform/AuthProvider'
+import { ConfirmProvider } from '../platform/ConfirmProvider'
 import type { Me } from '../platform/types'
+import { screenText } from './screen'
 import { mockApi, mockApiError } from './server'
 
 /** Translate a key the same way components do, so tests do not hard-code copy. */
@@ -25,14 +27,24 @@ export function renderApp(ui: ReactElement, options: { route?: string; me?: Me |
   const queryClient = new QueryClient({
     defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
   })
-  return render(
-    <MantineProvider>
+  const view = render(
+    // Tests run without transitions: elements appear at once, whatever the Mantine version.
+    <MantineProvider env="test">
       <Notifications />
       <QueryClientProvider client={queryClient}>
         <MemoryRouter initialEntries={[options.route ?? '/']}>
-          <AuthProvider>{ui}</AuthProvider>
+          <AuthProvider>
+            <ConfirmProvider>{ui}</ConfirmProvider>
+          </AuthProvider>
         </MemoryRouter>
       </QueryClientProvider>
     </MantineProvider>,
   )
+  // What shows before any answer arrives (spinners, static labels), for the snapshot
+  // src/test/setup.ts takes when the test ends.
+  firstScreen.text ??= screenText()
+  return view
 }
+
+/** The screen of the first render of the current test; setup.ts resets it. */
+export const firstScreen: { text: string | null } = { text: null }

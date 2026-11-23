@@ -110,3 +110,23 @@ def test_overview_includes_recent_lights_newest_first(client):
         {"year": 2025, "month": 1, "color": "green"},
         {"year": 2024, "month": 11, "color": "yellow"},
     ]
+
+
+def test_overview_takes_the_latest_term_and_of_two_alike_the_first_by_name(client):
+    client.app.dependency_overrides[get_today] = lambda: date(2025, 6, 15)
+    municipality = projects_member("viewer")
+    department = make_department(municipality)
+    for name, start, projects in (
+        ("Gestión B", 2023, 3),
+        ("Gestión A", 2023, 2),
+        ("Gestión vieja", 2019, 5),
+    ):
+        term = make_term(municipality, name=name, start_year=start, end_year=start + 4)
+        axis = make_axis(municipality, term)
+        for number in range(projects):
+            make_project(municipality, term, axis, department, name=f"{name} {number}")
+    login(client, "ana@noetinger.test")
+
+    [section] = client.get("/api/overview").json()
+
+    assert section["indicators"][0] == {"key": "projects.active", "value": 2, "unit": None}

@@ -1,14 +1,15 @@
 import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Route, Routes } from 'react-router-dom'
-import { expect, it, vi } from 'vitest'
+import { expect, it } from 'vitest'
 
 import type { AccessLevel } from '../../platform/types'
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { PersonDetailPage } from './PersonDetailPage'
 import { CREDIT, FAIR, makeAssignment, makePersonDetail, page, WORKSHOP } from './testData'
 import { BASE, renderEconomic } from './testRender'
+import { answerConfirm } from '../../test/confirm'
 
 const label = (key: string, options = {}) => t(`economic.people.${key}`, options)
 const assignment = (key: string, options = {}) => t(`economic.assignments.${key}`, options)
@@ -104,12 +105,71 @@ it('assigns a tool, offering only the tools meant for people', async () => {
 
 it('removes the person from the dashboard after confirming', async () => {
   const requests = mockApi('delete', `${BASE}/people/ep-1`, null, 204)
-  vi.spyOn(window, 'confirm').mockReturnValue(true)
   renderDetail()
   const user = userEvent.setup()
 
   await user.click(await screen.findByRole('button', { name: label('remove') }))
+  await answerConfirm(user, true)
 
   expect(await screen.findByText('people list')).toBeInTheDocument()
   expect(requests).toHaveLength(1)
+})
+
+it('keeps it when the deletion is not confirmed', async () => {
+  const deleted = mockApi('delete', `${BASE}/people/ep-1`, null, 204)
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('remove') }))
+  await answerConfirm(user, false)
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+  expect(deleted).toHaveLength(0)
+})
+
+it('says why the deletion failed and stays', async () => {
+  mockApiError('delete', `${BASE}/people/ep-1`, 409, 'in_use')
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('remove') }))
+  await answerConfirm(user, true)
+
+  expect(await screen.findByText(t('errors.in_use'))).toBeInTheDocument()
+})
+
+it('closes the edit form with Escape', async () => {
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('app.edit') }))
+  await screen.findByRole('dialog')
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})
+
+it('says when the person belongs to no actor', async () => {
+  mockApi('get', `${BASE}/people/ep-2`, makePersonDetail({ id: 'ep-2', actors: [] }))
+  mockApi('get', `${BASE}/assignments`, page([]))
+  renderEconomic(
+    <Routes>
+      <Route path="/d/economic/people/:id" element={<PersonDetailPage />} />
+    </Routes>,
+    { route: '/d/economic/people/ep-2' },
+  )
+
+  expect(await screen.findByText(label('noActors'))).toBeInTheDocument()
+})
+
+it('says why the person cannot be loaded', async () => {
+  mockApiError('get', `${BASE}/people/ep-9`, 404, 'not_found')
+  renderEconomic(
+    <Routes>
+      <Route path="/d/economic/people/:id" element={<PersonDetailPage />} />
+    </Routes>,
+    { route: '/d/economic/people/ep-9' },
+  )
+
+  expect(await screen.findByText(t('errors.not_found'))).toBeInTheDocument()
 })

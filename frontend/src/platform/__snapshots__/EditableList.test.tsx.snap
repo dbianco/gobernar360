@@ -1,0 +1,668 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds an item with its name trimmed, and clears the field once added > screen at the end 1`] = `
+"Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+detalle de
+Área de Niñez
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+detalle de
+Área 2
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`adds an item with its name trimmed, and clears the field once added > screen at the start 1`] = `
+"Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+detalle de
+Área de Niñez
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+detalle de
+Área 2
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`deletes an item and shows what each item details > screen at the end 1`] = `
+"Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+detalle de
+Área de Niñez
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+detalle de
+Área 2
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`deletes an item and shows what each item details > screen at the start 1`] = `
+"Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+detalle de
+Área de Niñez
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+detalle de
+Área 2
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`hides the empty message when asked > screen at the end 1`] = `
+"[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`hides the empty message when asked > screen at the start 1`] = `
+"[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`keeps the rename open when it fails, ignores a blank name and can be cancelled > screen at the end 1`] = `
+"Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+detalle de
+Área de Niñez
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+detalle de
+Área 2
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`keeps the rename open when it fails, ignores a blank name and can be cancelled > screen at the start 1`] = `
+"Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+detalle de
+Área de Niñez
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+detalle de
+Área 2
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`keeps what was typed when adding fails, and ignores a blank name > screen at the end 1`] = `
+"Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+detalle de
+Área de Niñez
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+detalle de
+Área 2
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`keeps what was typed when adding fails, and ignores a blank name > screen at the start 1`] = `
+"Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+detalle de
+Área de Niñez
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+detalle de
+Área 2
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`pages a long catalog ten at a time and searches it ignoring accents > screen at the end 1`] = `
+"Buscar
+(Nombre)
+[Borrar la búsqueda]
+Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`pages a long catalog ten at a time and searches it ignoring accents > screen at the start 1`] = `
+"Buscar
+(Nombre)
+Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+Área 3
+[Renombrar Área 3]
+Editar
+[Eliminar Área 3]
+Eliminar
+Área 4
+[Renombrar Área 4]
+Editar
+[Eliminar Área 4]
+Eliminar
+Área 5
+[Renombrar Área 5]
+Editar
+[Eliminar Área 5]
+Eliminar
+Área 6
+[Renombrar Área 6]
+Editar
+[Eliminar Área 6]
+Eliminar
+Área 7
+[Renombrar Área 7]
+Editar
+[Eliminar Área 7]
+Eliminar
+Área 8
+[Renombrar Área 8]
+Editar
+[Eliminar Área 8]
+Eliminar
+Área 9
+[Renombrar Área 9]
+Editar
+[Eliminar Área 9]
+Eliminar
+Área 10
+[Renombrar Área 10]
+Editar
+[Eliminar Área 10]
+Eliminar
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–10 de 25
+Anterior
+Siguiente
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`remembers the page size chosen for the catalog > screen at the end 1`] = `
+"Buscar
+(Nombre)
+Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+Área 3
+[Renombrar Área 3]
+Editar
+[Eliminar Área 3]
+Eliminar
+Área 4
+[Renombrar Área 4]
+Editar
+[Eliminar Área 4]
+Eliminar
+Área 5
+[Renombrar Área 5]
+Editar
+[Eliminar Área 5]
+Eliminar
+Área 6
+[Renombrar Área 6]
+Editar
+[Eliminar Área 6]
+Eliminar
+Área 7
+[Renombrar Área 7]
+Editar
+[Eliminar Área 7]
+Eliminar
+Área 8
+[Renombrar Área 8]
+Editar
+[Eliminar Área 8]
+Eliminar
+Área 9
+[Renombrar Área 9]
+Editar
+[Eliminar Área 9]
+Eliminar
+Área 10
+[Renombrar Área 10]
+Editar
+[Eliminar Área 10]
+Eliminar
+Área 11
+[Renombrar Área 11]
+Editar
+[Eliminar Área 11]
+Eliminar
+Área 12
+[Renombrar Área 12]
+Editar
+[Eliminar Área 12]
+Eliminar
+Área 13
+[Renombrar Área 13]
+Editar
+[Eliminar Área 13]
+Eliminar
+Área 14
+[Renombrar Área 14]
+Editar
+[Eliminar Área 14]
+Eliminar
+Área 15
+[Renombrar Área 15]
+Editar
+[Eliminar Área 15]
+Eliminar
+Área 16
+[Renombrar Área 16]
+Editar
+[Eliminar Área 16]
+Eliminar
+Área 17
+[Renombrar Área 17]
+Editar
+[Eliminar Área 17]
+Eliminar
+Área 18
+[Renombrar Área 18]
+Editar
+[Eliminar Área 18]
+Eliminar
+Área 19
+[Renombrar Área 19]
+Editar
+[Eliminar Área 19]
+Eliminar
+Área 20
+[Renombrar Área 20]
+Editar
+[Eliminar Área 20]
+Eliminar
+Área 21
+[Renombrar Área 21]
+Editar
+[Eliminar Área 21]
+Eliminar
+Área 22
+[Renombrar Área 22]
+Editar
+[Eliminar Área 22]
+Eliminar
+Área 23
+[Renombrar Área 23]
+Editar
+[Eliminar Área 23]
+Eliminar
+Área 24
+[Renombrar Área 24]
+Editar
+[Eliminar Área 24]
+Eliminar
+Área 25
+[Renombrar Área 25]
+Editar
+[Eliminar Área 25]
+Eliminar
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–25 de 25
+Anterior
+Siguiente
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`remembers the page size chosen for the catalog > screen at the start 1`] = `
+"Buscar
+(Nombre)
+Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+Área 3
+[Renombrar Área 3]
+Editar
+[Eliminar Área 3]
+Eliminar
+Área 4
+[Renombrar Área 4]
+Editar
+[Eliminar Área 4]
+Eliminar
+Área 5
+[Renombrar Área 5]
+Editar
+[Eliminar Área 5]
+Eliminar
+Área 6
+[Renombrar Área 6]
+Editar
+[Eliminar Área 6]
+Eliminar
+Área 7
+[Renombrar Área 7]
+Editar
+[Eliminar Área 7]
+Eliminar
+Área 8
+[Renombrar Área 8]
+Editar
+[Eliminar Área 8]
+Eliminar
+Área 9
+[Renombrar Área 9]
+Editar
+[Eliminar Área 9]
+Eliminar
+Área 10
+[Renombrar Área 10]
+Editar
+[Eliminar Área 10]
+Eliminar
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–10 de 25
+Anterior
+Siguiente
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`renames an item in place > screen at the end 1`] = `
+"Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+detalle de
+Área de Niñez
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+detalle de
+Área 2
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`renames an item in place > screen at the start 1`] = `
+"Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+detalle de
+Área de Niñez
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+detalle de
+Área 2
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`says when it is empty unless told not to, and offers no add form without a way to add > screen at the end 1`] = `"Todavía no hay elementos cargados."`;
+
+exports[`says when it is empty unless told not to, and offers no add form without a way to add > screen at the start 1`] = `"Todavía no hay elementos cargados."`;
+
+exports[`says when nothing in a long catalog matches the search > screen at the end 1`] = `
+"Buscar
+(Nombre)
+[Borrar la búsqueda]
+Nada coincide con la búsqueda.
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`says when nothing in a long catalog matches the search > screen at the start 1`] = `
+"Buscar
+(Nombre)
+Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+Área 3
+[Renombrar Área 3]
+Editar
+[Eliminar Área 3]
+Eliminar
+Área 4
+[Renombrar Área 4]
+Editar
+[Eliminar Área 4]
+Eliminar
+Área 5
+[Renombrar Área 5]
+Editar
+[Eliminar Área 5]
+Eliminar
+Área 6
+[Renombrar Área 6]
+Editar
+[Eliminar Área 6]
+Eliminar
+Área 7
+[Renombrar Área 7]
+Editar
+[Eliminar Área 7]
+Eliminar
+Área 8
+[Renombrar Área 8]
+Editar
+[Eliminar Área 8]
+Eliminar
+Área 9
+[Renombrar Área 9]
+Editar
+[Eliminar Área 9]
+Eliminar
+Área 10
+[Renombrar Área 10]
+Editar
+[Eliminar Área 10]
+Eliminar
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–10 de 12
+Anterior
+Siguiente
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`shows a short catalog whole, without search or pager > screen at the end 1`] = `
+"Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+Área 3
+[Renombrar Área 3]
+Editar
+[Eliminar Área 3]
+Eliminar
+Área 4
+[Renombrar Área 4]
+Editar
+[Eliminar Área 4]
+Eliminar
+Área 5
+[Renombrar Área 5]
+Editar
+[Eliminar Área 5]
+Eliminar
+Área 6
+[Renombrar Área 6]
+Editar
+[Eliminar Área 6]
+Eliminar
+Área 7
+[Renombrar Área 7]
+Editar
+[Eliminar Área 7]
+Eliminar
+Área 8
+[Renombrar Área 8]
+Editar
+[Eliminar Área 8]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar"
+`;
+
+exports[`shows a short catalog whole, without search or pager > screen at the start 1`] = `
+"Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+Área 3
+[Renombrar Área 3]
+Editar
+[Eliminar Área 3]
+Eliminar
+Área 4
+[Renombrar Área 4]
+Editar
+[Eliminar Área 4]
+Eliminar
+Área 5
+[Renombrar Área 5]
+Editar
+[Eliminar Área 5]
+Eliminar
+Área 6
+[Renombrar Área 6]
+Editar
+[Eliminar Área 6]
+Eliminar
+Área 7
+[Renombrar Área 7]
+Editar
+[Eliminar Área 7]
+Eliminar
+Área 8
+[Renombrar Área 8]
+Editar
+[Eliminar Área 8]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar"
+`;

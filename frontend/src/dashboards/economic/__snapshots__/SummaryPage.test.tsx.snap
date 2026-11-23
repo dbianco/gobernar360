@@ -1,0 +1,572 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks for another year and points the downloads at it > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2025
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar actores
+Descargar personas
+Descargar asignaciones
+Actores económicos
+12
+5 con herramientas asignadas en el año
+Personas
+14
+4 con herramientas asignadas en el año
+Herramientas
+6
+Asignaciones del año
+21
+Herramientas asignadas a actores
+[Herramientas asignadas a actores]
+Herramienta
+[Qué significa Herramienta]
+Herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Asignaciones
+[Qué significa Asignaciones]
+Veces que la herramienta se otorgó en el año elegido.
+Feria de emprendedores
+Comercialización
+3
+Herramientas asignadas a personas
+[Herramientas asignadas a personas]
+Herramienta
+[Qué significa Herramienta]
+Herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Asignaciones
+[Qué significa Asignaciones]
+Veces que la herramienta se otorgó en el año elegido.
+Taller de oficios
+Capacitación
+2"
+`;
+
+exports[`asks for another year and points the downloads at it > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar actores
+Descargar personas
+Descargar asignaciones
+[Cargando…]"
+`;
+
+exports[`invites an editor to load data when the dashboard is empty > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar actores
+Descargar personas
+Descargar asignaciones
+Todavía no hay datos cargados
+Cargar nuevo actor económico
+Cargar nueva persona"
+`;
+
+exports[`invites an editor to load data when the dashboard is empty > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar actores
+Descargar personas
+Descargar asignaciones
+[Cargando…]"
+`;
+
+exports[`says so when a kind of recipient has no assignments in the year > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar actores
+Descargar personas
+Descargar asignaciones
+Actores económicos
+12
+5 con herramientas asignadas en el año
+Personas
+14
+4 con herramientas asignadas en el año
+Herramientas
+6
+Asignaciones del año
+21
+Herramientas asignadas a actores
+[Herramientas asignadas a actores]
+Herramienta
+[Qué significa Herramienta]
+Herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Asignaciones
+[Qué significa Asignaciones]
+Veces que la herramienta se otorgó en el año elegido.
+Feria de emprendedores
+Comercialización
+3
+Herramientas asignadas a personas
+Sin asignaciones en el año."
+`;
+
+exports[`says so when a kind of recipient has no assignments in the year > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar actores
+Descargar personas
+Descargar asignaciones
+[Cargando…]"
+`;
+
+exports[`shows an error when the summary cannot be loaded > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar actores
+Descargar personas
+Descargar asignaciones
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`shows an error when the summary cannot be loaded > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar actores
+Descargar personas
+Descargar asignaciones
+[Cargando…]"
+`;
+
+exports[`shows the headline numbers and both tool tables > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar actores
+Descargar personas
+Descargar asignaciones
+Actores económicos
+12
+5 con herramientas asignadas en el año
+Personas
+14
+4 con herramientas asignadas en el año
+Herramientas
+6
+Asignaciones del año
+21
+Herramientas asignadas a actores
+[Herramientas asignadas a actores]
+Herramienta
+[Qué significa Herramienta]
+Herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Asignaciones
+[Qué significa Asignaciones]
+Veces que la herramienta se otorgó en el año elegido.
+Feria de emprendedores
+Comercialización
+3
+Herramientas asignadas a personas
+[Herramientas asignadas a personas]
+Herramienta
+[Qué significa Herramienta]
+Herramienta que el municipio ofrece.
+Categoría
+[Qué significa Categoría]
+Grupo general al que pertenece la herramienta.
+Asignaciones
+[Qué significa Asignaciones]
+Veces que la herramienta se otorgó en el año elegido.
+Taller de oficios
+Capacitación
+2"
+`;
+
+exports[`shows the headline numbers and both tool tables > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar actores
+Descargar personas
+Descargar asignaciones
+[Cargando…]"
+`;

@@ -28,7 +28,13 @@ it('keeps the column name as the header and passes cell props through', () => {
   const header = screen.getByRole('columnheader')
   expect(header).toHaveTextContent('Subcategoría')
   expect(header).toHaveStyle({ textAlign: 'right' })
-  expect(screen.queryByText('Agrupa las variables dentro de Agua.')).not.toBeInTheDocument()
+  expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
+})
+
+it('gives the info icon the explanation as its description, for screen readers', () => {
+  const info = renderHeader()
+
+  expect(info).toHaveAccessibleDescription('Agrupa las variables dentro de Agua.')
 })
 
 it('explains the column when the info icon is hovered', async () => {

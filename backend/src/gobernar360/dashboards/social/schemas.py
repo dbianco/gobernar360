@@ -25,7 +25,9 @@ LongText = Annotated[str, StringConstraints(strip_whitespace=True, max_length=50
 Quantity = Annotated[int, Field(ge=1, le=1_000_000)]
 
 
-def _text(max_length: int) -> Any:
+# Runs once, while the schemas are defined, where mutation testing cannot reach it (hence
+# the pragma); the request tests check what it enforces.
+def _text(max_length: int) -> Any:  # pragma: no mutate block
     return Annotated[str, StringConstraints(strip_whitespace=True, max_length=max_length)]
 
 

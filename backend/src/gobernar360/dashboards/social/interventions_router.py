@@ -26,7 +26,8 @@ from gobernar360.dashboards.social.schemas import (
 from gobernar360.platform.access import RequestContext
 from gobernar360.platform.api_types import Year
 from gobernar360.platform.audit import apply_audit_fields, record_change
-from gobernar360.platform.listing import Page, PagingParams, page_of
+from gobernar360.platform.listing import Page, PagingParams, SearchText, every_word, page_of
+from gobernar360.platform.models import Person
 from gobernar360.platform.tenant_crud import create_entity, delete_entity, get_or_404, resolve
 
 router = APIRouter()
@@ -70,8 +71,25 @@ def list_interventions(
     intervention_type_id: uuid.UUID | None = None,
     person_id: uuid.UUID | None = None,
     household_id: uuid.UUID | None = None,
+    q: SearchText = None,
 ) -> Page[InterventionOut]:
     query = select(Intervention).order_by(Intervention.date.desc(), Intervention.id)
+    if q and q.strip():
+        # Who it concerned, by name or document, or its type. Never the reserved text.
+        query = (
+            query.join(SocialPerson, Intervention.person_id == SocialPerson.id)
+            .join(Person, SocialPerson.person_id == Person.id)
+            .join(InterventionType, Intervention.intervention_type_id == InterventionType.id)
+            .where(
+                *every_word(
+                    q,
+                    Person.first_name,
+                    Person.last_name,
+                    InterventionType.name,
+                    document=Person.dni,
+                )
+            )
+        )
     if year is not None:
         query = query.where(in_year(year))
     if intervention_type_id is not None:

@@ -1,0 +1,819 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`breaks procedures down by area and by channel > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+Trámites vigentes
+12
+Con canal en línea
+5
+41,7 % de los vigentes
+Requisitos por trámite
+3,4
+Promedio entre los vigentes
+Requisitos cargados
+16
+Fuentes cargadas
+11
+Trámites por área
+Ver como gráfico
+Rentas
+7
+Obras Privadas
+5
+Trámites por canal
+Ver como gráfico
+Presencial
+7
+En línea
+2
+Presencial y en línea
+3
+Requisitos más pedidos
+[Requisitos más pedidos]
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes que lo piden.
+DNI
+RENAPER
+9
+Formulario de solicitud
+Lo aporta el solicitante
+5"
+`;
+
+exports[`breaks procedures down by area and by channel > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+[Cargando…]"
+`;
+
+exports[`invites an editor to load procedures when there are none > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+Todavía no hay trámites cargados
+Cargar trámites"
+`;
+
+exports[`invites an editor to load procedures when there are none > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+[Cargando…]"
+`;
+
+exports[`lists the most requested requirements with their source > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+Trámites vigentes
+12
+Con canal en línea
+5
+41,7 % de los vigentes
+Requisitos por trámite
+3,4
+Promedio entre los vigentes
+Requisitos cargados
+16
+Fuentes cargadas
+11
+Trámites por área
+Ver como tabla
+Trámites por canal
+Ver como tabla
+Requisitos más pedidos
+[Requisitos más pedidos]
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes que lo piden.
+DNI
+RENAPER
+9
+Formulario de solicitud
+Lo aporta el solicitante
+5"
+`;
+
+exports[`lists the most requested requirements with their source > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+[Cargando…]"
+`;
+
+exports[`offers the downloads and the status strip with its own year > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+Trámites vigentes
+12
+Con canal en línea
+5
+41,7 % de los vigentes
+Requisitos por trámite
+3,4
+Promedio entre los vigentes
+Requisitos cargados
+16
+Fuentes cargadas
+11
+Trámites por área
+Ver como tabla
+Trámites por canal
+Ver como tabla
+Requisitos más pedidos
+[Requisitos más pedidos]
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes que lo piden.
+DNI
+RENAPER
+9
+Formulario de solicitud
+Lo aporta el solicitante
+5"
+`;
+
+exports[`offers the downloads and the status strip with its own year > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+[Cargando…]"
+`;
+
+exports[`says when no requirement is asked for yet > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+Trámites vigentes
+12
+Con canal en línea
+5
+41,7 % de los vigentes
+Requisitos por trámite
+3,4
+Promedio entre los vigentes
+Requisitos cargados
+16
+Fuentes cargadas
+11
+Trámites por área
+Ver como tabla
+Trámites por canal
+Ver como tabla
+Requisitos más pedidos
+Ningún trámite vigente tiene requisitos cargados."
+`;
+
+exports[`says when no requirement is asked for yet > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+[Cargando…]"
+`;
+
+exports[`says why the summary cannot be loaded > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why the summary cannot be loaded > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+[Cargando…]"
+`;
+
+exports[`shows dashes when no procedure is offered but the catalog has data > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+Trámites vigentes
+0
+Con canal en línea
+0
+Requisitos por trámite
+—
+Promedio entre los vigentes
+Requisitos cargados
+16
+Fuentes cargadas
+11
+Trámites por área
+Ver como tabla
+Trámites por canal
+Ver como tabla
+Requisitos más pedidos
+[Requisitos más pedidos]
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes que lo piden.
+DNI
+RENAPER
+9
+Formulario de solicitud
+Lo aporta el solicitante
+5"
+`;
+
+exports[`shows dashes when no procedure is offered but the catalog has data > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+[Cargando…]"
+`;
+
+exports[`shows the headline numbers > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+Trámites vigentes
+12
+Con canal en línea
+5
+41,7 % de los vigentes
+Requisitos por trámite
+3,4
+Promedio entre los vigentes
+Requisitos cargados
+16
+Fuentes cargadas
+11
+Trámites por área
+Ver como tabla
+Trámites por canal
+Ver como tabla
+Requisitos más pedidos
+[Requisitos más pedidos]
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes que lo piden.
+DNI
+RENAPER
+9
+Formulario de solicitud
+Lo aporta el solicitante
+5"
+`;
+
+exports[`shows the headline numbers > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+[Cargando…]"
+`;
+
+exports[`tells a viewer there is nothing yet > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+Todavía no hay trámites cargados
+Cuando el equipo cargue trámites, vas a ver acá el resumen."
+`;
+
+exports[`tells a viewer there is nothing yet > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+[Cargando…]"
+`;

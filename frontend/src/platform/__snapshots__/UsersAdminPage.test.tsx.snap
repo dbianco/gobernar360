@@ -1,0 +1,658 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks in a modal before removing a user, and removes them when accepted > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`asks in a modal before removing a user, and removes them when accepted > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`changes a user's access level for a dashboard > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`changes a user's access level for a dashboard > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`closes the add and import windows without changes > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`closes the add and import windows without changes > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`closes the add window with Escape > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`closes the add window with Escape > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`does not remove a user when the confirmation is declined > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`does not remove a user when the confirmation is declined > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`is reachable for municipality admins > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Configuración
+Usuarios
+Configuración
+Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar"
+`;
+
+exports[`is reachable for municipality admins > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lets the notice and the error be closed > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`lets the notice and the error be closed > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`makes a member administrator of the municipality > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`makes a member administrator of the municipality > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`offers no way to change passwords > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`offers no way to change passwords > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`redirects non-admin members away > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`redirects non-admin members away > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`removes access by choosing no access > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`removes access by choosing no access > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`resends an invitation without saying whether the person already had a password > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Si Carla Carga todavía no eligió su contraseña, le enviamos un enlace nuevo.
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+Reenviar invitación
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`resends an invitation without saying whether the person already had a password > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`says when the search finds nobody, and why the users cannot be loaded > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Borrar la búsqueda]
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says when the search finds nobody, and why the users cannot be loaded > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`searches users by name or email > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Borrar la búsqueda]
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`searches users by name or email > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`shows a server error of an import, and clears it when another file is chosen > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar
+Importar usuarios desde un archivo CSV
+Agregá o actualizá muchos usuarios a la vez con una planilla guardada como CSV.
+Columnas: email, nombre, administrador (sí o no) y una por cada tablero habilitado, con el nombre del tablero.
+En cada tablero: Lectura, Carga o Administración; vacío es sin acceso.
+Si un email aparece más de una vez, en este archivo o en uno anterior, vale lo de la última fila: esa persona queda con esos permisos.
+Si el archivo no tiene la columna de un tablero, el acceso a ese tablero de quienes ya son usuarios no cambia.
+A quien todavía no era usuario del municipio le enviamos un email para que pueda ingresar.
+Descargar un ejemplo
+Archivo CSV
+u.csv
+Ocurrió un error. Intentá de nuevo.
+Cancelar
+Importar"
+`;
+
+exports[`shows a server error of an import, and clears it when another file is chosen > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`shows that administrators already have full access > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`shows that administrators already have full access > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`shows the conflict message when removing the last admin > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`shows the conflict message when removing the last admin > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;

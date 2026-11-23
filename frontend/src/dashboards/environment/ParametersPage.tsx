@@ -20,6 +20,9 @@ import { formatNumber } from '../../platform/format'
 import { send, useAction, useSubcategories, useVariables } from './api'
 import { CATEGORIES, type Category, type Variable } from './types'
 import { VariableForm } from './VariableForm'
+import { Pager } from '../../platform/Pager'
+import { useLocalTable } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
 
 /** What the municipality measures in each category: its subcategories and variables. */
 export function ParametersPage() {
@@ -30,13 +33,20 @@ export function ParametersPage() {
   const [category, setCategory] = useState<Category>('energy')
   const [editing, setEditing] = useState<Variable | 'new' | null>(null)
   const label = (key: string) => t(`environment.parameters.${key}`)
+  const ownVariables = (variables.data ?? []).filter(
+    (item) => item.subcategory.category === category,
+  )
+  const table = useLocalTable(
+    'environment.variables',
+    ownVariables,
+    (variable) => `${variable.name} ${variable.subcategory.name}`,
+  )
 
   const failed = [subcategories, variables].find((query) => query.isError)
   if (failed) return <Alert color="red">{errorMessage(failed.error)}</Alert>
   if (!subcategories.data || !variables.data) return <Loader aria-label={t('app.loading')} />
 
   const ownSubcategories = subcategories.data.filter((item) => item.category === category)
-  const ownVariables = variables.data.filter((item) => item.subcategory.category === category)
 
   return (
     <Stack>
@@ -74,7 +84,15 @@ export function ParametersPage() {
       {ownSubcategories.length > 0 && ownVariables.length === 0 && (
         <Text c="dimmed">{label('noVariables')}</Text>
       )}
-      {ownVariables.length > 0 && (
+      {table.hasItems && (
+        <SearchInput
+          value={table.query}
+          onChange={table.setQuery}
+          placeholder={label('searchHint')}
+        />
+      )}
+      {table.hasItems && table.total === 0 && <Text c="dimmed">{t('app.noMatches')}</Text>}
+      {table.rows.length > 0 && (
         <Table.ScrollContainer minWidth={640}>
           <Table>
             <Table.Thead>
@@ -93,7 +111,7 @@ export function ParametersPage() {
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
-              {ownVariables.map((variable) => (
+              {table.rows.map((variable) => (
                 <Table.Tr key={variable.id}>
                   <Table.Td>{variable.name}</Table.Td>
                   <Table.Td>{variable.subcategory.name}</Table.Td>
@@ -134,6 +152,7 @@ export function ParametersPage() {
           </Table>
         </Table.ScrollContainer>
       )}
+      <Pager {...table.pager} />
       <Modal
         opened={editing !== null}
         onClose={() => setEditing(null)}

@@ -16,7 +16,8 @@
     "list": {
       "empty": "Todavía no hay elementos cargados.",
       "renameNamed": "Renombrar {{name}}",
-      "deleteNamed": "Eliminar {{name}}"
+      "deleteNamed": "Eliminar {{name}}",
+      "searchHint": "Nombre"
     },
     "year": "Año",
     "search": "Buscar",
@@ -24,7 +25,9 @@
     "pager": {
       "range": "{{from}}–{{to}} de {{total}}",
       "previous": "Anterior",
-      "next": "Siguiente"
+      "next": "Siguiente",
+      "pageSize": "Cantidad por página",
+      "perPage": "{{count}} por página"
     },
     "chart": {
       "showTable": "Ver como tabla",
@@ -44,7 +47,10 @@
       "Octubre",
       "Noviembre",
       "Diciembre"
-    ]
+    ],
+    "confirmTitle": "¿Estás seguro?",
+    "clearSearch": "Borrar la búsqueda",
+    "noMatches": "Nada coincide con la búsqueda."
   },
   "errors": {
     "generic": "Ocurrió un error. Intentá de nuevo.",
@@ -57,22 +63,60 @@
     "validation_error": "Revisá los datos ingresados.",
     "network": "No se pudo conectar con el servidor.",
     "not_authenticated": "Tu sesión terminó. Volvé a ingresar.",
-    "account_exists": "Ya existe una cuenta con ese email. Pedile al administrador de la plataforma que la agregue a tu municipio.",
     "dni_exists": "Ya hay otra persona con ese DNI en el padrón del municipio.",
     "already_registered": "Esa persona ya está registrada en este tablero.",
     "household_has_head": "El grupo ya tiene un referente.",
     "in_another_household": "Esa persona ya está en otro grupo familiar. Quitala primero de ese grupo.",
-    "future_month": "No se puede asignar un estado a un mes que todavía no empezó."
+    "future_month": "No se puede asignar un estado a un mes que todavía no empezó.",
+    "invalid_token": "El enlace venció o ya se usó.",
+    "too_many_requests": "Hiciste demasiados pedidos seguidos. Esperá un rato y volvé a intentar.",
+    "template_unknown_variable": "El texto usa variables que este correo no tiene.",
+    "template_missing_variable": "Al texto le falta una variable obligatoria."
   },
   "login": {
     "title": "Ingresar a gobernar360",
     "email": "Email",
     "password": "Contraseña",
-    "submit": "Ingresar"
+    "submit": "Ingresar",
+    "forgot": "¿Olvidaste tu contraseña?",
+    "or": "o",
+    "sso": "Ingresar con inicio de sesión único",
+    "passwordSet": "Tu contraseña quedó guardada. Ya podés ingresar.",
+    "ssoErrors": {
+      "failed": "No se pudo completar el inicio de sesión único. Intentá de nuevo.",
+      "no_account": "No hay una cuenta de gobernar360 con el email de ese inicio de sesión. Pedile acceso a quien administra tu municipio.",
+      "unverified_email": "El proveedor de identidad no confirmó que el email sea tuyo, así que no se puede usar para ingresar.",
+      "cancelled": "Se canceló el inicio de sesión único.",
+      "disabled": "El inicio de sesión único no está habilitado.",
+      "not_allowed": "Tu municipio no permite ingresar con inicio de sesión único. Ingresá con tu email y contraseña."
+    }
+  },
+  "passwordReset": {
+    "title": "Recuperar contraseña",
+    "intro": "Escribí el email de tu cuenta y te enviamos un enlace para elegir una contraseña nueva.",
+    "email": "Email",
+    "submit": "Enviar enlace",
+    "sent": "Si {{email}} corresponde a una cuenta de gobernar360, te enviamos un enlace para elegir una contraseña nueva. Revisá tu correo, también la carpeta de correo no deseado.",
+    "backToLogin": "Volver a ingresar"
+  },
+  "setPassword": {
+    "invitationTitle": "Te damos la bienvenida a gobernar360",
+    "invitationIntro": "Hola, {{name}}. Elegí la contraseña con la que vas a ingresar como {{email}}.",
+    "resetTitle": "Elegí una contraseña nueva",
+    "resetIntro": "Elegí la contraseña nueva de {{email}}. Al guardarla se cierran todas las sesiones abiertas de tu cuenta.",
+    "password": "Contraseña nueva",
+    "confirm": "Repetí la contraseña",
+    "hint": "Mínimo 10 caracteres.",
+    "mismatch": "Las contraseñas no coinciden.",
+    "submit": "Guardar contraseña",
+    "invalidTitle": "Este enlace ya no es válido",
+    "invalid": "El enlace venció o ya se usó. Si todavía necesitás elegir una contraseña, pedí un enlace nuevo.",
+    "requestNew": "Pedir un enlace nuevo"
   },
   "nav": {
     "overview": "Resumen general",
     "users": "Usuarios",
+    "settings": "Configuración",
     "platform": "Plataforma",
     "dashboards": "Tableros",
     "municipality": "Municipio",
@@ -176,7 +220,8 @@
       "empty": "No hay proyectos que coincidan con los filtros.",
       "name": "Proyecto",
       "progress": "Avance",
-      "view": "Ver {{name}}"
+      "view": "Ver {{name}}",
+      "searchHint": "Nombre del proyecto"
     },
     "form": {
       "createTitle": "Nuevo proyecto",
@@ -236,7 +281,8 @@
       "achievement": "Cumplimiento",
       "needsObjectives": "Para cargar indicadores primero hay que definir objetivos en los parámetros.",
       "editNamed": "Editar indicador: {{name}}",
-      "deleteNamed": "Eliminar indicador: {{name}}"
+      "deleteNamed": "Eliminar indicador: {{name}}",
+      "searchHint": "Nombre del indicador"
     },
     "parameters": {
       "terms": "Gestiones",
@@ -371,7 +417,8 @@
       "source": "Fuente del dato",
       "aggregation": "Valor del año",
       "editNamed": "Editar variable: {{name}}",
-      "deleteNamed": "Eliminar variable: {{name}}"
+      "deleteNamed": "Eliminar variable: {{name}}",
+      "searchHint": "Variable o subcategoría"
     },
     "monthNames": {
       "1": "Enero",
@@ -408,7 +455,8 @@
       "annual": "Variables anuales",
       "hint": "Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.",
       "cell": "{{variable}} — {{period}}",
-      "empty": "No hay variables para cargar."
+      "empty": "No hay variables para cargar.",
+      "searchHint": "Variable o subcategoría"
     },
     "tracking": {
       "category": "Categoría",
@@ -460,8 +508,6 @@
     "add": "Agregar usuario",
     "name": "Nombre y apellido",
     "email": "Email",
-    "password": "Contraseña inicial",
-    "passwordHint": "Mínimo 10 caracteres.",
     "passwordTooShort": "La contraseña debe tener al menos 10 caracteres.",
     "admin": "Administrador del municipio",
     "adminNamed": "Administrador: {{name}}",
@@ -482,10 +528,145 @@
     "newPassword": "Contraseña nueva",
     "newPasswordHint": "Mínimo 10 caracteres. Se cierran todas las sesiones abiertas de la cuenta.",
     "passwordChanged": "Contraseña cambiada: {{name}}",
-    "accountExists": "Ya existe una cuenta con este email",
-    "accountExistsHint": "Si no estás seguro de que la contraseña actual la eligió esta persona, reemplazala por la que escribiste: se cierran sus sesiones abiertas.",
-    "keepPassword": "Agregar y conservar su contraseña",
-    "replacePassword": "Agregar y reemplazar su contraseña"
+    "inviteHint": "No hace falta elegir una contraseña: le enviamos un email para que la elija.",
+    "invited": "Le enviamos un email a {{email}} para que pueda ingresar.",
+    "resendInvitation": "Reenviar invitación",
+    "resendInvitationNamed": "Reenviar invitación a {{name}}",
+    "invitationResent": "Si {{name}} todavía no eligió su contraseña, le enviamos un enlace nuevo.",
+    "import": {
+      "open": "Importar CSV",
+      "title": "Importar usuarios desde un archivo CSV",
+      "intro": "Agregá o actualizá muchos usuarios a la vez con una planilla guardada como CSV.",
+      "ruleColumns": "Columnas: email, nombre, administrador (sí o no) y una por cada tablero habilitado, con el nombre del tablero.",
+      "ruleLevels": "En cada tablero: Lectura, Carga o Administración; vacío es sin acceso.",
+      "ruleLastRow": "Si un email aparece más de una vez, en este archivo o en uno anterior, vale lo de la última fila: esa persona queda con esos permisos.",
+      "ruleMissingColumn": "Si el archivo no tiene la columna de un tablero, el acceso a ese tablero de quienes ya son usuarios no cambia.",
+      "ruleEmails": "A quien todavía no era usuario del municipio le enviamos un email para que pueda ingresar.",
+      "downloadExample": "Descargar un ejemplo",
+      "file": "Archivo CSV",
+      "choose": "Elegí un archivo",
+      "submit": "Importar",
+      "unreadable": "No se pudo leer el archivo.",
+      "hasErrors": "El archivo tiene {{count}} problemas",
+      "line": "Línea",
+      "problem": "Problema",
+      "nothingChanged": "No se cambió nada. Corregí el archivo y volvé a importarlo.",
+      "done": "Importación terminada: {{created}} usuarios agregados, {{updated}} actualizados y {{unchanged}} sin cambios.",
+      "errors": {
+        "generic": "La fila no es válida.",
+        "no_rows": "El archivo no tiene usuarios.",
+        "too_many_rows": "El archivo tiene más de {{value}} usuarios. Dividilo en varios archivos.",
+        "missing_column": "Falta la columna «{{column}}».",
+        "unknown_column": "La columna «{{column}}» no corresponde a ningún dato ni tablero habilitado.",
+        "dashboard_not_enabled": "El tablero de la columna «{{column}}» no está habilitado en el municipio.",
+        "duplicate_column": "La columna «{{column}}» está repetida.",
+        "extra_cells": "La fila tiene más valores que columnas.",
+        "invalid_email": "«{{value}}» no es un email válido.",
+        "missing_name": "Falta el nombre.",
+        "name_too_long": "El nombre tiene más de 200 caracteres.",
+        "invalid_admin": "En «{{column}}» va sí o no, no «{{value}}».",
+        "invalid_level": "En «{{column}}» va Lectura, Carga o Administración, no «{{value}}»."
+      }
+    },
+    "searchHint": "Nombre o email",
+    "removeTitle": "Quitar usuario"
+  },
+  "admin": {
+    "tabs": {
+      "users": "Usuarios",
+      "settings": "Configuración"
+    }
+  },
+  "settings": {
+    "title": "Configuración",
+    "intro": "Lo que elijas acá vale para todo el municipio.",
+    "saved": "Cambios guardados.",
+    "recipients": {
+      "title": "Avisos por email",
+      "label": "Destinatarios de los avisos",
+      "hint": "Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.",
+      "invalid": "Estas direcciones no son válidas: {{emails}}",
+      "save": "Guardar destinatarios"
+    },
+    "sso": {
+      "title": "Inicio de sesión único",
+      "label": "Permitir ingresar con inicio de sesión único",
+      "hint": "Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.",
+      "unavailable": "La plataforma no tiene un proveedor de identidad configurado. Pedíselo a quien opera la plataforma."
+    },
+    "templates": {
+      "title": "Textos de los correos",
+      "hint": "Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{example}} por el nombre de la persona.",
+      "choose": "Correo",
+      "subject": "Asunto",
+      "body": "Texto",
+      "customized": "Texto propio del municipio",
+      "default": "Texto por defecto",
+      "unsaved": "Hay cambios sin guardar.",
+      "variablesTitle": "Variables",
+      "variablesHint": "Tocá una para agregarla donde está el cursor, en el asunto o en el texto.",
+      "insertNamed": "Insertar la variable {{name}}",
+      "requiredHint": "* Obligatoria: el correo no funciona sin ella.",
+      "save": "Guardar texto",
+      "test": "Enviarme una prueba",
+      "testSent": "Te enviamos una prueba a {{email}} con datos de ejemplo.",
+      "restore": "Volver al texto por defecto",
+      "restoreConfirm": "¿Volver al texto por defecto? Se pierde el texto propio del municipio.",
+      "discard": "Hay cambios sin guardar en este correo. ¿Descartarlos?",
+      "unknownVariables": "El texto usa variables que este correo no tiene: {{variables}}.",
+      "missingVariables": "Falta una variable obligatoria: {{variables}}.",
+      "keys": {
+        "invitation": {
+          "label": "Acceso nuevo (invitación)",
+          "description": "Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña."
+        },
+        "membership_added": {
+          "label": "Acceso a una cuenta que ya existe",
+          "description": "Le llega a quien agregás como usuario cuando ya tiene cuenta en gobernar360: le avisa que ahora también accede a este municipio."
+        },
+        "password_reset": {
+          "label": "Recuperar contraseña",
+          "description": "Le llega a quien pide una contraseña nueva desde la pantalla de ingreso. Se usa este texto si la cuenta pertenece solo a este municipio; si no, el texto por defecto."
+        },
+        "status_light_missing": {
+          "label": "Aviso: falta el estado mensual",
+          "description": "Lo reciben los destinatarios de los avisos cuando termina un mes y un tablero no tiene su estado mensual."
+        },
+        "milestone_overdue": {
+          "label": "Aviso: hitos vencidos",
+          "description": "Lo reciben los destinatarios de los avisos cuando un hito de un proyecto pasa su fecha sin completarse."
+        }
+      },
+      "discardTitle": "Cambios sin guardar",
+      "discardConfirm": "Descartar cambios"
+    },
+    "variables": {
+      "name": "Nombre de la persona",
+      "inviter": "Quién dio el acceso",
+      "municipality": "Municipio",
+      "link": "Enlace",
+      "expires": "Vencimiento del enlace",
+      "month": "Mes",
+      "items": "Lista de avisos",
+      "account_link": "Enlace a Mi cuenta"
+    },
+    "editor": {
+      "toolbar": "Formato del texto",
+      "bold": "Negrita",
+      "italic": "Cursiva",
+      "underline": "Subrayado",
+      "strike": "Tachado",
+      "heading": "Título",
+      "bulletList": "Lista con viñetas",
+      "orderedList": "Lista numerada",
+      "link": "Enlace",
+      "unlink": "Quitar enlace",
+      "undo": "Deshacer",
+      "redo": "Rehacer",
+      "linkAddress": "Dirección del enlace",
+      "linkHint": "Para el enlace del correo usá {{suggestion}}.",
+      "apply": "Aplicar"
+    }
   },
   "platform": {
     "title": "Municipios de la plataforma",
@@ -509,17 +690,33 @@
     "dashboardsHint": "Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.",
     "users": "Usuarios",
     "notFound": "El municipio no existe.",
-    "noDashboards": "Sin tableros habilitados"
+    "noDashboards": "Sin tableros habilitados",
+    "searchHint": "Nombre o identificador"
   },
   "account": {
-    "title": "Cambiar contraseña",
+    "title": "Mi cuenta",
     "link": "Mi cuenta",
+    "passwordTitle": "Cambiar contraseña",
     "current": "Contraseña actual",
     "new": "Contraseña nueva",
     "newHint": "Mínimo 10 caracteres.",
     "submit": "Cambiar contraseña",
     "done": "La contraseña se cambió. Las demás sesiones abiertas se cerraron.",
-    "wrongCurrent": "La contraseña actual no es correcta."
+    "wrongCurrent": "La contraseña actual no es correcta.",
+    "notifications": {
+      "title": "Avisos por email",
+      "hint": "Los avisos te llegan a {{email}} si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.",
+      "kinds": {
+        "status_light_missing": {
+          "label": "Falta el estado mensual",
+          "description": "Cuando termina un mes y un tablero que administrás no tiene su estado mensual."
+        },
+        "milestone_overdue": {
+          "label": "Hitos vencidos",
+          "description": "Cuando un hito de un proyecto pasa su fecha sin completarse."
+        }
+      }
+    }
   },
   "economic": {
     "title": "Económico",
@@ -571,7 +768,8 @@
       "noSubcategory": "Sin subcategoría",
       "audience": "Destinatarios",
       "editNamed": "Editar {{name}}",
-      "deleteNamed": "Eliminar {{name}}"
+      "deleteNamed": "Eliminar {{name}}",
+      "searchHint": "Herramienta o categoría"
     },
     "actors": {
       "create": "Cargar nuevo actor económico",
@@ -643,7 +841,8 @@
       "download": "Descargar asignaciones",
       "editNamed": "Editar la asignación de {{name}}",
       "editTitle": "Editar asignación",
-      "toolFixed": "La herramienta y el destinatario no se cambian: si están mal, eliminá la asignación y cargala de nuevo."
+      "toolFixed": "La herramienta y el destinatario no se cambian: si están mal, eliminá la asignación y cargala de nuevo.",
+      "searchHint": "Herramienta, actor o persona"
     },
     "summary": {
       "actors": "Actores económicos",
@@ -769,7 +968,8 @@
       "description": "Descripción",
       "category": "Categoría",
       "editNamed": "Editar {{name}}",
-      "deleteNamed": "Eliminar {{name}}"
+      "deleteNamed": "Eliminar {{name}}",
+      "searchHint": "Prestación o categoría"
     },
     "people": {
       "create": "Cargar nueva persona",
@@ -838,7 +1038,8 @@
       "editNamed": "Editar la entrega de {{name}}",
       "deleteNamed": "Eliminar la entrega de {{name}}",
       "deleteConfirm": "¿Eliminar esta entrega?",
-      "download": "Descargar prestaciones"
+      "download": "Descargar prestaciones",
+      "searchHint": "Persona, DNI o prestación"
     },
     "interventions": {
       "title": "Intervenciones",
@@ -860,7 +1061,8 @@
       "editNamed": "Editar la intervención de {{name}}",
       "deleteNamed": "Eliminar la intervención de {{name}}",
       "deleteConfirm": "¿Eliminar esta intervención?",
-      "download": "Descargar intervenciones"
+      "download": "Descargar intervenciones",
+      "searchHint": "Persona, DNI o tipo"
     },
     "summary": {
       "people": "Personas",
@@ -1044,10 +1246,10 @@
       "area": "Área",
       "noArea": "Sin área",
       "editNamed": "Editar fuente: {{name}}",
-      "deleteNamed": "Eliminar fuente: {{name}}"
+      "deleteNamed": "Eliminar fuente: {{name}}",
+      "searchHint": "Nombre de la fuente"
     },
     "requirements": {
-      "search": "Buscar requisito",
       "add": "Agregar requisito",
       "addTitle": "Nuevo requisito",
       "editTitle": "Editar requisito",
@@ -1062,7 +1264,8 @@
       "sourceField": "Fuente",
       "sourceHint": "Quién emite o guarda este dato. Dejalo sin fuente si lo aporta el solicitante.",
       "editNamed": "Editar requisito: {{name}}",
-      "deleteNamed": "Eliminar requisito: {{name}}"
+      "deleteNamed": "Eliminar requisito: {{name}}",
+      "searchHint": "Requisito o fuente"
     },
     "list": {
       "searchHint": "Nombre del trámite",
@@ -1166,7 +1369,8 @@
       "requirements": "Requisitos",
       "procedures": "Trámites",
       "volume": "Gestiones por año",
-      "withoutSource": "Lo aporta el solicitante"
+      "withoutSource": "Lo aporta el solicitante",
+      "searchHint": "Nombre de la fuente"
     },
     "help": {
       "parametersPage": {

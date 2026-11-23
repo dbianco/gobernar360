@@ -1,0 +1,443 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`creates a project from the list, and closes the form on cancel and with Escape > screen at the end 1`] = `
+"Buscar
+(Nombre del proyecto)
+Año
+Todos
+2023
+2024
+2025
+2026
+2027
+Eje
+Todos
+Ciudad inclusiva
+Ciudad segura
+Dependencia
+Todos
+Obras Públicas
+Salud
+Responsable
+Todos
+María Pérez
+Prioridad
+Todos
+A+
+A
+B
+C
+Estado
+Todos
+Sin iniciar
+En implementación
+Retrasado
+Finalizado
+Cargar nuevo proyecto
+No hay proyectos que coincidan con los filtros."
+`;
+
+exports[`creates a project from the list, and closes the form on cancel and with Escape > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`drops a filter set back to all > screen at the end 1`] = `
+"Buscar
+(Nombre del proyecto)
+Año
+Todos
+2023
+2024
+2025
+2026
+2027
+Eje
+Todos
+Ciudad inclusiva
+Ciudad segura
+Dependencia
+Todos
+Obras Públicas
+Salud
+Responsable
+Todos
+María Pérez
+Prioridad
+Todos
+A+
+A
+B
+C
+Estado
+Todos
+Sin iniciar
+En implementación
+Retrasado
+Finalizado
+Cargar nuevo proyecto
+No hay proyectos que coincidan con los filtros."
+`;
+
+exports[`drops a filter set back to all > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`filters the list by status > screen at the end 1`] = `
+"Buscar
+(Nombre del proyecto)
+Año
+Todos
+2023
+2024
+2025
+2026
+2027
+Eje
+Todos
+Ciudad inclusiva
+Ciudad segura
+Dependencia
+Todos
+Obras Públicas
+Salud
+Responsable
+Todos
+María Pérez
+Prioridad
+Todos
+A+
+A
+B
+C
+Estado
+Todos
+Sin iniciar
+En implementación
+Retrasado
+Finalizado
+Cargar nuevo proyecto
+No hay proyectos que coincidan con los filtros."
+`;
+
+exports[`filters the list by status > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`hides the create button from viewers > screen at the end 1`] = `
+"Buscar
+(Nombre del proyecto)
+Año
+Todos
+2023
+2024
+2025
+2026
+2027
+Eje
+Todos
+Ciudad inclusiva
+Ciudad segura
+Dependencia
+Todos
+Obras Públicas
+Salud
+Responsable
+Todos
+María Pérez
+Prioridad
+Todos
+A+
+A
+B
+C
+Estado
+Todos
+Sin iniciar
+En implementación
+Retrasado
+Finalizado
+Proyecto
+[Qué significa Proyecto]
+Nombre del proyecto. Al hacer clic se abre su ficha.
+Eje
+[Qué significa Eje]
+Eje de gobierno al que aporta el proyecto.
+Dependencia
+[Qué significa Dependencia]
+Área del municipio que lleva adelante el proyecto.
+Responsable
+[Qué significa Responsable]
+Persona responsable del proyecto.
+Prioridad
+[Qué significa Prioridad]
+Importancia que la gestión le dio al proyecto: A+, A, B o C.
+Estado
+[Qué significa Estado]
+Sin iniciar, en implementación o finalizado. Se marca retrasado si venció su fecha de fin o tiene algún hito vencido.
+Avance
+[Qué significa Avance]
+Porcentaje de hitos finalizados. Si el proyecto no tiene hitos, es el avance cargado a mano.
+Pavimentación
+Ciudad inclusiva
+Obras Públicas
+—
+A
+En implementación
+0 %"
+`;
+
+exports[`hides the create button from viewers > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lists the projects of the current term > screen at the end 1`] = `
+"Buscar
+(Nombre del proyecto)
+Año
+Todos
+2023
+2024
+2025
+2026
+2027
+Eje
+Todos
+Ciudad inclusiva
+Ciudad segura
+Dependencia
+Todos
+Obras Públicas
+Salud
+Responsable
+Todos
+María Pérez
+Prioridad
+Todos
+A+
+A
+B
+C
+Estado
+Todos
+Sin iniciar
+En implementación
+Retrasado
+Finalizado
+Cargar nuevo proyecto
+Proyecto
+[Qué significa Proyecto]
+Nombre del proyecto. Al hacer clic se abre su ficha.
+Eje
+[Qué significa Eje]
+Eje de gobierno al que aporta el proyecto.
+Dependencia
+[Qué significa Dependencia]
+Área del municipio que lleva adelante el proyecto.
+Responsable
+[Qué significa Responsable]
+Persona responsable del proyecto.
+Prioridad
+[Qué significa Prioridad]
+Importancia que la gestión le dio al proyecto: A+, A, B o C.
+Estado
+[Qué significa Estado]
+Sin iniciar, en implementación o finalizado. Se marca retrasado si venció su fecha de fin o tiene algún hito vencido.
+Avance
+[Qué significa Avance]
+Porcentaje de hitos finalizados. Si el proyecto no tiene hitos, es el avance cargado a mano.
+Pavimentación
+Ciudad inclusiva
+Obras Públicas
+—
+A
+En implementación
+35 %"
+`;
+
+exports[`lists the projects of the current term > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`offers the create button to editors > screen at the end 1`] = `
+"Buscar
+(Nombre del proyecto)
+Año
+Todos
+2023
+2024
+2025
+2026
+2027
+Eje
+Todos
+Ciudad inclusiva
+Ciudad segura
+Dependencia
+Todos
+Obras Públicas
+Salud
+Responsable
+Todos
+María Pérez
+Prioridad
+Todos
+A+
+A
+B
+C
+Estado
+Todos
+Sin iniciar
+En implementación
+Retrasado
+Finalizado
+Cargar nuevo proyecto
+No hay proyectos que coincidan con los filtros."
+`;
+
+exports[`offers the create button to editors > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why the filters cannot be offered > screen at the end 1`] = `
+"Buscar
+(Nombre del proyecto)
+Ocurrió un error. Intentá de nuevo.
+Cargar nuevo proyecto
+No hay proyectos que coincidan con los filtros."
+`;
+
+exports[`says why the filters cannot be offered > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why the projects cannot be loaded > screen at the end 1`] = `
+"Buscar
+(Nombre del proyecto)
+Año
+Todos
+2023
+2024
+2025
+2026
+2027
+Eje
+Todos
+Ciudad inclusiva
+Ciudad segura
+Dependencia
+Todos
+Obras Públicas
+Salud
+Responsable
+Todos
+María Pérez
+Prioridad
+Todos
+A+
+A
+B
+C
+Estado
+Todos
+Sin iniciar
+En implementación
+Retrasado
+Finalizado
+Cargar nuevo proyecto
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why the projects cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`searches the projects by name and pages them ten at a time > screen at the end 1`] = `
+"Buscar
+(Nombre del proyecto)
+[Borrar la búsqueda]
+Año
+Todos
+2023
+2024
+2025
+2026
+2027
+Eje
+Todos
+Ciudad inclusiva
+Ciudad segura
+Dependencia
+Todos
+Obras Públicas
+Salud
+Responsable
+Todos
+María Pérez
+Prioridad
+Todos
+A+
+A
+B
+C
+Estado
+Todos
+Sin iniciar
+En implementación
+Retrasado
+Finalizado
+Cargar nuevo proyecto
+Nada coincide con la búsqueda."
+`;
+
+exports[`searches the projects by name and pages them ten at a time > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows a delayed badge for delayed projects > screen at the end 1`] = `
+"Buscar
+(Nombre del proyecto)
+Año
+Todos
+2023
+2024
+2025
+2026
+2027
+Eje
+Todos
+Ciudad inclusiva
+Ciudad segura
+Dependencia
+Todos
+Obras Públicas
+Salud
+Responsable
+Todos
+María Pérez
+Prioridad
+Todos
+A+
+A
+B
+C
+Estado
+Todos
+Sin iniciar
+En implementación
+Retrasado
+Finalizado
+Cargar nuevo proyecto
+Proyecto
+[Qué significa Proyecto]
+Nombre del proyecto. Al hacer clic se abre su ficha.
+Eje
+[Qué significa Eje]
+Eje de gobierno al que aporta el proyecto.
+Dependencia
+[Qué significa Dependencia]
+Área del municipio que lleva adelante el proyecto.
+Responsable
+[Qué significa Responsable]
+Persona responsable del proyecto.
+Prioridad
+[Qué significa Prioridad]
+Importancia que la gestión le dio al proyecto: A+, A, B o C.
+Estado
+[Qué significa Estado]
+Sin iniciar, en implementación o finalizado. Se marca retrasado si venció su fecha de fin o tiene algún hito vencido.
+Avance
+[Qué significa Avance]
+Porcentaje de hitos finalizados. Si el proyecto no tiene hitos, es el avance cargado a mano.
+Pavimentación
+Ciudad inclusiva
+Obras Públicas
+—
+A
+Retrasado
+0 %"
+`;
+
+exports[`shows a delayed badge for delayed projects > screen at the start 1`] = `"[Cargando…]"`;

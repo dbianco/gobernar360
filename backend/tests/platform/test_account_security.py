@@ -1,9 +1,13 @@
 """Regression tests for findings of the final review."""
 
-from sqlalchemy import select
-
-from gobernar360.platform.models import AuditLog
-from tests.factories import admin_session, login, make_membership, make_municipality, make_user
+from tests.factories import (
+    accept_invitation,
+    emails_to,
+    login,
+    make_membership,
+    make_municipality,
+    make_user,
+)
 
 NEW_PASSWORD = "a-brand-new-password"
 
@@ -13,82 +17,16 @@ def _operator(client):
     login(client, "operator@gobernar360.test")
 
 
-def test_operator_created_admin_gets_the_operator_password_even_if_the_email_was_preregistered(
-    client,
-):
-    # Someone (e.g. the admin of another municipality) registered the email first.
-    make_user("intendente@beta.test", password="chosen-by-someone-else")
-    beta = make_municipality("Beta")
-    _operator(client)
-
-    response = client.post(
-        f"/api/platform/municipalities/{beta.id}/users",
-        json={
-            "email": "intendente@beta.test",
-            "full_name": "Intendente",
-            "password": NEW_PASSWORD,
-            "is_admin": True,
-            "existing_account": "replace_password",
-        },
-    )
-    client.post("/api/auth/logout")
-
-    assert response.status_code == 201
-    old = client.post(
-        "/api/auth/login",
-        json={"email": "intendente@beta.test", "password": "chosen-by-someone-else"},
-    )
-    assert old.status_code == 401
-    assert login(client, "intendente@beta.test", NEW_PASSWORD).json()["memberships"][0]["is_admin"]
-
-
-def test_operator_created_admin_invalidates_sessions_of_the_preexisting_account(client):
-    make_user("intendente@beta.test")
-    beta = make_municipality("Beta")
-    stale_cookie = login(client, "intendente@beta.test").cookies["g360_session"]
-    client.post("/api/auth/logout")
-    stale_cookie = login(client, "intendente@beta.test").cookies["g360_session"]
-    client.cookies.clear()
-    _operator(client)
-
-    client.post(
-        f"/api/platform/municipalities/{beta.id}/users",
-        json={
-            "email": "intendente@beta.test",
-            "full_name": "Intendente",
-            "password": NEW_PASSWORD,
-            "is_admin": True,
-            "existing_account": "replace_password",
-        },
-    )
-
-    client.cookies.clear()
-    client.cookies.set("g360_session", stale_cookie)
-    assert client.get("/api/auth/me").status_code == 401
-
-
 def _add_to(client, municipality, **fields):
     return client.post(
         f"/api/platform/municipalities/{municipality.id}/users",
-        json={"email": "intendente@beta.test", "full_name": "X", "password": NEW_PASSWORD} | fields,
+        json={"email": "intendente@beta.test", "full_name": "X"} | fields,
     )
 
 
-def test_operator_must_choose_what_happens_to_an_existing_account(client):
-    make_user("intendente@beta.test", password="chosen-by-its-owner")
-    beta = make_municipality("Beta")
-    _operator(client)
-
-    response = _add_to(client, beta)
-    client.post("/api/auth/logout")
-
-    assert response.status_code == 409
-    assert response.json()["error"]["code"] == "account_exists"
-    me = login(client, "intendente@beta.test", "chosen-by-its-owner").json()
-    assert me["memberships"] == []
-
-
-def test_operator_adds_an_existing_account_keeping_its_password_and_sessions(client):
+def test_adding_an_existing_account_keeps_its_password_and_sessions(client):
+    # Whoever adds an account that already exists gets no way into it: no password is
+    # asked or changed, and the owner only receives a notice.
     make_user("intendente@beta.test", password="chosen-by-its-owner")
     beta = make_municipality("Beta")
     session_cookie = login(client, "intendente@beta.test", "chosen-by-its-owner").cookies[
@@ -97,12 +35,31 @@ def test_operator_adds_an_existing_account_keeping_its_password_and_sessions(cli
     client.cookies.clear()
     _operator(client)
 
-    response = _add_to(client, beta, existing_account="keep_password")
+    response = _add_to(client, beta, password=NEW_PASSWORD, is_admin=True)
 
     assert response.status_code == 201
     client.cookies.clear()
     client.cookies.set("g360_session", session_cookie)
     assert client.get("/api/auth/me").json()["memberships"][0]["municipality"]["name"] == "Beta"
+    client.post("/api/auth/logout")
+    login(client, "intendente@beta.test", "chosen-by-its-owner")
+    [notice] = emails_to("intendente@beta.test")
+    assert "Beta" in notice.subject
+    assert "/set-password" not in notice.body
+
+
+def test_adding_an_account_that_never_chose_a_password_sends_it_a_new_invitation(client):
+    make_user("intendente@beta.test", password=None)
+    beta = make_municipality("Beta")
+    _operator(client)
+
+    _add_to(client, beta)
+    client.post("/api/auth/logout")
+
+    [invitation] = emails_to("intendente@beta.test")
+    assert "/set-password#" in invitation.body
+    accept_invitation(client, "intendente@beta.test", NEW_PASSWORD)
+    assert login(client, "intendente@beta.test", NEW_PASSWORD).json()["memberships"]
 
 
 def test_operator_adds_themselves_to_a_municipality_and_stays_signed_in(client):
@@ -111,30 +68,11 @@ def test_operator_adds_themselves_to_a_municipality_and_stays_signed_in(client):
 
     response = client.post(
         f"/api/platform/municipalities/{beta.id}/users",
-        json={
-            "email": "operator@gobernar360.test",
-            "full_name": "Operator",
-            "password": NEW_PASSWORD,
-            "is_admin": True,
-            "existing_account": "keep_password",
-        },
+        json={"email": "operator@gobernar360.test", "full_name": "Operator", "is_admin": True},
     )
 
     assert response.status_code == 201
     assert client.get("/api/auth/me").json()["memberships"][0]["is_admin"] is True
-
-
-def test_replacing_the_password_of_an_existing_account_is_audited(client):
-    make_user("intendente@beta.test")
-    beta = make_municipality("Beta")
-    _operator(client)
-
-    _add_to(client, beta, existing_account="replace_password")
-    _add_to(client, make_municipality("Gama"), existing_account="keep_password")
-
-    with admin_session() as session:
-        entries = session.scalars(select(AuditLog).order_by(AuditLog.created_at)).all()
-    assert [entry.changes.get("password") for entry in entries] == ["replaced", None]
 
 
 def test_operator_adding_someone_who_is_already_a_member_changes_nothing(client):
@@ -144,12 +82,7 @@ def test_operator_adding_someone_who_is_already_a_member_changes_nothing(client)
 
     response = client.post(
         f"/api/platform/municipalities/{beta.id}/users",
-        json={
-            "email": "intendente@beta.test",
-            "full_name": "X",
-            "password": NEW_PASSWORD,
-            "existing_account": "replace_password",
-        },
+        json={"email": "intendente@beta.test", "full_name": "X"},
     )
     client.post("/api/auth/logout")
 

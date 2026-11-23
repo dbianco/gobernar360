@@ -45,6 +45,14 @@ def test_expected_loads_per_frequency():
         ("lower_is_better", "0", "80", 1.0),
         ("lower_is_better", "0", "0", 1.0),
         ("lower_is_better", "3", "0", 0.0),
+        # A target of one is an ordinary target, not a missing one.
+        ("lower_is_better", "2", "1", 0.5),
+        ("higher_is_better", "1", "1", 1.0),
+        # Four decimals: enough for a percentage with two.
+        ("lower_is_better", "3", "1", 0.3333),
+        ("higher_is_better", "1", "3", 0.3333),
+        ("lower_is_better", "5", "-1", 0.0),
+        ("higher_is_better", "5", "-1", None),
     ],
 )
 def test_achievement(direction, value, target, expected):

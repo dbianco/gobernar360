@@ -1,0 +1,584 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`does not open the parameters to an editor who types the address > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Ambiental
+Ambiental
+Resumen
+Seguimiento
+Carga
+No tenés acceso a este tablero
+Pedile al administrador de tu municipio que te habilite."
+`;
+
+exports[`does not open the parameters to an editor who types the address > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lists the dashboard in the navigation > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Ambiental
+Ambiental
+Resumen
+Seguimiento
+[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar valores
+Variables
+2
+Cargas del año
+3 / 13
+Valores cargados sobre los esperados en el año.
+Metas cumplidas
+1
+Metas no cumplidas
+1
+Energía
+2 de 12 cargas
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Valor / meta
+[Qué significa Valor / meta]
+Total del año elegido. Si la variable tiene meta, se muestra a continuación para comparar.
+Cumplimiento
+[Qué significa Cumplimiento]
+Qué parte de la meta anual se alcanzó, y si la meta se cumple o no.
+Cargas
+[Qué significa Cargas]
+Valores cargados sobre los esperados en el año: 12 si la variable es mensual, 1 si es anual.
+Consumo del palacio municipal
+Consumo eléctrico
+2.500 / 12.000 kWh
+100 %
+Cumplida
+2 / 12
+Agua
+1 de 1 cargas
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Valor / meta
+[Qué significa Valor / meta]
+Total del año elegido. Si la variable tiene meta, se muestra a continuación para comparar.
+Cumplimiento
+[Qué significa Cumplimiento]
+Qué parte de la meta anual se alcanzó, y si la meta se cumple o no.
+Cargas
+[Qué significa Cargas]
+Valores cargados sobre los esperados en el año: 12 si la variable es mensual, 1 si es anual.
+Puntos de monitoreo
+Calidad del agua
+7,5 / 10 puntos
+75 %
+No cumplida
+1 / 1
+Categorías sin variables: Residuos, Aire, Movilidad, Biodiversidad, Gobernanza."
+`;
+
+exports[`lists the dashboard in the navigation > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`moves between the sections with the tabs > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Ambiental
+Ambiental
+Resumen
+Seguimiento
+Carga
+Parámetros
+[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar valores
+Variables
+2
+Cargas del año
+3 / 13
+Valores cargados sobre los esperados en el año.
+Metas cumplidas
+1
+Metas no cumplidas
+1
+Energía
+2 de 12 cargas
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Valor / meta
+[Qué significa Valor / meta]
+Total del año elegido. Si la variable tiene meta, se muestra a continuación para comparar.
+Cumplimiento
+[Qué significa Cumplimiento]
+Qué parte de la meta anual se alcanzó, y si la meta se cumple o no.
+Cargas
+[Qué significa Cargas]
+Valores cargados sobre los esperados en el año: 12 si la variable es mensual, 1 si es anual.
+Consumo del palacio municipal
+Consumo eléctrico
+2.500 / 12.000 kWh
+100 %
+Cumplida
+2 / 12
+Agua
+1 de 1 cargas
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Valor / meta
+[Qué significa Valor / meta]
+Total del año elegido. Si la variable tiene meta, se muestra a continuación para comparar.
+Cumplimiento
+[Qué significa Cumplimiento]
+Qué parte de la meta anual se alcanzó, y si la meta se cumple o no.
+Cargas
+[Qué significa Cargas]
+Valores cargados sobre los esperados en el año: 12 si la variable es mensual, 1 si es anual.
+Puntos de monitoreo
+Calidad del agua
+7,5 / 10 puntos
+75 %
+No cumplida
+1 / 1
+Categorías sin variables: Residuos, Aire, Movilidad, Biodiversidad, Gobernanza."
+`;
+
+exports[`moves between the sections with the tabs > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows a dashboard admin every section > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Ambiental
+Ambiental
+Resumen
+Seguimiento
+Carga
+Parámetros
+[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar valores
+Variables
+2
+Cargas del año
+3 / 13
+Valores cargados sobre los esperados en el año.
+Metas cumplidas
+1
+Metas no cumplidas
+1
+Energía
+2 de 12 cargas
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Valor / meta
+[Qué significa Valor / meta]
+Total del año elegido. Si la variable tiene meta, se muestra a continuación para comparar.
+Cumplimiento
+[Qué significa Cumplimiento]
+Qué parte de la meta anual se alcanzó, y si la meta se cumple o no.
+Cargas
+[Qué significa Cargas]
+Valores cargados sobre los esperados en el año: 12 si la variable es mensual, 1 si es anual.
+Consumo del palacio municipal
+Consumo eléctrico
+2.500 / 12.000 kWh
+100 %
+Cumplida
+2 / 12
+Agua
+1 de 1 cargas
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Valor / meta
+[Qué significa Valor / meta]
+Total del año elegido. Si la variable tiene meta, se muestra a continuación para comparar.
+Cumplimiento
+[Qué significa Cumplimiento]
+Qué parte de la meta anual se alcanzó, y si la meta se cumple o no.
+Cargas
+[Qué significa Cargas]
+Valores cargados sobre los esperados en el año: 12 si la variable es mensual, 1 si es anual.
+Puntos de monitoreo
+Calidad del agua
+7,5 / 10 puntos
+75 %
+No cumplida
+1 / 1
+Categorías sin variables: Residuos, Aire, Movilidad, Biodiversidad, Gobernanza."
+`;
+
+exports[`shows a dashboard admin every section > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows a viewer only the read-only sections > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Ambiental
+Ambiental
+Resumen
+Seguimiento
+[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar valores
+Variables
+2
+Cargas del año
+3 / 13
+Valores cargados sobre los esperados en el año.
+Metas cumplidas
+1
+Metas no cumplidas
+1
+Energía
+2 de 12 cargas
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Valor / meta
+[Qué significa Valor / meta]
+Total del año elegido. Si la variable tiene meta, se muestra a continuación para comparar.
+Cumplimiento
+[Qué significa Cumplimiento]
+Qué parte de la meta anual se alcanzó, y si la meta se cumple o no.
+Cargas
+[Qué significa Cargas]
+Valores cargados sobre los esperados en el año: 12 si la variable es mensual, 1 si es anual.
+Consumo del palacio municipal
+Consumo eléctrico
+2.500 / 12.000 kWh
+100 %
+Cumplida
+2 / 12
+Agua
+1 de 1 cargas
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Valor / meta
+[Qué significa Valor / meta]
+Total del año elegido. Si la variable tiene meta, se muestra a continuación para comparar.
+Cumplimiento
+[Qué significa Cumplimiento]
+Qué parte de la meta anual se alcanzó, y si la meta se cumple o no.
+Cargas
+[Qué significa Cargas]
+Valores cargados sobre los esperados en el año: 12 si la variable es mensual, 1 si es anual.
+Puntos de monitoreo
+Calidad del agua
+7,5 / 10 puntos
+75 %
+No cumplida
+1 / 1
+Categorías sin variables: Residuos, Aire, Movilidad, Biodiversidad, Gobernanza."
+`;
+
+exports[`shows a viewer only the read-only sections > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows an editor the data entry section but not the parameters > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Ambiental
+Ambiental
+Resumen
+Seguimiento
+Carga
+[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar valores
+Variables
+2
+Cargas del año
+3 / 13
+Valores cargados sobre los esperados en el año.
+Metas cumplidas
+1
+Metas no cumplidas
+1
+Energía
+2 de 12 cargas
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Valor / meta
+[Qué significa Valor / meta]
+Total del año elegido. Si la variable tiene meta, se muestra a continuación para comparar.
+Cumplimiento
+[Qué significa Cumplimiento]
+Qué parte de la meta anual se alcanzó, y si la meta se cumple o no.
+Cargas
+[Qué significa Cargas]
+Valores cargados sobre los esperados en el año: 12 si la variable es mensual, 1 si es anual.
+Consumo del palacio municipal
+Consumo eléctrico
+2.500 / 12.000 kWh
+100 %
+Cumplida
+2 / 12
+Agua
+1 de 1 cargas
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad.
+Subcategoría
+[Qué significa Subcategoría]
+División de la categoría, para agrupar variables parecidas. Por ejemplo, dentro de Agua: Consumo o Calidad.
+Valor / meta
+[Qué significa Valor / meta]
+Total del año elegido. Si la variable tiene meta, se muestra a continuación para comparar.
+Cumplimiento
+[Qué significa Cumplimiento]
+Qué parte de la meta anual se alcanzó, y si la meta se cumple o no.
+Cargas
+[Qué significa Cargas]
+Valores cargados sobre los esperados en el año: 12 si la variable es mensual, 1 si es anual.
+Puntos de monitoreo
+Calidad del agua
+7,5 / 10 puntos
+75 %
+No cumplida
+1 / 1
+Categorías sin variables: Residuos, Aire, Movilidad, Biodiversidad, Gobernanza."
+`;
+
+exports[`shows an editor the data entry section but not the parameters > screen at the start 1`] = `"[Cargando…]"`;

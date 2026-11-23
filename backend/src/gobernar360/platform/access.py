@@ -13,10 +13,11 @@ from sqlalchemy.orm import Session
 
 from gobernar360.core.db import get_db, set_tenant
 from gobernar360.core.errors import forbidden, not_authenticated
-from gobernar360.core.security import hash_session_token
+from gobernar360.core.security import hash_token
 from gobernar360.dashboards import registry
 from gobernar360.platform.models import Membership, MunicipalityDashboard, User
 from gobernar360.platform.models import Session as SessionRow
+from gobernar360.platform.municipality_settings import sso_municipality_ids
 
 SESSION_COOKIE = "g360_session"
 
@@ -30,7 +31,7 @@ def get_current_session(
         raise not_authenticated()
     session_row = db.scalar(
         select(SessionRow).where(
-            SessionRow.token_hash == hash_session_token(token),
+            SessionRow.token_hash == hash_token(token),
             SessionRow.expires_at > datetime.now(UTC),
         )
     )
@@ -50,6 +51,19 @@ def get_current_user(db: Db, session_row: CurrentSession) -> User:
 
 
 CurrentUser = Annotated[User, Depends(get_current_user)]
+
+SSO = "sso"
+
+
+def reachable(
+    db: Session, session_row: SessionRow, memberships: list[Membership]
+) -> list[Membership]:
+    """The memberships a session may use: all of them after a password sign-in; after
+    single sign-on, only those of municipalities that allow it."""
+    if session_row.auth_method != SSO:
+        return memberships
+    allowed = sso_municipality_ids(db)
+    return [m for m in memberships if m.municipality_id in allowed]
 
 
 class AccessLevel(IntEnum):
@@ -84,7 +98,7 @@ def get_context(db: Db, user: CurrentUser, session_row: CurrentSession) -> Reque
             Membership.user_id == user.id, Membership.municipality_id == municipality_id
         )
     )
-    if membership is None:
+    if membership is None or not reachable(db, session_row, [membership]):
         raise forbidden("You do not belong to this municipality.")
     set_tenant(db, municipality_id)
     return RequestContext(user=user, municipality_id=municipality_id, membership=membership, db=db)
@@ -129,8 +143,9 @@ def require_dashboard(key: str, level: AccessLevel) -> Callable[..., RequestCont
     return dependency
 
 
-def require_operator(user: CurrentUser) -> User:
-    if not user.is_platform_operator:
+def require_operator(user: CurrentUser, session_row: CurrentSession) -> User:
+    # Operating the platform takes the account's password, not another system's word.
+    if not user.is_platform_operator or session_row.auth_method == SSO:
         raise forbidden()
     return user
 

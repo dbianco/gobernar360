@@ -2,6 +2,8 @@ import { defineConfig } from '@playwright/test'
 
 // End-to-end tests run their own API and web server against a dedicated database,
 // which is wiped and re-seeded on every run. Ports differ from the dev servers.
+// Email goes to the mail catcher and single sign-on to the local provider, both
+// started by `docker compose up -d`.
 const API_PORT = 8001
 const WEB_PORT = 5174
 const DATABASE = 'localhost:5434/gobernar360_e2e'
@@ -9,6 +11,13 @@ const DATABASE = 'localhost:5434/gobernar360_e2e'
 export const backendEnv = {
   GOBERNAR360_DATABASE_URL: `postgresql+psycopg://gobernar360_app:gobernar360_app@${DATABASE}`,
   GOBERNAR360_ADMIN_DATABASE_URL: `postgresql+psycopg://gobernar360:gobernar360@${DATABASE}`,
+  // Links in emails lead to this test run's web server.
+  GOBERNAR360_APP_URL: `http://localhost:${WEB_PORT}`,
+  GOBERNAR360_SMTP_HOST: 'localhost',
+  GOBERNAR360_SMTP_PORT: '1025',
+  GOBERNAR360_OIDC_ISSUER: 'http://localhost:5556',
+  GOBERNAR360_OIDC_CLIENT_ID: 'gobernar360',
+  GOBERNAR360_OIDC_CLIENT_SECRET: 'gobernar360-dev-secret',
 }
 
 export default defineConfig({

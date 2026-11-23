@@ -1,0 +1,281 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`creates an actor from the form > screen at the end 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Comercio
+Industria
+Sector
+Todos los sectores
+Alimentos
+Cargar nuevo actor económico
+No hay actores que coincidan."
+`;
+
+exports[`creates an actor from the form > screen at the start 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Sector
+Todos los sectores
+[Cargando…]"
+`;
+
+exports[`hides the create button from viewers and says when nothing matches > screen at the end 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Comercio
+Industria
+Sector
+Todos los sectores
+Alimentos
+No hay actores que coincidan."
+`;
+
+exports[`hides the create button from viewers and says when nothing matches > screen at the start 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Sector
+Todos los sectores
+[Cargando…]"
+`;
+
+exports[`keeps the create form open when saving fails, and closes it with Escape > screen at the end 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Comercio
+Industria
+Sector
+Todos los sectores
+Alimentos
+Cargar nuevo actor económico
+No hay actores que coincidan."
+`;
+
+exports[`keeps the create form open when saving fails, and closes it with Escape > screen at the start 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Sector
+Todos los sectores
+[Cargando…]"
+`;
+
+exports[`lists the actors with their type and sector > screen at the end 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Comercio
+Industria
+Sector
+Todos los sectores
+Alimentos
+Cargar nuevo actor económico
+Nombre
+[Qué significa Nombre]
+Nombre o razón social del comercio, industria o emprendimiento.
+Tipo
+[Qué significa Tipo]
+Clase de actor económico, según la lista que define el municipio en Parámetros.
+Sector
+[Qué significa Sector]
+Rubro de actividad del actor, según la lista de sectores del municipio.
+CUIT
+[Qué significa CUIT]
+Clave Única de Identificación Tributaria del actor, si está cargada.
+Empleados
+[Qué significa Empleados]
+Cantidad de personas que trabajan en el actor, según el último dato cargado.
+Panadería La Espiga
+Comercio
+Alimentos
+30-71111111-8
+6
+Taller
+—
+—
+—
+6"
+`;
+
+exports[`lists the actors with their type and sector > screen at the start 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Sector
+Todos los sectores
+[Cargando…]"
+`;
+
+exports[`moves to the next page > screen at the end 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Comercio
+Industria
+Sector
+Todos los sectores
+Alimentos
+Cargar nuevo actor económico
+Nombre
+[Qué significa Nombre]
+Nombre o razón social del comercio, industria o emprendimiento.
+Tipo
+[Qué significa Tipo]
+Clase de actor económico, según la lista que define el municipio en Parámetros.
+Sector
+[Qué significa Sector]
+Rubro de actividad del actor, según la lista de sectores del municipio.
+CUIT
+[Qué significa CUIT]
+Clave Única de Identificación Tributaria del actor, si está cargada.
+Empleados
+[Qué significa Empleados]
+Cantidad de personas que trabajan en el actor, según el último dato cargado.
+Panadería La Espiga
+Comercio
+Alimentos
+30-71111111-8
+6
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+11–20 de 120
+Anterior
+Siguiente"
+`;
+
+exports[`moves to the next page > screen at the start 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Sector
+Todos los sectores
+[Cargando…]"
+`;
+
+exports[`rejects a malformed CUIT without calling the server > screen at the end 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Comercio
+Industria
+Sector
+Todos los sectores
+Alimentos
+Cargar nuevo actor económico
+No hay actores que coincidan.
+Nuevo actor económico
+Nombre
+Tipo
+Sin tipo
+Comercio
+Industria
+Sector
+Sin sector
+Alimentos
+CUIT
+11 dígitos, con o sin guiones.
+El CUIT tiene que tener 11 dígitos.
+Empleados
+Teléfono
+Email
+Domicilio
+Notas
+Cancelar
+Guardar"
+`;
+
+exports[`rejects a malformed CUIT without calling the server > screen at the start 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Sector
+Todos los sectores
+[Cargando…]"
+`;
+
+exports[`searches and filters on the server > screen at the end 1`] = `
+"Buscar
+(Nombre o CUIT)
+[Borrar la búsqueda]
+Tipo
+Todos los tipos
+Comercio
+Industria
+Sector
+Todos los sectores
+Alimentos
+Cargar nuevo actor económico
+Nombre
+[Qué significa Nombre]
+Nombre o razón social del comercio, industria o emprendimiento.
+Tipo
+[Qué significa Tipo]
+Clase de actor económico, según la lista que define el municipio en Parámetros.
+Sector
+[Qué significa Sector]
+Rubro de actividad del actor, según la lista de sectores del municipio.
+CUIT
+[Qué significa CUIT]
+Clave Única de Identificación Tributaria del actor, si está cargada.
+Empleados
+[Qué significa Empleados]
+Cantidad de personas que trabajan en el actor, según el último dato cargado.
+Panadería La Espiga
+Comercio
+Alimentos
+30-71111111-8
+6"
+`;
+
+exports[`searches and filters on the server > screen at the start 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Sector
+Todos los sectores
+[Cargando…]"
+`;
+
+exports[`shows an unknown staff size as none, and says why the list cannot be loaded > screen at the end 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Comercio
+Industria
+Sector
+Todos los sectores
+Alimentos
+Cargar nuevo actor económico
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`shows an unknown staff size as none, and says why the list cannot be loaded > screen at the start 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Sector
+Todos los sectores
+[Cargando…]"
+`;

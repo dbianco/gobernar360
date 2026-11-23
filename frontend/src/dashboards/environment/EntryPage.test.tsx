@@ -217,3 +217,39 @@ it('keeps what is typed while an earlier save of the same cell is still in fligh
   await user.tab()
   await waitFor(() => expect(sent).toEqual(['5', '56']))
 })
+
+it('does not save a value typed again as it was', async () => {
+  mockApi('get', `${BASE}/values`, [makeValue({ period: 1, value: 1000 })])
+  const requests = mockApi('put', `${BASE}/values`, makeValue())
+  renderEnvironment(<EntryPage />)
+  const user = userEvent.setup()
+
+  const cell = await screen.findByLabelText(monthCell(1))
+  await user.clear(cell)
+  await user.type(cell, ' 1000 ')
+  await user.tab()
+
+  await waitFor(() => expect(cell).toHaveValue('1000'))
+  expect(cell).not.toHaveAttribute('aria-invalid', 'true')
+  expect(requests).toHaveLength(0)
+})
+
+it('says why the values cannot be loaded', async () => {
+  mockApiError('get', `${BASE}/values`, 500, 'boom')
+  renderEnvironment(<EntryPage />)
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  expect(screen.queryByLabelText(monthCell(1))).toBeNull()
+})
+
+it('says when the search matches no variable', async () => {
+  mockApi('get', `${BASE}/values`, [])
+  renderEnvironment(<EntryPage />)
+  const user = userEvent.setup()
+
+  await screen.findByLabelText(monthCell(1))
+  await user.type(screen.getByRole('searchbox', { name: t('app.search') }), 'zzz')
+
+  expect(await screen.findByText(t('app.noMatches'))).toBeInTheDocument()
+  expect(screen.queryByLabelText(monthCell(1))).toBeNull()
+})

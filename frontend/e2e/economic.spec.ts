@@ -25,7 +25,7 @@ test('editor registers an actor and a person, links them and assigns a tool', as
   await form.getByRole('textbox', { name: 'CUIT' }).fill('20-30111222-3')
   await form.getByRole('button', { name: 'Guardar' }).click()
   await expect(form).toBeHidden()
-  await page.getByRole('textbox', { name: 'Buscar' }).fill('herrería')
+  await page.getByRole('searchbox', { name: 'Buscar' }).fill('herrería')
   await expect(page.getByRole('row', { name: /Herrería E2E/ })).toContainText('20-30111222-3')
 
   await tab(page, 'Personas').click()
@@ -36,9 +36,11 @@ test('editor registers an actor and a person, links them and assigns a tool', as
   await form.getByRole('textbox', { name: 'Apellido', exact: true }).fill('Prueba')
   await form.getByRole('button', { name: 'Guardar' }).click()
   await expect(form).toBeHidden()
+  await page.getByRole('searchbox', { name: 'Buscar' }).fill('prueba')
   await expect(page.getByRole('row', { name: /Prueba, Eva/ })).toContainText('45.111.222')
 
   await tab(page, 'Actores').click()
+  await page.getByRole('searchbox', { name: 'Buscar' }).fill('herrería')
   await page.getByRole('link', { name: 'Herrería E2E' }).click()
   await page.getByRole('button', { name: 'Vincular persona' }).click()
   await page.getByRole('textbox', { name: 'Buscar persona' }).fill('Prueba')

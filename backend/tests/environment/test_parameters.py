@@ -246,3 +246,31 @@ def test_every_environment_table_enforces_tenant_isolation():
         "environment_variables",
     ]
     assert all(row[1] and row[2] and row[3] for row in rows)
+
+
+def test_variables_are_listed_by_subcategory_then_name_and_filtered(client):
+    municipality = environment_member("viewer")
+    lighting = make_subcategory(municipality, "energy", "Alumbrado")
+    buildings = make_subcategory(municipality, "energy", "Edificios")
+    water = make_subcategory(municipality, "water", "Agua potable")
+    make_variable(municipality, buildings, "Consumo del palacio")
+    make_variable(municipality, lighting, "Luminarias LED")
+    make_variable(municipality, lighting, "Consumo del alumbrado")
+    make_variable(municipality, water, "Cloro residual")
+    login(client, "ana@noetinger.test")
+
+    def names(**params) -> list[str]:
+        return [v["name"] for v in client.get(f"{BASE}/variables", params=params).json()]
+
+    assert names() == [
+        "Cloro residual",
+        "Consumo del alumbrado",
+        "Luminarias LED",
+        "Consumo del palacio",
+    ]
+    assert names(category="energy") == [
+        "Consumo del alumbrado",
+        "Luminarias LED",
+        "Consumo del palacio",
+    ]
+    assert names(subcategory_id=str(lighting.id)) == ["Consumo del alumbrado", "Luminarias LED"]

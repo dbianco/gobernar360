@@ -5,7 +5,7 @@ from typing import Annotated, Any
 
 from fastapi import Depends, Query
 from pydantic import BaseModel
-from sqlalchemy import ColumnElement, Select, func, select
+from sqlalchemy import ColumnElement, Select, func, or_, select
 
 from gobernar360.platform.access import RequestContext
 
@@ -50,3 +50,19 @@ def contains(column: Any, text: str) -> ColumnElement[bool]:
     """
     escaped = text.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
     return func.unaccent(column).ilike(func.unaccent(f"%{escaped}%"), escape="\\")
+
+
+def every_word(text: str | None, *columns: Any, document: Any = None) -> list[ColumnElement[bool]]:
+    """Conditions for a search box: every word typed appears in one of the columns.
+
+    With `document`, a word made of digits (dots allowed, as in "20.123.456") also
+    matches that column.
+    """
+    conditions = []
+    for word in (text or "").split():
+        options = [contains(column, word) for column in columns]
+        digits = word.replace(".", "")
+        if document is not None and digits.isdigit():
+            options.append(contains(document, digits))
+        conditions.append(or_(*options))
+    return conditions

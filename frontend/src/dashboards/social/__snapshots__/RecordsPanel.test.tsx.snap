@@ -1,0 +1,362 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`closes the add forms with Escape > screen at the end 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+Todavía no hay prestaciones registradas.
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas."
+`;
+
+exports[`closes the add forms with Escape > screen at the start 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+[Cargando…]
+Intervenciones
+Registrar intervención
+[Cargando…]"
+`;
+
+exports[`keeps records whose deletion is not confirmed, and says why one failed > screen at the end 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones
+Registrar intervención
+No se puede eliminar porque está siendo usado por otros registros.
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`keeps records whose deletion is not confirmed, and says why one failed > screen at the start 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+[Cargando…]
+Intervenciones
+Registrar intervención
+[Cargando…]"
+`;
+
+exports[`keeps the forms open and says why saving failed > screen at the end 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones
+Registrar intervención
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`keeps the forms open and says why saving failed > screen at the start 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+[Cargando…]
+Intervenciones
+Registrar intervención
+[Cargando…]"
+`;
+
+exports[`offers no adding in a household history, and names the person of each record > screen at the end 1`] = `
+"Prestaciones recibidas por el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones con el grupo
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+—
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`offers no adding in a household history, and names the person of each record > screen at the start 1`] = `
+"Prestaciones recibidas por el grupo
+[Cargando…]
+Intervenciones con el grupo
+[Cargando…]"
+`;
+
+exports[`says that it shows only the most recent records > screen at the end 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Se muestran los 1 registros más recientes.
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas."
+`;
+
+exports[`says that it shows only the most recent records > screen at the start 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+[Cargando…]
+Intervenciones
+Registrar intervención
+[Cargando…]"
+`;
+
+exports[`says when there is nothing to deliver or to record > screen at the end 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+Todavía no hay prestaciones registradas.
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas.
+Registrar intervención
+No hay tipos de intervención para elegir. Los carga el administrador del tablero en Parámetros.
+Tipo
+Elegí un tipo
+Fecha
+Realizada por
+Descripción
+Texto reservado: lo lee solo el equipo con permiso de carga.
+Cancelar
+Guardar"
+`;
+
+exports[`says when there is nothing to deliver or to record > screen at the start 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+[Cargando…]
+Intervenciones
+Registrar intervención
+[Cargando…]"
+`;
+
+exports[`says why deleting a delivery failed > screen at the end 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+No se puede eliminar porque está siendo usado por otros registros.
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas."
+`;
+
+exports[`says why deleting a delivery failed > screen at the start 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+[Cargando…]
+Intervenciones
+Registrar intervención
+[Cargando…]"
+`;
+
+exports[`says why the catalogs cannot be loaded > screen at the end 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+Todavía no hay prestaciones registradas.
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas.
+Registrar intervención
+Ocurrió un error. Intentá de nuevo.
+Tipo
+Elegí un tipo
+Fecha
+Realizada por
+Descripción
+Texto reservado: lo lee solo el equipo con permiso de carga.
+Cancelar
+Guardar"
+`;
+
+exports[`says why the catalogs cannot be loaded > screen at the start 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+[Cargando…]
+Intervenciones
+Registrar intervención
+[Cargando…]"
+`;
+
+exports[`says why the history cannot be loaded > screen at the end 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+Ocurrió un error. Intentá de nuevo.
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas."
+`;
+
+exports[`says why the history cannot be loaded > screen at the start 1`] = `
+"Prestaciones recibidas
+Registrar prestación
+[Cargando…]
+Intervenciones
+Registrar intervención
+[Cargando…]"
+`;

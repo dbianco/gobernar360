@@ -1,12 +1,13 @@
 import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { expect, it, vi } from 'vitest'
+import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { AssignmentsPage } from './AssignmentsPage'
 import { makeAssignment, page, WORKSHOP } from './testData'
 import { BASE, renderEconomic } from './testRender'
+import { answerConfirm } from '../../test/confirm'
 
 const label = (key: string, options = {}) => t(`economic.assignments.${key}`, options)
 const YEAR = new Date().getFullYear()
@@ -58,7 +59,6 @@ it('filters by tool', async () => {
 it('lets an editor delete an assignment', async () => {
   mockApi('get', `${BASE}/assignments`, page([makeAssignment()]))
   const requests = mockApi('delete', `${BASE}/assignments/as-1`, null, 204)
-  vi.spyOn(window, 'confirm').mockReturnValue(true)
   renderEconomic(<AssignmentsPage />)
   const user = userEvent.setup()
 
@@ -67,6 +67,7 @@ it('lets an editor delete an assignment', async () => {
       name: label('deleteNamed', { name: 'Panadería La Espiga' }),
     }),
   )
+  await answerConfirm(user, true)
 
   await waitFor(() => expect(requests).toHaveLength(1))
 })
@@ -96,4 +97,68 @@ it('lets an editor correct the date and the note of an assignment', async () => 
 
   await waitFor(() => expect(requests).toHaveLength(1))
   expect(requests[0].body).toEqual({ date: '2026-03-12', note: 'Primera cuota' })
+})
+
+it('searches by tool or recipient on the server', async () => {
+  const requests = mockApi('get', `${BASE}/assignments`, page([makeAssignment()]))
+  renderEconomic(<AssignmentsPage />)
+  const user = userEvent.setup()
+
+  await user.type(await screen.findByRole('searchbox', { name: t('app.search') }), 'espiga')
+
+  await waitFor(() => expect(requests.at(-1)?.url.searchParams.get('q')).toBe('espiga'))
+})
+
+it('asks the server for another year, from the first page', async () => {
+  const requests = mockApi('get', `${BASE}/assignments`, page([makeAssignment()], 30))
+  renderEconomic(<AssignmentsPage />)
+  const user = userEvent.setup()
+  await screen.findByRole('row', { name: /Microcrédito productivo/ })
+  await user.click(screen.getByRole('button', { name: t('app.pager.next') }))
+
+  await user.selectOptions(screen.getByLabelText(t('app.year')), String(YEAR - 1))
+
+  await waitFor(() => {
+    const params = requests.at(-1)?.url.searchParams
+    expect([params?.get('year'), params?.get('offset')]).toEqual([String(YEAR - 1), '0'])
+  })
+})
+
+it('keeps an assignment when its deletion is not confirmed, and says why one failed', async () => {
+  mockApi('get', `${BASE}/assignments`, page([TO_PERSON]))
+  const deleted = mockApiError('delete', `${BASE}/assignments/as-2`, 409, 'in_use')
+  renderEconomic(<AssignmentsPage />)
+  const user = userEvent.setup()
+  const remove = () =>
+    screen.findByRole('button', { name: label('deleteNamed', { name: 'Pérez, Juana' }) })
+
+  await user.click(await remove())
+  await answerConfirm(user, false)
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+  expect(deleted).toHaveLength(0)
+
+  await user.click(await remove())
+  await answerConfirm(user, true)
+  expect(await screen.findByText(t('errors.in_use'))).toBeInTheDocument()
+})
+
+it('corrects an assignment to a person, and closes the form with Escape', async () => {
+  mockApi('get', `${BASE}/assignments`, page([TO_PERSON]))
+  renderEconomic(<AssignmentsPage />)
+  const user = userEvent.setup()
+
+  await user.click(
+    await screen.findByRole('button', { name: label('editNamed', { name: 'Pérez, Juana' }) }),
+  )
+  await screen.findByRole('dialog', { name: label('editTitle') })
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})
+
+it('shows an error when the assignments cannot be loaded', async () => {
+  mockApiError('get', `${BASE}/assignments`, 500, 'generic')
+  renderEconomic(<AssignmentsPage />)
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })

@@ -4,7 +4,7 @@ import { expect, it } from 'vitest'
 
 import type { AccessLevel } from '../../platform/types'
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { SummaryPage } from './SummaryPage'
 import { makeSummary } from './testData'
 import { BASE, renderProcedures } from './testRender'
@@ -95,4 +95,18 @@ it('shows dashes when no procedure is offered but the catalog has data', async (
 
   expect(await card('averageRequirements')).toHaveTextContent('—')
   expect(await card('online')).not.toHaveTextContent('%')
+})
+
+it('says when no requirement is asked for yet', async () => {
+  renderSummary(makeSummary({ top_requirements: [] }))
+
+  expect(await screen.findByText(label('noTopRequirements'))).toBeInTheDocument()
+  expect(screen.queryByRole('table', { name: label('topRequirements') })).toBeNull()
+})
+
+it('says why the summary cannot be loaded', async () => {
+  mockApiError('get', `${BASE}/summary`, 500, 'boom')
+  renderProcedures(<SummaryPage />)
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })

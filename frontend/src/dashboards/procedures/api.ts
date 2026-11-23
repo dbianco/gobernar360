@@ -15,7 +15,6 @@ import type {
 
 export const BASE = '/dashboards/procedures'
 export const BASE_PATH = '/d/procedures'
-export const PAGE_SIZE = 50
 export const KEY = 'procedures'
 
 function useGet<T>(name: string, path: string, query?: Query) {

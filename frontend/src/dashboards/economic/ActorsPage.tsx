@@ -9,7 +9,6 @@ import {
   Stack,
   Table,
   Text,
-  TextInput,
 } from '@mantine/core'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -21,17 +20,21 @@ import { errorMessage } from '../../platform/errorMessage'
 import { Pager } from '../../platform/Pager'
 import { hasLevel } from '../../platform/types'
 import { ActorForm } from './ActorForm'
-import { BASE_PATH, PAGE_SIZE, useActors, useActorTypes, useSectors } from './api'
+import { BASE_PATH, useActors, useActorTypes, useSectors } from './api'
 import { formatCuit } from './format'
+import { fitPage, usePaging } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
 
 /** Searchable list of the municipality's economic actors. */
 export function ActorsPage() {
   const { t } = useTranslation()
   const { me } = useAuth()
   const [filters, setFilters] = useState({ q: '', actor_type_id: '', sector_id: '' })
-  const [offset, setOffset] = useState(0)
+  const paging = usePaging('economic.actors')
+  const { limit, offset, setOffset } = paging
   const [creating, setCreating] = useState(false)
-  const actors = useActors({ ...filters, limit: PAGE_SIZE, offset })
+  const actors = useActors({ ...filters, limit, offset })
+  fitPage(paging, actors)
   const actorTypes = useActorTypes()
   const sectors = useSectors()
   const label = (key: string) => t(`economic.actors.${key}`)
@@ -50,12 +53,10 @@ export function ActorsPage() {
     <Stack>
       <Group justify="space-between" align="flex-end">
         <Group align="flex-end">
-          <TextInput
-            label={t('app.search')}
-            placeholder={label('searchHint')}
-            maxLength={100}
+          <SearchInput
             value={filters.q}
-            onChange={filter('q')}
+            onChange={(value) => filter('q')({ currentTarget: { value } })}
+            placeholder={label('searchHint')}
           />
           <NativeSelect
             label={label('type')}
@@ -110,7 +111,7 @@ export function ActorsPage() {
         </Table.ScrollContainer>
       )}
       {actors.data && (
-        <Pager total={actors.data.total} limit={PAGE_SIZE} offset={offset} onChange={setOffset} />
+        <Pager {...paging.pager(actors.data.total)} />
       )}
       <Modal opened={creating} onClose={() => setCreating(false)} title={label('createTitle')} size="lg">
         {creating && <ActorForm onDone={() => setCreating(false)} />}

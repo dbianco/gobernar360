@@ -16,14 +16,29 @@ from gobernar360.dashboards import (
 from gobernar360.platform import (
     admin_router,
     auth_router,
+    notifications_router,
     operator_router,
     overview_router,
+    settings_router,
+    sso_router,
     status_router,
 )
 
 CSRF_HEADER = "x-requested-with"
 CSRF_HEADER_VALUE = "gobernar360"
 SAFE_METHODS = {"GET", "HEAD", "OPTIONS"}
+
+
+def register_dashboards() -> None:
+    """Install every dashboard module. Also used by commands that run outside the API."""
+    for module in (
+        projects.module,
+        environment.module,
+        economic.module,
+        social.module,
+        procedures.module,
+    ):
+        registry.register(module)
 
 
 def create_app() -> FastAPI:
@@ -60,15 +75,14 @@ def create_app() -> FastAPI:
     def health() -> dict[str, str]:
         return {"status": "ok"}
 
-    registry.register(projects.module)
-    registry.register(environment.module)
-    registry.register(economic.module)
-    registry.register(social.module)
-    registry.register(procedures.module)
+    register_dashboards()
 
     api.include_router(auth_router.router)
+    api.include_router(sso_router.router)
+    api.include_router(notifications_router.router)
     api.include_router(operator_router.router)
     api.include_router(admin_router.router)
+    api.include_router(settings_router.router)
     api.include_router(overview_router.router)
     api.include_router(status_router.router)
     for module in registry.all_modules():

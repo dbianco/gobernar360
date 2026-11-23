@@ -10,8 +10,11 @@ dependencies = [
     "alembic>=1.20.1",
     "argon2-cffi>=25.1.0",
     "fastapi>=0.164.0",
+    "httpx2>=2.16.2",
+    "nh3>=0.3",
     "psycopg[binary]>=3.3.9",
     "pydantic-settings>=2.16.3",
+    "pyjwt[crypto]>=2.10",
     "sqlalchemy>=2.1.9",
     "typer>=0.29.2",
     "uvicorn[standard]>=0.54.0",
@@ -26,18 +29,46 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
-    "httpx2>=2.16.2",
-    "import-linter>=2.17",
+    "import-linter>=2.16",
+    "mutmut>=3.8",
     "pytest>=9.2.0",
+    "pytest-cov>=7.1",
     "ruff>=0.17.5",
 ]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
+[tool.mutmut]
+source_paths = ["src"]
+# Demo data for development and end-to-end tests: its mutants are literal names and
+# amounts that no test should pin down. tests/test_seed.py still runs all of it.
+do_not_mutate = ["src/gobernar360/seed.py"]
+# What the tests need next to the code: the schema they migrate to.
+also_copy = ["alembic.ini", "migrations", ".importlinter"]
+pytest_add_cli_args = [
+    "-p", "no:cacheprovider",
+    # Runs lint-imports through uv, which would build a new environment in mutants/.
+    "--deselect", "tests/test_architecture.py::test_dashboard_modules_do_not_import_each_other",
+]
+
+[tool.coverage.run]
+source = ["gobernar360"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+]
+
 [tool.ruff]
 line-length = 100
 src = ["src", "tests"]
+# mutmut's working copy (also in .gitignore, which ruff only reads inside a git checkout).
+extend-exclude = ["mutants"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]

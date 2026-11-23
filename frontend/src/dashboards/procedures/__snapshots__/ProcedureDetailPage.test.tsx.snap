@@ -1,0 +1,875 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds the requirement chosen, and keeps the form open when saving fails > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Este trámite todavía no tiene requisitos cargados.
+Agregar requisito al trámite
+La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
+Requisito
+DNI
+Formulario de solicitud
+Libre deuda municipal
+Obligatorio
+Cómo se pide
+En papel
+Digital
+Nota
+Cancelar
+Guardar"
+`;
+
+exports[`adds the requirement chosen, and keeps the form open when saving fails > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`changes how a requirement is asked for > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+[Cambiar requisito: DNI]
+Editar
+[Quitar requisito: DNI]
+Quitar
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—
+[Cambiar requisito: Libre deuda municipal]
+Editar
+[Quitar requisito: Libre deuda municipal]
+Quitar"
+`;
+
+exports[`changes how a requirement is asked for > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`deletes the procedure after confirming and returns to the list > screen at the end 1`] = `"list"`;
+
+exports[`deletes the procedure after confirming and returns to the list > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`does not offer to add a requirement until the list of requirements is known > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+[Cambiar requisito: DNI]
+Editar
+[Quitar requisito: DNI]
+Quitar
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—
+[Cambiar requisito: Libre deuda municipal]
+Editar
+[Quitar requisito: Libre deuda municipal]
+Quitar"
+`;
+
+exports[`does not offer to add a requirement until the list of requirements is known > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`edits the procedure, clearing the cost when it becomes free > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+[Cambiar requisito: DNI]
+Editar
+[Quitar requisito: DNI]
+Quitar
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—
+[Cambiar requisito: Libre deuda municipal]
+Editar
+[Quitar requisito: Libre deuda municipal]
+Quitar"
+`;
+
+exports[`edits the procedure, clearing the cost when it becomes free > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`is read-only for a viewer > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—"
+`;
+
+exports[`is read-only for a viewer > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`keeps the procedure form open and says why saving failed > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+[Cambiar requisito: DNI]
+Editar
+[Quitar requisito: DNI]
+Quitar
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—
+[Cambiar requisito: Libre deuda municipal]
+Editar
+[Quitar requisito: Libre deuda municipal]
+Quitar
+Editar trámite
+La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
+Nombre
+Descripción
+Para abrir un local.
+Área responsable
+Obras Privadas
+Rentas
+Dirigido a
+Personas y organizaciones
+Personas
+Organizaciones
+Canal
+Presencial
+En línea
+Presencial y en línea
+Es gratuito
+Costo en pesos
+Plazo estimado en días
+Cantidad estimada por año
+Vigente
+Cancelar
+Guardar"
+`;
+
+exports[`keeps the procedure form open and says why saving failed > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`leaves blank what the procedure does not say, and flags requirements without source > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Dado de baja
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+—
+Cantidad estimada por año
+—
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+Formulario de solicitud
+Lo aporta el solicitante
+Sí
+En papel
+—"
+`;
+
+exports[`leaves blank what the procedure does not say, and flags requirements without source > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`marks a procedure that is no longer offered > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Dado de baja
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+[Cambiar requisito: DNI]
+Editar
+[Quitar requisito: DNI]
+Quitar
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—
+[Cambiar requisito: Libre deuda municipal]
+Editar
+[Quitar requisito: Libre deuda municipal]
+Quitar"
+`;
+
+exports[`marks a procedure that is no longer offered > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`offers only the requirements the procedure does not ask for yet > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+[Cambiar requisito: DNI]
+Editar
+[Quitar requisito: DNI]
+Quitar
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—
+[Cambiar requisito: Libre deuda municipal]
+Editar
+[Quitar requisito: Libre deuda municipal]
+Quitar"
+`;
+
+exports[`offers only the requirements the procedure does not ask for yet > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`opens the form to edit the procedure > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+[Cambiar requisito: DNI]
+Editar
+[Quitar requisito: DNI]
+Quitar
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—
+[Cambiar requisito: Libre deuda municipal]
+Editar
+[Quitar requisito: Libre deuda municipal]
+Quitar
+Editar trámite
+Nombre
+Descripción
+Para abrir un local.
+Área responsable
+Obras Privadas
+Rentas
+Dirigido a
+Personas y organizaciones
+Personas
+Organizaciones
+Canal
+Presencial
+En línea
+Presencial y en línea
+Es gratuito
+Costo en pesos
+Plazo estimado en días
+Cantidad estimada por año
+Vigente
+Cancelar
+Guardar"
+`;
+
+exports[`opens the form to edit the procedure > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`removes a requirement from the procedure > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+[Cambiar requisito: DNI]
+Editar
+[Quitar requisito: DNI]
+Quitar
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—
+[Cambiar requisito: Libre deuda municipal]
+Editar
+[Quitar requisito: Libre deuda municipal]
+Quitar"
+`;
+
+exports[`removes a requirement from the procedure > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says so when the procedure asks for nothing yet > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Este trámite todavía no tiene requisitos cargados."
+`;
+
+exports[`says so when the procedure asks for nothing yet > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows an error when the procedure cannot be loaded > screen at the end 1`] = `"No se encontró el registro."`;
+
+exports[`shows an error when the procedure cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the procedure and what it asks for, with the source of each requirement > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial y en línea
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Enlace
+https://muni.example/hab
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+[Cambiar requisito: DNI]
+Editar
+[Quitar requisito: DNI]
+Quitar
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—
+[Cambiar requisito: Libre deuda municipal]
+Editar
+[Quitar requisito: Libre deuda municipal]
+Quitar"
+`;
+
+exports[`shows the procedure and what it asks for, with the source of each requirement > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`stays on the procedure and says why when it cannot be deleted > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Editar
+Eliminar trámite
+No se puede eliminar porque está siendo usado por otros registros.
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+[Cambiar requisito: DNI]
+Editar
+[Quitar requisito: DNI]
+Quitar
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—
+[Cambiar requisito: Libre deuda municipal]
+Editar
+[Quitar requisito: Libre deuda municipal]
+Quitar"
+`;
+
+exports[`stays on the procedure and says why when it cannot be deleted > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`writes a single day in the singular > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Costo
+$ 25.000
+Plazo estimado
+1 día
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+[Cambiar requisito: DNI]
+Editar
+[Quitar requisito: DNI]
+Quitar
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—
+[Cambiar requisito: Libre deuda municipal]
+Editar
+[Quitar requisito: Libre deuda municipal]
+Quitar"
+`;
+
+exports[`writes a single day in the singular > screen at the start 1`] = `"[Cargando…]"`;

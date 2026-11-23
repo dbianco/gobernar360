@@ -9,6 +9,7 @@ import { BASE_PATH, send, useAction } from './api'
 import { DeliveryForm } from './DeliveryForm'
 import { InterventionForm } from './InterventionForm'
 import type { Delivery, Intervention, PersonRef } from './types'
+import { useConfirm } from '../../platform/confirmContext'
 
 function PersonLink({ person }: { person: PersonRef }) {
   return (
@@ -67,10 +68,13 @@ export function DeliveriesTable(props: {
   const action = useAction()
   const [editing, setEditing] = useState<Delivery | null>(null)
   const label = (key: string, options = {}) => t(`social.deliveries.${key}`, options)
+  const confirm = useConfirm()
+  const askDelete = (message: string) =>
+    confirm({ message, confirmLabel: t('app.delete'), danger: true })
 
-  function remove(id: string) {
-    if (!window.confirm(label('deleteConfirm'))) return
-    void action.run(() => send('DELETE', `/deliveries/${id}`))
+  async function remove(id: string) {
+    if (!(await askDelete(label('deleteConfirm')))) return
+    await action.run(() => send('DELETE', `/deliveries/${id}`))
   }
 
   return (
@@ -139,11 +143,14 @@ export function InterventionsTable(props: {
   const action = useAction()
   const [editing, setEditing] = useState<Intervention | null>(null)
   const label = (key: string, options = {}) => t(`social.interventions.${key}`, options)
+  const confirm = useConfirm()
+  const askDelete = (message: string) =>
+    confirm({ message, confirmLabel: t('app.delete'), danger: true })
   const withheld = props.items.some((intervention) => intervention.description === null)
 
-  function remove(id: string) {
-    if (!window.confirm(label('deleteConfirm'))) return
-    void action.run(() => send('DELETE', `/interventions/${id}`))
+  async function remove(id: string) {
+    if (!(await askDelete(label('deleteConfirm')))) return
+    await action.run(() => send('DELETE', `/interventions/${id}`))
   }
 
   return (

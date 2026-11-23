@@ -1,2 +1,1 @@
-def hello() -> str:
-    return "Hello from gobernar360!"
+"""gobernar360: management dashboards for Argentine local governments."""

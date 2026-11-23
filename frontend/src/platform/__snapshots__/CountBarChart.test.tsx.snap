@@ -1,0 +1,57 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`draws a bar per row and names the value in the tooltip > screen at the end 1`] = `
+"Por categoría
+Ver como tabla
+Alimentos
+Entregas
+:
+4
+Alimentos
+Hábitat
+4
+1
+Alimentos"
+`;
+
+exports[`draws a bar per row and names the value in the tooltip > screen at the start 1`] = `
+"Por categoría
+Ver como tabla
+Alimentos
+Hábitat
+4
+1
+Alimentos"
+`;
+
+exports[`says when there is nothing to draw > screen at the end 1`] = `
+"Alimentos
+Por categoría
+Sin datos para mostrar."
+`;
+
+exports[`says when there is nothing to draw > screen at the start 1`] = `
+"Alimentos
+Por categoría
+Sin datos para mostrar."
+`;
+
+exports[`shows the same numbers as a table > screen at the end 1`] = `
+"Alimentos
+Por categoría
+Ver como tabla
+Alimentos
+Hábitat
+4
+1"
+`;
+
+exports[`shows the same numbers as a table > screen at the start 1`] = `
+"Alimentos
+Por categoría
+Ver como tabla
+Alimentos
+Hábitat
+4
+1"
+`;

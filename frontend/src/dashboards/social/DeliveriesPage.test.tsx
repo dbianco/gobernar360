@@ -1,12 +1,13 @@
 import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { expect, it, vi } from 'vitest'
+import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { DeliveriesPage } from './DeliveriesPage'
 import { BOX, LUIS, makeDelivery, page, SHEETS } from './testData'
 import { BASE, renderSocial } from './testRender'
+import { answerConfirm } from '../../test/confirm'
 
 const label = (key: string, options = {}) => t(`social.deliveries.${key}`, options)
 const YEAR = new Date().getFullYear()
@@ -38,7 +39,7 @@ it('filters by benefit and year on the server', async () => {
 
   await screen.findByRole('row', { name: new RegExp(BOX.name) })
   await user.click(screen.getByRole('button', { name: t('app.pager.next') }))
-  await waitFor(() => expect(requests.at(-1)?.url.searchParams.get('offset')).toBe('50'))
+  await waitFor(() => expect(requests.at(-1)?.url.searchParams.get('offset')).toBe('10'))
   await user.selectOptions(screen.getByLabelText(label('benefit')), SHEETS.id)
   await user.selectOptions(screen.getByLabelText(t('app.year')), String(YEAR - 1))
 
@@ -86,13 +87,65 @@ it('records a delivery for a person found by search', async () => {
 it('deletes a delivery after confirming', async () => {
   mockApi('get', `${BASE}/deliveries`, page([makeDelivery()]))
   const requests = mockApi('delete', `${BASE}/deliveries/d-1`, null, 204)
-  vi.spyOn(window, 'confirm').mockReturnValue(true)
   renderSocial(<DeliveriesPage />)
   const user = userEvent.setup()
 
   await user.click(
     await screen.findByRole('button', { name: label('deleteNamed', { name: BOX.name }) }),
   )
+  await answerConfirm(user, true)
 
   await waitFor(() => expect(requests).toHaveLength(1))
+})
+
+it('searches by person or benefit on the server, from the first page', async () => {
+  const requests = mockApi('get', `${BASE}/deliveries`, page([makeDelivery()], 30))
+  renderSocial(<DeliveriesPage />)
+  const user = userEvent.setup()
+  await screen.findByRole('row', { name: new RegExp(BOX.name) })
+  await user.click(screen.getByRole('button', { name: t('app.pager.next') }))
+  await waitFor(() => expect(requests.at(-1)?.url.searchParams.get('offset')).toBe('10'))
+
+  await user.type(screen.getByRole('searchbox', { name: t('app.search') }), 'perez')
+
+  await waitFor(() => {
+    const params = requests.at(-1)?.url.searchParams
+    expect([params?.get('q'), params?.get('offset')]).toEqual(['perez', '0'])
+  })
+})
+
+it('says why the list cannot be loaded, and closes the add form with Escape', async () => {
+  mockApiError('get', `${BASE}/deliveries`, 500, 'boom')
+  renderSocial(<DeliveriesPage />)
+  const user = userEvent.setup()
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: label('add') }))
+  await screen.findByRole('dialog')
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})
+
+it('lets the member change the person chosen, and says when the search finds nobody', async () => {
+  mockApi('get', `${BASE}/deliveries`, page([]))
+  mockApi('get', `${BASE}/people`, page([LUIS]))
+  renderSocial(<DeliveriesPage />)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('add') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: t('social.people.find') }), 'gom')
+  await user.click(
+    await form.findByRole('button', {
+      name: t('social.people.chooseNamed', { name: 'Gómez, Luis' }),
+    }),
+  )
+  expect(form.queryByRole('textbox', { name: t('social.people.find') })).toBeNull()
+  await user.click(form.getByRole('button', { name: t('social.people.change') }))
+
+  mockApi('get', `${BASE}/people`, page([]))
+  await user.type(form.getByRole('textbox', { name: t('social.people.find') }), 'zz')
+  expect(await form.findByText(t('social.people.noMatches'))).toBeInTheDocument()
+  expect(form.getByRole('button', { name: t('app.save') })).toBeDisabled()
 })

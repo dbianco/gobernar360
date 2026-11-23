@@ -25,7 +25,7 @@ const CARLA = {
 function renderPage(options: { me?: ReturnType<typeof makeMe>; id?: string } = {}) {
   mockApi('get', '/platform/municipalities', [{ ...NOETINGER, dashboards: ['projects'] }])
   mockApi('get', '/platform/dashboards', ['environment', 'projects'])
-  mockApi('get', `${BASE}/users`, [ADMIN, CARLA])
+  mockApi('get', `${BASE}/users`, { items: [ADMIN, CARLA], total: 2 })
   mockApi('get', `${BASE}/dashboards`, ['projects'])
   return renderApp(<App />, {
     me: options.me ?? OPERATOR,
@@ -90,7 +90,7 @@ it('lists the users of the municipality and changes a level', async () => {
   expect(requests[0].body).toEqual({ grants: { projects: 'editor' } })
 })
 
-it('adds an administrator', async () => {
+it('adds an administrator, who is invited by email', async () => {
   const requests = mockApi('post', `${BASE}/users`, ADMIN, 201)
   renderPage()
   const user = userEvent.setup()
@@ -102,10 +102,6 @@ it('adds an administrator', async () => {
     within(dialog).getByRole('textbox', { name: t('users.email') }),
     'ines@noetinger.test',
   )
-  await user.type(
-    within(dialog).getByLabelText(t('users.password'), { exact: false }),
-    'long-password-1',
-  )
   await user.click(within(dialog).getByRole('checkbox', { name: t('users.admin') }))
   await user.click(within(dialog).getByRole('button', { name: t('app.save') }))
 
@@ -113,50 +109,12 @@ it('adds an administrator', async () => {
   expect(requests[0].body).toEqual({
     email: 'ines@noetinger.test',
     full_name: 'Inés Intendenta',
-    password: 'long-password-1',
     is_admin: true,
     grants: {},
   })
-})
-
-async function submitExistingAccount(user: ReturnType<typeof userEvent.setup>) {
-  mockApiError('post', `${BASE}/users`, 409, 'account_exists')
-  renderPage()
-  await user.click(await screen.findByRole('button', { name: t('users.add') }))
-  const dialog = await screen.findByRole('dialog')
-  await user.type(within(dialog).getByRole('textbox', { name: t('users.name') }), 'Otra Persona')
-  await user.type(
-    within(dialog).getByRole('textbox', { name: t('users.email') }),
-    'otra@saira.test',
-  )
-  await user.type(
-    within(dialog).getByLabelText(t('users.password'), { exact: false }),
-    'long-password-1',
-  )
-  await user.click(within(dialog).getByRole('button', { name: t('app.save') }))
-  await within(dialog).findByText(t('users.accountExists'))
-  return dialog
-}
-
-it.each([
-  ['keepPassword', 'keep_password'],
-  ['replacePassword', 'replace_password'],
-])('asks what to do with an account that already exists: %s', async (button, choice) => {
-  const user = userEvent.setup()
-  const dialog = await submitExistingAccount(user)
-  const requests = mockApi('post', `${BASE}/users`, CARLA, 201)
-
-  await user.click(within(dialog).getByRole('button', { name: t(`users.${button}`) }))
-
-  await waitFor(() => expect(requests).toHaveLength(1))
-  expect(requests[0].body).toEqual({
-    email: 'otra@saira.test',
-    full_name: 'Otra Persona',
-    password: 'long-password-1',
-    is_admin: false,
-    grants: {},
-    existing_account: choice,
-  })
+  expect(
+    await screen.findByText(t('users.invited', { email: 'ines@noetinger.test' })),
+  ).toBeInTheDocument()
 })
 
 async function openPasswordDialog(user: ReturnType<typeof userEvent.setup>) {
@@ -211,4 +169,93 @@ it('keeps the page away from non-operators', async () => {
   renderPage({ me: makeMe({ isAdmin: true }) })
 
   expect(await screen.findByRole('heading', { name: t('overview.title') })).toBeInTheDocument()
+})
+
+it('changes the kind, and says the details were saved', async () => {
+  const requests = mockApi('patch', BASE, { ...NOETINGER, kind: 'commune', dashboards: [] })
+  renderPage()
+  const user = userEvent.setup()
+
+  await user.selectOptions(
+    await screen.findByRole('combobox', { name: t('platform.kind') }),
+    t('platform.kinds.commune'),
+  )
+  await user.click(screen.getByRole('button', { name: t('platform.saveDetails') }))
+
+  expect(await screen.findByText(t('platform.detailsSaved'))).toBeInTheDocument()
+  expect(requests[0].body).toEqual({ name: 'Noetinger', kind: 'commune' })
+})
+
+it('does not save a blank name, and shows why a save failed', async () => {
+  const requests = mockApiError('patch', BASE, 422, 'validation_error')
+  renderPage()
+  const user = userEvent.setup()
+  const name = await screen.findByRole('textbox', { name: t('platform.name') })
+
+  await user.clear(name)
+  await user.type(name, '   ')
+  await user.click(screen.getByRole('button', { name: t('platform.saveDetails') }))
+  expect(requests).toHaveLength(0)
+
+  await user.type(name, 'Noetinger Sur')
+  await user.click(screen.getByRole('button', { name: t('platform.saveDetails') }))
+  expect(await screen.findByText(t('errors.validation_error'))).toBeInTheDocument()
+  expect(screen.queryByText(t('platform.detailsSaved'))).toBeNull()
+})
+
+it('turns a dashboard off, and shows why a change failed', async () => {
+  const requests = mockApiError('put', `${BASE}/dashboards`, 422, 'validation_error')
+  renderPage()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('checkbox', { name: t('projects.title') }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toEqual({ keys: [] })
+  expect(await screen.findByText(t('errors.validation_error'))).toBeInTheDocument()
+})
+
+it('names a dashboard this version does not know by its key', async () => {
+  mockApi('get', '/platform/dashboards', ['projects', 'mystery'])
+  mockApi('get', '/platform/municipalities', [{ ...NOETINGER, dashboards: ['projects'] }])
+  mockApi('get', `${BASE}/users`, { items: [], total: 0 })
+  mockApi('get', `${BASE}/dashboards`, ['projects'])
+  renderApp(<App />, { me: OPERATOR, route: `/platform/municipalities/${NOETINGER.id}` })
+
+  expect(await screen.findByRole('checkbox', { name: 'mystery' })).not.toBeChecked()
+})
+
+it('shows an error when the municipalities cannot be loaded', async () => {
+  mockApiError('get', '/platform/municipalities', 500, 'generic')
+  mockApi('get', '/platform/dashboards', [])
+  renderApp(<App />, { me: OPERATOR, route: `/platform/municipalities/${NOETINGER.id}` })
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+})
+
+it('keeps the password form open when the server refuses, and closes it with Escape', async () => {
+  mockApiError('put', `${BASE}/users/ms-2/password`, 422, 'validation_error')
+  renderPage()
+  const user = userEvent.setup()
+
+  const dialog = await openPasswordDialog(user)
+  await user.type(
+    within(dialog).getByLabelText(t('users.newPassword'), { exact: false }),
+    'long-password-2',
+  )
+  await user.click(within(dialog).getByRole('button', { name: t('app.save') }))
+  expect(await within(dialog).findByText(t('errors.validation_error'))).toBeInTheDocument()
+
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})
+
+it('names the access column of a dashboard this version does not know by its key', async () => {
+  mockApi('get', '/platform/municipalities', [{ ...NOETINGER, dashboards: ['projects'] }])
+  mockApi('get', '/platform/dashboards', ['projects'])
+  mockApi('get', `${BASE}/users`, { items: [CARLA], total: 1 })
+  mockApi('get', `${BASE}/dashboards`, ['projects', 'mystery'])
+  renderApp(<App />, { me: OPERATOR, route: `/platform/municipalities/${NOETINGER.id}` })
+
+  expect(await screen.findByRole('columnheader', { name: 'mystery' })).toBeInTheDocument()
 })

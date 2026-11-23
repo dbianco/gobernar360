@@ -1,0 +1,193 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks for the most recent assignments of the target > screen at the end 1`] = `
+"Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`asks for the most recent assignments of the target > screen at the start 1`] = `
+"Herramientas asignadas
+Asignar herramienta
+[Cargando…]"
+`;
+
+exports[`closes the edit form with Escape, and keeps an assignment whose deletion is not confirmed > screen at the end 1`] = `
+"Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`closes the edit form with Escape, and keeps an assignment whose deletion is not confirmed > screen at the start 1`] = `
+"Herramientas asignadas
+Asignar herramienta
+[Cargando…]"
+`;
+
+exports[`keeps the form open and says why adding failed > screen at the end 1`] = `
+"Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar
+Asignar herramienta
+Alguno de los datos seleccionados ya no existe.
+Herramienta
+Elegí una herramienta
+Feria de emprendedores
+Microcrédito productivo
+Fecha
+Nota
+Cancelar
+Guardar"
+`;
+
+exports[`keeps the form open and says why adding failed > screen at the start 1`] = `
+"Herramientas asignadas
+Asignar herramienta
+[Cargando…]"
+`;
+
+exports[`says when no tool is meant for the target > screen at the end 1`] = `
+"Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`says when no tool is meant for the target > screen at the start 1`] = `
+"Herramientas asignadas
+Asignar herramienta
+[Cargando…]"
+`;
+
+exports[`says when the target received nothing, and when the list cannot be loaded > screen at the end 1`] = `
+"Herramientas asignadas
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says when the target received nothing, and when the list cannot be loaded > screen at the start 1`] = `
+"Herramientas asignadas
+Asignar herramienta
+[Cargando…]"
+`;
+
+exports[`says why a deletion failed > screen at the end 1`] = `
+"Herramientas asignadas
+Asignar herramienta
+No se puede eliminar porque está siendo usado por otros registros.
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`says why a deletion failed > screen at the start 1`] = `
+"Herramientas asignadas
+Asignar herramienta
+[Cargando…]"
+`;
+
+exports[`says why the tools cannot be loaded > screen at the end 1`] = `
+"Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar
+Asignar herramienta
+Ocurrió un error. Intentá de nuevo.
+Herramienta
+Elegí una herramienta
+Fecha
+Nota
+Cancelar
+Guardar"
+`;
+
+exports[`says why the tools cannot be loaded > screen at the start 1`] = `
+"Herramientas asignadas
+Asignar herramienta
+[Cargando…]"
+`;

@@ -10,15 +10,15 @@ from gobernar360.core.security import normalize_email
 MIN_PASSWORD_LENGTH = 10
 
 
-def _valid_email(raw: str) -> str:
+def valid_email(raw: str) -> str:
     email = normalize_email(raw)
     local, _, domain = email.partition("@")
-    if not local or "." not in domain or " " in email:
+    if not local or "." not in domain or " " in email or "@" in domain:
         raise ValueError("must be a valid email address")
     return email
 
 
-Email = Annotated[str, Field(max_length=320), AfterValidator(_valid_email)]
+Email = Annotated[str, Field(max_length=320), AfterValidator(valid_email)]
 Password = Annotated[str, Field(min_length=MIN_PASSWORD_LENGTH, max_length=200)]
 FullName = Annotated[str, Field(min_length=1, max_length=200)]
 GrantLevel = Literal["viewer", "editor", "admin"]

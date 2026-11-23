@@ -1,0 +1,209 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks which municipality to work with when none is active > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+[Municipio]
+[Municipio]
+Noetinger
+Saira
+Ana Gómez
+Cerrar sesión
+Resumen general
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`asks which municipality to work with when none is active > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`blocks direct navigation to a dashboard the user cannot see > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+No tenés acceso a este tablero
+Pedile al administrador de tu municipio que te habilite."
+`;
+
+exports[`blocks direct navigation to a dashboard the user cannot see > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`changes the municipality from the switcher > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+[Municipio]
+[Municipio]
+Noetinger
+Saira
+Ana Gómez
+Cerrar sesión
+Resumen general
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`changes the municipality from the switcher > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`does not list dashboards the user has no access to > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`does not list dashboards the user has no access to > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`explains the situation to a user without any municipality > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Todavía no pertenecés a ningún municipio
+Pedile al administrador de tu municipio que te agregue como usuario."
+`;
+
+exports[`explains the situation to a user without any municipality > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`gives every navigation link an icon > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Proyectos
+Ambiental
+Económico
+Social
+Usuarios
+Configuración
+Plataforma
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`gives every navigation link an icon > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`hides the users link from non-admin members > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`hides the users link from non-admin members > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lists only the dashboards granted to the user > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Proyectos
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`lists only the dashboards granted to the user > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`opens the users of the municipality at /admin > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Configuración
+Usuarios
+Configuración
+Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)"
+`;
+
+exports[`opens the users of the municipality at /admin > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`returns to the login page when the session has expired > screen at the end 1`] = `
+"Ingresar a gobernar360
+Email
+Contraseña
+[Toggle password visibility]
+Ingresar
+¿Olvidaste tu contraseña?"
+`;
+
+exports[`returns to the login page when the session has expired > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the municipality switcher only with several memberships > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+[Municipio]
+[Municipio]
+Noetinger
+Saira
+Ana Gómez
+Cerrar sesión
+Resumen general
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`shows the municipality switcher only with several memberships > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the users and configuration links to municipality admins > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Configuración
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`shows the users and configuration links to municipality admins > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`signs out locally even when the request fails > screen at the end 1`] = `
+"Ingresar a gobernar360
+Email
+Contraseña
+[Toggle password visibility]
+Ingresar
+¿Olvidaste tu contraseña?"
+`;
+
+exports[`signs out locally even when the request fails > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`signs the user out > screen at the end 1`] = `
+"Ingresar a gobernar360
+Email
+Contraseña
+[Toggle password visibility]
+Ingresar
+¿Olvidaste tu contraseña?"
+`;
+
+exports[`signs the user out > screen at the start 1`] = `"[Cargando…]"`;

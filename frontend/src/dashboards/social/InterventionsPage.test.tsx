@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { InterventionsPage } from './InterventionsPage'
 import { INTERVIEW, LUIS, makeIntervention, page, SECRET, VISIT } from './testData'
 import { BASE, renderSocial } from './testRender'
@@ -107,4 +107,40 @@ it('corrects an intervention', async () => {
     description: SECRET,
     performed_by: 'Equipo',
   })
+})
+
+it('searches and changes the year from the first page', async () => {
+  const requests = mockApi('get', `${BASE}/interventions`, page([makeIntervention()], 30))
+  renderSocial(<InterventionsPage />)
+  const user = userEvent.setup()
+
+  await screen.findByRole('row', { name: new RegExp(VISIT.name) })
+  await user.click(screen.getByRole('button', { name: t('app.pager.next') }))
+  await waitFor(() => expect(requests.at(-1)?.url.searchParams.get('offset')).toBe('10'))
+  await user.type(screen.getByRole('searchbox', { name: t('app.search') }), 'visita')
+  await waitFor(() => {
+    const params = requests.at(-1)?.url.searchParams
+    expect([params?.get('q'), params?.get('offset')]).toEqual(['visita', '0'])
+  })
+
+  await user.click(screen.getByRole('button', { name: t('app.pager.next') }))
+  await waitFor(() => expect(requests.at(-1)?.url.searchParams.get('offset')).toBe('10'))
+  await user.selectOptions(screen.getByLabelText(t('app.year')), String(YEAR - 1))
+  await waitFor(() => {
+    const params = requests.at(-1)?.url.searchParams
+    expect([params?.get('year'), params?.get('offset')]).toEqual([String(YEAR - 1), '0'])
+  })
+})
+
+it('says why the list cannot be loaded, and closes the add form with Escape', async () => {
+  mockApiError('get', `${BASE}/interventions`, 500, 'boom')
+  renderSocial(<InterventionsPage />)
+  const user = userEvent.setup()
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: label('add') }))
+  await screen.findByRole('dialog')
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
 })

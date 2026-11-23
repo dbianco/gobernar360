@@ -1,10 +1,12 @@
 import { expect, test } from '@playwright/test'
 
-import { login, logout, PASSWORD, sidebar } from './helpers.ts'
+import { login, logout, PASSWORD, passwordLink, sidebar, theEmailTo } from './helpers.ts'
 
 test('operator creates a municipality, configures it and its administrator signs in', async ({
   page,
+  request,
 }) => {
+  const since = new Date()
   await login(page, 'operador@gobernar360.test')
   await expect(page.getByRole('heading', { name: 'Municipios de la plataforma' })).toBeVisible()
 
@@ -30,12 +32,19 @@ test('operator creates a municipality, configures it and its administrator signs
   const form = page.getByRole('dialog')
   await form.getByLabel('Nombre y apellido').fill('Vera Intendenta')
   await form.getByLabel('Email').fill('admin@villa-prueba.test')
-  await form.getByLabel('Contraseña inicial').fill('clave-de-vera-123')
   await form.getByRole('checkbox', { name: 'Administrador del municipio' }).check()
   await form.getByRole('button', { name: 'Guardar' }).click()
   await expect(form).toBeHidden()
   await expect(page.getByRole('row', { name: /Vera Intendenta/ })).toBeVisible()
   await logout(page)
+
+  // Vera chooses her own password from the invitation.
+  const invitation = await theEmailTo(request, 'admin@villa-prueba.test', since)
+  await page.goto(passwordLink(invitation))
+  await page.getByLabel('Contraseña nueva').fill('clave-de-vera-123')
+  await page.getByLabel('Repetí la contraseña').fill('clave-de-vera-123')
+  await page.getByRole('button', { name: 'Guardar contraseña' }).click()
+  await expect(page.getByText('Tu contraseña quedó guardada. Ya podés ingresar.')).toBeVisible()
 
   await login(page, 'admin@villa-prueba.test', 'clave-de-vera-123')
   await expect(page.getByRole('banner').getByText('Villa Prueba Norte')).toBeVisible()
@@ -69,9 +78,9 @@ test('operator sets a new password for a municipality user', async ({ page }) =>
   const municipalities = await (await page.request.get('/api/platform/municipalities')).json()
   const noetinger = municipalities.find((item: { slug: string }) => item.slug === 'noetinger')
   const users = await (
-    await page.request.get(`/api/platform/municipalities/${noetinger.id}/users`)
+    await page.request.get(`/api/platform/municipalities/${noetinger.id}/users?limit=200`)
   ).json()
-  const sofia = users.find(
+  const sofia = users.items.find(
     (item: { user: { email: string } }) => item.user.email === 'sinacceso@noetinger.test',
   )
   const restored = await page.request.put(

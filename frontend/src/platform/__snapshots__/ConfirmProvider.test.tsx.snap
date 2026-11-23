@@ -1,0 +1,49 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`answers no when cancelled > screen at the end 1`] = `
+"Preguntar
+Respuesta:
+false"
+`;
+
+exports[`answers no when cancelled > screen at the start 1`] = `
+"Preguntar
+Respuesta:
+none"
+`;
+
+exports[`answers no when closed with Escape, and starts on the safe button > screen at the end 1`] = `
+"Preguntar
+Respuesta:
+false"
+`;
+
+exports[`answers no when closed with Escape, and starts on the safe button > screen at the start 1`] = `
+"Preguntar
+Respuesta:
+none"
+`;
+
+exports[`asks in a modal window and answers yes when accepted > screen at the end 1`] = `
+"Preguntar
+Respuesta:
+true"
+`;
+
+exports[`asks in a modal window and answers yes when accepted > screen at the start 1`] = `
+"Preguntar
+Respuesta:
+none"
+`;
+
+exports[`asks with the usual title and button unless told otherwise, and shows any content > screen at the end 1`] = `
+"Preguntar
+Respuesta:
+true"
+`;
+
+exports[`asks with the usual title and button unless told otherwise, and shows any content > screen at the start 1`] = `
+"Preguntar
+Respuesta:
+none"
+`;

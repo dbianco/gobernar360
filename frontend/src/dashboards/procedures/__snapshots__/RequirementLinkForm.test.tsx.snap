@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds the requirement shown as selected even when the options arrived late > screen at the end 1`] = `
+"options arrive
+Requisito
+Formulario de solicitud
+Obligatorio
+Cómo se pide
+En papel
+Digital
+Nota
+Cancelar
+Guardar"
+`;
+
+exports[`adds the requirement shown as selected even when the options arrived late > screen at the start 1`] = `
+"options arrive
+Todos los requisitos de la lista ya están en este trámite. Agregá más en la pestaña Requisitos.
+Cancelar"
+`;

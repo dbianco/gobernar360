@@ -1,7 +1,9 @@
-import { screen } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { Route, Routes } from 'react-router-dom'
 import { expect, it } from 'vitest'
 
+import App from '../../App'
 import type { AccessLevel } from '../../platform/types'
 import { t } from '../../test/render'
 import { mockApi } from '../../test/server'
@@ -40,4 +42,22 @@ it('keeps an editor out of parameters', async () => {
 
   expect(await screen.findByRole('heading', { name: t('procedures.title') })).toBeInTheDocument()
   expect(screen.queryByText(t('procedures.parameters.areas'))).not.toBeInTheDocument()
+})
+
+it('moves between the sections with the tabs', async () => {
+  renderRoutes('admin')
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('tab', { name: t('procedures.tabs.parameters') }))
+  await waitFor(() => expect(tab('parameters')).toHaveAttribute('aria-selected', 'true'))
+  await user.click(tab('summary')!)
+
+  await waitFor(() => expect(tab('summary')).toHaveAttribute('aria-selected', 'true'))
+})
+
+it('is reached from the app at its own address', async () => {
+  mockApi('get', `${BASE}/summary`, makeSummary())
+  renderProcedures(<App />, { level: 'viewer', route: '/d/procedures' })
+
+  expect(await screen.findByRole('heading', { name: t('procedures.title') })).toBeInTheDocument()
 })

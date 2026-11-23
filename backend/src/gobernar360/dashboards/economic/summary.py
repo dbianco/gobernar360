@@ -40,9 +40,8 @@ def _count(ctx: RequestContext, model: type[Any], *conditions: ColumnElement[boo
 
 
 def _recipients(ctx: RequestContext, model: type[Any], target: Any, year: int) -> RecipientCount:
-    with_assignments = ctx.db.scalar(
-        select(func.count(func.distinct(target))).where(target.is_not(None), in_year(year))
-    )
+    # COUNT leaves out the assignments to the other kind of recipient, whose target is NULL.
+    with_assignments = ctx.db.scalar(select(func.count(func.distinct(target))).where(in_year(year)))
     return RecipientCount(total=_count(ctx, model), with_assignments=with_assignments)
 
 

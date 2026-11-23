@@ -37,14 +37,21 @@ it('hides the users link from non-admin members', async () => {
   const nav = await navigation()
 
   expect(nav.queryByRole('link', { name: t('nav.users') })).not.toBeInTheDocument()
+  expect(nav.queryByRole('link', { name: t('nav.settings') })).not.toBeInTheDocument()
   expect(nav.queryByRole('link', { name: t('nav.platform') })).not.toBeInTheDocument()
 })
 
-it('shows the users link to municipality admins', async () => {
+it('shows the users and configuration links to municipality admins', async () => {
   mockApi('get', '/overview', [])
   renderApp(<App />, { me: makeMe({ isAdmin: true }) })
 
-  expect((await navigation()).getByRole('link', { name: t('nav.users') })).toBeInTheDocument()
+  const nav = await navigation()
+
+  expect(nav.getByRole('link', { name: t('nav.users') })).toHaveAttribute('href', '/admin/users')
+  expect(nav.getByRole('link', { name: t('nav.settings') })).toHaveAttribute(
+    'href',
+    '/admin/settings',
+  )
 })
 
 it('shows the municipality switcher only with several memberships', async () => {
@@ -128,6 +135,33 @@ it('gives every navigation link an icon', async () => {
 
   const links = (await navigation()).getAllByRole('link')
 
-  expect(links).toHaveLength(7)
+  expect(links).toHaveLength(8)
   for (const link of links) expect(link.querySelector('svg')).not.toBeNull()
+})
+
+it('changes the municipality from the switcher', async () => {
+  const me = makeMe({ municipalities: [NOETINGER, SAIRA] })
+  const requests = mockApi('post', '/auth/active-municipality', {
+    ...me,
+    active_municipality_id: SAIRA.id,
+  })
+  renderApp(<App />, { me })
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByDisplayValue(NOETINGER.name))
+  await user.click(await screen.findByRole('option', { name: SAIRA.name }))
+
+  expect(await screen.findByDisplayValue(SAIRA.name)).toBeInTheDocument()
+  expect(requests[0].body).toEqual({ municipality_id: SAIRA.id })
+})
+
+it('opens the users of the municipality at /admin', async () => {
+  mockApi('get', '/admin/users', { items: [], total: 0 })
+  mockApi('get', '/admin/dashboards', [])
+  renderApp(<App />, { me: makeMe({ isAdmin: true }), route: '/admin' })
+
+  expect(await screen.findByRole('tab', { name: t('admin.tabs.users') })).toHaveAttribute(
+    'aria-selected',
+    'true',
+  )
 })

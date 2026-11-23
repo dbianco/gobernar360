@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`defaults to the most recent term > screen at the end 1`] = `
+"current:
+Gestión 2023-2027"
+`;
+
+exports[`defaults to the most recent term > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`does not offer parameters to members who cannot manage them > screen at the end 1`] = `
+"Todavía no hay gestiones cargadas
+Pedile al administrador del tablero que cargue la gestión de gobierno."
+`;
+
+exports[`does not offer parameters to members who cannot manage them > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`ignores a remembered term that no longer exists > screen at the end 1`] = `
+"current:
+Gestión 2023-2027"
+`;
+
+exports[`ignores a remembered term that no longer exists > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`names the only term instead of offering a choice > screen at the end 1`] = `"Gestión 2023-2027"`;
+
+exports[`names the only term instead of offering a choice > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`remembers the term chosen earlier > screen at the end 1`] = `
+"current:
+Gestión 2019-2023"
+`;
+
+exports[`remembers the term chosen earlier > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why the terms cannot be loaded > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
+
+exports[`says why the terms cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows an empty state when there are no terms > screen at the end 1`] = `
+"Todavía no hay gestiones cargadas
+Para empezar, cargá una gestión de gobierno con sus ejes y dependencias.
+Ir a parámetros"
+`;
+
+exports[`shows an empty state when there are no terms > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`works without storage, remembering nothing > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+current:
+Gestión 2019-2023"
+`;
+
+exports[`works without storage, remembering nothing > screen at the start 1`] = `"[Cargando…]"`;

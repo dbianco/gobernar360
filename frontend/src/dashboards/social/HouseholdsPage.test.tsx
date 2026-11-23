@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { HouseholdsPage } from './HouseholdsPage'
 import { makeHousehold, page } from './testData'
 import { BASE, renderSocial } from './testRender'
@@ -35,7 +35,7 @@ it('searches on the server and hides creation from viewers', async () => {
   const user = userEvent.setup()
 
   await screen.findByRole('row', { name: /Familia Pérez/ })
-  await user.type(screen.getByRole('textbox', { name: t('app.search') }), 'belg')
+  await user.type(screen.getByRole('searchbox', { name: t('app.search') }), 'belg')
 
   await waitFor(() => expect(last(requests).url.searchParams.get('q')).toBe('belg'))
   expect(screen.queryByRole('button', { name: label('create') })).toBeNull()
@@ -61,4 +61,33 @@ it('creates a household', async () => {
     address: 'Calle 12',
     neighborhood: 'Norte',
   })
+})
+
+it('shows a missing address as none and says why the list cannot be loaded', async () => {
+  mockApi('get', `${BASE}/households`, page([makeHousehold({ address: '', neighborhood: '' })]))
+  const { unmount } = renderSocial(<HouseholdsPage />)
+
+  const row = within(await screen.findByRole('row', { name: /Familia Pérez/ }))
+  expect(row.getAllByText(t('app.none'))).toHaveLength(2)
+  unmount()
+
+  mockApiError('get', `${BASE}/households`, 500, 'boom')
+  renderSocial(<HouseholdsPage />)
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+})
+
+it('keeps the create form open when saving fails, and closes it with Escape', async () => {
+  mockApi('get', `${BASE}/households`, page([]))
+  mockApiError('post', `${BASE}/households`, 409, 'conflict')
+  renderSocial(<HouseholdsPage />)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('create') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: label('name') }), 'Familia Ledesma')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+  expect(await form.findByText(t('errors.conflict'))).toBeInTheDocument()
+
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
 })

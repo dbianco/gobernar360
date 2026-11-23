@@ -23,6 +23,9 @@ import { hasLevel } from '../../platform/types'
 import { send, useAction, useAxes, useIndicators, useObjectives } from './api'
 import { useTerm } from './termContext'
 import type { Indicator } from './types'
+import { Pager } from '../../platform/Pager'
+import { useLocalTable } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
 
 const numberOrNull = (text: string) => (text.trim() === '' ? null : text.trim())
 const textOf = (value: number | null | undefined) => (value == null ? '' : String(value))
@@ -124,6 +127,7 @@ export function IndicatorsPage() {
   const { me } = useAuth()
   const { term } = useTerm()
   const indicators = useIndicators(term.id)
+  const table = useLocalTable('projects.indicators', indicators.data, (indicator) => indicator.name)
   const objectives = useObjectives(term.id)
   const action = useAction()
   const [editing, setEditing] = useState<Indicator | 'new' | null>(null)
@@ -156,7 +160,15 @@ export function IndicatorsPage() {
       {indicators.isLoading && <Loader aria-label={t('app.loading')} />}
       {indicators.isError && <Alert color="red">{errorMessage(indicators.error)}</Alert>}
       {indicators.data?.length === 0 && <Text c="dimmed">{label('empty')}</Text>}
-      {indicators.data && indicators.data.length > 0 && (
+      {table.hasItems && (
+        <SearchInput
+          value={table.query}
+          onChange={table.setQuery}
+          placeholder={label('searchHint')}
+        />
+      )}
+      {table.hasItems && table.total === 0 && <Text c="dimmed">{t('app.noMatches')}</Text>}
+      {table.rows.length > 0 && (
         <Table.ScrollContainer minWidth={640}>
           <Table>
             <Table.Thead>
@@ -178,7 +190,7 @@ export function IndicatorsPage() {
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
-              {indicators.data.map((indicator) => (
+              {table.rows.map((indicator) => (
                 <Table.Tr key={indicator.id}>
                   <Table.Td>{indicator.name}</Table.Td>
                   <Table.Td>{indicator.axis.name}</Table.Td>
@@ -218,6 +230,7 @@ export function IndicatorsPage() {
           </Table>
         </Table.ScrollContainer>
       )}
+      <Pager {...table.pager} />
       <Modal opened={editing !== null} onClose={() => setEditing(null)} title={label('title')}>
         {editing !== null && (
           <IndicatorForm

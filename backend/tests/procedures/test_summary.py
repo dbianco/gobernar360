@@ -1,3 +1,5 @@
+import pytest
+
 from tests.factories import make_municipality
 from tests.procedures.factories import (
     BASE,
@@ -173,4 +175,68 @@ def test_overview_of_an_empty_procedures_dashboard_has_no_indicators(client):
 
     assert client.get("/api/overview").json() == [
         {"dashboard_key": "procedures", "indicators": [], "status": []}
+    ]
+
+
+def test_areas_with_more_procedures_come_first_and_the_average_has_one_decimal(client):
+    municipality = signed_in(client, "viewer")
+    obras, rentas = make_area(municipality, "Obras"), make_area(municipality, "Rentas")
+    requirements = [make_requirement(municipality, f"Requisito {n}") for n in range(3)]
+    make_procedure(municipality, obras, "Permiso")
+    for name, asks in (("Habilitación", 3), ("Licencia", 2), ("Tasa", 2)):
+        procedure = make_procedure(municipality, rentas, name)
+        for requirement in requirements[:asks]:
+            link_requirement(procedure, requirement)
+
+    summary = client.get(f"{BASE}/summary").json()
+
+    assert summary["by_area"] == [{"name": "Rentas", "count": 3}, {"name": "Obras", "count": 1}]
+    # 7 requirements asked by 4 procedures.
+    assert summary["average_requirements"] == 1.8
+
+
+def test_procedures_that_ask_for_nothing_average_zero_requirements(client):
+    municipality = signed_in(client, "viewer")
+    make_procedure(municipality, make_area(municipality, "Obras"), "Consulta")
+
+    summary = client.get(f"{BASE}/summary").json()
+
+    assert (summary["procedures"], summary["average_requirements"]) == (1, 0.0)
+    assert summary["top_requirements"] == []
+
+
+def test_of_two_sources_that_reach_the_same_volume_the_one_in_more_procedures_comes_first(
+    client,
+):
+    municipality = signed_in(client, "viewer")
+    alfa, zeta = make_source(municipality, "Alfa"), make_source(municipality, "Zeta")
+    big = make_procedure(municipality, name="Grande", annual_volume=100)
+    link_requirement(big, make_requirement(municipality, "De Alfa", alfa))
+    for number in (1, 2):
+        small = make_procedure(municipality, name=f"Chico {number}", annual_volume=50)
+        link_requirement(small, make_requirement(municipality, f"De Zeta {number}", zeta))
+
+    body = client.get(f"{BASE}/opportunities").json()
+
+    assert [row["source"]["name"] for row in body["sources"]] == ["Zeta", "Alfa"]
+
+
+@pytest.mark.parametrize(
+    ("requirements", "sources"),
+    [(1, 0), (0, 1)],
+)
+def test_a_dashboard_with_only_a_catalog_shows_its_indicators(client, requirements, sources):
+    municipality = signed_in(client, "viewer")
+    for number in range(requirements):
+        make_requirement(municipality, f"Requisito {number}")
+    for number in range(sources):
+        make_source(municipality, f"Fuente {number}")
+
+    [section] = client.get("/api/overview").json()
+
+    assert section["indicators"] == [
+        {"key": "procedures.active", "value": 0, "unit": None},
+        {"key": "procedures.online_ratio", "value": None, "unit": "ratio"},
+        {"key": "procedures.requirements", "value": requirements, "unit": None},
+        {"key": "procedures.sources", "value": sources, "unit": None},
     ]

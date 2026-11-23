@@ -1,0 +1,564 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`does not open the parameters to an editor who types the address > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Social
+Social
+Resumen
+Personas
+Grupos familiares
+Prestaciones
+Intervenciones
+Reportes
+No tenés acceso a este tablero
+Pedile al administrador de tu municipio que te habilite."
+`;
+
+exports[`does not open the parameters to an editor who types the address > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`keeps the parameters from an editor > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Social
+Social
+Resumen
+Personas
+Grupos familiares
+Prestaciones
+Intervenciones
+Reportes
+[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+Personas
+16
+9 recibieron prestaciones en el año
+Grupos familiares
+5
+Prestaciones del año
+15
+39 unidades entregadas
+Intervenciones del año
+8
+con 7 personas
+Prestaciones entregadas
+[Prestaciones entregadas]
+Prestación
+[Qué significa Prestación]
+Prestación entregada.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Entregas
+[Qué significa Entregas]
+Veces que se entregó la prestación en el año elegido.
+Unidades
+[Qué significa Unidades]
+Suma de las unidades entregadas en el año elegido.
+Módulo alimentario
+Alimentos
+7
+8
+Chapas
+Hábitat
+1
+12
+Intervenciones por tipo
+[Intervenciones por tipo]
+Tipo
+[Qué significa Tipo]
+Clase de intervención.
+Intervenciones
+[Qué significa Intervenciones]
+Intervenciones de ese tipo hechas en el año elegido.
+Visita a domicilio
+3
+Entrevista presencial
+2"
+`;
+
+exports[`keeps the parameters from an editor > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lists the dashboard in the navigation > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Social
+Social
+Resumen
+Personas
+Grupos familiares
+Prestaciones
+Intervenciones
+Reportes
+[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+Personas
+16
+9 recibieron prestaciones en el año
+Grupos familiares
+5
+Prestaciones del año
+15
+39 unidades entregadas
+Intervenciones del año
+8
+con 7 personas
+Prestaciones entregadas
+[Prestaciones entregadas]
+Prestación
+[Qué significa Prestación]
+Prestación entregada.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Entregas
+[Qué significa Entregas]
+Veces que se entregó la prestación en el año elegido.
+Unidades
+[Qué significa Unidades]
+Suma de las unidades entregadas en el año elegido.
+Módulo alimentario
+Alimentos
+7
+8
+Chapas
+Hábitat
+1
+12
+Intervenciones por tipo
+[Intervenciones por tipo]
+Tipo
+[Qué significa Tipo]
+Clase de intervención.
+Intervenciones
+[Qué significa Intervenciones]
+Intervenciones de ese tipo hechas en el año elegido.
+Visita a domicilio
+3
+Entrevista presencial
+2"
+`;
+
+exports[`lists the dashboard in the navigation > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`moves between the sections with the tabs > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Social
+Social
+Resumen
+Personas
+Grupos familiares
+Prestaciones
+Intervenciones
+Reportes
+Parámetros
+[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+Personas
+16
+9 recibieron prestaciones en el año
+Grupos familiares
+5
+Prestaciones del año
+15
+39 unidades entregadas
+Intervenciones del año
+8
+con 7 personas
+Prestaciones entregadas
+[Prestaciones entregadas]
+Prestación
+[Qué significa Prestación]
+Prestación entregada.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Entregas
+[Qué significa Entregas]
+Veces que se entregó la prestación en el año elegido.
+Unidades
+[Qué significa Unidades]
+Suma de las unidades entregadas en el año elegido.
+Módulo alimentario
+Alimentos
+7
+8
+Chapas
+Hábitat
+1
+12
+Intervenciones por tipo
+[Intervenciones por tipo]
+Tipo
+[Qué significa Tipo]
+Clase de intervención.
+Intervenciones
+[Qué significa Intervenciones]
+Intervenciones de ese tipo hechas en el año elegido.
+Visita a domicilio
+3
+Entrevista presencial
+2"
+`;
+
+exports[`moves between the sections with the tabs > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows a dashboard admin the parameters > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Social
+Social
+Resumen
+Personas
+Grupos familiares
+Prestaciones
+Intervenciones
+Reportes
+Parámetros
+[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+Personas
+16
+9 recibieron prestaciones en el año
+Grupos familiares
+5
+Prestaciones del año
+15
+39 unidades entregadas
+Intervenciones del año
+8
+con 7 personas
+Prestaciones entregadas
+[Prestaciones entregadas]
+Prestación
+[Qué significa Prestación]
+Prestación entregada.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Entregas
+[Qué significa Entregas]
+Veces que se entregó la prestación en el año elegido.
+Unidades
+[Qué significa Unidades]
+Suma de las unidades entregadas en el año elegido.
+Módulo alimentario
+Alimentos
+7
+8
+Chapas
+Hábitat
+1
+12
+Intervenciones por tipo
+[Intervenciones por tipo]
+Tipo
+[Qué significa Tipo]
+Clase de intervención.
+Intervenciones
+[Qué significa Intervenciones]
+Intervenciones de ese tipo hechas en el año elegido.
+Visita a domicilio
+3
+Entrevista presencial
+2"
+`;
+
+exports[`shows a dashboard admin the parameters > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows a viewer every section except the parameters > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Social
+Social
+Resumen
+Personas
+Grupos familiares
+Prestaciones
+Intervenciones
+Reportes
+[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+Personas
+16
+9 recibieron prestaciones en el año
+Grupos familiares
+5
+Prestaciones del año
+15
+39 unidades entregadas
+Intervenciones del año
+8
+con 7 personas
+Prestaciones entregadas
+[Prestaciones entregadas]
+Prestación
+[Qué significa Prestación]
+Prestación entregada.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Entregas
+[Qué significa Entregas]
+Veces que se entregó la prestación en el año elegido.
+Unidades
+[Qué significa Unidades]
+Suma de las unidades entregadas en el año elegido.
+Módulo alimentario
+Alimentos
+7
+8
+Chapas
+Hábitat
+1
+12
+Intervenciones por tipo
+[Intervenciones por tipo]
+Tipo
+[Qué significa Tipo]
+Clase de intervención.
+Intervenciones
+[Qué significa Intervenciones]
+Intervenciones de ese tipo hechas en el año elegido.
+Visita a domicilio
+3
+Entrevista presencial
+2"
+`;
+
+exports[`shows a viewer every section except the parameters > screen at the start 1`] = `"[Cargando…]"`;

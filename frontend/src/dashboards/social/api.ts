@@ -17,7 +17,6 @@ import type {
 
 export const BASE = '/dashboards/social'
 export const BASE_PATH = '/d/social'
-export const PAGE_SIZE = 50
 const KEY = 'social'
 
 function useGet<T>(name: string, path: string, query?: Query, enabled = true) {

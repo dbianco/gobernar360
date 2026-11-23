@@ -1,0 +1,919 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks for another year and points the downloads at it > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2025
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+Personas
+16
+9 recibieron prestaciones en el año
+Grupos familiares
+5
+Prestaciones del año
+15
+39 unidades entregadas
+Intervenciones del año
+8
+con 7 personas
+Prestaciones entregadas
+[Prestaciones entregadas]
+Prestación
+[Qué significa Prestación]
+Prestación entregada.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Entregas
+[Qué significa Entregas]
+Veces que se entregó la prestación en el año elegido.
+Unidades
+[Qué significa Unidades]
+Suma de las unidades entregadas en el año elegido.
+Módulo alimentario
+Alimentos
+7
+8
+Chapas
+Hábitat
+1
+12
+Intervenciones por tipo
+[Intervenciones por tipo]
+Tipo
+[Qué significa Tipo]
+Clase de intervención.
+Intervenciones
+[Qué significa Intervenciones]
+Intervenciones de ese tipo hechas en el año elegido.
+Visita a domicilio
+3
+Entrevista presencial
+2"
+`;
+
+exports[`asks for another year and points the downloads at it > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+[Cargando…]"
+`;
+
+exports[`invites an editor to load people when the dashboard is empty > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+Todavía no hay datos cargados
+Empezá por cargar las personas; después registrás sus prestaciones e intervenciones.
+Ir a personas"
+`;
+
+exports[`invites an editor to load people when the dashboard is empty > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+[Cargando…]"
+`;
+
+exports[`names interventions without a type as none > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+Personas
+16
+9 recibieron prestaciones en el año
+Grupos familiares
+5
+Prestaciones del año
+15
+39 unidades entregadas
+Intervenciones del año
+8
+con 7 personas
+Prestaciones entregadas
+[Prestaciones entregadas]
+Prestación
+[Qué significa Prestación]
+Prestación entregada.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Entregas
+[Qué significa Entregas]
+Veces que se entregó la prestación en el año elegido.
+Unidades
+[Qué significa Unidades]
+Suma de las unidades entregadas en el año elegido.
+Módulo alimentario
+Alimentos
+7
+8
+Chapas
+Hábitat
+1
+12
+Intervenciones por tipo
+[Intervenciones por tipo]
+Tipo
+[Qué significa Tipo]
+Clase de intervención.
+Intervenciones
+[Qué significa Intervenciones]
+Intervenciones de ese tipo hechas en el año elegido.
+—
+4"
+`;
+
+exports[`names interventions without a type as none > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+[Cargando…]"
+`;
+
+exports[`points an admin of an empty dashboard at the parameters first > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+Todavía no hay datos cargados
+Empezá por los parámetros: las prestaciones que entrega el municipio y los tipos de intervención.
+Ir a parámetros
+Ir a personas"
+`;
+
+exports[`points an admin of an empty dashboard at the parameters first > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+[Cargando…]"
+`;
+
+exports[`says so when the year has no records > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+Personas
+16
+9 recibieron prestaciones en el año
+Grupos familiares
+5
+Prestaciones del año
+0
+0 unidades entregadas
+Intervenciones del año
+8
+con 7 personas
+Prestaciones entregadas
+Sin prestaciones en el año.
+Intervenciones por tipo
+Sin intervenciones en el año."
+`;
+
+exports[`says so when the year has no records > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+[Cargando…]"
+`;
+
+exports[`shows an error when the summary cannot be loaded > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`shows an error when the summary cannot be loaded > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+[Cargando…]"
+`;
+
+exports[`shows the headline numbers and both tables > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+Personas
+16
+9 recibieron prestaciones en el año
+Grupos familiares
+5
+Prestaciones del año
+15
+39 unidades entregadas
+Intervenciones del año
+8
+con 7 personas
+Prestaciones entregadas
+[Prestaciones entregadas]
+Prestación
+[Qué significa Prestación]
+Prestación entregada.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Entregas
+[Qué significa Entregas]
+Veces que se entregó la prestación en el año elegido.
+Unidades
+[Qué significa Unidades]
+Suma de las unidades entregadas en el año elegido.
+Módulo alimentario
+Alimentos
+7
+8
+Chapas
+Hábitat
+1
+12
+Intervenciones por tipo
+[Intervenciones por tipo]
+Tipo
+[Qué significa Tipo]
+Clase de intervención.
+Intervenciones
+[Qué significa Intervenciones]
+Intervenciones de ese tipo hechas en el año elegido.
+Visita a domicilio
+3
+Entrevista presencial
+2"
+`;
+
+exports[`shows the headline numbers and both tables > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+[Cargando…]"
+`;
+
+exports[`tells a viewer of an empty dashboard to wait for the team > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+Todavía no hay datos cargados
+Cuando el equipo cargue personas, prestaciones e intervenciones, vas a ver el resumen acá."
+`;
+
+exports[`tells a viewer of an empty dashboard to wait for the team > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Descargar personas
+Descargar grupos familiares
+Descargar prestaciones
+Descargar intervenciones
+[Cargando…]"
+`;

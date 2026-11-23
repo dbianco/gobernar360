@@ -5,7 +5,8 @@ import { expect, it } from 'vitest'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { ParametersPage } from './ParametersPage'
-import { CREDIT, FAIR, FINANCE, MICROCREDITS, SHOP, TRAINING } from './testData'
+import { renameThenDelete } from '../../test/catalog'
+import { CREDIT, FAIR, FINANCE, FOOD, MICROCREDITS, SHOP, TOOLS, TRAINING } from './testData'
 import { BASE, renderEconomic } from './testRender'
 
 const label = (key: string, options = {}) => t(`economic.parameters.${key}`, options)
@@ -116,4 +117,93 @@ it('shows an error instead of empty lists when loading fails', async () => {
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
   expect(screen.queryByText(t('app.list.empty'))).toBeNull()
+})
+
+it.each([
+  ['/actor-types', SHOP.name],
+  ['/sectors', FOOD.name],
+  ['/tool-categories', FINANCE.name],
+  ['/tool-subcategories', MICROCREDITS.name],
+])('renames and deletes items of %s', async (path, name) => {
+  const id = [SHOP, FOOD, FINANCE, MICROCREDITS].find((item) => item.name === name)!.id
+  const renamed = mockApi('patch', `${BASE}${path}/${id}`, {})
+  const deleted = mockApi('delete', `${BASE}${path}/${id}`, null, 204)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await renameThenDelete(user, name, 'Nuevo nombre')
+
+  await waitFor(() => expect(deleted).toHaveLength(1))
+  expect(renamed[0].body).toEqual({ name: 'Nuevo nombre' })
+})
+
+it('searches the tools by name or category', async () => {
+  renderParameters()
+  const user = userEvent.setup()
+  await screen.findByRole('row', { name: new RegExp(TOOLS[0].name) })
+
+  await user.type(screen.getByRole('searchbox', { name: t('app.search') }), 'zzz')
+
+  expect(await screen.findByText(t('app.noMatches'))).toBeInTheDocument()
+})
+
+it('closes the tool form without saving', async () => {
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addTool') }))
+  const dialog = await screen.findByRole('dialog')
+  await user.click(within(dialog).getByRole('button', { name: t('app.cancel') }))
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})
+
+it('adds a tool category', async () => {
+  const requests = mockApi('post', `${BASE}/tool-categories`, { id: 'tc-9', name: 'x' }, 201)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.type(await screen.findByLabelText(label('newCategory')), 'Comercialización{Enter}')
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toEqual({ name: 'Comercialización' })
+})
+
+it('asks for a category before any tool', async () => {
+  renderParameters()
+  mockApi('get', `${BASE}/tool-categories`, [])
+  mockApi('get', `${BASE}/tools`, [])
+
+  expect(await screen.findByText(label('needsCategory'))).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: label('addTool') })).toBeNull()
+  expect(screen.queryByText(label('noTools'))).toBeNull()
+})
+
+it('says when there are categories but no tools yet', async () => {
+  renderParameters()
+  mockApi('get', `${BASE}/tools`, [])
+
+  expect(await screen.findByText(label('noTools'))).toBeInTheDocument()
+})
+
+it('picks a subcategory, keeps the form open when saving fails, and closes it with Escape', async () => {
+  const requests = mockApiError('patch', `${BASE}/tools/${FAIR.id}`, 409, 'conflict')
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(
+    await screen.findByRole('button', { name: label('editNamed', { name: FAIR.name }) }),
+  )
+  const form = within(await screen.findByRole('dialog'))
+  await user.selectOptions(form.getByLabelText(label('category')), FINANCE.id)
+  await user.selectOptions(form.getByLabelText(label('subcategory')), MICROCREDITS.id)
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('errors.conflict'))).toBeInTheDocument()
+  expect(requests[0].body).toMatchObject({
+    category_id: FINANCE.id,
+    subcategory_id: MICROCREDITS.id,
+  })
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
 })

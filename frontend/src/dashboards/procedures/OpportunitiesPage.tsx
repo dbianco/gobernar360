@@ -7,6 +7,9 @@ import { formatNumber } from '../../platform/format'
 import { HelpTh } from '../../platform/HelpTh'
 import { BASE, useOpportunities } from './api'
 import type { Reach } from './types'
+import { Pager } from '../../platform/Pager'
+import { useLocalTable } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
 
 function ReachCells({ reach }: { reach: Reach }) {
   return (
@@ -29,6 +32,13 @@ export function OpportunitiesPage() {
   const label = (key: string) => t(`procedures.opportunities.${key}`)
   const help = (key: string) => t(`procedures.help.opportunitiesPage.${key}`)
   const isEmpty = data && data.sources.length === 0 && data.without_source.requirements === 0
+  const table = useLocalTable('procedures.opportunities', data?.sources, (row) => row.source.name)
+  // The requirements without a source close the ranking: on its last page, when not searching.
+  const showWithoutSource =
+    data !== undefined &&
+    data.without_source.requirements > 0 &&
+    table.query.trim() === '' &&
+    table.pager.offset + table.pager.limit >= table.total
 
   return (
     <Stack>
@@ -41,7 +51,15 @@ export function OpportunitiesPage() {
       {opportunities.isLoading && <Loader aria-label={t('app.loading')} />}
       {opportunities.isError && <Alert color="red">{errorMessage(opportunities.error)}</Alert>}
       {isEmpty && <Text c="dimmed">{label('empty')}</Text>}
-      {data && !isEmpty && (
+      {table.hasItems && (
+        <SearchInput
+          value={table.query}
+          onChange={table.setQuery}
+          placeholder={label('searchHint')}
+        />
+      )}
+      {table.hasItems && table.total === 0 && <Text c="dimmed">{t('app.noMatches')}</Text>}
+      {(table.rows.length > 0 || showWithoutSource) && (
         <Table.ScrollContainer minWidth={720}>
           <Table>
             <Table.Thead>
@@ -61,7 +79,7 @@ export function OpportunitiesPage() {
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
-              {data.sources.map((row) => (
+              {table.rows.map((row) => (
                 <Table.Tr key={row.source.id}>
                   <Table.Td>{row.source.name}</Table.Td>
                   <Table.Td>{t(`procedures.levels.${row.source.level}`)}</Table.Td>
@@ -69,18 +87,19 @@ export function OpportunitiesPage() {
                   <ReachCells reach={row} />
                 </Table.Tr>
               ))}
-              {data.without_source.requirements > 0 && (
+              {showWithoutSource && (
                 <Table.Tr>
                   <Table.Td c="dimmed">{label('withoutSource')}</Table.Td>
                   <Table.Td c="dimmed">{t('app.none')}</Table.Td>
                   <Table.Td c="dimmed">{t('app.none')}</Table.Td>
-                  <ReachCells reach={data.without_source} />
+                  <ReachCells reach={data!.without_source} />
                 </Table.Tr>
               )}
             </Table.Tbody>
           </Table>
         </Table.ScrollContainer>
       )}
+      <Pager {...table.pager} />
     </Stack>
   )
 }

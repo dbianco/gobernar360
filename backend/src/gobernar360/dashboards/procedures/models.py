@@ -27,23 +27,26 @@ CHANNELS = ("in_person", "online", "both")
 FORMATS = ("paper", "digital")
 
 
-def _fk(target: str, ondelete: str = "RESTRICT") -> Mapped[uuid.UUID]:
+# The column helpers below run once, while the models are imported, where mutation testing
+# cannot reach them (hence the pragmas); tests/test_models_match_migrations.py checks the
+# schema they build against the migrations.
+def _fk(target: str, ondelete: str = "RESTRICT") -> Mapped[uuid.UUID]:  # pragma: no mutate block
     return mapped_column(Uuid, ForeignKey(target, ondelete=ondelete), nullable=False, index=True)
 
 
-def _optional_fk(target: str) -> Mapped[uuid.UUID | None]:
+def _optional_fk(target: str) -> Mapped[uuid.UUID | None]:  # pragma: no mutate block
     return mapped_column(Uuid, ForeignKey(target, ondelete="RESTRICT"), nullable=True, index=True)
 
 
-def _in(column: str, values: tuple[str, ...]) -> str:
+def _in(column: str, values: tuple[str, ...]) -> str:  # pragma: no mutate block
     return f"{column} IN ({', '.join(repr(value) for value in values)})"
 
 
-def _name() -> Mapped[str]:
+def _name() -> Mapped[str]:  # pragma: no mutate block
     return mapped_column(String(200), nullable=False)
 
 
-def _long_text() -> Mapped[str]:
+def _long_text() -> Mapped[str]:  # pragma: no mutate block
     return mapped_column(Text, nullable=False, default="", server_default="")
 
 
