@@ -98,10 +98,8 @@ function TermsTab({ terms, selected, run }: { terms: Term[]; selected?: Term; ru
       <EditableList
         items={terms}
         addLabel={label('newItem')}
-        onAdd={async () => undefined}
         onRename={(item, newName) => run(() => send('PATCH', `/terms/${item.id}`, { name: newName }))}
         onDelete={(item) => run(() => send('DELETE', `/terms/${item.id}`))}
-        hideAdd
       />
       <form onSubmit={(event) => void add(event)}>
         <Group align="flex-end" gap="sm">

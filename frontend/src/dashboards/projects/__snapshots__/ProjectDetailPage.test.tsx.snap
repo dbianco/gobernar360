@@ -1,0 +1,365 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`deletes the project after confirming and goes back to the list > screen at the end 1`] = `"project list"`;
+
+exports[`deletes the project after confirming and goes back to the list > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`keeps the project when the deletion is cancelled > screen at the end 1`] = `
+"Volver a proyectos
+Pavimentación
+En implementación
+Prioridad
+A
+Editar
+Eliminar
+Avance
+:
+0 %
+Sin descripción.
+Eje
+Ciudad inclusiva
+Objetivo
+—
+Dependencia
+Obras Públicas
+Responsable
+—
+Programa
+—
+Año
+2024
+Fecha de inicio
+—
+Fecha de fin
+—
+Presupuesto planificado
+$ 0
+Presupuesto ejecutado
+$ 0
+Objetivos de Desarrollo Sostenible
+—
+Hitos
+Este proyecto todavía no tiene hitos.
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito"
+`;
+
+exports[`keeps the project when the deletion is cancelled > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`offers editing and deleting only to those who load data > screen at the end 1`] = `
+"Volver a proyectos
+Pavimentación
+En implementación
+Prioridad
+A
+Avance
+:
+0 %
+Sin descripción.
+Eje
+Ciudad inclusiva
+Objetivo
+—
+Dependencia
+Obras Públicas
+Responsable
+—
+Programa
+—
+Año
+2024
+Fecha de inicio
+—
+Fecha de fin
+—
+Presupuesto planificado
+$ 0
+Presupuesto ejecutado
+$ 0
+Objetivos de Desarrollo Sostenible
+—
+Hitos
+Este proyecto todavía no tiene hitos."
+`;
+
+exports[`offers editing and deleting only to those who load data > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`opens the project form to edit it, and closes it on cancel > screen at the end 1`] = `
+"Volver a proyectos
+Pavimentación
+En implementación
+Prioridad
+A
+Editar
+Eliminar
+Avance
+:
+0 %
+Sin descripción.
+Eje
+Ciudad inclusiva
+Objetivo
+—
+Dependencia
+Obras Públicas
+Responsable
+—
+Programa
+—
+Año
+2024
+Fecha de inicio
+—
+Fecha de fin
+—
+Presupuesto planificado
+$ 0
+Presupuesto ejecutado
+$ 0
+Objetivos de Desarrollo Sostenible
+—
+Hitos
+Este proyecto todavía no tiene hitos.
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito"
+`;
+
+exports[`opens the project form to edit it, and closes it on cancel > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`saves the edited project and closes the form, which Escape also closes > screen at the end 1`] = `
+"Volver a proyectos
+Pavimentación
+En implementación
+Prioridad
+A
+Editar
+Eliminar
+Avance
+:
+0 %
+Sin descripción.
+Eje
+Ciudad inclusiva
+Objetivo
+Reducir el déficit habitacional
+Dependencia
+Obras Públicas
+Responsable
+—
+Programa
+—
+Año
+2024
+Fecha de inicio
+—
+Fecha de fin
+—
+Presupuesto planificado
+$ 0
+Presupuesto ejecutado
+$ 0
+Objetivos de Desarrollo Sostenible
+—
+Hitos
+Este proyecto todavía no tiene hitos.
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito"
+`;
+
+exports[`saves the edited project and closes the form, which Escape also closes > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says what the project lacks > screen at the end 1`] = `
+"Volver a proyectos
+Pavimentación
+En implementación
+Prioridad
+A
+Editar
+Eliminar
+Avance
+:
+0 %
+Sin descripción.
+Eje
+Ciudad inclusiva
+Objetivo
+—
+Dependencia
+Obras Públicas
+Responsable
+—
+Programa
+—
+Año
+2024
+Fecha de inicio
+—
+Fecha de fin
+—
+Presupuesto planificado
+$ 0
+Presupuesto ejecutado
+$ 0
+Objetivos de Desarrollo Sostenible
+—
+Hitos
+Este proyecto todavía no tiene hitos.
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito"
+`;
+
+exports[`says what the project lacks > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why a deletion failed and stays on the project > screen at the end 1`] = `
+"Volver a proyectos
+No se puede eliminar porque está siendo usado por otros registros.
+Pavimentación
+En implementación
+Prioridad
+A
+Editar
+Eliminar
+Avance
+:
+0 %
+Sin descripción.
+Eje
+Ciudad inclusiva
+Objetivo
+—
+Dependencia
+Obras Públicas
+Responsable
+—
+Programa
+—
+Año
+2024
+Fecha de inicio
+—
+Fecha de fin
+—
+Presupuesto planificado
+$ 0
+Presupuesto ejecutado
+$ 0
+Objetivos de Desarrollo Sostenible
+—
+Hitos
+Este proyecto todavía no tiene hitos.
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito"
+`;
+
+exports[`says why a deletion failed and stays on the project > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows an error when the project cannot be loaded > screen at the end 1`] = `
+"Volver a proyectos
+No se encontró el registro."
+`;
+
+exports[`shows an error when the project cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows everything about the project > screen at the end 1`] = `
+"Volver a proyectos
+Pavimentación de la calle San Martín
+Retrasado
+Prioridad
+A+
+Editar
+Eliminar
+Avance
+:
+35 %
+Cordón cuneta y carpeta asfáltica.
+Eje
+Ciudad inclusiva
+Objetivo
+Reducir el déficit habitacional
+Dependencia
+Obras Públicas
+Responsable
+María Pérez
+Programa
+Plan de bacheo
+Año
+2025
+Fecha de inicio
+01/03/2025
+Fecha de fin
+15/12/2025
+Presupuesto planificado
+$ 85.000.000
+Presupuesto ejecutado
+$ 41.000.001
+Objetivos de Desarrollo Sostenible
+ODS 9: Industria, innovación e infraestructura · ODS 11: Ciudades y comunidades sostenibles
+Hitos
+Este proyecto todavía no tiene hitos.
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito"
+`;
+
+exports[`shows everything about the project > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows its milestones > screen at the end 1`] = `
+"Volver a proyectos
+Pavimentación
+En implementación
+Prioridad
+A
+Editar
+Eliminar
+Avance
+:
+0 %
+Sin descripción.
+Eje
+Ciudad inclusiva
+Objetivo
+—
+Dependencia
+Obras Públicas
+Responsable
+—
+Programa
+—
+Año
+2024
+Fecha de inicio
+—
+Fecha de fin
+—
+Presupuesto planificado
+$ 0
+Presupuesto ejecutado
+$ 0
+Objetivos de Desarrollo Sostenible
+—
+Hitos
+Licitación adjudicada
+01/06/2025
+Pendiente
+[Marcar como cumplido: Licitación adjudicada]
+Marcar como cumplido
+[Eliminar hito: Licitación adjudicada]
+Eliminar
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito"
+`;
+
+exports[`shows its milestones > screen at the start 1`] = `"[Cargando…]"`;

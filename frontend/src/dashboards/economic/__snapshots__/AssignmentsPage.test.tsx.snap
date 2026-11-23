@@ -1,0 +1,662 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks the server for another year, from the first page > screen at the end 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Microcrédito productivo
+Feria de emprendedores
+Taller de oficios
+Descargar asignaciones
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Destinatario
+[Qué significa Destinatario]
+Actor económico o persona que recibió la herramienta.
+Tipo
+[Qué significa Tipo]
+Indica si quien la recibió es un actor económico o una persona.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Panadería La Espiga
+Actor
+Primera cuota
+[Editar la asignación de Panadería La Espiga]
+Editar
+[Eliminar la asignación de Panadería La Espiga]
+Eliminar
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–10 de 30
+Anterior
+Siguiente"
+`;
+
+exports[`asks the server for another year, from the first page > screen at the start 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Descargar asignaciones
+[Cargando…]"
+`;
+
+exports[`corrects an assignment to a person, and closes the form with Escape > screen at the end 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Microcrédito productivo
+Feria de emprendedores
+Taller de oficios
+Descargar asignaciones
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Destinatario
+[Qué significa Destinatario]
+Actor económico o persona que recibió la herramienta.
+Tipo
+[Qué significa Tipo]
+Indica si quien la recibió es un actor económico o una persona.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+01/02/2026
+Taller de oficios
+Pérez, Juana
+Persona
+[Editar la asignación de Pérez, Juana]
+Editar
+[Eliminar la asignación de Pérez, Juana]
+Eliminar"
+`;
+
+exports[`corrects an assignment to a person, and closes the form with Escape > screen at the start 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Descargar asignaciones
+[Cargando…]"
+`;
+
+exports[`filters by tool > screen at the end 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Microcrédito productivo
+Feria de emprendedores
+Taller de oficios
+Descargar asignaciones
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Destinatario
+[Qué significa Destinatario]
+Actor económico o persona que recibió la herramienta.
+Tipo
+[Qué significa Tipo]
+Indica si quien la recibió es un actor económico o una persona.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Panadería La Espiga
+Actor
+Primera cuota
+[Editar la asignación de Panadería La Espiga]
+Editar
+[Eliminar la asignación de Panadería La Espiga]
+Eliminar"
+`;
+
+exports[`filters by tool > screen at the start 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Descargar asignaciones
+[Cargando…]"
+`;
+
+exports[`keeps an assignment when its deletion is not confirmed, and says why one failed > screen at the end 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Microcrédito productivo
+Feria de emprendedores
+Taller de oficios
+Descargar asignaciones
+No se puede eliminar porque está siendo usado por otros registros.
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Destinatario
+[Qué significa Destinatario]
+Actor económico o persona que recibió la herramienta.
+Tipo
+[Qué significa Tipo]
+Indica si quien la recibió es un actor económico o una persona.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+01/02/2026
+Taller de oficios
+Pérez, Juana
+Persona
+[Editar la asignación de Pérez, Juana]
+Editar
+[Eliminar la asignación de Pérez, Juana]
+Eliminar"
+`;
+
+exports[`keeps an assignment when its deletion is not confirmed, and says why one failed > screen at the start 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Descargar asignaciones
+[Cargando…]"
+`;
+
+exports[`lets an editor correct the date and the note of an assignment > screen at the end 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Microcrédito productivo
+Feria de emprendedores
+Taller de oficios
+Descargar asignaciones
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Destinatario
+[Qué significa Destinatario]
+Actor económico o persona que recibió la herramienta.
+Tipo
+[Qué significa Tipo]
+Indica si quien la recibió es un actor económico o una persona.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Panadería La Espiga
+Actor
+Primera cuota
+[Editar la asignación de Panadería La Espiga]
+Editar
+[Eliminar la asignación de Panadería La Espiga]
+Eliminar"
+`;
+
+exports[`lets an editor correct the date and the note of an assignment > screen at the start 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Descargar asignaciones
+[Cargando…]"
+`;
+
+exports[`lets an editor delete an assignment > screen at the end 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Microcrédito productivo
+Feria de emprendedores
+Taller de oficios
+Descargar asignaciones
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Destinatario
+[Qué significa Destinatario]
+Actor económico o persona que recibió la herramienta.
+Tipo
+[Qué significa Tipo]
+Indica si quien la recibió es un actor económico o una persona.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Panadería La Espiga
+Actor
+Primera cuota
+[Editar la asignación de Panadería La Espiga]
+Editar
+[Eliminar la asignación de Panadería La Espiga]
+Eliminar"
+`;
+
+exports[`lets an editor delete an assignment > screen at the start 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Descargar asignaciones
+[Cargando…]"
+`;
+
+exports[`lists the assignments of the year with their recipients > screen at the end 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Microcrédito productivo
+Feria de emprendedores
+Taller de oficios
+Descargar asignaciones
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Destinatario
+[Qué significa Destinatario]
+Actor económico o persona que recibió la herramienta.
+Tipo
+[Qué significa Tipo]
+Indica si quien la recibió es un actor económico o una persona.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Panadería La Espiga
+Actor
+Primera cuota
+01/02/2026
+Taller de oficios
+Pérez, Juana
+Persona"
+`;
+
+exports[`lists the assignments of the year with their recipients > screen at the start 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Descargar asignaciones
+[Cargando…]"
+`;
+
+exports[`says when the year has no assignments > screen at the end 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Microcrédito productivo
+Feria de emprendedores
+Taller de oficios
+Descargar asignaciones
+No hay asignaciones en el año elegido."
+`;
+
+exports[`says when the year has no assignments > screen at the start 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Descargar asignaciones
+[Cargando…]"
+`;
+
+exports[`searches by tool or recipient on the server > screen at the end 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+[Borrar la búsqueda]
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Microcrédito productivo
+Feria de emprendedores
+Taller de oficios
+Descargar asignaciones
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Destinatario
+[Qué significa Destinatario]
+Actor económico o persona que recibió la herramienta.
+Tipo
+[Qué significa Tipo]
+Indica si quien la recibió es un actor económico o una persona.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Panadería La Espiga
+Actor
+Primera cuota
+[Editar la asignación de Panadería La Espiga]
+Editar
+[Eliminar la asignación de Panadería La Espiga]
+Eliminar"
+`;
+
+exports[`searches by tool or recipient on the server > screen at the start 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Descargar asignaciones
+[Cargando…]"
+`;
+
+exports[`shows an error when the assignments cannot be loaded > screen at the end 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Microcrédito productivo
+Feria de emprendedores
+Taller de oficios
+Descargar asignaciones
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`shows an error when the assignments cannot be loaded > screen at the start 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Descargar asignaciones
+[Cargando…]"
+`;

@@ -28,7 +28,7 @@ test('editor registers a person and a household and records what was done', asyn
   await form.getByRole('textbox', { name: 'Apellido', exact: true }).fill('Ejemplo')
   await form.getByRole('button', { name: 'Guardar' }).click()
   await expect(form).toBeHidden()
-  await page.getByRole('textbox', { name: 'Buscar' }).fill('ejemplo')
+  await page.getByRole('searchbox', { name: 'Buscar' }).fill('ejemplo')
   await expect(page.getByRole('row', { name: /Ejemplo, Sara/ })).toContainText('46.222.333')
 
   await tab(page, 'Grupos familiares').click()
@@ -80,7 +80,7 @@ test('a person the economic dashboard loaded is offered, not typed again', async
   await openDashboard(page)
   await tab(page, 'Personas').click()
   // Rosa Aguirre is in the economic dashboard only: invisible here until incorporated.
-  await page.getByRole('textbox', { name: 'Buscar' }).fill('aguirre')
+  await page.getByRole('searchbox', { name: 'Buscar' }).fill('aguirre')
   await expect(page.getByText('No hay personas que coincidan.')).toBeVisible()
 
   await page.getByRole('button', { name: 'Cargar nueva persona' }).click()
@@ -106,7 +106,10 @@ test('viewer reads the dashboard without the reserved text and cannot load data'
   await expect(page.getByText(SEEDED_DESCRIPTION)).toHaveCount(0)
   await expect(page.getByRole('button', { name: 'Registrar intervención' })).toHaveCount(0)
   await tab(page, 'Personas').click()
+  // The tab left behind has a search box too: wait until the people are the ones listed.
+  await expect(page.getByRole('columnheader', { name: /^DNI/ })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Cargar nueva persona' })).toHaveCount(0)
+  await page.getByRole('searchbox', { name: 'Buscar' }).fill('sosa')
   await page.getByRole('link', { name: 'Sosa, Diego' }).click()
   await expect(page.getByRole('heading', { name: 'Sosa, Diego' })).toBeVisible()
   await expect(page.getByRole('link', { name: 'Familia Sosa' })).toBeVisible()

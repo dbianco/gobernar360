@@ -9,7 +9,6 @@ import {
   Stack,
   Table,
   Text,
-  TextInput,
 } from '@mantine/core'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -19,20 +18,24 @@ import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { Pager } from '../../platform/Pager'
-import { hasLevel } from '../../platform/types'
-import { BASE_PATH, PAGE_SIZE, usePeople } from './api'
+import { hasLevel } from '../../platform/access'
+import { BASE_PATH, usePeople } from './api'
 import { formatDni } from '../../platform/format'
 import { PersonForm } from './PersonForm'
 import { EMPLOYMENT_STATUSES } from './types'
+import { fitPage, usePaging } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
 
 /** Searchable list of the people incorporated into the dashboard. */
 export function PeoplePage() {
   const { t } = useTranslation()
   const { me } = useAuth()
   const [filters, setFilters] = useState({ q: '', employment_status: '' })
-  const [offset, setOffset] = useState(0)
+  const paging = usePaging('economic.people')
+  const { limit, offset, setOffset } = paging
   const [creating, setCreating] = useState(false)
-  const people = usePeople({ ...filters, limit: PAGE_SIZE, offset })
+  const people = usePeople({ ...filters, limit, offset })
+  fitPage(paging, people)
   const label = (key: string) => t(`economic.people.${key}`)
   const filter = (field: keyof typeof filters) => (event: { currentTarget: { value: string } }) => {
     const value = event.currentTarget.value
@@ -44,12 +47,10 @@ export function PeoplePage() {
     <Stack>
       <Group justify="space-between" align="flex-end">
         <Group align="flex-end">
-          <TextInput
-            label={t('app.search')}
-            placeholder={label('searchHint')}
-            maxLength={100}
+          <SearchInput
             value={filters.q}
-            onChange={filter('q')}
+            onChange={(value) => filter('q')({ currentTarget: { value } })}
+            placeholder={label('searchHint')}
           />
           <NativeSelect
             label={label('employmentStatus')}
@@ -110,7 +111,7 @@ export function PeoplePage() {
         </Table.ScrollContainer>
       )}
       {people.data && (
-        <Pager total={people.data.total} limit={PAGE_SIZE} offset={offset} onChange={setOffset} />
+        <Pager {...paging.pager(people.data.total)} />
       )}
       <Modal opened={creating} onClose={() => setCreating(false)} title={label('createTitle')} size="lg">
         {creating && <PersonForm onDone={() => setCreating(false)} />}

@@ -1,33 +1,31 @@
-"""Sign-in, sign-out and the current user's profile."""
+"""Sign-in, sign-out, the current user's profile, and password links sent by email."""
 
 import uuid
 from datetime import UTC, datetime, timedelta
+from typing import Literal
 
 from fastapi import APIRouter, Response
 from pydantic import BaseModel
-from sqlalchemy import delete, select
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from gobernar360.core.config import get_settings
 from gobernar360.core.errors import ApiError, forbidden
-from gobernar360.core.security import (
-    DUMMY_PASSWORD_HASH,
-    hash_password,
-    new_session_token,
-    normalize_email,
-    verify_password,
-)
+from gobernar360.core.security import new_token, normalize_email, verify_password
+from gobernar360.platform import accounts
 from gobernar360.platform.access import (
     SESSION_COOKIE,
     CurrentSession,
     CurrentUser,
     Db,
     effective_levels,
+    reachable,
 )
 from gobernar360.platform.models import Membership, User
 from gobernar360.platform.models import Session as SessionRow
 from gobernar360.platform.schemas import (
     DashboardAccessOut,
+    Email,
     Me,
     MembershipOut,
     Password,
@@ -46,18 +44,23 @@ class ActiveMunicipalityIn(BaseModel):
     municipality_id: uuid.UUID
 
 
-def _memberships(db: Session, user: User) -> list[Membership]:
-    return list(db.scalars(select(Membership).where(Membership.user_id == user.id)).unique())
+def _memberships(db: Session, user: User, session_row: SessionRow) -> list[Membership]:
+    """The memberships this session may use."""
+    memberships = db.scalars(select(Membership).where(Membership.user_id == user.id)).unique()
+    return reachable(db, session_row, list(memberships))
 
 
 def build_me(db: Session, user: User, session_row: SessionRow) -> Me:
-    memberships = sorted(_memberships(db, user), key=lambda m: m.municipality.name)
+    memberships = sorted(_memberships(db, user, session_row), key=lambda m: m.municipality.name)
     active_id = session_row.active_municipality_id
     # A membership removed after sign-in must not leave a stale active municipality.
     if active_id not in {m.municipality_id for m in memberships}:
         active_id = None
+    profile = UserOut.model_validate(user)
+    # Operating the platform needs a password sign-in (see access.require_operator).
+    profile.is_platform_operator = user.is_platform_operator and session_row.auth_method != "sso"
     return Me(
-        user=UserOut.model_validate(user),
+        user=profile,
         memberships=[MembershipOut.model_validate(m) for m in memberships],
         active_municipality_id=active_id,
         dashboards=[
@@ -69,24 +72,21 @@ def build_me(db: Session, user: User, session_row: SessionRow) -> Me:
     )
 
 
-@router.post("/login")
-def login(payload: LoginIn, response: Response, db: Db) -> Me:
-    user = db.scalar(select(User).where(User.email == normalize_email(payload.email)))
-    password_ok = verify_password(
-        payload.password, user.password_hash if user else DUMMY_PASSWORD_HASH
-    )
-    if user is None or not password_ok or not user.is_active:
-        raise ApiError(401, "invalid_credentials", "Email or password is incorrect.")
-
+def start_session(
+    db: Session, user: User, response: Response, auth_method: str = "password"
+) -> SessionRow:
+    """Open a session for a user who proved who they are, and set its cookie."""
     settings = get_settings()
-    memberships = _memberships(db, user)
-    token, token_hash = new_session_token()
+    token, token_hash = new_token()
     session_row = SessionRow(
         token_hash=token_hash,
         user_id=user.id,
-        active_municipality_id=memberships[0].municipality_id if len(memberships) == 1 else None,
+        auth_method=auth_method,
         expires_at=datetime.now(UTC) + timedelta(hours=settings.session_ttl_hours),
     )
+    memberships = _memberships(db, user, session_row)
+    if len(memberships) == 1:
+        session_row.active_municipality_id = memberships[0].municipality_id
     db.add(session_row)
     db.flush()
     response.set_cookie(
@@ -98,7 +98,17 @@ def login(payload: LoginIn, response: Response, db: Db) -> Me:
         secure=settings.cookie_secure,
         path="/",
     )
-    return build_me(db, user, session_row)
+    return session_row
+
+
+@router.post("/login")
+def login(payload: LoginIn, response: Response, db: Db) -> Me:
+    user = db.scalar(select(User).where(User.email == normalize_email(payload.email)))
+    # Unknown emails and accounts without a password still pay for a verification.
+    password_ok = verify_password(payload.password, user.password_hash if user else None)
+    if user is None or not password_ok or not user.is_active:
+        raise ApiError(401, "invalid_credentials", "Email or password is incorrect.")
+    return build_me(db, user, start_session(db, user, response))
 
 
 @router.post("/logout", status_code=204)
@@ -116,7 +126,8 @@ def me(db: Db, user: CurrentUser, session_row: CurrentSession) -> Me:
 def set_active_municipality(
     payload: ActiveMunicipalityIn, db: Db, user: CurrentUser, session_row: CurrentSession
 ) -> Me:
-    if payload.municipality_id not in {m.municipality_id for m in _memberships(db, user)}:
+    reachable_ids = {m.municipality_id for m in _memberships(db, user, session_row)}
+    if payload.municipality_id not in reachable_ids:
         raise forbidden("You do not belong to this municipality.")
     session_row.active_municipality_id = payload.municipality_id
     db.flush()
@@ -135,7 +146,43 @@ def change_password(
     """Change the signed-in user's password and sign out their other sessions."""
     if not verify_password(payload.current_password, user.password_hash):
         raise ApiError(403, "invalid_credentials", "The current password is incorrect.")
-    user.password_hash = hash_password(payload.new_password)
-    db.execute(
-        delete(SessionRow).where(SessionRow.user_id == user.id, SessionRow.id != session_row.id)
-    )
+    accounts.set_password(db, user, payload.new_password, keep_session_id=session_row.id)
+
+
+class PasswordResetIn(BaseModel):
+    email: Email
+
+
+@router.post("/password-reset", status_code=204)
+def request_password_reset(payload: PasswordResetIn, db: Db) -> None:
+    """Email a link to choose a new password. Answers the same whether or not the email
+    has an account."""
+    accounts.request_password_reset(db, payload.email)
+
+
+class TokenIn(BaseModel):
+    token: str
+
+
+class TokenOut(BaseModel):
+    purpose: Literal["invitation", "password_reset"]
+    email: str
+    full_name: str
+
+
+@router.post("/tokens/inspect")
+def inspect_token(payload: TokenIn, db: Db) -> TokenOut:
+    """What a link from an email is for, if it can still be used. Does not use it up."""
+    token, user = accounts.inspect_token(db, payload.token)
+    return TokenOut(purpose=token.purpose, email=user.email, full_name=user.full_name)
+
+
+class RedeemIn(BaseModel):
+    token: str
+    password: Password
+
+
+@router.post("/tokens/redeem", status_code=204)
+def redeem_token(payload: RedeemIn, db: Db) -> None:
+    """Set the password chosen through a link. Every session of the account is closed."""
+    accounts.redeem_token(db, payload.token, payload.password)

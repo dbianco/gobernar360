@@ -1,0 +1,329 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`gives a viewer no way to change requirements > screen at the end 1`] = `
+"Buscar
+(Requisito o fuente)
+Requisito
+[Qué significa Requisito]
+Documento o dato que se le pide al solicitante.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Si no tiene fuente, lo aporta el solicitante.
+Nivel
+[Qué significa Nivel]
+Nivel de gobierno de la fuente.
+Trámites
+[Qué significa Trámites]
+En cuántos trámites se pide, incluidos los dados de baja.
+DNI
+RENAPER
+Nacional
+9
+Formulario de solicitud
+Lo completa el solicitante.
+Lo aporta el solicitante
+—
+0
+Libre deuda municipal
+Certificado de no adeudar tasas.
+Rentas municipal
+Municipal
+4"
+`;
+
+exports[`gives a viewer no way to change requirements > screen at the start 1`] = `
+"Buscar
+(Requisito o fuente)
+[Cargando…]"
+`;
+
+exports[`keeps the form open and says why saving failed, and closes it with Escape > screen at the end 1`] = `
+"Buscar
+(Requisito o fuente)
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se le pide al solicitante.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Si no tiene fuente, lo aporta el solicitante.
+Nivel
+[Qué significa Nivel]
+Nivel de gobierno de la fuente.
+Trámites
+[Qué significa Trámites]
+En cuántos trámites se pide, incluidos los dados de baja.
+DNI
+RENAPER
+Nacional
+9
+[Editar requisito: DNI]
+Editar
+[Eliminar requisito: DNI]
+Eliminar
+Formulario de solicitud
+Lo completa el solicitante.
+Lo aporta el solicitante
+—
+0
+[Editar requisito: Formulario de solicitud]
+Editar
+[Eliminar requisito: Formulario de solicitud]
+Eliminar
+Libre deuda municipal
+Certificado de no adeudar tasas.
+Rentas municipal
+Municipal
+4
+[Editar requisito: Libre deuda municipal]
+Editar
+[Eliminar requisito: Libre deuda municipal]
+Eliminar"
+`;
+
+exports[`keeps the form open and says why saving failed, and closes it with Escape > screen at the start 1`] = `
+"Buscar
+(Requisito o fuente)
+[Cargando…]"
+`;
+
+exports[`lets an editor add a requirement with its source > screen at the end 1`] = `
+"Buscar
+(Requisito o fuente)
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se le pide al solicitante.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Si no tiene fuente, lo aporta el solicitante.
+Nivel
+[Qué significa Nivel]
+Nivel de gobierno de la fuente.
+Trámites
+[Qué significa Trámites]
+En cuántos trámites se pide, incluidos los dados de baja.
+DNI
+RENAPER
+Nacional
+9
+[Editar requisito: DNI]
+Editar
+[Eliminar requisito: DNI]
+Eliminar
+Formulario de solicitud
+Lo completa el solicitante.
+Lo aporta el solicitante
+—
+0
+[Editar requisito: Formulario de solicitud]
+Editar
+[Eliminar requisito: Formulario de solicitud]
+Eliminar
+Libre deuda municipal
+Certificado de no adeudar tasas.
+Rentas municipal
+Municipal
+4
+[Editar requisito: Libre deuda municipal]
+Editar
+[Eliminar requisito: Libre deuda municipal]
+Eliminar"
+`;
+
+exports[`lets an editor add a requirement with its source > screen at the start 1`] = `
+"Buscar
+(Requisito o fuente)
+[Cargando…]"
+`;
+
+exports[`lets an editor remove the source of a requirement > screen at the end 1`] = `
+"Buscar
+(Requisito o fuente)
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se le pide al solicitante.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Si no tiene fuente, lo aporta el solicitante.
+Nivel
+[Qué significa Nivel]
+Nivel de gobierno de la fuente.
+Trámites
+[Qué significa Trámites]
+En cuántos trámites se pide, incluidos los dados de baja.
+DNI
+RENAPER
+Nacional
+9
+[Editar requisito: DNI]
+Editar
+[Eliminar requisito: DNI]
+Eliminar
+Formulario de solicitud
+Lo completa el solicitante.
+Lo aporta el solicitante
+—
+0
+[Editar requisito: Formulario de solicitud]
+Editar
+[Eliminar requisito: Formulario de solicitud]
+Eliminar
+Libre deuda municipal
+Certificado de no adeudar tasas.
+Rentas municipal
+Municipal
+4
+[Editar requisito: Libre deuda municipal]
+Editar
+[Eliminar requisito: Libre deuda municipal]
+Eliminar"
+`;
+
+exports[`lets an editor remove the source of a requirement > screen at the start 1`] = `
+"Buscar
+(Requisito o fuente)
+[Cargando…]"
+`;
+
+exports[`lists requirements with their source and how many procedures ask for them > screen at the end 1`] = `
+"Buscar
+(Requisito o fuente)
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se le pide al solicitante.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Si no tiene fuente, lo aporta el solicitante.
+Nivel
+[Qué significa Nivel]
+Nivel de gobierno de la fuente.
+Trámites
+[Qué significa Trámites]
+En cuántos trámites se pide, incluidos los dados de baja.
+DNI
+RENAPER
+Nacional
+9
+[Editar requisito: DNI]
+Editar
+[Eliminar requisito: DNI]
+Eliminar
+Formulario de solicitud
+Lo completa el solicitante.
+Lo aporta el solicitante
+—
+0
+[Editar requisito: Formulario de solicitud]
+Editar
+[Eliminar requisito: Formulario de solicitud]
+Eliminar
+Libre deuda municipal
+Certificado de no adeudar tasas.
+Rentas municipal
+Municipal
+4
+[Editar requisito: Libre deuda municipal]
+Editar
+[Eliminar requisito: Libre deuda municipal]
+Eliminar"
+`;
+
+exports[`lists requirements with their source and how many procedures ask for them > screen at the start 1`] = `
+"Buscar
+(Requisito o fuente)
+[Cargando…]"
+`;
+
+exports[`says so when nothing is loaded yet > screen at the end 1`] = `
+"Buscar
+(Requisito o fuente)
+Agregar requisito
+Todavía no hay requisitos cargados."
+`;
+
+exports[`says so when nothing is loaded yet > screen at the start 1`] = `
+"Buscar
+(Requisito o fuente)
+[Cargando…]"
+`;
+
+exports[`says why a requirement in use cannot be deleted > screen at the end 1`] = `
+"Buscar
+(Requisito o fuente)
+Agregar requisito
+No se puede eliminar porque está siendo usado por otros registros.
+Requisito
+[Qué significa Requisito]
+Documento o dato que se le pide al solicitante.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Si no tiene fuente, lo aporta el solicitante.
+Nivel
+[Qué significa Nivel]
+Nivel de gobierno de la fuente.
+Trámites
+[Qué significa Trámites]
+En cuántos trámites se pide, incluidos los dados de baja.
+DNI
+RENAPER
+Nacional
+9
+[Editar requisito: DNI]
+Editar
+[Eliminar requisito: DNI]
+Eliminar
+Formulario de solicitud
+Lo completa el solicitante.
+Lo aporta el solicitante
+—
+0
+[Editar requisito: Formulario de solicitud]
+Editar
+[Eliminar requisito: Formulario de solicitud]
+Eliminar
+Libre deuda municipal
+Certificado de no adeudar tasas.
+Rentas municipal
+Municipal
+4
+[Editar requisito: Libre deuda municipal]
+Editar
+[Eliminar requisito: Libre deuda municipal]
+Eliminar"
+`;
+
+exports[`says why a requirement in use cannot be deleted > screen at the start 1`] = `
+"Buscar
+(Requisito o fuente)
+[Cargando…]"
+`;
+
+exports[`says why the requirements cannot be loaded > screen at the end 1`] = `
+"Buscar
+(Requisito o fuente)
+Agregar requisito
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why the requirements cannot be loaded > screen at the start 1`] = `
+"Buscar
+(Requisito o fuente)
+[Cargando…]"
+`;
+
+exports[`searches by requirement or source, ignoring accents > screen at the end 1`] = `
+"Buscar
+(Requisito o fuente)
+[Borrar la búsqueda]
+Agregar requisito
+Ningún requisito coincide con la búsqueda."
+`;
+
+exports[`searches by requirement or source, ignoring accents > screen at the start 1`] = `
+"Buscar
+(Requisito o fuente)
+[Cargando…]"
+`;

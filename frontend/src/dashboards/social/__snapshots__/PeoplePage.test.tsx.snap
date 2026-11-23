@@ -1,0 +1,287 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks the server for the next page > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre de la persona, tal como figura en el padrón del municipio.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad. Identifica a la persona en el padrón del municipio.
+Barrio
+[Qué significa Barrio]
+Barrio del domicilio de la persona.
+Grupo familiar
+[Qué significa Grupo familiar]
+Grupo familiar al que pertenece la persona. Una persona está en un solo grupo.
+Parentesco
+[Qué significa Parentesco]
+Vínculo de la persona con el referente de su grupo familiar.
+Pérez, Juana
+12.345.678
+Centro
+Familia Pérez
+Referente
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+11–20 de 120
+Anterior
+Siguiente"
+`;
+
+exports[`asks the server for the next page > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
+exports[`ignores what the registry says about a document that was changed meanwhile > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan.
+Nueva persona
+DNI
+Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
+Fecha de nacimiento
+Nombre
+Apellido
+Teléfono
+Email
+Domicilio
+Barrio
+Cancelar
+Guardar"
+`;
+
+exports[`ignores what the registry says about a document that was changed meanwhile > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
+exports[`keeps the form and says why the person could not be registered > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan.
+Nueva persona
+Ya hay otra persona con ese DNI en el padrón del municipio.
+DNI
+Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
+Fecha de nacimiento
+Nombre
+Apellido
+Teléfono
+Email
+Domicilio
+Barrio
+Cancelar
+Guardar"
+`;
+
+exports[`keeps the form and says why the person could not be registered > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
+exports[`lists the people of the dashboard with their household > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre de la persona, tal como figura en el padrón del municipio.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad. Identifica a la persona en el padrón del municipio.
+Barrio
+[Qué significa Barrio]
+Barrio del domicilio de la persona.
+Grupo familiar
+[Qué significa Grupo familiar]
+Grupo familiar al que pertenece la persona. Una persona está en un solo grupo.
+Parentesco
+[Qué significa Parentesco]
+Vínculo de la persona con el referente de su grupo familiar.
+Gómez, Luis
+—
+—
+Sin grupo
+—
+Pérez, Juana
+12.345.678
+Centro
+Familia Pérez
+Referente"
+`;
+
+exports[`lists the people of the dashboard with their household > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
+exports[`offers the data of a person another dashboard already loaded > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan."
+`;
+
+exports[`offers the data of a person another dashboard already loaded > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
+exports[`points to the existing record when the person is already in the dashboard > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan.
+Nueva persona
+Pérez, Juana ya está registrada en este tablero.
+Abrir su ficha
+DNI
+Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
+Fecha de nacimiento
+Nombre
+Apellido
+Teléfono
+Email
+Domicilio
+Barrio
+Cancelar
+Guardar"
+`;
+
+exports[`points to the existing record when the person is already in the dashboard > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
+exports[`registers a new person after looking the document up > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan."
+`;
+
+exports[`registers a new person after looking the document up > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
+exports[`says so when nobody matches > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan."
+`;
+
+exports[`says so when nobody matches > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
+exports[`says why the document could not be looked up, and does not save > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan.
+Nueva persona
+Ocurrió un error. Intentá de nuevo.
+DNI
+Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
+Fecha de nacimiento
+Nombre
+Apellido
+Teléfono
+Email
+Domicilio
+Barrio
+Cancelar
+Guardar"
+`;
+
+exports[`says why the document could not be looked up, and does not save > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
+exports[`says why the list cannot be loaded, and closes the create form with Escape > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why the list cannot be loaded, and closes the create form with Escape > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
+exports[`searches and filters on the server, and hides creation from viewers > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+[Borrar la búsqueda]
+Barrio
+Apellido y nombre
+[Qué significa Apellido y nombre]
+Apellido y nombre de la persona, tal como figura en el padrón del municipio.
+DNI
+[Qué significa DNI]
+Documento Nacional de Identidad. Identifica a la persona en el padrón del municipio.
+Barrio
+[Qué significa Barrio]
+Barrio del domicilio de la persona.
+Grupo familiar
+[Qué significa Grupo familiar]
+Grupo familiar al que pertenece la persona. Una persona está en un solo grupo.
+Parentesco
+[Qué significa Parentesco]
+Vínculo de la persona con el referente de su grupo familiar.
+Pérez, Juana
+12.345.678
+Centro
+Familia Pérez
+Referente"
+`;
+
+exports[`searches and filters on the server, and hides creation from viewers > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;

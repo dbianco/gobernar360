@@ -112,3 +112,22 @@ it('shows an error when the summary cannot be loaded', async () => {
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })
+
+it('shows a value without a target or a unit as the bare number', async () => {
+  const summary = makeSummary()
+  summary.categories[2].variables = [
+    {
+      variable: { ...ANNUAL, target: null, unit: '' },
+      value: 7.5,
+      loaded: 1,
+      expected: 1,
+      achievement: null,
+      target_met: null,
+    },
+  ]
+  mockApi('get', `${BASE}/summary`, summary)
+  renderEnvironment(<SummaryPage />)
+
+  const row = within(await screen.findByRole('row', { name: /Puntos de monitoreo/ }))
+  expect(row.getByText('7,5')).toBeInTheDocument()
+})

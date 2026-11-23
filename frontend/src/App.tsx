@@ -1,19 +1,25 @@
 import { Center, Loader } from '@mantine/core'
-import { type ReactNode, Suspense } from 'react'
+import { lazy, type ReactNode, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { OverviewPage } from './dashboards/overview/OverviewPage'
 import { dashboards } from './dashboards/registry'
 import { AccountPage } from './platform/AccountPage'
+import { AdminRoutes } from './platform/AdminRoutes'
 import { AppShell } from './platform/AppShell'
 import { useAuth } from './platform/authContext'
+import { ForgotPasswordPage } from './platform/ForgotPasswordPage'
 import { LoginPage } from './platform/LoginPage'
 import { MunicipalityPage } from './platform/MunicipalityPage'
 import { OperatorPage } from './platform/OperatorPage'
 import { RequireDashboard } from './platform/RequireDashboard'
-import { activeMembership, type Me } from './platform/types'
-import { UsersAdminPage } from './platform/UsersAdminPage'
+import { SetPasswordPage } from './platform/SetPasswordPage'
+import { activeMembership } from './platform/access'
+import { type Me } from './platform/types'
+
+// Loaded on demand: it brings the email editor, which is large.
+const MunicipalitySettingsPage = lazy(() => import('./platform/MunicipalitySettingsPage'))
 
 function PageLoader() {
   const { t } = useTranslation()
@@ -25,8 +31,8 @@ function PageLoader() {
 }
 
 function SignedIn() {
-  const { me, isLoading } = useAuth()
-  if (isLoading) return <PageLoader />
+  // App waits for the profile before any route renders.
+  const { me } = useAuth()
   if (!me) return <Navigate to="/login" replace />
   return <AppShell />
 }
@@ -44,14 +50,17 @@ export default function App() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
+      {/* Reached from emails; they work signed in or not. */}
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/set-password" element={<SetPasswordPage />} />
       <Route element={<SignedIn />}>
         <Route index element={<OverviewPage />} />
         <Route path="account" element={<AccountPage />} />
         <Route
-          path="admin/users"
+          path="admin/*"
           element={
             <Only when={(me) => activeMembership(me)?.is_admin === true}>
-              <UsersAdminPage />
+              <AdminRoutes />
             </Only>
           }
         />
@@ -68,6 +77,16 @@ export default function App() {
           element={
             <Only when={(me) => me.user.is_platform_operator}>
               <MunicipalityPage />
+            </Only>
+          }
+        />
+        <Route
+          path="platform/municipalities/:id/settings"
+          element={
+            <Only when={(me) => me.user.is_platform_operator}>
+              <Suspense fallback={<PageLoader />}>
+                <MunicipalitySettingsPage />
+              </Suspense>
             </Only>
           }
         />

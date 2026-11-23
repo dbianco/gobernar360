@@ -1,0 +1,109 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`creates a household > screen at the end 1`] = `
+"Buscar
+(Nombre o domicilio)
+Cargar nuevo grupo familiar
+No hay grupos familiares que coincidan."
+`;
+
+exports[`creates a household > screen at the start 1`] = `
+"Buscar
+(Nombre o domicilio)
+[Cargando…]"
+`;
+
+exports[`keeps the create form open when saving fails, and closes it with Escape > screen at the end 1`] = `
+"Buscar
+(Nombre o domicilio)
+Cargar nuevo grupo familiar
+No hay grupos familiares que coincidan."
+`;
+
+exports[`keeps the create form open when saving fails, and closes it with Escape > screen at the start 1`] = `
+"Buscar
+(Nombre o domicilio)
+[Cargando…]"
+`;
+
+exports[`lists the households with their head and size > screen at the end 1`] = `
+"Buscar
+(Nombre o domicilio)
+Cargar nuevo grupo familiar
+Nombre
+[Qué significa Nombre]
+Nombre con el que el equipo identifica al grupo familiar.
+Domicilio
+[Qué significa Domicilio]
+Domicilio donde vive el grupo.
+Barrio
+[Qué significa Barrio]
+Barrio del domicilio del grupo.
+Referente
+[Qué significa Referente]
+Integrante de referencia del grupo, con quien se trata habitualmente.
+Integrantes
+[Qué significa Integrantes]
+Cantidad de personas que integran el grupo.
+Familia Gómez
+Belgrano 45
+Centro
+Sin referente
+0
+Familia Pérez
+Belgrano 45
+Centro
+Pérez, Juana
+2"
+`;
+
+exports[`lists the households with their head and size > screen at the start 1`] = `
+"Buscar
+(Nombre o domicilio)
+[Cargando…]"
+`;
+
+exports[`searches on the server and hides creation from viewers > screen at the end 1`] = `
+"Buscar
+(Nombre o domicilio)
+[Borrar la búsqueda]
+Nombre
+[Qué significa Nombre]
+Nombre con el que el equipo identifica al grupo familiar.
+Domicilio
+[Qué significa Domicilio]
+Domicilio donde vive el grupo.
+Barrio
+[Qué significa Barrio]
+Barrio del domicilio del grupo.
+Referente
+[Qué significa Referente]
+Integrante de referencia del grupo, con quien se trata habitualmente.
+Integrantes
+[Qué significa Integrantes]
+Cantidad de personas que integran el grupo.
+Familia Pérez
+Belgrano 45
+Centro
+Pérez, Juana
+2"
+`;
+
+exports[`searches on the server and hides creation from viewers > screen at the start 1`] = `
+"Buscar
+(Nombre o domicilio)
+[Cargando…]"
+`;
+
+exports[`shows a missing address as none and says why the list cannot be loaded > screen at the end 1`] = `
+"Buscar
+(Nombre o domicilio)
+Cargar nuevo grupo familiar
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`shows a missing address as none and says why the list cannot be loaded > screen at the start 1`] = `
+"Buscar
+(Nombre o domicilio)
+[Cargando…]"
+`;

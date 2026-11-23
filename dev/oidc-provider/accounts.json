@@ -1,0 +1,50 @@
+[
+  {
+    "sub": "demo-admin-noetinger",
+    "email": "admin@noetinger.test",
+    "email_verified": true,
+    "name": "Ana Administradora",
+    "password": "gobernar360-demo",
+    "note": "Administradora de Noetinger"
+  },
+  {
+    "sub": "demo-carga-noetinger",
+    "email": "carga@noetinger.test",
+    "email_verified": true,
+    "name": "Carla Carga",
+    "password": "gobernar360-demo",
+    "note": "Carga de datos en Noetinger"
+  },
+  {
+    "sub": "demo-lectura-noetinger",
+    "email": "lectura@noetinger.test",
+    "email_verified": true,
+    "name": "Leo Lectura",
+    "password": "gobernar360-demo",
+    "note": "Solo lectura en Noetinger"
+  },
+  {
+    "sub": "demo-operador",
+    "email": "operador@gobernar360.test",
+    "email_verified": true,
+    "name": "Operador de la plataforma",
+    "password": "gobernar360-demo",
+    "note": "Operador de la plataforma"
+  },
+  {
+    "sub": "demo-sin-verificar",
+    "email": "sinacceso@noetinger.test",
+    "email_verified": false,
+    "name": "Sofía Sin Acceso",
+    "password": "gobernar360-demo",
+    "note": "Email sin verificar: gobernar360 no la deja ingresar"
+  },
+  {
+    "sub": "demo-sin-cuenta",
+    "email": "desconocida@example.test",
+    "email_verified": true,
+    "name": "Persona sin cuenta",
+    "password": "gobernar360-demo",
+    "note": "Sin cuenta en gobernar360: no se crea ninguna"
+  }
+]

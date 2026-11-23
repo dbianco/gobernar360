@@ -114,3 +114,27 @@ it('shows an error when the series cannot be loaded', async () => {
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })
+
+it('narrows the variables by subcategory, and says when a category has none', async () => {
+  const requests = mockSeries()
+  renderEnvironment(<TrackingPage />)
+  const user = userEvent.setup()
+
+  await user.selectOptions(await screen.findByLabelText(label('subcategory')), ANNUAL.subcategory.id)
+  await waitFor(() => expect(requests.annual).toHaveLength(1))
+  expect(
+    within(screen.getByLabelText(label('variable')))
+      .getAllByRole('option')
+      .map((o) => o.textContent),
+  ).toEqual([ANNUAL.name])
+
+  await user.selectOptions(screen.getByLabelText(label('category')), 'air')
+  expect(await screen.findByText(label('noMatch'))).toBeInTheDocument()
+})
+
+it('says why the variables cannot be loaded', async () => {
+  renderEnvironment(<TrackingPage />)
+  mockApiError('get', `${BASE}/variables`, 500, 'boom')
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+})

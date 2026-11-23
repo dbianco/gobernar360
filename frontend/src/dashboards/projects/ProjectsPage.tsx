@@ -18,13 +18,16 @@ import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatPercent } from '../../platform/format'
-import { hasLevel } from '../../platform/types'
+import { hasLevel } from '../../platform/access'
 import { useProjects } from './api'
 import { FilterBar } from './FilterBar'
 import { ProjectForm } from './ProjectForm'
 import { StatusBadge } from './StatusBadge'
 import { useTerm } from './termContext'
 import type { ProjectFilters } from './types'
+import { Pager } from '../../platform/Pager'
+import { useLocalTable } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
 
 /** Filterable list of the term's projects. */
 export function ProjectsPage() {
@@ -34,18 +37,27 @@ export function ProjectsPage() {
   const [filters, setFilters] = useState<ProjectFilters>({})
   const [creating, setCreating] = useState(false)
   const projects = useProjects(term.id, filters)
+  const table = useLocalTable('projects.projects', projects.data, (project) => project.name)
   const canEdit = hasLevel(me, 'projects', 'editor')
 
   return (
     <Stack>
       <Group justify="space-between" align="flex-end">
-        <FilterBar filters={filters} onChange={setFilters} withStatus />
+        <Group align="flex-end">
+          <SearchInput
+            value={table.query}
+            onChange={table.setQuery}
+            placeholder={t('projects.list.searchHint')}
+          />
+          <FilterBar filters={filters} onChange={setFilters} withStatus />
+        </Group>
         {canEdit && <Button onClick={() => setCreating(true)}>{t('projects.list.create')}</Button>}
       </Group>
       {projects.isLoading && <Loader aria-label={t('app.loading')} />}
       {projects.isError && <Alert color="red">{errorMessage(projects.error)}</Alert>}
       {projects.data?.length === 0 && <Text c="dimmed">{t('projects.list.empty')}</Text>}
-      {projects.data && projects.data.length > 0 && (
+      {table.hasItems && table.total === 0 && <Text c="dimmed">{t('app.noMatches')}</Text>}
+      {table.rows.length > 0 && (
         <Table.ScrollContainer minWidth={720}>
           <Table highlightOnHover>
             <Table.Thead>
@@ -74,7 +86,7 @@ export function ProjectsPage() {
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
-              {projects.data.map((project) => (
+              {table.rows.map((project) => (
                 <Table.Tr key={project.id}>
                   <Table.Td>
                     <Anchor component={Link} to={`/d/projects/projects/${project.id}`}>
@@ -100,6 +112,7 @@ export function ProjectsPage() {
           </Table>
         </Table.ScrollContainer>
       )}
+      <Pager {...table.pager} />
       <Modal
         opened={creating}
         onClose={() => setCreating(false)}

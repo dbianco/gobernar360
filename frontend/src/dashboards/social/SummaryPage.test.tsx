@@ -121,3 +121,15 @@ it('shows an error when the summary cannot be loaded', async () => {
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })
+
+it('names interventions without a type as none', async () => {
+  mockApi(
+    'get',
+    `${BASE}/summary`,
+    makeSummary({ intervention_types: [{ name: null, count: 4 }] }),
+  )
+  renderSocial(<SummaryPage />, { level: 'viewer' })
+
+  const types = within(await screen.findByRole('table', { name: label('interventionTypes') }))
+  expect(types.getByRole('row', { name: new RegExp(t('app.none')) })).toHaveTextContent('4')
+})

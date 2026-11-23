@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { ActorsPage } from './ActorsPage'
 import { INDUSTRY, makeActor, page } from './testData'
 import { BASE, renderEconomic } from './testRender'
@@ -31,14 +31,14 @@ it('searches and filters on the server', async () => {
   const user = userEvent.setup()
 
   await screen.findByRole('row', { name: /Panadería/ })
-  await user.type(screen.getByRole('textbox', { name: t('app.search') }), 'pan')
+  await user.type(screen.getByRole('searchbox', { name: t('app.search') }), 'pan')
   await waitFor(() => expect(last(requests).url.searchParams.get('q')).toBe('pan'))
   await user.selectOptions(screen.getByLabelText(label('type')), INDUSTRY.id)
 
   await waitFor(() =>
     expect(last(requests).url.searchParams.get('actor_type_id')).toBe(INDUSTRY.id),
   )
-  expect(last(requests).url.searchParams.get('limit')).toBe('50')
+  expect(last(requests).url.searchParams.get('limit')).toBe('10')
 })
 
 it('moves to the next page', async () => {
@@ -46,11 +46,11 @@ it('moves to the next page', async () => {
   renderEconomic(<ActorsPage />)
   const user = userEvent.setup()
 
-  expect(await screen.findByText('1–50 de 120')).toBeInTheDocument()
+  expect(await screen.findByText('1–10 de 120')).toBeInTheDocument()
   await user.click(screen.getByRole('button', { name: t('app.pager.next') }))
 
-  await waitFor(() => expect(last(requests).url.searchParams.get('offset')).toBe('50'))
-  expect(await screen.findByText('51–100 de 120')).toBeInTheDocument()
+  await waitFor(() => expect(last(requests).url.searchParams.get('offset')).toBe('10'))
+  expect(await screen.findByText('11–20 de 120')).toBeInTheDocument()
 })
 
 it('hides the create button from viewers and says when nothing matches', async () => {
@@ -103,4 +103,32 @@ it('rejects a malformed CUIT without calling the server', async () => {
 
   expect(await form.findByText(label('cuitInvalid'))).toBeInTheDocument()
   expect(requests).toHaveLength(0)
+})
+
+it('shows an unknown staff size as none, and says why the list cannot be loaded', async () => {
+  mockApi('get', `${BASE}/actors`, page([makeActor({ employee_count: null })]))
+  const { unmount } = renderEconomic(<ActorsPage />)
+  const row = within(await screen.findByRole('row', { name: /Panadería La Espiga/ }))
+  expect(row.getByText(t('app.none'))).toBeInTheDocument()
+  unmount()
+
+  mockApiError('get', `${BASE}/actors`, 500, 'boom')
+  renderEconomic(<ActorsPage />)
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+})
+
+it('keeps the create form open when saving fails, and closes it with Escape', async () => {
+  mockApi('get', `${BASE}/actors`, page([]))
+  mockApiError('post', `${BASE}/actors`, 409, 'conflict')
+  renderEconomic(<ActorsPage />)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('create') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: label('name') }), 'Tornería Giménez')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+  expect(await form.findByText(t('errors.conflict'))).toBeInTheDocument()
+
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
 })

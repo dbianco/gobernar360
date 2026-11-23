@@ -52,7 +52,7 @@ test('a procedure taken out of service leaves the counts', async ({ page }) => {
   const proceduresBefore = await statValue(page, 'Trámites vigentes')
 
   await page.getByRole('tab', { name: 'Trámites' }).click()
-  await page.getByRole('textbox', { name: 'Buscar' }).fill('poda')
+  await page.getByRole('searchbox', { name: 'Buscar' }).fill('poda')
   await page.getByRole('link', { name: NEW_PROCEDURE }).click()
   await page.getByRole('button', { name: 'Editar', exact: true }).click()
   await page.getByRole('dialog').getByRole('checkbox', { name: 'Vigente' }).uncheck()
@@ -104,6 +104,8 @@ test('admin adds a source and uses it in a requirement', async ({ page }) => {
     .getByLabel('Fuente')
     .selectOption({ label: 'Registro de la Propiedad Automotor (Nacional)' })
   await requirement.getByRole('button', { name: 'Guardar' }).click()
+  // The list shows ten at a time: find the new one by searching.
+  await page.getByRole('searchbox', { name: 'Buscar' }).fill('automotor')
   await expect(page.getByRole('row', { name: /Título del automotor/ })).toContainText(
     'Registro de la Propiedad Automotor',
   )

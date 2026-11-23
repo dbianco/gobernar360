@@ -1,0 +1,594 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`does not link to scripts > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`does not link to scripts > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`edits an existing link, and removes it when the address is emptied > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`edits an existing link, and removes it when the address is emptied > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`fills the address with the suggestion when its button is pressed > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+Dirección del enlace
+Para el enlace del correo usá {{link}}.
+{{link}}
+Aplicar
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`fills the address with the suggestion when its button is pressed > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`formats the selection with bold and marks the button as active > screen at the end 1`] = `
+"[Formato del texto]
+Negrita
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`formats the selection with bold and marks the button as active > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`formats the selection with bulletList and marks the button as active > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+Lista con viñetas
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`formats the selection with bulletList and marks the button as active > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`formats the selection with heading and marks the button as active > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+Título
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`formats the selection with heading and marks the button as active > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`formats the selection with italic and marks the button as active > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+Cursiva
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`formats the selection with italic and marks the button as active > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`formats the selection with orderedList and marks the button as active > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+Lista numerada
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`formats the selection with orderedList and marks the button as active > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`formats the selection with strike and marks the button as active > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+Tachado
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`formats the selection with strike and marks the button as active > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`formats the selection with underline and marks the button as active > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+Subrayado
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`formats the selection with underline and marks the button as active > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`inserts text where the cursor is, for the variable buttons > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola {{name}} mundo"
+`;
+
+exports[`inserts text where the cursor is, for the variable buttons > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola mundo"
+`;
+
+exports[`links the selection to the suggested placeholder > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+elegir"
+`;
+
+exports[`links the selection to the suggested placeholder > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+elegir"
+`;
+
+exports[`links to an address typed and confirmed with Enter > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`links to an address typed and confirmed with Enter > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`names its toolbar for assistive technology > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`names its toolbar for assistive technology > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`removes a link with its own button > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+Quitar enlace
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+correo"
+`;
+
+exports[`removes a link with its own button > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+correo"
+`;
+
+exports[`shows the text it was given, as a multi-line text box > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola,
+Ana"
+`;
+
+exports[`shows the text it was given, as a multi-line text box > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola,
+Ana"
+`;
+
+exports[`undoes and redoes a change > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+Rehacer
+[Rehacer]
+[Texto]
+hola mundo"
+`;
+
+exports[`undoes and redoes a change > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+hola mundo"
+`;

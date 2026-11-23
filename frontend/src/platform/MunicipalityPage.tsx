@@ -12,6 +12,7 @@ import {
   TextInput,
   Title,
 } from '@mantine/core'
+import { IconSettings } from '@tabler/icons-react'
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useParams } from 'react-router-dom'
@@ -139,7 +140,17 @@ export function MunicipalityPage() {
       )}
       {municipality && (
         <>
-          <Title order={2}>{municipality.name}</Title>
+          <Group justify="space-between">
+            <Title order={2}>{municipality.name}</Title>
+            <Button
+              component={Link}
+              to={`/platform/municipalities/${municipality.id}/settings`}
+              variant="default"
+              leftSection={<IconSettings size={18} stroke={1.5} aria-hidden />}
+            >
+              {t('platform.settings')}
+            </Button>
+          </Group>
           <Paper withBorder p="md">
             <Title order={3} mb="sm">
               {t('platform.details')}

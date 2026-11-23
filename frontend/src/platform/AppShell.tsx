@@ -12,6 +12,7 @@ import { useDisclosure } from '@mantine/hooks'
 import {
   IconBuildingCommunity,
   IconLayoutDashboard,
+  IconSettings,
   IconUsers,
   type Icon,
 } from '@tabler/icons-react'
@@ -21,7 +22,7 @@ import { Link, Navigate, Outlet, useLocation } from 'react-router-dom'
 import { dashboards } from '../dashboards/registry'
 import { useAuth } from './authContext'
 import { MunicipalityChooser, MunicipalitySwitcher, NoMunicipality } from './MunicipalitySwitcher'
-import { activeMembership } from './types'
+import { activeMembership } from './access'
 
 /** Page frame for signed-in users: header, navigation limited to what they may see, content. */
 export function AppShell() {
@@ -100,6 +101,7 @@ export function AppShell() {
         {membership && link('/', t('nav.overview'), IconLayoutDashboard)}
         {membership && visibleDashboards.map((d) => link(d.basePath, t(d.labelKey), d.icon))}
         {membership?.is_admin && link('/admin/users', t('nav.users'), IconUsers)}
+        {membership?.is_admin && link('/admin/settings', t('nav.settings'), IconSettings)}
         {isOperator && link('/platform', t('nav.platform'), IconBuildingCommunity)}
       </Shell.Navbar>
 

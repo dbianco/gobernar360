@@ -4,7 +4,7 @@ import { expect, it, vi } from 'vitest'
 
 import { makeMe } from '../../test/fixtures'
 import { renderApp, t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { OverviewPage } from './OverviewPage'
 
 it('renders indicators returned by the overview endpoint', async () => {
@@ -218,4 +218,44 @@ it('shows earlier lights in browsers without Array.prototype.toReversed', async 
   } finally {
     Array.prototype.toReversed = original
   }
+})
+
+it('ignores a stored list of collapsed sections that makes no sense', async () => {
+  mockApi('get', '/overview', [{ dashboard_key: 'projects', indicators: [], status: [] }])
+  window.localStorage.setItem('overview.collapsed', JSON.stringify({ projects: true }))
+  renderOverview()
+
+  expect(await screen.findByRole('button', { name: t('projects.title') })).toHaveAttribute(
+    'aria-expanded',
+    'true',
+  )
+})
+
+it('keeps only the names in a stored list of collapsed sections', async () => {
+  mockApi('get', '/overview', [{ dashboard_key: 'projects', indicators: [], status: [] }])
+  window.localStorage.setItem('overview.collapsed', JSON.stringify([7, 'projects']))
+  renderOverview()
+
+  expect(await screen.findByRole('button', { name: t('projects.title') })).toHaveAttribute(
+    'aria-expanded',
+    'false',
+  )
+})
+
+it('leaves out a dashboard this version does not know', async () => {
+  mockApi('get', '/overview', [
+    { dashboard_key: 'retired', indicators: [], status: [] },
+    { dashboard_key: 'projects', indicators: [], status: [] },
+  ])
+  renderOverview()
+
+  expect(await screen.findByRole('button', { name: t('projects.title') })).toBeInTheDocument()
+  expect(screen.getAllByRole('button', { expanded: true })).toHaveLength(1)
+})
+
+it('says why the overview cannot be loaded', async () => {
+  mockApiError('get', '/overview', 500, 'boom')
+  renderOverview()
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })

@@ -1,0 +1,508 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`closes the edit form with Escape > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555111
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Grupo familiar
+Familia Pérez
+Parentesco
+Referente
+Prestaciones recibidas
+Registrar prestación
+Todavía no hay prestaciones registradas.
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas."
+`;
+
+exports[`closes the edit form with Escape > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`corrects a delivery without changing who received what > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555111
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Grupo familiar
+Familia Pérez
+Parentesco
+Referente
+Prestaciones recibidas
+Registrar prestación
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas."
+`;
+
+exports[`corrects a delivery without changing who received what > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`deletes an intervention after confirming > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555111
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Grupo familiar
+Familia Pérez
+Parentesco
+Referente
+Prestaciones recibidas
+Registrar prestación
+Todavía no hay prestaciones registradas.
+Intervenciones
+Registrar intervención
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`deletes an intervention after confirming > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`edits the registry data of the person > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555111
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Grupo familiar
+Familia Pérez
+Parentesco
+Referente
+Prestaciones recibidas
+Registrar prestación
+Todavía no hay prestaciones registradas.
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas."
+`;
+
+exports[`edits the registry data of the person > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`keeps it when the deletion is not confirmed > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555111
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Grupo familiar
+Familia Pérez
+Parentesco
+Referente
+Prestaciones recibidas
+Registrar prestación
+Todavía no hay prestaciones registradas.
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas."
+`;
+
+exports[`keeps it when the deletion is not confirmed > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`keeps the description and the write controls from a viewer > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555111
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Grupo familiar
+Familia Pérez
+Parentesco
+Referente
+Prestaciones recibidas
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+Intervenciones
+El detalle de las intervenciones lo lee solo el equipo con permiso de carga.
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Visita a domicilio
+Lic. Marta Ruiz
+Reservado"
+`;
+
+exports[`keeps the description and the write controls from a viewer > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`records a delivery for the person > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555111
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Grupo familiar
+Familia Pérez
+Parentesco
+Referente
+Prestaciones recibidas
+Registrar prestación
+Todavía no hay prestaciones registradas.
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas."
+`;
+
+exports[`records a delivery for the person > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`records an intervention, signed by the member by default > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555111
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Grupo familiar
+Familia Pérez
+Parentesco
+Referente
+Prestaciones recibidas
+Registrar prestación
+Todavía no hay prestaciones registradas.
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas."
+`;
+
+exports[`records an intervention, signed by the member by default > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`removes the person from the dashboard after confirming > screen at the end 1`] = `"people list"`;
+
+exports[`removes the person from the dashboard after confirming > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`says when the person belongs to no household > screen at the end 1`] = `
+"Volver a personas
+Gómez, Luis
+Editar
+Quitar del tablero
+DNI
+—
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555111
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+—
+Grupo familiar
+Sin grupo
+Parentesco
+—
+Prestaciones recibidas
+Registrar prestación
+Todavía no hay prestaciones registradas.
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas."
+`;
+
+exports[`says when the person belongs to no household > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`says why the deletion failed and stays > screen at the end 1`] = `
+"Volver a personas
+No se puede eliminar porque está siendo usado por otros registros.
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555111
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Grupo familiar
+Familia Pérez
+Parentesco
+Referente
+Prestaciones recibidas
+Registrar prestación
+Todavía no hay prestaciones registradas.
+Intervenciones
+Registrar intervención
+Todavía no hay intervenciones registradas."
+`;
+
+exports[`says why the deletion failed and stays > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`says why the person cannot be loaded > screen at the end 1`] = `
+"Volver a personas
+No se encontró el registro."
+`;
+
+exports[`says why the person cannot be loaded > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`shows the person, their household and their history > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555111
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Grupo familiar
+Familia Pérez
+Parentesco
+Referente
+Prestaciones recibidas
+Registrar prestación
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+Intervenciones
+Registrar intervención
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`shows the person, their household and their history > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;

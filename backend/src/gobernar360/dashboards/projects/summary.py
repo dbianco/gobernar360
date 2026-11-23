@@ -162,7 +162,8 @@ def get_summary(ctx: RequestContext, today: date) -> list[SummaryIndicator]:
     if term is None:
         return []
     projects = query_projects(ctx, today, term_id=term.id)
-    summary = compute_summary(projects, _total_budget(ctx, term.id, None), today)
+    # No indicator here compares with the term's budget, so it is not looked up.
+    summary = compute_summary(projects, None, today)
     return [
         SummaryIndicator("projects.active", summary.active_count),
         SummaryIndicator("projects.finished", summary.finished_count),

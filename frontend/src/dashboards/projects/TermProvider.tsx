@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
-import { hasLevel } from '../../platform/types'
+import { hasLevel } from '../../platform/access'
 import { useTerms } from './api'
 import { latestTerm, TermContext, useTerm } from './termContext'
 

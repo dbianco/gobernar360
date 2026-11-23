@@ -1,0 +1,508 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`deletes a delivery after confirming > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Chapas
+Módulo alimentario
+Descargar prestaciones
+Registrar prestación
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar"
+`;
+
+exports[`deletes a delivery after confirming > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Descargar prestaciones
+[Cargando…]"
+`;
+
+exports[`filters by benefit and year on the server > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Chapas
+Módulo alimentario
+Descargar prestaciones
+Registrar prestación
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–10 de 120
+Anterior
+Siguiente"
+`;
+
+exports[`filters by benefit and year on the server > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Descargar prestaciones
+[Cargando…]"
+`;
+
+exports[`lets the member change the person chosen, and says when the search finds nobody > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Chapas
+Módulo alimentario
+Descargar prestaciones
+Registrar prestación
+No hay prestaciones que coincidan en el año elegido.
+Registrar prestación
+Buscar persona
+Nombre, apellido o DNI de una persona ya registrada en el tablero.
+No hay personas registradas que coincidan.
+Prestación
+Elegí una prestación
+Chapas (Hábitat)
+Módulo alimentario (Alimentos)
+Fecha
+Cantidad
+Nota
+Cancelar
+Guardar"
+`;
+
+exports[`lets the member change the person chosen, and says when the search finds nobody > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Descargar prestaciones
+[Cargando…]"
+`;
+
+exports[`lists the deliveries of the year with who received them > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Chapas
+Módulo alimentario
+Descargar prestaciones
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija"
+`;
+
+exports[`lists the deliveries of the year with who received them > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Descargar prestaciones
+[Cargando…]"
+`;
+
+exports[`records a delivery for a person found by search > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Chapas
+Módulo alimentario
+Descargar prestaciones
+Registrar prestación
+No hay prestaciones que coincidan en el año elegido."
+`;
+
+exports[`records a delivery for a person found by search > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Descargar prestaciones
+[Cargando…]"
+`;
+
+exports[`says so when the year has no deliveries > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Chapas
+Módulo alimentario
+Descargar prestaciones
+Registrar prestación
+No hay prestaciones que coincidan en el año elegido."
+`;
+
+exports[`says so when the year has no deliveries > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Descargar prestaciones
+[Cargando…]"
+`;
+
+exports[`says why the list cannot be loaded, and closes the add form with Escape > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Chapas
+Módulo alimentario
+Descargar prestaciones
+Registrar prestación
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why the list cannot be loaded, and closes the add form with Escape > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Descargar prestaciones
+[Cargando…]"
+`;
+
+exports[`searches by person or benefit on the server, from the first page > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+[Borrar la búsqueda]
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Chapas
+Módulo alimentario
+Descargar prestaciones
+Registrar prestación
+Fecha
+[Qué significa Fecha]
+Día en que se entregó la prestación.
+Persona
+[Qué significa Persona]
+Persona que recibió la prestación.
+Prestación
+[Qué significa Prestación]
+Lo que se entregó.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación.
+Cantidad
+[Qué significa Cantidad]
+Unidades entregadas en esa oportunidad.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la entrega.
+10/03/2026
+Pérez, Juana
+Módulo alimentario
+Alimentos
+2
+Retira la hija
+[Editar la entrega de Módulo alimentario]
+Editar
+[Eliminar la entrega de Módulo alimentario]
+Eliminar
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–10 de 30
+Anterior
+Siguiente"
+`;
+
+exports[`searches by person or benefit on the server, from the first page > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o prestación)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Prestación
+Todas las prestaciones
+Descargar prestaciones
+[Cargando…]"
+`;

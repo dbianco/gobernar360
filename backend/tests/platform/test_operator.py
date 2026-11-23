@@ -93,6 +93,7 @@ def test_enabling_dashboards_for_an_unknown_municipality_returns_not_found(opera
     )
 
     assert response.status_code == 404
+    assert response.json()["error"] == {"code": "not_found", "message": "Municipality not found."}
 
 
 def _patch(client, municipality_id, **changes):

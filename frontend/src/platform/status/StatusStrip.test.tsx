@@ -5,7 +5,7 @@ import { afterEach, expect, it, vi } from 'vitest'
 import type { AccessLevel } from '../types'
 import { makeMe } from '../../test/fixtures'
 import { renderApp, t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { StatusStrip } from './StatusStrip'
 
 const URL = '/dashboards/projects/status'
@@ -112,4 +112,42 @@ it('shows the error when the change is refused', async () => {
 
   const strip = within(screen.getByRole('region', { name: t('status.title') }))
   expect(await strip.findByRole('alert')).toHaveTextContent(t('errors.future_month'))
+})
+
+it('says why the lights cannot be loaded', async () => {
+  mockApiError('get', URL, 500, 'generic')
+  renderStrip('viewer')
+
+  const strip = within(screen.getByRole('region', { name: t('status.title') }))
+  expect(await strip.findByRole('alert')).toHaveTextContent(t('errors.generic'))
+})
+
+it('moves between years when the page lets it, up to the current one', async () => {
+  mockApi('get', URL, [])
+  const onYearChange = vi.fn()
+  vi.useFakeTimers({ toFake: ['Date'], now: new Date(2025, 5, 15) })
+  const { unmount } = renderApp(
+    <StatusStrip dashboardKey="projects" year={2024} onYearChange={onYearChange} />,
+    { me: makeMe({ dashboards: { projects: 'viewer' } }) },
+  )
+  const user = userEvent.setup()
+
+  expect(screen.getByText(`${t('status.title')} 2024`)).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: t('status.previousYear') }))
+  await user.click(screen.getByRole('button', { name: t('status.nextYear') }))
+  expect(onYearChange.mock.calls).toEqual([[2023], [2025]])
+  unmount()
+
+  renderApp(<StatusStrip dashboardKey="projects" year={2025} onYearChange={onYearChange} />, {
+    me: makeMe({ dashboards: { projects: 'viewer' } }),
+  })
+  expect(screen.getByRole('button', { name: t('status.nextYear') })).toBeDisabled()
+})
+
+it('offers no year buttons when the page has a year of its own', async () => {
+  mockApi('get', URL, [])
+  renderStrip('viewer')
+
+  await screen.findByRole('img', { name: monthName(1, 'none') })
+  expect(screen.queryByRole('button', { name: t('status.previousYear') })).toBeNull()
 })

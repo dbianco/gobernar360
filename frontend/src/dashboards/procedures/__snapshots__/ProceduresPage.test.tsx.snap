@@ -1,0 +1,512 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks for an area before any procedure, and says why the list cannot be loaded > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Para cargar trámites primero hay que definir las áreas en Parámetros.
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`asks for an area before any procedure, and says why the list cannot be loaded > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;
+
+exports[`does not ask for a link when the procedure is only in person > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Obras Privadas
+Rentas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Agregar trámite
+No hay trámites que coincidan.
+Nuevo trámite
+Nombre
+Descripción
+Área responsable
+Obras Privadas
+Rentas
+Dirigido a
+Personas y organizaciones
+Personas
+Organizaciones
+Canal
+Presencial
+En línea
+Presencial y en línea
+Es gratuito
+Plazo estimado en días
+Cantidad estimada por año
+Vigente
+Cancelar
+Guardar"
+`;
+
+exports[`does not ask for a link when the procedure is only in person > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;
+
+exports[`fills in every detail of a new procedure > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Obras Privadas
+Rentas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Agregar trámite
+No hay trámites que coincidan."
+`;
+
+exports[`fills in every detail of a new procedure > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;
+
+exports[`gives a viewer no way to create procedures > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Obras Privadas
+Rentas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Trámite
+[Qué significa Trámite]
+Nombre del trámite. Al hacer clic se abre su ficha.
+Área
+[Qué significa Área]
+Área del municipio responsable del trámite.
+Canal
+[Qué significa Canal]
+Cómo se hace: en una oficina, por internet o de las dos formas.
+Costo
+[Qué significa Costo]
+Lo que paga el solicitante, o si es gratuito.
+Plazo
+[Qué significa Plazo]
+Días estimados desde que se inicia hasta que se resuelve.
+Por año
+[Qué significa Por año]
+Cuántas veces se hace el trámite en un año, estimado.
+Requisitos
+[Qué significa Requisitos]
+Cantidad de requisitos que se piden.
+Habilitación comercial
+Rentas
+Presencial
+$ 25.000
+20 días
+180
+2"
+`;
+
+exports[`gives a viewer no way to create procedures > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;
+
+exports[`keeps the form open and says why creating failed, and closes it with Escape > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Obras Privadas
+Rentas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Agregar trámite
+No hay trámites que coincidan."
+`;
+
+exports[`keeps the form open and says why creating failed, and closes it with Escape > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;
+
+exports[`lets an editor create a paid procedure > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Obras Privadas
+Rentas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Agregar trámite
+No hay trámites que coincidan."
+`;
+
+exports[`lets an editor create a paid procedure > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;
+
+exports[`lists procedures with their area, channel, cost and figures > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Obras Privadas
+Rentas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Agregar trámite
+Trámite
+[Qué significa Trámite]
+Nombre del trámite. Al hacer clic se abre su ficha.
+Área
+[Qué significa Área]
+Área del municipio responsable del trámite.
+Canal
+[Qué significa Canal]
+Cómo se hace: en una oficina, por internet o de las dos formas.
+Costo
+[Qué significa Costo]
+Lo que paga el solicitante, o si es gratuito.
+Plazo
+[Qué significa Plazo]
+Días estimados desde que se inicia hasta que se resuelve.
+Por año
+[Qué significa Por año]
+Cuántas veces se hace el trámite en un año, estimado.
+Requisitos
+[Qué significa Requisitos]
+Cantidad de requisitos que se piden.
+Habilitación comercial
+Rentas
+Presencial
+$ 25.000
+20 días
+180
+2
+Libre deuda
+Dado de baja
+Rentas
+En línea
+Gratuito
+—
+—
+2"
+`;
+
+exports[`lists procedures with their area, channel, cost and figures > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;
+
+exports[`moves to the next page > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Obras Privadas
+Rentas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Agregar trámite
+Trámite
+[Qué significa Trámite]
+Nombre del trámite. Al hacer clic se abre su ficha.
+Área
+[Qué significa Área]
+Área del municipio responsable del trámite.
+Canal
+[Qué significa Canal]
+Cómo se hace: en una oficina, por internet o de las dos formas.
+Costo
+[Qué significa Costo]
+Lo que paga el solicitante, o si es gratuito.
+Plazo
+[Qué significa Plazo]
+Días estimados desde que se inicia hasta que se resuelve.
+Por año
+[Qué significa Por año]
+Cuántas veces se hace el trámite en un año, estimado.
+Requisitos
+[Qué significa Requisitos]
+Cantidad de requisitos que se piden.
+Habilitación comercial
+Rentas
+Presencial
+$ 25.000
+20 días
+180
+2
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+11–20 de 120
+Anterior
+Siguiente"
+`;
+
+exports[`moves to the next page > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;
+
+exports[`says so when nothing matches > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Obras Privadas
+Rentas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Agregar trámite
+No hay trámites que coincidan."
+`;
+
+exports[`says so when nothing matches > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;
+
+exports[`searches and filters on the server > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+[Borrar la búsqueda]
+Área
+Todas las áreas
+Obras Privadas
+Rentas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Agregar trámite
+Trámite
+[Qué significa Trámite]
+Nombre del trámite. Al hacer clic se abre su ficha.
+Área
+[Qué significa Área]
+Área del municipio responsable del trámite.
+Canal
+[Qué significa Canal]
+Cómo se hace: en una oficina, por internet o de las dos formas.
+Costo
+[Qué significa Costo]
+Lo que paga el solicitante, o si es gratuito.
+Plazo
+[Qué significa Plazo]
+Días estimados desde que se inicia hasta que se resuelve.
+Por año
+[Qué significa Por año]
+Cuántas veces se hace el trámite en un año, estimado.
+Requisitos
+[Qué significa Requisitos]
+Cantidad de requisitos que se piden.
+Habilitación comercial
+Rentas
+Presencial
+$ 25.000
+20 días
+180
+2"
+`;
+
+exports[`searches and filters on the server > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;

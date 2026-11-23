@@ -3,7 +3,9 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { delay, http, HttpResponse } from 'msw'
+
+import { mockApi, mockApiError, server } from '../../test/server'
 import { PeoplePage } from './PeoplePage'
 import { LUIS, makePerson, makeRegistryPerson, page } from './testData'
 import { BASE, renderSocial } from './testRender'
@@ -37,7 +39,7 @@ it('searches and filters on the server, and hides creation from viewers', async 
   const user = userEvent.setup()
 
   await screen.findByRole('row', { name: /Pérez, Juana/ })
-  await user.type(screen.getByRole('textbox', { name: t('app.search') }), 'pe')
+  await user.type(screen.getByRole('searchbox', { name: t('app.search') }), 'pe')
   await user.type(screen.getByRole('textbox', { name: label('neighborhoodFilter') }), 'sur')
 
   await waitFor(() => {
@@ -53,10 +55,10 @@ it('asks the server for the next page', async () => {
   const user = userEvent.setup()
 
   await screen.findByRole('row', { name: /Pérez, Juana/ })
-  expect(screen.getByText(t('app.pager.range', { from: 1, to: 50, total: 120 }))).toBeInTheDocument()
+  expect(screen.getByText(t('app.pager.range', { from: 1, to: 10, total: 120 }))).toBeInTheDocument()
   await user.click(screen.getByRole('button', { name: t('app.pager.next') }))
 
-  await waitFor(() => expect(last(requests).url.searchParams.get('offset')).toBe('50'))
+  await waitFor(() => expect(last(requests).url.searchParams.get('offset')).toBe('10'))
 })
 
 it('says so when nobody matches', async () => {
@@ -138,4 +140,68 @@ it('points to the existing record when the person is already in the dashboard', 
     '/d/social/people/sp-1',
   )
   expect(form.getByRole('button', { name: t('app.save') })).toBeDisabled()
+})
+
+it('says why the list cannot be loaded, and closes the create form with Escape', async () => {
+  mockApiError('get', `${BASE}/people`, 500, 'boom')
+  renderSocial(<PeoplePage />)
+  const user = userEvent.setup()
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: label('create') }))
+  await screen.findByRole('dialog')
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})
+
+it('says why the document could not be looked up, and does not save', async () => {
+  mockApiError('get', `${BASE}/people/lookup`, 500, 'boom')
+  const requests = mockApi('post', `${BASE}/people`, makePerson(), 201)
+  const { user, form } = await openForm()
+
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '30111222')
+  await user.type(form.getByRole('textbox', { name: t('people.firstName') }), 'Elena')
+  await user.type(form.getByRole('textbox', { name: t('people.lastName') }), 'Paz')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('errors.generic'))).toBeInTheDocument()
+  expect(requests).toHaveLength(0)
+})
+
+it('ignores what the registry says about a document that was changed meanwhile', async () => {
+  server.use(
+    http.get(`*/api${BASE}/people/lookup`, async ({ request }) => {
+      const dni = new URL(request.url).searchParams.get('dni')
+      if (dni === '1234567') {
+        await delay(300)
+        return HttpResponse.json({ person: makeRegistryPerson(), registered_id: null })
+      }
+      return HttpResponse.json({ person: null, registered_id: null })
+    }),
+  )
+  const { user, form } = await openForm()
+  const dni = form.getByRole('textbox', { name: t('people.dni') })
+
+  await user.type(dni, '1234567')
+  await user.tab()
+  await user.type(dni, '8')
+  await new Promise((resolve) => setTimeout(resolve, 400))
+
+  expect(form.queryByText(t('people.inRegistry', { name: 'Pérez, Juana' }))).toBeNull()
+  expect(form.getByRole('textbox', { name: t('people.firstName') })).toHaveValue('')
+})
+
+it('keeps the form and says why the person could not be registered', async () => {
+  mockApi('get', `${BASE}/people/lookup`, { person: null, registered_id: null })
+  mockApiError('post', `${BASE}/people`, 409, 'dni_exists')
+  const { user, form } = await openForm()
+
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '30111222')
+  await user.type(form.getByRole('textbox', { name: t('people.firstName') }), 'Elena')
+  await user.type(form.getByRole('textbox', { name: t('people.lastName') }), 'Paz')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('errors.dni_exists'))).toBeInTheDocument()
+  expect(screen.getByRole('dialog')).toBeInTheDocument()
 })

@@ -4,7 +4,7 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 
 import { useAuth } from '../../platform/authContext'
 import { RequireDashboard } from '../../platform/RequireDashboard'
-import { hasLevel } from '../../platform/types'
+import { hasLevel } from '../../platform/access'
 import { IndicatorsPage } from './IndicatorsPage'
 import { ParametersPage } from './ParametersPage'
 import { ProjectDetailPage } from './ProjectDetailPage'

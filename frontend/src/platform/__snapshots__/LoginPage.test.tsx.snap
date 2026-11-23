@@ -1,0 +1,131 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`does not offer single sign-on when it is off > screen at the end 1`] = `
+"Ingresar a gobernar360
+Email
+Contraseña
+[Toggle password visibility]
+Ingresar
+¿Olvidaste tu contraseña?"
+`;
+
+exports[`does not offer single sign-on when it is off > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`explains any other single sign-on failure in general terms > screen at the end 1`] = `
+"Ingresar a gobernar360
+No se pudo completar el inicio de sesión único. Intentá de nuevo.
+Email
+Contraseña
+[Toggle password visibility]
+Ingresar
+¿Olvidaste tu contraseña?"
+`;
+
+exports[`explains any other single sign-on failure in general terms > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`explains why single sign-on did not sign the person in: failed > screen at the end 1`] = `
+"Ingresar a gobernar360
+No se pudo completar el inicio de sesión único. Intentá de nuevo.
+Email
+Contraseña
+[Toggle password visibility]
+Ingresar
+¿Olvidaste tu contraseña?"
+`;
+
+exports[`explains why single sign-on did not sign the person in: failed > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`explains why single sign-on did not sign the person in: no_account > screen at the end 1`] = `
+"Ingresar a gobernar360
+No hay una cuenta de gobernar360 con el email de ese inicio de sesión. Pedile acceso a quien administra tu municipio.
+Email
+Contraseña
+[Toggle password visibility]
+Ingresar
+¿Olvidaste tu contraseña?"
+`;
+
+exports[`explains why single sign-on did not sign the person in: no_account > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`explains why single sign-on did not sign the person in: unverified_email > screen at the end 1`] = `
+"Ingresar a gobernar360
+El proveedor de identidad no confirmó que el email sea tuyo, así que no se puede usar para ingresar.
+Email
+Contraseña
+[Toggle password visibility]
+Ingresar
+¿Olvidaste tu contraseña?"
+`;
+
+exports[`explains why single sign-on did not sign the person in: unverified_email > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`leads to password recovery, keeping the email typed so far > screen at the end 1`] = `
+"Recuperar contraseña
+Escribí el email de tu cuenta y te enviamos un enlace para elegir una contraseña nueva.
+Email
+Enviar enlace
+Volver a ingresar"
+`;
+
+exports[`leads to password recovery, keeping the email typed so far > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`offers single sign-on only when the server has it configured > screen at the end 1`] = `
+"Ingresar a gobernar360
+Email
+Contraseña
+[Toggle password visibility]
+Ingresar
+¿Olvidaste tu contraseña?
+o
+Ingresar con inicio de sesión único"
+`;
+
+exports[`offers single sign-on only when the server has it configured > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`redirects to the overview after a successful login > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`redirects to the overview after a successful login > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`sends signed-out visitors to the login page > screen at the end 1`] = `
+"Ingresar a gobernar360
+Email
+Contraseña
+[Toggle password visibility]
+Ingresar
+¿Olvidaste tu contraseña?"
+`;
+
+exports[`sends signed-out visitors to the login page > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows an error message when credentials are rejected > screen at the end 1`] = `
+"Ingresar a gobernar360
+El email o la contraseña no son correctos.
+Email
+Contraseña
+[Toggle password visibility]
+Ingresar
+¿Olvidaste tu contraseña?"
+`;
+
+exports[`shows an error message when credentials are rejected > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`treats a profile check the server could not answer as signed out > screen at the end 1`] = `
+"Ingresar a gobernar360
+Email
+Contraseña
+[Toggle password visibility]
+Ingresar
+¿Olvidaste tu contraseña?"
+`;
+
+exports[`treats a profile check the server could not answer as signed out > screen at the start 1`] = `"[Cargando…]"`;

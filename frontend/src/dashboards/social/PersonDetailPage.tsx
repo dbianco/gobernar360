@@ -18,10 +18,11 @@ import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { Field } from '../../platform/Field'
 import { formatDate, formatDni } from '../../platform/format'
-import { hasLevel } from '../../platform/types'
+import { hasLevel } from '../../platform/access'
 import { BASE_PATH, send, useAction, usePerson } from './api'
 import { PersonForm } from './PersonForm'
 import { RecordsPanel } from './RecordsPanel'
+import { useConfirm } from '../../platform/confirmContext'
 
 /** One person: their data, their household and everything done with them. */
 export function PersonDetailPage() {
@@ -36,12 +37,14 @@ export function PersonDetailPage() {
   const listPath = `${BASE_PATH}/people`
   const data = person.data
   const label = (key: string, options = {}) => t(`social.people.${key}`, options)
+  const confirm = useConfirm()
+  const askDelete = (message: string) =>
+    confirm({ message, confirmLabel: t('app.delete'), danger: true })
 
-  async function remove() {
-    if (!data) return
-    if (!window.confirm(label('deleteConfirm', { name: data.person.full_name }))) return
+  async function remove(shown: NonNullable<typeof person.data>) {
+    if (!(await askDelete(label('deleteConfirm', { name: shown.person.full_name })))) return
     const deleted = await action.run(async () => {
-      await send('DELETE', `/people/${data.id}`)
+      await send('DELETE', `/people/${shown.id}`)
       return true
     })
     if (deleted) navigate(listPath)
@@ -64,7 +67,7 @@ export function PersonDetailPage() {
                 <Button variant="default" onClick={() => setEditing(true)}>
                   {t('app.edit')}
                 </Button>
-                <Button variant="subtle" color="red" onClick={() => void remove()}>
+                <Button variant="subtle" color="red" onClick={() => void remove(data)}>
                   {label('remove')}
                 </Button>
               </Group>

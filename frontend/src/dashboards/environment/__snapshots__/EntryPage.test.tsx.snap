@@ -1,0 +1,1830 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`clears the value when the cell is emptied > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`clears the value when the cell is emptied > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`does not save a cell that was not changed > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`does not save a cell that was not changed > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`does not save a value typed again as it was > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`does not save a value typed again as it was > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`explains that there is nothing to load before variables exist > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+No hay variables para cargar."
+`;
+
+exports[`explains that there is nothing to load before variables exist > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`keeps what is typed while an earlier save of the same cell is still in flight > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`keeps what is typed while an earlier save of the same cell is still in flight > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`keeps what was typed and shows the error when saving fails > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+No tenés permiso para realizar esta acción.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`keeps what was typed and shows the error when saving fails > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`loads the values of the chosen year > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2025
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2025]"
+`;
+
+exports[`loads the values of the chosen year > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`marks a cell that is not a number and does not send it > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`marks a cell that is not a number and does not send it > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`reads the dot in -1.000.000,25 as a thousands separator > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`reads the dot in -1.000.000,25 as a thousands separator > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`reads the dot in 1.234,5 as a thousands separator > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`reads the dot in 1.234,5 as a thousands separator > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`reads the dot in 33.000 as a thousands separator > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`reads the dot in 33.000 as a thousands separator > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`rejects 1,23456 instead of guessing what the dot means > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`rejects 1,23456 instead of guessing what the dot means > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`rejects 1.5 instead of guessing what the dot means > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`rejects 1.5 instead of guessing what the dot means > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`rejects 12.34,5 instead of guessing what the dot means > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`rejects 12.34,5 instead of guessing what the dot means > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`rejects 1500.5 instead of guessing what the dot means > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`rejects 1500.5 instead of guessing what the dot means > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`saves a cell when leaving it > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`saves a cell when leaving it > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`saves the whole-year value of an annual variable > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`saves the whole-year value of an annual variable > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`says when the search matches no variable > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+[Borrar la búsqueda]
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Nada coincide con la búsqueda."
+`;
+
+exports[`says when the search matches no variable > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`says why the values cannot be loaded > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
+
+exports[`says why the values cannot be loaded > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`shows only the variables of the chosen category > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`shows only the variables of the chosen category > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;
+
+exports[`shows twelve month cells for a monthly variable and one for an annual one > screen at the end 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+Variables mensuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+Ene
+Feb
+Mar
+Abr
+May
+Jun
+Jul
+Ago
+Sep
+Oct
+Nov
+Dic
+Consumo del palacio municipal
+Consumo eléctrico · kWh
+[Consumo del palacio municipal — Enero]
+[Consumo del palacio municipal — Febrero]
+[Consumo del palacio municipal — Marzo]
+[Consumo del palacio municipal — Abril]
+[Consumo del palacio municipal — Mayo]
+[Consumo del palacio municipal — Junio]
+[Consumo del palacio municipal — Julio]
+[Consumo del palacio municipal — Agosto]
+[Consumo del palacio municipal — Septiembre]
+[Consumo del palacio municipal — Octubre]
+[Consumo del palacio municipal — Noviembre]
+[Consumo del palacio municipal — Diciembre]
+Variables anuales
+Variable
+[Qué significa Variable]
+Lo que el municipio mide, con su unidad. Las variables se definen en Parámetros.
+2026
+Puntos de monitoreo
+Calidad del agua · puntos
+[Puntos de monitoreo — 2026]"
+`;
+
+exports[`shows twelve month cells for a monthly variable and one for an annual one > screen at the start 1`] = `
+"Buscar
+(Variable o subcategoría)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Categoría
+Todos
+Energía
+Residuos
+Agua
+Aire
+Movilidad
+Biodiversidad
+Gobernanza
+Cada valor se guarda al salir de la celda. Usá coma para los decimales (1.250,5). Para borrar un valor, dejá la celda vacía.
+[Cargando…]"
+`;

@@ -9,6 +9,8 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "vitest",
+    "test:coverage": "vitest --run --coverage",
+    "test:mutation": "stryker run",
     "e2e": "playwright test"
   },
   "dependencies": {
@@ -19,6 +21,9 @@
     "@mantine/notifications": "^9.8.1",
     "@tabler/icons-react": "^3.52.0",
     "@tanstack/react-query": "^5.108.0",
+    "@tiptap/pm": "^3.34.0",
+    "@tiptap/react": "^3.34.0",
+    "@tiptap/starter-kit": "^3.34.0",
     "dayjs": "^1.11.23",
     "i18next": "^27.1.5",
     "react": "^19.3.1",
@@ -29,6 +34,9 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.65.1",
+    "@stryker-mutator/api": "^10.1.1",
+    "@stryker-mutator/core": "^10.1.1",
+    "@stryker-mutator/vitest-runner": "^10.1.1",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.12",
@@ -36,6 +44,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
+    "@vitest/coverage-v8": "^5.1.1",
     "jsdom": "^31.0.1",
     "msw": "^3.0.7",
     "oxlint": "^1.90.0",

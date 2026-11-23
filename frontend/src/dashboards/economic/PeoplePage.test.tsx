@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { PeoplePage } from './PeoplePage'
 import { LUIS, makePerson, makeRegistryPerson, page } from './testData'
 import { BASE, renderEconomic } from './testRender'
@@ -31,7 +31,7 @@ it('searches and filters on the server, and hides creation from viewers', async 
   const user = userEvent.setup()
 
   await screen.findByRole('row', { name: /Pérez, Juana/ })
-  await user.type(screen.getByRole('textbox', { name: t('app.search') }), 'pe')
+  await user.type(screen.getByRole('searchbox', { name: t('app.search') }), 'pe')
   await user.selectOptions(screen.getByLabelText(label('employmentStatus')), 'unemployed')
 
   await waitFor(() => {
@@ -178,4 +178,32 @@ it('drops the registry data again when the document is corrected', async () => {
   expect(requests[0].body).toMatchObject({
     person: { first_name: 'Elena', last_name: 'Paz', dni: '12345679', address: '', birth_date: null },
   })
+})
+
+it('shows a missing neighborhood as none, and says why the list cannot be loaded', async () => {
+  mockApi(
+    'get',
+    `${BASE}/people`,
+    page([makePerson({ person: makeRegistryPerson({ neighborhood: '' }) })]),
+  )
+  const { unmount } = renderEconomic(<PeoplePage />)
+  const row = within(await screen.findByRole('row', { name: /Pérez, Juana/ }))
+  expect(row.getByText(t('app.none'))).toBeInTheDocument()
+  unmount()
+
+  mockApiError('get', `${BASE}/people`, 500, 'boom')
+  renderEconomic(<PeoplePage />)
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+})
+
+it('closes the create form with Escape', async () => {
+  mockApi('get', `${BASE}/people`, page([]))
+  renderEconomic(<PeoplePage />)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('create') }))
+  await screen.findByRole('dialog')
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
 })

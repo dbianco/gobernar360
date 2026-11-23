@@ -19,6 +19,9 @@ import { errorMessage } from '../../platform/errorMessage'
 import { send, useAction, useBenefitCategories, useBenefits, useInterventionTypes } from './api'
 import { BenefitForm } from './BenefitForm'
 import type { Benefit, Named } from './types'
+import { Pager } from '../../platform/Pager'
+import { useLocalTable } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
 
 /** The municipality's own catalogs. Dashboard admins only. */
 export function ParametersPage() {
@@ -29,6 +32,11 @@ export function ParametersPage() {
   const action = useAction()
   const [editing, setEditing] = useState<Benefit | 'new' | null>(null)
   const label = (key: string, options = {}) => t(`social.parameters.${key}`, options)
+  const table = useLocalTable(
+    'social.benefits',
+    benefits.data,
+    (benefit) => `${benefit.name} ${benefit.category.name}`,
+  )
 
   const failed = [categories, benefits, interventionTypes].find((query) => query.isError)
   if (failed) return <Alert color="red">{errorMessage(failed.error)}</Alert>
@@ -73,7 +81,15 @@ export function ParametersPage() {
         {categories.data.length > 0 && benefits.data.length === 0 && (
           <Text c="dimmed">{label('noBenefits')}</Text>
         )}
-        {benefits.data.length > 0 && (
+        {table.hasItems && (
+          <SearchInput
+            value={table.query}
+            onChange={table.setQuery}
+            placeholder={label('searchHint')}
+          />
+        )}
+        {table.hasItems && table.total === 0 && <Text c="dimmed">{t('app.noMatches')}</Text>}
+        {table.rows.length > 0 && (
           <Table.ScrollContainer minWidth={560}>
             <Table>
               <Table.Thead>
@@ -89,7 +105,7 @@ export function ParametersPage() {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {benefits.data.map((benefit) => (
+                {table.rows.map((benefit) => (
                   <Table.Tr key={benefit.id}>
                     <Table.Td>{benefit.name}</Table.Td>
                     <Table.Td>{benefit.category.name}</Table.Td>
@@ -123,6 +139,7 @@ export function ParametersPage() {
             </Table>
           </Table.ScrollContainer>
         )}
+        <Pager {...table.pager} />
       </Stack>
       <Modal
         opened={editing !== null}

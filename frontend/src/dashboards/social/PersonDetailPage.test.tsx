@@ -1,14 +1,15 @@
 import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Route, Routes } from 'react-router-dom'
-import { expect, it, vi } from 'vitest'
+import { expect, it } from 'vitest'
 
 import type { AccessLevel } from '../../platform/types'
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { PersonDetailPage } from './PersonDetailPage'
 import {
   BOX,
+  LUIS,
   makeDelivery,
   makeIntervention,
   makePerson,
@@ -18,6 +19,7 @@ import {
   VISIT,
 } from './testData'
 import { BASE, renderSocial } from './testRender'
+import { answerConfirm } from '../../test/confirm'
 
 const label = (key: string, options = {}) => t(`social.people.${key}`, options)
 const delivery = (key: string, options = {}) => t(`social.deliveries.${key}`, options)
@@ -181,26 +183,86 @@ it('records an intervention, signed by the member by default', async () => {
 
 it('deletes an intervention after confirming', async () => {
   const requests = mockApi('delete', `${BASE}/interventions/i-1`, null, 204)
-  vi.spyOn(window, 'confirm').mockReturnValue(true)
   renderDetail('editor', { interventions: [makeIntervention()] })
   const user = userEvent.setup()
 
   await user.click(
     await screen.findByRole('button', { name: intervention('deleteNamed', { name: VISIT.name }) }),
   )
+  await answerConfirm(user, true)
 
   await waitFor(() => expect(requests).toHaveLength(1))
 })
 
 it('removes the person from the dashboard after confirming', async () => {
   const requests = mockApi('delete', `${BASE}/people/sp-1`, null, 204)
-  const confirm = vi.spyOn(window, 'confirm').mockReturnValue(true)
   renderDetail()
   const user = userEvent.setup()
 
   await user.click(await screen.findByRole('button', { name: label('remove') }))
+  const question = await answerConfirm(user, true)
 
   expect(await screen.findByText('people list')).toBeInTheDocument()
   expect(requests).toHaveLength(1)
-  expect(confirm).toHaveBeenCalledWith(label('deleteConfirm', { name: 'Pérez, Juana' }))
+  expect(question).toContain(label('deleteConfirm', { name: 'Pérez, Juana' }))
+})
+
+it('keeps it when the deletion is not confirmed', async () => {
+  const deleted = mockApi('delete', `${BASE}/people/sp-1`, null, 204)
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('remove') }))
+  await answerConfirm(user, false)
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+  expect(deleted).toHaveLength(0)
+})
+
+it('says why the deletion failed and stays', async () => {
+  mockApiError('delete', `${BASE}/people/sp-1`, 409, 'in_use')
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('remove') }))
+  await answerConfirm(user, true)
+
+  expect(await screen.findByText(t('errors.in_use'))).toBeInTheDocument()
+})
+
+it('closes the edit form with Escape', async () => {
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('app.edit') }))
+  await screen.findByRole('dialog')
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})
+
+it('says when the person belongs to no household', async () => {
+  mockApi('get', `${BASE}/people/sp-2`, LUIS)
+  mockApi('get', `${BASE}/deliveries`, page([]))
+  mockApi('get', `${BASE}/interventions`, page([]))
+  renderSocial(
+    <Routes>
+      <Route path="/d/social/people/:id" element={<PersonDetailPage />} />
+    </Routes>,
+    { route: '/d/social/people/sp-2' },
+  )
+
+  expect(await screen.findByText(label('noHousehold'))).toBeInTheDocument()
+})
+
+it('says why the person cannot be loaded', async () => {
+  mockApiError('get', `${BASE}/people/sp-9`, 404, 'not_found')
+  renderSocial(
+    <Routes>
+      <Route path="/d/social/people/:id" element={<PersonDetailPage />} />
+    </Routes>,
+    { route: '/d/social/people/sp-9' },
+  )
+
+  expect(await screen.findByText(t('errors.not_found'))).toBeInTheDocument()
 })

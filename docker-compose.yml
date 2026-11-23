@@ -17,5 +17,20 @@ services:
       timeout: 3s
       retries: 30
 
+  # Catches every email the API sends: SMTP on 1025, web inbox and API on 8025.
+  mailpit:
+    image: axllent/mailpit
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  # OpenID Connect provider for trying single sign-on locally (dev/oidc-provider).
+  oidc:
+    build: ./dev/oidc-provider
+    environment:
+      ISSUER: http://localhost:5556
+    ports:
+      - "5556:5556"
+
 volumes:
   db-data:

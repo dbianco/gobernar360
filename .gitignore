@@ -10,3 +10,10 @@ dist/
 test-results/
 playwright-report/
 .DS_Store
+mutants/
+# Test coverage and mutation testing reports
+coverage/
+htmlcov/
+.coverage
+reports/mutation/
+.stryker-tmp/

@@ -20,11 +20,12 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatDate, formatMoney, formatPercent } from '../../platform/format'
-import { hasLevel } from '../../platform/types'
+import { hasLevel } from '../../platform/access'
 import { send, useAction, useProject } from './api'
 import { MilestonesPanel } from './MilestonesPanel'
 import { ProjectForm } from './ProjectForm'
 import { StatusBadge } from './StatusBadge'
+import { useConfirm } from '../../platform/confirmContext'
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -50,11 +51,14 @@ export function ProjectDetailPage() {
   const listPath = '/d/projects/projects'
   const data = project.data
   const label = (key: string) => t(`projects.form.${key}`)
+  const confirm = useConfirm()
+  const askDelete = (message: string) =>
+    confirm({ message, confirmLabel: t('app.delete'), danger: true })
 
-  async function remove() {
-    if (!data || !window.confirm(t('projects.detail.deleteConfirm', { name: data.name }))) return
+  async function remove(shown: NonNullable<typeof project.data>) {
+    if (!(await askDelete(t('projects.detail.deleteConfirm', { name: shown.name })))) return
     const deleted = await action.run(async () => {
-      await send('DELETE', `/projects/${data.id}`)
+      await send('DELETE', `/projects/${shown.id}`)
       return true
     })
     if (deleted) navigate(listPath)
@@ -85,7 +89,7 @@ export function ProjectDetailPage() {
                 <Button variant="default" onClick={() => setEditing(true)}>
                   {t('app.edit')}
                 </Button>
-                <Button variant="subtle" color="red" onClick={() => void remove()}>
+                <Button variant="subtle" color="red" onClick={() => void remove(data)}>
                   {t('app.delete')}
                 </Button>
               </Group>

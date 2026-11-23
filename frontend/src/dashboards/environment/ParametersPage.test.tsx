@@ -2,6 +2,7 @@ import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
+import { renameThenDelete } from '../../test/catalog'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { ParametersPage } from './ParametersPage'
@@ -144,4 +145,81 @@ it('reads a dotted target as thousands and rejects an ambiguous one', async () =
 
   await waitFor(() => expect(requests).toHaveLength(1))
   expect(requests[0].body).toMatchObject({ target: '420000' })
+})
+
+it.each([['/subcategories', ENERGY.id, ENERGY.name]])('renames and deletes items of %s', async (path, id, name) => {
+  const renamed = mockApi('patch', `${BASE}${path}/${id}`, {})
+  const deleted = mockApi('delete', `${BASE}${path}/${id}`, null, 204)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await renameThenDelete(user, name, 'Nuevo nombre')
+
+  await waitFor(() => expect(deleted).toHaveLength(1))
+  expect(renamed[0].body).toEqual({ name: 'Nuevo nombre' })
+})
+
+it('closes the form with Escape without saving', async () => {
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addVariable') }))
+  await screen.findByRole('dialog', { name: label('addVariable') })
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})
+
+const LIGHTING = { id: 's-3', category: 'energy' as const, name: 'Alumbrado público' }
+
+it('creates an annual variable in another subcategory, and shows a missing target as none', async () => {
+  const requests = mockApi('post', `${BASE}/variables`, MONTHLY, 201)
+  renderEnvironment(<ParametersPage />, {
+    level: 'admin',
+    variables: [{ ...MONTHLY, target: null }],
+    subcategories: [ENERGY, LIGHTING],
+  })
+  const user = userEvent.setup()
+
+  const row = within(await screen.findByRole('row', { name: new RegExp(MONTHLY.name) }))
+  expect(row.getByText(t('app.none'))).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: label('addVariable') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.selectOptions(form.getByLabelText(label('subcategory')), LIGHTING.id)
+  await user.type(form.getByRole('textbox', { name: label('name') }), 'Luminarias LED')
+  await user.selectOptions(form.getByLabelText(label('frequency')), 'annual')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toMatchObject({
+    subcategory_id: LIGHTING.id,
+    name: 'Luminarias LED',
+    frequency: 'annual',
+    target: null,
+  })
+})
+
+it('keeps the form open and says why saving failed', async () => {
+  mockApiError('post', `${BASE}/variables`, 409, 'conflict')
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addVariable') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: label('name') }), 'Consumo del corralón')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('errors.conflict'))).toBeInTheDocument()
+})
+
+it('says when a category has subcategories but no variables, and when a search matches nothing', async () => {
+  renderEnvironment(<ParametersPage />, { level: 'admin', variables: [ANNUAL] })
+  const user = userEvent.setup()
+
+  expect(await screen.findByText(label('noVariables'))).toBeInTheDocument()
+  await user.selectOptions(screen.getByLabelText(label('category')), 'water')
+  await screen.findByRole('row', { name: new RegExp(ANNUAL.name) })
+  await user.type(screen.getByRole('searchbox', { name: t('app.search') }), 'zzz')
+
+  expect(await screen.findByText(t('app.noMatches'))).toBeInTheDocument()
 })

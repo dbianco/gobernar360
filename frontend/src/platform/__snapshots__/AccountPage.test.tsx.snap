@@ -1,0 +1,298 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`changes the password > screen at the end 1`] = `
+"Mi cuenta
+Cambiar contraseña
+La contraseña se cambió. Las demás sesiones abiertas se cerraron.
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
+`;
+
+exports[`changes the password > screen at the start 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
+exports[`names a kind of notification it has no words for by its key > screen at the end 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+weekly_digest"
+`;
+
+exports[`names a kind of notification it has no words for by its key > screen at the start 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
+exports[`rejects a new password shorter than ten characters without calling the server > screen at the end 1`] = `
+"Mi cuenta
+Cambiar contraseña
+La contraseña debe tener al menos 10 caracteres.
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
+`;
+
+exports[`rejects a new password shorter than ten characters without calling the server > screen at the start 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
+exports[`says so when the current password is wrong > screen at the end 1`] = `
+"Mi cuenta
+Cambiar contraseña
+La contraseña actual no es correcta.
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
+`;
+
+exports[`says so when the current password is wrong > screen at the start 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
+exports[`says why a notification could not be changed, and lets the message be closed > screen at the end 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+Falta el estado mensual
+Cuando termina un mes y un tablero que administrás no tiene su estado mensual.
+Hitos vencidos
+Cuando un hito de un proyecto pasa su fecha sin completarse."
+`;
+
+exports[`says why a notification could not be changed, and lets the message be closed > screen at the start 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
+exports[`says why the notifications cannot be loaded > screen at the end 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why the notifications cannot be loaded > screen at the start 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
+exports[`says why the password could not be changed, and clears the fields once it is > screen at the end 1`] = `
+"Mi cuenta
+Cambiar contraseña
+La contraseña se cambió. Las demás sesiones abiertas se cerraron.
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
+`;
+
+exports[`says why the password could not be changed, and clears the fields once it is > screen at the start 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
+exports[`shows each kind of email notification and whether it is on > screen at the end 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+Falta el estado mensual
+Cuando termina un mes y un tablero que administrás no tiene su estado mensual.
+Hitos vencidos
+Cuando un hito de un proyecto pasa su fecha sin completarse."
+`;
+
+exports[`shows each kind of email notification and whether it is on > screen at the start 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
+exports[`turns a kind of notification off > screen at the end 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+Falta el estado mensual
+Cuando termina un mes y un tablero que administrás no tiene su estado mensual.
+Hitos vencidos
+Cuando un hito de un proyecto pasa su fecha sin completarse."
+`;
+
+exports[`turns a kind of notification off > screen at the start 1`] = `
+"Mi cuenta
+Cambiar contraseña
+Contraseña actual
+*
+[Toggle password visibility]
+Contraseña nueva
+*
+Mínimo 10 caracteres.
+[Toggle password visibility]
+Cambiar contraseña
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;

@@ -16,5 +16,22 @@ export default defineConfig({
     setupFiles: ['./src/test/setup.ts'],
     include: ['src/**/*.test.{ts,tsx}'],
     css: false,
+    // Above the 5 s that waits for elements get (src/test/setup.ts).
+    testTimeout: 15000,
+    coverage: {
+      provider: 'v8',
+      include: ['src/**/*.{ts,tsx}'],
+      // Tests and their helpers, the entry point and type-only modules are not app code.
+      exclude: [
+        'src/**/*.test.{ts,tsx}',
+        'src/test/**',
+        'src/**/testData.ts',
+        'src/**/testRender.tsx',
+        'src/main.tsx',
+        'src/**/types.ts',
+      ],
+      reporter: ['text-summary', 'json-summary', 'json', 'html'],
+      reportOnFailure: true,
+    },
   },
 })

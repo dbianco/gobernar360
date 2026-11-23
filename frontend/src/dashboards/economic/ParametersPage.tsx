@@ -28,6 +28,9 @@ import {
 } from './api'
 import { ToolForm } from './ToolForm'
 import type { Named, Tool } from './types'
+import { Pager } from '../../platform/Pager'
+import { useLocalTable } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
 
 function Section(props: { title: string; hint?: string; children: ReactNode }) {
   return (
@@ -54,6 +57,11 @@ export function ParametersPage() {
   const action = useAction()
   const [editing, setEditing] = useState<Tool | 'new' | null>(null)
   const label = (key: string, options = {}) => t(`economic.parameters.${key}`, options)
+  const table = useLocalTable(
+    'economic.tools',
+    tools.data,
+    (tool) => `${tool.name} ${tool.category.name}`,
+  )
 
   const failed = [actorTypes, sectors, categories, subcategories, tools].find((q) => q.isError)
   if (failed) return <Alert color="red">{errorMessage(failed.error)}</Alert>
@@ -125,7 +133,15 @@ export function ParametersPage() {
         {categories.data.length > 0 && tools.data.length === 0 && (
           <Text c="dimmed">{label('noTools')}</Text>
         )}
-        {tools.data.length > 0 && (
+        {table.hasItems && (
+          <SearchInput
+            value={table.query}
+            onChange={table.setQuery}
+            placeholder={label('searchHint')}
+          />
+        )}
+        {table.hasItems && table.total === 0 && <Text c="dimmed">{t('app.noMatches')}</Text>}
+        {table.rows.length > 0 && (
           <Table.ScrollContainer minWidth={640}>
             <Table>
               <Table.Thead>
@@ -144,7 +160,7 @@ export function ParametersPage() {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {tools.data.map((tool) => (
+                {table.rows.map((tool) => (
                   <Table.Tr key={tool.id}>
                     <Table.Td>{tool.name}</Table.Td>
                     <Table.Td>{tool.category.name}</Table.Td>
@@ -177,6 +193,7 @@ export function ParametersPage() {
             </Table>
           </Table.ScrollContainer>
         )}
+        <Pager {...table.pager} />
       </Stack>
       <Modal
         opened={editing !== null}

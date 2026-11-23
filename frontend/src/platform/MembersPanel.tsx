@@ -1,4 +1,5 @@
 import {
+  ActionIcon,
   Alert,
   Button,
   Checkbox,
@@ -11,16 +12,24 @@ import {
   Table,
   Text,
   Title,
+  Tooltip,
 } from '@mantine/core'
-import { useQuery } from '@tanstack/react-query'
+import { IconFileImport, IconMailForward } from '@tabler/icons-react'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { api } from '../api/client'
 import { dashboardLabelKey } from '../dashboards/registry'
+import { useAuth } from './authContext'
+import { useConfirm } from './confirmContext'
 import { errorMessage } from './errorMessage'
+import { ImportUsersForm } from './ImportUsersForm'
 import { useLevelOptions } from './levelOptions'
-import type { AccessLevel } from './types'
+import { Pager } from './Pager'
+import { fitPage, usePaging } from './paging'
+import { SearchInput } from './SearchInput'
+import type { AccessLevel, Page } from './types'
 import { useAction } from './useAction'
 import { UserForm } from './UserForm'
 
@@ -86,11 +95,20 @@ export function MembersPanel(props: {
   canSetPassword?: boolean
 }) {
   const { t } = useTranslation()
+  const { me } = useAuth()
   const { base, scope } = props
+  const confirm = useConfirm()
+  const [search, setSearch] = useState('')
+  const paging = usePaging('users')
+  const { limit, offset } = paging
   const members = useQuery({
-    queryKey: [...scope, 'users'],
-    queryFn: () => api<Member[]>(`${base}/users`),
+    queryKey: [...scope, 'users', search, limit, offset],
+    queryFn: () =>
+      api<Page<Member>>(`${base}/users`, { query: { q: search.trim(), limit, offset } }),
+    // The current page stays on screen while the next one loads.
+    placeholderData: keepPreviousData,
   })
+  fitPage(paging, members)
   const dashboards = useQuery({
     queryKey: [...scope, 'dashboards'],
     queryFn: () => api<string[]>(`${base}/dashboards`),
@@ -99,6 +117,7 @@ export function MembersPanel(props: {
   const action = useAction([scope[0], 'me'])
   const levelOptions = useLevelOptions()
   const [adding, setAdding] = useState(false)
+  const [importing, setImporting] = useState(false)
   const [passwordFor, setPasswordFor] = useState<Member | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
   const dashboardName = (key: string) => t(dashboardLabelKey(key) ?? key)
@@ -113,16 +132,39 @@ export function MembersPanel(props: {
     void patch(member, { grants })
   }
 
-  function remove(member: Member) {
-    if (!window.confirm(t('users.removeConfirm', { name: member.user.full_name }))) return
-    void action.run(() => api(`${base}/users/${member.membership_id}`, { method: 'DELETE' }))
+  async function resendInvitation(member: Member) {
+    const sent = await action.run(async () => {
+      await api(`${base}/users/${member.membership_id}/invitation`, { method: 'POST' })
+      return true
+    })
+    if (sent) setNotice(t('users.invitationResent', { name: member.user.full_name }))
+  }
+
+  async function remove(member: Member) {
+    const confirmed = await confirm({
+      title: t('users.removeTitle'),
+      message: t('users.removeConfirm', { name: member.user.full_name }),
+      confirmLabel: t('users.remove'),
+      danger: true,
+    })
+    if (!confirmed) return
+    await action.run(() => api(`${base}/users/${member.membership_id}`, { method: 'DELETE' }))
   }
 
   return (
     <Stack>
       <Group justify="space-between">
         <Title order={props.canSetPassword ? 3 : 2}>{props.title}</Title>
-        <Button onClick={() => setAdding(true)}>{t('users.add')}</Button>
+        <Group gap="xs">
+          <Button
+            variant="default"
+            leftSection={<IconFileImport size={18} aria-hidden />}
+            onClick={() => setImporting(true)}
+          >
+            {t('users.import.open')}
+          </Button>
+          <Button onClick={() => setAdding(true)}>{t('users.add')}</Button>
+        </Group>
       </Group>
       {action.error && (
         <Alert color="red" withCloseButton onClose={action.clearError}>
@@ -134,9 +176,20 @@ export function MembersPanel(props: {
           {notice}
         </Alert>
       )}
+      <SearchInput
+        value={search}
+        onChange={(value) => {
+          setSearch(value)
+          paging.restart()
+        }}
+        placeholder={t('users.searchHint')}
+      />
       {members.isLoading && <Loader aria-label={t('app.loading')} />}
       {members.isError && <Alert color="red">{errorMessage(members.error)}</Alert>}
-      {members.data && (
+      {members.data?.total === 0 && search.trim() !== '' && (
+        <Text c="dimmed">{t('app.noMatches')}</Text>
+      )}
+      {members.data && members.data.items.length > 0 && (
         <Table.ScrollContainer minWidth={640}>
           <Table verticalSpacing="sm">
             <Table.Thead>
@@ -150,7 +203,7 @@ export function MembersPanel(props: {
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
-              {members.data.map((member) => (
+              {members.data.items.map((member) => (
                 <Table.Tr key={member.membership_id}>
                   <Table.Td>
                     <Text>{member.user.full_name}</Text>
@@ -188,6 +241,23 @@ export function MembersPanel(props: {
                   ))}
                   <Table.Td>
                     <Group gap="xs" justify="flex-end" wrap="nowrap">
+                      {member.user.id !== me?.user.id && (
+                        // Offered for everyone: whether someone already chose a password
+                        // is not shown to whoever manages the municipality.
+                        <Tooltip label={t('users.resendInvitation')}>
+                          <ActionIcon
+                            variant="subtle"
+                            color="gray"
+                            aria-label={t('users.resendInvitationNamed', {
+                              name: member.user.full_name,
+                            })}
+                            disabled={action.pending}
+                            onClick={() => void resendInvitation(member)}
+                          >
+                            <IconMailForward size={18} stroke={1.5} aria-hidden />
+                          </ActionIcon>
+                        </Tooltip>
+                      )}
                       {props.canSetPassword && (
                         <Button
                           size="compact-xs"
@@ -207,7 +277,7 @@ export function MembersPanel(props: {
                         aria-label={t('users.removeNamed', {
                           name: member.user.full_name,
                         })}
-                        onClick={() => remove(member)}
+                        onClick={() => void remove(member)}
                       >
                         {t('users.remove')}
                       </Button>
@@ -219,14 +289,37 @@ export function MembersPanel(props: {
           </Table>
         </Table.ScrollContainer>
       )}
+      {members.data && (
+        <Pager {...paging.pager(members.data.total)} />
+      )}
+      <Modal
+        opened={importing}
+        onClose={() => setImporting(false)}
+        title={t('users.import.title')}
+        size="lg"
+      >
+        {importing && (
+          <ImportUsersForm
+            base={base}
+            scope={scope[0]}
+            onCancel={() => setImporting(false)}
+            onDone={(result) => {
+              setImporting(false)
+              setNotice(t('users.import.done', { ...result }))
+            }}
+          />
+        )}
+      </Modal>
       <Modal opened={adding} onClose={() => setAdding(false)} title={t('users.add')}>
         {adding && (
           <UserForm
             base={base}
             scope={scope[0]}
-            mayAddExisting={props.canSetPassword}
             dashboards={dashboards.data ?? []}
-            onDone={() => setAdding(false)}
+            onDone={(email) => {
+              setAdding(false)
+              setNotice(t('users.invited', { email }))
+            }}
             onCancel={() => setAdding(false)}
           />
         )}

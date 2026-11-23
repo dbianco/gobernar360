@@ -11,7 +11,8 @@ from gobernar360.dashboards.social.access import Editor, Viewer
 from gobernar360.dashboards.social.models import Benefit, Delivery, SocialPerson
 from gobernar360.dashboards.social.schemas import DeliveryIn, DeliveryOut, DeliveryPatch
 from gobernar360.platform.api_types import Year
-from gobernar360.platform.listing import Page, PagingParams, page_of
+from gobernar360.platform.listing import Page, PagingParams, SearchText, every_word, page_of
+from gobernar360.platform.models import Person
 from gobernar360.platform.tenant_crud import (
     create_entity,
     delete_entity,
@@ -36,8 +37,21 @@ def list_deliveries(
     category_id: uuid.UUID | None = None,
     person_id: uuid.UUID | None = None,
     household_id: uuid.UUID | None = None,
+    q: SearchText = None,
 ) -> Page[DeliveryOut]:
     query = select(Delivery).order_by(Delivery.date.desc(), Delivery.id)
+    if q and q.strip():
+        # Who received it, by name or document, or what was delivered.
+        query = (
+            query.join(SocialPerson, Delivery.person_id == SocialPerson.id)
+            .join(Person, SocialPerson.person_id == Person.id)
+            .join(Benefit, Delivery.benefit_id == Benefit.id)
+            .where(
+                *every_word(
+                    q, Person.first_name, Person.last_name, Benefit.name, document=Person.dni
+                )
+            )
+        )
     if year is not None:
         query = query.where(in_year(year))
     if benefit_id is not None:

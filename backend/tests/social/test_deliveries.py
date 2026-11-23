@@ -12,6 +12,8 @@ from tests.social.factories import (
     make_benefit_category,
     make_delivery,
     make_household,
+    make_intervention,
+    make_intervention_type,
     make_person,
     make_social_person,
     social_member,
@@ -199,3 +201,35 @@ def test_deliveries_of_another_municipality_are_not_reachable(client):
     assert client.get(f"{BASE}/deliveries").json() == {"items": [], "total": 0}
     assert client.patch(f"{BASE}/deliveries/{foreign.id}", json={"note": "x"}).status_code == 404
     assert client.delete(f"{BASE}/deliveries/{foreign.id}").status_code == 404
+
+
+def test_deliveries_are_searched_by_person_or_benefit(client):
+    municipality = _editor(client)
+    food = make_benefit(municipality, name="Módulo alimentario")
+    glasses = make_benefit(municipality, name="Anteojos")
+    juana = make_social_person(municipality, "Juana", "Pérez", dni="20123456")
+    luis = make_social_person(municipality, "Luis", "Gómez")
+    make_delivery(municipality, food, juana, on=date(2026, 3, 1))
+    make_delivery(municipality, glasses, luis, on=date(2026, 3, 2))
+
+    assert [name for name, _ in _benefits(client, q="perez")] == ["Módulo alimentario"]
+    assert [name for name, _ in _benefits(client, q="20123456")] == ["Módulo alimentario"]
+    assert [name for name, _ in _benefits(client, q="anteojos")] == ["Anteojos"]
+    assert [name for name, _ in _benefits(client, q="gomez luis")] == ["Anteojos"]
+    assert _benefits(client, q="nadie") == []
+
+
+def test_a_year_runs_from_the_first_of_january_to_the_thirty_first_of_december(client):
+    municipality = _editor(client)
+    box = make_benefit(municipality)
+    visit = make_intervention_type(municipality)
+    juana = make_social_person(municipality)
+    for day in (date(2025, 12, 31), date(2026, 1, 1), date(2026, 12, 31), date(2027, 1, 1)):
+        make_delivery(municipality, box, juana, on=day)
+        make_intervention(municipality, visit, juana, on=day)
+
+    def dates(path: str) -> list[str]:
+        items = client.get(f"{BASE}/{path}", params={"year": 2026}).json()["items"]
+        return sorted(item["date"] for item in items)
+
+    assert dates("deliveries") == dates("interventions") == ["2026-01-01", "2026-12-31"]

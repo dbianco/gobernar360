@@ -1,0 +1,449 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`corrects an intervention > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Entrevista presencial
+Visita a domicilio
+Descargar intervenciones
+Registrar intervención
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`corrects an intervention > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Descargar intervenciones
+[Cargando…]"
+`;
+
+exports[`filters by type on the server > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Entrevista presencial
+Visita a domicilio
+Descargar intervenciones
+Registrar intervención
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`filters by type on the server > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Descargar intervenciones
+[Cargando…]"
+`;
+
+exports[`lists the interventions of the year for the team > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Entrevista presencial
+Visita a domicilio
+Descargar intervenciones
+Registrar intervención
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar"
+`;
+
+exports[`lists the interventions of the year for the team > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Descargar intervenciones
+[Cargando…]"
+`;
+
+exports[`records an intervention with a person found by search > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Entrevista presencial
+Visita a domicilio
+Descargar intervenciones
+Registrar intervención
+No hay intervenciones que coincidan en el año elegido."
+`;
+
+exports[`records an intervention with a person found by search > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Descargar intervenciones
+[Cargando…]"
+`;
+
+exports[`says why the list cannot be loaded, and closes the add form with Escape > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Entrevista presencial
+Visita a domicilio
+Descargar intervenciones
+Registrar intervención
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why the list cannot be loaded, and closes the add form with Escape > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Descargar intervenciones
+[Cargando…]"
+`;
+
+exports[`searches and changes the year from the first page > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+[Borrar la búsqueda]
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Entrevista presencial
+Visita a domicilio
+Descargar intervenciones
+Registrar intervención
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Refiere situación de violencia en el hogar.
+[Editar la intervención de Visita a domicilio]
+Editar
+[Eliminar la intervención de Visita a domicilio]
+Eliminar
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–10 de 30
+Anterior
+Siguiente"
+`;
+
+exports[`searches and changes the year from the first page > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Descargar intervenciones
+[Cargando…]"
+`;
+
+exports[`shows a viewer that the description is reserved > screen at the end 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Entrevista presencial
+Visita a domicilio
+Descargar intervenciones
+El detalle de las intervenciones lo lee solo el equipo con permiso de carga.
+Fecha
+[Qué significa Fecha]
+Día en que se hizo la intervención.
+Persona
+[Qué significa Persona]
+Persona con la que se intervino.
+Tipo
+[Qué significa Tipo]
+Clase de intervención, según la lista que define el área en Parámetros.
+Realizada por
+[Qué significa Realizada por]
+Integrante del equipo que hizo la intervención.
+Descripción
+[Qué significa Descripción]
+Relato de la intervención. Lo leen solo quienes tienen nivel de carga o administración; el resto ve «Reservado».
+12/03/2026
+Pérez, Juana
+Visita a domicilio
+Lic. Marta Ruiz
+Reservado"
+`;
+
+exports[`shows a viewer that the description is reserved > screen at the start 1`] = `
+"Buscar
+(Persona, DNI o tipo)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Tipo
+Todos los tipos
+Descargar intervenciones
+[Cargando…]"
+`;

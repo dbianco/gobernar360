@@ -1,0 +1,768 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`calls back when cancelled, without saving > screen at the end 1`] = `
+"Nombre
+*
+Descripción
+Eje
+*
+Seleccionar…
+Ciudad inclusiva
+Ciudad segura
+Objetivo
+Sin asignar
+Dependencia
+*
+Seleccionar…
+Obras Públicas
+Salud
+Responsable
+Sin asignar
+María Pérez
+Programa
+Sin asignar
+Plan de bacheo
+Prioridad
+A+
+A
+B
+C
+Año
+2023
+2024
+2025
+2026
+2027
+Estado
+Sin iniciar
+En implementación
+Finalizado
+Fecha de inicio
+Fecha de fin
+Presupuesto planificado
+*
+Presupuesto ejecutado
+*
+Avance (%)
+Se usa mientras el proyecto no tenga hitos.
+Objetivos de Desarrollo Sostenible
+ODS 1: Fin de la pobreza
+ODS 2: Hambre cero
+ODS 3: Salud y bienestar
+ODS 4: Educación de calidad
+ODS 5: Igualdad de género
+ODS 6: Agua limpia y saneamiento
+ODS 7: Energía asequible y no contaminante
+ODS 8: Trabajo decente y crecimiento económico
+ODS 9: Industria, innovación e infraestructura
+ODS 10: Reducción de las desigualdades
+ODS 11: Ciudades y comunidades sostenibles
+ODS 12: Producción y consumo responsables
+ODS 13: Acción por el clima
+ODS 14: Vida submarina
+ODS 15: Vida de ecosistemas terrestres
+ODS 16: Paz, justicia e instituciones sólidas
+ODS 17: Alianzas para lograr los objetivos
+Cancelar
+Guardar"
+`;
+
+exports[`calls back when cancelled, without saving > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`clears optional fields, and the objective when the axis changes > screen at the end 1`] = `
+"Nombre
+*
+Descripción
+Eje
+*
+Seleccionar…
+Ciudad inclusiva
+Ciudad segura
+Objetivo
+Sin asignar
+Más iluminación
+Dependencia
+*
+Seleccionar…
+Obras Públicas
+Salud
+Responsable
+Sin asignar
+María Pérez
+Programa
+Sin asignar
+Plan de bacheo
+Prioridad
+A+
+A
+B
+C
+Año
+2023
+2024
+2025
+2026
+2027
+Estado
+Sin iniciar
+En implementación
+Finalizado
+Fecha de inicio
+Fecha de fin
+Presupuesto planificado
+*
+Presupuesto ejecutado
+*
+Avance (%)
+Se usa mientras el proyecto no tenga hitos.
+Objetivos de Desarrollo Sostenible
+ODS 1: Fin de la pobreza
+ODS 2: Hambre cero
+ODS 3: Salud y bienestar
+ODS 4: Educación de calidad
+ODS 5: Igualdad de género
+ODS 6: Agua limpia y saneamiento
+ODS 7: Energía asequible y no contaminante
+ODS 8: Trabajo decente y crecimiento económico
+ODS 9: Industria, innovación e infraestructura
+ODS 10: Reducción de las desigualdades
+ODS 11: Ciudades y comunidades sostenibles
+ODS 12: Producción y consumo responsables
+ODS 13: Acción por el clima
+ODS 14: Vida submarina
+ODS 15: Vida de ecosistemas terrestres
+ODS 16: Paz, justicia e instituciones sólidas
+ODS 17: Alianzas para lograr los objetivos
+Cancelar
+Guardar"
+`;
+
+exports[`clears optional fields, and the objective when the axis changes > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`edits a project with the catalogs of the project's own term > screen at the end 1`] = `
+"Nombre
+*
+Descripción
+Eje
+*
+Seleccionar…
+Ciudad inclusiva
+Ciudad segura
+Objetivo
+Sin asignar
+Reducir el déficit habitacional
+Dependencia
+*
+Seleccionar…
+Obras Públicas
+Salud
+Responsable
+Sin asignar
+María Pérez
+Programa
+Sin asignar
+Plan de bacheo
+Prioridad
+A+
+A
+B
+C
+Año
+2019
+2020
+2021
+2022
+2023
+Estado
+Sin iniciar
+En implementación
+Finalizado
+Fecha de inicio
+Fecha de fin
+Presupuesto planificado
+*
+Presupuesto ejecutado
+*
+Avance (%)
+Se usa mientras el proyecto no tenga hitos.
+Objetivos de Desarrollo Sostenible
+ODS 1: Fin de la pobreza
+ODS 2: Hambre cero
+ODS 3: Salud y bienestar
+ODS 4: Educación de calidad
+ODS 5: Igualdad de género
+ODS 6: Agua limpia y saneamiento
+ODS 7: Energía asequible y no contaminante
+ODS 8: Trabajo decente y crecimiento económico
+ODS 9: Industria, innovación e infraestructura
+ODS 10: Reducción de las desigualdades
+ODS 11: Ciudades y comunidades sostenibles
+ODS 12: Producción y consumo responsables
+ODS 13: Acción por el clima
+ODS 14: Vida submarina
+ODS 15: Vida de ecosistemas terrestres
+ODS 16: Paz, justicia e instituciones sólidas
+ODS 17: Alianzas para lograr los objetivos
+Cancelar
+Guardar"
+`;
+
+exports[`edits a project with the catalogs of the project's own term > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`edits an existing project with a partial update > screen at the end 1`] = `
+"Nombre
+*
+Descripción
+Eje
+*
+Seleccionar…
+Ciudad inclusiva
+Ciudad segura
+Objetivo
+Sin asignar
+Reducir el déficit habitacional
+Dependencia
+*
+Seleccionar…
+Obras Públicas
+Salud
+Responsable
+Sin asignar
+María Pérez
+Programa
+Sin asignar
+Plan de bacheo
+Prioridad
+A+
+A
+B
+C
+Año
+2023
+2024
+2025
+2026
+2027
+Estado
+Sin iniciar
+En implementación
+Finalizado
+Fecha de inicio
+Fecha de fin
+Presupuesto planificado
+*
+Presupuesto ejecutado
+*
+Avance (%)
+Se usa mientras el proyecto no tenga hitos.
+Objetivos de Desarrollo Sostenible
+ODS 1: Fin de la pobreza
+ODS 2: Hambre cero
+ODS 3: Salud y bienestar
+ODS 4: Educación de calidad
+ODS 5: Igualdad de género
+ODS 6: Agua limpia y saneamiento
+ODS 7: Energía asequible y no contaminante
+ODS 8: Trabajo decente y crecimiento económico
+ODS 9: Industria, innovación e infraestructura
+ODS 10: Reducción de las desigualdades
+ODS 11: Ciudades y comunidades sostenibles
+ODS 12: Producción y consumo responsables
+ODS 13: Acción por el clima
+ODS 14: Vida submarina
+ODS 15: Vida de ecosistemas terrestres
+ODS 16: Paz, justicia e instituciones sólidas
+ODS 17: Alianzas para lograr los objetivos
+Cancelar
+Guardar"
+`;
+
+exports[`edits an existing project with a partial update > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`hides manual progress once the project has milestones > screen at the end 1`] = `
+"Nombre
+*
+Descripción
+Eje
+*
+Seleccionar…
+Ciudad inclusiva
+Ciudad segura
+Objetivo
+Sin asignar
+Reducir el déficit habitacional
+Dependencia
+*
+Seleccionar…
+Obras Públicas
+Salud
+Responsable
+Sin asignar
+María Pérez
+Programa
+Sin asignar
+Plan de bacheo
+Prioridad
+A+
+A
+B
+C
+Año
+2023
+2024
+2025
+2026
+2027
+Estado
+Sin iniciar
+En implementación
+Finalizado
+Fecha de inicio
+Fecha de fin
+Presupuesto planificado
+*
+Presupuesto ejecutado
+*
+Objetivos de Desarrollo Sostenible
+ODS 1: Fin de la pobreza
+ODS 2: Hambre cero
+ODS 3: Salud y bienestar
+ODS 4: Educación de calidad
+ODS 5: Igualdad de género
+ODS 6: Agua limpia y saneamiento
+ODS 7: Energía asequible y no contaminante
+ODS 8: Trabajo decente y crecimiento económico
+ODS 9: Industria, innovación e infraestructura
+ODS 10: Reducción de las desigualdades
+ODS 11: Ciudades y comunidades sostenibles
+ODS 12: Producción y consumo responsables
+ODS 13: Acción por el clima
+ODS 14: Vida submarina
+ODS 15: Vida de ecosistemas terrestres
+ODS 16: Paz, justicia e instituciones sólidas
+ODS 17: Alianzas para lograr los objetivos
+Cancelar
+Guardar"
+`;
+
+exports[`hides manual progress once the project has milestones > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`limits objectives to the selected axis > screen at the end 1`] = `
+"Nombre
+*
+Descripción
+Eje
+*
+Seleccionar…
+Ciudad inclusiva
+Ciudad segura
+Objetivo
+Sin asignar
+Más iluminación
+Dependencia
+*
+Seleccionar…
+Obras Públicas
+Salud
+Responsable
+Sin asignar
+María Pérez
+Programa
+Sin asignar
+Plan de bacheo
+Prioridad
+A+
+A
+B
+C
+Año
+2023
+2024
+2025
+2026
+2027
+Estado
+Sin iniciar
+En implementación
+Finalizado
+Fecha de inicio
+Fecha de fin
+Presupuesto planificado
+*
+Presupuesto ejecutado
+*
+Avance (%)
+Se usa mientras el proyecto no tenga hitos.
+Objetivos de Desarrollo Sostenible
+ODS 1: Fin de la pobreza
+ODS 2: Hambre cero
+ODS 3: Salud y bienestar
+ODS 4: Educación de calidad
+ODS 5: Igualdad de género
+ODS 6: Agua limpia y saneamiento
+ODS 7: Energía asequible y no contaminante
+ODS 8: Trabajo decente y crecimiento económico
+ODS 9: Industria, innovación e infraestructura
+ODS 10: Reducción de las desigualdades
+ODS 11: Ciudades y comunidades sostenibles
+ODS 12: Producción y consumo responsables
+ODS 13: Acción por el clima
+ODS 14: Vida submarina
+ODS 15: Vida de ecosistemas terrestres
+ODS 16: Paz, justicia e instituciones sólidas
+ODS 17: Alianzas para lograr los objetivos
+Cancelar
+Guardar"
+`;
+
+exports[`limits objectives to the selected axis > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says so when a catalog of the form cannot be loaded > screen at the end 1`] = `
+"Ocurrió un error. Intentá de nuevo.
+Nombre
+*
+Descripción
+Eje
+*
+Seleccionar…
+Ciudad inclusiva
+Ciudad segura
+Objetivo
+Sin asignar
+Dependencia
+*
+Seleccionar…
+Responsable
+Sin asignar
+María Pérez
+Programa
+Sin asignar
+Plan de bacheo
+Prioridad
+A+
+A
+B
+C
+Año
+2023
+2024
+2025
+2026
+2027
+Estado
+Sin iniciar
+En implementación
+Finalizado
+Fecha de inicio
+Fecha de fin
+Presupuesto planificado
+*
+Presupuesto ejecutado
+*
+Avance (%)
+Se usa mientras el proyecto no tenga hitos.
+Objetivos de Desarrollo Sostenible
+ODS 1: Fin de la pobreza
+ODS 2: Hambre cero
+ODS 3: Salud y bienestar
+ODS 4: Educación de calidad
+ODS 5: Igualdad de género
+ODS 6: Agua limpia y saneamiento
+ODS 7: Energía asequible y no contaminante
+ODS 8: Trabajo decente y crecimiento económico
+ODS 9: Industria, innovación e infraestructura
+ODS 10: Reducción de las desigualdades
+ODS 11: Ciudades y comunidades sostenibles
+ODS 12: Producción y consumo responsables
+ODS 13: Acción por el clima
+ODS 14: Vida submarina
+ODS 15: Vida de ecosistemas terrestres
+ODS 16: Paz, justicia e instituciones sólidas
+ODS 17: Alianzas para lograr los objetivos
+Cancelar
+Guardar"
+`;
+
+exports[`says so when a catalog of the form cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`sends every field of a new project > screen at the end 1`] = `
+"Nombre
+*
+Descripción
+Red cloacal.
+Eje
+*
+Seleccionar…
+Ciudad inclusiva
+Ciudad segura
+Objetivo
+Sin asignar
+Más iluminación
+Dependencia
+*
+Seleccionar…
+Obras Públicas
+Salud
+Responsable
+Sin asignar
+María Pérez
+Programa
+Sin asignar
+Plan de bacheo
+Prioridad
+A+
+A
+B
+C
+Año
+2023
+2024
+2025
+2026
+2027
+Estado
+Sin iniciar
+En implementación
+Finalizado
+Fecha de inicio
+Fecha de fin
+Presupuesto planificado
+*
+Presupuesto ejecutado
+*
+Avance (%)
+Se usa mientras el proyecto no tenga hitos.
+Objetivos de Desarrollo Sostenible
+ODS 1: Fin de la pobreza
+ODS 2: Hambre cero
+ODS 3: Salud y bienestar
+ODS 4: Educación de calidad
+ODS 5: Igualdad de género
+ODS 6: Agua limpia y saneamiento
+ODS 7: Energía asequible y no contaminante
+ODS 8: Trabajo decente y crecimiento económico
+ODS 9: Industria, innovación e infraestructura
+ODS 10: Reducción de las desigualdades
+ODS 11: Ciudades y comunidades sostenibles
+ODS 12: Producción y consumo responsables
+ODS 13: Acción por el clima
+ODS 14: Vida submarina
+ODS 15: Vida de ecosistemas terrestres
+ODS 16: Paz, justicia e instituciones sólidas
+ODS 17: Alianzas para lograr los objetivos
+Cancelar
+Guardar"
+`;
+
+exports[`sends every field of a new project > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`sends the goals in order whatever order they were ticked in > screen at the end 1`] = `
+"Nombre
+*
+Descripción
+Eje
+*
+Seleccionar…
+Ciudad inclusiva
+Ciudad segura
+Objetivo
+Sin asignar
+Más iluminación
+Dependencia
+*
+Seleccionar…
+Obras Públicas
+Salud
+Responsable
+Sin asignar
+María Pérez
+Programa
+Sin asignar
+Plan de bacheo
+Prioridad
+A+
+A
+B
+C
+Año
+2023
+2024
+2025
+2026
+2027
+Estado
+Sin iniciar
+En implementación
+Finalizado
+Fecha de inicio
+Fecha de fin
+Presupuesto planificado
+*
+Presupuesto ejecutado
+*
+Avance (%)
+Se usa mientras el proyecto no tenga hitos.
+Objetivos de Desarrollo Sostenible
+ODS 1: Fin de la pobreza
+ODS 2: Hambre cero
+ODS 3: Salud y bienestar
+ODS 4: Educación de calidad
+ODS 5: Igualdad de género
+ODS 6: Agua limpia y saneamiento
+ODS 7: Energía asequible y no contaminante
+ODS 8: Trabajo decente y crecimiento económico
+ODS 9: Industria, innovación e infraestructura
+ODS 10: Reducción de las desigualdades
+ODS 11: Ciudades y comunidades sostenibles
+ODS 12: Producción y consumo responsables
+ODS 13: Acción por el clima
+ODS 14: Vida submarina
+ODS 15: Vida de ecosistemas terrestres
+ODS 16: Paz, justicia e instituciones sólidas
+ODS 17: Alianzas para lograr los objetivos
+Cancelar
+Guardar"
+`;
+
+exports[`sends the goals in order whatever order they were ticked in > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the server validation message > screen at the end 1`] = `
+"Revisá los datos ingresados.
+Nombre
+*
+Descripción
+Eje
+*
+Seleccionar…
+Ciudad inclusiva
+Ciudad segura
+Objetivo
+Sin asignar
+Más iluminación
+Dependencia
+*
+Seleccionar…
+Obras Públicas
+Salud
+Responsable
+Sin asignar
+María Pérez
+Programa
+Sin asignar
+Plan de bacheo
+Prioridad
+A+
+A
+B
+C
+Año
+2023
+2024
+2025
+2026
+2027
+Estado
+Sin iniciar
+En implementación
+Finalizado
+Fecha de inicio
+Fecha de fin
+Presupuesto planificado
+*
+Presupuesto ejecutado
+*
+Avance (%)
+Se usa mientras el proyecto no tenga hitos.
+Objetivos de Desarrollo Sostenible
+ODS 1: Fin de la pobreza
+ODS 2: Hambre cero
+ODS 3: Salud y bienestar
+ODS 4: Educación de calidad
+ODS 5: Igualdad de género
+ODS 6: Agua limpia y saneamiento
+ODS 7: Energía asequible y no contaminante
+ODS 8: Trabajo decente y crecimiento económico
+ODS 9: Industria, innovación e infraestructura
+ODS 10: Reducción de las desigualdades
+ODS 11: Ciudades y comunidades sostenibles
+ODS 12: Producción y consumo responsables
+ODS 13: Acción por el clima
+ODS 14: Vida submarina
+ODS 15: Vida de ecosistemas terrestres
+ODS 16: Paz, justicia e instituciones sólidas
+ODS 17: Alianzas para lograr los objetivos
+Cancelar
+Guardar"
+`;
+
+exports[`shows the server validation message > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`submits the selected sdgs > screen at the end 1`] = `
+"Nombre
+*
+Descripción
+Eje
+*
+Seleccionar…
+Ciudad inclusiva
+Ciudad segura
+Objetivo
+Sin asignar
+Más iluminación
+Dependencia
+*
+Seleccionar…
+Obras Públicas
+Salud
+Responsable
+Sin asignar
+María Pérez
+Programa
+Sin asignar
+Plan de bacheo
+Prioridad
+A+
+A
+B
+C
+Año
+2023
+2024
+2025
+2026
+2027
+Estado
+Sin iniciar
+En implementación
+Finalizado
+Fecha de inicio
+Fecha de fin
+Presupuesto planificado
+*
+Presupuesto ejecutado
+*
+Avance (%)
+Se usa mientras el proyecto no tenga hitos.
+Objetivos de Desarrollo Sostenible
+ODS 1: Fin de la pobreza
+ODS 2: Hambre cero
+ODS 3: Salud y bienestar
+ODS 4: Educación de calidad
+ODS 5: Igualdad de género
+ODS 6: Agua limpia y saneamiento
+ODS 7: Energía asequible y no contaminante
+ODS 8: Trabajo decente y crecimiento económico
+ODS 9: Industria, innovación e infraestructura
+ODS 10: Reducción de las desigualdades
+ODS 11: Ciudades y comunidades sostenibles
+ODS 12: Producción y consumo responsables
+ODS 13: Acción por el clima
+ODS 14: Vida submarina
+ODS 15: Vida de ecosistemas terrestres
+ODS 16: Paz, justicia e instituciones sólidas
+ODS 17: Alianzas para lograr los objetivos
+Cancelar
+Guardar"
+`;
+
+exports[`submits the selected sdgs > screen at the start 1`] = `"[Cargando…]"`;

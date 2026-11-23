@@ -1,0 +1,493 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds a department > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Obras Públicas
+[Renombrar Obras Públicas]
+Editar
+[Eliminar Obras Públicas]
+Eliminar
+Salud
+[Renombrar Salud]
+Editar
+[Eliminar Salud]
+Eliminar
+[Nuevo nombre]
+(Nuevo nombre)
+Agregar"
+`;
+
+exports[`adds a department > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`adds a term > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Gestión 2019-2023
+[Renombrar Gestión 2019-2023]
+Editar
+[Eliminar Gestión 2019-2023]
+Eliminar
+Gestión 2023-2027
+[Renombrar Gestión 2023-2027]
+Editar
+[Eliminar Gestión 2023-2027]
+Eliminar
+Nombre
+Año de inicio
+Año de fin
+Agregar gestión
+Presupuesto total por año
+·
+Gestión 2023-2027
+Presupuesto total 2023
+Presupuesto total 2024
+Presupuesto total 2025
+Presupuesto total 2026
+Presupuesto total 2027"
+`;
+
+exports[`adds a term > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`adds an objective to an axis of the current term > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Ciudad inclusiva
+[Renombrar Ciudad inclusiva]
+Editar
+[Eliminar Ciudad inclusiva]
+Eliminar
+Reducir el déficit habitacional
+[Renombrar Reducir el déficit habitacional]
+Editar
+[Eliminar Reducir el déficit habitacional]
+Eliminar
+[Nuevo objetivo de Ciudad inclusiva]
+(Nuevo objetivo de Ciudad inclusiva)
+Agregar
+Ciudad segura
+[Renombrar Ciudad segura]
+Editar
+[Eliminar Ciudad segura]
+Eliminar
+Más iluminación
+[Renombrar Más iluminación]
+Editar
+[Eliminar Más iluminación]
+Eliminar
+[Nuevo objetivo de Ciudad segura]
+(Nuevo objetivo de Ciudad segura)
+Agregar
+[Nuevo eje]
+(Nuevo eje)
+Agregar"
+`;
+
+exports[`adds an objective to an axis of the current term > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`adds an owner using the full name field > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+María Pérez
+[Renombrar María Pérez]
+Editar
+[Eliminar María Pérez]
+Eliminar
+[Nuevo nombre]
+(Nuevo nombre)
+Agregar"
+`;
+
+exports[`adds an owner using the full name field > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`adds, renames and deletes the axes and objectives of the selected term > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Ciudad inclusiva
+[Renombrar Ciudad inclusiva]
+Editar
+[Eliminar Ciudad inclusiva]
+Eliminar
+Reducir el déficit habitacional
+[Renombrar Reducir el déficit habitacional]
+Editar
+[Eliminar Reducir el déficit habitacional]
+Eliminar
+[Nuevo objetivo de Ciudad inclusiva]
+(Nuevo objetivo de Ciudad inclusiva)
+Agregar
+Ciudad segura
+[Renombrar Ciudad segura]
+Editar
+[Eliminar Ciudad segura]
+Eliminar
+Más iluminación
+[Renombrar Más iluminación]
+Editar
+[Eliminar Más iluminación]
+Eliminar
+[Nuevo objetivo de Ciudad segura]
+(Nuevo objetivo de Ciudad segura)
+Agregar
+[Nuevo eje]
+(Nuevo eje)
+Agregar"
+`;
+
+exports[`adds, renames and deletes the axes and objectives of the selected term > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`asks for a term before axes can be defined > screen at the end 1`] = `
+"Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Primero cargá una gestión."
+`;
+
+exports[`asks for a term before axes can be defined > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`does not save a budget that did not change, and shows the saved ones > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Gestión 2019-2023
+[Renombrar Gestión 2019-2023]
+Editar
+[Eliminar Gestión 2019-2023]
+Eliminar
+Gestión 2023-2027
+[Renombrar Gestión 2023-2027]
+Editar
+[Eliminar Gestión 2023-2027]
+Eliminar
+Nombre
+Año de inicio
+Año de fin
+Agregar gestión
+Presupuesto total por año
+·
+Gestión 2023-2027
+Presupuesto total 2023
+Presupuesto total 2024
+Presupuesto total 2025
+Presupuesto total 2026
+Presupuesto total 2027"
+`;
+
+exports[`does not save a budget that did not change, and shows the saved ones > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`explains that a parameter in use cannot be deleted > screen at the end 1`] = `
+"No se puede eliminar porque está siendo usado por otros registros.
+[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Obras Públicas
+[Renombrar Obras Públicas]
+Editar
+[Eliminar Obras Públicas]
+Eliminar
+Salud
+[Renombrar Salud]
+Editar
+[Eliminar Salud]
+Eliminar
+[Nuevo nombre]
+(Nuevo nombre)
+Agregar"
+`;
+
+exports[`explains that a parameter in use cannot be deleted > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`keeps what was typed for a term the server refused > screen at the end 1`] = `
+"La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
+[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Gestión 2019-2023
+[Renombrar Gestión 2019-2023]
+Editar
+[Eliminar Gestión 2019-2023]
+Eliminar
+Gestión 2023-2027
+[Renombrar Gestión 2023-2027]
+Editar
+[Eliminar Gestión 2023-2027]
+Eliminar
+Nombre
+Año de inicio
+Año de fin
+Agregar gestión
+Presupuesto total por año
+·
+Gestión 2023-2027
+Presupuesto total 2023
+Presupuesto total 2024
+Presupuesto total 2025
+Presupuesto total 2026
+Presupuesto total 2027"
+`;
+
+exports[`keeps what was typed for a term the server refused > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lets the admin close the error of a change > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Obras Públicas
+[Renombrar Obras Públicas]
+Editar
+[Eliminar Obras Públicas]
+Eliminar
+Salud
+[Renombrar Salud]
+Editar
+[Eliminar Salud]
+Eliminar
+[Nuevo nombre]
+(Nuevo nombre)
+Agregar"
+`;
+
+exports[`lets the admin close the error of a change > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lets the admin pick which term to configure > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Gestión 2019-2023
+[Renombrar Gestión 2019-2023]
+Editar
+[Eliminar Gestión 2019-2023]
+Eliminar
+Gestión 2023-2027
+[Renombrar Gestión 2023-2027]
+Editar
+[Eliminar Gestión 2023-2027]
+Eliminar
+Nombre
+Año de inicio
+Año de fin
+Agregar gestión
+Presupuesto total por año
+·
+Gestión 2019-2023
+Presupuesto total 2019
+Presupuesto total 2020
+Presupuesto total 2021
+Presupuesto total 2022
+Presupuesto total 2023"
+`;
+
+exports[`lets the admin pick which term to configure > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`renames and deletes items of departments > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Obras Públicas
+[Renombrar Obras Públicas]
+Editar
+[Eliminar Obras Públicas]
+Eliminar
+Salud
+[Renombrar Salud]
+Editar
+[Eliminar Salud]
+Eliminar
+[Nuevo nombre]
+(Nuevo nombre)
+Agregar"
+`;
+
+exports[`renames and deletes items of departments > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`renames and deletes items of owners > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+María Pérez
+[Renombrar María Pérez]
+Editar
+[Eliminar María Pérez]
+Eliminar
+[Nuevo nombre]
+(Nuevo nombre)
+Agregar"
+`;
+
+exports[`renames and deletes items of owners > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`renames and deletes items of programs > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Plan de bacheo
+[Renombrar Plan de bacheo]
+Editar
+[Eliminar Plan de bacheo]
+Eliminar
+[Nuevo nombre]
+(Nuevo nombre)
+Agregar"
+`;
+
+exports[`renames and deletes items of programs > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`renames and deletes terms > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Gestión 2019-2023
+[Renombrar Gestión 2019-2023]
+Editar
+[Eliminar Gestión 2019-2023]
+Eliminar
+Gestión 2023-2027
+[Renombrar Gestión 2023-2027]
+Editar
+[Eliminar Gestión 2023-2027]
+Eliminar
+Nombre
+Año de inicio
+Año de fin
+Agregar gestión
+Presupuesto total por año
+·
+Gestión 2023-2027
+Presupuesto total 2023
+Presupuesto total 2024
+Presupuesto total 2025
+Presupuesto total 2026
+Presupuesto total 2027"
+`;
+
+exports[`renames and deletes terms > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`sets the total budget of a year > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Gestión 2019-2023
+[Renombrar Gestión 2019-2023]
+Editar
+[Eliminar Gestión 2019-2023]
+Eliminar
+Gestión 2023-2027
+[Renombrar Gestión 2023-2027]
+Editar
+[Eliminar Gestión 2023-2027]
+Eliminar
+Nombre
+Año de inicio
+Año de fin
+Agregar gestión
+Presupuesto total por año
+·
+Gestión 2023-2027
+Presupuesto total 2023
+Presupuesto total 2024
+Presupuesto total 2025
+Presupuesto total 2026
+Presupuesto total 2027"
+`;
+
+exports[`sets the total budget of a year > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows an error instead of an empty catalog when loading fails > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
+
+exports[`shows an error instead of an empty catalog when loading fails > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows why the axes or the budgets could not be loaded > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`shows why the axes or the budgets could not be loaded > screen at the start 1`] = `"[Cargando…]"`;

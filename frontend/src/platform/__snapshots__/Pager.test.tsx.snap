@@ -1,0 +1,81 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`cannot go before the first page or after the last one > screen at the end 1`] = `
+"1–10 de 45
+Anterior
+Siguiente"
+`;
+
+exports[`cannot go before the first page or after the last one > screen at the start 1`] = `
+"1–10 de 45
+Anterior
+Siguiente"
+`;
+
+exports[`cannot go past the last page, whose range ends at the total > screen at the end 1`] = `
+"41–45 de 45
+Anterior
+Siguiente"
+`;
+
+exports[`cannot go past the last page, whose range ends at the total > screen at the start 1`] = `
+"41–45 de 45
+Anterior
+Siguiente"
+`;
+
+exports[`offers the page sizes and says which one is chosen > screen at the end 1`] = `
+"[Cantidad por página]
+10 por página
+20 por página
+50 por página
+21–30 de 45
+Anterior
+Siguiente"
+`;
+
+exports[`offers the page sizes and says which one is chosen > screen at the start 1`] = `
+"[Cantidad por página]
+10 por página
+20 por página
+50 por página
+21–30 de 45
+Anterior
+Siguiente"
+`;
+
+exports[`says which rows are shown and moves a page back or forward > screen at the end 1`] = `
+"21–30 de 45
+Anterior
+Siguiente"
+`;
+
+exports[`says which rows are shown and moves a page back or forward > screen at the start 1`] = `
+"21–30 de 45
+Anterior
+Siguiente"
+`;
+
+exports[`shows the range of an empty list as empty > screen at the end 1`] = `
+"0–0 de 0
+Anterior
+Siguiente"
+`;
+
+exports[`shows the range of an empty list as empty > screen at the start 1`] = `
+"0–0 de 0
+Anterior
+Siguiente"
+`;
+
+exports[`stays while a page past the first is shown, even when the rest fits > screen at the end 1`] = `
+"10–10 de 10
+Anterior
+Siguiente"
+`;
+
+exports[`stays while a page past the first is shown, even when the rest fits > screen at the start 1`] = `
+"10–10 de 10
+Anterior
+Siguiente"
+`;

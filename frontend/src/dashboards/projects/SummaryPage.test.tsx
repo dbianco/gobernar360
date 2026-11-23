@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { SummaryPage } from './SummaryPage'
 import { makeSummary, TERM } from './testData'
 import { BASE, renderProjects } from './testRender'
@@ -112,4 +112,11 @@ it('does not offer the lights of a year that has not started', async () => {
   renderProjects(<SummaryPage />)
 
   expect(await screen.findByRole('button', { name: t('status.nextYear') })).toBeDisabled()
+})
+
+it('says why the summary cannot be loaded', async () => {
+  mockApiError('get', `${BASE}/summary`, 500, 'boom')
+  renderProjects(<SummaryPage />)
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })

@@ -1,0 +1,253 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`assigns a tool, offering only the tools meant for people > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555222
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Situación laboral
+Independiente
+Ocupación
+Costurera
+Actores vinculados
+Panadería La Espiga
+Titular
+Herramientas asignadas
+Asignar herramienta
+Todavía no hay herramientas asignadas."
+`;
+
+exports[`assigns a tool, offering only the tools meant for people > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`closes the edit form with Escape > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555222
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Situación laboral
+Independiente
+Ocupación
+Costurera
+Actores vinculados
+Panadería La Espiga
+Titular
+Herramientas asignadas
+Asignar herramienta
+Todavía no hay herramientas asignadas."
+`;
+
+exports[`closes the edit form with Escape > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`edits the common and the economic data > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555222
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Situación laboral
+Independiente
+Ocupación
+Costurera
+Actores vinculados
+Panadería La Espiga
+Titular
+Herramientas asignadas
+Asignar herramienta
+Todavía no hay herramientas asignadas."
+`;
+
+exports[`edits the common and the economic data > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`keeps it when the deletion is not confirmed > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555222
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Situación laboral
+Independiente
+Ocupación
+Costurera
+Actores vinculados
+Panadería La Espiga
+Titular
+Herramientas asignadas
+Asignar herramienta
+Todavía no hay herramientas asignadas."
+`;
+
+exports[`keeps it when the deletion is not confirmed > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`removes the person from the dashboard after confirming > screen at the end 1`] = `"people list"`;
+
+exports[`removes the person from the dashboard after confirming > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`says when the person belongs to no actor > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555222
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Situación laboral
+Independiente
+Ocupación
+Costurera
+Actores vinculados
+No está vinculada a ningún actor.
+Herramientas asignadas
+Asignar herramienta
+Todavía no hay herramientas asignadas."
+`;
+
+exports[`says when the person belongs to no actor > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`says why the deletion failed and stays > screen at the end 1`] = `
+"Volver a personas
+No se puede eliminar porque está siendo usado por otros registros.
+Pérez, Juana
+Editar
+Quitar del tablero
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555222
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Situación laboral
+Independiente
+Ocupación
+Costurera
+Actores vinculados
+Panadería La Espiga
+Titular
+Herramientas asignadas
+Asignar herramienta
+Todavía no hay herramientas asignadas."
+`;
+
+exports[`says why the deletion failed and stays > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`says why the person cannot be loaded > screen at the end 1`] = `
+"Volver a personas
+No se encontró el registro."
+`;
+
+exports[`says why the person cannot be loaded > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;
+
+exports[`shows the person, their actors and no write controls to a viewer > screen at the end 1`] = `
+"Volver a personas
+Pérez, Juana
+DNI
+12.345.678
+Fecha de nacimiento
+01/05/1990
+Teléfono
+3472 555222
+Email
+—
+Domicilio
+Belgrano 45
+Barrio
+Centro
+Situación laboral
+Independiente
+Ocupación
+Costurera
+Actores vinculados
+Panadería La Espiga
+Titular
+Herramientas asignadas
+Todavía no hay herramientas asignadas."
+`;
+
+exports[`shows the person, their actors and no write controls to a viewer > screen at the start 1`] = `
+"Volver a personas
+[Cargando…]"
+`;

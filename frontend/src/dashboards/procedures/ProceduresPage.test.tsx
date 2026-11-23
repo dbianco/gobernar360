@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { ProceduresPage } from './ProceduresPage'
 import { makeProcedure, OBRAS, page, RENTAS } from './testData'
 import { BASE, renderProcedures } from './testRender'
@@ -54,7 +54,7 @@ it('searches and filters on the server', async () => {
 
   await screen.findByRole('row', { name: /Habilitación/ })
   expect(last(requests).url.searchParams.get('active')).toBeNull()
-  await user.type(screen.getByRole('textbox', { name: t('app.search') }), 'hab')
+  await user.type(screen.getByRole('searchbox', { name: t('app.search') }), 'hab')
   await user.selectOptions(screen.getByLabelText(label('area')), OBRAS.id)
   await user.selectOptions(screen.getByLabelText(label('channel')), 'online')
   await user.selectOptions(screen.getByLabelText(label('state')), 'true')
@@ -62,7 +62,7 @@ it('searches and filters on the server', async () => {
   await waitFor(() => expect(last(requests).url.searchParams.get('active')).toBe('true'))
   const params = last(requests).url.searchParams
   expect([params.get('q'), params.get('area_id'), params.get('channel'), params.get('limit')]).toEqual(
-    ['hab', OBRAS.id, 'online', '50'],
+    ['hab', OBRAS.id, 'online', '10'],
   )
 })
 
@@ -70,10 +70,10 @@ it('moves to the next page', async () => {
   const requests = mockApi('get', `${BASE}/procedures`, page([makeProcedure()], 120))
   renderProcedures(<ProceduresPage />)
 
-  expect(await screen.findByText('1–50 de 120')).toBeInTheDocument()
+  expect(await screen.findByText('1–10 de 120')).toBeInTheDocument()
   await userEvent.click(screen.getByRole('button', { name: t('app.pager.next') }))
 
-  await waitFor(() => expect(last(requests).url.searchParams.get('offset')).toBe('50'))
+  await waitFor(() => expect(last(requests).url.searchParams.get('offset')).toBe('10'))
 })
 
 it('lets an editor create a paid procedure', async () => {
@@ -134,4 +134,56 @@ it('says so when nothing matches', async () => {
   renderProcedures(<ProceduresPage />)
 
   expect(await screen.findByText(label('empty'))).toBeInTheDocument()
+})
+
+it('fills in every detail of a new procedure', async () => {
+  mockApi('get', `${BASE}/procedures`, page([]))
+  const requests = mockApi('post', `${BASE}/procedures`, makeProcedure(), 201)
+  renderProcedures(<ProceduresPage />)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('create') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: field('name') }), 'Poda')
+  await user.type(form.getByRole('textbox', { name: field('description') }), 'Pedido de poda')
+  await user.selectOptions(form.getByLabelText(field('audience')), 'organizations')
+  await user.type(form.getByLabelText(field('volume')), '1200')
+  await user.click(form.getByRole('checkbox', { name: field('isActive') }))
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toMatchObject({
+    name: 'Poda',
+    description: 'Pedido de poda',
+    area_id: OBRAS.id,
+    audience: 'organizations',
+    annual_volume: 1200,
+    is_active: false,
+  })
+})
+
+it('keeps the form open and says why creating failed, and closes it with Escape', async () => {
+  mockApi('get', `${BASE}/procedures`, page([]))
+  mockApiError('post', `${BASE}/procedures`, 409, 'conflict')
+  renderProcedures(<ProceduresPage />)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('create') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: field('name') }), 'Permiso de obra')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+  expect(await form.findByText(t('errors.conflict'))).toBeInTheDocument()
+
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})
+
+it('asks for an area before any procedure, and says why the list cannot be loaded', async () => {
+  mockApiError('get', `${BASE}/procedures`, 500, 'boom')
+  renderProcedures(<ProceduresPage />)
+  mockApi('get', `${BASE}/areas`, [])
+
+  expect(await screen.findByText(label('needsArea'))).toBeInTheDocument()
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: label('create') })).toBeNull()
 })

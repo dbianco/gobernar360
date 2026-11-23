@@ -1,0 +1,748 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`assigns a tool, offering only the tools meant for actors > screen at the end 1`] = `
+"Volver a actores
+Panadería La Espiga
+Editar
+Eliminar
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+Vincular persona
+Pérez, Juana
+Titular
+[Desvincular a Pérez, Juana]
+Desvincular
+Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`assigns a tool, offering only the tools meant for actors > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`closes the edit form with Escape > screen at the end 1`] = `
+"Volver a actores
+Panadería La Espiga
+Editar
+Eliminar
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+Vincular persona
+Pérez, Juana
+Titular
+[Desvincular a Pérez, Juana]
+Desvincular
+Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`closes the edit form with Escape > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`corrects the note of an assignment from the actor > screen at the end 1`] = `
+"Volver a actores
+Panadería La Espiga
+Editar
+Eliminar
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+Vincular persona
+Pérez, Juana
+Titular
+[Desvincular a Pérez, Juana]
+Desvincular
+Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`corrects the note of an assignment from the actor > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`deletes an assignment after confirming > screen at the end 1`] = `
+"Volver a actores
+Panadería La Espiga
+Editar
+Eliminar
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+Vincular persona
+Pérez, Juana
+Titular
+[Desvincular a Pérez, Juana]
+Desvincular
+Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`deletes an assignment after confirming > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`deletes the actor after confirming and returns to the list > screen at the end 1`] = `"actor list"`;
+
+exports[`deletes the actor after confirming and returns to the list > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`keeps it when the deletion is not confirmed > screen at the end 1`] = `
+"Volver a actores
+Panadería La Espiga
+Editar
+Eliminar
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+Vincular persona
+Pérez, Juana
+Titular
+[Desvincular a Pérez, Juana]
+Desvincular
+Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`keeps it when the deletion is not confirmed > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`keeps the edit form open and says why saving failed > screen at the end 1`] = `
+"Volver a actores
+Panadería La Espiga
+Editar
+Eliminar
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+Vincular persona
+Pérez, Juana
+Titular
+[Desvincular a Pérez, Juana]
+Desvincular
+Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar
+Editar actor económico
+La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
+Nombre
+Tipo
+Sin tipo
+Comercio
+Industria
+Sector
+Sin sector
+Alimentos
+CUIT
+11 dígitos, con o sin guiones.
+Empleados
+Teléfono
+Email
+Domicilio
+Notas
+Cancelar
+Guardar"
+`;
+
+exports[`keeps the edit form open and says why saving failed > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`keeps the link panel open and says why linking failed > screen at the end 1`] = `
+"Volver a actores
+Panadería La Espiga
+Editar
+Eliminar
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
+Buscar persona
+Nombre, apellido o DNI de una persona ya registrada en el tablero.
+Rol
+Titular
+Contacto
+Empleado/a
+Cancelar
+Acosta, Luis
+[Vincular a Acosta, Luis]
+Vincular
+Pérez, Juana
+Titular
+[Desvincular a Pérez, Juana]
+Desvincular
+Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`keeps the link panel open and says why linking failed > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`links a person found by search > screen at the end 1`] = `
+"Volver a actores
+Panadería La Espiga
+Editar
+Eliminar
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+Vincular persona
+Pérez, Juana
+Titular
+[Desvincular a Pérez, Juana]
+Desvincular
+Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`links a person found by search > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`saves the edited actor, sending empty choices as null, and closes the form > screen at the end 1`] = `
+"Volver a actores
+Panadería La Espiga
+Editar
+Eliminar
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+Vincular persona
+Pérez, Juana
+Titular
+[Desvincular a Pérez, Juana]
+Desvincular
+Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`saves the edited actor, sending empty choices as null, and closes the form > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`says when the actor has no people > screen at the end 1`] = `
+"Volver a actores
+Panadería La Espiga
+Editar
+Eliminar
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+Vincular persona
+Todavía no tiene personas vinculadas.
+Herramientas asignadas
+Asignar herramienta
+Todavía no hay herramientas asignadas."
+`;
+
+exports[`says when the actor has no people > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`says when the search finds nobody new and when it fails > screen at the end 1`] = `
+"Volver a actores
+Panadería La Espiga
+Editar
+Eliminar
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+Vincular persona
+Pérez, Juana
+Titular
+[Desvincular a Pérez, Juana]
+Desvincular
+Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`says when the search finds nobody new and when it fails > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`says why the actor could not be loaded > screen at the end 1`] = `
+"Volver a actores
+No se encontró el registro."
+`;
+
+exports[`says why the actor could not be loaded > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`says why the deletion failed and stays > screen at the end 1`] = `
+"Volver a actores
+No se puede eliminar porque está siendo usado por otros registros.
+Panadería La Espiga
+Editar
+Eliminar
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+Vincular persona
+Pérez, Juana
+Titular
+[Desvincular a Pérez, Juana]
+Desvincular
+Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`says why the deletion failed and stays > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`shows the actor, its people and its assignments > screen at the end 1`] = `
+"Volver a actores
+Panadería La Espiga
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+Pérez, Juana
+Titular
+Herramientas asignadas
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota"
+`;
+
+exports[`shows the actor, its people and its assignments > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;
+
+exports[`unlinks a person > screen at the end 1`] = `
+"Volver a actores
+Panadería La Espiga
+Editar
+Eliminar
+Tipo
+Comercio
+Sector
+Alimentos
+CUIT
+30-71111111-8
+Empleados
+6
+Teléfono
+3472 555111
+Email
+espiga@example.test
+Domicilio
+San Martín 245
+Notas
+—
+Personas vinculadas
+Vincular persona
+Pérez, Juana
+Titular
+[Desvincular a Pérez, Juana]
+Desvincular
+Herramientas asignadas
+Asignar herramienta
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Primera cuota
+[Editar la asignación de Microcrédito productivo]
+Editar
+[Eliminar la asignación de Microcrédito productivo]
+Eliminar"
+`;
+
+exports[`unlinks a person > screen at the start 1`] = `
+"Volver a actores
+[Cargando…]"
+`;

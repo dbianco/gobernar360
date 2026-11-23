@@ -2,6 +2,7 @@ import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
+import { renameThenDelete } from '../../test/catalog'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { ParametersPage } from './ParametersPage'
@@ -97,4 +98,69 @@ it('shows an error instead of empty lists when loading fails', async () => {
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
   expect(screen.queryByText(t('app.list.empty'))).toBeNull()
+})
+
+it.each([['/benefit-categories', FOOD.id, FOOD.name], ['/intervention-types', VISIT.id, VISIT.name]])('renames and deletes items of %s', async (path, id, name) => {
+  const renamed = mockApi('patch', `${BASE}${path}/${id}`, {})
+  const deleted = mockApi('delete', `${BASE}${path}/${id}`, null, 204)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await renameThenDelete(user, name, 'Nuevo nombre')
+
+  await waitFor(() => expect(deleted).toHaveLength(1))
+  expect(renamed[0].body).toEqual({ name: 'Nuevo nombre' })
+})
+
+it('closes the form with Escape without saving', async () => {
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addBenefit') }))
+  await screen.findByRole('dialog', { name: label('addBenefit') })
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})
+
+it('asks for a category before any benefit', async () => {
+  renderParameters()
+  mockApi('get', `${BASE}/benefit-categories`, [])
+  mockApi('get', `${BASE}/benefits`, [])
+
+  expect(await screen.findByText(label('needsCategory'))).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: label('addBenefit') })).toBeNull()
+  expect(screen.queryByText(label('noBenefits'))).toBeNull()
+})
+
+it('says when there are categories but no benefits yet', async () => {
+  renderParameters()
+  mockApi('get', `${BASE}/benefits`, [])
+
+  expect(await screen.findByText(label('noBenefits'))).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: label('addBenefit') })).toBeInTheDocument()
+})
+
+it('says when the benefit search matches nothing', async () => {
+  renderParameters()
+  const user = userEvent.setup()
+
+  await screen.findByRole('row', { name: new RegExp(BOX.name) })
+  await user.type(screen.getByRole('searchbox', { name: t('app.search') }), 'zzz')
+
+  expect(await screen.findByText(t('app.noMatches'))).toBeInTheDocument()
+  expect(screen.queryByRole('row', { name: new RegExp(BOX.name) })).toBeNull()
+})
+
+it('keeps the benefit form open and says why saving failed', async () => {
+  mockApiError('post', `${BASE}/benefits`, 409, 'conflict')
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addBenefit') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: label('name') }), 'Frazadas')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('errors.conflict'))).toBeInTheDocument()
 })

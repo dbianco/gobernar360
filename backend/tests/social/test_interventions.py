@@ -257,3 +257,23 @@ def test_the_audit_trail_does_not_keep_the_reserved_text(client):
     # The trail still says that the description was written and later changed.
     assert entries[0].changes["description"] == "[reserved]"
     assert entries[1].changes == {"description": "[reserved]", "performed_by": "Equipo"}
+
+
+def test_interventions_are_searched_by_person_or_type_but_never_by_reserved_text(client):
+    municipality = social_member("viewer")
+    login(client, EMAIL)
+    visit = make_intervention_type(municipality, name="Visita a domicilio")
+    call = make_intervention_type(municipality, name="Llamado")
+    juana = make_social_person(municipality, "Juana", "Pérez", dni="20123456")
+    luis = make_social_person(municipality, "Luis", "Gómez")
+    make_intervention(municipality, visit, juana, description="Situación de violencia")
+    make_intervention(municipality, call, luis)
+
+    def types(q):
+        return [item["intervention_type"]["name"] for item in _items(client, q=q)]
+
+    assert types("perez") == ["Visita a domicilio"]
+    assert types("20.123.456") == ["Visita a domicilio"]
+    assert types("llamado") == ["Llamado"]
+    # The reserved text cannot be probed through the search.
+    assert types("violencia") == []

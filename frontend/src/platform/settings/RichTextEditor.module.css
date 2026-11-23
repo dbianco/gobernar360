@@ -1,0 +1,25 @@
+.root {
+  border: 1px solid var(--mantine-color-gray-4);
+  border-radius: var(--mantine-radius-sm);
+  background: var(--mantine-color-white);
+}
+
+.root:focus-within {
+  border-color: var(--mantine-color-blue-6);
+}
+
+.toolbar {
+  border-bottom: 1px solid var(--mantine-color-gray-3);
+  padding: 4px 6px;
+}
+
+.content :global(.ProseMirror) {
+  min-height: 220px;
+  padding: 8px 14px;
+  outline: none;
+}
+
+.content :global(.ProseMirror) a {
+  color: var(--mantine-color-blue-7);
+  text-decoration: underline;
+}

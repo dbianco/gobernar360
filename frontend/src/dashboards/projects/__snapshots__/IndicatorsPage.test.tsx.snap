@@ -1,0 +1,299 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks for objectives before indicators can be added > screen at the end 1`] = `
+"Indicadores estratégicos
+Para cargar indicadores primero hay que definir objetivos en los parámetros.
+Todavía no hay indicadores cargados."
+`;
+
+exports[`asks for objectives before indicators can be added > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`closes the form with Escape > screen at the end 1`] = `
+"Indicadores estratégicos
+Agregar indicador
+Todavía no hay indicadores cargados."
+`;
+
+exports[`closes the form with Escape > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`closes the form without saving when cancelled > screen at the end 1`] = `
+"Indicadores estratégicos
+Agregar indicador
+Buscar
+(Nombre del indicador)
+Indicador
+[Qué significa Indicador]
+Indicador estratégico: lo que se mide para saber si un objetivo avanza.
+Eje
+[Qué significa Eje]
+Eje de gobierno al que pertenece el objetivo.
+Objetivo
+[Qué significa Objetivo]
+Objetivo de la gestión que este indicador mide.
+Valor actual
+[Qué significa Valor actual]
+Último valor cargado del indicador.
+Cumplimiento
+[Qué significa Cumplimiento]
+Avance desde la línea de base hacia la meta, en porcentaje.
+Cuadras pavimentadas
+Ciudad inclusiva
+Reducir el déficit habitacional
+150 / 200 cuadras
+75 %
+[Editar indicador: Cuadras pavimentadas]
+Editar
+[Eliminar indicador: Cuadras pavimentadas]
+Eliminar"
+`;
+
+exports[`closes the form without saving when cancelled > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`deletes an indicator > screen at the end 1`] = `
+"Indicadores estratégicos
+Agregar indicador
+Buscar
+(Nombre del indicador)
+Indicador
+[Qué significa Indicador]
+Indicador estratégico: lo que se mide para saber si un objetivo avanza.
+Eje
+[Qué significa Eje]
+Eje de gobierno al que pertenece el objetivo.
+Objetivo
+[Qué significa Objetivo]
+Objetivo de la gestión que este indicador mide.
+Valor actual
+[Qué significa Valor actual]
+Último valor cargado del indicador.
+Cumplimiento
+[Qué significa Cumplimiento]
+Avance desde la línea de base hacia la meta, en porcentaje.
+Cuadras pavimentadas
+Ciudad inclusiva
+Reducir el déficit habitacional
+150 / 200 cuadras
+75 %
+[Editar indicador: Cuadras pavimentadas]
+Editar
+[Eliminar indicador: Cuadras pavimentadas]
+Eliminar"
+`;
+
+exports[`deletes an indicator > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`hides editing from viewers > screen at the end 1`] = `
+"Indicadores estratégicos
+Buscar
+(Nombre del indicador)
+Indicador
+[Qué significa Indicador]
+Indicador estratégico: lo que se mide para saber si un objetivo avanza.
+Eje
+[Qué significa Eje]
+Eje de gobierno al que pertenece el objetivo.
+Objetivo
+[Qué significa Objetivo]
+Objetivo de la gestión que este indicador mide.
+Valor actual
+[Qué significa Valor actual]
+Último valor cargado del indicador.
+Cumplimiento
+[Qué significa Cumplimiento]
+Avance desde la línea de base hacia la meta, en porcentaje.
+Cuadras pavimentadas
+Ciudad inclusiva
+Reducir el déficit habitacional
+150 / 200 cuadras
+75 %"
+`;
+
+exports[`hides editing from viewers > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lets an editor add an indicator, sending empty numbers as null > screen at the end 1`] = `
+"Indicadores estratégicos
+Agregar indicador
+Todavía no hay indicadores cargados."
+`;
+
+exports[`lets an editor add an indicator, sending empty numbers as null > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lets an editor correct an indicator, starting from its values > screen at the end 1`] = `
+"Indicadores estratégicos
+Agregar indicador
+Buscar
+(Nombre del indicador)
+Indicador
+[Qué significa Indicador]
+Indicador estratégico: lo que se mide para saber si un objetivo avanza.
+Eje
+[Qué significa Eje]
+Eje de gobierno al que pertenece el objetivo.
+Objetivo
+[Qué significa Objetivo]
+Objetivo de la gestión que este indicador mide.
+Valor actual
+[Qué significa Valor actual]
+Último valor cargado del indicador.
+Cumplimiento
+[Qué significa Cumplimiento]
+Avance desde la línea de base hacia la meta, en porcentaje.
+Cuadras pavimentadas
+Ciudad inclusiva
+Reducir el déficit habitacional
+150 / 200 cuadras
+75 %
+[Editar indicador: Cuadras pavimentadas]
+Editar
+[Eliminar indicador: Cuadras pavimentadas]
+Eliminar"
+`;
+
+exports[`lets an editor correct an indicator, starting from its values > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why a deletion failed, and when the search matches nothing > screen at the end 1`] = `
+"Indicadores estratégicos
+Agregar indicador
+No se puede eliminar porque está siendo usado por otros registros.
+Buscar
+(Nombre del indicador)
+[Borrar la búsqueda]
+Nada coincide con la búsqueda."
+`;
+
+exports[`says why a deletion failed, and when the search matches nothing > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows a dash when the indicator has no target > screen at the end 1`] = `
+"Indicadores estratégicos
+Agregar indicador
+Buscar
+(Nombre del indicador)
+Indicador
+[Qué significa Indicador]
+Indicador estratégico: lo que se mide para saber si un objetivo avanza.
+Eje
+[Qué significa Eje]
+Eje de gobierno al que pertenece el objetivo.
+Objetivo
+[Qué significa Objetivo]
+Objetivo de la gestión que este indicador mide.
+Valor actual
+[Qué significa Valor actual]
+Último valor cargado del indicador.
+Cumplimiento
+[Qué significa Cumplimiento]
+Avance desde la línea de base hacia la meta, en porcentaje.
+Cuadras pavimentadas
+Ciudad inclusiva
+Reducir el déficit habitacional
+150 cuadras
+—
+[Editar indicador: Cuadras pavimentadas]
+Editar
+[Eliminar indicador: Cuadras pavimentadas]
+Eliminar"
+`;
+
+exports[`shows a dash when the indicator has no target > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows an error when the indicators cannot be loaded > screen at the end 1`] = `
+"Indicadores estratégicos
+Agregar indicador
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`shows an error when the indicators cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the current value against the target > screen at the end 1`] = `
+"Indicadores estratégicos
+Agregar indicador
+Buscar
+(Nombre del indicador)
+Indicador
+[Qué significa Indicador]
+Indicador estratégico: lo que se mide para saber si un objetivo avanza.
+Eje
+[Qué significa Eje]
+Eje de gobierno al que pertenece el objetivo.
+Objetivo
+[Qué significa Objetivo]
+Objetivo de la gestión que este indicador mide.
+Valor actual
+[Qué significa Valor actual]
+Último valor cargado del indicador.
+Cumplimiento
+[Qué significa Cumplimiento]
+Avance desde la línea de base hacia la meta, en porcentaje.
+Cuadras pavimentadas
+Ciudad inclusiva
+Reducir el déficit habitacional
+150 / 200 cuadras
+75 %
+[Editar indicador: Cuadras pavimentadas]
+Editar
+[Eliminar indicador: Cuadras pavimentadas]
+Eliminar"
+`;
+
+exports[`shows the current value against the target > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows why the server refused an indicator and keeps the form open > screen at the end 1`] = `
+"Indicadores estratégicos
+Agregar indicador
+Todavía no hay indicadores cargados.
+Indicadores estratégicos
+Revisá los datos ingresados.
+Objetivo
+*
+Seleccionar…
+Ciudad inclusiva › Reducir el déficit habitacional
+Ciudad segura › Más iluminación
+Indicador
+*
+Unidad
+Línea de base
+Meta
+Valor actual
+Cancelar
+Guardar"
+`;
+
+exports[`shows why the server refused an indicator and keeps the form open > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`writes values without a unit, without a target, or without a value > screen at the end 1`] = `
+"Indicadores estratégicos
+Buscar
+(Nombre del indicador)
+Indicador
+[Qué significa Indicador]
+Indicador estratégico: lo que se mide para saber si un objetivo avanza.
+Eje
+[Qué significa Eje]
+Eje de gobierno al que pertenece el objetivo.
+Objetivo
+[Qué significa Objetivo]
+Objetivo de la gestión que este indicador mide.
+Valor actual
+[Qué significa Valor actual]
+Último valor cargado del indicador.
+Cumplimiento
+[Qué significa Cumplimiento]
+Avance desde la línea de base hacia la meta, en porcentaje.
+Sin unidad
+Ciudad inclusiva
+Reducir el déficit habitacional
+150 / 200
+75 %
+Sin meta
+Ciudad inclusiva
+Reducir el déficit habitacional
+150 cuadras
+—
+Sin valor
+Ciudad inclusiva
+Reducir el déficit habitacional
+— / 200 cuadras
+—"
+`;
+
+exports[`writes values without a unit, without a target, or without a value > screen at the start 1`] = `"[Cargando…]"`;

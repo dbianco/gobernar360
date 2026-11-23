@@ -1,0 +1,63 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`draws a dot per value and the target as a dashed line > screen at the end 1`] = `
+"Consumo
+Ver como tabla
+Ene
+Feb
+Mar
+0
+3.500
+7.000
+10.500
+14.000
+Meta
+0"
+`;
+
+exports[`draws a dot per value and the target as a dashed line > screen at the start 1`] = `
+"Consumo
+Ver como tabla
+Ene
+Feb
+Mar
+0
+3.500
+7.000
+10.500
+14.000
+Meta
+0"
+`;
+
+exports[`names the month and the value with its unit in the tooltip > screen at the end 1`] = `
+"0
+Consumo
+Ver como tabla
+Febrero
+Valor
+:
+12.500,5 kWh
+Ene
+Feb
+Mar
+0
+3.500
+7.000
+10.500
+14.000"
+`;
+
+exports[`names the month and the value with its unit in the tooltip > screen at the start 1`] = `
+"0
+Consumo
+Ver como tabla
+Ene
+Feb
+Mar
+0
+3.500
+7.000
+10.500
+14.000"
+`;

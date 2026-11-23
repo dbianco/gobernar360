@@ -197,3 +197,36 @@ def test_assignments_of_another_municipality_are_not_reachable(client):
     assert client.get(f"{BASE}/assignments").json() == {"items": [], "total": 0}
     assert client.patch(f"{BASE}/assignments/{foreign.id}", json={"note": "x"}).status_code == 404
     assert client.delete(f"{BASE}/assignments/{foreign.id}").status_code == 404
+
+
+def test_assignments_are_searched_by_tool_or_recipient(client):
+    municipality = _editor(client)
+    credit = make_tool(municipality, name="Microcrédito productivo")
+    course = make_tool(municipality, name="Curso de marketing")
+    bakery = make_actor(municipality, name="Panadería La Espiga")
+    juana = make_economic_person(municipality, "Juana", "Pérez", dni="20123456")
+    make_assignment(municipality, credit, actor=bakery, on=date(2026, 3, 1))
+    make_assignment(municipality, course, person=juana, on=date(2026, 3, 2))
+
+    def tools(q):
+        items = client.get(f"{BASE}/assignments", params={"q": q}).json()["items"]
+        return [item["tool"]["name"] for item in items]
+
+    assert tools("credito") == ["Microcrédito productivo"]
+    assert tools("panaderia") == ["Microcrédito productivo"]
+    assert tools("perez juana") == ["Curso de marketing"]
+    assert tools("20.123.456") == ["Curso de marketing"]
+    assert tools("nadie") == []
+    assert len(tools("")) == 2
+
+
+def test_a_year_runs_from_the_first_of_january_to_the_thirty_first_of_december(client):
+    municipality = _editor(client)
+    tool = make_tool(municipality)
+    actor = make_actor(municipality)
+    for day in (date(2025, 12, 31), date(2026, 1, 1), date(2026, 12, 31), date(2027, 1, 1)):
+        make_assignment(municipality, tool, actor=actor, on=day)
+
+    items = client.get(f"{BASE}/assignments", params={"year": 2026}).json()["items"]
+
+    assert sorted(item["date"] for item in items) == ["2026-01-01", "2026-12-31"]

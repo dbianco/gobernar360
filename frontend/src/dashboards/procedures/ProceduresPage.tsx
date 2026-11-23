@@ -10,7 +10,6 @@ import {
   Stack,
   Table,
   Text,
-  TextInput,
 } from '@mantine/core'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -21,20 +20,24 @@ import { errorMessage } from '../../platform/errorMessage'
 import { formatNumber } from '../../platform/format'
 import { HelpTh } from '../../platform/HelpTh'
 import { Pager } from '../../platform/Pager'
-import { hasLevel } from '../../platform/types'
-import { BASE_PATH, KEY, PAGE_SIZE, useAreas, useProcedures } from './api'
+import { hasLevel } from '../../platform/access'
+import { BASE_PATH, KEY, useAreas, useProcedures } from './api'
 import { costText } from './format'
 import { ProcedureForm } from './ProcedureForm'
 import { CHANNELS } from './types'
+import { fitPage, usePaging } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
 
 /** Searchable inventory of the municipality's procedures. */
 export function ProceduresPage() {
   const { t } = useTranslation()
   const { me } = useAuth()
   const [filters, setFilters] = useState({ q: '', area_id: '', channel: '', active: '' })
-  const [offset, setOffset] = useState(0)
+  const paging = usePaging('procedures.procedures')
+  const { limit, offset, setOffset } = paging
   const [creating, setCreating] = useState(false)
-  const procedures = useProcedures({ ...filters, limit: PAGE_SIZE, offset })
+  const procedures = useProcedures({ ...filters, limit, offset })
+  fitPage(paging, procedures)
   const areas = useAreas()
   const label = (key: string, options = {}) => t(`procedures.list.${key}`, options)
   const help = (key: string) => t(`procedures.help.proceduresPage.${key}`)
@@ -50,12 +53,10 @@ export function ProceduresPage() {
     <Stack>
       <Group justify="space-between" align="flex-end">
         <Group align="flex-end">
-          <TextInput
-            label={t('app.search')}
-            placeholder={label('searchHint')}
-            maxLength={100}
+          <SearchInput
             value={filters.q}
-            onChange={filter('q')}
+            onChange={(value) => filter('q')({ currentTarget: { value } })}
+            placeholder={label('searchHint')}
           />
           <NativeSelect
             label={label('area')}
@@ -144,12 +145,7 @@ export function ProceduresPage() {
         </Table.ScrollContainer>
       )}
       {procedures.data && (
-        <Pager
-          total={procedures.data.total}
-          limit={PAGE_SIZE}
-          offset={offset}
-          onChange={setOffset}
-        />
+        <Pager {...paging.pager(procedures.data.total)} />
       )}
       <Modal
         opened={creating}

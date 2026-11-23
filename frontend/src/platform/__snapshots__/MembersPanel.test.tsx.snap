@@ -1,0 +1,1143 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`describes a problem it has no words for in general terms > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Usuario 1
+u1@noetinger.test
+[Administrador: Usuario 1]
+[Proyectos: Usuario 1]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Usuario 1]
+Quitar
+Usuario 2
+u2@noetinger.test
+[Administrador: Usuario 2]
+[Proyectos: Usuario 2]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 2]
+[Quitar a Usuario 2]
+Quitar
+Usuario 3
+u3@noetinger.test
+[Administrador: Usuario 3]
+[Proyectos: Usuario 3]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 3]
+[Quitar a Usuario 3]
+Quitar
+Importar usuarios desde un archivo CSV
+Agregá o actualizá muchos usuarios a la vez con una planilla guardada como CSV.
+Columnas: email, nombre, administrador (sí o no) y una por cada tablero habilitado, con el nombre del tablero.
+En cada tablero: Lectura, Carga o Administración; vacío es sin acceso.
+Si un email aparece más de una vez, en este archivo o en uno anterior, vale lo de la última fila: esa persona queda con esos permisos.
+Si el archivo no tiene la columna de un tablero, el acceso a ese tablero de quienes ya son usuarios no cambia.
+A quien todavía no era usuario del municipio le enviamos un email para que pueda ingresar.
+Descargar un ejemplo
+Archivo CSV
+u.csv
+El archivo tiene 1 problemas
+Línea
+Problema
+2
+La fila no es válida.
+No se cambió nada. Corregí el archivo y volvé a importarlo.
+Cancelar
+Importar"
+`;
+
+exports[`describes a problem it has no words for in general terms > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`hides the pager while everyone fits in the smallest page > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Usuario 1
+u1@noetinger.test
+[Administrador: Usuario 1]
+[Proyectos: Usuario 1]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Usuario 1]
+Quitar
+Usuario 2
+u2@noetinger.test
+[Administrador: Usuario 2]
+[Proyectos: Usuario 2]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 2]
+[Quitar a Usuario 2]
+Quitar
+Usuario 3
+u3@noetinger.test
+[Administrador: Usuario 3]
+[Proyectos: Usuario 3]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 3]
+[Quitar a Usuario 3]
+Quitar"
+`;
+
+exports[`hides the pager while everyone fits in the smallest page > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`imports a file and says what changed > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Importación terminada: 2 usuarios agregados, 1 actualizados y 0 sin cambios.
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Usuario 1
+u1@noetinger.test
+[Administrador: Usuario 1]
+[Proyectos: Usuario 1]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Usuario 1]
+Quitar
+Usuario 2
+u2@noetinger.test
+[Administrador: Usuario 2]
+[Proyectos: Usuario 2]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 2]
+[Quitar a Usuario 2]
+Quitar
+Usuario 3
+u3@noetinger.test
+[Administrador: Usuario 3]
+[Proyectos: Usuario 3]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 3]
+[Quitar a Usuario 3]
+Quitar"
+`;
+
+exports[`imports a file and says what changed > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`lists ten users per page and moves between pages > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Usuario 11
+u11@noetinger.test
+[Administrador: Usuario 11]
+[Proyectos: Usuario 11]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 11]
+[Quitar a Usuario 11]
+Quitar
+Usuario 12
+u12@noetinger.test
+[Administrador: Usuario 12]
+[Proyectos: Usuario 12]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 12]
+[Quitar a Usuario 12]
+Quitar
+Usuario 13
+u13@noetinger.test
+[Administrador: Usuario 13]
+[Proyectos: Usuario 13]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 13]
+[Quitar a Usuario 13]
+Quitar
+Usuario 14
+u14@noetinger.test
+[Administrador: Usuario 14]
+[Proyectos: Usuario 14]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 14]
+[Quitar a Usuario 14]
+Quitar
+Usuario 15
+u15@noetinger.test
+[Administrador: Usuario 15]
+[Proyectos: Usuario 15]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 15]
+[Quitar a Usuario 15]
+Quitar
+Usuario 16
+u16@noetinger.test
+[Administrador: Usuario 16]
+[Proyectos: Usuario 16]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 16]
+[Quitar a Usuario 16]
+Quitar
+Usuario 17
+u17@noetinger.test
+[Administrador: Usuario 17]
+[Proyectos: Usuario 17]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 17]
+[Quitar a Usuario 17]
+Quitar
+Usuario 18
+u18@noetinger.test
+[Administrador: Usuario 18]
+[Proyectos: Usuario 18]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 18]
+[Quitar a Usuario 18]
+Quitar
+Usuario 19
+u19@noetinger.test
+[Administrador: Usuario 19]
+[Proyectos: Usuario 19]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 19]
+[Quitar a Usuario 19]
+Quitar
+Usuario 20
+u20@noetinger.test
+[Administrador: Usuario 20]
+[Proyectos: Usuario 20]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 20]
+[Quitar a Usuario 20]
+Quitar
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+11–20 de 25
+Anterior
+Siguiente"
+`;
+
+exports[`lists ten users per page and moves between pages > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`lists the problems of a file by line and says nothing changed > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Usuario 1
+u1@noetinger.test
+[Administrador: Usuario 1]
+[Proyectos: Usuario 1]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Usuario 1]
+Quitar
+Usuario 2
+u2@noetinger.test
+[Administrador: Usuario 2]
+[Proyectos: Usuario 2]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 2]
+[Quitar a Usuario 2]
+Quitar
+Usuario 3
+u3@noetinger.test
+[Administrador: Usuario 3]
+[Proyectos: Usuario 3]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 3]
+[Quitar a Usuario 3]
+Quitar
+Importar usuarios desde un archivo CSV
+Agregá o actualizá muchos usuarios a la vez con una planilla guardada como CSV.
+Columnas: email, nombre, administrador (sí o no) y una por cada tablero habilitado, con el nombre del tablero.
+En cada tablero: Lectura, Carga o Administración; vacío es sin acceso.
+Si un email aparece más de una vez, en este archivo o en uno anterior, vale lo de la última fila: esa persona queda con esos permisos.
+Si el archivo no tiene la columna de un tablero, el acceso a ese tablero de quienes ya son usuarios no cambia.
+A quien todavía no era usuario del municipio le enviamos un email para que pueda ingresar.
+Descargar un ejemplo
+Archivo CSV
+u.csv
+El archivo tiene 2 problemas
+Línea
+Problema
+3
+«no-es-email» no es un email válido.
+5
+En «Proyectos» va Lectura, Carga o Administración, no «Jefa».
+No se cambió nada. Corregí el archivo y volvé a importarlo.
+Cancelar
+Importar"
+`;
+
+exports[`lists the problems of a file by line and says nothing changed > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`offers an example file to download > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Usuario 1
+u1@noetinger.test
+[Administrador: Usuario 1]
+[Proyectos: Usuario 1]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Usuario 1]
+Quitar
+Usuario 2
+u2@noetinger.test
+[Administrador: Usuario 2]
+[Proyectos: Usuario 2]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 2]
+[Quitar a Usuario 2]
+Quitar
+Usuario 3
+u3@noetinger.test
+[Administrador: Usuario 3]
+[Proyectos: Usuario 3]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 3]
+[Quitar a Usuario 3]
+Quitar
+Importar usuarios desde un archivo CSV
+Agregá o actualizá muchos usuarios a la vez con una planilla guardada como CSV.
+Columnas: email, nombre, administrador (sí o no) y una por cada tablero habilitado, con el nombre del tablero.
+En cada tablero: Lectura, Carga o Administración; vacío es sin acceso.
+Si un email aparece más de una vez, en este archivo o en uno anterior, vale lo de la última fila: esa persona queda con esos permisos.
+Si el archivo no tiene la columna de un tablero, el acceso a ese tablero de quienes ya son usuarios no cambia.
+A quien todavía no era usuario del municipio le enviamos un email para que pueda ingresar.
+Descargar un ejemplo
+Archivo CSV
+Elegí un archivo
+Cancelar
+Importar"
+`;
+
+exports[`offers an example file to download > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`reads files saved by older Excel versions > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Importación terminada: 1 usuarios agregados, 0 actualizados y 0 sin cambios.
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Usuario 1
+u1@noetinger.test
+[Administrador: Usuario 1]
+[Proyectos: Usuario 1]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Usuario 1]
+Quitar
+Usuario 2
+u2@noetinger.test
+[Administrador: Usuario 2]
+[Proyectos: Usuario 2]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 2]
+[Quitar a Usuario 2]
+Quitar
+Usuario 3
+u3@noetinger.test
+[Administrador: Usuario 3]
+[Proyectos: Usuario 3]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 3]
+[Quitar a Usuario 3]
+Quitar"
+`;
+
+exports[`reads files saved by older Excel versions > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`says when the file cannot be read, without calling the server > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Usuario 1
+u1@noetinger.test
+[Administrador: Usuario 1]
+[Proyectos: Usuario 1]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Usuario 1]
+Quitar
+Usuario 2
+u2@noetinger.test
+[Administrador: Usuario 2]
+[Proyectos: Usuario 2]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 2]
+[Quitar a Usuario 2]
+Quitar
+Usuario 3
+u3@noetinger.test
+[Administrador: Usuario 3]
+[Proyectos: Usuario 3]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 3]
+[Quitar a Usuario 3]
+Quitar
+Importar usuarios desde un archivo CSV
+Agregá o actualizá muchos usuarios a la vez con una planilla guardada como CSV.
+Columnas: email, nombre, administrador (sí o no) y una por cada tablero habilitado, con el nombre del tablero.
+En cada tablero: Lectura, Carga o Administración; vacío es sin acceso.
+Si un email aparece más de una vez, en este archivo o en uno anterior, vale lo de la última fila: esa persona queda con esos permisos.
+Si el archivo no tiene la columna de un tablero, el acceso a ese tablero de quienes ya son usuarios no cambia.
+A quien todavía no era usuario del municipio le enviamos un email para que pueda ingresar.
+Descargar un ejemplo
+Archivo CSV
+u.csv
+No se pudo leer el archivo.
+Cancelar
+Importar"
+`;
+
+exports[`says when the file cannot be read, without calling the server > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
+exports[`shows 20 or 50 per page when chosen, from the first page > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Usuario 1
+u1@noetinger.test
+[Administrador: Usuario 1]
+[Proyectos: Usuario 1]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Usuario 1]
+Quitar
+Usuario 2
+u2@noetinger.test
+[Administrador: Usuario 2]
+[Proyectos: Usuario 2]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 2]
+[Quitar a Usuario 2]
+Quitar
+Usuario 3
+u3@noetinger.test
+[Administrador: Usuario 3]
+[Proyectos: Usuario 3]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 3]
+[Quitar a Usuario 3]
+Quitar
+Usuario 4
+u4@noetinger.test
+[Administrador: Usuario 4]
+[Proyectos: Usuario 4]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 4]
+[Quitar a Usuario 4]
+Quitar
+Usuario 5
+u5@noetinger.test
+[Administrador: Usuario 5]
+[Proyectos: Usuario 5]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 5]
+[Quitar a Usuario 5]
+Quitar
+Usuario 6
+u6@noetinger.test
+[Administrador: Usuario 6]
+[Proyectos: Usuario 6]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 6]
+[Quitar a Usuario 6]
+Quitar
+Usuario 7
+u7@noetinger.test
+[Administrador: Usuario 7]
+[Proyectos: Usuario 7]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 7]
+[Quitar a Usuario 7]
+Quitar
+Usuario 8
+u8@noetinger.test
+[Administrador: Usuario 8]
+[Proyectos: Usuario 8]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 8]
+[Quitar a Usuario 8]
+Quitar
+Usuario 9
+u9@noetinger.test
+[Administrador: Usuario 9]
+[Proyectos: Usuario 9]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 9]
+[Quitar a Usuario 9]
+Quitar
+Usuario 10
+u10@noetinger.test
+[Administrador: Usuario 10]
+[Proyectos: Usuario 10]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 10]
+[Quitar a Usuario 10]
+Quitar
+Usuario 11
+u11@noetinger.test
+[Administrador: Usuario 11]
+[Proyectos: Usuario 11]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 11]
+[Quitar a Usuario 11]
+Quitar
+Usuario 12
+u12@noetinger.test
+[Administrador: Usuario 12]
+[Proyectos: Usuario 12]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 12]
+[Quitar a Usuario 12]
+Quitar
+Usuario 13
+u13@noetinger.test
+[Administrador: Usuario 13]
+[Proyectos: Usuario 13]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 13]
+[Quitar a Usuario 13]
+Quitar
+Usuario 14
+u14@noetinger.test
+[Administrador: Usuario 14]
+[Proyectos: Usuario 14]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 14]
+[Quitar a Usuario 14]
+Quitar
+Usuario 15
+u15@noetinger.test
+[Administrador: Usuario 15]
+[Proyectos: Usuario 15]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 15]
+[Quitar a Usuario 15]
+Quitar
+Usuario 16
+u16@noetinger.test
+[Administrador: Usuario 16]
+[Proyectos: Usuario 16]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 16]
+[Quitar a Usuario 16]
+Quitar
+Usuario 17
+u17@noetinger.test
+[Administrador: Usuario 17]
+[Proyectos: Usuario 17]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 17]
+[Quitar a Usuario 17]
+Quitar
+Usuario 18
+u18@noetinger.test
+[Administrador: Usuario 18]
+[Proyectos: Usuario 18]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 18]
+[Quitar a Usuario 18]
+Quitar
+Usuario 19
+u19@noetinger.test
+[Administrador: Usuario 19]
+[Proyectos: Usuario 19]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 19]
+[Quitar a Usuario 19]
+Quitar
+Usuario 20
+u20@noetinger.test
+[Administrador: Usuario 20]
+[Proyectos: Usuario 20]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 20]
+[Quitar a Usuario 20]
+Quitar
+Usuario 21
+u21@noetinger.test
+[Administrador: Usuario 21]
+[Proyectos: Usuario 21]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 21]
+[Quitar a Usuario 21]
+Quitar
+Usuario 22
+u22@noetinger.test
+[Administrador: Usuario 22]
+[Proyectos: Usuario 22]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 22]
+[Quitar a Usuario 22]
+Quitar
+Usuario 23
+u23@noetinger.test
+[Administrador: Usuario 23]
+[Proyectos: Usuario 23]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 23]
+[Quitar a Usuario 23]
+Quitar
+Usuario 24
+u24@noetinger.test
+[Administrador: Usuario 24]
+[Proyectos: Usuario 24]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 24]
+[Quitar a Usuario 24]
+Quitar
+Usuario 25
+u25@noetinger.test
+[Administrador: Usuario 25]
+[Proyectos: Usuario 25]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 25]
+[Quitar a Usuario 25]
+Quitar
+Usuario 26
+u26@noetinger.test
+[Administrador: Usuario 26]
+[Proyectos: Usuario 26]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 26]
+[Quitar a Usuario 26]
+Quitar
+Usuario 27
+u27@noetinger.test
+[Administrador: Usuario 27]
+[Proyectos: Usuario 27]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 27]
+[Quitar a Usuario 27]
+Quitar
+Usuario 28
+u28@noetinger.test
+[Administrador: Usuario 28]
+[Proyectos: Usuario 28]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 28]
+[Quitar a Usuario 28]
+Quitar
+Usuario 29
+u29@noetinger.test
+[Administrador: Usuario 29]
+[Proyectos: Usuario 29]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 29]
+[Quitar a Usuario 29]
+Quitar
+Usuario 30
+u30@noetinger.test
+[Administrador: Usuario 30]
+[Proyectos: Usuario 30]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 30]
+[Quitar a Usuario 30]
+Quitar
+Usuario 31
+u31@noetinger.test
+[Administrador: Usuario 31]
+[Proyectos: Usuario 31]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 31]
+[Quitar a Usuario 31]
+Quitar
+Usuario 32
+u32@noetinger.test
+[Administrador: Usuario 32]
+[Proyectos: Usuario 32]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 32]
+[Quitar a Usuario 32]
+Quitar
+Usuario 33
+u33@noetinger.test
+[Administrador: Usuario 33]
+[Proyectos: Usuario 33]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 33]
+[Quitar a Usuario 33]
+Quitar
+Usuario 34
+u34@noetinger.test
+[Administrador: Usuario 34]
+[Proyectos: Usuario 34]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 34]
+[Quitar a Usuario 34]
+Quitar
+Usuario 35
+u35@noetinger.test
+[Administrador: Usuario 35]
+[Proyectos: Usuario 35]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 35]
+[Quitar a Usuario 35]
+Quitar
+Usuario 36
+u36@noetinger.test
+[Administrador: Usuario 36]
+[Proyectos: Usuario 36]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 36]
+[Quitar a Usuario 36]
+Quitar
+Usuario 37
+u37@noetinger.test
+[Administrador: Usuario 37]
+[Proyectos: Usuario 37]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 37]
+[Quitar a Usuario 37]
+Quitar
+Usuario 38
+u38@noetinger.test
+[Administrador: Usuario 38]
+[Proyectos: Usuario 38]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 38]
+[Quitar a Usuario 38]
+Quitar
+Usuario 39
+u39@noetinger.test
+[Administrador: Usuario 39]
+[Proyectos: Usuario 39]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 39]
+[Quitar a Usuario 39]
+Quitar
+Usuario 40
+u40@noetinger.test
+[Administrador: Usuario 40]
+[Proyectos: Usuario 40]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 40]
+[Quitar a Usuario 40]
+Quitar
+Usuario 41
+u41@noetinger.test
+[Administrador: Usuario 41]
+[Proyectos: Usuario 41]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 41]
+[Quitar a Usuario 41]
+Quitar
+Usuario 42
+u42@noetinger.test
+[Administrador: Usuario 42]
+[Proyectos: Usuario 42]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 42]
+[Quitar a Usuario 42]
+Quitar
+Usuario 43
+u43@noetinger.test
+[Administrador: Usuario 43]
+[Proyectos: Usuario 43]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 43]
+[Quitar a Usuario 43]
+Quitar
+Usuario 44
+u44@noetinger.test
+[Administrador: Usuario 44]
+[Proyectos: Usuario 44]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 44]
+[Quitar a Usuario 44]
+Quitar
+Usuario 45
+u45@noetinger.test
+[Administrador: Usuario 45]
+[Proyectos: Usuario 45]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 45]
+[Quitar a Usuario 45]
+Quitar
+Usuario 46
+u46@noetinger.test
+[Administrador: Usuario 46]
+[Proyectos: Usuario 46]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 46]
+[Quitar a Usuario 46]
+Quitar
+Usuario 47
+u47@noetinger.test
+[Administrador: Usuario 47]
+[Proyectos: Usuario 47]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 47]
+[Quitar a Usuario 47]
+Quitar
+Usuario 48
+u48@noetinger.test
+[Administrador: Usuario 48]
+[Proyectos: Usuario 48]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 48]
+[Quitar a Usuario 48]
+Quitar
+Usuario 49
+u49@noetinger.test
+[Administrador: Usuario 49]
+[Proyectos: Usuario 49]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 49]
+[Quitar a Usuario 49]
+Quitar
+Usuario 50
+u50@noetinger.test
+[Administrador: Usuario 50]
+[Proyectos: Usuario 50]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 50]
+[Quitar a Usuario 50]
+Quitar
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–50 de 60
+Anterior
+Siguiente"
+`;
+
+exports[`shows 20 or 50 per page when chosen, from the first page > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;

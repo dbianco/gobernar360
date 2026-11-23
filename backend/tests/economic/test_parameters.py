@@ -1,3 +1,5 @@
+import uuid
+
 import pytest
 from sqlalchemy import select, text
 
@@ -141,6 +143,14 @@ def test_tool_subcategory_must_belong_to_its_category(client):
     )
 
     assert (created.status_code, patched.status_code, moved.status_code) == (422, 422, 200)
+    assert (
+        created.json()["error"]
+        == patched.json()["error"]
+        == {
+            "code": "invalid_reference",
+            "message": "subcategory_id does not belong to the tool's category.",
+        }
+    )
 
 
 def test_changing_the_category_of_a_tool_drops_a_subcategory_of_the_old_one(client):
@@ -171,7 +181,25 @@ def test_tool_cannot_reference_parameters_of_another_municipality(client):
     )
 
     assert (created.status_code, moved.status_code, subcategory.status_code) == (422, 422, 422)
-    assert created.json()["error"]["code"] == "invalid_reference"
+    assert created.json()["error"] == {
+        "code": "invalid_reference",
+        "message": "category_id does not reference an existing record.",
+    }
+
+
+def test_a_tool_cannot_name_a_subcategory_that_does_not_exist(client):
+    municipality = _admin(client)
+    category = make_tool_category(municipality)
+
+    created = client.post(
+        f"{BASE}/tools",
+        json={"category_id": str(category.id), "subcategory_id": str(uuid.uuid4()), "name": "x"},
+    )
+
+    assert created.json()["error"] == {
+        "code": "invalid_reference",
+        "message": "subcategory_id does not reference an existing record.",
+    }
 
 
 def test_unknown_audience_is_rejected(client):

@@ -1,12 +1,16 @@
 """Command-line administration tasks."""
 
+import logging
+import time
 from typing import Annotated
 
 import typer
 from sqlalchemy import select
 
+from gobernar360.core.config import get_settings
 from gobernar360.core.db import platform_session
 from gobernar360.core.security import hash_password, normalize_email
+from gobernar360.platform import outbox
 from gobernar360.platform.models import User
 from gobernar360.platform.schemas import MIN_PASSWORD_LENGTH
 
@@ -15,7 +19,7 @@ app = typer.Typer(no_args_is_help=True, help="gobernar360 administration command
 
 @app.callback()
 def main() -> None:
-    """Keeps sub-commands explicit even while there is only one."""
+    """Keeps sub-commands explicit."""
 
 
 @app.command()
@@ -56,3 +60,72 @@ def seed_demo(
         typer.echo(f"Demo data loaded. Every demo account uses the password: {DEMO_PASSWORD}")
     else:
         typer.echo("Demo data already present; nothing changed.")
+
+
+def _deliver(due_only: bool) -> outbox.DeliveryReport:
+    settings = get_settings()
+    return outbox.deliver(outbox.SmtpTransport(settings), settings.email_from, due_only=due_only)
+
+
+@app.command()
+def send_email(
+    watch: Annotated[
+        bool, typer.Option("--watch", help="Keep running and deliver new emails as they come.")
+    ] = False,
+    interval: Annotated[float, typer.Option(help="Seconds between checks with --watch.")] = 5,
+    retry_failed: Annotated[
+        bool, typer.Option("--retry-failed", help="Retry emails that ran out of attempts.")
+    ] = False,
+) -> None:
+    """Deliver the emails waiting in the outbox over SMTP.
+
+    Once: sends everything pending now, including emails waiting for a retry. With
+    --watch: keeps running, and retries failed deliveries with growing delays.
+    """
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
+    if retry_failed:
+        typer.echo(f"{outbox.requeue_failed()} failed emails queued again.")
+    if not watch:
+        report = _deliver(due_only=False)
+        typer.echo(
+            f"Sent: {report.sent}. Will be retried: {report.retrying}. Failed: {report.failed}."
+        )
+        if report.retrying or report.failed:
+            raise typer.Exit(1)
+        return
+    typer.echo(f"Delivering emails every {interval:g} s. Ctrl+C stops.")
+    try:
+        while True:
+            report = _deliver(due_only=True)
+            if report.attempted:
+                typer.echo(
+                    f"Sent: {report.sent}. Will be retried: {report.retrying}. "
+                    f"Failed: {report.failed}."
+                )
+            time.sleep(interval)
+    except KeyboardInterrupt:
+        typer.echo("Stopped.")
+
+
+@app.command()
+def notify(
+    send: Annotated[bool, typer.Option(help="Also deliver the queued emails right away.")] = True,
+) -> None:
+    """Email administrators about overdue milestones and missing status lights.
+
+    Run it on a schedule, e.g. daily: each event is emailed once to each person, however
+    many times the command runs.
+    """
+    from gobernar360.main import register_dashboards
+    from gobernar360.platform import notifications
+    from gobernar360.platform.clock import get_today
+
+    register_dashboards()
+    report = notifications.notify(get_today())
+    typer.echo(
+        f"Notification emails queued: {report.emails} "
+        f"({report.municipalities} municipalities checked)."
+    )
+    if send and report.emails:
+        delivery = _deliver(due_only=True)
+        typer.echo(f"Sent: {delivery.sent}. Will be retried: {delivery.retrying}.")

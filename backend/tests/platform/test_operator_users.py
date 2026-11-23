@@ -6,6 +6,7 @@ from gobernar360.main import create_app
 from gobernar360.platform.models import AuditLog
 from tests.factories import (
     DEFAULT_PASSWORD,
+    accept_invitation,
     admin_session,
     login,
     make_membership,
@@ -37,7 +38,7 @@ def _users_url(municipality) -> str:
 
 
 def _member(client, municipality, email: str) -> dict:
-    members = client.get(_users_url(municipality)).json()
+    members = client.get(_users_url(municipality)).json()["items"]
     return next(member for member in members if member["user"]["email"] == email)
 
 
@@ -45,7 +46,6 @@ def _new_user(**overrides):
     return {
         "email": "nuevo@noetinger.test",
         "full_name": "Nuevo Usuario",
-        "password": "long-password-1",
         "is_admin": False,
         "grants": {"demo": "viewer"},
     } | overrides
@@ -62,7 +62,7 @@ def test_operator_lists_only_the_users_of_that_municipality(operator_client, noe
     response = operator_client.get(_users_url(noetinger))
 
     assert response.status_code == 200
-    assert sorted(member["user"]["email"] for member in response.json()) == [
+    assert sorted(member["user"]["email"] for member in response.json()["items"]) == [
         "admin@noetinger.test",
         "carla@noetinger.test",
     ]
@@ -74,6 +74,7 @@ def test_operator_adds_a_user_with_grants_who_can_then_sign_in(operator_client, 
     assert response.status_code == 201
     assert response.json()["grants"] == {"demo": "viewer"}
     with _other_client() as other:
+        accept_invitation(other, "nuevo@noetinger.test", "long-password-1")
         me = login(other, "nuevo@noetinger.test", "long-password-1").json()
     assert me["active_municipality_id"] == str(noetinger.id)
     assert me["dashboards"] == [{"key": "demo", "level": "viewer"}]
@@ -91,6 +92,7 @@ def test_operator_adds_the_first_administrator_of_a_new_municipality(operator_cl
     assert response.status_code == 201
     assert response.json()["is_admin"] is True
     with _other_client() as other:
+        accept_invitation(other, "nuevo@noetinger.test", "long-password-1")
         me = login(other, "nuevo@noetinger.test", "long-password-1").json()
     assert me["memberships"][0]["is_admin"] is True
 
@@ -131,7 +133,9 @@ def test_operator_removes_a_user(operator_client, noetinger):
     response = operator_client.delete(f"{_users_url(noetinger)}/{carla['membership_id']}")
 
     assert response.status_code == 204
-    emails = [m["user"]["email"] for m in operator_client.get(_users_url(noetinger)).json()]
+    emails = [
+        m["user"]["email"] for m in operator_client.get(_users_url(noetinger)).json()["items"]
+    ]
     assert emails == ["admin@noetinger.test"]
 
 
@@ -213,7 +217,7 @@ def test_short_password_is_rejected(operator_client, noetinger):
 
 def test_municipality_admin_cannot_use_operator_user_routes(client, noetinger):
     login(client, "admin@noetinger.test")
-    carla_id = client.get("/api/admin/users").json()[1]["membership_id"]
+    carla_id = client.get("/api/admin/users").json()["items"][1]["membership_id"]
     url = _users_url(noetinger)
 
     listed = client.get(url)
@@ -226,7 +230,7 @@ def test_municipality_admin_cannot_use_operator_user_routes(client, noetinger):
 
 def test_municipality_admin_has_no_password_route(client, noetinger):
     login(client, "admin@noetinger.test")
-    carla_id = client.get("/api/admin/users").json()[1]["membership_id"]
+    carla_id = client.get("/api/admin/users").json()["items"][1]["membership_id"]
 
     response = client.put(
         f"/api/admin/users/{carla_id}/password", json={"password": "long-password-2"}

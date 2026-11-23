@@ -8,6 +8,7 @@ import { formatDate } from '../../platform/format'
 import { send, useAction, useAssignments } from './api'
 import { AssignmentForm, type AssignmentTarget } from './AssignmentForm'
 import type { Assignment } from './types'
+import { useConfirm } from '../../platform/confirmContext'
 
 const MOST_RECENT = 200
 
@@ -19,10 +20,13 @@ export function AssignmentsPanel(props: { target: AssignmentTarget; canEdit: boo
   const [adding, setAdding] = useState(false)
   const [editing, setEditing] = useState<Assignment | null>(null)
   const label = (key: string, options = {}) => t(`economic.assignments.${key}`, options)
+  const confirm = useConfirm()
+  const askDelete = (message: string) =>
+    confirm({ message, confirmLabel: t('app.delete'), danger: true })
 
-  function remove(id: string) {
-    if (!window.confirm(label('deleteConfirm'))) return
-    void action.run(() => send('DELETE', `/assignments/${id}`))
+  async function remove(id: string) {
+    if (!(await askDelete(label('deleteConfirm')))) return
+    await action.run(() => send('DELETE', `/assignments/${id}`))
   }
 
   return (

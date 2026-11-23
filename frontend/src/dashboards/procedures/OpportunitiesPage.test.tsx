@@ -1,8 +1,9 @@
 import { screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { OpportunitiesPage } from './OpportunitiesPage'
 import { makeOpportunities } from './testData'
 import { BASE, renderProcedures } from './testRender'
@@ -50,4 +51,23 @@ it('says so when no requirement has a source yet', async () => {
 
   expect(await screen.findByText(label('empty'))).toBeInTheDocument()
   expect(screen.queryByRole('table')).not.toBeInTheDocument()
+})
+
+it('says why the opportunities cannot be loaded', async () => {
+  mockApiError('get', `${BASE}/opportunities`, 500, 'boom')
+  renderProcedures(<OpportunitiesPage />, { level: 'viewer' })
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+})
+
+it('says when the search matches no source', async () => {
+  mockApi('get', `${BASE}/opportunities`, makeOpportunities())
+  renderProcedures(<OpportunitiesPage />, { level: 'viewer' })
+  const user = userEvent.setup()
+
+  await screen.findByText('RENAPER')
+  await user.type(screen.getByRole('searchbox', { name: t('app.search') }), 'zzz')
+
+  expect(await screen.findByText(t('app.noMatches'))).toBeInTheDocument()
+  expect(screen.queryByText('RENAPER')).toBeNull()
 })

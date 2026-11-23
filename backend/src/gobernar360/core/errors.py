@@ -7,11 +7,14 @@ from fastapi.responses import JSONResponse
 
 
 class ApiError(Exception):
-    def __init__(self, status_code: int, code: str, message: str) -> None:
+    def __init__(
+        self, status_code: int, code: str, message: str, details: list[dict] | None = None
+    ) -> None:
         super().__init__(message)
         self.status_code = status_code
         self.code = code
         self.message = message
+        self.details = details
 
 
 def error_response(status_code: int, code: str, message: str, **extra: object) -> JSONResponse:
@@ -34,10 +37,6 @@ def not_found(message: str = "Resource not found.") -> ApiError:
 
 def conflict(message: str) -> ApiError:
     return ApiError(409, "conflict", message)
-
-
-def account_exists() -> ApiError:
-    return ApiError(409, "account_exists", "An account with this email already exists.")
 
 
 def already_registered() -> ApiError:
@@ -72,10 +71,19 @@ def future_month() -> ApiError:
     return ApiError(422, "future_month", "A month that has not started cannot be given a status.")
 
 
+def invalid_token() -> ApiError:
+    return ApiError(410, "invalid_token", "The link is not valid: it expired or was already used.")
+
+
+def too_many_requests() -> ApiError:
+    return ApiError(429, "too_many_requests", "Too many requests. Try again later.")
+
+
 def install_error_handlers(app: FastAPI) -> None:
     @app.exception_handler(ApiError)
     async def handle_api_error(request: Request, exc: ApiError) -> JSONResponse:
-        return error_response(exc.status_code, exc.code, exc.message)
+        extra = {} if exc.details is None else {"details": exc.details}
+        return error_response(exc.status_code, exc.code, exc.message, **extra)
 
     @app.exception_handler(RequestValidationError)
     async def handle_validation_error(

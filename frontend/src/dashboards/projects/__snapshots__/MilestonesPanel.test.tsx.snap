@@ -1,0 +1,117 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds a milestone > screen at the end 1`] = `
+"Hitos
+Este proyecto todavía no tiene hitos.
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito"
+`;
+
+exports[`adds a milestone > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`deletes a milestone > screen at the end 1`] = `
+"Hitos
+Licitación
+01/06/2025
+Pendiente
+[Marcar como cumplido: Licitación]
+Marcar como cumplido
+[Eliminar hito: Licitación]
+Eliminar
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito"
+`;
+
+exports[`deletes a milestone > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`flags milestones in alert > screen at the end 1`] = `
+"Hitos
+Licitación
+01/06/2025
+En alerta
+[Marcar como cumplido: Licitación]
+Marcar como cumplido
+[Eliminar hito: Licitación]
+Eliminar
+Inicio de obra
+01/09/2025
+Pendiente
+[Marcar como cumplido: Inicio de obra]
+Marcar como cumplido
+[Eliminar hito: Inicio de obra]
+Eliminar
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito"
+`;
+
+exports[`flags milestones in alert > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`is read-only for viewers > screen at the end 1`] = `
+"Hitos
+Licitación
+01/06/2025
+Pendiente"
+`;
+
+exports[`is read-only for viewers > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`marks a milestone as completed > screen at the end 1`] = `
+"Hitos
+Licitación
+01/06/2025
+Pendiente
+[Marcar como cumplido: Licitación]
+Marcar como cumplido
+[Eliminar hito: Licitación]
+Eliminar
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito"
+`;
+
+exports[`marks a milestone as completed > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`marks a milestone that is neither done nor overdue as pending > screen at the end 1`] = `
+"Hitos
+Licitación
+01/06/2025
+Pendiente"
+`;
+
+exports[`marks a milestone that is neither done nor overdue as pending > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`reopens a completed milestone and shows when it was completed > screen at the end 1`] = `
+"Hitos
+Licitación
+01/06/2025
+Cumplido el 20/05/2025
+[Reabrir: Licitación]
+Reabrir
+[Eliminar hito: Licitación]
+Eliminar
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito"
+`;
+
+exports[`reopens a completed milestone and shows when it was completed > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows a pending milestone, an empty project, and why a change failed > screen at the end 1`] = `
+"Hitos
+Revisá los datos ingresados.
+Este proyecto todavía no tiene hitos.
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito"
+`;
+
+exports[`shows a pending milestone, an empty project, and why a change failed > screen at the start 1`] = `"[Cargando…]"`;

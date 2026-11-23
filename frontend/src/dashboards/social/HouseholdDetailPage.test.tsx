@@ -1,7 +1,7 @@
 import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Route, Routes } from 'react-router-dom'
-import { expect, it, vi } from 'vitest'
+import { expect, it } from 'vitest'
 
 import type { AccessLevel } from '../../platform/types'
 import { t } from '../../test/render'
@@ -19,6 +19,7 @@ import {
   VISIT,
 } from './testData'
 import { BASE, renderSocial } from './testRender'
+import { answerConfirm } from '../../test/confirm'
 
 const label = (key: string, options = {}) => t(`social.households.${key}`, options)
 
@@ -155,11 +156,11 @@ it('edits the household', async () => {
 
 it('deletes the household after confirming', async () => {
   const requests = mockApi('delete', `${BASE}/households/h-1`, null, 204)
-  vi.spyOn(window, 'confirm').mockReturnValue(true)
   renderDetail()
   const user = userEvent.setup()
 
   await user.click(await screen.findByRole('button', { name: t('app.delete') }))
+  await answerConfirm(user, true)
 
   expect(await screen.findByText('households list')).toBeInTheDocument()
   expect(requests).toHaveLength(1)
@@ -207,4 +208,84 @@ it('offers the first member as head and the following ones as children', async (
   await user.click(screen.getByRole('button', { name: label('addNamed', { name: 'Gómez, Ana' }) }))
   await waitFor(() => expect(next).toHaveLength(1))
   expect(next[0].body).toEqual({ relationship: 'child' })
+})
+
+it('keeps it when the deletion is not confirmed', async () => {
+  const deleted = mockApi('delete', `${BASE}/households/h-1`, null, 204)
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('app.delete') }))
+  await answerConfirm(user, false)
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+  expect(deleted).toHaveLength(0)
+})
+
+it('says why the deletion failed and stays', async () => {
+  mockApiError('delete', `${BASE}/households/h-1`, 409, 'in_use')
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('app.delete') }))
+  await answerConfirm(user, true)
+
+  expect(await screen.findByText(t('errors.in_use'))).toBeInTheDocument()
+})
+
+it('closes the edit form with Escape', async () => {
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('app.edit') }))
+  await screen.findByRole('dialog')
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})
+
+it('searches people to add, says when none match or there are more, and closes the search', async () => {
+  const search = mockApi('get', `${BASE}/people`, page([makePerson()], 40))
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addMember') }))
+  const find = screen.getByRole('textbox', { name: t('social.people.find') })
+  await user.type(find, 'pe')
+  // The only match is already a member.
+  expect(await screen.findByText(t('social.people.noMatches'))).toBeInTheDocument()
+  expect(screen.getByText(t('social.people.moreMatches'))).toBeInTheDocument()
+  expect(search.at(-1)?.url.searchParams.get('limit')).toBe('8')
+
+  mockApiError('get', `${BASE}/people`, 500, 'boom')
+  await user.type(find, 'r')
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+
+  await user.click(screen.getByRole('button', { name: t('app.cancel') }))
+  expect(screen.queryByRole('textbox', { name: t('social.people.find') })).toBeNull()
+  expect(screen.getByRole('button', { name: label('addMember') })).toBeInTheDocument()
+})
+
+it('says why the household cannot be loaded', async () => {
+  mockApiError('get', `${BASE}/households/h-9`, 404, 'not_found')
+  renderSocial(
+    <Routes>
+      <Route path="/d/social/households/:id" element={<HouseholdDetailPage />} />
+    </Routes>,
+    { route: '/d/social/households/h-9' },
+  )
+
+  expect(await screen.findByText(t('errors.not_found'))).toBeInTheDocument()
+})
+
+it('keeps the edit form open and says why saving failed', async () => {
+  mockApiError('patch', `${BASE}/households/h-1`, 422, 'validation_error')
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('app.edit') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('errors.validation_error'))).toBeInTheDocument()
 })

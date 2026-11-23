@@ -1,3 +1,5 @@
+import uuid
+
 import pytest
 from sqlalchemy import select
 
@@ -86,6 +88,10 @@ def test_only_municipal_sources_have_an_area(client):
     patched = client.patch(f"{BASE}/sources/{municipal.id}", json={"level": "provincial"})
 
     assert created.status_code == 422
+    assert created.json()["error"] == {
+        "code": "validation_error",
+        "message": "Only a municipal source belongs to an area.",
+    }
     # Changing the level away from municipal drops the area instead of failing.
     assert patched.status_code == 200
     assert (patched.json()["level"], patched.json()["area"]) == ("provincial", None)
@@ -250,3 +256,17 @@ def test_creating_a_requirement_is_audited(client):
         "procedures_requirements",
         created.json()["id"],
     )
+
+
+def test_a_source_cannot_name_an_area_that_does_not_exist(client):
+    signed_in(client, "admin")
+
+    created = client.post(
+        f"{BASE}/sources",
+        json={"name": "Rentas", "level": "municipal", "area_id": str(uuid.uuid4())},
+    )
+
+    assert created.json()["error"] == {
+        "code": "invalid_reference",
+        "message": "area_id does not reference an existing record.",
+    }

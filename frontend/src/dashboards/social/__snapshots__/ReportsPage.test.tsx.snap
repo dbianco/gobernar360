@@ -1,0 +1,242 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks for the reports of another year > screen at the end 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las prestaciones y las intervenciones.
+Prestaciones por categoría
+Ver como tabla
+Prestaciones por mes
+Ver como tabla
+Intervenciones por tipo
+Ver como tabla
+Intervenciones por mes
+Ver como tabla
+Personas por barrio
+Ver como tabla
+Prestaciones por barrio
+Ver como tabla"
+`;
+
+exports[`asks for the reports of another year > screen at the start 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las prestaciones y las intervenciones.
+[Cargando…]"
+`;
+
+exports[`breaks deliveries, interventions and people down > screen at the end 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las prestaciones y las intervenciones.
+Prestaciones por categoría
+Ver como gráfico
+Alimentos
+9
+Hábitat
+2
+Prestaciones por mes
+Ver como gráfico
+Enero
+0
+Febrero
+0
+Marzo
+6
+Abril
+5
+Mayo
+0
+Junio
+0
+Julio
+0
+Agosto
+0
+Septiembre
+0
+Octubre
+0
+Noviembre
+0
+Diciembre
+0
+Intervenciones por tipo
+Ver como gráfico
+Visita a domicilio
+3
+Entrevista presencial
+2
+Intervenciones por mes
+Ver como gráfico
+Enero
+0
+Febrero
+1
+Marzo
+4
+Abril
+0
+Mayo
+0
+Junio
+0
+Julio
+0
+Agosto
+0
+Septiembre
+0
+Octubre
+0
+Noviembre
+0
+Diciembre
+0
+Personas por barrio
+Ver como gráfico
+Sur
+7
+Sin barrio
+1
+Prestaciones por barrio
+Ver como gráfico
+Sur
+8
+Norte
+3"
+`;
+
+exports[`breaks deliveries, interventions and people down > screen at the start 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las prestaciones y las intervenciones.
+[Cargando…]"
+`;
+
+exports[`says why the reports cannot be loaded > screen at the end 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las prestaciones y las intervenciones.
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why the reports cannot be loaded > screen at the start 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las prestaciones y las intervenciones.
+[Cargando…]"
+`;
+
+exports[`shows a month chart without bars as empty > screen at the end 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las prestaciones y las intervenciones.
+Prestaciones por categoría
+Ver como tabla
+Prestaciones por mes
+Sin datos para mostrar.
+Intervenciones por tipo
+Ver como tabla
+Intervenciones por mes
+Ver como tabla
+Personas por barrio
+Ver como tabla
+Prestaciones por barrio
+Ver como tabla"
+`;
+
+exports[`shows a month chart without bars as empty > screen at the start 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las prestaciones y las intervenciones.
+[Cargando…]"
+`;

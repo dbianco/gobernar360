@@ -1,0 +1,656 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds an intervention type > screen at the end 1`] = `
+"Categorías de prestaciones
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+Hábitat
+[Renombrar Hábitat]
+Editar
+[Eliminar Hábitat]
+Eliminar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Tipos de intervención
+Entrevista presencial
+[Renombrar Entrevista presencial]
+Editar
+[Eliminar Entrevista presencial]
+Eliminar
+Visita a domicilio
+[Renombrar Visita a domicilio]
+Editar
+[Eliminar Visita a domicilio]
+Eliminar
+[Nuevo tipo de intervención]
+(Nuevo tipo de intervención)
+Agregar
+Prestaciones
+Agregar prestación
+Buscar
+(Prestación o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la prestación que el área entrega.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación, por ejemplo Alimentos.
+Descripción
+[Qué significa Descripción]
+Detalle de qué incluye la prestación.
+Chapas
+Hábitat
+—
+[Editar Chapas]
+Editar
+[Eliminar Chapas]
+Eliminar
+Módulo alimentario
+Alimentos
+Caja mensual.
+[Editar Módulo alimentario]
+Editar
+[Eliminar Módulo alimentario]
+Eliminar"
+`;
+
+exports[`adds an intervention type > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`asks for a category before any benefit > screen at the end 1`] = `
+"Categorías de prestaciones
+Todavía no hay elementos cargados.
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Tipos de intervención
+Entrevista presencial
+[Renombrar Entrevista presencial]
+Editar
+[Eliminar Entrevista presencial]
+Eliminar
+Visita a domicilio
+[Renombrar Visita a domicilio]
+Editar
+[Eliminar Visita a domicilio]
+Eliminar
+[Nuevo tipo de intervención]
+(Nuevo tipo de intervención)
+Agregar
+Prestaciones
+Creá una categoría para poder cargar prestaciones."
+`;
+
+exports[`asks for a category before any benefit > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`closes the form with Escape without saving > screen at the end 1`] = `
+"Categorías de prestaciones
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+Hábitat
+[Renombrar Hábitat]
+Editar
+[Eliminar Hábitat]
+Eliminar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Tipos de intervención
+Entrevista presencial
+[Renombrar Entrevista presencial]
+Editar
+[Eliminar Entrevista presencial]
+Eliminar
+Visita a domicilio
+[Renombrar Visita a domicilio]
+Editar
+[Eliminar Visita a domicilio]
+Eliminar
+[Nuevo tipo de intervención]
+(Nuevo tipo de intervención)
+Agregar
+Prestaciones
+Agregar prestación
+Buscar
+(Prestación o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la prestación que el área entrega.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación, por ejemplo Alimentos.
+Descripción
+[Qué significa Descripción]
+Detalle de qué incluye la prestación.
+Chapas
+Hábitat
+—
+[Editar Chapas]
+Editar
+[Eliminar Chapas]
+Eliminar
+Módulo alimentario
+Alimentos
+Caja mensual.
+[Editar Módulo alimentario]
+Editar
+[Eliminar Módulo alimentario]
+Eliminar"
+`;
+
+exports[`closes the form with Escape without saving > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`creates a benefit from the form > screen at the end 1`] = `
+"Categorías de prestaciones
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+Hábitat
+[Renombrar Hábitat]
+Editar
+[Eliminar Hábitat]
+Eliminar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Tipos de intervención
+Entrevista presencial
+[Renombrar Entrevista presencial]
+Editar
+[Eliminar Entrevista presencial]
+Eliminar
+Visita a domicilio
+[Renombrar Visita a domicilio]
+Editar
+[Eliminar Visita a domicilio]
+Eliminar
+[Nuevo tipo de intervención]
+(Nuevo tipo de intervención)
+Agregar
+Prestaciones
+Agregar prestación
+Buscar
+(Prestación o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la prestación que el área entrega.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación, por ejemplo Alimentos.
+Descripción
+[Qué significa Descripción]
+Detalle de qué incluye la prestación.
+Chapas
+Hábitat
+—
+[Editar Chapas]
+Editar
+[Eliminar Chapas]
+Eliminar
+Módulo alimentario
+Alimentos
+Caja mensual.
+[Editar Módulo alimentario]
+Editar
+[Eliminar Módulo alimentario]
+Eliminar"
+`;
+
+exports[`creates a benefit from the form > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`edits a benefit > screen at the end 1`] = `
+"Categorías de prestaciones
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+Hábitat
+[Renombrar Hábitat]
+Editar
+[Eliminar Hábitat]
+Eliminar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Tipos de intervención
+Entrevista presencial
+[Renombrar Entrevista presencial]
+Editar
+[Eliminar Entrevista presencial]
+Eliminar
+Visita a domicilio
+[Renombrar Visita a domicilio]
+Editar
+[Eliminar Visita a domicilio]
+Eliminar
+[Nuevo tipo de intervención]
+(Nuevo tipo de intervención)
+Agregar
+Prestaciones
+Agregar prestación
+Buscar
+(Prestación o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la prestación que el área entrega.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación, por ejemplo Alimentos.
+Descripción
+[Qué significa Descripción]
+Detalle de qué incluye la prestación.
+Chapas
+Hábitat
+—
+[Editar Chapas]
+Editar
+[Eliminar Chapas]
+Eliminar
+Módulo alimentario
+Alimentos
+Caja mensual.
+[Editar Módulo alimentario]
+Editar
+[Eliminar Módulo alimentario]
+Eliminar"
+`;
+
+exports[`edits a benefit > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`explains that a benefit already delivered cannot be deleted > screen at the end 1`] = `
+"No se puede eliminar porque está siendo usado por otros registros.
+Categorías de prestaciones
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+Hábitat
+[Renombrar Hábitat]
+Editar
+[Eliminar Hábitat]
+Eliminar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Tipos de intervención
+Entrevista presencial
+[Renombrar Entrevista presencial]
+Editar
+[Eliminar Entrevista presencial]
+Eliminar
+Visita a domicilio
+[Renombrar Visita a domicilio]
+Editar
+[Eliminar Visita a domicilio]
+Eliminar
+[Nuevo tipo de intervención]
+(Nuevo tipo de intervención)
+Agregar
+Prestaciones
+Agregar prestación
+Buscar
+(Prestación o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la prestación que el área entrega.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación, por ejemplo Alimentos.
+Descripción
+[Qué significa Descripción]
+Detalle de qué incluye la prestación.
+Chapas
+Hábitat
+—
+[Editar Chapas]
+Editar
+[Eliminar Chapas]
+Eliminar
+Módulo alimentario
+Alimentos
+Caja mensual.
+[Editar Módulo alimentario]
+Editar
+[Eliminar Módulo alimentario]
+Eliminar"
+`;
+
+exports[`explains that a benefit already delivered cannot be deleted > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`keeps the benefit form open and says why saving failed > screen at the end 1`] = `
+"Categorías de prestaciones
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+Hábitat
+[Renombrar Hábitat]
+Editar
+[Eliminar Hábitat]
+Eliminar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Tipos de intervención
+Entrevista presencial
+[Renombrar Entrevista presencial]
+Editar
+[Eliminar Entrevista presencial]
+Eliminar
+Visita a domicilio
+[Renombrar Visita a domicilio]
+Editar
+[Eliminar Visita a domicilio]
+Eliminar
+[Nuevo tipo de intervención]
+(Nuevo tipo de intervención)
+Agregar
+Prestaciones
+Agregar prestación
+Buscar
+(Prestación o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la prestación que el área entrega.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación, por ejemplo Alimentos.
+Descripción
+[Qué significa Descripción]
+Detalle de qué incluye la prestación.
+Chapas
+Hábitat
+—
+[Editar Chapas]
+Editar
+[Eliminar Chapas]
+Eliminar
+Módulo alimentario
+Alimentos
+Caja mensual.
+[Editar Módulo alimentario]
+Editar
+[Eliminar Módulo alimentario]
+Eliminar
+Agregar prestación
+La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
+Nombre
+Descripción
+Categoría
+Alimentos
+Hábitat
+Cancelar
+Guardar"
+`;
+
+exports[`keeps the benefit form open and says why saving failed > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lists the catalogs of the municipality > screen at the end 1`] = `
+"Categorías de prestaciones
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+Hábitat
+[Renombrar Hábitat]
+Editar
+[Eliminar Hábitat]
+Eliminar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Tipos de intervención
+Entrevista presencial
+[Renombrar Entrevista presencial]
+Editar
+[Eliminar Entrevista presencial]
+Eliminar
+Visita a domicilio
+[Renombrar Visita a domicilio]
+Editar
+[Eliminar Visita a domicilio]
+Eliminar
+[Nuevo tipo de intervención]
+(Nuevo tipo de intervención)
+Agregar
+Prestaciones
+Agregar prestación
+Buscar
+(Prestación o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la prestación que el área entrega.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación, por ejemplo Alimentos.
+Descripción
+[Qué significa Descripción]
+Detalle de qué incluye la prestación.
+Chapas
+Hábitat
+—
+[Editar Chapas]
+Editar
+[Eliminar Chapas]
+Eliminar
+Módulo alimentario
+Alimentos
+Caja mensual.
+[Editar Módulo alimentario]
+Editar
+[Eliminar Módulo alimentario]
+Eliminar"
+`;
+
+exports[`lists the catalogs of the municipality > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`renames and deletes items of /benefit-categories > screen at the end 1`] = `
+"Categorías de prestaciones
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+Hábitat
+[Renombrar Hábitat]
+Editar
+[Eliminar Hábitat]
+Eliminar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Tipos de intervención
+Entrevista presencial
+[Renombrar Entrevista presencial]
+Editar
+[Eliminar Entrevista presencial]
+Eliminar
+Visita a domicilio
+[Renombrar Visita a domicilio]
+Editar
+[Eliminar Visita a domicilio]
+Eliminar
+[Nuevo tipo de intervención]
+(Nuevo tipo de intervención)
+Agregar
+Prestaciones
+Agregar prestación
+Buscar
+(Prestación o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la prestación que el área entrega.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación, por ejemplo Alimentos.
+Descripción
+[Qué significa Descripción]
+Detalle de qué incluye la prestación.
+Chapas
+Hábitat
+—
+[Editar Chapas]
+Editar
+[Eliminar Chapas]
+Eliminar
+Módulo alimentario
+Alimentos
+Caja mensual.
+[Editar Módulo alimentario]
+Editar
+[Eliminar Módulo alimentario]
+Eliminar"
+`;
+
+exports[`renames and deletes items of /benefit-categories > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`renames and deletes items of /intervention-types > screen at the end 1`] = `
+"Categorías de prestaciones
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+Hábitat
+[Renombrar Hábitat]
+Editar
+[Eliminar Hábitat]
+Eliminar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Tipos de intervención
+Entrevista presencial
+[Renombrar Entrevista presencial]
+Editar
+[Eliminar Entrevista presencial]
+Eliminar
+Visita a domicilio
+[Renombrar Visita a domicilio]
+Editar
+[Eliminar Visita a domicilio]
+Eliminar
+[Nuevo tipo de intervención]
+(Nuevo tipo de intervención)
+Agregar
+Prestaciones
+Agregar prestación
+Buscar
+(Prestación o categoría)
+Nombre
+[Qué significa Nombre]
+Nombre de la prestación que el área entrega.
+Categoría
+[Qué significa Categoría]
+Grupo al que pertenece la prestación, por ejemplo Alimentos.
+Descripción
+[Qué significa Descripción]
+Detalle de qué incluye la prestación.
+Chapas
+Hábitat
+—
+[Editar Chapas]
+Editar
+[Eliminar Chapas]
+Eliminar
+Módulo alimentario
+Alimentos
+Caja mensual.
+[Editar Módulo alimentario]
+Editar
+[Eliminar Módulo alimentario]
+Eliminar"
+`;
+
+exports[`renames and deletes items of /intervention-types > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says when the benefit search matches nothing > screen at the end 1`] = `
+"Categorías de prestaciones
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+Hábitat
+[Renombrar Hábitat]
+Editar
+[Eliminar Hábitat]
+Eliminar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Tipos de intervención
+Entrevista presencial
+[Renombrar Entrevista presencial]
+Editar
+[Eliminar Entrevista presencial]
+Eliminar
+Visita a domicilio
+[Renombrar Visita a domicilio]
+Editar
+[Eliminar Visita a domicilio]
+Eliminar
+[Nuevo tipo de intervención]
+(Nuevo tipo de intervención)
+Agregar
+Prestaciones
+Agregar prestación
+Buscar
+(Prestación o categoría)
+[Borrar la búsqueda]
+Nada coincide con la búsqueda."
+`;
+
+exports[`says when the benefit search matches nothing > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says when there are categories but no benefits yet > screen at the end 1`] = `
+"Categorías de prestaciones
+Alimentos
+[Renombrar Alimentos]
+Editar
+[Eliminar Alimentos]
+Eliminar
+Hábitat
+[Renombrar Hábitat]
+Editar
+[Eliminar Hábitat]
+Eliminar
+[Nueva categoría]
+(Nueva categoría)
+Agregar
+Tipos de intervención
+Entrevista presencial
+[Renombrar Entrevista presencial]
+Editar
+[Eliminar Entrevista presencial]
+Eliminar
+Visita a domicilio
+[Renombrar Visita a domicilio]
+Editar
+[Eliminar Visita a domicilio]
+Eliminar
+[Nuevo tipo de intervención]
+(Nuevo tipo de intervención)
+Agregar
+Prestaciones
+Agregar prestación
+Todavía no hay prestaciones cargadas."
+`;
+
+exports[`says when there are categories but no benefits yet > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows an error instead of empty lists when loading fails > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
+
+exports[`shows an error instead of empty lists when loading fails > screen at the start 1`] = `"[Cargando…]"`;

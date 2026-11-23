@@ -9,6 +9,9 @@ import { send, useAction, useAreas, useSources } from './api'
 import { RowActions } from './RowActions'
 import { SourceForm } from './SourceForm'
 import type { Source } from './types'
+import { Pager } from '../../platform/Pager'
+import { useLocalTable } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
 
 /** The municipality's areas and the sources of what procedures ask for. Dashboard admins only. */
 export function ParametersPage() {
@@ -19,6 +22,11 @@ export function ParametersPage() {
   const [editing, setEditing] = useState<Source | 'new' | null>(null)
   const label = (key: string, options = {}) => t(`procedures.parameters.${key}`, options)
   const help = (key: string) => t(`procedures.help.parametersPage.${key}`)
+  const table = useLocalTable(
+    'procedures.sources',
+    sources.data,
+    (source) => source.name,
+  )
 
   const failed = [areas, sources].find((query) => query.isError)
   if (failed) return <Alert color="red">{errorMessage(failed.error)}</Alert>
@@ -52,7 +60,15 @@ export function ParametersPage() {
           <Button onClick={() => setEditing('new')}>{label('addSource')}</Button>
         </Group>
         {sources.data.length === 0 && <Text c="dimmed">{label('noSources')}</Text>}
-        {sources.data.length > 0 && (
+        {table.hasItems && (
+          <SearchInput
+            value={table.query}
+            onChange={table.setQuery}
+            placeholder={label('searchHint')}
+          />
+        )}
+        {table.hasItems && table.total === 0 && <Text c="dimmed">{t('app.noMatches')}</Text>}
+        {table.rows.length > 0 && (
           <Table.ScrollContainer minWidth={560}>
             <Table>
               <Table.Thead>
@@ -64,7 +80,7 @@ export function ParametersPage() {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                {sources.data.map((source) => (
+                {table.rows.map((source) => (
                   <Table.Tr key={source.id}>
                     <Table.Td>{source.name}</Table.Td>
                     <Table.Td>{t(`procedures.levels.${source.level}`)}</Table.Td>
@@ -85,6 +101,7 @@ export function ParametersPage() {
             </Table>
           </Table.ScrollContainer>
         )}
+        <Pager {...table.pager} />
       </Stack>
       <Modal
         opened={editing !== null}

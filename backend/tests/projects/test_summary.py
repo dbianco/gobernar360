@@ -73,6 +73,9 @@ def test_pure_summary_of_no_projects_has_no_division_errors():
     summary = compute_summary([], total_budget=Decimal("0"), today=TODAY)
 
     assert summary.average_progress == 0
+    assert (summary.budget.planned, summary.budget.executed) == (Decimal("0"), Decimal("0"))
+    assert isinstance(summary.budget.planned, Decimal)
+    assert isinstance(summary.budget.executed, Decimal)
     assert summary.budget.planned_ratio is None
     assert summary.budget.executed_ratio is None
 
@@ -94,6 +97,7 @@ def test_summary_counts_projects_by_effective_status(client, plan):
     _project(plan, name="En curso", status="in_progress", end_date=FUTURE, manual_progress=40)
     _project(plan, name="Vencido", status="in_progress", end_date=PAST, manual_progress=20)
     _project(plan, name="Terminado", status="finished", end_date=PAST)
+    _project(plan, name="Otro terminado", status="finished", end_date=PAST)
 
     summary = _summary(client, plan)
 
@@ -101,10 +105,10 @@ def test_summary_counts_projects_by_effective_status(client, plan):
         "not_started": 1,
         "in_progress": 1,
         "delayed": 1,
-        "finished": 1,
+        "finished": 2,
     }
-    assert (summary["active_count"], summary["finished_count"]) == (3, 1)
-    assert summary["average_progress"] == 40  # (0 + 40 + 20 + 100) / 4
+    assert (summary["active_count"], summary["finished_count"]) == (3, 2)
+    assert summary["average_progress"] == 52  # (0 + 40 + 20 + 100 + 100) / 5
 
 
 def test_summary_budget_ratios(client, plan):

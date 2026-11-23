@@ -6,12 +6,14 @@ import { downloadUrl } from '../../api/client'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { Pager } from '../../platform/Pager'
-import { hasLevel } from '../../platform/types'
+import { hasLevel } from '../../platform/access'
 import { currentYear } from '../../platform/years'
 import { YearSelect } from '../../platform/YearSelect'
-import { BASE, PAGE_SIZE, useInterventions, useInterventionTypes } from './api'
+import { BASE, useInterventions, useInterventionTypes } from './api'
 import { InterventionForm } from './InterventionForm'
 import { InterventionsTable } from './RecordTables'
+import { fitPage, usePaging } from '../../platform/paging'
+import { SearchInput } from '../../platform/SearchInput'
 
 /** Every intervention of a year, with anyone. */
 export function InterventionsPage() {
@@ -20,14 +22,17 @@ export function InterventionsPage() {
   const types = useInterventionTypes()
   const [year, setYear] = useState(currentYear)
   const [typeId, setTypeId] = useState('')
-  const [offset, setOffset] = useState(0)
+  const [q, setQ] = useState('')
+  const paging = usePaging('social.interventions')
+  const { limit, offset, setOffset } = paging
   const [adding, setAdding] = useState(false)
-  const interventions = useInterventions({
+  const interventions = useInterventions({ q,
     year,
     intervention_type_id: typeId,
-    limit: PAGE_SIZE,
+    limit,
     offset,
   })
+  fitPage(paging, interventions)
   const canEdit = hasLevel(me, 'social', 'editor')
   const label = (key: string) => t(`social.interventions.${key}`)
 
@@ -35,6 +40,14 @@ export function InterventionsPage() {
     <Stack>
       <Group justify="space-between" align="flex-end">
         <Group align="flex-end" gap="lg">
+          <SearchInput
+            value={q}
+            onChange={(value) => {
+              setQ(value)
+              setOffset(0)
+            }}
+            placeholder={label('searchHint')}
+          />
           <YearSelect
             value={year}
             onChange={(value) => {
@@ -67,12 +80,7 @@ export function InterventionsPage() {
         <InterventionsTable items={interventions.data.items} showPerson canEdit={canEdit} />
       )}
       {interventions.data && (
-        <Pager
-          total={interventions.data.total}
-          limit={PAGE_SIZE}
-          offset={offset}
-          onChange={setOffset}
-        />
+        <Pager {...paging.pager(interventions.data.total)} />
       )}
       <Modal opened={adding} onClose={() => setAdding(false)} title={label('add')} size="lg">
         {adding && <InterventionForm onDone={() => setAdding(false)} />}

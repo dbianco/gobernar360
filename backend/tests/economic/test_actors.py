@@ -296,3 +296,37 @@ def test_actor_search_ignores_accents(client):
     assert _names(client.get(f"{BASE}/actors", params={"q": "panaderia"})) == [
         "Panadería La Espiga"
     ]
+
+
+def test_a_cuit_typed_with_spaces_or_dashes_is_stored_as_digits(client):
+    _editor(client)
+
+    spaced = client.post(f"{BASE}/actors", json={"name": "a", "cuit": " 30 71234567 8 "})
+    mixed = client.post(f"{BASE}/actors", json={"name": "b", "cuit": "30-71234567 -8"})
+
+    assert (spaced.json()["cuit"], mixed.json()["cuit"]) == ("30712345678", "30712345678")
+
+
+def test_a_malformed_cuit_is_explained(client):
+    _editor(client)
+
+    response = client.post(f"{BASE}/actors", json={"name": "x", "cuit": "30-7123456-8"})
+
+    assert response.json()["error"]["details"] == [
+        {"field": "cuit", "message": "Value error, must have 11 digits"}
+    ]
+
+
+def test_people_of_an_actor_who_share_a_last_name_are_listed_by_first_name(client):
+    municipality = _editor(client)
+    actor = make_actor(municipality)
+    for first_name in ("Zoe", "Ana"):
+        person = make_economic_person(municipality, first_name, "Pérez")
+        make_actor_person(municipality, actor, person, "employee")
+
+    people = client.get(f"{BASE}/actors/{actor.id}").json()["people"]
+
+    assert [link["person"]["person"]["full_name"] for link in people] == [
+        "Pérez, Ana",
+        "Pérez, Zoe",
+    ]

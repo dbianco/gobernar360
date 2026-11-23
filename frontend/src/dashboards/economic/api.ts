@@ -18,7 +18,6 @@ import type {
 
 export const BASE = '/dashboards/economic'
 export const BASE_PATH = '/d/economic'
-export const PAGE_SIZE = 50
 const KEY = 'economic'
 
 function useGet<T>(name: string, path: string, query?: Query, enabled = true) {

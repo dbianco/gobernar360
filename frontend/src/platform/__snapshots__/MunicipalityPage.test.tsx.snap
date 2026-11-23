@@ -1,0 +1,796 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds an administrator, who is invited by email > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Le enviamos un email a ines@noetinger.test para que pueda ingresar.
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`adds an administrator, who is invited by email > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`changes the kind, and says the details were saved > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Datos guardados.
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`changes the kind, and says the details were saved > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`does not save a blank name, and shows why a save failed > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Revisá los datos ingresados.
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`does not save a blank name, and shows why a save failed > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`enables a dashboard > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`enables a dashboard > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`keeps the page away from non-operators > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Configuración
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`keeps the page away from non-operators > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`keeps the password form open when the server refuses, and closes it with Escape > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`keeps the password form open when the server refuses, and closes it with Escape > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`links to the configuration of the municipality > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`links to the configuration of the municipality > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lists the users of the municipality and changes a level > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`lists the users of the municipality and changes a level > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`names a dashboard this version does not know by its key > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Proyectos
+mystery
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)"
+`;
+
+exports[`names a dashboard this version does not know by its key > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`names the access column of a dashboard this version does not know by its key > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+mystery
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[mystery: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`names the access column of a dashboard this version does not know by its key > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`rejects a short new password without calling the server > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar
+Cambiar contraseña de Carla Carga
+Contraseña nueva
+Mínimo 10 caracteres. Se cierran todas las sesiones abiertas de la cuenta.
+[Toggle password visibility]
+La contraseña debe tener al menos 10 caracteres.
+Guardar"
+`;
+
+exports[`rejects a short new password without calling the server > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`renames the municipality > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Datos guardados.
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`renames the municipality > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says so when the municipality does not exist > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+El municipio no existe."
+`;
+
+exports[`says so when the municipality does not exist > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`sets a new password for a user > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Contraseña cambiada: Carla Carga
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`sets a new password for a user > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows an error when the municipalities cannot be loaded > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`shows an error when the municipalities cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`turns a dashboard off, and shows why a change failed > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Revisá los datos ingresados.
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`turns a dashboard off, and shows why a change failed > screen at the start 1`] = `"[Cargando…]"`;

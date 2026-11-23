@@ -12,7 +12,8 @@ from gobernar360.dashboards.economic.access import Editor, Viewer
 from gobernar360.dashboards.economic.models import Actor, Assignment, EconomicPerson, Tool
 from gobernar360.dashboards.economic.schemas import AssignmentIn, AssignmentOut, AssignmentPatch
 from gobernar360.platform.api_types import Year
-from gobernar360.platform.listing import Page, PagingParams, page_of
+from gobernar360.platform.listing import Page, PagingParams, SearchText, every_word, page_of
+from gobernar360.platform.models import Person
 from gobernar360.platform.tenant_crud import (
     create_entity,
     delete_entity,
@@ -36,8 +37,27 @@ def list_assignments(
     tool_id: uuid.UUID | None = None,
     actor_id: uuid.UUID | None = None,
     person_id: uuid.UUID | None = None,
+    q: SearchText = None,
 ) -> Page[AssignmentOut]:
     query = select(Assignment).order_by(Assignment.date.desc(), Assignment.id)
+    if q and q.strip():
+        # The tool, or who received it: an actor, or a person by name or document.
+        query = (
+            query.join(Tool, Assignment.tool_id == Tool.id)
+            .outerjoin(Actor, Assignment.actor_id == Actor.id)
+            .outerjoin(EconomicPerson, Assignment.person_id == EconomicPerson.id)
+            .outerjoin(Person, EconomicPerson.person_id == Person.id)
+            .where(
+                *every_word(
+                    q,
+                    Tool.name,
+                    Actor.name,
+                    Person.first_name,
+                    Person.last_name,
+                    document=Person.dni,
+                )
+            )
+        )
     if year is not None:
         query = query.where(in_year(year))
     for column, value in (

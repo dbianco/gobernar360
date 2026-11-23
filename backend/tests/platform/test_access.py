@@ -157,3 +157,52 @@ def test_me_omits_dashboards_without_access(demo_client):
     body = login(demo_client, "ana@noetinger.test").json()
 
     assert body["dashboards"] == []
+
+
+def test_without_an_active_municipality_the_reason_is_given(demo_client):
+    make_user("operator@gobernar360.test", operator=True)
+    make_municipality("Noetinger")
+    login(demo_client, "operator@gobernar360.test")
+
+    response = demo_client.get("/api/dashboards/demo/read")
+
+    assert response.json()["error"] == {
+        "code": "forbidden",
+        "message": "No active municipality is selected.",
+    }
+
+
+def test_a_removed_membership_is_refused_at_once_with_its_reason(demo_client):
+    _, membership = _member(grants={"demo": "viewer"})
+    login(demo_client, "ana@noetinger.test")
+
+    with admin_session() as session, session.begin():
+        session.execute(delete(Membership).where(Membership.id == membership.id))
+    response = demo_client.get("/api/dashboards/demo/read")
+
+    assert response.json()["error"] == {
+        "code": "forbidden",
+        "message": "You do not belong to this municipality.",
+    }
+
+
+def test_a_membership_elsewhere_does_not_open_the_active_municipality(demo_client):
+    municipality, membership = _member(grants={"demo": "viewer"})
+    user = make_user("beto@noetinger.test")
+    make_membership(user, make_municipality("Saira"), grants={"demo": "admin"}, enable=["demo"])
+    make_membership(user, municipality)
+    login(demo_client, "beto@noetinger.test")
+    demo_client.post(
+        "/api/auth/active-municipality", json={"municipality_id": str(municipality.id)}
+    )
+
+    with admin_session() as session, session.begin():
+        session.execute(
+            delete(Membership).where(
+                Membership.user_id == user.id, Membership.municipality_id == municipality.id
+            )
+        )
+
+    assert demo_client.get("/api/dashboards/demo/read").json()["error"]["message"] == (
+        "You do not belong to this municipality."
+    )

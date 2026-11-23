@@ -1,0 +1,138 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`lists each source with what is asked of people that it already holds > screen at the end 1`] = `
+"Cada fuente con lo que se le pide al solicitante que ella ya tiene. Arriba, las del propio municipio: son datos que ya están en casa.
+Descargar oportunidades
+Buscar
+(Nombre de la fuente)
+Fuente
+[Qué significa Fuente]
+Organismo u oficina que ya tiene el dato.
+Nivel
+[Qué significa Nivel]
+Municipal: el dato ya está en el municipio. Provincial, nacional u otro: habría que acordar el acceso.
+Área
+[Qué significa Área]
+Área municipal a la que pertenece la fuente.
+Requisitos
+[Qué significa Requisitos]
+Cuántos requisitos distintos de esta fuente se piden en trámites vigentes.
+Trámites
+[Qué significa Trámites]
+En cuántos trámites vigentes distintos se pide algo de esta fuente.
+Gestiones por año
+[Qué significa Gestiones por año]
+Suma de la cantidad anual estimada de esos trámites. Cada trámite cuenta una sola vez.
+Rentas municipal
+Municipal
+Rentas
+2
+6
+3.190
+RENAPER
+Nacional
+—
+1
+9
+7.460
+Lo aporta el solicitante
+—
+—
+3
+7
+2.620"
+`;
+
+exports[`lists each source with what is asked of people that it already holds > screen at the start 1`] = `
+"Cada fuente con lo que se le pide al solicitante que ella ya tiene. Arriba, las del propio municipio: son datos que ya están en casa.
+Descargar oportunidades
+[Cargando…]"
+`;
+
+exports[`offers the download > screen at the end 1`] = `
+"Cada fuente con lo que se le pide al solicitante que ella ya tiene. Arriba, las del propio municipio: son datos que ya están en casa.
+Descargar oportunidades
+Buscar
+(Nombre de la fuente)
+Fuente
+[Qué significa Fuente]
+Organismo u oficina que ya tiene el dato.
+Nivel
+[Qué significa Nivel]
+Municipal: el dato ya está en el municipio. Provincial, nacional u otro: habría que acordar el acceso.
+Área
+[Qué significa Área]
+Área municipal a la que pertenece la fuente.
+Requisitos
+[Qué significa Requisitos]
+Cuántos requisitos distintos de esta fuente se piden en trámites vigentes.
+Trámites
+[Qué significa Trámites]
+En cuántos trámites vigentes distintos se pide algo de esta fuente.
+Gestiones por año
+[Qué significa Gestiones por año]
+Suma de la cantidad anual estimada de esos trámites. Cada trámite cuenta una sola vez.
+Rentas municipal
+Municipal
+Rentas
+2
+6
+3.190
+RENAPER
+Nacional
+—
+1
+9
+7.460
+Lo aporta el solicitante
+—
+—
+3
+7
+2.620"
+`;
+
+exports[`offers the download > screen at the start 1`] = `
+"Cada fuente con lo que se le pide al solicitante que ella ya tiene. Arriba, las del propio municipio: son datos que ya están en casa.
+Descargar oportunidades
+[Cargando…]"
+`;
+
+exports[`says so when no requirement has a source yet > screen at the end 1`] = `
+"Cada fuente con lo que se le pide al solicitante que ella ya tiene. Arriba, las del propio municipio: son datos que ya están en casa.
+Descargar oportunidades
+Ningún trámite vigente pide requisitos con fuente cargada."
+`;
+
+exports[`says so when no requirement has a source yet > screen at the start 1`] = `
+"Cada fuente con lo que se le pide al solicitante que ella ya tiene. Arriba, las del propio municipio: son datos que ya están en casa.
+Descargar oportunidades
+[Cargando…]"
+`;
+
+exports[`says when the search matches no source > screen at the end 1`] = `
+"Cada fuente con lo que se le pide al solicitante que ella ya tiene. Arriba, las del propio municipio: son datos que ya están en casa.
+Descargar oportunidades
+Buscar
+(Nombre de la fuente)
+[Borrar la búsqueda]
+Nada coincide con la búsqueda."
+`;
+
+exports[`says when the search matches no source > screen at the start 1`] = `
+"Cada fuente con lo que se le pide al solicitante que ella ya tiene. Arriba, las del propio municipio: son datos que ya están en casa.
+Descargar oportunidades
+[Cargando…]"
+`;
+
+exports[`says why the opportunities cannot be loaded > screen at the end 1`] = `
+"Cada fuente con lo que se le pide al solicitante que ella ya tiene. Arriba, las del propio municipio: son datos que ya están en casa.
+Descargar oportunidades
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why the opportunities cannot be loaded > screen at the start 1`] = `
+"Cada fuente con lo que se le pide al solicitante que ella ya tiene. Arriba, las del propio municipio: son datos que ya están en casa.
+Descargar oportunidades
+[Cargando…]"
+`;

@@ -1,0 +1,161 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`keeps the configuration of a municipality away from non-operators > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Configuración
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`keeps the configuration of a municipality away from non-operators > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`saves what the operator changes in that municipality > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Volver al municipio
+Noetinger
+Configuración
+Lo que elijas acá vale para todo el municipio.
+Avisos por email
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Inicio de sesión único
+Permitir ingresar con inicio de sesión único
+Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Recuperar contraseña
+Le llega a quien pide una contraseña nueva desde la pantalla de ingreso. Se usa este texto si la cuenta pertenece solo a este municipio; si no, el texto por defecto.
+Texto propio del municipio
+Hay cambios sin guardar.
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+{{link}}
+Enviarme una prueba
+Volver al texto por defecto
+Guardar texto"
+`;
+
+exports[`saves what the operator changes in that municipality > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`says so when the municipality does not exist > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Volver al municipio
+El municipio no existe."
+`;
+
+exports[`says so when the municipality does not exist > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`shows the operator the configuration of the municipality, with a way back > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Volver al municipio
+Noetinger
+Configuración
+Lo que elijas acá vale para todo el municipio.
+Avisos por email
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Inicio de sesión único
+Permitir ingresar con inicio de sesión único
+Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Recuperar contraseña
+Le llega a quien pide una contraseña nueva desde la pantalla de ingreso. Se usa este texto si la cuenta pertenece solo a este municipio; si no, el texto por defecto.
+Texto propio del municipio
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+{{link}}
+Enviarme una prueba
+Volver al texto por defecto
+Guardar texto
+[autosize measurement]"
+`;
+
+exports[`shows the operator the configuration of the municipality, with a way back > screen at the start 1`] = `"[Cargando…]"`;

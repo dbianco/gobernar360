@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 from gobernar360.core.db import set_tenant
 from gobernar360.core.errors import conflict, not_found, validation_error
 from gobernar360.dashboards import registry
-from gobernar360.platform import members
+from gobernar360.platform import accounts, members, settings_router
 from gobernar360.platform.access import CurrentUser, Db, RequestContext, require_operator
 from gobernar360.platform.audit import record_change
 from gobernar360.platform.models import Municipality, MunicipalityDashboard, User
@@ -140,7 +140,12 @@ def get_operator_context(municipality_id: uuid.UUID, db: Db, user: CurrentUser) 
 OperatorContext = Annotated[RequestContext, Depends(get_operator_context)]
 
 router.include_router(
-    members.build_router(get_operator_context, may_add_existing_accounts=True),
+    members.build_router(get_operator_context),
+    prefix="/municipalities/{municipality_id}",
+)
+# Everything a municipality's administrators configure, the operator can too.
+router.include_router(
+    settings_router.build_router(get_operator_context),
     prefix="/municipalities/{municipality_id}",
 )
 
@@ -152,6 +157,6 @@ def set_member_password(
     """Only the operator may do this: accounts are shared between municipalities, so a
     municipality administrator could otherwise take over someone else's account."""
     membership = members.get_membership(ctx, membership_id)
-    members.set_password(ctx, ctx.db.get(User, membership.user_id), payload.password)
+    accounts.set_password(ctx.db, ctx.db.get(User, membership.user_id), payload.password)
     record_change(ctx, "update", membership, {"password": "changed"})
     ctx.db.flush()

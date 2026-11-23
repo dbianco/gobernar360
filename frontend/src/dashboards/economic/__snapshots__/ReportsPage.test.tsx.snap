@@ -1,0 +1,208 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks for the reports of another year > screen at the end 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las asignaciones.
+Actores por tipo
+Ver como tabla
+Actores por sector
+Ver como tabla
+Personas por situación laboral
+Ver como tabla
+Asignaciones por categoría
+Ver como tabla
+Asignaciones por mes
+Ver como tabla"
+`;
+
+exports[`asks for the reports of another year > screen at the start 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las asignaciones.
+[Cargando…]"
+`;
+
+exports[`breaks actors, people and assignments down > screen at the end 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las asignaciones.
+Actores por tipo
+Ver como gráfico
+Comercio
+4
+Sin tipo
+1
+Actores por sector
+Ver como gráfico
+Alimentos
+5
+Personas por situación laboral
+Ver como gráfico
+Independiente
+4
+Desocupado/a
+2
+Asignaciones por categoría
+Ver como gráfico
+Capacitación
+9
+Asignaciones por mes
+Ver como gráfico
+Enero
+0
+Febrero
+0
+Marzo
+7
+Abril
+0
+Mayo
+0
+Junio
+0
+Julio
+0
+Agosto
+0
+Septiembre
+0
+Octubre
+0
+Noviembre
+0
+Diciembre
+0"
+`;
+
+exports[`breaks actors, people and assignments down > screen at the start 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las asignaciones.
+[Cargando…]"
+`;
+
+exports[`says why the reports cannot be loaded > screen at the end 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las asignaciones.
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why the reports cannot be loaded > screen at the start 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las asignaciones.
+[Cargando…]"
+`;
+
+exports[`shows a month chart without bars as empty > screen at the end 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las asignaciones.
+Actores por tipo
+Ver como tabla
+Actores por sector
+Ver como tabla
+Personas por situación laboral
+Ver como tabla
+Asignaciones por categoría
+Sin datos para mostrar.
+Asignaciones por mes
+Sin datos para mostrar."
+`;
+
+exports[`shows a month chart without bars as empty > screen at the start 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las asignaciones.
+[Cargando…]"
+`;

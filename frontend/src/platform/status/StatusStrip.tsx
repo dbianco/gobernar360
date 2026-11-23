@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useAuth } from '../authContext'
 import { errorMessage } from '../errorMessage'
-import { hasLevel } from '../types'
+import { hasLevel } from '../access'
 import { currentYear } from '../years'
 import { useDashboardStatus, useSetStatus } from './api'
 import { StatusLight } from './StatusLight'

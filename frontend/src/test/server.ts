@@ -1,9 +1,14 @@
 import { http, HttpResponse, type JsonBodyType } from 'msw'
 import { setupServer } from 'msw/node'
 
-// Every dashboard summary shows its status strip; tests that care about it mock this themselves.
+// Answers that many screens need; tests that care about them mock them themselves.
 export const server = setupServer(
+  // Every dashboard summary shows its status strip.
   http.get('*/api/dashboards/:key/status', () => HttpResponse.json([])),
+  // The sign-in page asks whether to offer single sign-on.
+  http.get('*/api/auth/sso', () => HttpResponse.json({ enabled: false })),
+  // Several flows end on the home page.
+  http.get('*/api/overview', () => HttpResponse.json([])),
 )
 
 type Method = 'get' | 'post' | 'put' | 'patch' | 'delete'

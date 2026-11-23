@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { ReportsPage } from './ReportsPage'
 import { makeReports } from './testData'
 import { BASE, renderEconomic } from './testRender'
@@ -67,4 +67,11 @@ it('shows a month chart without bars as empty', async () => {
     .getByRole('heading', { name: label('assignmentsByMonth') })
     .closest('section') as HTMLElement
   expect(within(section).getByText(t('app.chart.noData'))).toBeInTheDocument()
+})
+
+it('says why the reports cannot be loaded', async () => {
+  mockApiError('get', `${BASE}/reports`, 500, 'boom')
+  renderEconomic(<ReportsPage />)
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })
