@@ -692,7 +692,9 @@
     "users": "Usuarios",
     "notFound": "El municipio no existe.",
     "noDashboards": "Sin tableros habilitados",
-    "searchHint": "Nombre o identificador"
+    "searchHint": "Nombre o identificador",
+    "settings": "Configuración",
+    "backToMunicipality": "← Volver al municipio"
   },
   "account": {
     "title": "Mi cuenta",

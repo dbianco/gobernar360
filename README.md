@@ -84,9 +84,10 @@ For a real installation create the first operator with
 Municipalities are independent: no municipality can see another one's data.
 
 - The **platform operator** creates municipalities and configures each one: name and
-  kind, enabled dashboards, and users (add, permissions, administrators, remove, set a
-  new password). The operator sees configuration only, never dashboard data, unless
-  added as a user of that municipality.
+  kind, enabled dashboards, users (add, permissions, administrators, remove, set a
+  new password) and its *Configuración* (button on the municipality's page). The operator
+  sees configuration only, never dashboard data, unless added as a user of that
+  municipality.
 - A **municipality administrator** manages a subset of that for their own municipality:
   its users and their permissions, and its configuration (*Configuración*, in the menu):
   who receives notification emails, whether members may use single sign-on, and the text
@@ -272,3 +273,18 @@ Configuration is read from `GOBERNAR360_*` environment variables or `backend/.en
 `backend/src/gobernar360/core/config.py` and `backend/.env.example`. In production set at
 least `GOBERNAR360_APP_URL`, the `SMTP_*` settings and `GOBERNAR360_EMAIL_FROM`, and
 `GOBERNAR360_COOKIE_SECURE=true` when serving over HTTPS.
+
+The mail server is only configuration: any provider that accepts SMTP works. For Twilio
+SendGrid, for example:
+
+```bash
+GOBERNAR360_SMTP_HOST=smtp.sendgrid.net
+GOBERNAR360_SMTP_PORT=587
+GOBERNAR360_SMTP_SECURITY=starttls        # or port 465 with "tls"
+GOBERNAR360_SMTP_USERNAME=apikey          # the literal word "apikey"
+GOBERNAR360_SMTP_PASSWORD=<SendGrid API key>
+GOBERNAR360_EMAIL_FROM=Municipio <avisos@your-verified-domain>
+```
+
+The sender address must be one the provider has verified. Keep the API key out of the
+repository: set it in the environment of the API and of the `send-email` worker.

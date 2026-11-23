@@ -1,10 +1,12 @@
 """Configuración: what a municipality's administrators set for it.
 
 Who receives notification emails, whether members may sign in with single sign-on, and
-the municipality's own version of each email. Municipality administrators only.
+the municipality's own version of each email. The same routes serve the municipality's
+administrators and the platform operator, as the member routes do (see members).
 """
 
 import html
+from collections.abc import Callable
 from datetime import UTC, datetime, timedelta
 from typing import Annotated
 
@@ -23,10 +25,6 @@ from gobernar360.platform.notifications import previous_month
 from gobernar360.platform.outbox import enqueue
 from gobernar360.platform.schemas import Email
 from gobernar360.platform.texts import format_datetime, month_name, text
-
-router = APIRouter(prefix="/admin", tags=["admin"])
-
-AdminContext = Annotated[RequestContext, Depends(require_municipality_admin)]
 
 
 class SettingsOut(BaseModel):
@@ -47,32 +45,6 @@ def _out(row: MunicipalitySettings | None) -> SettingsOut:
         sso_enabled=bool(row and row.sso_enabled),
         sso_available=get_settings().sso_enabled,
     )
-
-
-@router.get("/settings")
-def read_settings(ctx: AdminContext) -> SettingsOut:
-    return _out(municipality_settings.find(ctx.db, ctx.municipality_id))
-
-
-@router.put("/settings")
-def update_settings(payload: SettingsIn, ctx: AdminContext) -> SettingsOut:
-    row = municipality_settings.find(ctx.db, ctx.municipality_id)
-    if row is None:
-        row = MunicipalitySettings(municipality_id=ctx.municipality_id)
-        ctx.db.add(row)
-    # Already normalised by `Email`; repeated addresses would get every email twice.
-    row.notification_emails = list(dict.fromkeys(payload.notification_emails))
-    row.sso_enabled = payload.sso_enabled
-    row.updated_at = datetime.now(UTC)
-    row.updated_by = ctx.user.id
-    ctx.db.flush()
-    record_change(
-        ctx,
-        "update",
-        row,
-        {"notification_emails": row.notification_emails, "sso_enabled": row.sso_enabled},
-    )
-    return _out(row)
 
 
 class TemplateOut(BaseModel):
@@ -109,42 +81,6 @@ def _stored(ctx: RequestContext, key: str) -> EmailTemplate | None:
     )
 
 
-@router.get("/email-templates")
-def list_templates(ctx: AdminContext) -> list[TemplateOut]:
-    return [
-        _template_out(spec, email_templates.load(ctx.db, ctx.municipality_id, spec.key))
-        for spec in email_templates.specs()
-    ]
-
-
-@router.put("/email-templates/{key}")
-def save_template(key: str, payload: TemplateIn, ctx: AdminContext) -> TemplateOut:
-    spec = email_templates.get_spec(key)
-    subject, clean = email_templates.validate(spec, payload.subject, payload.html)
-    row = _stored(ctx, key)
-    if row is None:
-        row = EmailTemplate(municipality_id=ctx.municipality_id, key=key)
-        ctx.db.add(row)
-    row.subject, row.html = subject, clean
-    row.updated_at = datetime.now(UTC)
-    row.updated_by = ctx.user.id
-    ctx.db.flush()
-    record_change(ctx, "update", row, {"key": key, "subject": subject})
-    return _template_out(spec, email_templates.load(ctx.db, ctx.municipality_id, key))
-
-
-@router.delete("/email-templates/{key}")
-def restore_default(key: str, ctx: AdminContext) -> TemplateOut:
-    """Go back to the default text."""
-    spec = email_templates.get_spec(key)
-    row = _stored(ctx, key)
-    if row is not None:
-        record_change(ctx, "delete", row, {"key": key})
-        ctx.db.delete(row)
-        ctx.db.flush()
-    return _template_out(spec, email_templates.default(key))
-
-
 def _sample(ctx: RequestContext, spec: Spec, today) -> dict[str, object]:
     """Believable values for a test email, most of them about the person asking."""
     settings = get_settings()
@@ -162,12 +98,81 @@ def _sample(ctx: RequestContext, spec: Spec, today) -> dict[str, object]:
     return {name: values[name] for name in spec.variables}
 
 
-@router.post("/email-templates/{key}/test", status_code=204)
-def send_test(key: str, payload: TemplateIn, ctx: AdminContext, today: Today) -> None:
-    """Email the text being edited, saved or not, to the administrator asking for it."""
-    spec = email_templates.get_spec(key)
-    subject, clean = email_templates.validate(spec, payload.subject, payload.html)
-    template = email_templates.Template(key, subject, clean, True)
-    rendered = email_templates.render(template, _sample(ctx, spec, today))
-    prefix = text("email.test.subjectPrefix")
-    enqueue(ctx.db, ctx.user.email, prefix + rendered.subject, rendered.text, rendered.html)
+def build_router(context: Callable[..., RequestContext]) -> APIRouter:
+    """Configuration routes for whoever `context` lets through: the municipality's own
+    administrators, or the platform operator acting on the municipality in the path."""
+    router = APIRouter()
+    SettingsContext = Annotated[RequestContext, Depends(context)]  # noqa: N806
+
+    @router.get("/settings")
+    def read_settings(ctx: SettingsContext) -> SettingsOut:
+        return _out(municipality_settings.find(ctx.db, ctx.municipality_id))
+
+    @router.put("/settings")
+    def update_settings(payload: SettingsIn, ctx: SettingsContext) -> SettingsOut:
+        row = municipality_settings.find(ctx.db, ctx.municipality_id)
+        if row is None:
+            row = MunicipalitySettings(municipality_id=ctx.municipality_id)
+            ctx.db.add(row)
+        # Already normalised by `Email`; repeated addresses would get every email twice.
+        row.notification_emails = list(dict.fromkeys(payload.notification_emails))
+        row.sso_enabled = payload.sso_enabled
+        row.updated_at = datetime.now(UTC)
+        row.updated_by = ctx.user.id
+        ctx.db.flush()
+        record_change(
+            ctx,
+            "update",
+            row,
+            {"notification_emails": row.notification_emails, "sso_enabled": row.sso_enabled},
+        )
+        return _out(row)
+
+    @router.get("/email-templates")
+    def list_templates(ctx: SettingsContext) -> list[TemplateOut]:
+        return [
+            _template_out(spec, email_templates.load(ctx.db, ctx.municipality_id, spec.key))
+            for spec in email_templates.specs()
+        ]
+
+    @router.put("/email-templates/{key}")
+    def save_template(key: str, payload: TemplateIn, ctx: SettingsContext) -> TemplateOut:
+        spec = email_templates.get_spec(key)
+        subject, clean = email_templates.validate(spec, payload.subject, payload.html)
+        row = _stored(ctx, key)
+        if row is None:
+            row = EmailTemplate(municipality_id=ctx.municipality_id, key=key)
+            ctx.db.add(row)
+        row.subject, row.html = subject, clean
+        row.updated_at = datetime.now(UTC)
+        row.updated_by = ctx.user.id
+        ctx.db.flush()
+        record_change(ctx, "update", row, {"key": key, "subject": subject})
+        return _template_out(spec, email_templates.load(ctx.db, ctx.municipality_id, key))
+
+    @router.delete("/email-templates/{key}")
+    def restore_default(key: str, ctx: SettingsContext) -> TemplateOut:
+        """Go back to the default text."""
+        spec = email_templates.get_spec(key)
+        row = _stored(ctx, key)
+        if row is not None:
+            record_change(ctx, "delete", row, {"key": key})
+            ctx.db.delete(row)
+            ctx.db.flush()
+        return _template_out(spec, email_templates.default(key))
+
+    @router.post("/email-templates/{key}/test", status_code=204)
+    def send_test(key: str, payload: TemplateIn, ctx: SettingsContext, today: Today) -> None:
+        """Email the text being edited, saved or not, to the administrator asking for it."""
+        spec = email_templates.get_spec(key)
+        subject, clean = email_templates.validate(spec, payload.subject, payload.html)
+        template = email_templates.Template(key, subject, clean, True)
+        rendered = email_templates.render(template, _sample(ctx, spec, today))
+        prefix = text("email.test.subjectPrefix")
+        enqueue(ctx.db, ctx.user.email, prefix + rendered.subject, rendered.text, rendered.html)
+
+    return router
+
+
+router = APIRouter(prefix="/admin", tags=["admin"])
+router.include_router(build_router(require_municipality_admin))

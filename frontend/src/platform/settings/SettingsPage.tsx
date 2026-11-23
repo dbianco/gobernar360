@@ -17,7 +17,8 @@ import { useTranslation } from 'react-i18next'
 import { api } from '../../api/client'
 import { errorMessage } from '../errorMessage'
 import { EmailTemplatesPanel } from './EmailTemplatesPanel'
-import { type MunicipalitySettings, SETTINGS_KEY } from './types'
+import { useSettingsScope } from './scope'
+import type { MunicipalitySettings } from './types'
 
 const EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/
 
@@ -31,9 +32,10 @@ function parseEmails(text: string): string[] {
 
 function useSaveSettings() {
   const queryClient = useQueryClient()
+  const { base, settingsKey } = useSettingsScope()
   return async (body: Omit<MunicipalitySettings, 'sso_available'>) => {
-    const saved = await api<MunicipalitySettings>('/admin/settings', { method: 'PUT', body })
-    queryClient.setQueryData(SETTINGS_KEY, saved)
+    const saved = await api<MunicipalitySettings>(`${base}/settings`, { method: 'PUT', body })
+    queryClient.setQueryData(settingsKey, saved)
     return saved
   }
 }
@@ -131,12 +133,16 @@ function SsoForm({ settings }: { settings: MunicipalitySettings }) {
   )
 }
 
-/** Configuración: what the municipality's administrators set for it. */
+/**
+ * Configuración: what a municipality's administrators set for it. The platform operator
+ * sees the same screen for any municipality (see SettingsScopeContext).
+ */
 export function SettingsPage() {
   const { t } = useTranslation()
+  const { base, settingsKey } = useSettingsScope()
   const settings = useQuery({
-    queryKey: SETTINGS_KEY,
-    queryFn: () => api<MunicipalitySettings>('/admin/settings'),
+    queryKey: settingsKey,
+    queryFn: () => api<MunicipalitySettings>(`${base}/settings`),
   })
 
   return (

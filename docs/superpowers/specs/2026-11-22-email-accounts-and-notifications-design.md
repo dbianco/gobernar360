@@ -81,7 +81,9 @@ avisos. El centro del trabajo es que el envío sea confiable, no las pantallas.
 
 Decisiones posteriores del usuario: quién recibe los avisos, los textos de los correos y
 el inicio de sesión único pasan a ser configuración de cada municipio, en una pestaña
-"Configuración" junto a "Usuarios", solo para sus administradores.
+"Configuración" junto a "Usuarios", para sus administradores. El operador de la
+plataforma ve y cambia la misma configuración de cualquier municipio, desde la página de
+ese municipio: lo que maneja el administrador es un subconjunto de lo que maneja el operador.
 
 - Se guarda en `municipality_settings` (destinatarios, inicio de sesión único) y
   `email_templates` (texto propio de cada correo). Son tablas de plataforma, como las

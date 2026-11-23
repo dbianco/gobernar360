@@ -18,7 +18,8 @@ import { useAuth } from '../authContext'
 import { useConfirm } from '../confirmContext'
 import { errorMessage } from '../errorMessage'
 import { RichTextEditor, type RichTextEditorHandle } from './RichTextEditor'
-import { type EmailTemplate, TEMPLATES_KEY } from './types'
+import { useSettingsScope } from './scope'
+import type { EmailTemplate } from './types'
 
 const TEMPLATE_ERRORS: Record<string, string> = {
   template_unknown_variable: 'settings.templates.unknownVariables',
@@ -58,7 +59,8 @@ function TemplateForm(props: { template: EmailTemplate; onDirtyChange: (dirty: b
   // Where a variable button inserts: the field used last.
   const lastField = useRef<'subject' | 'body'>('body')
   const dirty = subject !== template.subject || html !== template.html
-  const url = `/admin/email-templates/${template.key}`
+  const { base, templatesKey } = useSettingsScope()
+  const url = `${base}/email-templates/${template.key}`
 
   function update(next: { subject?: string; html?: string }) {
     const nextSubject = next.subject ?? subject
@@ -103,7 +105,7 @@ function TemplateForm(props: { template: EmailTemplate; onDirtyChange: (dirty: b
         setSubject(stored.subject)
         setHtml(stored.html)
         onDirtyChange(false)
-        await queryClient.invalidateQueries({ queryKey: TEMPLATES_KEY })
+        await queryClient.invalidateQueries({ queryKey: templatesKey })
       }
     } catch (caught) {
       setError(templateError(caught))
@@ -220,9 +222,10 @@ function TemplateForm(props: { template: EmailTemplate; onDirtyChange: (dirty: b
 /** The municipality's version of each email it sends. */
 export function EmailTemplatesPanel() {
   const { t } = useTranslation()
+  const { base, templatesKey } = useSettingsScope()
   const templates = useQuery({
-    queryKey: TEMPLATES_KEY,
-    queryFn: () => api<EmailTemplate[]>('/admin/email-templates'),
+    queryKey: templatesKey,
+    queryFn: () => api<EmailTemplate[]>(`${base}/email-templates`),
   })
   const confirm = useConfirm()
   const [selected, setSelected] = useState('invitation')

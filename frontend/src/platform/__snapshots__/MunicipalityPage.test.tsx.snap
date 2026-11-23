@@ -8,6 +8,7 @@ Cerrar sesión
 Plataforma
 ← Municipios
 Noetinger
+Configuración
 Datos del municipio
 Nombre
 Tipo
@@ -68,6 +69,7 @@ Cerrar sesión
 Plataforma
 ← Municipios
 Noetinger
+Configuración
 Datos del municipio
 Datos guardados.
 Nombre
@@ -128,6 +130,7 @@ Cerrar sesión
 Plataforma
 ← Municipios
 Noetinger
+Configuración
 Datos del municipio
 Revisá los datos ingresados.
 Nombre
@@ -188,6 +191,7 @@ Cerrar sesión
 Plataforma
 ← Municipios
 Noetinger
+Configuración
 Datos del municipio
 Nombre
 Tipo
@@ -263,6 +267,7 @@ Cerrar sesión
 Plataforma
 ← Municipios
 Noetinger
+Configuración
 Datos del municipio
 Nombre
 Tipo
@@ -314,6 +319,66 @@ Quitar"
 
 exports[`keeps the password form open when the server refuses, and closes it with Escape > screen at the start 1`] = `"[Cargando…]"`;
 
+exports[`links to the configuration of the municipality > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`links to the configuration of the municipality > screen at the start 1`] = `"[Cargando…]"`;
+
 exports[`lists the users of the municipality and changes a level > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
@@ -322,6 +387,7 @@ Cerrar sesión
 Plataforma
 ← Municipios
 Noetinger
+Configuración
 Datos del municipio
 Nombre
 Tipo
@@ -381,6 +447,7 @@ Cerrar sesión
 Plataforma
 ← Municipios
 Noetinger
+Configuración
 Datos del municipio
 Nombre
 Tipo
@@ -411,6 +478,7 @@ Cerrar sesión
 Plataforma
 ← Municipios
 Noetinger
+Configuración
 Datos del municipio
 Nombre
 Tipo
@@ -462,6 +530,7 @@ Cerrar sesión
 Plataforma
 ← Municipios
 Noetinger
+Configuración
 Datos del municipio
 Nombre
 Tipo
@@ -527,6 +596,7 @@ Cerrar sesión
 Plataforma
 ← Municipios
 Noetinger
+Configuración
 Datos del municipio
 Datos guardados.
 Nombre
@@ -599,6 +669,7 @@ Cerrar sesión
 Plataforma
 ← Municipios
 Noetinger
+Configuración
 Datos del municipio
 Nombre
 Tipo
@@ -671,6 +742,7 @@ Cerrar sesión
 Plataforma
 ← Municipios
 Noetinger
+Configuración
 Datos del municipio
 Nombre
 Tipo

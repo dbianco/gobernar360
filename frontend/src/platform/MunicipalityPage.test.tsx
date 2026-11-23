@@ -259,3 +259,12 @@ it('names the access column of a dashboard this version does not know by its key
 
   expect(await screen.findByRole('columnheader', { name: 'mystery' })).toBeInTheDocument()
 })
+
+it('links to the configuration of the municipality', async () => {
+  renderPage()
+
+  expect(await screen.findByRole('link', { name: t('platform.settings') })).toHaveAttribute(
+    'href',
+    `/platform/municipalities/${NOETINGER.id}/settings`,
+  )
+})

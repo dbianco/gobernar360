@@ -1,5 +1,5 @@
 import { Center, Loader } from '@mantine/core'
-import { type ReactNode, Suspense } from 'react'
+import { lazy, type ReactNode, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
@@ -17,6 +17,9 @@ import { RequireDashboard } from './platform/RequireDashboard'
 import { SetPasswordPage } from './platform/SetPasswordPage'
 import { activeMembership } from './platform/access'
 import { type Me } from './platform/types'
+
+// Loaded on demand: it brings the email editor, which is large.
+const MunicipalitySettingsPage = lazy(() => import('./platform/MunicipalitySettingsPage'))
 
 function PageLoader() {
   const { t } = useTranslation()
@@ -74,6 +77,16 @@ export default function App() {
           element={
             <Only when={(me) => me.user.is_platform_operator}>
               <MunicipalityPage />
+            </Only>
+          }
+        />
+        <Route
+          path="platform/municipalities/:id/settings"
+          element={
+            <Only when={(me) => me.user.is_platform_operator}>
+              <Suspense fallback={<PageLoader />}>
+                <MunicipalitySettingsPage />
+              </Suspense>
             </Only>
           }
         />

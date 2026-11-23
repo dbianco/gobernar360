@@ -338,3 +338,76 @@ def test_an_account_added_to_another_municipality_is_told_in_that_municipality_s
     assert email.subject == "Admin te sumó a Noetinger"
     # The account keeps the name its owner gave it.
     assert email.body == "Hola Carla: entrá en http://localhost:5173/login\n"
+
+
+# The platform operator configures any municipality
+
+
+@pytest.fixture
+def operator_client(client):
+    make_user("operator@gobernar360.test", operator=True)
+    login(client, "operator@gobernar360.test")
+    return client
+
+
+def test_the_operator_reads_and_changes_the_configuration_of_a_municipality(
+    operator_client, noetinger
+):
+    saira = make_municipality("Saira")
+    url = f"/api/platform/municipalities/{noetinger.id}"
+
+    saved = operator_client.put(
+        f"{url}/settings",
+        json={"notification_emails": ["jefa@noetinger.test"], "sso_enabled": True},
+    )
+    template = operator_client.put(f"{url}/email-templates/invitation", json=INVITATION)
+
+    assert (saved.status_code, template.status_code) == (200, 200)
+    assert operator_client.get(f"{url}/settings").json() == {
+        "notification_emails": ["jefa@noetinger.test"],
+        "sso_enabled": True,
+        "sso_available": False,
+    }
+    theirs = {t["key"]: t for t in operator_client.get(f"{url}/email-templates").json()}
+    assert theirs["invitation"]["subject"] == INVITATION["subject"]
+    # Another municipality is untouched.
+    other = f"/api/platform/municipalities/{saira.id}"
+    assert operator_client.get(f"{other}/settings").json()["notification_emails"] == []
+    others = {t["key"]: t for t in operator_client.get(f"{other}/email-templates").json()}
+    assert others["invitation"]["customized"] is False
+
+
+def test_the_operator_restores_a_default_text_and_gets_the_test_email(operator_client, noetinger):
+    url = f"/api/platform/municipalities/{noetinger.id}/email-templates/invitation"
+    operator_client.put(url, json=INVITATION)
+
+    sent = operator_client.post(f"{url}/test", json=INVITATION)
+    restored = operator_client.delete(url)
+
+    assert (sent.status_code, restored.status_code) == (204, 200)
+    assert restored.json()["customized"] is False
+    assert len(emails_to("operator@gobernar360.test")) == 1
+
+
+def test_the_operator_s_changes_are_in_the_municipality_s_audit_log(operator_client, noetinger):
+    url = f"/api/platform/municipalities/{noetinger.id}/settings"
+
+    operator_client.put(url, json={"notification_emails": [], "sso_enabled": True})
+
+    with admin_session() as session:
+        entry = session.scalars(select(AuditLog)).one()
+    assert (entry.municipality_id, entry.entity_type) == (noetinger.id, "municipality_settings")
+
+
+def test_a_municipality_administrator_cannot_use_the_operator_s_routes(admin_client, noetinger):
+    url = f"/api/platform/municipalities/{noetinger.id}"
+
+    assert admin_client.get(f"{url}/settings").status_code == 403
+    assert admin_client.put(f"{url}/settings", json={"sso_enabled": True}).status_code == 403
+    assert admin_client.get(f"{url}/email-templates").status_code == 403
+
+
+def test_the_operator_gets_not_found_for_a_municipality_that_does_not_exist(operator_client):
+    url = "/api/platform/municipalities/00000000-0000-0000-0000-000000000000/settings"
+
+    assert operator_client.get(url).status_code == 404

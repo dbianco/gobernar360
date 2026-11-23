@@ -16,6 +16,3 @@ export interface EmailTemplate {
   variables: string[]
   required: string[]
 }
-
-export const SETTINGS_KEY = ['admin', 'settings']
-export const TEMPLATES_KEY = ['admin', 'email-templates']

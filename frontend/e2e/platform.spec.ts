@@ -116,3 +116,32 @@ test('admin grants a user read access and the dashboard appears for them', async
   await expect(page.getByRole('heading', { name: 'Proyectos', level: 2 })).toBeVisible()
   await expect(page.getByText('Proyectos activos')).toBeVisible()
 })
+
+test('operator opens the configuration of a municipality and changes who gets its notices', async ({
+  page,
+}) => {
+  await login(page, 'operador@gobernar360.test')
+  await page.getByRole('link', { name: 'Configurar Noetinger' }).click()
+  await page.getByRole('link', { name: 'Configuración' }).click()
+  await expect(page.getByRole('heading', { name: 'Configuración', level: 2 })).toBeVisible()
+
+  const recipients = page.getByLabel('Destinatarios de los avisos')
+  const before = await recipients.inputValue()
+  await recipients.fill('operador-e2e@noetinger.test')
+  await page.getByRole('button', { name: 'Guardar destinatarios' }).click()
+  await expect(page.getByText('Cambios guardados.')).toBeVisible()
+
+  // What was saved is what the municipality has, also after loading the page again.
+  await page.reload()
+  await expect(page.getByLabel('Destinatarios de los avisos')).toHaveValue(
+    'operador-e2e@noetinger.test',
+  )
+  await expect(page.getByLabel('Asunto')).toBeVisible()
+
+  // Other tests count on the recipients the demo data has: put them back.
+  await page.getByLabel('Destinatarios de los avisos').fill(before)
+  await page.getByRole('button', { name: 'Guardar destinatarios' }).click()
+  await expect(page.getByText('Cambios guardados.')).toBeVisible()
+  await page.getByRole('link', { name: '← Volver al municipio' }).click()
+  await expect(page.getByRole('heading', { name: 'Noetinger', level: 2 })).toBeVisible()
+})
