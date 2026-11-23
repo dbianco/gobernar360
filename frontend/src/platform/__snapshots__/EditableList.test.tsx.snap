@@ -132,6 +132,79 @@ detalle de
 Agregar"
 `;
 
+exports[`keeps the search box while a search is applied, even if the catalog became short > screen at the end 1`] = `
+"Buscar
+(Nombre)
+[Borrar la búsqueda]
+Área 10
+[Renombrar Área 10]
+Editar
+[Eliminar Área 10]
+Eliminar"
+`;
+
+exports[`keeps the search box while a search is applied, even if the catalog became short > screen at the start 1`] = `
+"Buscar
+(Nombre)
+Área de Niñez
+[Renombrar Área de Niñez]
+Editar
+[Eliminar Área de Niñez]
+Eliminar
+Área 2
+[Renombrar Área 2]
+Editar
+[Eliminar Área 2]
+Eliminar
+Área 3
+[Renombrar Área 3]
+Editar
+[Eliminar Área 3]
+Eliminar
+Área 4
+[Renombrar Área 4]
+Editar
+[Eliminar Área 4]
+Eliminar
+Área 5
+[Renombrar Área 5]
+Editar
+[Eliminar Área 5]
+Eliminar
+Área 6
+[Renombrar Área 6]
+Editar
+[Eliminar Área 6]
+Eliminar
+Área 7
+[Renombrar Área 7]
+Editar
+[Eliminar Área 7]
+Eliminar
+Área 8
+[Renombrar Área 8]
+Editar
+[Eliminar Área 8]
+Eliminar
+Área 9
+[Renombrar Área 9]
+Editar
+[Eliminar Área 9]
+Eliminar
+Área 10
+[Renombrar Área 10]
+Editar
+[Eliminar Área 10]
+Eliminar
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–10 de 11
+Anterior
+Siguiente"
+`;
+
 exports[`keeps what was typed when adding fails, and ignores a blank name > screen at the end 1`] = `
 "Área de Niñez
 [Renombrar Área de Niñez]

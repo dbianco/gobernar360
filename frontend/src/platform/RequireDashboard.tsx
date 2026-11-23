@@ -3,7 +3,8 @@ import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useAuth } from './authContext'
-import { type AccessLevel, hasLevel } from './types'
+import { hasLevel } from './access'
+import { type AccessLevel } from './types'
 
 /** Renders its children only when the user has the required access to the dashboard. */
 export function RequireDashboard(props: {

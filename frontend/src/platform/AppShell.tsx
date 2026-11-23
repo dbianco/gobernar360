@@ -22,7 +22,7 @@ import { Link, Navigate, Outlet, useLocation } from 'react-router-dom'
 import { dashboards } from '../dashboards/registry'
 import { useAuth } from './authContext'
 import { MunicipalityChooser, MunicipalitySwitcher, NoMunicipality } from './MunicipalitySwitcher'
-import { activeMembership } from './types'
+import { activeMembership } from './access'
 
 /** Page frame for signed-in users: header, navigation limited to what they may see, content. */
 export function AppShell() {

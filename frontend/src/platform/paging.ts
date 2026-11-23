@@ -3,9 +3,23 @@ import { useState } from 'react'
 /** Page sizes every table offers. */
 export const PAGE_SIZES = [10, 20, 50]
 
+// Browsers may refuse storage (private windows, blocked site data): the size is then
+// simply not remembered.
 function storedSize(key: string): number {
-  const stored = Number(window.localStorage.getItem(`g360.pageSize.${key}`))
-  return PAGE_SIZES.includes(stored) ? stored : PAGE_SIZES[0]
+  try {
+    const stored = Number(window.localStorage.getItem(`g360.pageSize.${key}`))
+    return PAGE_SIZES.includes(stored) ? stored : PAGE_SIZES[0]
+  } catch {
+    return PAGE_SIZES[0]
+  }
+}
+
+function storeSize(key: string, size: number) {
+  try {
+    window.localStorage.setItem(`g360.pageSize.${key}`, String(size))
+  } catch {
+    // Not remembered.
+  }
 }
 
 /**
@@ -17,7 +31,7 @@ export function usePaging(key: string) {
   const [offset, setOffset] = useState(0)
 
   function setLimit(size: number) {
-    window.localStorage.setItem(`g360.pageSize.${key}`, String(size))
+    storeSize(key, size)
     setLimitState(size)
     setOffset(0)
   }

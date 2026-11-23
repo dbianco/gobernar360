@@ -520,6 +520,49 @@ Buscar
 [Cargando…]"
 `;
 
+exports[`sends one invitation when the button is clicked twice in a row > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Si Carla Carga todavía no eligió su contraseña, le enviamos un enlace nuevo.
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+Reenviar invitación
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`sends one invitation when the button is clicked twice in a row > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
 exports[`shows a server error of an import, and clears it when another file is chosen > screen at the end 1`] = `
 "Usuarios del municipio
 Importar CSV

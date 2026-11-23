@@ -279,6 +279,19 @@ def test_the_operator_imports_into_a_municipality_too(client, noetinger):
     assert client.get(url).json()["items"][0]["is_admin"] is True
 
 
+def test_the_operator_imports_into_a_municipality_that_has_no_administrator_yet(client):
+    saira = make_municipality("Saira")
+    make_user("operator@gobernar360.test", operator=True)
+    login(client, "operator@gobernar360.test")
+    url = f"/api/platform/municipalities/{saira.id}/users"
+
+    response = client.post(f"{url}/import", json={"csv": "email,nombre\nines@saira.test,Inés\n"})
+
+    assert response.status_code == 200, response.text
+    assert response.json() == {"created": 1, "updated": 0, "unchanged": 0}
+    assert client.get(url).json()["items"][0]["is_admin"] is False
+
+
 def test_members_are_searched_by_name_or_email_ignoring_accents(admin_client, noetinger):
     make_membership(make_user("jose@noetinger.test"), noetinger)
     make_membership(make_user("ines@saira.test"), noetinger)

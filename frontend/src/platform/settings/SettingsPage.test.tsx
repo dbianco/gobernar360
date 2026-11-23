@@ -414,3 +414,30 @@ it('stays on the email already shown when it is chosen again', async () => {
   expect(screen.queryByRole('dialog')).toBeNull()
   expect(subject).toHaveValue(`${INVITATION.subject} ya`)
 })
+
+it('finishes saving when the server stores the text it already had', async () => {
+  // The server tidies the subject (here, a trailing space), so nothing changes for it.
+  const requests = mockApi('put', '/admin/email-templates/password_reset', RESET)
+  renderSettings(SETTINGS, [RESET])
+  const user = userEvent.setup()
+  const save = () => screen.getByRole('button', { name: t('settings.templates.save') })
+
+  const subject = await screen.findByLabelText(t('settings.templates.subject'), { exact: false })
+  await user.type(subject, ' ')
+  expect(screen.getByText(t('settings.templates.unsaved'))).toBeInTheDocument()
+  await user.click(save())
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  await waitFor(() => expect(save()).not.toHaveAttribute('data-loading'))
+  expect(subject).toHaveValue(RESET.subject)
+  expect(screen.queryByText(t('settings.templates.unsaved'))).toBeNull()
+})
+
+it('shows an example of addresses from the texts of the app', async () => {
+  renderSettings()
+
+  expect(await screen.findByLabelText(t('settings.recipients.label'))).toHaveAttribute(
+    'placeholder',
+    t('settings.recipients.placeholder'),
+  )
+})

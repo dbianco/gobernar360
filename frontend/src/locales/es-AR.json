@@ -586,7 +586,8 @@
       "label": "Destinatarios de los avisos",
       "hint": "Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.",
       "invalid": "Estas direcciones no son válidas: {{emails}}",
-      "save": "Guardar destinatarios"
+      "save": "Guardar destinatarios",
+      "placeholder": "intendencia@municipio.gob.ar, prensa@municipio.gob.ar"
     },
     "sso": {
       "title": "Inicio de sesión único",

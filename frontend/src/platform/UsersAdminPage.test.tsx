@@ -272,3 +272,20 @@ it('closes the add window with Escape', async () => {
 
   await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
 })
+
+it('sends one invitation when the button is clicked twice in a row', async () => {
+  const requests = mockApi('post', '/admin/users/ms-2/invitation', null, 204)
+  renderUsers()
+  const user = userEvent.setup()
+
+  await user.dblClick(
+    await screen.findByRole('button', {
+      name: t('users.resendInvitationNamed', { name: 'Carla Carga' }),
+    }),
+  )
+
+  expect(
+    await screen.findByText(t('users.invitationResent', { name: 'Carla Carga' })),
+  ).toBeInTheDocument()
+  expect(requests).toHaveLength(1)
+})

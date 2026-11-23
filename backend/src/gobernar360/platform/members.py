@@ -117,25 +117,16 @@ def _set_grants(ctx: RequestContext, membership: Membership, grants: dict[str, s
     ]
 
 
+def _admin_count(ctx: RequestContext) -> int:
+    return ctx.db.scalar(
+        select(func.count())
+        .select_from(Membership)
+        .where(Membership.municipality_id == ctx.municipality_id, Membership.is_admin)
+    )
+
+
 def _ensure_not_last_admin(ctx: RequestContext, membership: Membership) -> None:
-    if not membership.is_admin:
-        return
-    admin_count = ctx.db.scalar(
-        select(func.count())
-        .select_from(Membership)
-        .where(Membership.municipality_id == ctx.municipality_id, Membership.is_admin)
-    )
-    if admin_count <= 1:
-        raise conflict("The municipality must keep at least one administrator.")
-
-
-def _ensure_an_admin_remains(ctx: RequestContext) -> None:
-    admin_count = ctx.db.scalar(
-        select(func.count())
-        .select_from(Membership)
-        .where(Membership.municipality_id == ctx.municipality_id, Membership.is_admin)
-    )
-    if admin_count == 0:
+    if membership.is_admin and _admin_count(ctx) <= 1:
         raise conflict("The municipality must keep at least one administrator.")
 
 
@@ -175,6 +166,7 @@ def _add_member(
 def _import(ctx: RequestContext, rows: list[members_csv.MemberRow]) -> ImportOut:
     """Apply the rows: add new members, update the access of existing ones."""
     result = ImportOut(created=0, updated=0, unchanged=0)
+    had_admin = _admin_count(ctx) > 0
     for row in rows:
         membership = ctx.db.scalar(
             select(Membership)
@@ -204,8 +196,10 @@ def _import(ctx: RequestContext, rows: list[members_csv.MemberRow]) -> ImportOut
             ctx, "update", membership, {"is_admin": is_admin, "grants": grants, "source": "csv"}
         )
         result.updated += 1
-    # Checked once at the end: a file may hand the role from one person to another.
-    _ensure_an_admin_remains(ctx)
+    # Checked once at the end: a file may hand the role from one person to another. A
+    # municipality that had no administrator yet (the operator is filling it) may stay so.
+    if had_admin and _admin_count(ctx) == 0:
+        raise conflict("The municipality must keep at least one administrator.")
     return result
 
 

@@ -20,7 +20,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
-import { hasLevel } from '../../platform/types'
+import { hasLevel } from '../../platform/access'
 import { ActorForm } from './ActorForm'
 import { BASE_PATH, send, useAction, useActor, usePeople } from './api'
 import { AssignmentsPanel } from './AssignmentsPanel'

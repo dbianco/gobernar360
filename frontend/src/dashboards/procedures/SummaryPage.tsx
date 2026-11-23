@@ -22,7 +22,7 @@ import { formatNumber, formatRatio } from '../../platform/format'
 import { HelpTh } from '../../platform/HelpTh'
 import { StatCard } from '../../platform/StatCard'
 import { StatusStrip } from '../../platform/status/StatusStrip'
-import { hasLevel } from '../../platform/types'
+import { hasLevel } from '../../platform/access'
 import { currentYear } from '../../platform/years'
 import { BASE, BASE_PATH, KEY, useSummary } from './api'
 

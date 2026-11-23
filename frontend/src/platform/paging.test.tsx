@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react'
-import { expect, it } from 'vitest'
+import { expect, it, vi } from 'vitest'
 
 import { fitPage, normalize, PAGE_SIZES, useLocalTable, usePaging } from './paging'
 
@@ -142,4 +142,23 @@ it('follows a search typed elsewhere, from the first page', () => {
   expect(result.current.query).toBe('1')
   expect(result.current.pager.offset).toBe(0)
   expect(result.current.total).toBe(12)
+})
+
+it('works without browser storage, forgetting the page size', () => {
+  const blocked = () => {
+    throw new DOMException('The operation is insecure.', 'SecurityError')
+  }
+  const getItem = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(blocked)
+  const setItem = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(blocked)
+  try {
+    const { result } = renderHook(() => usePaging('people'))
+    expect(result.current.limit).toBe(10)
+
+    act(() => result.current.pager(100).onLimitChange(20))
+
+    expect(result.current.limit).toBe(20)
+  } finally {
+    getItem.mockRestore()
+    setItem.mockRestore()
+  }
 })

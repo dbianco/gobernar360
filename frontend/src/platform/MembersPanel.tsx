@@ -251,6 +251,7 @@ export function MembersPanel(props: {
                             aria-label={t('users.resendInvitationNamed', {
                               name: member.user.full_name,
                             })}
+                            disabled={action.pending}
                             onClick={() => void resendInvitation(member)}
                           >
                             <IconMailForward size={18} stroke={1.5} aria-hidden />

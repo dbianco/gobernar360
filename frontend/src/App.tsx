@@ -15,7 +15,8 @@ import { MunicipalityPage } from './platform/MunicipalityPage'
 import { OperatorPage } from './platform/OperatorPage'
 import { RequireDashboard } from './platform/RequireDashboard'
 import { SetPasswordPage } from './platform/SetPasswordPage'
-import { activeMembership, type Me } from './platform/types'
+import { activeMembership } from './platform/access'
+import { type Me } from './platform/types'
 
 function PageLoader() {
   const { t } = useTranslation()

@@ -28,7 +28,8 @@ export function EditableList(props: {
   const [renaming, setRenaming] = useState<{ id: string; name: string } | null>(null)
   // Searched and paged once it no longer fits in the smallest page.
   const table = useLocalTable(`catalog.${props.addLabel}`, props.items, (item) => item.name)
-  const long = props.items.length > PAGE_SIZES[0]
+  // A search in progress keeps its box, or it could not be cleared after a deletion.
+  const long = props.items.length > PAGE_SIZES[0] || table.query !== ''
 
   async function rename(event: FormEvent, item: ListItem) {
     event.preventDefault()

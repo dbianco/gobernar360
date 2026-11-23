@@ -72,6 +72,8 @@ test('"forgot my password" says the same for any email and only emails real acco
   for (const email of [unknown, known]) {
     await page.goto('/login')
     await page.getByRole('link', { name: '¿Olvidaste tu contraseña?' }).click()
+    // The sign-in page has an "Email" field too: wait until this page is the one shown.
+    await expect(page.getByRole('heading', { name: 'Recuperar contraseña' })).toBeVisible()
     await page.getByLabel('Email').fill(email)
     await page.getByRole('button', { name: 'Enviar enlace' }).click()
     const answer = page.getByRole('alert')

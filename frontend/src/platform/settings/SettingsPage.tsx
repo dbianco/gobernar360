@@ -77,7 +77,7 @@ function RecipientsForm({ settings }: { settings: MunicipalitySettings }) {
         <Textarea
           label={t('settings.recipients.label')}
           description={t('settings.recipients.hint')}
-          placeholder="intendencia@municipio.gob.ar, prensa@municipio.gob.ar"
+          placeholder={t('settings.recipients.placeholder')}
           autosize
           minRows={2}
           value={text}

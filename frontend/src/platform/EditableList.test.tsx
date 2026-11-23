@@ -1,5 +1,6 @@
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { useState } from 'react'
 import { expect, it, vi } from 'vitest'
 
 import { makeMe } from '../test/fixtures'
@@ -184,4 +185,24 @@ it('says when nothing in a long catalog matches the search', async () => {
   await user.type(await screen.findByRole('searchbox', { name: t('app.search') }), 'zzz')
 
   expect(screen.getByText(t('app.noMatches'))).toBeInTheDocument()
+})
+
+it('keeps the search box while a search is applied, even if the catalog became short', async () => {
+  function Catalog() {
+    const [list, setList] = useState(items(11))
+    const remove = async (item: { id: string }) => setList(list.filter((it) => it.id !== item.id))
+    return <EditableList items={list} addLabel="Nueva área" onRename={vi.fn()} onDelete={remove} />
+  }
+  renderApp(<Catalog />, { me: makeMe() })
+  const user = userEvent.setup()
+  await user.type(await screen.findByRole('searchbox', { name: t('app.search') }), 'area 1')
+
+  // Deleting one leaves ten items, and the search still hides most of them.
+  await user.click(
+    screen.getByRole('button', { name: t('app.list.deleteNamed', { name: 'Área 11' }) }),
+  )
+
+  expect(screen.queryByText('Área 11')).toBeNull()
+  expect(screen.getByRole('searchbox', { name: t('app.search') })).toHaveValue('area 1')
+  expect(screen.queryByText('Área 2')).toBeNull()
 })

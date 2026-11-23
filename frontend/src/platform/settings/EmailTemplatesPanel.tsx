@@ -97,16 +97,19 @@ function TemplateForm(props: { template: EmailTemplate; onDirtyChange: (dirty: b
           kind === 'save'
             ? ({ method: 'PUT', body: { subject, html } } as const)
             : ({ method: 'DELETE' } as const)
-        await api(url, request)
+        // What the server stored may differ from what was typed (tidied, sanitised), or
+        // be what it already had: the form shows it either way.
+        const stored = await api<EmailTemplate>(url, request)
+        setSubject(stored.subject)
+        setHtml(stored.html)
         onDirtyChange(false)
-        // The form is remounted with what the server stored.
         await queryClient.invalidateQueries({ queryKey: TEMPLATES_KEY })
-        return
       }
     } catch (caught) {
       setError(templateError(caught))
+    } finally {
+      setPending(null)
     }
-    setPending(null)
   }
 
   return (

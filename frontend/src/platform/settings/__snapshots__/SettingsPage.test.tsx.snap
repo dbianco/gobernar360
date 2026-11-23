@@ -139,6 +139,72 @@ exports[`explains that single sign-on needs a provider the platform does not hav
 [Cargando…]"
 `;
 
+exports[`finishes saving when the server stores the text it already had > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Configuración
+Usuarios
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+Avisos por email
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Inicio de sesión único
+Permitir ingresar con inicio de sesión único
+Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Recuperar contraseña
+Le llega a quien pide una contraseña nueva desde la pantalla de ingreso. Se usa este texto si la cuenta pertenece solo a este municipio; si no, el texto por defecto.
+Texto propio del municipio
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+{{link}}
+Enviarme una prueba
+Volver al texto por defecto
+Guardar texto"
+`;
+
+exports[`finishes saving when the server stores the text it already had > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
 exports[`goes back to the default text after confirming > screen at the end 1`] = `
 "[autosize measurement]
 [Abrir menú]
@@ -235,7 +301,6 @@ Acceso nuevo (invitación)
 Recuperar contraseña
 Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
 Texto por defecto
-Hay cambios sin guardar.
 Asunto
 *
 Variables
@@ -1262,6 +1327,77 @@ Ocurrió un error. Intentá de nuevo."
 `;
 
 exports[`shows an error when the texts cannot be loaded > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`shows an example of addresses from the texts of the app > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Configuración
+Usuarios
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+Avisos por email
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Inicio de sesión único
+Permitir ingresar con inicio de sesión único
+Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`shows an example of addresses from the texts of the app > screen at the start 1`] = `
 "[autosize measurement]
 [Cargando…]"
 `;

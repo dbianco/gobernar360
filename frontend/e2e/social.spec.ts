@@ -106,6 +106,8 @@ test('viewer reads the dashboard without the reserved text and cannot load data'
   await expect(page.getByText(SEEDED_DESCRIPTION)).toHaveCount(0)
   await expect(page.getByRole('button', { name: 'Registrar intervención' })).toHaveCount(0)
   await tab(page, 'Personas').click()
+  // The tab left behind has a search box too: wait until the people are the ones listed.
+  await expect(page.getByRole('columnheader', { name: /^DNI/ })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Cargar nueva persona' })).toHaveCount(0)
   await page.getByRole('searchbox', { name: 'Buscar' }).fill('sosa')
   await page.getByRole('link', { name: 'Sosa, Diego' }).click()
