@@ -98,3 +98,40 @@ it('shows an error instead of empty lists when loading fails', async () => {
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
   expect(screen.queryByText(t('app.list.empty'))).toBeNull()
 })
+
+it('renames and deletes catalog items', async () => {
+  const renamed = mockApi('patch', `${BASE}/intervention-types/${VISIT.id}`, {})
+  const deleted = mockApi('delete', `${BASE}/benefit-categories/${HOUSING.id}`, null, 204)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(
+    await screen.findByRole('button', { name: t('app.list.renameNamed', { name: VISIT.name }) }),
+  )
+  const field = screen.getByRole('textbox', {
+    name: t('app.list.renameNamed', { name: VISIT.name }),
+  })
+  await user.clear(field)
+  await user.type(field, 'Visita{Enter}')
+  await user.click(
+    await screen.findByRole('button', { name: t('app.list.deleteNamed', { name: HOUSING.name }) }),
+  )
+
+  await waitFor(() => expect(deleted).toHaveLength(1))
+  expect(renamed[0].body).toEqual({ name: 'Visita' })
+})
+
+it('asks for a category before benefits, says when there are none and closes the form', async () => {
+  const view = renderParameters()
+  mockApi('get', `${BASE}/benefit-categories`, [])
+  expect(await screen.findByText(label('needsCategory'))).toBeInTheDocument()
+  view.unmount()
+
+  renderParameters()
+  mockApi('get', `${BASE}/benefits`, [])
+  const user = userEvent.setup()
+  expect(await screen.findByText(label('noBenefits'))).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: label('addBenefit') }))
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+})

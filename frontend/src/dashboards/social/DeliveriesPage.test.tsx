@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it, vi } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { DeliveriesPage } from './DeliveriesPage'
 import { BOX, LUIS, makeDelivery, page, SHEETS } from './testData'
 import { BASE, renderSocial } from './testRender'
@@ -28,7 +28,9 @@ it('lists the deliveries of the year with who received them', async () => {
     `/api${BASE}/export/deliveries.csv?year=${YEAR}`,
   )
   expect(screen.queryByRole('button', { name: label('add') })).toBeNull()
-  expect(screen.queryByRole('button', { name: label('deleteNamed', { name: BOX.name }) })).toBeNull()
+  expect(
+    screen.queryByRole('button', { name: label('deleteNamed', { name: BOX.name }) }),
+  ).toBeNull()
 })
 
 it('filters by benefit and year on the server', async () => {
@@ -95,4 +97,36 @@ it('deletes a delivery after confirming', async () => {
   )
 
   await waitFor(() => expect(requests).toHaveLength(1))
+})
+
+it('explains an empty benefit list and shows why a delivery failed', async () => {
+  mockApi('get', `${BASE}/deliveries`, page([]))
+  mockApi('get', `${BASE}/people`, page([LUIS]))
+  mockApiError('post', `${BASE}/deliveries`, 422, 'validation_error')
+  const view = renderSocial(<DeliveriesPage />)
+  mockApi('get', `${BASE}/benefits`, [])
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('add') }))
+  expect(await screen.findByText(label('noBenefits'))).toBeInTheDocument()
+  view.unmount()
+
+  const second = renderSocial(<DeliveriesPage />)
+  mockApiError('get', `${BASE}/benefits`, 500, 'generic')
+  await user.click(await screen.findByRole('button', { name: label('add') }))
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  second.unmount()
+
+  renderSocial(<DeliveriesPage />)
+  await user.click(await screen.findByRole('button', { name: label('add') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: t('social.people.find') }), 'gom')
+  await user.click(
+    await form.findByRole('button', {
+      name: t('social.people.chooseNamed', { name: 'Gómez, Luis' }),
+    }),
+  )
+  await user.selectOptions(form.getByLabelText(label('benefit')), BOX.id)
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+  expect(await form.findByText(t('errors.validation_error'))).toBeInTheDocument()
 })

@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { QueuesPage } from './QueuesPage'
 import { LIGHTS, makeClock, makeComplaint, QUEUES, WORKS } from './testData'
 import { BASE, renderComplaints } from './testRender'
@@ -62,4 +62,21 @@ it('switches to another area queue', async () => {
   ).toBeInTheDocument()
   expect(await screen.findByText(label('empty'))).toBeInTheDocument()
   expect(works).toHaveLength(1)
+})
+
+it('says when there are no areas, and reports queues that fail to load', async () => {
+  mockApi('get', `${BASE}/queues`, [])
+  const view = renderComplaints(<QueuesPage />, { route: '/d/complaints/queues' })
+  expect(await screen.findByText(label('noAreas'))).toBeInTheDocument()
+  view.unmount()
+
+  mockApiError('get', `${BASE}/queues`, 500, 'generic')
+  const second = renderComplaints(<QueuesPage />, { route: '/d/complaints/queues' })
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  second.unmount()
+
+  mockApi('get', `${BASE}/queues`, QUEUES)
+  mockApiError('get', `${BASE}/queues/${LIGHTS.id}`, 500, 'generic')
+  renderComplaints(<QueuesPage />, { route: '/d/complaints/queues' })
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })

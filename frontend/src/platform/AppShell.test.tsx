@@ -1,4 +1,4 @@
-import { screen, within } from '@testing-library/react'
+import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
@@ -130,4 +130,21 @@ it('gives every navigation link an icon', async () => {
 
   expect(links).toHaveLength(7)
   for (const link of links) expect(link.querySelector('svg')).not.toBeNull()
+})
+
+it('switches municipality from the header', async () => {
+  const me = makeMe({ municipalities: [NOETINGER, SAIRA] })
+  const requests = mockApi('post', '/auth/active-municipality', {
+    ...me,
+    active_municipality_id: SAIRA.id,
+  })
+  mockApi('get', '/overview', [])
+  renderApp(<App />, { me })
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByDisplayValue(NOETINGER.name))
+  await user.click(await screen.findByRole('option', { name: SAIRA.name }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toEqual({ municipality_id: SAIRA.id })
 })

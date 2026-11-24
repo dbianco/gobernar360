@@ -7,6 +7,7 @@ import App from '../App'
 import { makeMe, NOETINGER, SAIRA } from '../test/fixtures'
 import { renderApp, t } from '../test/render'
 import { mockApi, mockApiError } from '../test/server'
+import type { Suspension } from './operatorApi'
 
 const WORKING = makeMe({ dashboards: { projects: 'viewer' } })
 const SUSPENDED = makeMe({ municipalities: [], active: null, suspended: [NOETINGER] })
@@ -84,7 +85,7 @@ const SUSPENSION = {
 }
 const label = (key: string, options = {}) => t(`platform.suspension.${key}`, options)
 
-function renderMunicipality(suspension: typeof SUSPENSION | null) {
+function renderMunicipality(suspension: Suspension | null) {
   mockApi('get', '/platform/municipalities', [{ ...NOETINGER, dashboards: [], suspension }])
   mockApi('get', '/platform/dashboards', ['projects'])
   mockApi('get', `${BASE}/users`, [])
@@ -137,4 +138,70 @@ it('marks suspended municipalities in the operator list', async () => {
   expect(within(noetinger).getByText(label('badge'))).toBeInTheDocument()
   const saira = screen.getByRole('row', { name: new RegExp(SAIRA.name) })
   expect(within(saira).queryByText(label('badge'))).not.toBeInTheDocument()
+})
+
+it('cancels a suspension or leaves it without a reason', async () => {
+  const requests = mockApi('post', `${BASE}/suspension`, {}, 201)
+  renderMunicipality(null)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('suspend') }))
+  let dialog = within(await screen.findByRole('dialog'))
+  await user.type(dialog.getByRole('textbox', { name: label('reason') }), '   ')
+  await user.click(dialog.getByRole('button', { name: label('suspend') }))
+  await user.click(dialog.getByRole('button', { name: t('app.cancel') }))
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+  await user.click(screen.getByRole('button', { name: label('suspend') }))
+  dialog = within(await screen.findByRole('dialog'))
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+  expect(requests).toHaveLength(0)
+})
+
+it('shows why suspending or resuming failed', async () => {
+  mockApiError('post', `${BASE}/suspension`, 409, 'conflict')
+  const view = renderMunicipality(null)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('suspend') }))
+  const dialog = within(await screen.findByRole('dialog'))
+  await user.type(dialog.getByRole('textbox', { name: label('reason') }), 'Motivo')
+  await user.click(dialog.getByRole('button', { name: label('suspend') }))
+  expect(await dialog.findByText(t('errors.conflict'))).toBeInTheDocument()
+  view.unmount()
+
+  mockApiError('delete', `${BASE}/suspension`, 409, 'conflict')
+  renderMunicipality({ ...SUSPENSION, by: null })
+  expect(
+    await screen.findByText(label('sinceUnknown', { at: '23/11/2026 10:05' })),
+  ).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: label('resume') }))
+  expect(await screen.findByText(t('errors.conflict'))).toBeInTheDocument()
+})
+
+it('opens the procedures and complaints dashboards from the app', async () => {
+  mockApi('get', '/dashboards/procedures/summary', {
+    procedures: 0,
+    online: 0,
+    average_requirements: null,
+    requirements: 0,
+    sources: 0,
+    by_area: [],
+    by_channel: [],
+    top_requirements: [],
+  })
+  const view = renderApp(<App />, {
+    me: makeMe({ dashboards: { procedures: 'viewer' } }),
+    route: '/d/procedures',
+  })
+  expect(await screen.findByRole('heading', { name: t('procedures.title') })).toBeInTheDocument()
+  view.unmount()
+
+  mockApiError('get', '/dashboards/complaints/summary', 500, 'generic')
+  renderApp(<App />, {
+    me: makeMe({ dashboards: { complaints: 'viewer' } }),
+    route: '/d/complaints',
+  })
+  expect(await screen.findByRole('heading', { name: t('complaints.title') })).toBeInTheDocument()
 })

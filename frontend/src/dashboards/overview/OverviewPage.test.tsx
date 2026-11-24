@@ -4,7 +4,7 @@ import { expect, it, vi } from 'vitest'
 
 import { makeMe } from '../../test/fixtures'
 import { renderApp, t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { OverviewPage } from './OverviewPage'
 
 it('renders indicators returned by the overview endpoint', async () => {
@@ -214,8 +214,32 @@ it('shows earlier lights in browsers without Array.prototype.toReversed', async 
   try {
     renderOverview()
     await screen.findByRole('heading', { name: t('projects.title') })
-    expect(lightCard('projects.title').getByRole('img')).toHaveAccessibleName(monthState(1, 'green'))
+    expect(lightCard('projects.title').getByRole('img')).toHaveAccessibleName(
+      monthState(1, 'green'),
+    )
   } finally {
     Array.prototype.toReversed = original
   }
+})
+
+it('skips dashboards this build does not know, ignores stored garbage and reports failures', async () => {
+  window.localStorage.setItem('overview.collapsed', '{"not": "a list"}')
+  mockApi('get', '/overview', [
+    { dashboard_key: 'retired', indicators: [], status: [] },
+    {
+      dashboard_key: 'complaints',
+      indicators: [{ key: 'complaints.open', value: 3, unit: null }],
+      status: [],
+    },
+  ])
+  const view = renderApp(<OverviewPage />, { me: makeMe({ dashboards: { complaints: 'viewer' } }) })
+
+  expect(await screen.findByRole('heading', { name: t('complaints.title') })).toBeInTheDocument()
+  expect(screen.getByText(t('overview.indicators.complaints.open'))).toBeInTheDocument()
+  expect(screen.queryByText('retired')).toBeNull()
+  view.unmount()
+
+  mockApiError('get', '/overview', 500, 'generic')
+  renderApp(<OverviewPage />, { me: makeMe({ dashboards: { complaints: 'viewer' } }) })
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })

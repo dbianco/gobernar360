@@ -93,3 +93,23 @@ it('says so when nothing is loaded yet', async () => {
 
   expect(await screen.findByText(label('empty'))).toBeInTheDocument()
 })
+
+it('says when there are no requirements, reports a failed load and closes the form', async () => {
+  const view = renderProcedures(<RequirementsPage />)
+  mockApi('get', `${BASE}/requirements`, [])
+  expect(await screen.findByText(label('empty'))).toBeInTheDocument()
+  view.unmount()
+
+  const second = renderProcedures(<RequirementsPage />)
+  mockApiError('get', `${BASE}/requirements`, 500, 'generic')
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  second.unmount()
+
+  renderProcedures(<RequirementsPage />)
+  const user = userEvent.setup()
+  await user.click(
+    await screen.findByRole('button', { name: label('editNamed', { name: DNI.name }) }),
+  )
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+})

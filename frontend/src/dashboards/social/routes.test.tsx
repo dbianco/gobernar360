@@ -1,4 +1,5 @@
-import { screen } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import App from '../../App'
@@ -51,4 +52,15 @@ it('lists the dashboard in the navigation', async () => {
   renderDashboard('viewer')
 
   expect(await screen.findByRole('link', { name: t('social.title') })).toBeInTheDocument()
+})
+
+it('moves between sections with the tabs', async () => {
+  renderDashboard('admin')
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('tab', { name: t('social.tabs.parameters') }))
+  await waitFor(() => expect(tab('parameters')).toHaveAttribute('aria-selected', 'true'))
+  await user.click(screen.getByRole('tab', { name: t('social.tabs.summary') }))
+
+  await waitFor(() => expect(tab('summary')).toHaveAttribute('aria-selected', 'true'))
 })

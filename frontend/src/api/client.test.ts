@@ -1,6 +1,7 @@
+import { http, HttpResponse } from 'msw'
 import { describe, expect, it } from 'vitest'
 
-import { mockApi, mockApiError } from '../test/server'
+import { mockApi, mockApiError, server } from '../test/server'
 import { api, ApiError, downloadUrl } from './client'
 
 describe('api client', () => {
@@ -47,5 +48,28 @@ describe('api client', () => {
     expect(downloadUrl('/export/projects.csv', { year: 2024, axis_id: null })).toBe(
       '/api/export/projects.csv?year=2024',
     )
+  })
+})
+
+describe('api client failures', () => {
+  it('reports an unreachable server as a network error', async () => {
+    server.use(http.get('*/api/down', () => HttpResponse.error()))
+
+    await expect(api('/down')).rejects.toMatchObject({ status: 0, code: 'network' })
+  })
+
+  it('falls back to a generic error when the body is not the usual error', async () => {
+    server.use(
+      http.get(
+        '*/api/broken',
+        () => new HttpResponse('<html>', { status: 502, statusText: 'Bad Gateway' }),
+      ),
+    )
+
+    await expect(api('/broken')).rejects.toMatchObject({
+      status: 502,
+      code: 'generic',
+      message: 'Bad Gateway',
+    })
   })
 })

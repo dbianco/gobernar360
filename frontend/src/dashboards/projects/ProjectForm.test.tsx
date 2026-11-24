@@ -9,6 +9,7 @@ import { makeProject, OLD_TERM, TERM } from './testData'
 import { BASE, renderProjects } from './testRender'
 
 const label = (key: string) => t(`projects.form.${key}`)
+const startsWith = (text: string) => new RegExp(`^${text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`)
 
 /** The catalogs load after the form appears; wait until their options exist. */
 const catalogsLoaded = async () => {
@@ -18,7 +19,10 @@ const catalogsLoaded = async () => {
 
 async function fillRequired(user: ReturnType<typeof userEvent.setup>) {
   await catalogsLoaded()
-  await user.type(await screen.findByRole('textbox', { name: label('name') }), 'Cloacas barrio norte')
+  await user.type(
+    await screen.findByRole('textbox', { name: label('name') }),
+    'Cloacas barrio norte',
+  )
   await user.selectOptions(screen.getByRole('combobox', { name: label('axis') }), 'Ciudad segura')
   await user.selectOptions(screen.getByRole('combobox', { name: label('department') }), 'Salud')
 }
@@ -122,4 +126,106 @@ it("edits a project with the catalogs of the project's own term", async () => {
 
   expect(catalogRequests.axes.at(-1)?.url.searchParams.get('term_id')).toBe(OLD_TERM.id)
   expect(screen.getByRole('combobox', { name: label('year') })).toHaveValue('2020')
+})
+
+it('sends every field the form has', async () => {
+  const requests = mockApi('post', `${BASE}/projects`, makeProject(), 201)
+  const onSaved = vi.fn()
+  renderProjects(<ProjectForm onSaved={onSaved} onCancel={vi.fn()} />)
+  // Many fields: type without the pause between keystrokes.
+  const user = userEvent.setup({ delay: null })
+  await fillRequired(user)
+  const select = (key: string, option: string) =>
+    user.selectOptions(screen.getByRole('combobox', { name: label(key) }), option)
+  const field = (key: string) => screen.getByLabelText(startsWith(label(key)))
+
+  await user.type(screen.getByRole('textbox', { name: label('description') }), 'Red cloacal')
+  await screen.findByRole('option', { name: 'Más iluminación' })
+  await select('objective', 'Más iluminación')
+  await select('owner', 'María Pérez')
+  await select('program', 'Plan de bacheo')
+  // Optional choices can be left unassigned again.
+  await select('program', label('unassigned'))
+  await select('priority', 'B')
+  await select('year', '2025')
+  await select('status', 'in_progress')
+  await user.type(field('startDate'), '2025-03-01')
+  await user.type(field('endDate'), '2025-11-30')
+  await user.clear(field('endDate'))
+  await user.clear(field('plannedBudget'))
+  await user.type(field('plannedBudget'), '1000')
+  await user.clear(field('executedBudget'))
+  await user.type(field('executedBudget'), '250')
+  await user.type(field('manualProgress'), '30')
+  await user.click(screen.getByRole('checkbox', { name: /^ODS 6:/ }))
+  await user.click(screen.getByRole('checkbox', { name: /^ODS 9:/ }))
+  await user.click(screen.getByRole('checkbox', { name: /^ODS 9:/ }))
+  await user.click(screen.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(onSaved).toHaveBeenCalled())
+  expect(requests[0].body).toMatchObject({
+    description: 'Red cloacal',
+    objective_id: 'o-2',
+    owner_id: 'w-1',
+    program_id: null,
+    priority: 'B',
+    year: 2025,
+    status: 'in_progress',
+    start_date: '2025-03-01',
+    end_date: null,
+    planned_budget: '1000',
+    executed_budget: '250',
+    manual_progress: 30,
+    sdgs: [6],
+  })
+})
+
+it('clears a manual progress left empty and reports catalogs that failed to load', async () => {
+  const requests = mockApi('patch', `${BASE}/projects/pr-1`, makeProject())
+  renderProjects(
+    <ProjectForm
+      project={makeProject({ manual_progress: 40 })}
+      onSaved={vi.fn()}
+      onCancel={vi.fn()}
+    />,
+  )
+  mockApiError('get', `${BASE}/programs`, 500, 'generic')
+  const user = userEvent.setup()
+
+  await user.clear(await screen.findByLabelText(startsWith(label('manualProgress'))))
+  await user.click(screen.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toMatchObject({ manual_progress: null })
+})
+
+it('leaves optional choices unassigned again', async () => {
+  const requests = mockApi('patch', `${BASE}/projects/pr-1`, makeProject())
+  renderProjects(
+    <ProjectForm
+      project={makeProject({
+        objective: { id: 'o-1', name: 'x' },
+        owner: { id: 'w-1', full_name: 'María Pérez' },
+        start_date: '2024-01-10',
+      })}
+      onSaved={vi.fn()}
+      onCancel={vi.fn()}
+    />,
+  )
+  const user = userEvent.setup({ delay: null })
+  await catalogsLoaded()
+
+  await user.selectOptions(
+    screen.getByRole('combobox', { name: label('objective') }),
+    label('unassigned'),
+  )
+  await user.selectOptions(
+    screen.getByRole('combobox', { name: label('owner') }),
+    label('unassigned'),
+  )
+  await user.clear(screen.getByLabelText(startsWith(label('startDate'))))
+  await user.click(screen.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toMatchObject({ objective_id: null, owner_id: null, start_date: null })
 })

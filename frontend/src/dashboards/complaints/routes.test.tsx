@@ -1,4 +1,5 @@
-import { screen } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { Route, Routes } from 'react-router-dom'
 import { expect, it } from 'vitest'
 
@@ -40,4 +41,15 @@ it('keeps an editor out of parameters', async () => {
 
   expect(await screen.findByText(t('dashboards.forbiddenTitle'))).toBeInTheDocument()
   expect(screen.queryByText(t('complaints.parameters.types'))).not.toBeInTheDocument()
+})
+
+it('moves between sections with the tabs', async () => {
+  renderRoutes('admin')
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('tab', { name: t('complaints.tabs.parameters') }))
+  await waitFor(() => expect(tab('parameters')).toHaveAttribute('aria-selected', 'true'))
+  await user.click(screen.getByRole('tab', { name: t('complaints.tabs.summary') }))
+
+  await waitFor(() => expect(tab('summary')).toHaveAttribute('aria-selected', 'true'))
 })

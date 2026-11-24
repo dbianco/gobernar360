@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { ActorsPage } from './ActorsPage'
 import { INDUSTRY, makeActor, page } from './testData'
 import { BASE, renderEconomic } from './testRender'
@@ -12,7 +12,14 @@ const label = (key: string) => t(`economic.actors.${key}`)
 const last = <T,>(items: T[]) => items[items.length - 1]
 
 it('lists the actors with their type and sector', async () => {
-  mockApi('get', `${BASE}/actors`, page([makeActor(), makeActor({ id: 'a-2', name: 'Taller', actor_type: null, sector: null, cuit: '' })]))
+  mockApi(
+    'get',
+    `${BASE}/actors`,
+    page([
+      makeActor(),
+      makeActor({ id: 'a-2', name: 'Taller', actor_type: null, sector: null, cuit: '' }),
+    ]),
+  )
   renderEconomic(<ActorsPage />)
 
   const row = within(await screen.findByRole('row', { name: /Panadería La Espiga/ }))
@@ -103,4 +110,19 @@ it('rejects a malformed CUIT without calling the server', async () => {
 
   expect(await form.findByText(label('cuitInvalid'))).toBeInTheDocument()
   expect(requests).toHaveLength(0)
+})
+
+it('sends the optional data of an actor and shows why saving failed', async () => {
+  mockApi('get', `${BASE}/actors`, page([]))
+  const requests = mockApiError('post', `${BASE}/actors`, 409, 'conflict')
+  renderEconomic(<ActorsPage />)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('create') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: label('name') }), 'Almacén')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('errors.conflict'))).toBeInTheDocument()
+  expect(requests[0].body).toMatchObject({ actor_type_id: null, employee_count: null, cuit: '' })
 })

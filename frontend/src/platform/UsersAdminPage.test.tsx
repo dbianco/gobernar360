@@ -112,6 +112,8 @@ it('redirects non-admin members away', async () => {
 
   expect(await screen.findByRole('heading', { name: t('overview.title') })).toBeInTheDocument()
   expect(screen.queryByRole('heading', { name: t('users.title') })).not.toBeInTheDocument()
+  // Let the overview finish loading, so no request of this test outlives it.
+  expect(await screen.findByText(t('overview.emptyTitle'))).toBeInTheDocument()
 })
 
 it('is reachable for municipality admins', async () => {

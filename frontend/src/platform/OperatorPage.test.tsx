@@ -1,11 +1,11 @@
-import { screen, waitFor } from '@testing-library/react'
+import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import App from '../App'
 import { makeMe, NOETINGER } from '../test/fixtures'
 import { renderApp, t } from '../test/render'
-import { mockApi } from '../test/server'
+import { mockApi, mockApiError } from '../test/server'
 import { OperatorPage } from './OperatorPage'
 
 const OPERATOR = makeMe({ isOperator: true, municipalities: [] })
@@ -65,4 +65,41 @@ it('keeps the platform page away from non-operators', async () => {
   renderApp(<App />, { me: makeMe(), route: '/platform' })
 
   expect(await screen.findByRole('heading', { name: t('overview.title') })).toBeInTheDocument()
+  // Let the overview finish loading, so no request of this test outlives it.
+  expect(await screen.findByText(t('overview.emptyTitle'))).toBeInTheDocument()
+})
+
+it('lists the dashboards each municipality has, by name', async () => {
+  mockApi('get', '/platform/municipalities', [
+    { ...NOETINGER, dashboards: ['projects', 'retired-dashboard'], suspension: null },
+  ])
+  renderApp(<OperatorPage />, { me: OPERATOR })
+
+  expect(await screen.findByText(`${t('projects.title')}, retired-dashboard`)).toBeInTheDocument()
+})
+
+it('shows why a municipality could not be created and lets the message go', async () => {
+  mockApiError('post', '/platform/municipalities', 409, 'conflict')
+  renderOperator()
+  const user = userEvent.setup()
+
+  await user.type(await screen.findByRole('textbox', { name: t('platform.name') }), 'Noetinger')
+  await user.type(screen.getByRole('textbox', { name: t('platform.slug') }), 'noetinger')
+  await user.click(screen.getByRole('button', { name: t('platform.add') }))
+  const message = await screen.findByText(t('errors.conflict'))
+  expect(screen.getByRole('textbox', { name: t('platform.name') })).toHaveValue('Noetinger')
+  await user.click(within(message.closest('[role="alert"]') as HTMLElement).getByRole('button'))
+
+  await waitFor(() => expect(screen.queryByText(t('errors.conflict'))).not.toBeInTheDocument())
+})
+
+it('reports municipalities that cannot be loaded, and an empty platform', async () => {
+  mockApiError('get', '/platform/municipalities', 500, 'generic')
+  const view = renderApp(<OperatorPage />, { me: OPERATOR })
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  view.unmount()
+
+  mockApi('get', '/platform/municipalities', [])
+  renderApp(<OperatorPage />, { me: OPERATOR })
+  expect(await screen.findByText(t('platform.empty'))).toBeInTheDocument()
 })

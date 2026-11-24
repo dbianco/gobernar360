@@ -5,7 +5,7 @@ import { expect, it, vi } from 'vitest'
 
 import type { AccessLevel } from '../../platform/types'
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { PersonDetailPage } from './PersonDetailPage'
 import {
   BOX,
@@ -203,4 +203,72 @@ it('removes the person from the dashboard after confirming', async () => {
   expect(await screen.findByText('people list')).toBeInTheDocument()
   expect(requests).toHaveLength(1)
   expect(confirm).toHaveBeenCalledWith(label('deleteConfirm', { name: 'Pérez, Juana' }))
+})
+
+it('keeps records when deleting is declined, and shows refusals', async () => {
+  const deliveryDeleted = mockApiError('delete', `${BASE}/deliveries/d-1`, 409, 'conflict')
+  const interventionDeleted = mockApiError('delete', `${BASE}/interventions/i-1`, 409, 'in_use')
+  const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false)
+  renderDetail('editor', {
+    deliveries: [makeDelivery()],
+    interventions: [makeIntervention({ performed_by: '' })],
+  })
+  const user = userEvent.setup()
+
+  const removeDelivery = await screen.findByRole('button', {
+    name: delivery('deleteNamed', { name: BOX.name }),
+  })
+  const removeIntervention = screen.getByRole('button', {
+    name: intervention('deleteNamed', { name: VISIT.name }),
+  })
+  await user.click(removeDelivery)
+  await user.click(removeIntervention)
+  expect(deliveryDeleted).toHaveLength(0)
+  expect(interventionDeleted).toHaveLength(0)
+  confirm.mockReturnValue(true)
+  await user.click(removeDelivery)
+  expect(await screen.findByText(t('errors.conflict'))).toBeInTheDocument()
+  await user.click(removeIntervention)
+  expect(await screen.findByText(t('errors.in_use'))).toBeInTheDocument()
+})
+
+it('closes the record forms without saving', async () => {
+  renderDetail('editor', { deliveries: [makeDelivery()], interventions: [makeIntervention()] })
+  const user = userEvent.setup()
+
+  for (const name of [
+    delivery('editNamed', { name: BOX.name }),
+    intervention('editNamed', { name: VISIT.name }),
+    t('app.edit'),
+  ]) {
+    await user.click(await screen.findByRole('button', { name }))
+    expect(await screen.findByRole('dialog')).toBeInTheDocument()
+    await user.keyboard('{Escape}')
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+  }
+})
+
+it('keeps the person when removal is declined or refused, and reports a failed load', async () => {
+  const removed = mockApiError('delete', `${BASE}/people/sp-1`, 409, 'in_use')
+  const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false)
+  const view = renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('remove') }))
+  expect(removed).toHaveLength(0)
+  confirm.mockReturnValue(true)
+  await user.click(screen.getByRole('button', { name: label('remove') }))
+  expect(await screen.findByText(t('errors.in_use'))).toBeInTheDocument()
+  view.unmount()
+
+  mockApiError('get', `${BASE}/people/sp-1`, 404, 'not_found')
+  mockApi('get', `${BASE}/deliveries`, page([]))
+  mockApi('get', `${BASE}/interventions`, page([]))
+  renderSocial(
+    <Routes>
+      <Route path="/d/social/people/:id" element={<PersonDetailPage />} />
+    </Routes>,
+    { route: '/d/social/people/sp-1' },
+  )
+  expect(await screen.findByText(t('errors.not_found'))).toBeInTheDocument()
 })

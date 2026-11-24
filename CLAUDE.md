@@ -20,6 +20,7 @@ uv run gobernar360 seed-demo                     # demo data; --reset deletes AL
 uv run uvicorn gobernar360.main:create_app --factory --reload --port 8000
 uv run pytest                                    # runs against gobernar360_test, migrates it itself
 uv run pytest tests/procedures/test_summary.py::test_name
+uv run pytest --cov                              # whole suite with coverage, fails under 95 %
 uv run ruff check .
 uv run ruff format .
 uv run lint-imports                              # module-boundary contracts (.importlinter)
@@ -33,6 +34,7 @@ npm run dev                                      # http://localhost:5173, proxie
 npm test -- --run                                # vitest component tests (jsdom + msw)
 npm test -- --run src/dashboards/procedures/SummaryPage.test.tsx
 npm test -- --run -t "test name"
+npm run test:coverage                            # fails if statements, branches, functions or lines < 95 %
 npm run lint                                     # oxlint
 npm run build                                    # tsc -b && vite build (the type check)
 npm run e2e                                      # Playwright
@@ -96,6 +98,8 @@ Alembic revisions are numbered sequentially (`0009_procedures.py`). After autoge
 - A dashboard's summary page starts with `<StatusStrip dashboardKey year />` (the monthly status light, implemented entirely in `platform`).
 
 ### Tests
+
+Coverage must stay at or above 95 % on both sides (backend statements plus branches; frontend statements, branches, functions and lines each); new code comes with the tests that keep it there.
 
 - Backend tests hit the real `gobernar360_test` database: `conftest.py` sets the database env vars before importing the app, migrates once per session and truncates every table after each test. Data is built with `tests/factories.py` and `tests/<dashboard>/factories.py`, which write through the owner connection; assertions go through the HTTP `client`. New tenant resources get a cross-municipality isolation test.
 - Frontend component tests render with `renderApp` (`src/test/render.tsx`) or the dashboard's `testRender.tsx`, and mock HTTP with `mockApi` / `mockApiError` (`src/test/server.ts`, msw). Unhandled requests are errors. Use the exported `t()` helper instead of hard-coding Spanish copy.

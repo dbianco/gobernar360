@@ -25,3 +25,8 @@ it('reads the clock in words', () => {
   )
   expect(clockText(makeClock(), 'rejected', t as never)).toBe('—')
 })
+
+it('shows a dash for a missing day', () => {
+  expect(formatDay(null)).toBe('—')
+  expect(formatDay('')).toBe('—')
+})

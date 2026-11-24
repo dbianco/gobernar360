@@ -5,7 +5,7 @@ import { expect, it } from 'vitest'
 
 import type { AccessLevel } from '../../platform/types'
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { ComplaintsPage } from './ComplaintsPage'
 import { makeClock, makeComplaint, makeDetail, NORTH, POTHOLE } from './testData'
 import { BASE, renderComplaints } from './testRender'
@@ -181,4 +181,73 @@ it('does not look up a document that cannot be one', async () => {
 
   expect(dialog.getByText(t('people.dniInvalid'))).toBeInTheDocument()
   expect(dialog.getByRole('button', { name: form('lookup') })).toBeDisabled()
+})
+
+it('shows why the registry could not be asked, and why saving failed', async () => {
+  mockApiError('get', `${BASE}/people/lookup`, 500, 'generic')
+  mockApiError('post', `${BASE}/complaints`, 422, 'invalid_reference')
+  renderList()
+  const { user, dialog } = await openForm()
+
+  await user.selectOptions(dialog.getByLabelText(form('type')), 'ty-1')
+  expect(
+    dialog.getByText(form('routing', { area: 'Alumbrado Público', count: 3 })),
+  ).toBeInTheDocument()
+  await user.type(dialog.getByRole('textbox', { name: form('address') }), 'Mitre 1')
+  await user.click(dialog.getByRole('radio', { name: form('identified') }))
+  await user.type(dialog.getByRole('textbox', { name: form('dni') }), '12345678')
+  await user.click(dialog.getByRole('button', { name: form('lookup') }))
+  expect(await dialog.findByText(t('errors.generic'))).toBeInTheDocument()
+  // Back to anonymous: the complaint can be saved without the registry.
+  await user.click(dialog.getByRole('radio', { name: form('anonymous') }))
+  await user.click(dialog.getByRole('button', { name: t('app.save') }))
+
+  expect(await dialog.findByText(t('errors.invalid_reference'))).toBeInTheDocument()
+})
+
+it('does not save an identified complaint with a malformed document, and cancels', async () => {
+  const created = mockApi('post', `${BASE}/complaints`, makeDetail(), 201)
+  renderList()
+  const { user, dialog } = await openForm()
+
+  await user.type(dialog.getByRole('textbox', { name: form('address') }), 'Mitre 1')
+  await user.click(dialog.getByRole('radio', { name: form('identified') }))
+  await user.type(dialog.getByRole('textbox', { name: form('dni') }), '123')
+  await user.click(dialog.getByRole('button', { name: t('app.save') }))
+  expect(created).toHaveLength(0)
+  await user.click(dialog.getByRole('button', { name: t('app.cancel') }))
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+  expect(screen.queryByText('detail page')).not.toBeInTheDocument()
+})
+
+it('asks for parameters before registering, and reports a list that cannot load', async () => {
+  renderList('editor', [])
+  mockApi('get', `${BASE}/zones`, [])
+  mockApiError('get', `${BASE}/complaints`, 500, 'generic')
+
+  expect(await screen.findByText(label('needsParameters'))).toBeInTheDocument()
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: label('create') })).toBeNull()
+})
+
+it('pages through a long list and filters by type and area', async () => {
+  const { list } = renderList('viewer', [makeComplaint()])
+  mockApi('get', `${BASE}/complaints`, (request) => {
+    list.push(request)
+    return { items: [makeComplaint()], total: 120 }
+  })
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('app.pager.next') }))
+  await waitFor(() => expect(list.at(-1)?.url.searchParams.get('offset')).toBe('50'))
+  await user.selectOptions(screen.getByLabelText(label('type')), 'ty-2')
+  await user.selectOptions(screen.getByLabelText(label('area')), 'ar-2')
+
+  await waitFor(() => {
+    const query = list.at(-1)?.url.searchParams
+    expect(query?.get('type_id')).toBe('ty-2')
+    expect(query?.get('area_id')).toBe('ar-2')
+    expect(query?.get('offset')).toBe('0')
+  })
 })

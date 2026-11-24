@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { HouseholdsPage } from './HouseholdsPage'
 import { makeHousehold, page } from './testData'
 import { BASE, renderSocial } from './testRender'
@@ -61,4 +61,21 @@ it('creates a household', async () => {
     address: 'Calle 12',
     neighborhood: 'Norte',
   })
+})
+
+it('marks missing addresses, reports a failed load and closes the form', async () => {
+  mockApi('get', `${BASE}/households`, page([makeHousehold({ address: '', neighborhood: '' })]))
+  const view = renderSocial(<HouseholdsPage />)
+  const user = userEvent.setup()
+
+  const row = within(await screen.findByRole('row', { name: /Familia Pérez/ }))
+  expect(row.getAllByText(t('app.none'))).toHaveLength(2)
+  await user.click(screen.getByRole('button', { name: label('create') }))
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+  view.unmount()
+
+  mockApiError('get', `${BASE}/households`, 500, 'generic')
+  renderSocial(<HouseholdsPage />)
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })

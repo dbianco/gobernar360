@@ -75,7 +75,12 @@ it('adds a term', async () => {
 })
 
 it('adds an objective to an axis of the current term', async () => {
-  const requests = mockApi('post', `${BASE}/objectives`, { id: 'o-3', axis_id: 'a-2', name: 'x' }, 201)
+  const requests = mockApi(
+    'post',
+    `${BASE}/objectives`,
+    { id: 'o-3', axis_id: 'a-2', name: 'x' },
+    201,
+  )
   renderParameters()
   const user = userEvent.setup()
 
@@ -119,4 +124,119 @@ it('shows an error instead of an empty catalog when loading fails', async () => 
   expect(
     screen.queryByRole('button', { name: t('projects.parameters.addTerm') }),
   ).not.toBeInTheDocument()
+})
+
+const rename = async (user: ReturnType<typeof userEvent.setup>, name: string, newName: string) => {
+  await user.click(await screen.findByRole('button', { name: t('app.list.renameNamed', { name }) }))
+  const field = screen.getByRole('textbox', { name: t('app.list.renameNamed', { name }) })
+  await user.clear(field)
+  await user.type(field, `${newName}{Enter}`)
+}
+const remove = async (user: ReturnType<typeof userEvent.setup>, name: string) =>
+  user.click(await screen.findByRole('button', { name: t('app.list.deleteNamed', { name }) }))
+
+it('renames and deletes catalog items', async () => {
+  const renamed = mockApi('patch', `${BASE}/programs/p-1`, {})
+  const deleted = mockApi('delete', `${BASE}/owners/w-1`, null, 204)
+  const ownerRenamed = mockApi('patch', `${BASE}/owners/w-1`, {})
+  renderParameters()
+  const user = userEvent.setup()
+
+  await openTab(user, 'programs')
+  await rename(user, 'Plan de bacheo', 'Bacheo 2025')
+  await openTab(user, 'owners')
+  await rename(user, 'María Pérez', 'María E. Pérez')
+  await remove(user, 'María Pérez')
+
+  await waitFor(() => expect(deleted).toHaveLength(1))
+  expect(renamed[0].body).toEqual({ name: 'Bacheo 2025' })
+  expect(ownerRenamed[0].body).toEqual({ full_name: 'María E. Pérez' })
+})
+
+it('renames and deletes terms, axes and objectives', async () => {
+  const termRenamed = mockApi('patch', `${BASE}/terms/${TERM.id}`, {})
+  const termDeleted = mockApi('delete', `${BASE}/terms/${TERM.id}`, null, 204)
+  const axisRenamed = mockApi('patch', `${BASE}/axes/a-1`, {})
+  const axisDeleted = mockApi('delete', `${BASE}/axes/a-1`, null, 204)
+  const objectiveRenamed = mockApi('patch', `${BASE}/objectives/o-1`, {})
+  const objectiveDeleted = mockApi('delete', `${BASE}/objectives/o-1`, null, 204)
+  const axisAdded = mockApi('post', `${BASE}/axes`, {}, 201)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await rename(user, TERM.name, 'Gestión actual')
+  await remove(user, TERM.name)
+  await openTab(user, 'axes')
+  await rename(user, 'Ciudad inclusiva', 'Ciudad para todos')
+  await remove(user, 'Ciudad inclusiva')
+  await rename(user, 'Reducir el déficit habitacional', 'Viviendas')
+  await remove(user, 'Reducir el déficit habitacional')
+  await user.type(
+    screen.getByRole('textbox', { name: t('projects.parameters.newAxis') }),
+    'Ciudad verde{Enter}',
+  )
+
+  await waitFor(() => expect(axisAdded).toHaveLength(1))
+  expect(termRenamed[0].body).toEqual({ name: 'Gestión actual' })
+  expect(termDeleted).toHaveLength(1)
+  expect(axisRenamed[0].body).toEqual({ name: 'Ciudad para todos' })
+  expect(axisDeleted).toHaveLength(1)
+  expect(objectiveRenamed[0].body).toEqual({ name: 'Viviendas' })
+  expect(objectiveDeleted).toHaveLength(1)
+  expect(axisAdded[0].body).toEqual({ term_id: TERM.id, name: 'Ciudad verde' })
+})
+
+it('switches to another term', async () => {
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.selectOptions(
+    await screen.findByRole('combobox', { name: t('projects.term.change') }),
+    'Gestión 2019-2023',
+  )
+
+  expect(
+    await screen.findByText(`${t('projects.parameters.budgets')} · Gestión 2019-2023`),
+  ).toBeInTheDocument()
+  expect(
+    screen.getByLabelText(t('projects.parameters.budgetFor', { year: 2019 })),
+  ).toBeInTheDocument()
+})
+
+it('does not save a budget left as it was', async () => {
+  const requests = mockApi('put', `${BASE}/terms/${TERM.id}/budgets`, {})
+  mockCatalogs()
+  mockApi('get', `${BASE}/terms/:termId/budgets`, [{ year: 2024, total_amount: '100.00' }])
+  renderApp(<ParametersPage />, { me: makeMe({ dashboards: { projects: 'admin' } }) })
+  const user = userEvent.setup()
+
+  const input = await screen.findByDisplayValue('100.00')
+  await user.click(input)
+  await user.tab()
+  await user.clear(input)
+  await user.tab()
+
+  expect(requests).toHaveLength(0)
+})
+
+it('explains an empty term list and reports budgets and axes that fail to load', async () => {
+  mockCatalogs([])
+  renderApp(<ParametersPage />, { me: makeMe({ dashboards: { projects: 'admin' } }) })
+  const user = userEvent.setup()
+
+  await openTab(user, 'axes')
+
+  expect(await screen.findByText(t('projects.parameters.noTerm'))).toBeInTheDocument()
+})
+
+it('reports budgets and axes that fail to load', async () => {
+  mockCatalogs()
+  mockApiError('get', `${BASE}/terms/:termId/budgets`, 500, 'generic')
+  mockApiError('get', `${BASE}/axes`, 500, 'generic')
+  renderApp(<ParametersPage />, { me: makeMe({ dashboards: { projects: 'admin' } }) })
+  const user = userEvent.setup()
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  await openTab(user, 'axes')
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })

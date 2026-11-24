@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it, vi } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { AssignmentsPage } from './AssignmentsPage'
 import { makeAssignment, page, WORKSHOP } from './testData'
 import { BASE, renderEconomic } from './testRender'
@@ -85,7 +85,9 @@ it('lets an editor correct the date and the note of an assignment', async () => 
   const user = userEvent.setup()
 
   await user.click(
-    await screen.findByRole('button', { name: label('editNamed', { name: 'Panadería La Espiga' }) }),
+    await screen.findByRole('button', {
+      name: label('editNamed', { name: 'Panadería La Espiga' }),
+    }),
   )
   const form = within(await screen.findByRole('dialog'))
   expect(form.getByLabelText(label('tool'))).toBeDisabled()
@@ -96,4 +98,45 @@ it('lets an editor correct the date and the note of an assignment', async () => 
 
   await waitFor(() => expect(requests).toHaveLength(1))
   expect(requests[0].body).toEqual({ date: '2026-03-12', note: 'Primera cuota' })
+})
+
+it('changes the year, keeps an assignment when deletion is declined and shows refusals', async () => {
+  const list = mockApi('get', `${BASE}/assignments`, page([makeAssignment(), TO_PERSON]))
+  const deleted = mockApiError('delete', `${BASE}/assignments/as-2`, 409, 'conflict')
+  const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false)
+  renderEconomic(<AssignmentsPage />)
+  const user = userEvent.setup()
+
+  await user.selectOptions(await screen.findByLabelText(t('app.year')), String(YEAR - 1))
+  await waitFor(() => expect(list.at(-1)?.url.searchParams.get('year')).toBe(String(YEAR - 1)))
+  const remove = await screen.findByRole('button', {
+    name: label('deleteNamed', { name: 'Pérez, Juana' }),
+  })
+  await user.click(remove)
+  expect(deleted).toHaveLength(0)
+  confirm.mockReturnValue(true)
+  await user.click(remove)
+
+  expect(await screen.findByText(t('errors.conflict'))).toBeInTheDocument()
+})
+
+it('edits an assignment made to a person and closes the form', async () => {
+  mockApi('get', `${BASE}/assignments`, page([TO_PERSON]))
+  renderEconomic(<AssignmentsPage />)
+  const user = userEvent.setup()
+
+  await user.click(
+    await screen.findByRole('button', { name: label('editNamed', { name: 'Pérez, Juana' }) }),
+  )
+  expect(await screen.findByRole('dialog', { name: label('editTitle') })).toBeInTheDocument()
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+})
+
+it('reports assignments that cannot be loaded', async () => {
+  mockApiError('get', `${BASE}/assignments`, 500, 'generic')
+  renderEconomic(<AssignmentsPage />)
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })

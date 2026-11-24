@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { ProjectsPage } from './ProjectsPage'
 import { makeProject, TERM } from './testData'
 import { BASE, renderProjects } from './testRender'
@@ -59,4 +59,27 @@ it('filters the list by status', async () => {
   await waitFor(() =>
     expect(requests[requests.length - 1].url.searchParams.get('status')).toBe('delayed'),
   )
+})
+
+it('opens and closes the form to create a project', async () => {
+  mockApi('get', `${BASE}/projects`, [makeProject()])
+  renderProjects(<ProjectsPage />)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('projects.list.create') }))
+  await user.click(
+    within(await screen.findByRole('dialog')).getByRole('button', { name: t('app.cancel') }),
+  )
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+  await user.click(screen.getByRole('button', { name: t('projects.list.create') }))
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+})
+
+it('reports projects that cannot be loaded', async () => {
+  mockApiError('get', `${BASE}/projects`, 500, 'generic')
+  renderProjects(<ProjectsPage />)
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })

@@ -4,7 +4,7 @@ import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
-import { ANNUAL, makeSeries, MONTHLY } from './testData'
+import { ANNUAL, ENERGY, makeSeries, MONTHLY, SUBCATEGORIES } from './testData'
 import { BASE, renderEnvironment } from './testRender'
 import { TrackingPage } from './TrackingPage'
 
@@ -65,9 +65,11 @@ it('offers only the variables of the chosen category and subcategory', async () 
   await user.selectOptions(screen.getByLabelText(label('category')), 'water')
 
   await waitFor(() => expect(requests.annual).toHaveLength(1))
-  expect(within(variableSelect).getAllByRole('option').map((o) => o.textContent)).toEqual([
-    ANNUAL.name,
-  ])
+  expect(
+    within(variableSelect)
+      .getAllByRole('option')
+      .map((o) => o.textContent),
+  ).toEqual([ANNUAL.name])
   expect(
     within(screen.getByLabelText(label('subcategory')))
       .getAllByRole('option')
@@ -111,6 +113,30 @@ it('explains that there is nothing to follow before variables exist', async () =
 it('shows an error when the series cannot be loaded', async () => {
   mockApiError('get', `${BASE}/variables/${MONTHLY.id}/series`, 500, 'generic')
   renderEnvironment(<TrackingPage />)
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+})
+
+it('narrows by subcategory and says when no variable is left', async () => {
+  const requests = mockSeries()
+  renderEnvironment(<TrackingPage />)
+  mockApi('get', `${BASE}/subcategories`, [
+    ...SUBCATEGORIES,
+    { id: 's-9', category: 'energy', name: 'Alumbrado' },
+  ])
+  const user = userEvent.setup()
+
+  await screen.findByLabelText(label('variable'))
+  await user.selectOptions(screen.getByLabelText(label('subcategory')), ENERGY.id)
+  await waitFor(() => expect(requests.monthly.length).toBeGreaterThan(0))
+  await user.selectOptions(screen.getByLabelText(label('subcategory')), 's-9')
+
+  expect(await screen.findByText(label('noMatch'))).toBeInTheDocument()
+})
+
+it('reports variables that cannot be loaded', async () => {
+  renderEnvironment(<TrackingPage />)
+  mockApiError('get', `${BASE}/variables`, 500, 'generic')
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })

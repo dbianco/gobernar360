@@ -29,11 +29,28 @@ dev = [
     "httpx2>=2.16.2",
     "import-linter>=2.16",
     "pytest>=9.2.0",
+    "pytest-cov>=7.1.0",
     "ruff>=0.17.5",
 ]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+# `uv run pytest --cov` measures the whole suite and fails under the threshold.
+# Plain `uv run pytest` (or a single file) does not measure anything.
+[tool.coverage.run]
+source = ["gobernar360"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 95
+show_missing = true
+skip_covered = true
+skip_empty = true
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+]
 
 [tool.ruff]
 line-length = 100

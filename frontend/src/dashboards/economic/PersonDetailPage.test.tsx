@@ -5,7 +5,7 @@ import { expect, it, vi } from 'vitest'
 
 import type { AccessLevel } from '../../platform/types'
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { PersonDetailPage } from './PersonDetailPage'
 import { CREDIT, FAIR, makeAssignment, makePersonDetail, page, WORKSHOP } from './testData'
 import { BASE, renderEconomic } from './testRender'
@@ -112,4 +112,44 @@ it('removes the person from the dashboard after confirming', async () => {
 
   expect(await screen.findByText('people list')).toBeInTheDocument()
   expect(requests).toHaveLength(1)
+})
+
+it('keeps the person when removal is declined or refused, and closes the form', async () => {
+  const removed = mockApiError('delete', `${BASE}/people/ep-1`, 409, 'in_use')
+  const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false)
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('remove') }))
+  expect(removed).toHaveLength(0)
+  confirm.mockReturnValue(true)
+  await user.click(screen.getByRole('button', { name: label('remove') }))
+  expect(await screen.findByText(t('errors.in_use'))).toBeInTheDocument()
+
+  await user.click(screen.getByRole('button', { name: t('app.edit') }))
+  expect(await screen.findByRole('dialog', { name: label('editTitle') })).toBeInTheDocument()
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+})
+
+it('shows a person without actors, and reports one that cannot be loaded', async () => {
+  mockApi('get', `${BASE}/assignments`, page([]))
+  mockApi('get', `${BASE}/people/ep-1`, makePersonDetail({ actors: [] }))
+  const view = renderEconomic(
+    <Routes>
+      <Route path="/d/economic/people/:id" element={<PersonDetailPage />} />
+    </Routes>,
+    { route: '/d/economic/people/ep-1' },
+  )
+  expect(await screen.findByText(label('noActors'))).toBeInTheDocument()
+  view.unmount()
+
+  mockApiError('get', `${BASE}/people/ep-1`, 404, 'not_found')
+  renderEconomic(
+    <Routes>
+      <Route path="/d/economic/people/:id" element={<PersonDetailPage />} />
+    </Routes>,
+    { route: '/d/economic/people/ep-1' },
+  )
+  expect(await screen.findByText(t('errors.not_found'))).toBeInTheDocument()
 })

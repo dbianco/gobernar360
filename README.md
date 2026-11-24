@@ -90,14 +90,29 @@ cd backend
 uv run pytest            # API and tenant-isolation tests, against the gobernar360_test database
 uv run ruff check .
 uv run lint-imports      # dashboard modules must not import each other
+uv run pytest --cov      # the whole suite with coverage; fails under 95 %
 
 cd ../frontend
 npm test -- --run        # component tests
+npm run test:coverage    # the same with coverage; fails if any metric is under 95 %
 npm run lint
 npm run build
 npm run e2e              # browser tests; starts its own API and web server on ports 8001/5174
                          # and resets the gobernar360_e2e database
 ```
+
+### Coverage
+
+The project keeps at least **95 % test coverage** on both sides, and the coverage commands
+fail below it:
+
+- Backend: `uv run pytest --cov` measures `src/gobernar360` with branch coverage
+  (`[tool.coverage]` in `backend/pyproject.toml`). Pass test paths before `--cov`
+  (`uv run pytest tests/complaints --cov`), since `--cov` takes an optional value; a partial run
+  will naturally report less than the whole suite.
+- Frontend: `npm run test:coverage` measures `src/**` except tests, test helpers and `main.tsx`,
+  and checks statements, branches, functions and lines separately (`test.coverage` in
+  `frontend/vite.config.ts`). The HTML report is written to `frontend/coverage/`.
 
 ## How it is organised
 

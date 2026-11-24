@@ -5,7 +5,7 @@ import { expect, it } from 'vitest'
 import type { AccessLevel } from '../../platform/types'
 import { currentYear } from '../../platform/years'
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { SummaryPage } from './SummaryPage'
 import { emptySummary, makeSummary } from './testData'
 import { BASE, renderComplaints } from './testRender'
@@ -95,5 +95,51 @@ it('invites editors to register complaints when there are none', async () => {
   expect(screen.getByRole('link', { name: label('goToComplaints') })).toHaveAttribute(
     'href',
     '/d/complaints/complaints',
+  )
+})
+
+it('shows the monthly flow as a table too, and says when a chart has no data', async () => {
+  renderSummary(makeSummary({ monthly: [], top_zones: [] }))
+  await screen.findByText(label('backlogTitle'))
+
+  const flow = within(screen.getByRole('region', { name: label('flow') }))
+  expect(flow.getByText(t('app.chart.noData'))).toBeInTheDocument()
+  expect(flow.queryByRole('button')).toBeNull()
+})
+
+it('toggles the monthly flow between chart and table', async () => {
+  renderSummary()
+  const user = userEvent.setup()
+
+  const flow = within(await screen.findByRole('region', { name: label('flow') }))
+  await user.click(flow.getByRole('button', { name: t('app.chart.showTable') }))
+  expect(flow.getByRole('row', { name: /Feb 2026/ })).toHaveTextContent('Feb 202686')
+  await user.click(flow.getByRole('button', { name: t('app.chart.showChart') }))
+
+  expect(flow.queryByRole('table')).toBeNull()
+})
+
+it('reports a summary that cannot be loaded', async () => {
+  mockApiError('get', `${BASE}/summary`, 500, 'generic')
+  renderComplaints(<SummaryPage />, { level: 'viewer' })
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+})
+
+it('tells viewers that there is nothing yet', async () => {
+  renderSummary(emptySummary(), 'viewer')
+
+  expect(await screen.findByText(label('emptyViewerBody'))).toBeInTheDocument()
+})
+
+it('asks for this year and says when nothing repeats', async () => {
+  const requests = renderSummary(makeSummary({ repeated: [] }))
+  const user = userEvent.setup()
+
+  expect(await screen.findByText(label('noRepeated'))).toBeInTheDocument()
+  await user.selectOptions(screen.getByLabelText(label('period')), 'thisYear')
+
+  await waitFor(() =>
+    expect(requests.at(-1)?.url.searchParams.get('from')).toBe(`${currentYear()}-01-01`),
   )
 })

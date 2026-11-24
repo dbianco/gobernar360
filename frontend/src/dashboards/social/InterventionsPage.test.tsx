@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { InterventionsPage } from './InterventionsPage'
 import { INTERVIEW, LUIS, makeIntervention, page, SECRET, VISIT } from './testData'
 import { BASE, renderSocial } from './testRender'
@@ -107,4 +107,36 @@ it('corrects an intervention', async () => {
     description: SECRET,
     performed_by: 'Equipo',
   })
+})
+
+it('explains an empty type list and shows why an intervention failed', async () => {
+  mockApi('get', `${BASE}/interventions`, page([]))
+  mockApi('get', `${BASE}/people`, page([LUIS]))
+  mockApiError('post', `${BASE}/interventions`, 422, 'validation_error')
+  const view = renderSocial(<InterventionsPage />)
+  mockApi('get', `${BASE}/intervention-types`, [])
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('add') }))
+  expect(await screen.findByText(label('noTypes'))).toBeInTheDocument()
+  view.unmount()
+
+  const second = renderSocial(<InterventionsPage />)
+  mockApiError('get', `${BASE}/intervention-types`, 500, 'generic')
+  await user.click(await screen.findByRole('button', { name: label('add') }))
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  second.unmount()
+
+  renderSocial(<InterventionsPage />)
+  await user.click(await screen.findByRole('button', { name: label('add') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: t('social.people.find') }), 'gom')
+  await user.click(
+    await form.findByRole('button', {
+      name: t('social.people.chooseNamed', { name: 'Gómez, Luis' }),
+    }),
+  )
+  await user.selectOptions(form.getByLabelText(label('type')), INTERVIEW.id)
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+  expect(await form.findByText(t('errors.validation_error'))).toBeInTheDocument()
 })

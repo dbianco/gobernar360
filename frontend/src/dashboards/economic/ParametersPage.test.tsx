@@ -78,7 +78,9 @@ it('only offers the subcategories of the chosen category and edits a tool', asyn
   renderParameters()
   const user = userEvent.setup()
 
-  await user.click(await screen.findByRole('button', { name: label('editNamed', { name: CREDIT.name }) }))
+  await user.click(
+    await screen.findByRole('button', { name: label('editNamed', { name: CREDIT.name }) }),
+  )
   const form = within(await screen.findByRole('dialog'))
   const subcategory = form.getByLabelText(label('subcategory')) as HTMLSelectElement
   expect(subcategory.value).toBe(MICROCREDITS.id)
@@ -105,7 +107,9 @@ it('explains that a tool with assignments cannot be deleted', async () => {
   renderParameters()
   const user = userEvent.setup()
 
-  await user.click(await screen.findByRole('button', { name: label('deleteNamed', { name: FAIR.name }) }))
+  await user.click(
+    await screen.findByRole('button', { name: label('deleteNamed', { name: FAIR.name }) }),
+  )
 
   expect(await screen.findByText(t('errors.in_use'))).toBeInTheDocument()
 })
@@ -116,4 +120,71 @@ it('shows an error instead of empty lists when loading fails', async () => {
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
   expect(screen.queryByText(t('app.list.empty'))).toBeNull()
+})
+
+const renameItem = async (user: ReturnType<typeof userEvent.setup>, name: string, to: string) => {
+  await user.click(await screen.findByRole('button', { name: t('app.list.renameNamed', { name }) }))
+  const field = screen.getByRole('textbox', { name: t('app.list.renameNamed', { name }) })
+  await user.clear(field)
+  await user.type(field, `${to}{Enter}`)
+}
+const deleteItem = async (user: ReturnType<typeof userEvent.setup>, name: string) =>
+  user.click(await screen.findByRole('button', { name: t('app.list.deleteNamed', { name }) }))
+
+it('renames and deletes list items, categories and subcategories', async () => {
+  const sector = mockApi('patch', `${BASE}/sectors/se-1`, {})
+  const actorType = mockApi('delete', `${BASE}/actor-types/at-2`, null, 204)
+  const category = mockApi('patch', `${BASE}/tool-categories/${TRAINING.id}`, {})
+  const categoryAdded = mockApi('post', `${BASE}/tool-categories`, {}, 201)
+  const categoryDeleted = mockApi('delete', `${BASE}/tool-categories/${FINANCE.id}`, null, 204)
+  const subcategory = mockApi('patch', `${BASE}/tool-subcategories/ts-2`, {})
+  const subcategoryDeleted = mockApi('delete', `${BASE}/tool-subcategories/ts-1`, null, 204)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await renameItem(user, 'Alimentos', 'Gastronomía')
+  await deleteItem(user, 'Industria')
+  await renameItem(user, TRAINING.name, 'Formación')
+  await deleteItem(user, FINANCE.name)
+  await renameItem(user, 'Cursos', 'Cursos cortos')
+  await deleteItem(user, MICROCREDITS.name)
+  await user.type(
+    screen.getByRole('textbox', { name: label('newCategory') }),
+    'Asistencia técnica{Enter}',
+  )
+
+  await waitFor(() => expect(categoryAdded).toHaveLength(1))
+  expect(sector[0].body).toEqual({ name: 'Gastronomía' })
+  expect(actorType).toHaveLength(1)
+  expect(category[0].body).toEqual({ name: 'Formación' })
+  expect(categoryDeleted).toHaveLength(1)
+  expect(subcategory[0].body).toEqual({ name: 'Cursos cortos' })
+  expect(subcategoryDeleted).toHaveLength(1)
+  expect(categoryAdded[0].body).toEqual({ name: 'Asistencia técnica' })
+})
+
+it('closes the tool form without saving', async () => {
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addTool') }))
+  await user.click(
+    within(await screen.findByRole('dialog')).getByRole('button', { name: t('app.cancel') }),
+  )
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+})
+
+it('asks for a category before tools, and says when there are no tools yet', async () => {
+  const view = renderParameters()
+  mockApi('get', `${BASE}/tool-categories`, [])
+  mockApi('get', `${BASE}/tools`, [])
+
+  expect(await screen.findByText(label('needsCategory'))).toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: label('addTool') })).toBeNull()
+  view.unmount()
+
+  renderParameters()
+  mockApi('get', `${BASE}/tools`, [])
+  expect(await screen.findByText(label('noTools'))).toBeInTheDocument()
 })

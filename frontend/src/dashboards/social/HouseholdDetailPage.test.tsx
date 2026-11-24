@@ -109,13 +109,19 @@ it('adds a member found by search, skipping people of other households', async (
   await user.click(await screen.findByRole('button', { name: label('addMember') }))
   await user.type(screen.getByRole('textbox', { name: t('social.people.find') }), 'go')
   await user.selectOptions(screen.getByLabelText(label('relationship')), 'partner')
-  const add = await screen.findByRole('button', { name: label('addNamed', { name: 'Gómez, Luis' }) })
+  const add = await screen.findByRole('button', {
+    name: label('addNamed', { name: 'Gómez, Luis' }),
+  })
 
   expect(search[search.length - 1].url.searchParams.get('q')).toBe('go')
   // Already a member: not offered. In another household: shown, but cannot be added.
-  expect(screen.queryByRole('button', { name: label('addNamed', { name: 'Pérez, Juana' }) })).toBeNull()
+  expect(
+    screen.queryByRole('button', { name: label('addNamed', { name: 'Pérez, Juana' }) }),
+  ).toBeNull()
   expect(screen.getByText(label('inAnother', { name: 'Familia Paz' }))).toBeInTheDocument()
-  expect(screen.queryByRole('button', { name: label('addNamed', { name: 'Paz, Elena' }) })).toBeNull()
+  expect(
+    screen.queryByRole('button', { name: label('addNamed', { name: 'Paz, Elena' }) }),
+  ).toBeNull()
   await user.click(add)
 
   await waitFor(() => expect(requests).toHaveLength(1))
@@ -207,4 +213,34 @@ it('offers the first member as head and the following ones as children', async (
   await user.click(screen.getByRole('button', { name: label('addNamed', { name: 'Gómez, Ana' }) }))
   await waitFor(() => expect(next).toHaveLength(1))
   expect(next[0].body).toEqual({ relationship: 'child' })
+})
+
+it('keeps the household when deletion is declined or refused, and closes dialogs', async () => {
+  const deleted = mockApiError('delete', `${BASE}/households/h-1`, 409, 'in_use')
+  const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false)
+  const view = renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('app.delete') }))
+  expect(deleted).toHaveLength(0)
+  confirm.mockReturnValue(true)
+  await user.click(screen.getByRole('button', { name: t('app.delete') }))
+  expect(await screen.findByText(t('errors.in_use'))).toBeInTheDocument()
+
+  await user.click(screen.getByRole('button', { name: t('app.edit') }))
+  expect(await screen.findByRole('dialog', { name: label('editTitle') })).toBeInTheDocument()
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+  view.unmount()
+
+  mockApiError('get', `${BASE}/households/h-1`, 404, 'not_found')
+  mockApi('get', `${BASE}/deliveries`, page([]))
+  mockApi('get', `${BASE}/interventions`, page([]))
+  renderSocial(
+    <Routes>
+      <Route path="/d/social/households/:id" element={<HouseholdDetailPage />} />
+    </Routes>,
+    { route: '/d/social/households/h-1' },
+  )
+  expect(await screen.findByText(t('errors.not_found'))).toBeInTheDocument()
 })

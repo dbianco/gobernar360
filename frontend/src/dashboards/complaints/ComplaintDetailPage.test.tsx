@@ -7,9 +7,9 @@ import type { AccessLevel } from '../../platform/types'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { ComplaintDetailPage } from './ComplaintDetailPage'
-import { LAMP, makeClock, makeDetail, POTHOLE, WORKS } from './testData'
+import { LAMP, LIGHTS, makeClock, makeDetail, NORTH, POTHOLE, TIMELINE, WORKS } from './testData'
 import { BASE, renderComplaints } from './testRender'
-import type { ComplaintDetail } from './types'
+import type { ComplaintDetail, TimelineEvent } from './types'
 
 const detail = (key: string, options = {}) => t(`complaints.detail.${key}`, options)
 const move = (key: string) => t(`complaints.moves.${key}`)
@@ -186,4 +186,135 @@ it('lets a viewer read but not act', async () => {
   ).toBeInTheDocument()
   expect(screen.queryByRole('region', { name: detail('actions') })).not.toBeInTheDocument()
   expect(screen.queryAllByRole('button', { name: /Marcar|Rechazar|Reasignar|nota/ })).toEqual([])
+})
+
+it('tells every kind of step apart in the history', async () => {
+  const step = (id: string, overrides: Partial<TimelineEvent>): TimelineEvent => ({
+    ...TIMELINE[1],
+    id,
+    from_state: null,
+    to_state: null,
+    ...overrides,
+  })
+  renderDetail(
+    makeDetail({
+      timeline: [
+        step('ev-a', { kind: 'created', to_state: 'received', to_area: null }),
+        step('ev-b', { kind: 'reassigned', from_area: LIGHTS, to_area: WORKS, note: 'Poste' }),
+        step('ev-c', { kind: 'retyped', from_type: LAMP, to_type: POTHOLE }),
+        step('ev-d', { kind: 'comment', note: 'Llamó el vecino' }),
+        step('ev-e', { kind: 'transition', from_state: null, to_state: 'assigned' }),
+      ],
+    }),
+  )
+  const history = within(await screen.findByRole('region', { name: detail('timeline') }))
+
+  expect(history.getByText(/^Recibido y derivado a/)).toBeInTheDocument()
+  expect(history.getByText('Reasignado de Alumbrado Público a Obras Públicas')).toBeInTheDocument()
+  expect(history.getByText('Tipo cambiado de Luminaria apagada a Bache')).toBeInTheDocument()
+  expect(history.getByText(t('complaints.timeline.comment'))).toBeInTheDocument()
+  expect(history.getByText('Llamó el vecino')).toBeInTheDocument()
+  expect(history.getByText('→ Asignado')).toBeInTheDocument()
+})
+
+it('adds a note and closes dialogs without acting', async () => {
+  const notes = mockApi('post', `${URL}/comments`, makeDetail(), 201)
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('complaints.actions.comment') }))
+  let dialog = within(await screen.findByRole('dialog'))
+  await user.type(dialog.getByRole('textbox', { name: t('complaints.actions.note') }), 'Llamó')
+  await user.click(dialog.getByRole('button', { name: t('complaints.actions.comment') }))
+  await waitFor(() => expect(notes).toHaveLength(1))
+  expect(notes[0].body).toEqual({ note: 'Llamó' })
+
+  for (const open of [
+    move('waiting'),
+    t('complaints.actions.reassign'),
+    t('complaints.actions.edit'),
+  ]) {
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+    await user.click(screen.getByRole('button', { name: open }))
+    dialog = within(await screen.findByRole('dialog'))
+    await user.click(dialog.getByRole('button', { name: t('app.cancel') }))
+  }
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+})
+
+it('corrects zone and description too', async () => {
+  const sent = mockApi('patch', URL, makeDetail())
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('complaints.actions.edit') }))
+  const dialog = within(await screen.findByRole('dialog'))
+  await user.selectOptions(dialog.getByLabelText(t('complaints.form.zone')), NORTH.id)
+  const description = dialog.getByRole('textbox', { name: t('complaints.form.description') })
+  await user.clear(description)
+  await user.type(description, 'Sigue apagada')
+  await user.click(dialog.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(sent).toHaveLength(1))
+  expect(sent[0].body).toMatchObject({ zone_id: NORTH.id, description: 'Sigue apagada' })
+})
+
+it('reports a complaint that cannot be loaded', async () => {
+  mockApiError('get', URL, 404, 'not_found')
+  renderComplaints(
+    <Routes>
+      <Route path="/d/complaints/complaints/:id" element={<ComplaintDetailPage />} />
+    </Routes>,
+    { route: '/d/complaints/complaints/co-1' },
+  )
+
+  expect(await screen.findByText(t('errors.not_found'))).toBeInTheDocument()
+})
+
+it('reassigns to the area chosen and shows an anonymous complaint', async () => {
+  const sent = mockApi('post', `${URL}/assignment`, makeDetail(), 201)
+  renderDetail(makeDetail({ person: null }))
+  mockApi('get', `${BASE}/areas`, [LIGHTS, WORKS, { id: 'ar-3', name: 'Zoonosis' }])
+  const user = userEvent.setup()
+
+  expect(await screen.findByText(detail('anonymous'))).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: t('complaints.actions.reassign') }))
+  const dialog = within(await screen.findByRole('dialog'))
+  await user.selectOptions(dialog.getByLabelText(t('complaints.actions.newArea')), 'ar-3')
+  await user.click(dialog.getByRole('button', { name: t('complaints.actions.reassign') }))
+
+  await waitFor(() => expect(sent).toHaveLength(1))
+  expect(sent[0].body).toEqual({ area_id: 'ar-3', note: '' })
+})
+
+it('shows why a correction was refused', async () => {
+  mockApiError('patch', URL, 409, 'case_not_open')
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('complaints.actions.edit') }))
+  const dialog = within(await screen.findByRole('dialog'))
+  await user.click(dialog.getByRole('button', { name: t('app.save') }))
+
+  expect(await dialog.findByText(t('errors.case_not_open'))).toBeInTheDocument()
+})
+
+it('writes a step whose area or type no longer has a name', async () => {
+  const step = (id: string, overrides: Partial<TimelineEvent>): TimelineEvent => ({
+    ...TIMELINE[1],
+    id,
+    ...overrides,
+  })
+  renderDetail(
+    makeDetail({
+      timeline: [
+        step('ev-x', { kind: 'reassigned', from_area: null, to_area: null }),
+        step('ev-y', { kind: 'retyped', from_type: null, to_type: null }),
+      ],
+    }),
+  )
+  const history = within(await screen.findByRole('region', { name: detail('timeline') }))
+
+  expect(history.getByText(/^Reasignado de/)).toBeInTheDocument()
+  expect(history.getByText(/^Tipo cambiado de/)).toBeInTheDocument()
 })

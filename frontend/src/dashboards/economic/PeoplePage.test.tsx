@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { PeoplePage } from './PeoplePage'
 import { LUIS, makePerson, makeRegistryPerson, page } from './testData'
 import { BASE, renderEconomic } from './testRender'
@@ -99,7 +99,12 @@ it('fills the form with the registry data of a known document', async () => {
 
   await waitFor(() => expect(requests).toHaveLength(1))
   expect(requests[0].body).toMatchObject({
-    person: { first_name: 'Mirta', last_name: 'Domínguez', dni: '12345678', birth_date: '1990-05-01' },
+    person: {
+      first_name: 'Mirta',
+      last_name: 'Domínguez',
+      dni: '12345678',
+      birth_date: '1990-05-01',
+    },
   })
 })
 
@@ -176,6 +181,27 @@ it('drops the registry data again when the document is corrected', async () => {
 
   await waitFor(() => expect(requests).toHaveLength(1))
   expect(requests[0].body).toMatchObject({
-    person: { first_name: 'Elena', last_name: 'Paz', dni: '12345679', address: '', birth_date: null },
+    person: {
+      first_name: 'Elena',
+      last_name: 'Paz',
+      dni: '12345679',
+      address: '',
+      birth_date: null,
+    },
   })
+})
+
+it('shows why the registry could not be asked, and why saving failed', async () => {
+  mockApiError('get', `${BASE}/people/lookup`, 500, 'generic')
+  mockApiError('post', `${BASE}/people`, 409, 'dni_exists')
+  const { user, form } = await openForm()
+
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '30111222')
+  await user.type(form.getByRole('textbox', { name: t('people.firstName') }), 'Elena')
+  expect(await form.findByText(t('errors.generic'))).toBeInTheDocument()
+  await user.clear(form.getByRole('textbox', { name: t('people.dni') }))
+  await user.type(form.getByRole('textbox', { name: t('people.lastName') }), 'Ríos')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('errors.dni_exists'))).toBeInTheDocument()
 })

@@ -73,7 +73,9 @@ it('edits a source', async () => {
   renderParameters()
   const user = userEvent.setup()
 
-  await user.click(await screen.findByRole('button', { name: label('editNamed', { name: 'RENAPER' }) }))
+  await user.click(
+    await screen.findByRole('button', { name: label('editNamed', { name: 'RENAPER' }) }),
+  )
   const form = within(await screen.findByRole('dialog'))
   const name = form.getByRole('textbox', { name: label('name') })
   expect(name).toHaveValue('RENAPER')
@@ -93,4 +95,42 @@ it('says why a source in use cannot be deleted', async () => {
   )
 
   expect(await screen.findByRole('alert')).toHaveTextContent(t('errors.in_use'))
+})
+
+it('renames and deletes an area', async () => {
+  const renamed = mockApi('patch', `${BASE}/areas/${OBRAS.id}`, {})
+  const deleted = mockApi('delete', `${BASE}/areas/${OBRAS.id}`, null, 204)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(
+    await screen.findByRole('button', { name: t('app.list.renameNamed', { name: OBRAS.name }) }),
+  )
+  const field = screen.getByRole('textbox', {
+    name: t('app.list.renameNamed', { name: OBRAS.name }),
+  })
+  await user.clear(field)
+  await user.type(field, 'Obras{Enter}')
+  await user.click(
+    await screen.findByRole('button', { name: t('app.list.deleteNamed', { name: OBRAS.name }) }),
+  )
+
+  await waitFor(() => expect(deleted).toHaveLength(1))
+  expect(renamed[0].body).toEqual({ name: 'Obras' })
+})
+
+it('says when there are no sources, closes the source form and reports a failed load', async () => {
+  const view = renderParameters()
+  mockApi('get', `${BASE}/sources`, [])
+  const user = userEvent.setup()
+
+  expect(await screen.findByText(label('noSources'))).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: label('addSource') }))
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+  view.unmount()
+
+  renderParameters()
+  mockApiError('get', `${BASE}/areas`, 500, 'generic')
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })

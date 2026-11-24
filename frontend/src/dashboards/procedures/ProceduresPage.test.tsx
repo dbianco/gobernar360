@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { mockApi } from '../../test/server'
+import { mockApi, mockApiError } from '../../test/server'
 import { ProceduresPage } from './ProceduresPage'
 import { makeProcedure, OBRAS, page, RENTAS } from './testData'
 import { BASE, renderProcedures } from './testRender'
@@ -61,9 +61,12 @@ it('searches and filters on the server', async () => {
 
   await waitFor(() => expect(last(requests).url.searchParams.get('active')).toBe('true'))
   const params = last(requests).url.searchParams
-  expect([params.get('q'), params.get('area_id'), params.get('channel'), params.get('limit')]).toEqual(
-    ['hab', OBRAS.id, 'online', '50'],
-  )
+  expect([
+    params.get('q'),
+    params.get('area_id'),
+    params.get('channel'),
+    params.get('limit'),
+  ]).toEqual(['hab', OBRAS.id, 'online', '50'])
 })
 
 it('moves to the next page', async () => {
@@ -134,4 +137,24 @@ it('says so when nothing matches', async () => {
   renderProcedures(<ProceduresPage />)
 
   expect(await screen.findByText(label('empty'))).toBeInTheDocument()
+})
+
+it('asks for an area first, reports a failed load and closes the form', async () => {
+  mockApi('get', `${BASE}/procedures`, page([]))
+  const view = renderProcedures(<ProceduresPage />)
+  mockApi('get', `${BASE}/areas`, [])
+  expect(await screen.findByText(label('needsArea'))).toBeInTheDocument()
+  view.unmount()
+
+  mockApiError('get', `${BASE}/procedures`, 500, 'generic')
+  const second = renderProcedures(<ProceduresPage />)
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  second.unmount()
+
+  mockApi('get', `${BASE}/procedures`, page([makeProcedure()]))
+  renderProcedures(<ProceduresPage />)
+  const user = userEvent.setup()
+  await user.click(await screen.findByRole('button', { name: label('create') }))
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
 })

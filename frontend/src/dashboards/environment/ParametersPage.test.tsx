@@ -73,7 +73,9 @@ it('edits a variable without sending its frequency', async () => {
   const user = userEvent.setup()
 
   await user.click(
-    await screen.findByRole('button', { name: label('editNamed').replace('{{name}}', MONTHLY.name) }),
+    await screen.findByRole('button', {
+      name: label('editNamed').replace('{{name}}', MONTHLY.name),
+    }),
   )
   const form = within(await screen.findByRole('dialog'))
   expect(form.getByLabelText(label('frequency'))).toBeDisabled()
@@ -144,4 +146,43 @@ it('reads a dotted target as thousands and rejects an ambiguous one', async () =
 
   await waitFor(() => expect(requests).toHaveLength(1))
   expect(requests[0].body).toMatchObject({ target: '420000' })
+})
+
+const renameTo = async (user: ReturnType<typeof userEvent.setup>, name: string, to: string) => {
+  await user.click(await screen.findByRole('button', { name: t('app.list.renameNamed', { name }) }))
+  const field = screen.getByRole('textbox', { name: t('app.list.renameNamed', { name }) })
+  await user.clear(field)
+  await user.type(field, `${to}{Enter}`)
+}
+
+it('renames and deletes a subcategory', async () => {
+  const renamed = mockApi('patch', `${BASE}/subcategories/${ENERGY.id}`, {})
+  const deleted = mockApi('delete', `${BASE}/subcategories/${ENERGY.id}`, null, 204)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await renameTo(user, ENERGY.name, 'Energía eléctrica')
+  await user.click(
+    await screen.findByRole('button', { name: t('app.list.deleteNamed', { name: ENERGY.name }) }),
+  )
+
+  await waitFor(() => expect(deleted).toHaveLength(1))
+  expect(renamed[0].body).toEqual({ name: 'Energía eléctrica' })
+})
+
+it('shows a variable without a target as such, says when there are none, and closes its form', async () => {
+  const view = renderParameters()
+  mockApi('get', `${BASE}/variables`, [{ ...MONTHLY, target: null }])
+  const user = userEvent.setup()
+
+  const row = within(await screen.findByRole('row', { name: new RegExp(MONTHLY.name) }))
+  expect(row.getByText(t('app.none'))).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: label('addVariable') }))
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+  view.unmount()
+
+  renderParameters()
+  mockApi('get', `${BASE}/variables`, [])
+  expect(await screen.findByText(label('noVariables'))).toBeInTheDocument()
 })

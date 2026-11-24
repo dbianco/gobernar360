@@ -7,7 +7,7 @@ import type { AccessLevel } from '../../platform/types'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { ProcedureDetailPage } from './ProcedureDetailPage'
-import { FORM, makeDetail } from './testData'
+import { FORM, makeDetail, makeLink } from './testData'
 import { BASE, renderProcedures } from './testRender'
 import type { ProcedureDetail } from './types'
 
@@ -57,9 +57,11 @@ it('offers only the requirements the procedure does not ask for yet', async () =
   await user.click(await screen.findByRole('button', { name: label('addRequirement') }))
   const form = within(await screen.findByRole('dialog'))
   const select = form.getByLabelText(label('requirement'))
-  expect(within(select).getAllByRole('option').map((option) => option.textContent)).toEqual([
-    FORM.name,
-  ])
+  expect(
+    within(select)
+      .getAllByRole('option')
+      .map((option) => option.textContent),
+  ).toEqual([FORM.name])
   await user.click(form.getByRole('checkbox', { name: label('mandatory') }))
   await user.selectOptions(form.getByLabelText(label('format')), 'digital')
   await user.type(form.getByRole('textbox', { name: label('note') }), 'Firmado.')
@@ -80,7 +82,9 @@ it('changes how a requirement is asked for', async () => {
   const user = userEvent.setup()
 
   await user.click(
-    await screen.findByRole('button', { name: label('editNamed', { name: 'Libre deuda municipal' }) }),
+    await screen.findByRole('button', {
+      name: label('editNamed', { name: 'Libre deuda municipal' }),
+    }),
   )
   const form = within(await screen.findByRole('dialog'))
   expect(form.queryByLabelText(label('requirement'))).not.toBeInTheDocument()
@@ -161,4 +165,66 @@ it('writes a single day in the singular', async () => {
   renderDetail(makeDetail({ duration_days: 1 }))
 
   expect(await screen.findByText('1 día')).toBeInTheDocument()
+})
+
+it('edits every other field of the procedure and shows why saving failed', async () => {
+  const requests = mockApiError('patch', URL, 422, 'validation_error')
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('edit') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: t('procedures.form.description') }), ' Local.')
+  await user.selectOptions(form.getByLabelText(t('procedures.form.audience')), 'people')
+  const volume = form.getByRole('textbox', { name: t('procedures.form.volume') })
+  await user.clear(volume)
+  await user.type(volume, '300')
+  await user.click(form.getByRole('checkbox', { name: t('procedures.form.isActive') }))
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('errors.validation_error'))).toBeInTheDocument()
+  expect(requests[0].body).toMatchObject({
+    description: 'Para abrir un local. Local.',
+    audience: 'people',
+    annual_volume: 300,
+    is_active: false,
+  })
+})
+
+it('keeps the procedure and closes the dialog when the deletion is refused', async () => {
+  mockApiError('delete', URL, 409, 'in_use')
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('delete') }))
+  await user.click(await screen.findByRole('button', { name: t('app.confirm') }))
+
+  expect(await screen.findByText(t('errors.in_use'))).toBeInTheDocument()
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+  expect(screen.getByRole('heading', { name: 'Habilitación comercial' })).toBeInTheDocument()
+})
+
+it('shows what the procedure lacks and a requirement the person brings', async () => {
+  renderDetail(
+    makeDetail({
+      duration_days: null,
+      annual_volume: null,
+      requirements: [makeLink({ requirement: FORM })],
+    }),
+  )
+
+  const row = within(await screen.findByRole('row', { name: new RegExp(FORM.name) }))
+  expect(row.getByText(label('noSource'))).toBeInTheDocument()
+})
+
+it('reports a procedure that cannot be loaded', async () => {
+  mockApiError('get', URL, 404, 'not_found')
+  renderProcedures(
+    <Routes>
+      <Route path="/d/procedures/procedures/:id" element={<ProcedureDetailPage />} />
+    </Routes>,
+    { route: '/d/procedures/procedures/pr-1' },
+  )
+
+  expect(await screen.findByText(t('errors.not_found'))).toBeInTheDocument()
 })
