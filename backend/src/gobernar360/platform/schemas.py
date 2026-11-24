@@ -59,6 +59,8 @@ class DashboardAccessOut(BaseModel):
 
 class Me(BaseModel):
     user: UserOut
+    # False for an account that only signs in through single sign-on or was never activated.
+    has_password: bool
     # Municipalities the user can work in now; suspended ones are listed apart.
     memberships: list[MembershipOut]
     active_municipality_id: uuid.UUID | None

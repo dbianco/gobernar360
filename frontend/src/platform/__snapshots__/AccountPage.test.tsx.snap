@@ -1,5 +1,27 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`asks an account without a password for none, and offers no way to set one here > screen at the end 1`] = `
+"Mi cuenta
+Guardamos los cambios.
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
+*
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Tu cuenta no tiene contraseña porque ingresás con el inicio de sesión único. Si querés tener una, salí y usá «¿Olvidaste tu contraseña?» en la pantalla de ingreso.
+Guardar cambios
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
+`;
+
+exports[`asks an account without a password for none, and offers no way to set one here > screen at the start 1`] = `
+"Mi cuenta
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
 exports[`asks for the current password before saving anything > screen at the end 1`] = `
 "Mi cuenta
 Email

@@ -10,7 +10,12 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from gobernar360.core.config import get_settings
-from gobernar360.core.errors import ApiError, forbidden, municipality_suspended
+from gobernar360.core.errors import (
+    ApiError,
+    forbidden,
+    municipality_suspended,
+    validation_error,
+)
 from gobernar360.core.security import new_token, normalize_email, verify_password
 from gobernar360.platform import accounts
 from gobernar360.platform.access import (
@@ -65,6 +70,7 @@ def build_me(db: Session, user: User, session_row: SessionRow) -> Me:
     profile.is_platform_operator = user.is_platform_operator and session_row.auth_method != "sso"
     return Me(
         user=profile,
+        has_password=user.password_hash is not None,
         memberships=[MembershipOut.model_validate(m) for m in memberships],
         suspended_municipalities=[
             MunicipalityOut.model_validate(m.municipality)
@@ -177,7 +183,8 @@ def change_password(
 
 class AccountIn(BaseModel):
     # Asked for every change, so an unattended open session cannot take over the account.
-    current_password: str
+    # An account without a password (it signs in through single sign-on) has none to give.
+    current_password: str | None = None
     full_name: Annotated[
         str, StringConstraints(strip_whitespace=True, min_length=1, max_length=200)
     ]
@@ -193,9 +200,15 @@ def update_account(
     """Change the signed-in user's name, phone and, optionally, password.
 
     Nothing is saved unless the current password is right. A new password signs out the
-    user's other sessions, as `change_password` does.
+    user's other sessions, as `change_password` does. An account without a password changes
+    its name and phone freely, and gets a password only through a link sent to its address.
     """
-    _check_current_password(user, payload.current_password)
+    if user.password_hash is not None:
+        _check_current_password(user, payload.current_password or "")
+    elif payload.new_password is not None:
+        raise validation_error(
+            "An account without a password chooses one through the link sent by email."
+        )
     user.full_name = payload.full_name
     user.phone = payload.phone
     if payload.new_password is not None:

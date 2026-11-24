@@ -796,6 +796,7 @@
     "done": "Guardamos los cambios.",
     "donePassword": "Guardamos los cambios. La contraseña se cambió y las demás sesiones abiertas se cerraron.",
     "wrongCurrent": "La contraseña actual no es correcta. No se guardó ningún cambio.",
+    "noPassword": "Tu cuenta no tiene contraseña porque ingresás con el inicio de sesión único. Si querés tener una, salí y usá «¿Olvidaste tu contraseña?» en la pantalla de ingreso.",
     "notifications": {
       "title": "Avisos por email",
       "hint": "Los avisos te llegan a {{email}} si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.",

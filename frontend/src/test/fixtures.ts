@@ -12,6 +12,7 @@ export function makeMe(
     municipalities?: (typeof NOETINGER)[]
     active?: string | null
     suspended?: (typeof NOETINGER)[]
+    hasPassword?: boolean
   } = {},
 ): Me {
   const municipalities = options.municipalities ?? [NOETINGER]
@@ -23,6 +24,7 @@ export function makeMe(
       phone: '',
       is_platform_operator: options.isOperator ?? false,
     },
+    has_password: options.hasPassword ?? true,
     memberships: municipalities.map((municipality) => ({
       municipality,
       is_admin: options.isAdmin ?? false,

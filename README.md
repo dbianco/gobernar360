@@ -107,6 +107,9 @@ Municipalities are independent: no municipality can see another one's data.
 Every user can change their own name, contact phone and password from "Mi cuenta" (their
 name in the header). Any change there asks for the current password; leaving the new
 password empty keeps the current one, and setting one signs out their other sessions.
+An account without a password (one that only signs in through single sign-on) changes its
+name and phone without being asked for one, and gets a password only through the
+"forgot my password" link.
 
 - The **platform operator** creates municipalities and configures each one: name and
   kind, enabled dashboards, users (add, permissions, administrators, remove, set a

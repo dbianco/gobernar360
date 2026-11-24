@@ -146,6 +146,32 @@ it('says why the account could not be saved, and clears the passwords once it is
   expect(field('next')).toHaveValue('')
 })
 
+it('asks an account without a password for none, and offers no way to set one here', async () => {
+  const me = makeMe({ hasPassword: false })
+  const requests = mockApi('put', '/auth/account', {
+    ...me,
+    user: { ...me.user, full_name: 'Ana María Gómez' },
+  })
+  renderApp(<AccountPage />, { me })
+  const user = userEvent.setup()
+
+  const name = await screen.findByLabelText(t('account.fullName'), { exact: false })
+  expect(screen.queryByLabelText(t('account.current'), { exact: false })).toBeNull()
+  expect(screen.queryByLabelText(t('account.new'), { exact: false })).toBeNull()
+  expect(screen.getByText(t('account.noPassword'))).toBeInTheDocument()
+  await user.clear(name)
+  await user.type(name, 'Ana María Gómez')
+  await user.click(screen.getByRole('button', { name: t('account.submit') }))
+
+  expect(await screen.findByText(t('account.done'))).toBeInTheDocument()
+  expect(requests[0].body).toEqual({
+    current_password: null,
+    full_name: 'Ana María Gómez',
+    phone: '',
+    new_password: null,
+  })
+})
+
 // The label, whether or not the description is read out with it.
 const switchNamed = (kind: string) => {
   const label = t(`account.notifications.kinds.${kind}.label`)

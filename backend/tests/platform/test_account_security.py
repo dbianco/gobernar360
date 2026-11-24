@@ -1,6 +1,7 @@
 """Regression tests for findings of the final review."""
 
 import pytest
+from sqlalchemy import update
 
 from gobernar360.platform.models import User
 from tests.factories import (
@@ -252,7 +253,6 @@ def test_no_account_change_is_saved_without_the_current_password(client, passwor
         {"phone": "llamar al 123"},
         {"phone": "1" * 51},
         {"new_password": "short"},
-        {"current_password": None},
     ],
 )
 def test_an_invalid_account_change_is_rejected(client, fields):
@@ -273,3 +273,58 @@ def test_changing_the_account_needs_a_session(client):
     )
 
     assert response.status_code == 401
+
+
+def _signed_in_without_a_password(client) -> User:
+    """Someone who only ever signed in through single sign-on: the account has no password."""
+    user = _signed_in_ana(client)
+    with admin_session() as session, session.begin():
+        session.get(User, user.id).password_hash = None
+    return user
+
+
+def test_the_profile_says_whether_the_account_has_a_password(client):
+    _signed_in_ana(client)
+    assert client.get("/api/auth/me").json()["has_password"] is True
+
+    with admin_session() as session, session.begin():
+        session.execute(update(User).values(password_hash=None))
+
+    assert client.get("/api/auth/me").json()["has_password"] is False
+
+
+def test_an_account_without_a_password_changes_its_name_and_phone(client):
+    user = _signed_in_without_a_password(client)
+
+    response = client.put(ACCOUNT, json={"full_name": "Ana María Gómez", "phone": "3472 123456"})
+
+    assert response.status_code == 200
+    assert response.json()["user"]["full_name"] == "Ana María Gómez"
+    stored = _stored(user.id)
+    assert (stored.full_name, stored.phone) == ("Ana María Gómez", "3472 123456")
+
+
+def test_an_account_without_a_password_gets_one_only_through_a_link(client):
+    user = _signed_in_without_a_password(client)
+
+    response = client.put(
+        ACCOUNT, json={"full_name": "Otra", "phone": "", "new_password": NEW_PASSWORD}
+    )
+
+    assert response.status_code == 422
+    assert response.json()["error"] == {
+        "code": "validation_error",
+        "message": "An account without a password chooses one through the link sent by email.",
+    }
+    stored = _stored(user.id)
+    assert (stored.full_name, stored.password_hash) == ("Ana", None)
+
+
+def test_an_account_with_a_password_still_needs_it_when_none_is_sent(client):
+    user = _signed_in_ana(client)
+
+    response = client.put(ACCOUNT, json={"full_name": "Otra", "phone": ""})
+
+    assert response.status_code == 403
+    assert response.json()["error"]["code"] == "invalid_credentials"
+    assert _stored(user.id).full_name == "Ana"

@@ -60,7 +60,7 @@ function AccountForm({ me }: { me: Me }) {
       const updated = await api<Me>('/auth/account', {
         method: 'PUT',
         body: {
-          current_password: current,
+          current_password: me.has_password ? current : null,
           full_name: fullName,
           phone,
           new_password: next === '' ? null : next,
@@ -109,23 +109,33 @@ function AccountForm({ me }: { me: Me }) {
           value={phone}
           onChange={(event) => setPhone(event.currentTarget.value)}
         />
-        <Divider label={t('account.passwordSection')} labelPosition="left" />
-        <PasswordInput
-          label={t('account.new')}
-          description={t('account.newHint')}
-          autoComplete="new-password"
-          value={next}
-          onChange={(event) => setNext(event.currentTarget.value)}
-        />
-        <Divider label={t('account.confirmSection')} labelPosition="left" />
-        <PasswordInput
-          label={t('account.current')}
-          description={t('account.currentHint')}
-          required
-          autoComplete="current-password"
-          value={current}
-          onChange={(event) => setCurrent(event.currentTarget.value)}
-        />
+        {me.has_password ? (
+          <>
+            <Divider label={t('account.passwordSection')} labelPosition="left" />
+            <PasswordInput
+              label={t('account.new')}
+              description={t('account.newHint')}
+              autoComplete="new-password"
+              value={next}
+              onChange={(event) => setNext(event.currentTarget.value)}
+            />
+            <Divider label={t('account.confirmSection')} labelPosition="left" />
+            <PasswordInput
+              label={t('account.current')}
+              description={t('account.currentHint')}
+              required
+              autoComplete="current-password"
+              value={current}
+              onChange={(event) => setCurrent(event.currentTarget.value)}
+            />
+          </>
+        ) : (
+          // It signs in through single sign-on: there is no password to ask for, and one
+          // is only chosen through a link sent to the account's address.
+          <Text size="sm" c="dimmed">
+            {t('account.noPassword')}
+          </Text>
+        )}
         <Button type="submit" loading={pending}>
           {t('account.submit')}
         </Button>

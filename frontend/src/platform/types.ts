@@ -15,6 +15,8 @@ export interface Me {
     phone: string
     is_platform_operator: boolean
   }
+  /** False when the account only signs in through single sign-on. */
+  has_password: boolean
   memberships: { municipality: Municipality; is_admin: boolean }[]
   active_municipality_id: string | null
   dashboards: { key: string; level: AccessLevel }[]
