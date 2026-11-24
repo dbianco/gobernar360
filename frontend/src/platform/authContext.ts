@@ -9,6 +9,8 @@ export interface AuthState {
   login: (email: string, password: string) => Promise<void>
   logout: () => Promise<void>
   setActiveMunicipality: (municipalityId: string) => Promise<void>
+  /** Ask the server again who the user is and where they can work. */
+  refresh: () => Promise<void>
 }
 
 export const AuthContext = createContext<AuthState | null>(null)

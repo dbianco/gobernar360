@@ -42,6 +42,19 @@ class Municipality(Base):
     slug: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
     kind: Mapped[str] = mapped_column(String(20), nullable=False)
     created_at: Mapped[datetime] = created_at_column()
+    # Set while the platform operator keeps the municipality suspended: its data stays,
+    # but nobody can work in it.
+    suspended_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    suspension_reason: Mapped[str] = mapped_column(
+        String(500), nullable=False, default="", server_default=""
+    )
+    suspended_by: Mapped[uuid.UUID | None] = mapped_column(
+        Uuid, ForeignKey("users.id", ondelete="SET NULL"), nullable=True
+    )
+
+    @property
+    def is_suspended(self) -> bool:
+        return self.suspended_at is not None
 
 
 class User(Base):

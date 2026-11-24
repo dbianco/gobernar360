@@ -73,7 +73,7 @@ All municipalities share one database, separated by PostgreSQL RLS, not by query
 
 ### Access
 
-Sessions are an opaque token in the `g360_session` cookie (hashed in the `sessions` table), which also holds the active municipality. Levels are `VIEWER < EDITOR < ADMIN` per dashboard; a municipality admin is `ADMIN` on every enabled dashboard; the platform operator sees configuration only and never reaches dashboard routes. Routes declare the level by their context parameter type (`ctx: Editor`).
+Sessions are an opaque token in the `g360_session` cookie (hashed in the `sessions` table), which also holds the active municipality. A municipality the operator suspended (`municipalities.suspended_at`) is refused by `get_context` on every request (`403 municipality_suspended`) and left out of `/auth/me` memberships (listed in `suspended_municipalities` instead); the session keeps its active municipality so resuming needs nothing else. Any new route that works inside a municipality must go through `get_context` to honour this. Levels are `VIEWER < EDITOR < ADMIN` per dashboard; a municipality admin is `ADMIN` on every enabled dashboard; the platform operator sees configuration only and never reaches dashboard routes. Routes declare the level by their context parameter type (`ctx: Editor`).
 
 Unsafe methods under `/api` are rejected without the header `X-Requested-With: gobernar360` (CSRF protection). The frontend `api()` client and the pytest `client` fixture both send it.
 

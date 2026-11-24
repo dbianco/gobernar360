@@ -71,7 +71,12 @@ Municipalities are independent: no municipality can see another one's data.
 
 - The **platform operator** creates municipalities and configures each one: name and
   kind, enabled dashboards, and users (add, permissions, administrators, remove, set a
-  new password). The operator sees configuration only, never dashboard data, unless
+  new password). The operator can also **suspend** a municipality, giving a reason: its data,
+  users and permissions stay, but nobody can work in it. Members already signed in are
+  refused from their next request (`403 municipality_suspended`) and see a notice; it leaves
+  their municipality switcher. Resuming it restores everything as it was, in the same sessions.
+  Both are recorded in the municipality's audit log.
+  The operator sees configuration only, never dashboard data, unless
   added as a user of that municipality.
 - A **municipality administrator** manages a subset of that for their own municipality:
   its users and their permissions. They cannot rename it, enable dashboards, change

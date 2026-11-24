@@ -64,7 +64,8 @@
     "in_another_household": "Esa persona ya está en otro grupo familiar. Quitala primero de ese grupo.",
     "future_month": "No se puede asignar un estado a un mes que todavía no empezó.",
     "invalid_transition": "El reclamo no puede pasar a ese estado desde el estado en que está.",
-    "case_not_open": "El reclamo ya no está abierto: no se puede reasignar ni corregir."
+    "case_not_open": "El reclamo ya no está abierto: no se puede reasignar ni corregir.",
+    "municipality_suspended": "El municipio está suspendido: nadie puede trabajar en él hasta que el operador de la plataforma lo reanude."
   },
   "login": {
     "title": "Ingresar a gobernar360",
@@ -83,7 +84,13 @@
   "municipality": {
     "choose": "Elegí el municipio con el que querés trabajar",
     "noneTitle": "Todavía no pertenecés a ningún municipio",
-    "noneBody": "Pedile al administrador de tu municipio que te agregue como usuario."
+    "noneBody": "Pedile al administrador de tu municipio que te agregue como usuario.",
+    "suspendedTitle_one": "{{names}} está suspendido",
+    "suspendedTitle_other": "Tus municipios están suspendidos: {{names}}",
+    "suspendedBody": "El operador de la plataforma lo suspendió. Sus datos se conservan, pero nadie puede trabajar en él hasta que lo reanude.",
+    "checkAgain": "Volver a intentar",
+    "suspendedOthers_one": "{{names}} está suspendido: no se puede trabajar en él hasta que el operador de la plataforma lo reanude.",
+    "suspendedOthers_other": "Están suspendidos: {{names}}. No se puede trabajar en ellos hasta que el operador de la plataforma los reanude."
   },
   "overview": {
     "title": "Resumen general",
@@ -515,7 +522,22 @@
     "dashboardsHint": "Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.",
     "users": "Usuarios",
     "notFound": "El municipio no existe.",
-    "noDashboards": "Sin tableros habilitados"
+    "noDashboards": "Sin tableros habilitados",
+    "suspension": {
+      "title": "Estado",
+      "badge": "Suspendido",
+      "active": "Activo: sus usuarios pueden trabajar.",
+      "suspend": "Suspender municipio",
+      "confirmTitle": "Suspender {{name}}",
+      "confirmBody": "Nadie podrá trabajar en {{name}} hasta que lo reanudes, ni siquiera quien esté trabajando ahora: su próxima acción se rechaza. Los datos, los usuarios y sus permisos se conservan.",
+      "reason": "Motivo",
+      "reasonHint": "Queda registrado y se muestra acá mientras dure la suspensión.",
+      "suspendedTitle": "Suspendido",
+      "since": "Desde el {{at}}, por {{by}}.",
+      "sinceUnknown": "Desde el {{at}}.",
+      "reasonShown": "Motivo: {{reason}}",
+      "resume": "Reanudar municipio"
+    }
   },
   "account": {
     "title": "Cambiar contraseña",

@@ -12,7 +12,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from gobernar360.core.db import get_db, set_tenant
-from gobernar360.core.errors import forbidden, not_authenticated
+from gobernar360.core.errors import forbidden, municipality_suspended, not_authenticated
 from gobernar360.core.security import hash_session_token
 from gobernar360.dashboards import registry
 from gobernar360.platform.models import Membership, MunicipalityDashboard, User
@@ -86,6 +86,9 @@ def get_context(db: Db, user: CurrentUser, session_row: CurrentSession) -> Reque
     )
     if membership is None:
         raise forbidden("You do not belong to this municipality.")
+    # Checked on every request too, so a suspension cuts off sessions already signed in.
+    if membership.municipality.is_suspended:
+        raise municipality_suspended()
     set_tenant(db, municipality_id)
     return RequestContext(user=user, municipality_id=municipality_id, membership=membership, db=db)
 

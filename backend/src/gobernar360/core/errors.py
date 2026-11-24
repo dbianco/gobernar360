@@ -76,6 +76,10 @@ def case_not_open() -> ApiError:
     return ApiError(409, "case_not_open", "The complaint is no longer open.")
 
 
+def municipality_suspended() -> ApiError:
+    return ApiError(403, "municipality_suspended", "This municipality is suspended.")
+
+
 def future_month() -> ApiError:
     return ApiError(422, "future_month", "A month that has not started cannot be given a status.")
 

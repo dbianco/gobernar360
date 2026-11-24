@@ -2,6 +2,8 @@ import type { TFunction } from 'i18next'
 
 import type { Clock, State } from './types'
 
+export { formatDateTime } from '../../platform/format'
+
 const TIME_ZONE = 'America/Argentina/Buenos_Aires'
 const EMPTY = '—'
 
@@ -10,20 +12,6 @@ function parts(value: string, options: Intl.DateTimeFormatOptions) {
     .formatToParts(new Date(value))
     .map((part) => [part.type, part.value])
   return Object.fromEntries(formatted) as Record<string, string>
-}
-
-/** An ISO moment as DD/MM/YYYY HH:mm in Argentine time. */
-export function formatDateTime(value: string | null | undefined): string {
-  if (!value) return EMPTY
-  const p = parts(value, {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    hourCycle: 'h23',
-  })
-  return `${p.day}/${p.month}/${p.year} ${p.hour}:${p.minute}`
 }
 
 /** The Argentine calendar day of an ISO moment, as DD/MM/YYYY. */

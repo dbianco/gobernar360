@@ -1,6 +1,7 @@
 """Platform operator: municipalities, their enabled dashboards and their users."""
 
 import uuid
+from datetime import UTC, datetime
 from typing import Annotated, Literal
 
 from fastapi import APIRouter, Depends
@@ -29,8 +30,23 @@ class MunicipalityIn(BaseModel):
     kind: MunicipalityKind
 
 
+class SuspensionOut(BaseModel):
+    at: datetime
+    reason: str
+    # Who suspended it; None if that account was deleted since.
+    by: str | None
+
+
 class MunicipalityDetail(MunicipalityOut):
     dashboards: list[str]
+    # Set while the municipality is suspended.
+    suspension: SuspensionOut | None
+
+
+class SuspensionIn(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    reason: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=500)]
 
 
 class DashboardKeysIn(BaseModel):
@@ -62,10 +78,22 @@ def _enabled_keys(db: Session, municipality_id: uuid.UUID) -> list[str]:
     )
 
 
+def _suspension(db: Session, municipality: Municipality) -> SuspensionOut | None:
+    if not municipality.is_suspended:
+        return None
+    by = db.get(User, municipality.suspended_by) if municipality.suspended_by else None
+    return SuspensionOut(
+        at=municipality.suspended_at,
+        reason=municipality.suspension_reason,
+        by=by.full_name if by else None,
+    )
+
+
 def _detail(db: Session, municipality: Municipality) -> MunicipalityDetail:
     return MunicipalityDetail(
         **MunicipalityOut.model_validate(municipality).model_dump(),
         dashboards=_enabled_keys(db, municipality.id),
+        suspension=_suspension(db, municipality),
     )
 
 
@@ -155,3 +183,34 @@ def set_member_password(
     members.set_password(ctx, ctx.db.get(User, membership.user_id), payload.password)
     record_change(ctx, "update", membership, {"password": "changed"})
     ctx.db.flush()
+
+
+@router.post("/municipalities/{municipality_id}/suspension", status_code=201)
+def suspend_municipality(payload: SuspensionIn, ctx: OperatorContext) -> MunicipalityDetail:
+    """Stop everyone from working in the municipality, keeping all its data.
+
+    Members already signed in are refused from their next request on.
+    """
+    municipality = _get_municipality(ctx.db, ctx.municipality_id)
+    if municipality.is_suspended:
+        raise conflict("The municipality is already suspended.")
+    municipality.suspended_at = datetime.now(UTC)
+    municipality.suspension_reason = payload.reason
+    municipality.suspended_by = ctx.user.id
+    ctx.db.flush()
+    record_change(ctx, "update", municipality, {"suspended": True, "reason": payload.reason})
+    return _detail(ctx.db, municipality)
+
+
+@router.delete("/municipalities/{municipality_id}/suspension")
+def resume_municipality(ctx: OperatorContext) -> MunicipalityDetail:
+    """Let the municipality's members work again, exactly as before the suspension."""
+    municipality = _get_municipality(ctx.db, ctx.municipality_id)
+    if not municipality.is_suspended:
+        raise conflict("The municipality is not suspended.")
+    municipality.suspended_at = None
+    municipality.suspension_reason = ""
+    municipality.suspended_by = None
+    ctx.db.flush()
+    record_change(ctx, "update", municipality, {"suspended": False})
+    return _detail(ctx.db, municipality)

@@ -9,7 +9,7 @@ from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
 from gobernar360.core.config import get_settings
-from gobernar360.core.errors import ApiError, forbidden
+from gobernar360.core.errors import ApiError, forbidden, municipality_suspended
 from gobernar360.core.security import (
     DUMMY_PASSWORD_HASH,
     hash_password,
@@ -30,6 +30,7 @@ from gobernar360.platform.schemas import (
     DashboardAccessOut,
     Me,
     MembershipOut,
+    MunicipalityOut,
     Password,
     UserOut,
 )
@@ -51,14 +52,21 @@ def _memberships(db: Session, user: User) -> list[Membership]:
 
 
 def build_me(db: Session, user: User, session_row: SessionRow) -> Me:
-    memberships = sorted(_memberships(db, user), key=lambda m: m.municipality.name)
+    every = sorted(_memberships(db, user), key=lambda m: m.municipality.name)
+    memberships = [m for m in every if not m.municipality.is_suspended]
     active_id = session_row.active_municipality_id
-    # A membership removed after sign-in must not leave a stale active municipality.
+    # A membership removed after sign-in must not leave a stale active municipality, and a
+    # suspended one is not active. The session keeps it, so resuming brings the user back.
     if active_id not in {m.municipality_id for m in memberships}:
         active_id = None
     return Me(
         user=UserOut.model_validate(user),
         memberships=[MembershipOut.model_validate(m) for m in memberships],
+        suspended_municipalities=[
+            MunicipalityOut.model_validate(m.municipality)
+            for m in every
+            if m.municipality.is_suspended
+        ],
         active_municipality_id=active_id,
         dashboards=[
             DashboardAccessOut(key=key, level=level.name.lower())
@@ -80,11 +88,15 @@ def login(payload: LoginIn, response: Response, db: Db) -> Me:
 
     settings = get_settings()
     memberships = _memberships(db, user)
+    available = [m for m in memberships if not m.municipality.is_suspended]
+    # With a single municipality to work in, it is the active one. A sole suspended one is
+    # kept too: it is not active while suspended, and resuming it needs no new choice.
+    only = available if available else memberships
     token, token_hash = new_session_token()
     session_row = SessionRow(
         token_hash=token_hash,
         user_id=user.id,
-        active_municipality_id=memberships[0].municipality_id if len(memberships) == 1 else None,
+        active_municipality_id=only[0].municipality_id if len(only) == 1 else None,
         expires_at=datetime.now(UTC) + timedelta(hours=settings.session_ttl_hours),
     )
     db.add(session_row)
@@ -116,8 +128,13 @@ def me(db: Db, user: CurrentUser, session_row: CurrentSession) -> Me:
 def set_active_municipality(
     payload: ActiveMunicipalityIn, db: Db, user: CurrentUser, session_row: CurrentSession
 ) -> Me:
-    if payload.municipality_id not in {m.municipality_id for m in _memberships(db, user)}:
+    membership = next(
+        (m for m in _memberships(db, user) if m.municipality_id == payload.municipality_id), None
+    )
+    if membership is None:
         raise forbidden("You do not belong to this municipality.")
+    if membership.municipality.is_suspended:
+        raise municipality_suspended()
     session_row.active_municipality_id = payload.municipality_id
     db.flush()
     return build_me(db, user, session_row)
