@@ -1,9 +1,21 @@
-import { ActionIcon, Alert, Group, Menu, Paper, Stack, Text, UnstyledButton } from '@mantine/core'
+import {
+  ActionIcon,
+  Alert,
+  Group,
+  Menu,
+  Paper,
+  Stack,
+  Table,
+  Text,
+  UnstyledButton,
+} from '@mantine/core'
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
 import { useAuth } from '../authContext'
 import { errorMessage } from '../errorMessage'
+import { useYearValues } from '../indicators/api'
+import { formatIndicator, indicatorLabelKey } from '../indicators/format'
 import { hasLevel } from '../types'
 import { currentYear } from '../years'
 import { useDashboardStatus, useSetStatus } from './api'
@@ -19,8 +31,9 @@ function hasStarted(year: number, month: number): boolean {
 }
 
 /**
- * The light of each month of a year for one dashboard. Its administrators set
- * them here; everyone else only sees them.
+ * The light of each month of a year for one dashboard, with the month's headline
+ * indicators under it. Its administrators set the lights here; everyone else only
+ * sees them.
  */
 export function StatusStrip(props: {
   dashboardKey: string
@@ -32,6 +45,12 @@ export function StatusStrip(props: {
   const { me } = useAuth()
   const status = useDashboardStatus(props.dashboardKey, props.year)
   const change = useSetStatus(props.dashboardKey)
+  // The numbers only add to the lights, so a failure to load them leaves the strip as it was.
+  const numbers = useYearValues(props.dashboardKey, props.year).data
+  const byMonth = new Map(numbers?.months.map((entry) => [entry.month, entry.values]))
+  const rows = (numbers?.indicators ?? []).filter((indicator) =>
+    numbers?.months.some((entry) => indicator.key in entry.values),
+  )
   const canSet = hasLevel(me, props.dashboardKey, 'admin')
   const colors = new Map(status.data?.map((entry) => [entry.month, entry.color]))
   const error = change.error ?? (status.isError ? errorMessage(status.error) : null)
@@ -129,13 +148,56 @@ export function StatusStrip(props: {
             {t('status.hint')}
           </Text>
         </Group>
-        <Group gap="md" role="list">
-          {MONTHS.map((number) => (
-            <div key={number} role="listitem">
-              {month(number)}
-            </div>
-          ))}
-        </Group>
+        <Table.ScrollContainer minWidth={rows.length ? 760 : 520} type="native">
+          <Table
+            withRowBorders={false}
+            verticalSpacing={2}
+            horizontalSpacing={4}
+            aria-label={t('status.tableLabel', { year: props.year })}
+          >
+            <Table.Thead>
+              <Table.Tr>
+                {rows.length > 0 && (
+                  <Table.Th fw={400}>
+                    <Text size="xs" c="dimmed">
+                      {t('status.numbers')}
+                    </Text>
+                  </Table.Th>
+                )}
+                {MONTHS.map((number) => (
+                  <Table.Th key={number} ta="center" fw={400}>
+                    <Group justify="center">{month(number)}</Group>
+                  </Table.Th>
+                ))}
+              </Table.Tr>
+            </Table.Thead>
+            {rows.length > 0 && (
+              <Table.Tbody>
+                {rows.map((indicator) => (
+                  <Table.Tr key={indicator.key}>
+                    <Table.Th scope="row" fw={400}>
+                      <Text size="xs" lineClamp={1} title={t(indicatorLabelKey(indicator.key))}>
+                        {t(indicatorLabelKey(indicator.key))}
+                      </Text>
+                    </Table.Th>
+                    {MONTHS.map((number) => {
+                      const values = byMonth.get(number) ?? {}
+                      return (
+                        <Table.Td key={number} ta="center">
+                          <Text size="xs">
+                            {indicator.key in values
+                              ? formatIndicator(values[indicator.key], indicator.unit)
+                              : ''}
+                          </Text>
+                        </Table.Td>
+                      )
+                    })}
+                  </Table.Tr>
+                ))}
+              </Table.Tbody>
+            )}
+          </Table>
+        </Table.ScrollContainer>
         {error && <Alert color="red">{error}</Alert>}
       </Stack>
     </Paper>

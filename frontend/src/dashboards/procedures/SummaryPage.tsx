@@ -20,6 +20,7 @@ import { CountBarChart } from '../../platform/CountBarChart'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatNumber, formatRatio } from '../../platform/format'
 import { HelpTh } from '../../platform/HelpTh'
+import { HeadlineIndicators } from '../../platform/indicators/HeadlineIndicators'
 import { StatCard } from '../../platform/StatCard'
 import { StatusStrip } from '../../platform/status/StatusStrip'
 import { hasLevel } from '../../platform/types'
@@ -41,6 +42,7 @@ export function SummaryPage() {
     <Stack>
       {/* The inventory has no year of its own, so the strip chooses one. */}
       <StatusStrip dashboardKey={KEY} year={statusYear} onYearChange={setStatusYear} />
+      <HeadlineIndicators dashboardKey={KEY} />
       <Group gap="lg">
         <Anchor href={downloadUrl(`${BASE}/export/procedures.csv`)}>
           {label('downloadProcedures')}

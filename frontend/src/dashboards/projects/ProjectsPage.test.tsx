@@ -60,3 +60,27 @@ it('filters the list by status', async () => {
     expect(requests[requests.length - 1].url.searchParams.get('status')).toBe('delayed'),
   )
 })
+
+it('opens the form to create a project, and closes it', async () => {
+  mockApi('get', `${BASE}/projects`, [])
+  renderProjects(<ProjectsPage />)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('projects.list.create') }))
+  const dialog = await screen.findByRole('dialog', { name: t('projects.form.createTitle') })
+  await user.click(within(dialog).getByRole('button', { name: t('app.cancel') }))
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+})
+
+it('closes the create form from its close button', async () => {
+  mockApi('get', `${BASE}/projects`, [])
+  renderProjects(<ProjectsPage />)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('projects.list.create') }))
+  await screen.findByRole('dialog')
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+})

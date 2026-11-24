@@ -117,3 +117,64 @@ it('shows an error instead of empty lists when loading fails', async () => {
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
   expect(screen.queryByText(t('app.list.empty'))).toBeNull()
 })
+
+const rename = async (user: ReturnType<typeof userEvent.setup>, name: string, next: string) => {
+  await user.click(
+    await screen.findByRole('button', { name: t('app.list.renameNamed', { name }) }),
+  )
+  const field = screen.getByRole('textbox', { name: t('app.list.renameNamed', { name }) })
+  await user.clear(field)
+  await user.type(field, `${next}{Enter}`)
+}
+const remove = async (user: ReturnType<typeof userEvent.setup>, name: string) =>
+  user.click(await screen.findByRole('button', { name: t('app.list.deleteNamed', { name }) }))
+
+it('renames and deletes items of the simple lists', async () => {
+  const renamed = mockApi('patch', `${BASE}/actor-types/${SHOP.id}`, SHOP)
+  const deleted = mockApi('delete', `${BASE}/actor-types/${SHOP.id}`, null, 204)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await rename(user, SHOP.name, 'Comercio minorista')
+  await remove(user, SHOP.name)
+
+  await waitFor(() => expect(deleted).toHaveLength(1))
+  expect(renamed[0].body).toEqual({ name: 'Comercio minorista' })
+})
+
+it('adds, renames and deletes tool categories and their subcategories', async () => {
+  const categories = {
+    added: mockApi('post', `${BASE}/tool-categories`, { id: 'tc-9', name: 'Empleo' }, 201),
+    renamed: mockApi('patch', `${BASE}/tool-categories/${TRAINING.id}`, TRAINING),
+    deleted: mockApi('delete', `${BASE}/tool-categories/${TRAINING.id}`, null, 204),
+  }
+  const subcategories = {
+    renamed: mockApi('patch', `${BASE}/tool-subcategories/${MICROCREDITS.id}`, MICROCREDITS),
+    deleted: mockApi('delete', `${BASE}/tool-subcategories/${MICROCREDITS.id}`, null, 204),
+  }
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.type(await screen.findByLabelText(label('newCategory')), 'Empleo{Enter}')
+  await rename(user, TRAINING.name, 'Formación')
+  await remove(user, TRAINING.name)
+  await rename(user, MICROCREDITS.name, 'Microcréditos productivos')
+  await remove(user, MICROCREDITS.name)
+
+  await waitFor(() => expect(subcategories.deleted).toHaveLength(1))
+  expect(categories.added[0].body).toEqual({ name: 'Empleo' })
+  expect(categories.renamed[0].body).toEqual({ name: 'Formación' })
+  expect(categories.deleted).toHaveLength(1)
+  expect(subcategories.renamed[0].body).toEqual({ name: 'Microcréditos productivos' })
+})
+
+it('closes the tool form without saving', async () => {
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addTool') }))
+  await screen.findByRole('dialog')
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+})

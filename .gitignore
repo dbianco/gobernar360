@@ -10,3 +10,10 @@ dist/
 test-results/
 playwright-report/
 .DS_Store
+.import_linter_cache/
+# Test reports: coverage, mutation testing (mutmut, Stryker).
+.coverage
+/backend/mutants/
+/frontend/coverage/
+/frontend/reports/
+.stryker-tmp/

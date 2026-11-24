@@ -27,12 +27,26 @@ from gobernar360.dashboards.economic.schemas import (
     SummaryOut,
     ToolCount,
 )
-from gobernar360.dashboards.registry import SummaryIndicator
+from gobernar360.dashboards.registry import IndicatorDefinition, SummaryIndicator
 from gobernar360.platform.access import RequestContext
 from gobernar360.platform.api_types import Year
 from gobernar360.platform.clock import Today
 
 router = APIRouter()
+
+# Assignments carry their own date, so their count can be rebuilt for any past day; the
+# actors, people and tools registered are only known as they are today.
+INDICATORS = (
+    IndicatorDefinition("economic.actors", name="Actores económicos", aggregate=True),
+    IndicatorDefinition("economic.people", name="Personas registradas", aggregate=True),
+    IndicatorDefinition("economic.tools", name="Herramientas de apoyo", aggregate=True),
+    IndicatorDefinition(
+        "economic.assignments_year",
+        reconstructible=True,
+        name="Asignaciones del año",
+        aggregate=True,
+    ),
+)
 
 
 def _count(ctx: RequestContext, model: type[Any], *conditions: ColumnElement[bool]) -> int:
@@ -131,12 +145,13 @@ def get_reports(ctx: Viewer, today: Today, year: Year | None = None) -> ReportsO
 
 
 def get_summary(ctx: RequestContext, today: date) -> list[SummaryIndicator]:
-    """Indicators for the general overview; assignments are those of the current year."""
+    """Indicators as of `today`; assignments are those of its year up to that day."""
+    so_far_this_year = Assignment.date.between(date(today.year, 1, 1), today)
     counts = {
         "economic.actors": _count(ctx, Actor),
         "economic.people": _count(ctx, EconomicPerson),
         "economic.tools": _count(ctx, Tool),
-        "economic.assignments_year": _count(ctx, Assignment, in_year(today.year)),
+        "economic.assignments_year": _count(ctx, Assignment, so_far_this_year),
     }
     if not any(counts.values()):
         return []

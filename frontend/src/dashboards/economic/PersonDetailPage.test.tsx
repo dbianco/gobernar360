@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import { expect, it, vi } from 'vitest'
 
 import type { AccessLevel } from '../../platform/types'
+import { closeDialog, settle } from '../../test/dialogs'
 import { t } from '../../test/render'
 import { mockApi } from '../../test/server'
 import { PersonDetailPage } from './PersonDetailPage'
@@ -112,4 +113,18 @@ it('removes the person from the dashboard after confirming', async () => {
 
   expect(await screen.findByText('people list')).toBeInTheDocument()
   expect(requests).toHaveLength(1)
+})
+
+it('keeps the person when the removal is not confirmed, and closes the form', async () => {
+  const requests = mockApi('delete', `${BASE}/people/ep-1`, null, 204)
+  vi.spyOn(window, 'confirm').mockReturnValue(false)
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('remove') }))
+  await settle()
+  expect(requests).toEqual([])
+  await user.click(screen.getByRole('button', { name: t('app.edit') }))
+
+  await closeDialog(user)
 })

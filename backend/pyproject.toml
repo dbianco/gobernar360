@@ -10,6 +10,7 @@ dependencies = [
     "alembic>=1.20.1",
     "argon2-cffi>=25.1.0",
     "fastapi>=0.164.0",
+    "fpdf2>=2.8.9",
     "psycopg[binary]>=3.3.9",
     "pydantic-settings>=2.16.3",
     "sqlalchemy>=2.1.9",
@@ -27,8 +28,11 @@ build-backend = "uv_build"
 [dependency-groups]
 dev = [
     "httpx2>=2.16.2",
-    "import-linter>=2.17",
+    "import-linter>=2.16",
+    "mutmut>=3.8.1",
+    "pypdf>=7.1.0",
     "pytest>=9.2.0",
+    "pytest-cov>=7.1.0",
     "ruff>=0.17.5",
 ]
 
@@ -38,6 +42,8 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 100
 src = ["src", "tests"]
+# The mutated copy of the code that mutmut leaves behind.
+extend-exclude = ["mutants"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
@@ -50,3 +56,44 @@ extend-immutable-calls = [
     "fastapi.Cookie",
     "gobernar360.platform.access.require_dashboard",
 ]
+
+[tool.coverage.run]
+source = ["gobernar360"]
+# Tests run the application in this process; the CLI and the seed run in it too.
+parallel = false
+
+[tool.coverage.report]
+# `uv run pytest --cov` fails below this.
+fail_under = 95
+show_missing = true
+skip_covered = true
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+]
+
+[tool.mutmut]
+# Mutation testing pilot: `uv run mutmut run --max-children 1`, then `uv run mutmut results`.
+# The whole package is copied so the mutated modules import as usual; only these are mutated.
+source_paths = ["src/"]
+only_mutate = [
+    "src/gobernar360/platform/indicators.py",
+    "src/gobernar360/platform/masking.py",
+    "src/gobernar360/platform/formatting.py",
+    "src/gobernar360/dashboards/projects/rules.py",
+    "src/gobernar360/dashboards/environment/rules.py",
+]
+# Each mutated module is judged by its own tests.
+pytest_add_cli_args_test_selection = [
+    "tests/platform/test_indicators.py",
+    "tests/platform/test_publication.py",
+    "tests/platform/test_formatting.py",
+    "tests/projects/test_rules.py",
+    "tests/environment/test_rules.py",
+]
+pytest_add_cli_args = ["-p", "no:cacheprovider"]
+# The tests migrate the database themselves.
+also_copy = ["migrations/", "alembic.ini", ".importlinter"]
+# Tests hold database connections: fork each mutant from a process that has opened none.
+process_isolation = "forkserver"
+use_git_change_detection = false

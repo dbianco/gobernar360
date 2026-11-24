@@ -19,6 +19,7 @@ import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatNumber } from '../../platform/format'
+import { HeadlineIndicators } from '../../platform/indicators/HeadlineIndicators'
 import { StatCard } from '../../platform/StatCard'
 import { StatusStrip } from '../../platform/status/StatusStrip'
 import { hasLevel } from '../../platform/types'
@@ -77,6 +78,7 @@ export function SummaryPage() {
   return (
     <Stack>
       <StatusStrip dashboardKey="economic" year={year} />
+      <HeadlineIndicators dashboardKey="economic" />
       <Group align="flex-end" gap="lg">
         <YearSelect value={year} onChange={setYear} />
         <Anchor href={downloadUrl(`${BASE}/export/actors.csv`)}>{label('downloadActors')}</Anchor>

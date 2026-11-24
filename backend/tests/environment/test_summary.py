@@ -8,7 +8,7 @@ from tests.environment.factories import (
     make_value,
     make_variable,
 )
-from tests.factories import login, make_municipality
+from tests.factories import current_overview, login, make_municipality
 
 
 def _known_data(municipality):
@@ -128,7 +128,7 @@ def test_overview_includes_environment_indicators(client):
 
     overview = client.get("/api/overview").json()
 
-    assert overview == [
+    assert current_overview(overview) == [
         {
             "dashboard_key": "environment",
             "indicators": [

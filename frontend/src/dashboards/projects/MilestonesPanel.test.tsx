@@ -71,3 +71,17 @@ it('is read-only for viewers', async () => {
 
   expect(screen.queryByRole('button')).not.toBeInTheDocument()
 })
+
+it('deletes a milestone', async () => {
+  const milestone = makeMilestone()
+  const requests = mockApi('delete', `${BASE}/milestones/${milestone.id}`, null, 204)
+  renderProjects(<MilestonesPanel project={makeProject({ milestones: [milestone] })} canEdit />)
+
+  await userEvent.click(
+    await screen.findByRole('button', {
+      name: t('projects.milestones.deleteNamed', { name: milestone.name }),
+    }),
+  )
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+})

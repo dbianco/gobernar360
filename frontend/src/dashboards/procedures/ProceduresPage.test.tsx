@@ -135,3 +135,28 @@ it('says so when nothing matches', async () => {
 
   expect(await screen.findByText(label('empty'))).toBeInTheDocument()
 })
+
+it('sends the description, audience, yearly volume and whether it is offered', async () => {
+  mockApi('get', `${BASE}/procedures`, page([]))
+  const requests = mockApi('post', `${BASE}/procedures`, makeProcedure(), 201)
+  renderProcedures(<ProceduresPage />)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('create') }))
+  const form = within(await screen.findByRole('dialog'))
+  await user.type(form.getByRole('textbox', { name: field('name') }), 'Carnet sanitario')
+  await user.type(form.getByRole('textbox', { name: field('description') }), 'Para comercios.')
+  await user.selectOptions(form.getByLabelText(field('area')), RENTAS.id)
+  await user.selectOptions(form.getByLabelText(field('audience')), 'people')
+  await user.type(form.getByLabelText(field('volume')), '120')
+  await user.click(form.getByRole('checkbox', { name: field('isActive') }))
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toMatchObject({
+    description: 'Para comercios.',
+    audience: 'people',
+    annual_volume: 120,
+    is_active: false,
+  })
+})

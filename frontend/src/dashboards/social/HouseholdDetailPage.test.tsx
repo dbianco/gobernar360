@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import { expect, it, vi } from 'vitest'
 
 import type { AccessLevel } from '../../platform/types'
+import { closeDialog, settle } from '../../test/dialogs'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { HouseholdDetailPage } from './HouseholdDetailPage'
@@ -207,4 +208,21 @@ it('offers the first member as head and the following ones as children', async (
   await user.click(screen.getByRole('button', { name: label('addNamed', { name: 'Gómez, Ana' }) }))
   await waitFor(() => expect(next).toHaveLength(1))
   expect(next[0].body).toEqual({ relationship: 'child' })
+})
+
+it('keeps the household when the deletion is not confirmed, and closes its forms', async () => {
+  const requests = mockApi('delete', `${BASE}/households/h-1`, null, 204)
+  vi.spyOn(window, 'confirm').mockReturnValue(false)
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('app.delete') }))
+  await settle()
+  expect(requests).toEqual([])
+  await user.click(screen.getByRole('button', { name: t('app.edit') }))
+  await closeDialog(user)
+  // Members are added in a panel of the page itself.
+  await user.click(screen.getByRole('button', { name: label('addMember') }))
+  await user.click(await screen.findByRole('button', { name: t('app.cancel') }))
+  expect(await screen.findByRole('button', { name: label('addMember') })).toBeInTheDocument()
 })

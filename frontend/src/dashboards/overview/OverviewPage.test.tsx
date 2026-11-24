@@ -1,8 +1,8 @@
-import { screen, within } from '@testing-library/react'
+import { cleanup, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
-import { makeMe } from '../../test/fixtures'
+import { makeEvolution, makeMe } from '../../test/fixtures'
 import { renderApp, t } from '../../test/render'
 import { mockApi } from '../../test/server'
 import { OverviewPage } from './OverviewPage'
@@ -12,10 +12,10 @@ it('renders indicators returned by the overview endpoint', async () => {
     {
       dashboard_key: 'projects',
       indicators: [
-        { key: 'projects.active', value: 7, unit: null },
-        { key: 'projects.average_progress', value: 42, unit: 'percent' },
-        { key: 'projects.budget_executed_ratio', value: 0.256, unit: 'ratio' },
-        { key: 'projects.milestones_in_alert', value: null, unit: null },
+        makeEvolution('projects.active', 7),
+        makeEvolution('projects.average_progress', 42, 'percent'),
+        makeEvolution('projects.budget_executed_ratio', 0.256, 'ratio'),
+        makeEvolution('projects.milestones_in_alert', null),
       ],
       status: [],
     },
@@ -55,10 +55,10 @@ it('renders the environment indicators with their own labels', async () => {
     {
       dashboard_key: 'environment',
       indicators: [
-        { key: 'environment.variables', value: 12, unit: null },
-        { key: 'environment.load_completion', value: 0.24, unit: 'ratio' },
-        { key: 'environment.targets_met', value: 3, unit: null },
-        { key: 'environment.targets_missed', value: 1, unit: null },
+        makeEvolution('environment.variables', 12),
+        makeEvolution('environment.load_completion', 0.24, 'ratio'),
+        makeEvolution('environment.targets_met', 3),
+        makeEvolution('environment.targets_missed', 1),
       ],
       status: [],
     },
@@ -68,8 +68,14 @@ it('renders the environment indicators with their own labels', async () => {
   })
 
   expect(await screen.findByRole('heading', { name: t('environment.title') })).toBeInTheDocument()
+  // Each card starts with its label and its value.
   const cards = document.querySelectorAll('[data-indicator]')
-  expect([...cards].map((card) => card.textContent)).toEqual([
+  const headline = (card: Element) =>
+    [...card.querySelectorAll('p')]
+      .slice(0, 2)
+      .map((line) => line.textContent)
+      .join('')
+  expect([...cards].map(headline)).toEqual([
     'Variables ambientales12',
     'Cargas del año realizadas24 %',
     'Metas ambientales cumplidas3',
@@ -77,7 +83,7 @@ it('renders the environment indicators with their own labels', async () => {
   ])
 })
 
-const INDICATOR = { key: 'projects.active', value: 7, unit: null }
+const INDICATOR = makeEvolution('projects.active', 7)
 const monthState = (month: number, color: string) =>
   t('status.monthLabel', {
     month: t(`status.months.${month}`),
@@ -218,4 +224,157 @@ it('shows earlier lights in browsers without Array.prototype.toReversed', async 
   } finally {
     Array.prototype.toReversed = original
   }
+})
+
+it('shows the indicators that combine dashboards after the lights', async () => {
+  mockApi('get', '/overview', [{ dashboard_key: 'projects', indicators: [INDICATOR], status: [] }])
+  mockApi('get', '/overview/combined', [
+    {
+      ...makeEvolution('combined.online_procedures_per_actor', 0.5, null, { previous_value: 0.4 }),
+      dashboard_keys: ['procedures', 'economic'],
+    },
+  ])
+  renderOverview()
+
+  const combined = await screen.findByRole('region', { name: t('overview.combined.title') })
+  const label = t('overview.indicators.combined.online_procedures_per_actor')
+  expect(within(combined).getByText(label)).toBeInTheDocument()
+  expect(within(combined).getByText('0,5')).toBeInTheDocument()
+  expect(within(combined).queryByText(t('indicators.noTarget'))).not.toBeInTheDocument()
+  // Like every card, it says what it measures.
+  expect(
+    within(combined).getByRole('button', { name: t('help.about', { column: label }) }),
+  ).toBeInTheDocument()
+  const lights = screen.getByRole('region', { name: t('overview.lights') })
+  expect(lights.compareDocumentPosition(combined) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+})
+
+it('leaves the combined indicators out when the member sees none', async () => {
+  mockApi('get', '/overview', [{ dashboard_key: 'projects', indicators: [INDICATOR], status: [] }])
+  const combined = mockApi('get', '/overview/combined', [])
+  renderOverview()
+
+  await screen.findByRole('heading', { name: t('projects.title') })
+  await waitFor(() => expect(combined).toHaveLength(1))
+  expect(
+    screen.queryByRole('region', { name: t('overview.combined.title') }),
+  ).not.toBeInTheDocument()
+})
+
+describe('choosing which dashboards to show', () => {
+  const name = (key: string) => t(`${key}.title`)
+  const hide = (key: string) => t('overview.hide', { name: name(key) })
+  const show = (key: string) => t('overview.show', { name: name(key) })
+  const combinedOf = (key: string, dashboardKeys: string[]) => ({
+    ...makeEvolution(key, 1),
+    dashboard_keys: dashboardKeys,
+  })
+
+  function renderThree() {
+    mockApi(
+      'get',
+      '/overview',
+      ['projects', 'environment', 'economic'].map((key) => ({
+        dashboard_key: key,
+        indicators: [INDICATOR],
+        status: [],
+      })),
+    )
+    mockApi('get', '/overview/combined', [
+      combinedOf('combined.online_procedures_per_actor', ['procedures', 'economic']),
+      combinedOf('combined.deliveries_per_active_project', ['social', 'projects']),
+    ])
+    renderApp(<OverviewPage />, {
+      me: makeMe({ dashboards: { projects: 'viewer', environment: 'viewer', economic: 'viewer' } }),
+    })
+  }
+
+  const lightCards = () =>
+    within(screen.getByRole('region', { name: t('overview.lights') }))
+      .getAllByRole('group')
+      .map((card) => card.getAttribute('aria-label'))
+  const sectionToggles = () =>
+    ['projects', 'environment', 'economic'].filter((key) =>
+      screen.queryByRole('button', { name: name(key), expanded: true }),
+    )
+  const combinedKeys = () =>
+    [...document.querySelectorAll('[data-indicator^="combined."]')].map((card) =>
+      card.getAttribute('data-indicator'),
+    )
+
+  it('offers one icon per dashboard next to the title, all shown at first', async () => {
+    renderThree()
+
+    const toggles = await screen.findByRole('group', { name: t('overview.toggles') })
+    expect(
+      within(toggles)
+        .getAllByRole('button')
+        .map((button) => [button.getAttribute('aria-label'), button.getAttribute('aria-pressed')]),
+    ).toEqual([
+      [hide('projects'), 'true'],
+      [hide('environment'), 'true'],
+      [hide('economic'), 'true'],
+    ])
+    expect(
+      screen.getByRole('heading', { name: t('overview.title') }).parentElement,
+    ).toContainElement(toggles)
+  })
+
+  it('names the dashboard and what a click does on hover', async () => {
+    renderThree()
+
+    await userEvent.hover(await screen.findByRole('button', { name: hide('economic') }))
+
+    expect(await screen.findByRole('tooltip')).toHaveTextContent(hide('economic'))
+  })
+
+  it('hides a dashboard light, section and combined indicators, and shows them again', async () => {
+    renderThree()
+    await screen.findByRole('region', { name: t('overview.combined.title') })
+    const user = userEvent.setup()
+
+    await user.click(screen.getByRole('button', { name: hide('economic') }))
+
+    expect(lightCards()).toEqual([name('projects'), name('environment')])
+    expect(sectionToggles()).toEqual(['projects', 'environment'])
+    expect(combinedKeys()).toEqual(['combined.deliveries_per_active_project'])
+    const toggle = screen.getByRole('button', { name: show('economic') })
+    expect(toggle).toHaveAttribute('aria-pressed', 'false')
+
+    await user.click(toggle)
+
+    expect(lightCards()).toEqual([name('projects'), name('environment'), name('economic')])
+    expect(sectionToggles()).toEqual(['projects', 'environment', 'economic'])
+    expect(combinedKeys()).toEqual([
+      'combined.online_procedures_per_actor',
+      'combined.deliveries_per_active_project',
+    ])
+  })
+
+  it('says so when every dashboard is hidden', async () => {
+    renderThree()
+    const user = userEvent.setup()
+
+    for (const key of ['projects', 'environment', 'economic']) {
+      await user.click(await screen.findByRole('button', { name: hide(key) }))
+    }
+
+    expect(screen.getByText(t('overview.noneShown'))).toBeInTheDocument()
+    expect(screen.queryByRole('region', { name: t('overview.lights') })).not.toBeInTheDocument()
+    expect(sectionToggles()).toEqual([])
+    expect(combinedKeys()).toEqual([])
+  })
+
+  it('shows every dashboard again the next time the page is opened', async () => {
+    renderThree()
+    await userEvent.click(await screen.findByRole('button', { name: hide('economic') }))
+    cleanup()
+
+    renderThree()
+
+    expect(await screen.findByRole('button', { name: hide('economic') })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+  })
 })

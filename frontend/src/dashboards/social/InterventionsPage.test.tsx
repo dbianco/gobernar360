@@ -2,6 +2,7 @@ import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
+import { closeDialog } from '../../test/dialogs'
 import { t } from '../../test/render'
 import { mockApi } from '../../test/server'
 import { InterventionsPage } from './InterventionsPage'
@@ -107,4 +108,16 @@ it('corrects an intervention', async () => {
     description: SECRET,
     performed_by: 'Equipo',
   })
+})
+
+it('reads another year from its first page, and closes the new intervention form', async () => {
+  const requests = mockApi('get', `${BASE}/interventions`, page([makeIntervention()]))
+  renderSocial(<InterventionsPage />)
+  const user = userEvent.setup()
+
+  await user.selectOptions(await screen.findByLabelText(t('app.year')), String(YEAR - 1))
+  await waitFor(() => expect(requests.at(-1)?.url.searchParams.get('year')).toBe(String(YEAR - 1)))
+  await user.click(screen.getByRole('button', { name: label('add') }))
+
+  await closeDialog(user)
 })

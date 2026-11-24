@@ -1,8 +1,13 @@
 import '@testing-library/jest-dom/vitest'
-import { cleanup } from '@testing-library/react'
+import { cleanup, configure } from '@testing-library/react'
 import { afterAll, afterEach, beforeAll, vi } from 'vitest'
 
 import { server } from './server'
+
+// The first render of a lazily loaded dashboard transforms its whole module graph, which
+// can take longer than the 1 s default of findBy* queries on a busy machine. Kept below the
+// 5 s test timeout, so a query that never matches still reports what it was looking for.
+configure({ asyncUtilTimeout: 3000 })
 
 // jsdom lacks these browser APIs, which Mantine components rely on.
 Object.defineProperty(window, 'matchMedia', {

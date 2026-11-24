@@ -45,3 +45,13 @@ export function todayIso(): string {
   const pad = (value: number) => String(value).padStart(2, '0')
   return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`
 }
+
+/** The date of an ISO timestamp, in the browser's time zone, as DD/MM/YYYY. */
+export function formatTimestampDate(value: string | null | undefined): string {
+  if (!value) return EMPTY
+  return new Intl.DateTimeFormat(LOCALE, {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  }).format(new Date(value))
+}

@@ -123,3 +123,87 @@ it("edits a project with the catalogs of the project's own term", async () => {
   expect(catalogRequests.axes.at(-1)?.url.searchParams.get('term_id')).toBe(OLD_TERM.id)
   expect(screen.getByRole('combobox', { name: label('year') })).toHaveValue('2020')
 })
+
+it('sends every field that was filled in', async () => {
+  const requests = mockApi('post', `${BASE}/projects`, makeProject(), 201)
+  const onSaved = vi.fn()
+  renderProjects(<ProjectForm onSaved={onSaved} onCancel={vi.fn()} />)
+  const user = userEvent.setup()
+  const select = (key: string) => screen.getByRole('combobox', { name: label(key) })
+  const text = (key: string) => screen.getByLabelText(label(key), { exact: false })
+
+  await fillRequired(user)
+  await user.type(screen.getByRole('textbox', { name: label('description') }), 'Primera etapa')
+  await screen.findByRole('option', { name: 'Más iluminación' })
+  await user.selectOptions(select('objective'), 'Más iluminación')
+  await user.selectOptions(select('owner'), 'María Pérez')
+  await user.selectOptions(select('program'), 'Plan de bacheo')
+  await user.selectOptions(select('priority'), 'A+')
+  await user.selectOptions(select('year'), '2025')
+  await user.selectOptions(select('status'), 'in_progress')
+  await user.type(text('startDate'), '2025-03-01')
+  await user.type(text('endDate'), '2025-12-15')
+  await user.clear(text('plannedBudget'))
+  await user.type(text('plannedBudget'), '1500000')
+  await user.clear(text('executedBudget'))
+  await user.type(text('executedBudget'), '250000')
+  await user.type(text('manualProgress'), '30')
+  await user.click(screen.getByRole('checkbox', { name: /^ODS 11:/ }))
+  await user.click(screen.getByRole('checkbox', { name: /^ODS 6:/ }))
+  // Changing one's mind: unchecked again.
+  await user.click(screen.getByRole('checkbox', { name: /^ODS 11:/ }))
+  await user.click(screen.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(onSaved).toHaveBeenCalled())
+  expect(requests[0].body).toMatchObject({
+    description: 'Primera etapa',
+    objective_id: 'o-2',
+    owner_id: 'w-1',
+    program_id: 'p-1',
+    priority: 'A+',
+    year: 2025,
+    status: 'in_progress',
+    start_date: '2025-03-01',
+    end_date: '2025-12-15',
+    planned_budget: '1500000',
+    executed_budget: '250000',
+    manual_progress: 30,
+    sdgs: [6],
+  })
+})
+
+it('clears the optional choices back to none', async () => {
+  const requests = mockApi('patch', `${BASE}/projects/pr-1`, makeProject())
+  const project = makeProject({
+    objective: { id: 'o-1', name: 'Reducir el déficit habitacional' },
+    owner: { id: 'w-1', full_name: 'María Pérez' },
+    program: { id: 'p-1', name: 'Plan de bacheo' },
+    start_date: '2025-03-01',
+    end_date: '2025-12-15',
+    manual_progress: 40,
+  })
+  const onSaved = vi.fn()
+  renderProjects(<ProjectForm project={project} onSaved={onSaved} onCancel={vi.fn()} />)
+  const user = userEvent.setup()
+  const select = (key: string) => screen.getByRole('combobox', { name: label(key) })
+
+  await catalogsLoaded()
+  await screen.findByRole('option', { name: 'Reducir el déficit habitacional' })
+  await user.selectOptions(select('objective'), label('unassigned'))
+  await user.selectOptions(select('owner'), label('unassigned'))
+  await user.selectOptions(select('program'), label('unassigned'))
+  await user.clear(screen.getByLabelText(label('startDate'), { exact: false }))
+  await user.clear(screen.getByLabelText(label('endDate'), { exact: false }))
+  await user.clear(screen.getByLabelText(label('manualProgress'), { exact: false }))
+  await user.click(screen.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(onSaved).toHaveBeenCalled())
+  expect(requests[0].body).toMatchObject({
+    objective_id: null,
+    owner_id: null,
+    program_id: null,
+    start_date: null,
+    end_date: null,
+    manual_progress: null,
+  })
+})

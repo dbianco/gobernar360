@@ -1,4 +1,4 @@
-from tests.factories import make_municipality
+from tests.factories import current_overview, make_municipality
 from tests.procedures.factories import (
     BASE,
     link_requirement,
@@ -154,11 +154,12 @@ def test_member_without_access_gets_nothing(client):
 def test_overview_shows_the_procedures_indicators(client):
     known_data(signed_in(client, "viewer"))
 
-    assert client.get("/api/overview").json() == [
+    assert current_overview(client.get("/api/overview").json()) == [
         {
             "dashboard_key": "procedures",
             "indicators": [
                 {"key": "procedures.active", "value": 4, "unit": None},
+                {"key": "procedures.online", "value": 2, "unit": None},
                 {"key": "procedures.online_ratio", "value": 0.5, "unit": "ratio"},
                 {"key": "procedures.requirements", "value": 6, "unit": None},
                 {"key": "procedures.sources", "value": 4, "unit": None},

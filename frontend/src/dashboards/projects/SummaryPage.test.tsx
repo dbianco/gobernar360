@@ -2,6 +2,7 @@ import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
+import { makeEvolution } from '../../test/fixtures'
 import { t } from '../../test/render'
 import { mockApi } from '../../test/server'
 import { SummaryPage } from './SummaryPage'
@@ -15,8 +16,7 @@ it('renders status counts and budget percentages', async () => {
   const requests = mockApi('get', `${BASE}/summary`, makeSummary())
   renderProjects(<SummaryPage />)
 
-  expect(await screen.findByText(t('projects.summary.active'))).toBeInTheDocument()
-  expect(card('projects.summary.active').getByText('10')).toBeInTheDocument()
+  expect(await screen.findByText(t('projects.summary.averageProgress'))).toBeInTheDocument()
   expect(card('projects.status.delayed').getByText('3')).toBeInTheDocument()
   expect(card('projects.summary.averageProgress').getByText('48 %')).toBeInTheDocument()
   expect(card('projects.summary.budgetPlanned').getByText('40 %')).toBeInTheDocument()
@@ -42,7 +42,7 @@ it('shows a dash when a ratio is null', async () => {
   )
   renderProjects(<SummaryPage />)
 
-  await screen.findByText(t('projects.summary.active'))
+  await screen.findByText(t('projects.summary.averageProgress'))
   expect(card('projects.summary.budgetTotal').getByText('—')).toBeInTheDocument()
   expect(card('projects.summary.budgetPlanned').getByText('—')).toBeInTheDocument()
   expect(card('projects.summary.budgetExecuted').getByText('—')).toBeInTheDocument()
@@ -112,4 +112,29 @@ it('does not offer the lights of a year that has not started', async () => {
   renderProjects(<SummaryPage />)
 
   expect(await screen.findByRole('button', { name: t('status.nextYear') })).toBeDisabled()
+})
+
+it('starts with the headline indicators and their evolution', async () => {
+  mockApi('get', `${BASE}/summary`, makeSummary())
+  mockApi('get', `${BASE}/evolution`, [
+    makeEvolution('projects.delayed', 3, null, {
+      higher_is_better: false,
+      change_previous_month: -1,
+      target: 2,
+      deviation: -1,
+      on_track: false,
+    }),
+  ])
+  renderProjects(<SummaryPage />)
+
+  const headline = await screen.findByRole('region', { name: t('indicators.title') })
+  const delayed = within(headline.querySelector('[data-indicator]') as HTMLElement)
+  expect(delayed.getByText(t('overview.indicators.projects.delayed'))).toBeInTheDocument()
+  expect(
+    delayed.getByText(t('indicators.vsPreviousMonth', { change: '\u22121' })),
+  ).toHaveAttribute('data-trend', 'better')
+  expect(delayed.getByText(t('indicators.offTrack'))).toBeInTheDocument()
+  // Then the chosen term in detail.
+  const detail = screen.getByRole('heading', { name: t('projects.summary.detail') })
+  expect(headline.compareDocumentPosition(detail) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
 })

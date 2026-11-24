@@ -128,6 +128,49 @@ it('gives every navigation link an icon', async () => {
 
   const links = (await navigation()).getAllByRole('link')
 
-  expect(links).toHaveLength(7)
+  // Overview, four dashboards, users, reports, public page and platform.
+  expect(links).toHaveLength(9)
   for (const link of links) expect(link.querySelector('svg')).not.toBeNull()
+})
+
+it('signs out from an icon that says what it does on hover', async () => {
+  mockApi('get', '/overview', [])
+  renderApp(<App />, { me: makeMe() })
+
+  const logout = await screen.findByRole('button', { name: t('app.logout') })
+  expect(logout).not.toHaveTextContent(t('app.logout'))
+  await userEvent.hover(logout)
+
+  expect(await screen.findByRole('tooltip')).toHaveTextContent(t('app.logout'))
+})
+
+it('offers reports and the public page to municipality admins only', async () => {
+  mockApi('get', '/overview', [])
+  renderApp(<App />, { me: makeMe({ dashboards: { projects: 'admin' } }) })
+
+  const links = (await navigation()).getAllByRole('link').map((link) => link.textContent)
+
+  expect(links).not.toContain(t('nav.reports'))
+  expect(links).not.toContain(t('nav.publication'))
+})
+
+it.each(['/admin/reports', '/admin/publication'])(
+  'sends a member who is not an administrator from %s to the overview',
+  async (route) => {
+    mockApi('get', '/overview', [])
+    renderApp(<App />, { me: makeMe({ dashboards: { projects: 'admin' } }), route })
+
+    expect(await screen.findByRole('heading', { name: t('overview.title') })).toBeInTheDocument()
+  },
+)
+
+it.each([
+  ['/admin/reports', 'reports.title', '/reports'],
+  ['/admin/publication', 'publication.title', '/publication'],
+])('opens %s for a municipality administrator', async (route, title, path) => {
+  const publication = { enabled: false, slug: 'x', small_count_threshold: 5, dashboards: [] }
+  mockApi('get', path, path === '/reports' ? [] : publication)
+  renderApp(<App />, { me: makeMe({ isAdmin: true }), route })
+
+  expect(await screen.findByRole('heading', { name: t(title), level: 2 })).toBeInTheDocument()
 })

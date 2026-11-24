@@ -16,6 +16,13 @@ class Settings(BaseSettings):
     admin_database_url: str = (
         "postgresql+psycopg://gobernar360:gobernar360@localhost:5434/gobernar360"
     )
+    # The public transparency page connects as a role that can only read the published
+    # copies, never tenant or account data.
+    public_database_url: str = (
+        "postgresql+psycopg://gobernar360_public:gobernar360_public@localhost:5434/gobernar360"
+    )
+    # Requests per minute and client address to the public routes.
+    public_rate_limit_per_minute: int = 120
     session_ttl_hours: int = 12
     cookie_secure: bool = False
     cors_origins: list[str] = ["http://localhost:5173"]

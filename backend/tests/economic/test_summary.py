@@ -14,7 +14,7 @@ from tests.economic.factories import (
     make_tool,
     make_tool_category,
 )
-from tests.factories import login, make_municipality
+from tests.factories import current_overview, login, make_municipality
 
 
 def _viewer(client, today=date(2026, 6, 15)):
@@ -155,14 +155,15 @@ def test_overview_shows_the_economic_indicators(client):
     municipality = _viewer(client)
     _populate(municipality)
 
-    assert client.get("/api/overview").json() == [
+    assert current_overview(client.get("/api/overview").json()) == [
         {
             "dashboard_key": "economic",
             "indicators": [
                 {"key": "economic.actors", "value": 3, "unit": None},
                 {"key": "economic.people", "value": 3, "unit": None},
                 {"key": "economic.tools", "value": 2, "unit": None},
-                {"key": "economic.assignments_year", "value": 7, "unit": None},
+                # So far this year: those dated after today are not counted yet.
+                {"key": "economic.assignments_year", "value": 4, "unit": None},
             ],
             "status": [],
         }

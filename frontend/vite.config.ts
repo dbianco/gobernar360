@@ -16,5 +16,25 @@ export default defineConfig({
     setupFiles: ['./src/test/setup.ts'],
     include: ['src/**/*.test.{ts,tsx}'],
     css: false,
+    // Long form tests on a busy machine, or under coverage, can take several seconds.
+    testTimeout: 15000,
+    // `npm run coverage`: every source file of the app counts, tested or not.
+    coverage: {
+      provider: 'v8',
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: [
+        'src/**/*.test.{ts,tsx}',
+        // Test helpers and fixtures.
+        'src/test/**',
+        'src/**/testData.ts',
+        'src/**/testRender.tsx',
+        // Only mounts <App /> into the page; the browser tests cover it.
+        'src/main.tsx',
+      ],
+      reporter: ['text-summary', 'text'],
+      // `npm run coverage` fails below these. Branches count every `??` and `?.` fallback
+      // in the templates, so their floor is lower.
+      thresholds: { statements: 95, lines: 95, functions: 95, branches: 85 },
+    },
   },
 })

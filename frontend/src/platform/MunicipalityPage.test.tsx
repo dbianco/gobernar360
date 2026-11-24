@@ -6,6 +6,7 @@ import App from '../App'
 import { makeMe, NOETINGER } from '../test/fixtures'
 import { renderApp, t } from '../test/render'
 import { mockApi, mockApiError } from '../test/server'
+import { closeDialog } from '../test/dialogs'
 
 const OPERATOR = makeMe({ isOperator: true, municipalities: [] })
 const BASE = `/platform/municipalities/${NOETINGER.id}`
@@ -211,4 +212,64 @@ it('keeps the page away from non-operators', async () => {
   renderPage({ me: makeMe({ isAdmin: true }) })
 
   expect(await screen.findByRole('heading', { name: t('overview.title') })).toBeInTheDocument()
+})
+
+it('changes the kind and disables a dashboard, and does not save an empty name', async () => {
+  const details = mockApi('patch', BASE, { ...NOETINGER, kind: 'commune', dashboards: [] })
+  const dashboards = mockApi('put', `${BASE}/dashboards`, { ...NOETINGER, dashboards: [] })
+  renderPage()
+  const user = userEvent.setup()
+
+  const name = await screen.findByRole('textbox', { name: t('platform.name') })
+  await user.clear(name)
+  await user.click(screen.getByRole('button', { name: t('platform.saveDetails') }))
+  expect(details).toHaveLength(0)
+  await user.type(name, 'Noetinger')
+  await user.selectOptions(screen.getByRole('combobox', { name: t('platform.kind') }), 'commune')
+  await user.click(screen.getByRole('button', { name: t('platform.saveDetails') }))
+  await user.click(screen.getByRole('checkbox', { name: t('projects.title') }))
+
+  await waitFor(() => expect(dashboards).toHaveLength(1))
+  expect(details[0].body).toEqual({ name: 'Noetinger', kind: 'commune' })
+  expect(dashboards[0].body).toEqual({ keys: [] })
+})
+
+it('closes the password and new user dialogs, and dismisses the notice', async () => {
+  mockApi('put', `${BASE}/users/ms-2/password`, null, 204)
+  renderPage()
+  const user = userEvent.setup()
+
+  await openPasswordDialog(user)
+  await closeDialog(user)
+  await user.click(screen.getByRole('button', { name: t('users.add') }))
+  await closeDialog(user)
+  await user.click(screen.getByRole('button', { name: t('users.add') }))
+  await user.click(
+    within(await screen.findByRole('dialog')).getByRole('button', { name: t('app.cancel') }),
+  )
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+
+  const dialog = await openPasswordDialog(user)
+  await user.type(
+    within(dialog).getByLabelText(t('users.newPassword'), { exact: false }),
+    'long-password-2{Enter}',
+  )
+  const notice = (
+    await screen.findByText(t('users.passwordChanged', { name: 'Carla Carga' }))
+  ).closest('[role="alert"]') as HTMLElement
+  await user.click(within(notice).getByRole('button'))
+
+  expect(screen.queryByText(t('users.passwordChanged', { name: 'Carla Carga' }))).toBeNull()
+})
+
+it('makes a member an administrator', async () => {
+  const requests = mockApi('patch', `${BASE}/users/ms-2`, { ...CARLA, is_admin: true })
+  renderPage()
+
+  await userEvent.click(
+    await screen.findByRole('checkbox', { name: t('users.adminNamed', { name: 'Carla Carga' }) }),
+  )
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toEqual({ is_admin: true })
 })

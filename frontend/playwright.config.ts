@@ -9,6 +9,7 @@ const DATABASE = 'localhost:5434/gobernar360_e2e'
 export const backendEnv = {
   GOBERNAR360_DATABASE_URL: `postgresql+psycopg://gobernar360_app:gobernar360_app@${DATABASE}`,
   GOBERNAR360_ADMIN_DATABASE_URL: `postgresql+psycopg://gobernar360:gobernar360@${DATABASE}`,
+  GOBERNAR360_PUBLIC_DATABASE_URL: `postgresql+psycopg://gobernar360_public:gobernar360_public@${DATABASE}`,
 }
 
 export default defineConfig({

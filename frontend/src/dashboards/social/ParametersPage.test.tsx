@@ -2,6 +2,7 @@ import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
+import { deleteItem, renameItem } from '../../test/editableList'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { ParametersPage } from './ParametersPage'
@@ -97,4 +98,28 @@ it('shows an error instead of empty lists when loading fails', async () => {
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
   expect(screen.queryByText(t('app.list.empty'))).toBeNull()
+})
+
+it('renames and deletes items of the simple lists', async () => {
+  const renamed = mockApi('patch', `${BASE}/intervention-types/${VISIT.id}`, VISIT)
+  const deleted = mockApi('delete', `${BASE}/intervention-types/${VISIT.id}`, null, 204)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await renameItem(user, VISIT.name, 'Visita domiciliaria')
+  await deleteItem(user, VISIT.name)
+
+  await waitFor(() => expect(deleted).toHaveLength(1))
+  expect(renamed[0].body).toEqual({ name: 'Visita domiciliaria' })
+})
+
+it('closes the benefit form without saving', async () => {
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addBenefit') }))
+  await screen.findByRole('dialog')
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
 })

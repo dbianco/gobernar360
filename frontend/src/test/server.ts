@@ -1,9 +1,21 @@
 import { http, HttpResponse, type JsonBodyType } from 'msw'
 import { setupServer } from 'msw/node'
 
-// Every dashboard summary shows its status strip; tests that care about it mock this themselves.
+// Every dashboard summary shows its status strip and headline indicators, every parameters
+// page its targets, and the overview its combined indicators; tests that care about them
+// mock these themselves.
 export const server = setupServer(
   http.get('*/api/dashboards/:key/status', () => HttpResponse.json([])),
+  http.get('*/api/dashboards/:key/evolution', () => HttpResponse.json([])),
+  http.get('*/api/dashboards/:key/evolution/months', ({ request }) =>
+    HttpResponse.json({
+      year: Number(new URL(request.url).searchParams.get('year')),
+      indicators: [],
+      months: [],
+    }),
+  ),
+  http.get('*/api/dashboards/:key/targets', () => HttpResponse.json([])),
+  http.get('*/api/overview/combined', () => HttpResponse.json([])),
 )
 
 type Method = 'get' | 'post' | 'put' | 'patch' | 'delete'

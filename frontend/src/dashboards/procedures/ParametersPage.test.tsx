@@ -2,6 +2,7 @@ import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
+import { deleteItem, renameItem } from '../../test/editableList'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { ParametersPage } from './ParametersPage'
@@ -93,4 +94,28 @@ it('says why a source in use cannot be deleted', async () => {
   )
 
   expect(await screen.findByRole('alert')).toHaveTextContent(t('errors.in_use'))
+})
+
+it('renames and deletes an area', async () => {
+  const renamed = mockApi('patch', `${BASE}/areas/${RENTAS.id}`, RENTAS)
+  const deleted = mockApi('delete', `${BASE}/areas/${RENTAS.id}`, null, 204)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await renameItem(user, RENTAS.name, 'Rentas y Recaudación')
+  await deleteItem(user, RENTAS.name)
+
+  await waitFor(() => expect(deleted).toHaveLength(1))
+  expect(renamed[0].body).toEqual({ name: 'Rentas y Recaudación' })
+})
+
+it('closes the source form without saving', async () => {
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addSource') }))
+  await screen.findByRole('dialog')
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
 })

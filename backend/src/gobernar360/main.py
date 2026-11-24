@@ -16,14 +16,31 @@ from gobernar360.dashboards import (
 from gobernar360.platform import (
     admin_router,
     auth_router,
+    indicators_router,
     operator_router,
     overview_router,
+    public_router,
+    publication_router,
+    reports_router,
     status_router,
 )
 
 CSRF_HEADER = "x-requested-with"
 CSRF_HEADER_VALUE = "gobernar360"
 SAFE_METHODS = {"GET", "HEAD", "OPTIONS"}
+
+
+def install_dashboards() -> None:
+    """Register the dashboard modules this build ships. Safe to call more than once; the
+    command-line tasks call it too, since they run without the application."""
+    for module in (
+        projects.module,
+        environment.module,
+        economic.module,
+        social.module,
+        procedures.module,
+    ):
+        registry.register(module)
 
 
 def create_app() -> FastAPI:
@@ -60,17 +77,18 @@ def create_app() -> FastAPI:
     def health() -> dict[str, str]:
         return {"status": "ok"}
 
-    registry.register(projects.module)
-    registry.register(environment.module)
-    registry.register(economic.module)
-    registry.register(social.module)
-    registry.register(procedures.module)
+    install_dashboards()
 
     api.include_router(auth_router.router)
     api.include_router(operator_router.router)
     api.include_router(admin_router.router)
     api.include_router(overview_router.router)
     api.include_router(status_router.router)
+    api.include_router(indicators_router.router)
+    api.include_router(reports_router.router)
+    api.include_router(publication_router.router)
+    # Reads only the published copies, as a role that can read nothing else.
+    api.include_router(public_router.router)
     for module in registry.all_modules():
         api.include_router(module.router, prefix=f"/dashboards/{module.key}", tags=[module.key])
     app.include_router(api)

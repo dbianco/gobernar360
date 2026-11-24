@@ -11,9 +11,12 @@ import { useAuth } from './platform/authContext'
 import { LoginPage } from './platform/LoginPage'
 import { MunicipalityPage } from './platform/MunicipalityPage'
 import { OperatorPage } from './platform/OperatorPage'
+import { PublicationPage } from './platform/publication/PublicationPage'
+import { ReportsPage } from './platform/reports/ReportsPage'
 import { RequireDashboard } from './platform/RequireDashboard'
 import { activeMembership, type Me } from './platform/types'
 import { UsersAdminPage } from './platform/UsersAdminPage'
+import { PublicPage } from './public/PublicPage'
 
 function PageLoader() {
   const { t } = useTranslation()
@@ -44,6 +47,8 @@ export default function App() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
+      {/* Open to anyone: reads only what the municipality published. */}
+      <Route path="/p/:slug" element={<PublicPage />} />
       <Route element={<SignedIn />}>
         <Route index element={<OverviewPage />} />
         <Route path="account" element={<AccountPage />} />
@@ -52,6 +57,22 @@ export default function App() {
           element={
             <Only when={(me) => activeMembership(me)?.is_admin === true}>
               <UsersAdminPage />
+            </Only>
+          }
+        />
+        <Route
+          path="admin/reports"
+          element={
+            <Only when={(me) => activeMembership(me)?.is_admin === true}>
+              <ReportsPage />
+            </Only>
+          }
+        />
+        <Route
+          path="admin/publication"
+          element={
+            <Only when={(me) => activeMembership(me)?.is_admin === true}>
+              <PublicationPage />
             </Only>
           }
         />

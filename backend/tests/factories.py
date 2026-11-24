@@ -74,3 +74,19 @@ def login(client: TestClient, email: str, password: str = DEFAULT_PASSWORD):
     response = client.post("/api/auth/login", json={"email": email, "password": password})
     assert response.status_code == 200, response.text
     return response
+
+
+def current_overview(overview: list[dict]) -> list[dict]:
+    """The general overview without the evolution of its indicators: each dashboard's
+    indicators as key, value and unit, and its lights."""
+    return [
+        {
+            "dashboard_key": section["dashboard_key"],
+            "indicators": [
+                {"key": item["key"], "value": item["value"], "unit": item["unit"]}
+                for item in section["indicators"]
+            ],
+            "status": section["status"],
+        }
+        for section in overview
+    ]

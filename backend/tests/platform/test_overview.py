@@ -2,7 +2,14 @@ from datetime import date
 
 from gobernar360.platform.clock import get_today
 from gobernar360.platform.models import DashboardStatus
-from tests.factories import admin_session, login, make_membership, make_municipality, make_user
+from tests.factories import (
+    admin_session,
+    current_overview,
+    login,
+    make_membership,
+    make_municipality,
+    make_user,
+)
 from tests.projects.factories import (
     make_axis,
     make_department,
@@ -39,7 +46,7 @@ def test_overview_includes_projects_indicators_for_a_viewer(client):
     response = client.get("/api/overview")
 
     assert response.status_code == 200
-    assert response.json() == [
+    assert current_overview(response.json()) == [
         {
             "dashboard_key": "projects",
             "indicators": [

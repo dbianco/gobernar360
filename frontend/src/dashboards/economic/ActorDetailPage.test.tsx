@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import { expect, it, vi } from 'vitest'
 
 import type { AccessLevel } from '../../platform/types'
+import { closeDialog, settle } from '../../test/dialogs'
 import { t } from '../../test/render'
 import { mockApi } from '../../test/server'
 import { ActorDetailPage } from './ActorDetailPage'
@@ -144,4 +145,38 @@ it('corrects the note of an assignment from the actor', async () => {
 
   await waitFor(() => expect(requests).toHaveLength(1))
   expect(requests[0].body).toEqual({ date: '2026-03-10', note: 'Primera cuota pagada' })
+})
+
+it('keeps the actor and its assignments when a deletion is not confirmed', async () => {
+  const actors = mockApi('delete', `${BASE}/actors/a-1`, null, 204)
+  const assignments = mockApi('delete', `${BASE}/assignments/as-1`, null, 204)
+  vi.spyOn(window, 'confirm').mockReturnValue(false)
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('app.delete') }))
+  await user.click(
+    screen.getByRole('button', {
+      name: assignment('deleteNamed', { name: 'Microcrédito productivo' }),
+    }),
+  )
+  await settle()
+
+  expect([...actors, ...assignments]).toEqual([])
+})
+
+it('opens and closes the forms of the actor and of its assignments', async () => {
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('app.edit') }))
+  await closeDialog(user)
+  await user.click(screen.getByRole('button', { name: assignment('add') }))
+  await closeDialog(user)
+  await user.click(
+    screen.getByRole('button', {
+      name: assignment('editNamed', { name: 'Microcrédito productivo' }),
+    }),
+  )
+  await closeDialog(user)
 })

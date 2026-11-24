@@ -19,6 +19,7 @@ import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatNumber, formatRatio } from '../../platform/format'
+import { HeadlineIndicators } from '../../platform/indicators/HeadlineIndicators'
 import { StatCard } from '../../platform/StatCard'
 import { StatusStrip } from '../../platform/status/StatusStrip'
 import { hasLevel } from '../../platform/types'
@@ -108,6 +109,7 @@ export function SummaryPage() {
   return (
     <Stack>
       <StatusStrip dashboardKey="environment" year={year} />
+      <HeadlineIndicators dashboardKey="environment" />
       <Group align="flex-end" gap="lg">
         <YearSelect value={year} onChange={setYear} />
         <Anchor href={downloadUrl(`${BASE}/export/values.csv`, { year })}>

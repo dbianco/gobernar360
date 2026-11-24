@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 import { EditableList } from '../../platform/EditableList'
 import { errorMessage } from '../../platform/errorMessage'
+import { IndicatorTargets } from '../../platform/indicators/IndicatorTargets'
 import { HelpTh } from '../../platform/HelpTh'
 import { send, useAction, useAreas, useSources } from './api'
 import { RowActions } from './RowActions'
@@ -86,6 +87,7 @@ export function ParametersPage() {
           </Table.ScrollContainer>
         )}
       </Stack>
+      <IndicatorTargets dashboardKey="procedures" />
       <Modal
         opened={editing !== null}
         onClose={() => setEditing(null)}

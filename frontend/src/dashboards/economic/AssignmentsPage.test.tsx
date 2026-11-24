@@ -2,6 +2,7 @@ import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it, vi } from 'vitest'
 
+import { closeDialog, settle } from '../../test/dialogs'
 import { t } from '../../test/render'
 import { mockApi } from '../../test/server'
 import { AssignmentsPage } from './AssignmentsPage'
@@ -96,4 +97,35 @@ it('lets an editor correct the date and the note of an assignment', async () => 
 
   await waitFor(() => expect(requests).toHaveLength(1))
   expect(requests[0].body).toEqual({ date: '2026-03-12', note: 'Primera cuota' })
+})
+
+it('reads another year from its first page', async () => {
+  const requests = mockApi('get', `${BASE}/assignments`, page([makeAssignment()]))
+  renderEconomic(<AssignmentsPage />, { level: 'viewer' })
+  const user = userEvent.setup()
+
+  await user.selectOptions(await screen.findByLabelText(t('app.year')), String(YEAR - 1))
+
+  await waitFor(() => expect(requests.at(-1)?.url.searchParams.get('year')).toBe(String(YEAR - 1)))
+  expect(requests.at(-1)?.url.searchParams.get('offset')).toBe('0')
+})
+
+it('keeps an assignment when its deletion is not confirmed, and closes its form', async () => {
+  mockApi('get', `${BASE}/assignments`, page([makeAssignment()]))
+  const deletes = mockApi('delete', `${BASE}/assignments/as-1`, null, 204)
+  vi.spyOn(window, 'confirm').mockReturnValue(false)
+  renderEconomic(<AssignmentsPage />, { level: 'editor' })
+  const user = userEvent.setup()
+
+  await user.click(
+    await screen.findByRole('button', {
+      name: label('deleteNamed', { name: 'Panadería La Espiga' }),
+    }),
+  )
+  await settle()
+  expect(deletes).toEqual([])
+  await user.click(
+    screen.getByRole('button', { name: label('editNamed', { name: 'Panadería La Espiga' }) }),
+  )
+  await closeDialog(user)
 })

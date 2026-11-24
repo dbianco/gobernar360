@@ -1,6 +1,14 @@
+import io
+import json
+from datetime import date
+from pathlib import Path
+
+import pypdf
+from fastapi.testclient import TestClient
 from sqlalchemy import delete, func, select
 
 from gobernar360.core.db import platform_session, tenant_session
+from gobernar360.dashboards import registry
 from gobernar360.dashboards.economic.models import (
     Actor,
     ActorPerson,
@@ -30,12 +38,20 @@ from gobernar360.dashboards.social.models import (
     InterventionType,
     SocialPerson,
 )
+from gobernar360.platform.access import system_context
+from gobernar360.platform.indicators import month_of, shift
 from gobernar360.platform.models import (
     DashboardGrant,
     DashboardStatus,
+    IndicatorSnapshot,
+    IndicatorTarget,
+    MonthlyReport,
     Municipality,
     MunicipalityDashboard,
     Person,
+    PublicSettings,
+    PublicSite,
+    PublishedDashboard,
     User,
 )
 from gobernar360.seed import DEMO_PASSWORD, seed_demo
@@ -423,3 +439,185 @@ def test_seed_demo_adds_the_procedures_dashboard_to_an_older_demo_database():
     seed_demo()
     with admin_session() as session:
         assert _count(session, Procedure) == procedures_count
+
+
+def _noetinger_id():
+    with platform_session() as db:
+        return db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+
+
+def test_seeded_noetinger_has_a_year_of_indicator_history_and_targets(client):
+    seed_demo()
+    today = date.today()
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+
+    for section in client.get("/api/overview").json():
+        for indicator in section["indicators"]:
+            values = [point["value"] for point in indicator["series"]]
+            assert all(value is not None for value in values), indicator["key"]
+            assert indicator["last_year_value"] is not None, indicator["key"]
+    evolution = {
+        item["key"]: item for item in client.get("/api/dashboards/projects/evolution").json()
+    }
+    delayed = evolution["projects.delayed"]
+    # Met, so an administrator can tighten it and watch it be missed.
+    assert delayed["target"] is not None and delayed["on_track"] is True
+    assert any(item["on_track"] is False for item in evolution.values())
+    with admin_session() as session:
+        years = set(session.scalars(select(IndicatorTarget.year)))
+    assert years == {today.year - 1, today.year}
+    assert client.get("/api/overview/combined").json()
+
+
+def test_seeded_history_stays_inside_noetinger(client):
+    seed_demo()
+    login(client, "admin@comuna-demo.test", DEMO_PASSWORD)
+
+    evolution = client.get("/api/dashboards/projects/evolution").json()
+
+    assert all(item["previous_value"] is None for item in evolution)
+    assert all(item["target"] is None for item in evolution)
+
+
+def test_seed_demo_adds_indicator_history_to_an_older_demo_database_once():
+    seed_demo()
+    with admin_session() as session:
+        counts = _count(session, IndicatorSnapshot), _count(session, IndicatorTarget)
+    # A database seeded before indicators had history.
+    with admin_session() as session, session.begin():
+        session.execute(delete(IndicatorSnapshot))
+        session.execute(delete(IndicatorTarget))
+
+    changed = seed_demo()
+    changed_again = seed_demo()
+
+    assert (changed, changed_again) == (True, False)
+    with admin_session() as session:
+        assert (_count(session, IndicatorSnapshot), _count(session, IndicatorTarget)) == counts
+
+
+def test_seeded_dashboards_report_only_indicators_of_their_catalogue():
+    seed_demo()
+
+    with tenant_session(_noetinger_id()) as db:
+        context = system_context(db, _noetinger_id())
+        for module in registry.all_modules():
+            reported = module.get_summary(context, date.today())
+            assert reported, module.key
+            for indicator in reported:
+                definition = module.indicator(indicator.key)
+                assert definition is not None, indicator.key
+                assert definition.unit == indicator.unit, indicator.key
+
+
+def test_seeded_noetinger_has_closed_reports_and_a_public_page_with_nothing_else_chosen(client):
+    seed_demo()
+    today = date.today()
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+
+    reports = client.get("/api/reports").json()
+    last_month = shift(month_of(today), -1)
+
+    closed = {(r["year"], r["month"]) for r in reports if r["status"] == "closed"}
+    assert closed == {shift(month_of(today), -ago) for ago in (2, 3, 4)}
+    assert last_month not in {(r["year"], r["month"]) for r in reports}
+    assert sorted(r["status"] for r in reports if r["version"] == 2) == ["closed"]
+    assert not any(r["published"] for r in reports)
+    publication = client.get("/api/publication").json()
+    assert (publication["enabled"], publication["slug"]) == (True, "noetinger")
+    published = [d["key"] for d in publication["dashboards"] if d["published"]]
+    assert published == ["projects", "social"]
+    assert not any(i["published"] for d in publication["dashboards"] for i in d["indicators"])
+    page = client.get("/api/public/noetinger").json()
+    assert [d["key"] for d in page["dashboards"]] == ["projects", "social"]
+    assert (page["indicators"], page["reports"]) == ([], [])
+
+
+def test_seeded_comuna_demo_has_no_reports_and_no_public_page(client):
+    seed_demo()
+    login(client, "admin@comuna-demo.test", DEMO_PASSWORD)
+
+    assert client.get("/api/reports").json() == []
+    assert client.get("/api/publication").json()["enabled"] is False
+    assert client.get("/api/public/comuna-demo").status_code == 404
+
+
+def test_seed_demo_adds_reports_and_the_public_page_to_an_older_demo_database_once():
+    seed_demo()
+    with admin_session() as session, session.begin():
+        for model in (PublicSite, MonthlyReport, PublishedDashboard, PublicSettings):
+            session.execute(delete(model))
+
+    changed = seed_demo()
+    changed_again = seed_demo()
+
+    assert (changed, changed_again) == (True, False)
+    with admin_session() as session:
+        assert _count(session, MonthlyReport) == 4
+        assert _count(session, PublicSite) == 1
+
+
+def _registry_people() -> list[tuple[str, str, str | None]]:
+    with admin_session() as session:
+        return list(session.execute(select(Person.first_name, Person.last_name, Person.dni)))
+
+
+def _mentions(text: str, people) -> list[str]:
+    """Names, in either order, and document numbers, with or without thousands dots."""
+    found = []
+    lowered = text.lower()
+    for first, last, dni in people:
+        for name in (f"{first} {last}", f"{last} {first}", f"{last}, {first}"):
+            if name.lower() in lowered:
+                found.append(name)
+        if dni and (dni in text or f"{int(dni):,}".replace(",", ".") in text):
+            found.append(dni)
+    return found
+
+
+def test_nothing_published_or_reported_names_anyone_of_the_people_registry(client):
+    seed_demo()
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+    people = _registry_people()
+    assert len(people) > 20
+    # Everything that can be published, and last month's report.
+    for dashboard in client.get("/api/publication").json()["dashboards"]:
+        client.put(f"/api/publication/dashboards/{dashboard['key']}", json={"published": True})
+        for indicator in dashboard["indicators"]:
+            client.put(f"/api/publication/indicators/{indicator['key']}", json={"published": True})
+    year, month = shift(month_of(date.today()), -1)
+    report = client.post(
+        f"/api/reports/{year}/{month}/close", json={"comments": {"social": "Mes tranquilo."}}
+    ).json()
+    assert (
+        client.put(f"/api/reports/{report['id']}/publication", json={"published": True}).status_code
+        == 204
+    )
+    anonymous = TestClient(client.app)
+
+    page = anonymous.get("/api/public/noetinger")
+    public_pdf = anonymous.get(f"/api/public/noetinger/reports/{year}/{month}").content
+    internal_pdf = client.get(f"/api/reports/{report['id']}/pdf").content
+
+    assert len(page.json()["indicators"]) > 15
+    for name, document in (
+        ("public page", page.text),
+        ("public report", _pdf_text(public_pdf)),
+        ("internal report", _pdf_text(internal_pdf)),
+    ):
+        assert _mentions(document, people) == [], name
+
+
+def _pdf_text(data: bytes) -> str:
+    return "\n".join(page.extract_text() for page in pypdf.PdfReader(io.BytesIO(data)).pages)
+
+
+def test_catalogue_names_match_the_web_apps_texts():
+    seed_demo()
+    locale = json.loads(
+        (Path(__file__).resolve().parents[2] / "frontend/src/locales/es-AR.json").read_text()
+    )
+    for module in registry.all_modules():
+        assert module.name == locale[module.key]["title"], module.key
+        for definition in module.indicators:
+            assert definition.name == locale["overview"]["indicators"][definition.key]

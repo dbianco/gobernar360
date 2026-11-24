@@ -2,6 +2,7 @@ import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
+import { deleteItem, renameItem } from '../../test/editableList'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { ParametersPage } from './ParametersPage'
@@ -144,4 +145,28 @@ it('reads a dotted target as thousands and rejects an ambiguous one', async () =
 
   await waitFor(() => expect(requests).toHaveLength(1))
   expect(requests[0].body).toMatchObject({ target: '420000' })
+})
+
+it('renames and deletes a subcategory', async () => {
+  const renamed = mockApi('patch', `${BASE}/subcategories/${ENERGY.id}`, ENERGY)
+  const deleted = mockApi('delete', `${BASE}/subcategories/${ENERGY.id}`, null, 204)
+  renderParameters()
+  const user = userEvent.setup()
+
+  await renameItem(user, ENERGY.name, 'Energía eléctrica')
+  await deleteItem(user, ENERGY.name)
+
+  await waitFor(() => expect(deleted).toHaveLength(1))
+  expect(renamed[0].body).toEqual({ name: 'Energía eléctrica' })
+})
+
+it('closes the variable form without saving', async () => {
+  renderParameters()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('addVariable') }))
+  await screen.findByRole('dialog')
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
 })

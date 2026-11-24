@@ -1,8 +1,9 @@
 """Regression tests for findings of the final review."""
 
+import pytest
 from sqlalchemy import select
 
-from gobernar360.platform.models import AuditLog
+from gobernar360.platform.models import AuditLog, User
 from tests.factories import admin_session, login, make_membership, make_municipality, make_user
 
 NEW_PASSWORD = "a-brand-new-password"
@@ -216,3 +217,123 @@ def test_password_change_signs_out_other_sessions_but_keeps_the_current_one(clie
     client.cookies.clear()
     client.cookies.set("g360_session", other_device)
     assert client.get("/api/auth/me").status_code == 401
+
+
+ACCOUNT = "/api/auth/account"
+
+
+def _signed_in_ana(client):
+    user = make_user("ana@noetinger.test")
+    make_membership(user, make_municipality("Noetinger"))
+    login(client, "ana@noetinger.test")
+    return user
+
+
+def _stored(user_id) -> User:
+    with admin_session() as session:
+        return session.get(User, user_id)
+
+
+def test_user_changes_their_name_and_phone_keeping_their_password(client):
+    user = _signed_in_ana(client)
+
+    response = client.put(
+        ACCOUNT,
+        json={
+            "current_password": "secret-pass-1",
+            "full_name": "  Ana María Gómez ",
+            "phone": " +54 9 3472 15-123456 ",
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json()["user"]["full_name"] == "Ana María Gómez"
+    assert response.json()["user"]["phone"] == "+54 9 3472 15-123456"
+    assert response.json()["memberships"][0]["municipality"]["name"] == "Noetinger"
+    stored = _stored(user.id)
+    assert (stored.full_name, stored.phone) == ("Ana María Gómez", "+54 9 3472 15-123456")
+    assert client.get("/api/auth/me").json()["user"]["phone"] == "+54 9 3472 15-123456"
+    client.post("/api/auth/logout")
+    login(client, "ana@noetinger.test")
+
+
+def test_user_changes_their_password_with_the_rest_of_their_account(client):
+    _signed_in_ana(client)
+    other_device = client.cookies["g360_session"]
+    client.cookies.clear()
+    login(client, "ana@noetinger.test")
+
+    response = client.put(
+        ACCOUNT,
+        json={
+            "current_password": "secret-pass-1",
+            "full_name": "Ana",
+            "phone": "",
+            "new_password": NEW_PASSWORD,
+        },
+    )
+
+    assert response.status_code == 200
+    assert client.get("/api/auth/me").status_code == 200
+    client.post("/api/auth/logout")
+    assert (
+        client.post(
+            "/api/auth/login", json={"email": "ana@noetinger.test", "password": "secret-pass-1"}
+        ).status_code
+        == 401
+    )
+    login(client, "ana@noetinger.test", NEW_PASSWORD)
+    # The other session was signed out.
+    client.cookies.clear()
+    client.cookies.set("g360_session", other_device)
+    assert client.get("/api/auth/me").status_code == 401
+
+
+@pytest.mark.parametrize(
+    "password_change", [{}, {"new_password": NEW_PASSWORD}], ids=["profile", "with password"]
+)
+def test_no_account_change_is_saved_without_the_current_password(client, password_change):
+    user = _signed_in_ana(client)
+
+    response = client.put(
+        ACCOUNT,
+        json={"current_password": "not-my-password", "full_name": "Otra", "phone": "123"}
+        | password_change,
+    )
+
+    assert response.status_code == 403
+    assert response.json()["error"]["code"] == "invalid_credentials"
+    stored = _stored(user.id)
+    assert (stored.full_name, stored.phone) == ("Ana", "")
+    client.post("/api/auth/logout")
+    login(client, "ana@noetinger.test")
+
+
+@pytest.mark.parametrize(
+    "fields",
+    [
+        {"full_name": "   "},
+        {"phone": "llamar al 123"},
+        {"phone": "1" * 51},
+        {"new_password": "short"},
+        {"current_password": None},
+    ],
+)
+def test_an_invalid_account_change_is_rejected(client, fields):
+    user = _signed_in_ana(client)
+    body = {"current_password": "secret-pass-1", "full_name": "Ana Gómez", "phone": ""} | fields
+
+    response = client.put(ACCOUNT, json=body)
+
+    assert response.status_code == 422
+    assert _stored(user.id).full_name == "Ana"
+
+
+def test_changing_the_account_needs_a_session(client):
+    make_user("ana@noetinger.test")
+
+    response = client.put(
+        ACCOUNT, json={"current_password": "secret-pass-1", "full_name": "X", "phone": ""}
+    )
+
+    assert response.status_code == 401

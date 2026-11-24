@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next'
 import { HelpTh } from '../../platform/HelpTh'
 import { EditableList } from '../../platform/EditableList'
 import { errorMessage } from '../../platform/errorMessage'
+import { IndicatorTargets } from '../../platform/indicators/IndicatorTargets'
 import { send, useAction, useBenefitCategories, useBenefits, useInterventionTypes } from './api'
 import { BenefitForm } from './BenefitForm'
 import type { Benefit, Named } from './types'
@@ -124,6 +125,7 @@ export function ParametersPage() {
           </Table.ScrollContainer>
         )}
       </Stack>
+      <IndicatorTargets dashboardKey="social" />
       <Modal
         opened={editing !== null}
         onClose={() => setEditing(null)}
