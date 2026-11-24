@@ -11,6 +11,7 @@ export function makeMe(
     isOperator?: boolean
     municipalities?: (typeof NOETINGER)[]
     active?: string | null
+    suspended?: (typeof NOETINGER)[]
   } = {},
 ): Me {
   const municipalities = options.municipalities ?? [NOETINGER]
@@ -29,6 +30,7 @@ export function makeMe(
     active_municipality_id:
       options.active === undefined ? (municipalities[0]?.id ?? null) : options.active,
     dashboards: Object.entries(options.dashboards ?? {}).map(([key, level]) => ({ key, level })),
+    suspended_municipalities: options.suspended ?? [],
   }
 }
 

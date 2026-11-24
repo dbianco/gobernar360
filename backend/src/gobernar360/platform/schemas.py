@@ -59,6 +59,8 @@ class DashboardAccessOut(BaseModel):
 
 class Me(BaseModel):
     user: UserOut
+    # Municipalities the user can work in now; suspended ones are listed apart.
     memberships: list[MembershipOut]
     active_municipality_id: uuid.UUID | None
     dashboards: list[DashboardAccessOut]
+    suspended_municipalities: list[MunicipalityOut]

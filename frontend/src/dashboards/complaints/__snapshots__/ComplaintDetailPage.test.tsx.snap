@@ -1,0 +1,807 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds a note and closes dialogs without acting > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+[Acciones]
+Esperar al vecino
+Marcar como resuelto
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15"
+`;
+
+exports[`adds a note and closes dialogs without acting > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`asks why before rejecting > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+[Acciones]
+Esperar al vecino
+Marcar como resuelto
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15
+Rechazar
+El reclamo pasa de «En curso» a «Rechazado».
+Nota
+Contá por qué. Queda en el historial.
+Cancelar
+Rechazar"
+`;
+
+exports[`asks why before rejecting > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`corrects the type and address > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+[Acciones]
+Esperar al vecino
+Marcar como resuelto
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15"
+`;
+
+exports[`corrects the type and address > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`corrects zone and description too > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+[Acciones]
+Esperar al vecino
+Marcar como resuelto
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15"
+`;
+
+exports[`corrects zone and description too > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lets a viewer read but not act > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15"
+`;
+
+exports[`lets a viewer read but not act > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`moves the complaint with a note > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+[Acciones]
+Esperar al vecino
+Marcar como resuelto
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15"
+`;
+
+exports[`moves the complaint with a note > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`offers only the moves the state allows: no closing what was never resolved > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+[Acciones]
+Esperar al vecino
+Marcar como resuelto
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15"
+`;
+
+exports[`offers only the moves the state allows: no closing what was never resolved > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`reads a paused clock and offers to resume the work > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+Esperando al vecino
+[Acciones]
+Retomar: el vecino respondió
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+En pausa
+El reloj está detenido mientras se espera al vecino: esos días no se cuentan y el vencimiento se corre.
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15"
+`;
+
+exports[`reads a paused clock and offers to resume the work > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`reassigns to another area > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+[Acciones]
+Esperar al vecino
+Marcar como resuelto
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15"
+`;
+
+exports[`reassigns to another area > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`reassigns to the area chosen and shows an anonymous complaint > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+[Acciones]
+Esperar al vecino
+Marcar como resuelto
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Anónimo
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15"
+`;
+
+exports[`reassigns to the area chosen and shows an anonymous complaint > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`reports a complaint that cannot be loaded > screen at the end 1`] = `"No se encontró el registro."`;
+
+exports[`reports a complaint that cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows how long a resolved complaint took > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+Cerrado
+[Acciones]
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+Resuelto fuera de plazo
+Plazo objetivo
+3 días hábiles
+Usados
+5 días hábiles
+Resultado
+Resuelto en 5 días hábiles
+Resuelto el
+09/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15"
+`;
+
+exports[`shows how long a resolved complaint took > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the complaint, who made it, its clock and its history > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+[Acciones]
+Esperar al vecino
+Marcar como resuelto
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15"
+`;
+
+exports[`shows the complaint, who made it, its clock and its history > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows why a correction was refused > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+[Acciones]
+Esperar al vecino
+Marcar como resuelto
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15
+Corregir datos del reclamo
+El reclamo ya no está abierto: no se puede reasignar ni corregir.
+Tipo de reclamo
+Si cambia el tipo, el reclamo toma el plazo del tipo nuevo. El área no cambia: para eso, reasignalo.
+Bache
+Luminaria apagada
+Zona
+Centro
+Norte
+Dirección
+Descripción
+No enciende desde el martes.
+Cancelar
+Guardar"
+`;
+
+exports[`shows why a correction was refused > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows why the API refused a move > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+[Acciones]
+Esperar al vecino
+Marcar como resuelto
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a Alumbrado Público
+Carla Carga · 02/03/2026 09:30
+Recibido → Asignado
+Carla Carga · 02/03/2026 10:00
+Asignado → En curso
+Cuadrilla en camino
+Usuario eliminado · 03/03/2026 11:15
+Marcar como resuelto
+El reclamo no puede pasar a ese estado desde el estado en que está.
+El reclamo pasa de «En curso» a «Resuelto».
+Nota
+Opcional. Queda en el historial.
+Cancelar
+Marcar como resuelto"
+`;
+
+exports[`shows why the API refused a move > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`tells every kind of step apart in the history > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+[Acciones]
+Esperar al vecino
+Marcar como resuelto
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Recibido y derivado a
+Carla Carga · 02/03/2026 10:00
+Reasignado de Alumbrado Público a Obras Públicas
+Poste
+Carla Carga · 02/03/2026 10:00
+Tipo cambiado de Luminaria apagada a Bache
+Carla Carga · 02/03/2026 10:00
+Nota
+Llamó el vecino
+Carla Carga · 02/03/2026 10:00
+→ Asignado
+Carla Carga · 02/03/2026 10:00"
+`;
+
+exports[`tells every kind of step apart in the history > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`writes a step whose area or type no longer has a name > screen at the end 1`] = `
+"Volver a reclamos
+Reclamo N.º 101
+En curso
+[Acciones]
+Esperar al vecino
+Marcar como resuelto
+Rechazar
+Reasignar
+Corregir datos
+Agregar nota
+Tipo
+Luminaria apagada
+Área responsable
+Alumbrado Público
+Recibido
+02/03/2026 09:30
+Dirección
+San Martín 450
+Zona
+Centro
+Quién reclama
+Fernández, Lucía · DNI 33.123.456 · 3472 55-1234
+Descripción
+No enciende desde el martes.
+[Reloj de servicio]
+Reloj de servicio
+En plazo
+Plazo objetivo
+3 días hábiles
+Usados
+1 día hábil
+Restan
+Quedan 2 días hábiles
+Vence
+05/03/2026
+[Historial]
+Historial
+Reasignado de a
+Carla Carga · 02/03/2026 10:00
+Tipo cambiado de a
+Carla Carga · 02/03/2026 10:00"
+`;
+
+exports[`writes a step whose area or type no longer has a name > screen at the start 1`] = `"[Cargando…]"`;

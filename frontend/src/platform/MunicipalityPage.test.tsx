@@ -169,6 +169,119 @@ it('keeps the page away from non-operators', async () => {
   renderPage({ me: makeMe({ isAdmin: true }) })
 
   expect(await screen.findByRole('heading', { name: t('overview.title') })).toBeInTheDocument()
+  // Let the overview finish loading, so no request of this test outlives it.
+  expect(await screen.findByText(t('overview.emptyTitle'))).toBeInTheDocument()
+})
+
+it('changes the kind and ignores a blank name', async () => {
+  const requests = mockApi('patch', BASE, { ...NOETINGER, dashboards: ['projects'] })
+  renderPage()
+  const user = userEvent.setup()
+
+  const name = await screen.findByRole('textbox', { name: t('platform.name') })
+  await user.clear(name)
+  await user.type(name, '   ')
+  await user.click(screen.getByRole('button', { name: t('platform.saveDetails') }))
+  expect(requests).toHaveLength(0)
+  await user.clear(name)
+  await user.type(name, 'Noetinger')
+  await user.selectOptions(screen.getByRole('combobox', { name: t('platform.kind') }), 'commune')
+  await user.click(screen.getByRole('button', { name: t('platform.saveDetails') }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toEqual({ name: 'Noetinger', kind: 'commune' })
+})
+
+it('shows why the details or the dashboards could not be saved', async () => {
+  mockApiError('patch', BASE, 409, 'conflict')
+  mockApiError('put', `${BASE}/dashboards`, 422, 'validation_error')
+  renderPage()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('platform.saveDetails') }))
+  expect(await screen.findByText(t('errors.conflict'))).toBeInTheDocument()
+  await user.click(screen.getByRole('checkbox', { name: t('projects.title') }))
+
+  expect(await screen.findByText(t('errors.validation_error'))).toBeInTheDocument()
+})
+
+it('disables a dashboard', async () => {
+  const requests = mockApi('put', `${BASE}/dashboards`, { ...NOETINGER, dashboards: [] })
+  renderPage()
+
+  await userEvent.setup().click(await screen.findByRole('checkbox', { name: t('projects.title') }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toEqual({ keys: [] })
+})
+
+it('makes a user an administrator', async () => {
+  const requests = mockApi('patch', `${BASE}/users/ms-2`, { ...CARLA, is_admin: true })
+  renderPage()
+
+  await userEvent
+    .setup()
+    .click(
+      await screen.findByRole('checkbox', { name: t('users.adminNamed', { name: 'Carla Carga' }) }),
+    )
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toEqual({ is_admin: true })
+})
+
+it('closes the dialogs and the notice', async () => {
+  mockApi('put', `${BASE}/users/ms-2/password`, null, 204)
+  renderPage()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('users.add') }))
+  await user.click(
+    within(await screen.findByRole('dialog')).getByRole('button', { name: t('app.cancel') }),
+  )
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+  const dialog = await openPasswordDialog(user)
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(dialog).not.toBeInTheDocument())
+  const again = await openPasswordDialog(user)
+  await user.type(
+    within(again).getByLabelText(t('users.newPassword'), { exact: false }),
+    'long-password-3',
+  )
+  await user.click(within(again).getByRole('button', { name: t('app.save') }))
+  const notice = await screen.findByText(t('users.passwordChanged', { name: 'Carla Carga' }))
+  await user.click(within(notice.closest('[role="alert"]') as HTMLElement).getByRole('button'))
+
+  await waitFor(() => expect(notice).not.toBeInTheDocument())
+})
+
+it('shows why a password could not be set', async () => {
+  mockApiError('put', `${BASE}/users/ms-2/password`, 422, 'validation_error')
+  renderPage()
+  const user = userEvent.setup()
+
+  const dialog = await openPasswordDialog(user)
+  await user.type(
+    within(dialog).getByLabelText(t('users.newPassword'), { exact: false }),
+    'long-password-4',
+  )
+  await user.click(within(dialog).getByRole('button', { name: t('app.save') }))
+
+  expect(await within(dialog).findByText(t('errors.validation_error'))).toBeInTheDocument()
+})
+
+it('reports users, municipalities or a municipality that cannot be loaded', async () => {
+  const first = renderPage()
+  mockApiError('get', `${BASE}/users`, 500, 'generic')
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  first.unmount()
+
+  const second = renderPage({ id: 'missing' })
+  expect(await screen.findByText(t('platform.notFound'))).toBeInTheDocument()
+  second.unmount()
+
+  mockApiError('get', '/platform/municipalities', 500, 'generic')
+  renderApp(<App />, { me: OPERATOR, route: `/platform/municipalities/${NOETINGER.id}` })
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })
 
 it('changes the kind, and says the details were saved', async () => {

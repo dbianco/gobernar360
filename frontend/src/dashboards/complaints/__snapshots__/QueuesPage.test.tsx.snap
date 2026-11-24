@@ -1,0 +1,162 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`says when there are no areas, and reports queues that fail to load > screen at the end 1`] = `
+"Cada área con sus reclamos abiertos. En la bandeja, primero los que están más cerca de vencer.
+[Áreas]
+Área
+[Qué significa Área]
+Área del municipio que resuelve reclamos.
+Abiertos
+[Qué significa Abiertos]
+Reclamos abiertos en la bandeja del área.
+En riesgo
+[Qué significa En riesgo]
+Abiertos a los que les queda un cuarto del plazo o menos.
+Vencidos
+[Qué significa Vencidos]
+Abiertos que ya pasaron su plazo objetivo.
+En pausa
+[Qué significa En pausa]
+Abiertos que esperan una respuesta del vecino: su reloj está detenido.
+Alumbrado Público
+4
+1
+2
+1
+[Ver bandeja de Alumbrado Público]
+Ver bandeja
+Obras Públicas
+0
+0
+0
+0
+[Ver bandeja de Obras Públicas]
+Ver bandeja
+[Bandeja de Alumbrado Público]
+Bandeja de Alumbrado Público
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says when there are no areas, and reports queues that fail to load > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows every area with its counts and the first area queue, closest deadline first > screen at the end 1`] = `
+"Cada área con sus reclamos abiertos. En la bandeja, primero los que están más cerca de vencer.
+[Áreas]
+Área
+[Qué significa Área]
+Área del municipio que resuelve reclamos.
+Abiertos
+[Qué significa Abiertos]
+Reclamos abiertos en la bandeja del área.
+En riesgo
+[Qué significa En riesgo]
+Abiertos a los que les queda un cuarto del plazo o menos.
+Vencidos
+[Qué significa Vencidos]
+Abiertos que ya pasaron su plazo objetivo.
+En pausa
+[Qué significa En pausa]
+Abiertos que esperan una respuesta del vecino: su reloj está detenido.
+Alumbrado Público
+4
+1
+2
+1
+[Ver bandeja de Alumbrado Público]
+Ver bandeja
+Obras Públicas
+0
+0
+0
+0
+[Ver bandeja de Obras Públicas]
+Ver bandeja
+[Bandeja de Alumbrado Público]
+Bandeja de Alumbrado Público
+[Bandeja de Alumbrado Público]
+N.º
+[Qué significa N.º]
+Número del reclamo en el municipio, correlativo. Es el que se le da al vecino.
+Recibido
+[Qué significa Recibido]
+Día en que se recibió el reclamo.
+Tipo
+[Qué significa Tipo]
+Qué se reclama. Define el área a la que se deriva y el plazo objetivo.
+Zona
+[Qué significa Zona]
+Parte de la localidad donde está el problema.
+Dirección
+[Qué significa Dirección]
+Dónde está el problema.
+Estado
+[Qué significa Estado]
+En qué paso del circuito está el reclamo.
+Vence
+[Qué significa Vence]
+Día hábil en que se cumple el plazo objetivo. Si el reclamo espera al vecino, el vencimiento se corre.
+Situación
+[Qué significa Situación]
+En plazo, en riesgo (queda un cuarto del plazo o menos) o vencido, contado en días hábiles sin los días de espera al vecino.
+[Abrir reclamo 107]
+107
+02/03/2026
+Luminaria apagada
+Centro
+San Martín 450
+En curso
+05/03/2026
+Vencido
+Vencido por 2 días hábiles
+[Abrir reclamo 101]
+101
+02/03/2026
+Luminaria apagada
+Centro
+San Martín 450
+En curso
+05/03/2026
+En plazo
+Quedan 2 días hábiles"
+`;
+
+exports[`shows every area with its counts and the first area queue, closest deadline first > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`switches to another area queue > screen at the end 1`] = `
+"Cada área con sus reclamos abiertos. En la bandeja, primero los que están más cerca de vencer.
+[Áreas]
+Área
+[Qué significa Área]
+Área del municipio que resuelve reclamos.
+Abiertos
+[Qué significa Abiertos]
+Reclamos abiertos en la bandeja del área.
+En riesgo
+[Qué significa En riesgo]
+Abiertos a los que les queda un cuarto del plazo o menos.
+Vencidos
+[Qué significa Vencidos]
+Abiertos que ya pasaron su plazo objetivo.
+En pausa
+[Qué significa En pausa]
+Abiertos que esperan una respuesta del vecino: su reloj está detenido.
+Alumbrado Público
+4
+1
+2
+1
+[Ver bandeja de Alumbrado Público]
+Ver bandeja
+Obras Públicas
+0
+0
+0
+0
+[Ver bandeja de Obras Públicas]
+Ver bandeja
+[Bandeja de Obras Públicas]
+Bandeja de Obras Públicas
+Esta área no tiene reclamos abiertos."
+`;
+
+exports[`switches to another area queue > screen at the start 1`] = `"[Cargando…]"`;

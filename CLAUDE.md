@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-gobernar360 is a multi-tenant workspace of management dashboards for Argentine local governments. A FastAPI + SQLAlchemy + PostgreSQL backend (`backend/`, managed with uv, Python 3.12) and a React 19 + Mantine + TanStack Query web app (`frontend/`, Vite, npm). Each dashboard (projects, environment, economic, social, procedures) is an independent module, enabled per municipality by the platform operator and granted per user.
+gobernar360 is a multi-tenant workspace of management dashboards for Argentine local governments. A FastAPI + SQLAlchemy + PostgreSQL backend (`backend/`, managed with uv, Python 3.12) and a React 19 + Mantine + TanStack Query web app (`frontend/`, Vite, npm). Each dashboard (projects, environment, economic, social, procedures, complaints) is an independent module, enabled per municipality by the platform operator and granted per user.
 
 `README.md` documents demo accounts, roles, and per-dashboard domain rules. Each feature has a design and a plan under `docs/superpowers/specs/` and `docs/superpowers/plans/`; `tableros-de-gestion-portal-ril.md` is the functional reference (Spanish). `docs/tasks/NN-*.md` are briefs for larger pieces of work (01, email and invitations, is built; the rest are not: indicator targets, complaints, bulk import, geography, deployment...), each with a task description, how completion is judged, and notes; read the relevant one before starting such a task.
 
@@ -95,7 +95,7 @@ All municipalities share one database, separated by PostgreSQL RLS, not by query
 
 ### Access
 
-Sessions are an opaque token in the `g360_session` cookie (hashed in the `sessions` table), which also holds the active municipality. Levels are `VIEWER < EDITOR < ADMIN` per dashboard; a municipality admin is `ADMIN` on every enabled dashboard; the platform operator sees configuration only and never reaches dashboard routes. Routes declare the level by their context parameter type (`ctx: Editor`).
+Sessions are an opaque token in the `g360_session` cookie (hashed in the `sessions` table), which also holds the active municipality. A municipality the operator suspended (`municipalities.suspended_at`) is refused by `get_context` on every request (`403 municipality_suspended`) and left out of `/auth/me` memberships (listed in `suspended_municipalities` instead); the session keeps its active municipality so resuming needs nothing else. Any new route that works inside a municipality must go through `get_context` to honour this. Levels are `VIEWER < EDITOR < ADMIN` per dashboard; a municipality admin is `ADMIN` on every enabled dashboard; the platform operator sees configuration only and never reaches dashboard routes. Routes declare the level by their context parameter type (`ctx: Editor`).
 
 Unsafe methods under `/api` are rejected without the header `X-Requested-With: gobernar360` (CSRF protection). The frontend `api()` client and the pytest `client` fixture both send it.
 
@@ -103,7 +103,7 @@ Unsafe methods under `/api` are rejected without the header `X-Requested-With: g
 
 - Errors always have the shape `{"error": {"code", "message", "details"?}}`. Raise the constructors in `core/errors.py` (add a new one there for a new code); the frontend maps `code` to a localized text in `platform/errorMessage.ts`.
 - Lists use `platform/listing.py`: `PagingParams`, `Page[T]`, `page_of`, and `contains()` for accent- and case-insensitive search.
-- Anything depending on the current date takes the `Today` dependency (`platform/clock.py`, Argentine local time) so tests can pin it with `client.app.dependency_overrides[get_today]`.
+- Anything depending on the current date takes the `Today` dependency (`platform/clock.py`, Argentine local time) so tests can pin it with `client.app.dependency_overrides[get_today]`. Recording when something happened takes `Now` (`get_now`); `tests/complaints/factories.py::pin_clock` pins both.
 
 ### Email, accounts and notifications
 
@@ -153,6 +153,7 @@ Alembic revisions are numbered sequentially (`0009_procedures.py`). After autoge
 - **People registry**: one `people` table per municipality in `platform/people.py`, with no routes of its own. A dashboard keeps its own data in a link table (`economic_people`, `social_people`) and only lists people it incorporated; the rest of the registry is reachable only by exact document number. Removing a person from the last dashboard that uses them deletes the registry row.
 - **Social reserved text**: an intervention's `description` is returned only to editors and above (`dashboards/social/access.py`, `reads_reserved_text`). Every response containing interventions must be built by `interventions_router.present`; the CSV export omits the column for viewers.
 - **Procedures** is an inventory, not case tracking; only procedures marked active count in summaries and reports, and a procedure's link accepts only `http(s)` URLs because the UI renders it as a link.
+- **Complaints** is the case tracker. State changes go only through `POST /complaints/{id}/transitions`, checked against `lifecycle.TRANSITIONS`, and every change appends a `complaints_events` row (`cases.add_event`). The service clock is computed on read from those events (`clock.read_clock`, pure and unit-tested) with the municipality's calendar; never store derived clock values. A complaint references `people.id` directly (it keeps no per-dashboard person data), so a person with complaints is never released from the registry. Period analysis is by date received, so the cases CSV reproduces the summary. The demo seeds Noetinger's complaints without enabling the dashboard there (`seed_complaints.py`).
 
 ## Configuration
 

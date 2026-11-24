@@ -25,7 +25,12 @@ import { Link, Navigate, Outlet, useLocation } from 'react-router-dom'
 
 import { dashboards } from '../dashboards/registry'
 import { useAuth } from './authContext'
-import { MunicipalityChooser, MunicipalitySwitcher, NoMunicipality } from './MunicipalitySwitcher'
+import {
+  MunicipalityChooser,
+  MunicipalitySwitcher,
+  NoMunicipality,
+  SuspendedMunicipality,
+} from './MunicipalitySwitcher'
 import { activeMembership } from './access'
 
 /** Page frame for signed-in users: header, navigation limited to what they may see, content. */
@@ -63,6 +68,8 @@ export function AppShell() {
   let content = <Outlet />
   if (!membership && !onPlatformPages) {
     if (me.memberships.length > 0) content = <MunicipalityChooser />
+    // Every municipality of the user is suspended by the platform operator.
+    else if (me.suspended_municipalities.length > 0) content = <SuspendedMunicipality />
     // Operators who belong to no municipality only have the platform page.
     else content = isOperator ? <Navigate to="/platform" replace /> : <NoMunicipality />
   }

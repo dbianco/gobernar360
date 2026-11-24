@@ -121,3 +121,26 @@ describe('api client', () => {
     expect(downloadUrl('/export/projects.csv')).toBe('/api/export/projects.csv')
   })
 })
+
+describe('api client failures', () => {
+  it('reports an unreachable server as a network error', async () => {
+    server.use(http.get('*/api/down', () => HttpResponse.error()))
+
+    await expect(api('/down')).rejects.toMatchObject({ status: 0, code: 'network' })
+  })
+
+  it('falls back to a generic error when the body is not the usual error', async () => {
+    server.use(
+      http.get(
+        '*/api/broken',
+        () => new HttpResponse('<html>', { status: 502, statusText: 'Bad Gateway' }),
+      ),
+    )
+
+    await expect(api('/broken')).rejects.toMatchObject({
+      status: 502,
+      code: 'generic',
+      message: 'Bad Gateway',
+    })
+  })
+})

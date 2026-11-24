@@ -4,8 +4,8 @@ Workspace of management dashboards for local governments (municipalities and
 communes). Each dashboard is an independent module, enabled per municipality
 and granted per user. Today it ships the platform base (municipalities, users,
 per-dashboard access, people registry, monthly status lights, accounts by email with
-notifications and single sign-on), the Projects, Environment, Economic, Social and
-Procedures dashboards, and a general overview.
+notifications and single sign-on), the Projects, Environment, Economic, Social,
+Procedures and Complaints dashboards, and a general overview.
 
 - Platform and Projects: design `docs/superpowers/specs/2026-11-18-gobernar360-platform-design.md`,
   plan `docs/superpowers/plans/2026-11-18-platform-base-and-projects-dashboard.md`
@@ -27,6 +27,9 @@ Procedures dashboards, and a general overview.
 - Accounts by email, notifications and single sign-on: design
   `docs/superpowers/specs/2026-11-22-email-accounts-and-notifications-design.md`,
   task `docs/tasks/01-email-accounts-and-notifications.md`
+- Complaints: design `docs/superpowers/specs/2026-11-23-complaints-dashboard-design.md`,
+  plan `docs/superpowers/plans/2026-11-23-complaints-dashboard.md`, task
+  `docs/tasks/03-complaints-dashboard.md`
 - Functional reference: `tableros-de-gestion-portal-ril.md`
 
 ## Quick start
@@ -88,6 +91,11 @@ The local sign-on provider knows the same demo emails with the same password, pl
 Single sign-on is off for every municipality until its administrator turns it on in
 *Configuración*, in the menu or as a tab of *Usuarios* (for the demo: sign in as
 `admin@noetinger.test`).
+The demo loads several hundred made-up complaints for Noetinger but leaves the Complaints
+("Reclamos") dashboard disabled there: the operator enables it from the municipality's page, and
+its administrator grants it to other users. A resident already in the registry, for trying the
+document lookup: DNI 33.123.456 (Lucía Fernández). Comuna Demo has the dashboard enabled with a
+few complaints of its own.
 
 For a real installation create the first operator with
 `uv run gobernar360 create-operator --email ... --full-name ...`.
@@ -103,8 +111,12 @@ password empty keeps the current one, and setting one signs out their other sess
 - The **platform operator** creates municipalities and configures each one: name and
   kind, enabled dashboards, users (add, permissions, administrators, remove, set a
   new password) and its *Configuración* (button on the municipality's page). The operator
-  sees configuration only, never dashboard data, unless added as a user of that
-  municipality.
+  can also **suspend** a municipality, giving a reason: its data, users and permissions
+  stay, but nobody can work in it. Members already signed in are refused from their next
+  request (`403 municipality_suspended`) and see a notice; it leaves their municipality
+  switcher. Resuming it restores everything as it was, in the same sessions. Both are
+  recorded in the municipality's audit log. The operator sees configuration only, never
+  dashboard data, unless added as a user of that municipality.
 - A **municipality administrator** manages a subset of that for their own municipality:
   its users and their permissions, and its configuration (*Configuración*, in the menu):
   who receives notification emails, whether members may use single sign-on, and the text
@@ -136,11 +148,11 @@ cd backend
 uv run pytest            # API and tenant-isolation tests, against the gobernar360_test database
 uv run ruff check .
 uv run lint-imports      # dashboard modules must not import each other
-uv run pytest --cov      # the same, measuring coverage: fails below 95 % of statements
-uv run mutmut run --max-children 1   # mutation testing of the pilot modules (slow, ~1.5 h)
+uv run pytest --cov      # the whole suite with coverage; fails under 95 %
 
 cd ../frontend
 npm test -- --run        # component tests
+npm run test:coverage    # the same with coverage; fails if any metric is under 95 %
 npm run lint
 npm run build
 npm run e2e              # browser tests; starts its own API and web server on ports 8001/5174
@@ -216,6 +228,35 @@ for, and who already holds that data.
 - Editors load procedures and requirements; areas and sources are for dashboard admins.
   Access is per dashboard, not per area: the area is a field of the procedure.
 - A procedure's link only accepts `http(s)` addresses, because the screen renders it as a link.
+
+### Complaints dashboard
+
+Every complaint a resident makes, followed from reception until it is solved, with the time
+it took measured in business days.
+
+- **Lifecycle.** Received → assigned → in progress ⇄ waiting for the resident → resolved →
+  closed; rejected from any open state; a resolved complaint can be reopened. Only the moves
+  in `dashboards/complaints/lifecycle.py` are accepted (409 `invalid_transition` otherwise),
+  and rejecting or reopening needs a note. Each move, reassignment, change of type and note is
+  kept in the complaint's timeline with who, when and why; nothing is deleted and nothing can
+  be dated back (the server's time is used).
+- **Service clock** (`dashboards/complaints/clock.py`, pure functions). Business days of the
+  municipality's calendar (working weekdays and holidays, under Parameters). The day of
+  reception does not count; the clock stops while waiting for the resident and when resolved
+  or rejected. Reopening counts the days the case spent wrongly marked as resolved. A case is
+  at risk with a quarter of its target or less left, overdue past it. The clock is read, not
+  stored, so a holiday loaded late also corrects earlier cases; the target is copied onto the
+  complaint when it is registered, so changing a type's target does not rewrite history.
+- **Queues.** A type routes new complaints to its area; editors reassign. Each area's queue is
+  ordered by business days left.
+- **Residents.** A complaint points at a person of the shared registry, found by exact document
+  number (or added to it), or is anonymous.
+- **Analysis.** Period figures are about the complaints *received* in the period, so the median
+  of `resolution_business_days` per type in the cases CSV equals the summary's median for that
+  type (percentiles interpolate like a spreadsheet's PERCENTILE.INC). Backlog figures are as of
+  today, whatever the period.
+- Levels: viewers read and download; editors register complaints and act on them; dashboard
+  admins manage areas, zones, types and the calendar.
 
 ### Status lights
 

@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from gobernar360.core.config import get_settings
 from gobernar360.core.errors import error_response, install_error_handlers
 from gobernar360.dashboards import (
+    complaints,
     economic,
     environment,
     procedures,
@@ -41,6 +42,7 @@ def register_dashboards() -> None:
         economic.module,
         social.module,
         procedures.module,
+        complaints.module,
     ):
         registry.register(module)
 

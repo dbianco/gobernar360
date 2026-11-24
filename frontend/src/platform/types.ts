@@ -18,6 +18,8 @@ export interface Me {
   memberships: { municipality: Municipality; is_admin: boolean }[]
   active_municipality_id: string | null
   dashboards: { key: string; level: AccessLevel }[]
+  /** The user's municipalities that the platform operator suspended: nobody works in them. */
+  suspended_municipalities: Municipality[]
 }
 
 /** One page of a list the API paginates. */

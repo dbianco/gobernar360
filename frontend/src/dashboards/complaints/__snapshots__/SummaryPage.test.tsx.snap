@@ -1,0 +1,1728 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks for this year and says when nothing repeats > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+Hoy
+Reclamos abiertos
+7
+Vencidos
+2
+Abiertos que ya pasaron su plazo
+En riesgo
+1
+Les queda un cuarto del plazo o menos
+En pausa
+1
+Esperando al vecino
+Abiertos por estado
+Ver como tabla
+Abiertos por situación
+Ver como tabla
+Antigüedad de los abiertos
+Ver como tabla
+Recibidos del 01/04/2025 al 20/03/2026
+Recibidos
+18
+Resueltos
+14
+Resueltos en plazo
+71,4 %
+10 de 14 resueltos
+Mediana de resolución (días hábiles)
+4
+Percentil 90: 8,8 días hábiles
+[Recibidos y resueltos por mes]
+Recibidos y resueltos por mes
+Ver como tabla
+Tiempo de resolución por tipo
+[Tiempo de resolución por tipo]
+Tipo
+[Qué significa Tipo]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Luminaria apagada
+10
+8
+75 %
+4
+8,8
+Tiempo de resolución por área
+[Tiempo de resolución por área]
+Área
+[Qué significa Área]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Alumbrado Público
+10
+8
+75 %
+5,5
+8,8
+[Reclamos repetidos]
+Reclamos repetidos
+Mismo tipo y misma dirección, cada uno a no más de 30 días del anterior.
+No hay reclamos repetidos en el período.
+Zonas con más reclamos
+Ver como tabla
+Tipos con más reclamos
+Ver como tabla"
+`;
+
+exports[`asks for this year and says when nothing repeats > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+[Cargando…]"
+`;
+
+exports[`downloads the period it shows and asks again when the period changes > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+Hoy
+Reclamos abiertos
+7
+Vencidos
+2
+Abiertos que ya pasaron su plazo
+En riesgo
+1
+Les queda un cuarto del plazo o menos
+En pausa
+1
+Esperando al vecino
+Abiertos por estado
+Ver como tabla
+Abiertos por situación
+Ver como tabla
+Antigüedad de los abiertos
+Ver como tabla
+Recibidos del 01/04/2025 al 20/03/2026
+Recibidos
+18
+Resueltos
+14
+Resueltos en plazo
+71,4 %
+10 de 14 resueltos
+Mediana de resolución (días hábiles)
+4
+Percentil 90: 8,8 días hábiles
+[Recibidos y resueltos por mes]
+Recibidos y resueltos por mes
+Ver como tabla
+Tiempo de resolución por tipo
+[Tiempo de resolución por tipo]
+Tipo
+[Qué significa Tipo]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Luminaria apagada
+10
+8
+75 %
+4
+8,8
+Tiempo de resolución por área
+[Tiempo de resolución por área]
+Área
+[Qué significa Área]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Alumbrado Público
+10
+8
+75 %
+5,5
+8,8
+[Reclamos repetidos]
+Reclamos repetidos
+Mismo tipo y misma dirección, cada uno a no más de 30 días del anterior.
+[Reclamos repetidos]
+Tipo
+[Qué significa Tipo]
+Tipo de los reclamos repetidos.
+Dirección
+[Qué significa Dirección]
+Dirección en la que se repiten, sin distinguir mayúsculas, acentos ni espacios.
+Zona
+[Qué significa Zona]
+Zona del último de ellos.
+Reclamos
+[Qué significa Reclamos]
+Cuántos reclamos forman la serie.
+Primero
+[Qué significa Primero]
+Día en que se recibió el primero de la serie.
+Último
+[Qué significa Último]
+Día en que se recibió el último de la serie.
+Números
+[Qué significa Números]
+Números de los reclamos de la serie.
+Luminaria apagada
+San Martín 450
+Centro
+3
+02/03/2026
+18/03/2026
+101, 107, 112
+Zonas con más reclamos
+Ver como tabla
+Tipos con más reclamos
+Ver como tabla"
+`;
+
+exports[`downloads the period it shows and asks again when the period changes > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+[Cargando…]"
+`;
+
+exports[`invites editors to register complaints when there are none > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+Todavía no hay reclamos registrados
+Registrar reclamos"
+`;
+
+exports[`invites editors to register complaints when there are none > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+[Cargando…]"
+`;
+
+exports[`lists repeated complaints with their numbers > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+Hoy
+Reclamos abiertos
+7
+Vencidos
+2
+Abiertos que ya pasaron su plazo
+En riesgo
+1
+Les queda un cuarto del plazo o menos
+En pausa
+1
+Esperando al vecino
+Abiertos por estado
+Ver como tabla
+Abiertos por situación
+Ver como tabla
+Antigüedad de los abiertos
+Ver como tabla
+Recibidos del 01/04/2025 al 20/03/2026
+Recibidos
+18
+Resueltos
+14
+Resueltos en plazo
+71,4 %
+10 de 14 resueltos
+Mediana de resolución (días hábiles)
+4
+Percentil 90: 8,8 días hábiles
+[Recibidos y resueltos por mes]
+Recibidos y resueltos por mes
+Ver como tabla
+Tiempo de resolución por tipo
+[Tiempo de resolución por tipo]
+Tipo
+[Qué significa Tipo]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Luminaria apagada
+10
+8
+75 %
+4
+8,8
+Tiempo de resolución por área
+[Tiempo de resolución por área]
+Área
+[Qué significa Área]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Alumbrado Público
+10
+8
+75 %
+5,5
+8,8
+[Reclamos repetidos]
+Reclamos repetidos
+Mismo tipo y misma dirección, cada uno a no más de 30 días del anterior.
+[Reclamos repetidos]
+Tipo
+[Qué significa Tipo]
+Tipo de los reclamos repetidos.
+Dirección
+[Qué significa Dirección]
+Dirección en la que se repiten, sin distinguir mayúsculas, acentos ni espacios.
+Zona
+[Qué significa Zona]
+Zona del último de ellos.
+Reclamos
+[Qué significa Reclamos]
+Cuántos reclamos forman la serie.
+Primero
+[Qué significa Primero]
+Día en que se recibió el primero de la serie.
+Último
+[Qué significa Último]
+Día en que se recibió el último de la serie.
+Números
+[Qué significa Números]
+Números de los reclamos de la serie.
+Luminaria apagada
+San Martín 450
+Centro
+3
+02/03/2026
+18/03/2026
+101, 107, 112
+Zonas con más reclamos
+Ver como tabla
+Tipos con más reclamos
+Ver como tabla"
+`;
+
+exports[`lists repeated complaints with their numbers > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+[Cargando…]"
+`;
+
+exports[`reports a summary that cannot be loaded > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`reports a summary that cannot be loaded > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+[Cargando…]"
+`;
+
+exports[`shows resolution times by type and by area > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+Hoy
+Reclamos abiertos
+7
+Vencidos
+2
+Abiertos que ya pasaron su plazo
+En riesgo
+1
+Les queda un cuarto del plazo o menos
+En pausa
+1
+Esperando al vecino
+Abiertos por estado
+Ver como tabla
+Abiertos por situación
+Ver como tabla
+Antigüedad de los abiertos
+Ver como tabla
+Recibidos del 01/04/2025 al 20/03/2026
+Recibidos
+18
+Resueltos
+14
+Resueltos en plazo
+71,4 %
+10 de 14 resueltos
+Mediana de resolución (días hábiles)
+4
+Percentil 90: 8,8 días hábiles
+[Recibidos y resueltos por mes]
+Recibidos y resueltos por mes
+Ver como tabla
+Tiempo de resolución por tipo
+[Tiempo de resolución por tipo]
+Tipo
+[Qué significa Tipo]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Luminaria apagada
+10
+8
+75 %
+4
+8,8
+Tiempo de resolución por área
+[Tiempo de resolución por área]
+Área
+[Qué significa Área]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Alumbrado Público
+10
+8
+75 %
+5,5
+8,8
+[Reclamos repetidos]
+Reclamos repetidos
+Mismo tipo y misma dirección, cada uno a no más de 30 días del anterior.
+[Reclamos repetidos]
+Tipo
+[Qué significa Tipo]
+Tipo de los reclamos repetidos.
+Dirección
+[Qué significa Dirección]
+Dirección en la que se repiten, sin distinguir mayúsculas, acentos ni espacios.
+Zona
+[Qué significa Zona]
+Zona del último de ellos.
+Reclamos
+[Qué significa Reclamos]
+Cuántos reclamos forman la serie.
+Primero
+[Qué significa Primero]
+Día en que se recibió el primero de la serie.
+Último
+[Qué significa Último]
+Día en que se recibió el último de la serie.
+Números
+[Qué significa Números]
+Números de los reclamos de la serie.
+Luminaria apagada
+San Martín 450
+Centro
+3
+02/03/2026
+18/03/2026
+101, 107, 112
+Zonas con más reclamos
+Ver como tabla
+Tipos con más reclamos
+Ver como tabla"
+`;
+
+exports[`shows resolution times by type and by area > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+[Cargando…]"
+`;
+
+exports[`shows the monthly flow as a table too, and says when a chart has no data > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+Hoy
+Reclamos abiertos
+7
+Vencidos
+2
+Abiertos que ya pasaron su plazo
+En riesgo
+1
+Les queda un cuarto del plazo o menos
+En pausa
+1
+Esperando al vecino
+Abiertos por estado
+Ver como tabla
+Abiertos por situación
+Ver como tabla
+Antigüedad de los abiertos
+Ver como tabla
+Recibidos del 01/04/2025 al 20/03/2026
+Recibidos
+18
+Resueltos
+14
+Resueltos en plazo
+71,4 %
+10 de 14 resueltos
+Mediana de resolución (días hábiles)
+4
+Percentil 90: 8,8 días hábiles
+[Recibidos y resueltos por mes]
+Recibidos y resueltos por mes
+Sin datos para mostrar.
+Tiempo de resolución por tipo
+[Tiempo de resolución por tipo]
+Tipo
+[Qué significa Tipo]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Luminaria apagada
+10
+8
+75 %
+4
+8,8
+Tiempo de resolución por área
+[Tiempo de resolución por área]
+Área
+[Qué significa Área]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Alumbrado Público
+10
+8
+75 %
+5,5
+8,8
+[Reclamos repetidos]
+Reclamos repetidos
+Mismo tipo y misma dirección, cada uno a no más de 30 días del anterior.
+[Reclamos repetidos]
+Tipo
+[Qué significa Tipo]
+Tipo de los reclamos repetidos.
+Dirección
+[Qué significa Dirección]
+Dirección en la que se repiten, sin distinguir mayúsculas, acentos ni espacios.
+Zona
+[Qué significa Zona]
+Zona del último de ellos.
+Reclamos
+[Qué significa Reclamos]
+Cuántos reclamos forman la serie.
+Primero
+[Qué significa Primero]
+Día en que se recibió el primero de la serie.
+Último
+[Qué significa Último]
+Día en que se recibió el último de la serie.
+Números
+[Qué significa Números]
+Números de los reclamos de la serie.
+Luminaria apagada
+San Martín 450
+Centro
+3
+02/03/2026
+18/03/2026
+101, 107, 112
+Zonas con más reclamos
+Sin datos para mostrar.
+Tipos con más reclamos
+Ver como tabla"
+`;
+
+exports[`shows the monthly flow as a table too, and says when a chart has no data > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+[Cargando…]"
+`;
+
+exports[`starts with the status strip and shows the backlog and the period figures > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+Hoy
+Reclamos abiertos
+7
+Vencidos
+2
+Abiertos que ya pasaron su plazo
+En riesgo
+1
+Les queda un cuarto del plazo o menos
+En pausa
+1
+Esperando al vecino
+Abiertos por estado
+Ver como tabla
+Abiertos por situación
+Ver como tabla
+Antigüedad de los abiertos
+Ver como tabla
+Recibidos del 01/04/2025 al 20/03/2026
+Recibidos
+18
+Resueltos
+14
+Resueltos en plazo
+71,4 %
+10 de 14 resueltos
+Mediana de resolución (días hábiles)
+4
+Percentil 90: 8,8 días hábiles
+[Recibidos y resueltos por mes]
+Recibidos y resueltos por mes
+Ver como tabla
+Tiempo de resolución por tipo
+[Tiempo de resolución por tipo]
+Tipo
+[Qué significa Tipo]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Luminaria apagada
+10
+8
+75 %
+4
+8,8
+Tiempo de resolución por área
+[Tiempo de resolución por área]
+Área
+[Qué significa Área]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Alumbrado Público
+10
+8
+75 %
+5,5
+8,8
+[Reclamos repetidos]
+Reclamos repetidos
+Mismo tipo y misma dirección, cada uno a no más de 30 días del anterior.
+[Reclamos repetidos]
+Tipo
+[Qué significa Tipo]
+Tipo de los reclamos repetidos.
+Dirección
+[Qué significa Dirección]
+Dirección en la que se repiten, sin distinguir mayúsculas, acentos ni espacios.
+Zona
+[Qué significa Zona]
+Zona del último de ellos.
+Reclamos
+[Qué significa Reclamos]
+Cuántos reclamos forman la serie.
+Primero
+[Qué significa Primero]
+Día en que se recibió el primero de la serie.
+Último
+[Qué significa Último]
+Día en que se recibió el último de la serie.
+Números
+[Qué significa Números]
+Números de los reclamos de la serie.
+Luminaria apagada
+San Martín 450
+Centro
+3
+02/03/2026
+18/03/2026
+101, 107, 112
+Zonas con más reclamos
+Ver como tabla
+Tipos con más reclamos
+Ver como tabla"
+`;
+
+exports[`starts with the status strip and shows the backlog and the period figures > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+[Cargando…]"
+`;
+
+exports[`tells viewers that there is nothing yet > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+Todavía no hay reclamos registrados
+Cuando el equipo registre reclamos, vas a ver acá el resumen."
+`;
+
+exports[`tells viewers that there is nothing yet > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+[Cargando…]"
+`;
+
+exports[`toggles the monthly flow between chart and table > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+Hoy
+Reclamos abiertos
+7
+Vencidos
+2
+Abiertos que ya pasaron su plazo
+En riesgo
+1
+Les queda un cuarto del plazo o menos
+En pausa
+1
+Esperando al vecino
+Abiertos por estado
+Ver como tabla
+Abiertos por situación
+Ver como tabla
+Antigüedad de los abiertos
+Ver como tabla
+Recibidos del 01/04/2025 al 20/03/2026
+Recibidos
+18
+Resueltos
+14
+Resueltos en plazo
+71,4 %
+10 de 14 resueltos
+Mediana de resolución (días hábiles)
+4
+Percentil 90: 8,8 días hábiles
+[Recibidos y resueltos por mes]
+Recibidos y resueltos por mes
+Ver como tabla
+Tiempo de resolución por tipo
+[Tiempo de resolución por tipo]
+Tipo
+[Qué significa Tipo]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Luminaria apagada
+10
+8
+75 %
+4
+8,8
+Tiempo de resolución por área
+[Tiempo de resolución por área]
+Área
+[Qué significa Área]
+Tipo o área. El área es la que tiene el reclamo hoy.
+Recibidos
+[Qué significa Recibidos]
+Reclamos recibidos en el período.
+Resueltos
+[Qué significa Resueltos]
+De esos, cuántos están resueltos o cerrados.
+En plazo
+[Qué significa En plazo]
+Parte de los resueltos que se resolvió dentro de su plazo objetivo.
+Mediana
+[Qué significa Mediana]
+Mitad de los resueltos tardó esta cantidad de días hábiles o menos.
+Percentil 90
+[Qué significa Percentil 90]
+Nueve de cada diez resueltos tardaron esta cantidad de días hábiles o menos.
+Alumbrado Público
+10
+8
+75 %
+5,5
+8,8
+[Reclamos repetidos]
+Reclamos repetidos
+Mismo tipo y misma dirección, cada uno a no más de 30 días del anterior.
+[Reclamos repetidos]
+Tipo
+[Qué significa Tipo]
+Tipo de los reclamos repetidos.
+Dirección
+[Qué significa Dirección]
+Dirección en la que se repiten, sin distinguir mayúsculas, acentos ni espacios.
+Zona
+[Qué significa Zona]
+Zona del último de ellos.
+Reclamos
+[Qué significa Reclamos]
+Cuántos reclamos forman la serie.
+Primero
+[Qué significa Primero]
+Día en que se recibió el primero de la serie.
+Último
+[Qué significa Último]
+Día en que se recibió el último de la serie.
+Números
+[Qué significa Números]
+Números de los reclamos de la serie.
+Luminaria apagada
+San Martín 450
+Centro
+3
+02/03/2026
+18/03/2026
+101, 107, 112
+Zonas con más reclamos
+Ver como tabla
+Tipos con más reclamos
+Ver como tabla"
+`;
+
+exports[`toggles the monthly flow between chart and table > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+[Cargando…]"
+`;

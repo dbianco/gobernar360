@@ -11,6 +11,8 @@ export interface AuthState {
   setActiveMunicipality: (municipalityId: string) => Promise<void>
   /** Show the user's own changes, e.g. a new name, returned by the API. */
   updateMe: (me: Me) => void
+  /** Ask the server again who the user is and where they can work. */
+  refresh: () => Promise<void>
 }
 
 export const AuthContext = createContext<AuthState | null>(null)

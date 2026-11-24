@@ -96,11 +96,14 @@ test('combined indicators are shown only to members who see both dashboards', as
 test('the overview shows only the dashboards chosen next to its title', async ({ page }) => {
   await login(page, 'admin@noetinger.test')
   const lights = page.getByRole('region', { name: 'Estado de los tableros' })
-  await expect(lights.getByRole('group')).toHaveCount(5)
+  // One light per enabled dashboard; another spec may have enabled one more.
+  await expect(lights.getByRole('group', { name: 'Económico' })).toBeVisible()
+  const all = await lights.getByRole('group').count()
+  expect(all).toBeGreaterThanOrEqual(5)
 
   await page.getByRole('button', { name: 'Ocultar Económico' }).click()
 
-  await expect(lights.getByRole('group')).toHaveCount(4)
+  await expect(lights.getByRole('group')).toHaveCount(all - 1)
   await expect(lights.getByRole('group', { name: 'Económico' })).toHaveCount(0)
   await expect(page.getByRole('heading', { name: 'Económico', level: 3 })).toHaveCount(0)
   await expect(combined(page).locator('[data-indicator]')).toHaveCount(1)
@@ -113,5 +116,5 @@ test('the overview shows only the dashboards chosen next to its title', async ({
   // Not remembered: opening the page again shows every dashboard.
   await page.getByRole('button', { name: 'Ocultar Social' }).click()
   await page.reload()
-  await expect(lights.getByRole('group')).toHaveCount(5)
+  await expect(lights.getByRole('group')).toHaveCount(all)
 })

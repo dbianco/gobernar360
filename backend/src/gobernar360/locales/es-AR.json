@@ -4,7 +4,8 @@
     "environment": "Ambiental",
     "economic": "Económico",
     "social": "Social",
-    "procedures": "Trámites"
+    "procedures": "Trámites",
+    "complaints": "Reclamos"
   },
   "months": {
     "1": "enero",

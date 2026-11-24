@@ -13,6 +13,7 @@ from sqlalchemy.orm import Session
 from gobernar360.core.db import Base, get_admin_engine, platform_session, tenant_session
 from gobernar360.core.security import hash_password
 from gobernar360.dashboards import registry
+from gobernar360.dashboards.complaints.models import ComplaintType
 from gobernar360.dashboards.economic.models import (
     Actor,
     ActorPerson,
@@ -74,6 +75,7 @@ from gobernar360.platform.models import (
 )
 from gobernar360.platform.snapshots import snapshot_municipality
 from gobernar360.platform.tenant_crud import create_entity
+from gobernar360.seed_complaints import seed_commune_complaints, seed_complaints
 
 DEMO_PASSWORD = "gobernar360-demo"
 PROJECTS = "projects"
@@ -81,6 +83,7 @@ ENVIRONMENT = "environment"
 ECONOMIC = "economic"
 SOCIAL = "social"
 PROCEDURES = "procedures"
+COMPLAINTS = "complaints"
 
 # Status lights of the current month and the five before it, newest first.
 STATUS_LIGHTS = {
@@ -89,6 +92,7 @@ STATUS_LIGHTS = {
     ECONOMIC: ("red", "yellow", "yellow", "green", "green", "green"),
     SOCIAL: ("green", "yellow", "green", "green", "red", "yellow"),
     PROCEDURES: ("yellow", "yellow", "red", "yellow", "green", "green"),
+    COMPLAINTS: ("red", "yellow", "yellow", "red", "yellow", "green"),
 }
 # Dashboards whose lights were added to existing demo databases in one go.
 FIRST_LIT_DASHBOARDS = (PROJECTS, ENVIRONMENT, ECONOMIC, SOCIAL)
@@ -1482,6 +1486,38 @@ def _seed_noetinger_public_page(today: date) -> bool:
     return True
 
 
+def _seed_complaints(today: date) -> bool:
+    """Load Noetinger's complaints and their lights, leaving the dashboard for the operator
+    to enable there; enable it in the commune with a few complaints of its own.
+
+    Returns False when Noetinger already has complaint data.
+    """
+    with platform_session() as db:
+        noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+        staff = db.scalars(
+            select(User.id).where(User.email.in_(["admin@noetinger.test", "carga@noetinger.test"]))
+        ).all()
+    with tenant_session(noetinger_id) as db:
+        if db.scalar(select(ComplaintType.id).limit(1)):
+            return False
+        seed_complaints(db, noetinger_id, list(staff) or [None])
+        lit = db.scalar(
+            select(DashboardStatus.id).where(DashboardStatus.dashboard_key == COMPLAINTS).limit(1)
+        )
+        if not lit:
+            _add_lights(db, noetinger_id, COMPLAINTS, today)
+    with platform_session() as db:
+        commune = db.scalar(select(Municipality).where(Municipality.slug == "comuna-demo"))
+        # An older demo database may no longer have the second municipality.
+        added = commune is not None and _enable_dashboard(db, commune, COMPLAINTS)
+        commune_id = commune.id if commune else None
+        commune_admin = db.scalar(select(User.id).where(User.email == "admin@comuna-demo.test"))
+    if added:
+        with tenant_session(commune_id) as db:
+            seed_commune_complaints(db, commune_id, today, commune_admin)
+    return True
+
+
 def _seed_newer_dashboards(today: date) -> bool:
     added = [
         _seed_newer_dashboard(ENVIRONMENT, _seed_noetinger_environment, today),
@@ -1490,6 +1526,7 @@ def _seed_newer_dashboards(today: date) -> bool:
         _seed_newer_dashboard(SOCIAL, _seed_noetinger_social, today),
         _seed_noetinger_status(today),
         _seed_newer_dashboard(PROCEDURES, _seed_noetinger_procedures, today),
+        _seed_complaints(today),
         # Last: it records what every dashboard above holds.
         _seed_noetinger_history(today),
         # From that history.

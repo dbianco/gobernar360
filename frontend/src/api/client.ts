@@ -37,10 +37,16 @@ export function downloadUrl(path: string, query?: Query): string {
 }
 
 let onSessionLost: (() => void) | null = null
+let onMunicipalitySuspended: (() => void) | null = null
 
 /** Register what to do when the API says the session is no longer valid. */
 export function setSessionLostHandler(handler: (() => void) | null) {
   onSessionLost = handler
+}
+
+/** Register what to do when the API says the active municipality was suspended. */
+export function setMunicipalitySuspendedHandler(handler: (() => void) | null) {
+  onMunicipalitySuspended = handler
 }
 
 export async function api<T = unknown>(path: string, options: RequestOptions = {}): Promise<T> {
@@ -68,6 +74,8 @@ export async function api<T = unknown>(path: string, options: RequestOptions = {
     const error = payload?.error
     // Sign-in and profile checks answer 401 as part of normal use; anything else lost its session.
     if (response.status === 401 && !path.startsWith('/auth/')) onSessionLost?.()
+    // The operator suspended the municipality while the user was working in it.
+    if (error?.code === 'municipality_suspended') onMunicipalitySuspended?.()
     throw new ApiError(
       response.status,
       error?.code ?? 'generic',
