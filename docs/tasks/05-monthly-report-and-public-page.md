@@ -1,4 +1,4 @@
-# Task 05: Monthly management report and public transparency page
+# Task 05: Monthly management report and public transparency page - DONE
 
 ## Task description
 

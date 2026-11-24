@@ -326,9 +326,14 @@ pública): the page itself, each dashboard's lights, each indicator, and each cl
   limited and cacheable (`ETag`, always revalidated), so unpublishing shows at once.
 - Only indicators declared `aggregate` in the catalogue can be published. Counts from 1 to
   the threshold the municipality sets minus one are shown as "menos de N", also in the
-  series and in the published PDF, which leaves out anything not aggregate.
-- A report whose comments name someone of the people registry, or one of their document
-  numbers, cannot be published.
+  series and in the published PDF.
+- The published PDF of a report shows only the dashboards and indicators the page
+  publishes at that moment (it is rendered again when the choice changes) and leaves out
+  the dashboards' tables, such as the milestones, whose text nobody checked.
+- A report whose comments name someone of the people registry (their last name next to
+  one of their first names) or one of their document numbers cannot be published.
+- When the operator disables a dashboard, what was published of it is forgotten: enabling
+  it again publishes nothing until the administrator chooses.
 
 ### Table header help
 

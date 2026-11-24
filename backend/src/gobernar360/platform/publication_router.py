@@ -152,7 +152,7 @@ def publish_dashboard(
         ):
             delete_entity(ctx, indicator)
         delete_entity(ctx, row)
-    publication.refresh_indicators(ctx, today)
+    publication.refresh_site(ctx, today)
     return _state(ctx)
 
 
@@ -181,5 +181,5 @@ def publish_indicator(
         create_entity(ctx, PublishedIndicator(**fields), fields)
     elif not body.published and row is not None:
         delete_entity(ctx, row)
-    publication.refresh_indicators(ctx, today)
+    publication.refresh_site(ctx, today)
     return _state(ctx)

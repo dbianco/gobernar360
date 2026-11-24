@@ -140,7 +140,7 @@ export function ComplaintDetailPage() {
           {data.person
             ? [
                 data.person.full_name,
-                data.person.dni && `DNI ${formatDni(data.person.dni)}`,
+                data.person.dni && label('dni', { dni: formatDni(data.person.dni) }),
                 data.person.phone,
               ]
                 .filter(Boolean)

@@ -143,6 +143,13 @@ def clean_comments(ctx: RequestContext, comments: dict[str, str]) -> dict[str, s
     return cleaned
 
 
+def enabled_comments(ctx: RequestContext, comments: dict[str, str]) -> dict[str, str]:
+    """The comments of the dashboards the municipality still has: one disabled since they
+    were written is not in the next report, and its comment could never be saved again."""
+    enabled = {module.key for module in installed_dashboards(ctx)}
+    return {key: text for key, text in comments.items() if key in enabled}
+
+
 def current_version(ctx: RequestContext, year: int, month: int) -> MonthlyReport | None:
     """The month's draft or closed version; superseded ones are history."""
     return ctx.db.scalar(
@@ -213,7 +220,7 @@ def reopen(ctx: RequestContext, report: MonthlyReport) -> MonthlyReport:
         month=report.month,
         version=report.version + 1,
         status="draft",
-        comments=dict(report.comments),
+        comments=enabled_comments(ctx, report.comments),
     )
     return create_entity(
         ctx,

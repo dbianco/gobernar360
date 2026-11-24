@@ -10,6 +10,7 @@ import hashlib
 import json
 import time
 from collections import defaultdict, deque
+from collections.abc import Callable
 from datetime import datetime
 from threading import Lock
 from typing import Annotated, Any
@@ -32,19 +33,35 @@ WINDOW_SECONDS = 60
 class RateLimiter:
     """At most N requests per client address in any minute, kept in memory per process."""
 
-    def __init__(self) -> None:
+    def __init__(self, clock: Callable[[], float] = time.monotonic) -> None:
+        self._clock = clock
         self._seen: dict[str, deque[float]] = defaultdict(deque)
         self._lock = Lock()
+        self._swept = 0.0
 
     def check(self, client: str, limit: int) -> None:
-        now = time.monotonic()
+        now = self._clock()
         with self._lock:
+            if now - self._swept >= WINDOW_SECONDS:
+                self._sweep(now)
             seen = self._seen[client]
             while seen and seen[0] <= now - WINDOW_SECONDS:
                 seen.popleft()
             if len(seen) >= limit:
                 raise rate_limited(int(seen[0] + WINDOW_SECONDS - now) + 1)
             seen.append(now)
+
+    def _sweep(self, now: float) -> None:
+        """Forget the addresses that asked nothing in the last window, so the table does not
+        grow with every address ever seen."""
+        for client in [c for c, seen in self._seen.items() if seen[-1] <= now - WINDOW_SECONDS]:
+            del self._seen[client]
+        self._swept = now
+
+    def tracked(self) -> int:
+        """How many addresses are being counted."""
+        with self._lock:
+            return len(self._seen)
 
     def reset(self) -> None:
         with self._lock:

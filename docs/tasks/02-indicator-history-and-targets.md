@@ -1,4 +1,4 @@
-# Task 02: Indicator history, targets and cross-dashboard indicators
+# Task 02: Indicator history, targets and cross-dashboard indicators - DONE
 
 ## Task description
 

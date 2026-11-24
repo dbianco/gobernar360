@@ -1,4 +1,3 @@
-import type { Person } from '../../platform/people/types'
 
 export const STATES = [
   'received',
@@ -92,7 +91,8 @@ export interface TimelineEvent {
 
 export interface ComplaintDetail extends Omit<Complaint, 'person'> {
   description: string
-  person: Person | null
+  /** Who made the complaint and how to reach them; the registry holds the rest. */
+  person: { id: string; full_name: string; dni: string | null; phone: string } | null
   /** States this complaint may move to next. */
   moves: State[]
   timeline: TimelineEvent[]

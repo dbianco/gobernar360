@@ -73,6 +73,8 @@ from gobernar360.platform.tenant_crud import create_entity, get_or_404, resolve,
 router = APIRouter()
 
 _dni = TypeAdapter(people.Dni)
+# Digits of the largest complaint number the column holds.
+MAX_NUMBER_DIGITS = 9
 NEWEST_FIRST = (Complaint.received_at.desc(), Complaint.number.desc())
 
 
@@ -124,7 +126,9 @@ def list_complaints(
             contains(Person.first_name, word),
             contains(Person.last_name, word),
         ]
-        if word.isdigit():
+        # Plain digits only, and no more than a complaint number can have: "²" is a digit
+        # to Python and not a number, and a longer one does not fit the column.
+        if word.isascii() and word.isdigit() and len(word) <= MAX_NUMBER_DIGITS:
             matches.append(Complaint.number == int(word))
         query = query.where(or_(*matches))
     if state == "open":

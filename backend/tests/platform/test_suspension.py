@@ -180,3 +180,29 @@ def test_the_operator_still_configures_a_suspended_municipality(operator, member
 
     assert users.status_code == 200
     assert [u["user"]["email"] for u in users.json()["items"]] == ["ana@noetinger.test"]
+
+
+def test_a_suspended_municipality_gets_no_notification_emails(client):
+    from datetime import date
+
+    from gobernar360.platform import notifications
+    from tests.factories import emails_to
+
+    # Both municipalities miss last month's light on the projects dashboard.
+    noetinger, saira = make_municipality("Noetinger"), make_municipality("Saira")
+    for municipality in (noetinger, saira):
+        make_membership(
+            make_user(f"jefa@{municipality.slug}.test"),
+            municipality,
+            admin=True,
+            enable=["projects"],
+        )
+    make_user("operator@gobernar360.test", operator=True)
+    login(client, "operator@gobernar360.test")
+    _suspend(client, noetinger)
+
+    report = notifications.notify(date(2026, 11, 20))
+
+    assert emails_to("jefa@noetinger.test") == []
+    assert len(emails_to("jefa@saira.test")) == 1
+    assert report.municipalities == 1

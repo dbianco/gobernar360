@@ -92,6 +92,10 @@ def default_window(today: date) -> Window:
     return Window(date(index // 12, index % 12 + 1, 1), today)
 
 
+# The summary has a row per month of the period.
+MAX_PERIOD_YEARS = 10
+
+
 def get_window(
     today: Today,
     date_from: Annotated[date | None, Query(alias="from")] = None,
@@ -101,6 +105,9 @@ def get_window(
     window = Window(date_from or default.start, date_to or default.end)
     if window.start > window.end:
         raise validation_error("from must not be after to.")
+    months = (window.end.year - window.start.year) * 12 + window.end.month - window.start.month
+    if months > MAX_PERIOD_YEARS * 12:
+        raise validation_error(f"The period can cover at most {MAX_PERIOD_YEARS} years.")
     return window
 
 

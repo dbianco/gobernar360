@@ -173,7 +173,14 @@ class NotifyReport:
 def notify(today: date) -> NotifyReport:
     """Queue notification emails for every municipality, each in its own transaction."""
     with platform_session() as db:
-        municipalities = list(db.scalars(select(Municipality).order_by(Municipality.name)))
+        # Nobody can work in a suspended municipality, so nobody is asked to.
+        municipalities = list(
+            db.scalars(
+                select(Municipality)
+                .where(Municipality.suspended_at.is_(None))
+                .order_by(Municipality.name)
+            )
+        )
     report = NotifyReport()
     for municipality in municipalities:
         with tenant_session(municipality.id) as db:

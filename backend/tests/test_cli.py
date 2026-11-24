@@ -70,3 +70,12 @@ def test_the_snapshot_command_fails_when_a_municipality_could_not_be_snapshotted
 
     assert result.exit_code == 1
     assert "Failed, left unchanged: saira" in result.output
+
+
+def test_the_snapshot_command_refuses_to_rebuild_from_before_any_data_could_exist(monkeypatch):
+    monkeypatch.setattr(cli, "get_today", lambda: date(2026, 4, 15))
+
+    result = runner.invoke(cli.app, ["snapshot-indicators", "--from", "1899-12"])
+
+    assert result.exit_code == 2
+    assert "2000-01" in result.output

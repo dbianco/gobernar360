@@ -82,7 +82,7 @@ def preview(ctx: Admin, today: Today, year: Annotated[Year, Path()], month: Mont
         month=month,
         version=current.version if current else None,
         content=reports.build_content(ctx, year, month),
-        comments=current.comments if current else {},
+        comments=reports.enabled_comments(ctx, current.comments) if current else {},
     )
 
 

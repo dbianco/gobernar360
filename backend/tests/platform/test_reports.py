@@ -5,7 +5,7 @@ from datetime import UTC, date, datetime
 
 import pypdf
 import pytest
-from sqlalchemy import select
+from sqlalchemy import delete, select
 
 from gobernar360.platform.clock import get_today
 from gobernar360.platform.models import (
@@ -14,6 +14,7 @@ from gobernar360.platform.models import (
     IndicatorSnapshot,
     IndicatorTarget,
     MonthlyReport,
+    MunicipalityDashboard,
 )
 from gobernar360.platform.report_pdf import ReportDocument, render_report
 from tests.factories import admin_session, login, make_membership, make_municipality, make_user
@@ -440,3 +441,71 @@ def test_reports_keep_the_closing_time_and_versions_in_the_database(client):
         stored = session.get(MonthlyReport, report["id"])
     assert stored.closed_at.microsecond == 0
     assert stored.content is not None
+
+
+def test_the_public_rendition_shows_only_the_published_dashboards_and_indicators():
+    public = ReportDocument(
+        **{
+            **FIXED.__dict__,
+            "public_threshold": 5,
+            "public_selection": {"projects": frozenset({"projects.budget_executed_ratio"})},
+        }
+    )
+
+    text = pdf_text(render_report(public))
+
+    assert "Presupuesto ejecutado 46,5 %" in text
+    assert "Un mes con lluvias" in text
+    # Not chosen for the public page: the other indicator and the other dashboard.
+    assert "Proyectos retrasados" not in text
+    assert "Proyectos 0 de 1 en meta" in text
+    assert "Social" not in text
+
+
+def test_the_public_rendition_leaves_out_the_tables_of_free_text():
+    public = ReportDocument(**{**FIXED.__dict__, "public_threshold": 5})
+
+    text = pdf_text(render_report(public))
+
+    assert "Hitos alcanzados en el mes" not in text
+    assert "Plaza central" not in text
+    assert "Plaza central" in pdf_text(render_report(FIXED))
+
+
+def test_the_document_is_dated_in_argentine_time_whatever_zone_the_instant_comes_in():
+    # 3 November, 21:30 in Argentina.
+    late = ReportDocument(
+        **{**FIXED.__dict__, "closed_at": datetime(2026, 11, 4, 0, 30, tzinfo=UTC)}
+    )
+
+    assert "cerrada el 03/11/2026." in pdf_text(render_report(late))
+
+
+def test_a_reopened_month_closes_again_after_one_of_its_dashboards_was_disabled(client):
+    municipality = admin(client, enable=("projects", "social"))
+    first = close(client, {"projects": "Obras.", "social": "Entregas."}).json()
+    with admin_session() as session, session.begin():
+        session.execute(
+            delete(MunicipalityDashboard).where(
+                MunicipalityDashboard.municipality_id == municipality.id,
+                MunicipalityDashboard.dashboard_key == "social",
+            )
+        )
+
+    client.post(f"{API}/{first['id']}/reopen")
+    preview = client.get(f"{API}/preview/2026/10").json()
+    closed = close(client, preview["comments"])
+
+    assert preview["comments"] == {"projects": "Obras."}
+    assert closed.status_code == 201
+
+
+@pytest.mark.parametrize("threshold", [0, 1])
+def test_a_public_rendition_that_masks_nothing_does_not_claim_to(threshold):
+    public = ReportDocument(**{**FIXED.__dict__, "public_threshold": threshold})
+
+    text = pdf_text(render_report(public))
+
+    assert "Versión pública." in text
+    assert "menos de" not in text
+    assert "Proyectos retrasados 3 6" in text

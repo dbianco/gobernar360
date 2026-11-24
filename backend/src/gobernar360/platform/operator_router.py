@@ -156,6 +156,8 @@ def set_enabled_dashboards(
         for key in set(payload.keys)
     )
     db.flush()
+    set_tenant(db, municipality_id)
+    publication.forget_dashboards(system_context(db, municipality_id), keep=set(payload.keys))
     _refresh_publication(db, municipality_id, today)
     return _detail(db, municipality)
 

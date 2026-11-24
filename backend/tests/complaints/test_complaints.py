@@ -1,5 +1,8 @@
 """Registering complaints, the areas' queues and what each member may see."""
 
+from datetime import date
+
+import pytest
 from sqlalchemy import select
 
 from gobernar360.core.db import tenant_session
@@ -408,3 +411,34 @@ def test_the_other_municipalitys_member_sees_none_of_these(client):
     for path in ("types", "areas", "zones", "queues"):
         assert client.get(f"{BASE}/{path}").json() == [], path
     assert client.get(f"{BASE}/summary").json()["totals"]["received"] == 0
+
+
+@pytest.mark.parametrize("query", ["²", "①", "٣", "12²", "99999999999999999999"])
+def test_searching_with_digits_that_are_not_plain_numbers_finds_nothing(client, query):
+    setup = Setup(signed_in(client))
+    _create(client, setup, description="Sin luz")
+
+    response = client.get(f"{BASE}/complaints", params={"q": query})
+
+    assert response.status_code == 200
+    assert response.json()["items"] == []
+
+
+def test_a_complaint_shows_only_how_to_reach_the_resident(client):
+    setup = Setup(signed_in(client))
+    person = make_person(setup.municipality)
+    with tenant_session(setup.municipality.id) as db:
+        stored = db.get(Person, person.id)
+        stored.address, stored.email = "Belgrano 123", "lucia@x.test"
+        stored.birth_date = date(1990, 5, 1)
+        db.flush()
+    created = _create(client, setup, person_id=str(person.id), description="Sin luz")
+
+    detail = client.get(f"{BASE}/complaints/{created.json()['id']}").json()
+
+    assert detail["person"] == {
+        "id": str(person.id),
+        "full_name": "Fernández, Lucía",
+        "dni": "33123456",
+        "phone": "",
+    }

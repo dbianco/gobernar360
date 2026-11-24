@@ -6,12 +6,14 @@ report always gives the same bytes. Lights are drawn with their own mark and nam
 black-and-white print still tells them apart.
 """
 
+from collections.abc import Mapping
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Any
 
 from fpdf import FPDF, FontFace
 
+from gobernar360.platform.clock import LOCAL_TIMEZONE
 from gobernar360.platform.formatting import (
     EMPTY,
     format_change,
@@ -57,9 +59,12 @@ class ReportDocument:
     comments: dict[str, str]
     version: int
     closed_at: datetime
-    # Set for the public rendition: counts below it are masked and only aggregate
-    # indicators are shown.
+    # Set for the public rendition: counts below it are masked, only aggregate indicators
+    # are shown, and the dashboards' tables (free text, e.g. milestone names) are left out.
     public_threshold: int | None = None
+    # For the public rendition too: the indicators the municipality publishes, by
+    # dashboard. A dashboard that is not a key is left out whole. None shows them all.
+    public_selection: Mapping[str, frozenset[str]] | None = None
 
 
 class _Pdf(FPDF):
@@ -162,6 +167,7 @@ class _Renderer:
         content = document.content
         self.period = month_and_year(content["year"], content["month"])
         self.threshold = document.public_threshold
+        self.selection = document.public_selection if self.threshold is not None else None
         name = content["municipality"]["name"]
         self.pdf = _Pdf(
             f"{name} · Informe de gestión de {self.period} · versión {document.version}"
@@ -181,6 +187,12 @@ class _Renderer:
             return f"menos de {format_number(self.threshold)}"
         return format_indicator(value, indicator["unit"])
 
+    def _dashboards(self) -> list[dict]:
+        dashboards = self.document.content["dashboards"]
+        if self.selection is None:
+            return dashboards
+        return [dashboard for dashboard in dashboards if dashboard["key"] in self.selection]
+
     def _indicators(self, dashboard: dict) -> list[dict]:
         rows = dashboard["indicators"]
         if self.threshold is None:
@@ -189,6 +201,8 @@ class _Renderer:
         shown = []
         for row in rows:
             if not row["aggregate"]:
+                continue
+            if self.selection is not None and row["key"] not in self.selection[dashboard["key"]]:
                 continue
             hidden = self._hidden(row, row["value"])
             shown.append(
@@ -229,7 +243,7 @@ class _Renderer:
         pdf.cell(WIDTH, 8, _text(f"Informe de gestión de {self.period}"), new_x="LMARGIN",
                  new_y="NEXT")  # fmt: skip
         self._font(9, color=MUTED)
-        closed = format_date(self.document.closed_at.date())
+        closed = format_date(self.document.closed_at.astimezone(LOCAL_TIMEZONE).date())
         pdf.cell(WIDTH, 5, _text(f"Versión {self.document.version}, cerrada el {closed}."),
                  new_x="LMARGIN", new_y="NEXT")  # fmt: skip
         if self.threshold is not None:
@@ -240,6 +254,9 @@ class _Renderer:
                     "Versión pública: las cantidades de 1 a "
                     f"{format_number(self.threshold - 1)} se muestran como «menos de "
                     f"{format_number(self.threshold)}»."
+                    # A threshold of 0 or 1 hides nothing.
+                    if self.threshold > 1
+                    else "Versión pública."
                 ),
                 new_x="LMARGIN",
                 new_y="NEXT",
@@ -255,7 +272,7 @@ class _Renderer:
         pdf.cell(WIDTH, 8, "Resumen del mes", new_x="LMARGIN", new_y="NEXT")
         widths = (55, 45, 80)
         self._header_row(("Tablero", "Estado del mes", "Metas"), widths)
-        for dashboard in self.document.content["dashboards"]:
+        for dashboard in self._dashboards():
             rows = self._indicators(dashboard)
             with_target = [row for row in rows if row["on_track"] is not None]
             met = sum(row["on_track"] is True for row in with_target)
@@ -403,15 +420,16 @@ class _Renderer:
         if comment:
             self._comment(comment)
         self._indicator_table(dashboard)
-        for table in dashboard["tables"]:
-            self._table(table)
+        if self.threshold is None:
+            for table in dashboard["tables"]:
+                self._table(table)
         pdf.ln(4)
 
     def render(self) -> bytes:
         self.pdf.add_page()
         self._title()
         self._summary()
-        for dashboard in self.document.content["dashboards"]:
+        for dashboard in self._dashboards():
             self._dashboard(dashboard)
         return bytes(self.pdf.output())
 

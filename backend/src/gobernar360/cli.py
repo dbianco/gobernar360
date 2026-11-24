@@ -133,12 +133,18 @@ def notify(
         typer.echo(f"Sent: {delivery.sent}. Will be retried: {delivery.retrying}.")
 
 
+# No municipality has data older than this; rebuilding from year 1 would take hours.
+FIRST_YEAR = 2000
+
+
 def _month_option(value: str | None) -> tuple[int, int] | None:
     if value is None:
         return None
     match = re.fullmatch(r"(\d{4})-(\d{2})", value.strip())
     if match is None or not 1 <= int(match[2]) <= 12:
         raise typer.BadParameter("Use the form YYYY-MM, e.g. 2026-01.")
+    if int(match[1]) < FIRST_YEAR:
+        raise typer.BadParameter(f"The earliest month that can be rebuilt is {FIRST_YEAR}-01.")
     return int(match[1]), int(match[2])
 
 

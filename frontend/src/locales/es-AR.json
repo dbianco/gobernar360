@@ -1740,6 +1740,7 @@
       "address": "Dirección",
       "zone": "Zona",
       "complainant": "Quién reclama",
+      "dni": "DNI {{dni}}",
       "anonymous": "Anónimo",
       "description": "Descripción",
       "clock": "Reloj de servicio",

@@ -309,3 +309,18 @@ def test_groups_are_sorted_by_name_regardless_of_accents(client):
     expected = ["Árbol caído", "Pérdida de agua", "Poste dañado", "Ruidos molestos"]
     assert [row["name"] for row in summary["by_type"]] == expected
     assert [row["name"] for row in summary["top_types"]] == expected
+
+
+@pytest.mark.parametrize("path", ["summary", "export/complaints.csv", "export/areas.csv"])
+def test_a_period_longer_than_ten_years_is_refused(client, path):
+    signed_in(client, "viewer")
+
+    too_long = client.get(f"{BASE}/{path}", params={"from": "2016-02-28", "to": "2026-03-01"})
+    longest = client.get(f"{BASE}/{path}", params={"from": "2016-03-21", "to": "2026-03-20"})
+
+    assert too_long.status_code == 422
+    assert too_long.json()["error"] == {
+        "code": "validation_error",
+        "message": "The period can cover at most 10 years.",
+    }
+    assert longest.status_code == 200

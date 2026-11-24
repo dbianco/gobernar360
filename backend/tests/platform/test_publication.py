@@ -486,3 +486,92 @@ def test_indicators_of_disabled_modules_in_the_demo_are_not_offered(client, demo
     keys = [d["key"] for d in client.get(PUBLICATION).json()["dashboards"]]
 
     assert keys == ["projects", "demo"]
+
+
+# Findings of the review
+
+
+def test_a_published_report_follows_what_the_page_publishes(client, anonymous, demo_dashboard):
+    demo_page(client)
+    close_and_publish(client)
+
+    def public_text():
+        document = anonymous.get(f"{PUBLIC}/noetinger/reports/2026/10")
+        return "\n".join(
+            p.extract_text() for p in pypdf.PdfReader(io.BytesIO(document.content)).pages
+        )
+
+    assert "demo.day" in public_text()
+    publish(client, "indicators", "demo.day", published=False)
+    assert "demo.day" not in public_text()
+    assert "Un buen mes." in public_text()
+    publish(client, "dashboards", "demo", published=False)
+    assert "Un buen mes." not in public_text()
+
+
+@pytest.mark.parametrize(
+    "comment",
+    [
+        "DNI 30222111 15 familias asistidas.",
+        "Documento 30-222-111.",
+        "Se asistió a Juana Pérez.",
+        "Visita a Pérez, Juana María.",
+        "Reunión con María Pérez.",
+    ],
+)
+def test_a_person_is_recognised_however_the_comment_writes_them(client, demo_dashboard, comment):
+    municipality = demo_page(client)
+    add(Person(municipality_id=municipality.id, first_name="Juana María", last_name="Pérez",
+               dni="30222111"))  # fmt: skip
+
+    _, response = close_and_publish(client, {"demo": comment})
+
+    assert response.status_code == 422
+    assert response.json()["error"]["code"] == "personal_data"
+
+
+@pytest.mark.parametrize(
+    "comment", ["Se entregaron 30222 módulos y 111 frazadas.", "Mesa de trabajo con María."]
+)
+def test_numbers_and_a_first_name_alone_do_not_block_publishing(client, demo_dashboard, comment):
+    municipality = demo_page(client)
+    add(Person(municipality_id=municipality.id, first_name="Juana María", last_name="Pérez",
+               dni="30222111"))  # fmt: skip
+
+    _, response = close_and_publish(client, {"demo": comment})
+
+    assert response.status_code == 204
+
+
+def test_a_disabled_dashboard_is_not_published_again_when_it_is_enabled_back(
+    client, anonymous, demo_dashboard
+):
+    municipality = demo_page(client)
+    client.post("/api/auth/logout")
+    make_user("operator@gobernar360.test", operator=True)
+    login(client, "operator@gobernar360.test")
+    dashboards = f"/api/platform/municipalities/{municipality.id}/dashboards"
+
+    client.put(dashboards, json={"keys": []})
+    client.put(dashboards, json={"keys": ["demo"]})
+
+    assert site(anonymous).json()["dashboards"] == []
+    assert anonymous.get(f"{PUBLIC}/noetinger/indicators/demo.day").status_code == 404
+    client.post("/api/auth/logout")
+    login(client, "ana@noetinger.test")
+    [demo] = client.get(PUBLICATION).json()["dashboards"]
+    assert demo["published"] is False
+    assert [i["published"] for i in demo["indicators"]] == [False, False]
+
+
+def test_the_rate_limiter_forgets_addresses_that_stopped_asking():
+    from gobernar360.platform.public_router import RateLimiter
+
+    moments = iter([0.0, 1.0, 2.0, 200.0])
+    limiter = RateLimiter(clock=lambda: next(moments))
+
+    for address in ("10.0.0.1", "10.0.0.2", "10.0.0.3"):
+        limiter.check(address, limit=5)
+    limiter.check("10.0.0.4", limit=5)
+
+    assert limiter.tracked() == 1

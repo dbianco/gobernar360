@@ -180,9 +180,19 @@ class EventOut(OrmModel):
     user: UserRef | None
 
 
+class ResidentOut(OrmModel):
+    """Who made the complaint and how to reach them: what following the case needs, not
+    everything the registry holds about the person."""
+
+    id: uuid.UUID
+    full_name: str
+    dni: str | None
+    phone: str
+
+
 class ComplaintDetail(ComplaintOut):
     description: str
-    person: PersonOut | None
+    person: ResidentOut | None
     # States this complaint may move to next.
     moves: list[State]
     timeline: list[EventOut]
