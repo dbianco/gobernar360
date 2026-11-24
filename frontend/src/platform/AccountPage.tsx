@@ -1,12 +1,14 @@
 import {
   Alert,
   Button,
+  Divider,
   Loader,
   Paper,
   PasswordInput,
   Stack,
   Switch,
   Text,
+  TextInput,
   Title,
 } from '@mantine/core'
 import { useQuery } from '@tanstack/react-query'
@@ -16,39 +18,58 @@ import { useTranslation } from 'react-i18next'
 import { api, ApiError } from '../api/client'
 import { useAuth } from './authContext'
 import { errorMessage } from './errorMessage'
+import type { Me } from './types'
 import { useAction } from './useAction'
 
 const MIN_PASSWORD_LENGTH = 10
+// Same rule as the API: digits and the usual separators.
+const PHONE = /^[0-9+()\-. ]*$/
 
 interface NotificationSetting {
   kind: string
   enabled: boolean
 }
 
-/** Lets the signed-in user replace their password. */
-function PasswordForm() {
+/** Name, contact phone and password. Every change needs the current password; a new
+ * password is optional and, left empty, the current one stays. */
+function AccountForm({ me }: { me: Me }) {
   const { t } = useTranslation()
-  const [current, setCurrent] = useState('')
+  const { updateMe } = useAuth()
+  const [fullName, setFullName] = useState(me.user.full_name)
+  const [phone, setPhone] = useState(me.user.phone)
   const [next, setNext] = useState('')
+  const [current, setCurrent] = useState('')
   const [error, setError] = useState<string | null>(null)
-  const [done, setDone] = useState(false)
+  const [done, setDone] = useState<'done' | 'donePassword' | null>(null)
   const [pending, setPending] = useState(false)
 
   async function submit(event: FormEvent) {
     event.preventDefault()
-    setDone(false)
-    if (next.length < MIN_PASSWORD_LENGTH) {
+    setDone(null)
+    if (!PHONE.test(phone.trim())) {
+      setError(t('account.phoneInvalid'))
+      return
+    }
+    if (next !== '' && next.length < MIN_PASSWORD_LENGTH) {
       setError(t('users.passwordTooShort'))
       return
     }
     setPending(true)
     setError(null)
     try {
-      await api('/auth/password', {
-        method: 'POST',
-        body: { current_password: current, new_password: next },
+      const updated = await api<Me>('/auth/account', {
+        method: 'PUT',
+        body: {
+          current_password: me.has_password ? current : null,
+          full_name: fullName,
+          phone,
+          new_password: next === '' ? null : next,
+        },
       })
-      setDone(true)
+      updateMe(updated)
+      setFullName(updated.user.full_name)
+      setPhone(updated.user.phone)
+      setDone(next === '' ? 'done' : 'donePassword')
       setCurrent('')
       setNext('')
     } catch (caught) {
@@ -62,24 +83,59 @@ function PasswordForm() {
   return (
     <form onSubmit={(event) => void submit(event)}>
       <Stack>
-        <Title order={3}>{t('account.passwordTitle')}</Title>
-        {done && <Alert color="green">{t('account.done')}</Alert>}
+        {done && <Alert color="green">{t(`account.${done}`)}</Alert>}
         {error && <Alert color="red">{error}</Alert>}
-        <PasswordInput
-          label={t('account.current')}
-          required
-          autoComplete="current-password"
-          value={current}
-          onChange={(event) => setCurrent(event.currentTarget.value)}
+        <TextInput
+          label={t('account.email')}
+          description={t('account.emailHint')}
+          value={me.user.email}
+          readOnly
+          variant="filled"
         />
-        <PasswordInput
-          label={t('account.new')}
-          description={t('account.newHint')}
+        <TextInput
+          label={t('account.fullName')}
           required
-          autoComplete="new-password"
-          value={next}
-          onChange={(event) => setNext(event.currentTarget.value)}
+          maxLength={200}
+          autoComplete="name"
+          value={fullName}
+          onChange={(event) => setFullName(event.currentTarget.value)}
         />
+        <TextInput
+          label={t('account.phone')}
+          description={t('account.phoneHint')}
+          type="tel"
+          maxLength={50}
+          autoComplete="tel"
+          value={phone}
+          onChange={(event) => setPhone(event.currentTarget.value)}
+        />
+        {me.has_password ? (
+          <>
+            <Divider label={t('account.passwordSection')} labelPosition="left" />
+            <PasswordInput
+              label={t('account.new')}
+              description={t('account.newHint')}
+              autoComplete="new-password"
+              value={next}
+              onChange={(event) => setNext(event.currentTarget.value)}
+            />
+            <Divider label={t('account.confirmSection')} labelPosition="left" />
+            <PasswordInput
+              label={t('account.current')}
+              description={t('account.currentHint')}
+              required
+              autoComplete="current-password"
+              value={current}
+              onChange={(event) => setCurrent(event.currentTarget.value)}
+            />
+          </>
+        ) : (
+          // It signs in through single sign-on: there is no password to ask for, and one
+          // is only chosen through a link sent to the account's address.
+          <Text size="sm" c="dimmed">
+            {t('account.noPassword')}
+          </Text>
+        )}
         <Button type="submit" loading={pending}>
           {t('account.submit')}
         </Button>
@@ -132,15 +188,19 @@ function NotificationSettings() {
   )
 }
 
-/** The signed-in user's password and email notifications. */
+/** The signed-in user's own account and email notifications. */
 export function AccountPage() {
   const { t } = useTranslation()
+  const { me } = useAuth()
   return (
     <Stack maw={520}>
       <Title order={2}>{t('account.title')}</Title>
-      <Paper withBorder p="md">
-        <PasswordForm />
-      </Paper>
+      {/* The form starts from the user's data, so it waits for them. */}
+      {me && (
+        <Paper withBorder p="md">
+          <AccountForm me={me} />
+        </Paper>
+      )}
       <Paper withBorder p="md">
         <NotificationSettings />
       </Paper>

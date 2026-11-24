@@ -81,7 +81,7 @@ exports[`keeps the platform page away from non-operators > screen at the end 1`]
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Resumen general
 No tenés tableros habilitados
@@ -94,7 +94,7 @@ exports[`lands operators without a municipality on the platform page > screen at
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 Municipios de la plataforma
 Todavía no hay municipios cargados.
@@ -180,6 +180,72 @@ Comuna
 Crear municipio"
 `;
 
+exports[`lists the dashboards each municipality has, by name > screen at the end 1`] = `
+"Municipios de la plataforma
+Buscar
+(Nombre o identificador)
+Nombre
+Tipo
+Tableros habilitados
+Noetinger
+noetinger
+Municipio
+Proyectos, retired-dashboard
+[Configurar Noetinger]
+Configurar
+Nombre
+*
+Identificador
+*
+Minúsculas, números y guiones. Ejemplo: villa-maria
+Tipo
+Municipio
+Comuna
+Crear municipio"
+`;
+
+exports[`lists the dashboards each municipality has, by name > screen at the start 1`] = `
+"Municipios de la plataforma
+[Cargando…]
+Nombre
+*
+Identificador
+*
+Minúsculas, números y guiones. Ejemplo: villa-maria
+Tipo
+Municipio
+Comuna
+Crear municipio"
+`;
+
+exports[`reports municipalities that cannot be loaded, and an empty platform > screen at the end 1`] = `
+"Municipios de la plataforma
+Todavía no hay municipios cargados.
+Nombre
+*
+Identificador
+*
+Minúsculas, números y guiones. Ejemplo: villa-maria
+Tipo
+Municipio
+Comuna
+Crear municipio"
+`;
+
+exports[`reports municipalities that cannot be loaded, and an empty platform > screen at the start 1`] = `
+"Municipios de la plataforma
+[Cargando…]
+Nombre
+*
+Identificador
+*
+Minúsculas, números y guiones. Ejemplo: villa-maria
+Tipo
+Municipio
+Comuna
+Crear municipio"
+`;
+
 exports[`shows an error when the municipalities cannot be loaded > screen at the end 1`] = `
 "Municipios de la plataforma
 Ocurrió un error. Intentá de nuevo.
@@ -195,6 +261,44 @@ Crear municipio"
 `;
 
 exports[`shows an error when the municipalities cannot be loaded > screen at the start 1`] = `
+"Municipios de la plataforma
+[Cargando…]
+Nombre
+*
+Identificador
+*
+Minúsculas, números y guiones. Ejemplo: villa-maria
+Tipo
+Municipio
+Comuna
+Crear municipio"
+`;
+
+exports[`shows why a municipality could not be created and lets the message go > screen at the end 1`] = `
+"Municipios de la plataforma
+Buscar
+(Nombre o identificador)
+Nombre
+Tipo
+Tableros habilitados
+Noetinger
+noetinger
+Municipio
+Sin tableros habilitados
+[Configurar Noetinger]
+Configurar
+Nombre
+*
+Identificador
+*
+Minúsculas, números y guiones. Ejemplo: villa-maria
+Tipo
+Municipio
+Comuna
+Crear municipio"
+`;
+
+exports[`shows why a municipality could not be created and lets the message go > screen at the start 1`] = `
 "Municipios de la plataforma
 [Cargando…]
 Nombre

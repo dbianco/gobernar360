@@ -1,0 +1,276 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`a member working when the municipality is suspended sees it at the next action > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Noetinger está suspendido
+El operador de la plataforma lo suspendió. Sus datos se conservan, pero nadie puede trabajar en él hasta que lo reanude.
+Volver a intentar"
+`;
+
+exports[`a member working when the municipality is suspended sees it at the next action > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`cancels a suspension or leaves it without a reason > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)"
+`;
+
+exports[`cancels a suspension or leaves it without a reason > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`checking again after the operator resumes it brings the member back > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Proyectos
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`checking again after the operator resumes it brings the member back > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`marks suspended municipalities in the operator list > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+Municipios de la plataforma
+Buscar
+(Nombre o identificador)
+Nombre
+Tipo
+Tableros habilitados
+Noetinger
+Suspendido
+noetinger
+Municipio
+Sin tableros habilitados
+[Configurar Noetinger]
+Configurar
+Saira
+saira
+Comuna
+Sin tableros habilitados
+[Configurar Saira]
+Configurar
+Nombre
+*
+Identificador
+*
+Minúsculas, números y guiones. Ejemplo: villa-maria
+Tipo
+Municipio
+Comuna
+Crear municipio"
+`;
+
+exports[`marks suspended municipalities in the operator list > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`offers only the municipalities that are not suspended > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Elegí el municipio con el que querés trabajar
+Noetinger está suspendido: no se puede trabajar en él hasta que el operador de la plataforma lo reanude.
+Saira"
+`;
+
+exports[`offers only the municipalities that are not suspended > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`opens the procedures and complaints dashboards from the app > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Reclamos
+Reclamos
+Resumen
+Reclamos
+Bandejas
+[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Período
+Últimos 12 meses
+Este año
+Año anterior
+Repetidos
+A 7 días o menos
+A 15 días o menos
+A 30 días o menos
+A 60 días o menos
+A 90 días o menos
+Descargar reclamos del período
+Descargar informe por área
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`opens the procedures and complaints dashboards from the app > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows why suspending or resuming failed > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+← Municipios
+Noetinger
+Suspendido
+Configuración
+Estado
+La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
+Suspendido
+Desde el 23/11/2026 10:05.
+Motivo: Cambio de gestión
+Reanudar municipio
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)"
+`;
+
+exports[`shows why suspending or resuming failed > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`the operator sees who suspended it, when and why, and resumes it > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+← Municipios
+Noetinger
+Suspendido
+Configuración
+Estado
+Suspendido
+Desde el 23/11/2026 10:05, por Operador de la plataforma.
+Motivo: Cambio de gestión
+Reanudar municipio
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)"
+`;
+
+exports[`the operator sees who suspended it, when and why, and resumes it > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`the operator suspends a municipality giving a reason > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)"
+`;
+
+exports[`the operator suspends a municipality giving a reason > screen at the start 1`] = `"[Cargando…]"`;

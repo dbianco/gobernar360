@@ -1,19 +1,23 @@
 import {
+  ActionIcon,
   Anchor,
   AppShell as Shell,
   Burger,
-  Button,
   Group,
   NavLink,
   Text,
   Title,
+  Tooltip,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import {
   IconBuildingCommunity,
+  IconFileReport,
   IconLayoutDashboard,
   IconSettings,
+  IconLogout,
   IconUsers,
+  IconWorld,
   type Icon,
 } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
@@ -21,7 +25,12 @@ import { Link, Navigate, Outlet, useLocation } from 'react-router-dom'
 
 import { dashboards } from '../dashboards/registry'
 import { useAuth } from './authContext'
-import { MunicipalityChooser, MunicipalitySwitcher, NoMunicipality } from './MunicipalitySwitcher'
+import {
+  MunicipalityChooser,
+  MunicipalitySwitcher,
+  NoMunicipality,
+  SuspendedMunicipality,
+} from './MunicipalitySwitcher'
 import { activeMembership } from './access'
 
 /** Page frame for signed-in users: header, navigation limited to what they may see, content. */
@@ -59,6 +68,8 @@ export function AppShell() {
   let content = <Outlet />
   if (!membership && !onPlatformPages) {
     if (me.memberships.length > 0) content = <MunicipalityChooser />
+    // Every municipality of the user is suspended by the platform operator.
+    else if (me.suspended_municipalities.length > 0) content = <SuspendedMunicipality />
     // Operators who belong to no municipality only have the platform page.
     else content = isOperator ? <Navigate to="/platform" replace /> : <NoMunicipality />
   }
@@ -90,9 +101,21 @@ export function AppShell() {
             <Anchor component={Link} to="/account" size="sm" title={t('account.link')}>
               {me.user.full_name}
             </Anchor>
-            <Button variant="subtle" size="xs" onClick={() => void logout()}>
-              {t('app.logout')}
-            </Button>
+            <Tooltip
+              label={t('app.logout')}
+              withArrow
+              events={{ hover: true, focus: true, touch: true }}
+            >
+              <ActionIcon
+                variant="subtle"
+                color="gray"
+                size="lg"
+                aria-label={t('app.logout')}
+                onClick={() => void logout()}
+              >
+                <IconLogout size={20} stroke={1.5} aria-hidden />
+              </ActionIcon>
+            </Tooltip>
           </Group>
         </Group>
       </Shell.Header>
@@ -102,6 +125,9 @@ export function AppShell() {
         {membership && visibleDashboards.map((d) => link(d.basePath, t(d.labelKey), d.icon))}
         {membership?.is_admin && link('/admin/users', t('nav.users'), IconUsers)}
         {membership?.is_admin && link('/admin/settings', t('nav.settings'), IconSettings)}
+        {membership?.is_admin && link('/admin/reports', t('nav.reports'), IconFileReport)}
+        {membership?.is_admin &&
+          link('/admin/publication', t('nav.publication'), IconWorld)}
         {isOperator && link('/platform', t('nav.platform'), IconBuildingCommunity)}
       </Shell.Navbar>
 

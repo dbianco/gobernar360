@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next'
 import { HelpTh } from '../../platform/HelpTh'
 import { EditableList } from '../../platform/EditableList'
 import { errorMessage } from '../../platform/errorMessage'
+import { IndicatorTargets } from '../../platform/indicators/IndicatorTargets'
 import { formatNumber } from '../../platform/format'
 import { send, useAction, useSubcategories, useVariables } from './api'
 import { CATEGORIES, type Category, type Variable } from './types'
@@ -153,6 +154,7 @@ export function ParametersPage() {
         </Table.ScrollContainer>
       )}
       <Pager {...table.pager} />
+      <IndicatorTargets dashboardKey="environment" />
       <Modal
         opened={editing !== null}
         onClose={() => setEditing(null)}

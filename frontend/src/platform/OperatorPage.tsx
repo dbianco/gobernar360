@@ -1,6 +1,7 @@
 import {
   Alert,
   Anchor,
+  Badge,
   Button,
   Group,
   Loader,
@@ -87,7 +88,14 @@ export function OperatorPage() {
               {table.rows.map((municipality) => (
                 <Table.Tr key={municipality.id}>
                   <Table.Td>
-                    <Text>{municipality.name}</Text>
+                    <Group gap="xs">
+                      <Text>{municipality.name}</Text>
+                      {municipality.suspension && (
+                        <Badge color="red" variant="light" style={{ textTransform: 'none' }}>
+                          {t('platform.suspension.badge')}
+                        </Badge>
+                      )}
+                    </Group>
                     <Text size="sm" c="dimmed">
                       {municipality.slug}
                     </Text>

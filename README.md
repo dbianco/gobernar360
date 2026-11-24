@@ -4,8 +4,8 @@ Workspace of management dashboards for local governments (municipalities and
 communes). Each dashboard is an independent module, enabled per municipality
 and granted per user. Today it ships the platform base (municipalities, users,
 per-dashboard access, people registry, monthly status lights, accounts by email with
-notifications and single sign-on), the Projects, Environment, Economic, Social and
-Procedures dashboards, and a general overview.
+notifications and single sign-on), the Projects, Environment, Economic, Social,
+Procedures and Complaints dashboards, and a general overview.
 
 - Platform and Projects: design `docs/superpowers/specs/2026-11-18-gobernar360-platform-design.md`,
   plan `docs/superpowers/plans/2026-11-18-platform-base-and-projects-dashboard.md`
@@ -18,11 +18,18 @@ Procedures dashboards, and a general overview.
 - Status lights, menu icons and column help: design
   `docs/superpowers/specs/2026-11-20-status-lights-and-ui-design.md`,
   plan `docs/superpowers/plans/2026-11-20-status-lights-and-ui.md`
+- Indicator history, targets and combined indicators: design
+  `docs/superpowers/specs/2026-11-23-indicator-history-and-targets-design.md`
+- Monthly report and public page: design
+  `docs/superpowers/specs/2026-11-23-monthly-report-and-public-page-design.md`
 - Procedures: design `docs/superpowers/specs/2026-11-20-procedures-dashboard-design.md`,
   plan `docs/superpowers/plans/2026-11-20-procedures-dashboard.md`
 - Accounts by email, notifications and single sign-on: design
   `docs/superpowers/specs/2026-11-22-email-accounts-and-notifications-design.md`,
   task `docs/tasks/01-email-accounts-and-notifications.md`
+- Complaints: design `docs/superpowers/specs/2026-11-23-complaints-dashboard-design.md`,
+  plan `docs/superpowers/plans/2026-11-23-complaints-dashboard.md`, task
+  `docs/tasks/03-complaints-dashboard.md`
 - Functional reference: `tableros-de-gestion-portal-ril.md`
 
 ## Quick start
@@ -36,6 +43,7 @@ cd backend
 cp .env.example .env                    # local email and single sign-on settings
 uv run alembic upgrade head             # create the schema
 uv run gobernar360 seed-demo            # demo municipalities, users and dashboard data
+uv run gobernar360 snapshot-indicators  # record this month's indicators (schedule it daily)
 uv run uvicorn gobernar360.main:create_app --factory --reload --port 8000
 
 # in another terminal, from backend/: delivers emails as they are queued
@@ -58,7 +66,15 @@ npm run dev                             # http://localhost:5173
 
 Every demo account uses the password `gobernar360-demo`. Demo data is for local
 use only; never load it into a database with real data (`seed-demo --reset`
-deletes everything first).
+deletes everything first). Noetinger's demo includes twelve months of indicator
+history and targets for this year and the last, closed reports of earlier months (last
+month is left open) and its public page at `/p/noetinger` with two dashboards published and
+no indicator or report yet. Comuna Demo has neither.
+
+The public page reads through its own database role, `gobernar360_public`, created by
+`db/init` on a fresh database or by the migrations otherwise. Its default password matches
+the development defaults; change it, and `GOBERNAR360_PUBLIC_DATABASE_URL`, anywhere the
+database is reachable by others.
 
 | Email | Role |
 |---|---|
@@ -75,6 +91,11 @@ The local sign-on provider knows the same demo emails with the same password, pl
 Single sign-on is off for every municipality until its administrator turns it on in
 *Configuración*, in the menu or as a tab of *Usuarios* (for the demo: sign in as
 `admin@noetinger.test`).
+The demo loads several hundred made-up complaints for Noetinger but leaves the Complaints
+("Reclamos") dashboard disabled there: the operator enables it from the municipality's page, and
+its administrator grants it to other users. A resident already in the registry, for trying the
+document lookup: DNI 33.123.456 (Lucía Fernández). Comuna Demo has the dashboard enabled with a
+few complaints of its own.
 
 For a real installation create the first operator with
 `uv run gobernar360 create-operator --email ... --full-name ...`.
@@ -83,11 +104,22 @@ For a real installation create the first operator with
 
 Municipalities are independent: no municipality can see another one's data.
 
+Every user can change their own name, contact phone and password from "Mi cuenta" (their
+name in the header). Any change there asks for the current password; leaving the new
+password empty keeps the current one, and setting one signs out their other sessions.
+An account without a password (one that only signs in through single sign-on) changes its
+name and phone without being asked for one, and gets a password only through the
+"forgot my password" link.
+
 - The **platform operator** creates municipalities and configures each one: name and
   kind, enabled dashboards, users (add, permissions, administrators, remove, set a
   new password) and its *Configuración* (button on the municipality's page). The operator
-  sees configuration only, never dashboard data, unless added as a user of that
-  municipality.
+  can also **suspend** a municipality, giving a reason: its data, users and permissions
+  stay, but nobody can work in it. Members already signed in are refused from their next
+  request (`403 municipality_suspended`) and see a notice; it leaves their municipality
+  switcher. Resuming it restores everything as it was, in the same sessions. Both are
+  recorded in the municipality's audit log. The operator sees configuration only, never
+  dashboard data, unless added as a user of that municipality.
 - A **municipality administrator** manages a subset of that for their own municipality:
   its users and their permissions, and its configuration (*Configuración*, in the menu):
   who receives notification emails, whether members may use single sign-on, and the text
@@ -119,9 +151,11 @@ cd backend
 uv run pytest            # API and tenant-isolation tests, against the gobernar360_test database
 uv run ruff check .
 uv run lint-imports      # dashboard modules must not import each other
+uv run pytest --cov      # the whole suite with coverage; fails under 95 %
 
 cd ../frontend
 npm test -- --run        # component tests
+npm run test:coverage    # the same with coverage; fails if any metric is under 95 %
 npm run lint
 npm run build
 npm run e2e              # browser tests; starts its own API and web server on ports 8001/5174
@@ -198,6 +232,35 @@ for, and who already holds that data.
   Access is per dashboard, not per area: the area is a field of the procedure.
 - A procedure's link only accepts `http(s)` addresses, because the screen renders it as a link.
 
+### Complaints dashboard
+
+Every complaint a resident makes, followed from reception until it is solved, with the time
+it took measured in business days.
+
+- **Lifecycle.** Received → assigned → in progress ⇄ waiting for the resident → resolved →
+  closed; rejected from any open state; a resolved complaint can be reopened. Only the moves
+  in `dashboards/complaints/lifecycle.py` are accepted (409 `invalid_transition` otherwise),
+  and rejecting or reopening needs a note. Each move, reassignment, change of type and note is
+  kept in the complaint's timeline with who, when and why; nothing is deleted and nothing can
+  be dated back (the server's time is used).
+- **Service clock** (`dashboards/complaints/clock.py`, pure functions). Business days of the
+  municipality's calendar (working weekdays and holidays, under Parameters). The day of
+  reception does not count; the clock stops while waiting for the resident and when resolved
+  or rejected. Reopening counts the days the case spent wrongly marked as resolved. A case is
+  at risk with a quarter of its target or less left, overdue past it. The clock is read, not
+  stored, so a holiday loaded late also corrects earlier cases; the target is copied onto the
+  complaint when it is registered, so changing a type's target does not rewrite history.
+- **Queues.** A type routes new complaints to its area; editors reassign. Each area's queue is
+  ordered by business days left.
+- **Residents.** A complaint points at a person of the shared registry, found by exact document
+  number (or added to it), or is anonymous.
+- **Analysis.** Period figures are about the complaints *received* in the period, so the median
+  of `resolution_business_days` per type in the cases CSV equals the summary's median for that
+  type (percentiles interpolate like a spreadsheet's PERCENTILE.INC). Backlog figures are as of
+  today, whatever the period.
+- Levels: viewers read and download; editors register complaints and act on them; dashboard
+  admins manage areas, zones, types and the calendar.
+
 ### Status lights
 
 Each dashboard has a monthly traffic light (green, yellow or red) that its administrators
@@ -211,6 +274,69 @@ indicators. A month may be left without one, and months that have not started ca
 - The general overview shows, per dashboard, its icon on the color of the latest month that
   has a light and the lights set in the five months before it.
 - A light is never shown by color alone: every state has its own mark and its name.
+- Under each month's light the strip shows that month's headline indicators.
+
+### Indicator history and targets
+
+Each dashboard declares its headline indicators in its `DashboardModule` (`indicators`: key,
+unit, whether higher is better and whether its past can be rebuilt) and computes them with
+`get_summary(ctx, date)`, as of that date. The platform keeps their history and targets
+without knowing any dashboard, so a new dashboard gets all of this from its catalogue.
+
+- **Monthly snapshots.** `uv run gobernar360 snapshot-indicators` records every indicator of
+  every enabled dashboard for the current month, as of today, one municipality at a time and
+  each in its own tenant-scoped transaction. Schedule it daily (or at least on each month's
+  last day): a month keeps the values of its last run. It is safe to repeat.
+- **Rebuilding.** `--from 2026-01` also recomputes the closed months since then, at each
+  month's last day, for the indicators that can be rebuilt: those counted from dated records
+  (economic assignments, social deliveries and interventions of the year). The others depend
+  on how data stands today, so a past month keeps what was recorded at the time or stays
+  empty; it is never filled in with today's value.
+- **Targets.** Dashboard administrators set a target per indicator and year in the dashboard's
+  parameters. The deviation takes the direction into account: positive is better than the
+  target and negative worse, so 6 delayed projects against a target of 4 is −2, off track.
+- **Evolution.** Summaries and the general overview show each indicator's value today, its
+  change since the close of the previous month and of the same month last year, the last
+  twelve months and the target line; a card opens the series as a chart or a table.
+- **Combined indicators.** The overview also relates dashboards, e.g. online procedures per
+  economic actor, defined in `platform/indicators.py` from catalogue keys. A member sees one
+  only when they can see both dashboards.
+
+### Monthly report
+
+A municipality administrator closes a month that has ended (Informes). That freezes a
+report: each dashboard's light, its indicators at the close of the month with the change
+against the previous month and the target, the milestones reached and overdue in the
+month, and a comment per dashboard. Later edits to the data never change it.
+
+- Reopening is explicit: the closed version is kept, a new draft version starts with the
+  same comments, and both steps are in the audit log. A published report stops being
+  published.
+- The PDF is rendered on the server (`platform/report_pdf.py`, fpdf2 with the PDF's base
+  fonts) and is deterministic: the same report gives the same bytes. Lights carry a drawn
+  mark and their name, so it reads in black and white.
+- Dashboards add their own tables through `report_tables` in their `DashboardModule`; they
+  must hold no personal data.
+
+### Public page
+
+`/p/<address>` shows, without signing in, what the municipality chose to publish (Página
+pública): the page itself, each dashboard's lights, each indicator, and each closed report.
+
+- What is published is copied to separate tables (`public_*`) when the choice changes and on
+  every snapshot run. The public routes (`/api/public/...`) read only those, through a role
+  that cannot read anything else, with no session and no municipality set. They are rate
+  limited and cacheable (`ETag`, always revalidated), so unpublishing shows at once.
+- Only indicators declared `aggregate` in the catalogue can be published. Counts from 1 to
+  the threshold the municipality sets minus one are shown as "menos de N", also in the
+  series and in the published PDF.
+- The published PDF of a report shows only the dashboards and indicators the page
+  publishes at that moment (it is rendered again when the choice changes) and leaves out
+  the dashboards' tables, such as the milestones, whose text nobody checked.
+- A report whose comments name someone of the people registry (their last name next to
+  one of their first names) or one of their document numbers cannot be published.
+- When the operator disables a dashboard, what was published of it is forgotten: enabling
+  it again publishes nothing until the administrator chooses.
 
 ### Table header help
 
@@ -221,16 +347,20 @@ file. `dashboards/tableHeaders.test.ts` fails when a dashboard table uses a plai
 
 ### Adding a dashboard
 
-1. Backend: create `dashboards/<key>/` exposing `module = DashboardModule(...)`, register it in
-   `main.py`, import its models in `migrations/env.py`, call `enable_tenant_rls()` for each of
-   its tables in the migration, add the package to both contracts in `backend/.importlinter`,
-   and add its name under `dashboards.<key>` in `backend/src/gobernar360/locales/es-AR.json`.
+1. Backend: create `dashboards/<key>/` exposing `module = DashboardModule(...)` with its
+   indicator catalogue (with each indicator's Spanish `name`, and `aggregate=True` for those
+   that may be published) and its `name`, optionally `report_tables` for the monthly report,
+   register it in `register_dashboards()` in `main.py`, import its models in
+   `migrations/env.py`, call `enable_tenant_rls()` for each of its tables in the migration, add
+   the package to both contracts in `backend/.importlinter`, and add its name under
+   `dashboards.<key>` in `backend/src/gobernar360/locales/es-AR.json`.
    To email its administrators about events, give the module `alert_kinds` and `get_alerts`.
    Helpers shared by dashboards live in `platform` (`tenant_crud`, `api_types`, `csv_export`).
 2. Frontend: create `src/dashboards/<key>/` with a default-exported routes component and add an
-   entry (with its icon) to `src/dashboards/registry.ts`; put its texts in
-   `src/locales/es-AR.json`. Put `<StatusStrip>` at the top of its summary and use `<HelpTh>` for
-   table headers.
+   entry (with its icon) to `src/dashboards/registry.ts`; put its texts, and its indicators'
+   names under `overview.indicators`, in `src/locales/es-AR.json`. Put `<StatusStrip>` and
+   `<HeadlineIndicators>` at the top of its summary, `<IndicatorTargets>` in its parameters, and
+   use `<HelpTh>` for table headers.
 3. The operator enables it per municipality; administrators grant it per user.
 
 ### Email, notifications and single sign-on

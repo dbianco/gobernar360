@@ -94,7 +94,32 @@ Solo personas
 [Editar Taller de oficios]
 Editar
 [Eliminar Taller de oficios]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`adds a subcategory under its category > screen at the start 1`] = `"[Cargando…]"`;
@@ -193,7 +218,32 @@ Solo personas
 [Editar Taller de oficios]
 Editar
 [Eliminar Taller de oficios]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`adds a tool category > screen at the start 1`] = `"[Cargando…]"`;
@@ -292,7 +342,32 @@ Solo personas
 [Editar Taller de oficios]
 Editar
 [Eliminar Taller de oficios]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`adds an actor type > screen at the start 1`] = `"[Cargando…]"`;
@@ -328,7 +403,32 @@ Todavía no hay elementos cargados.
 (Nueva categoría)
 Agregar
 Herramientas
-Creá una categoría para poder cargar herramientas."
+Creá una categoría para poder cargar herramientas.
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`asks for a category before any tool > screen at the start 1`] = `"[Cargando…]"`;
@@ -427,7 +527,32 @@ Solo personas
 [Editar Taller de oficios]
 Editar
 [Eliminar Taller de oficios]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`closes the tool form without saving > screen at the start 1`] = `"[Cargando…]"`;
@@ -526,7 +651,32 @@ Solo personas
 [Editar Taller de oficios]
 Editar
 [Eliminar Taller de oficios]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`creates a tool from the form > screen at the start 1`] = `"[Cargando…]"`;
@@ -626,7 +776,32 @@ Solo personas
 [Editar Taller de oficios]
 Editar
 [Eliminar Taller de oficios]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`explains that a tool with assignments cannot be deleted > screen at the start 1`] = `"[Cargando…]"`;
@@ -725,7 +900,32 @@ Solo personas
 [Editar Taller de oficios]
 Editar
 [Eliminar Taller de oficios]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`lists the lists of the municipality and its tools > screen at the start 1`] = `"[Cargando…]"`;
@@ -824,7 +1024,32 @@ Solo personas
 [Editar Taller de oficios]
 Editar
 [Eliminar Taller de oficios]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`only offers the subcategories of the chosen category and edits a tool > screen at the start 1`] = `"[Cargando…]"`;
@@ -923,7 +1148,32 @@ Solo personas
 [Editar Taller de oficios]
 Editar
 [Eliminar Taller de oficios]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`picks a subcategory, keeps the form open when saving fails, and closes it with Escape > screen at the start 1`] = `"[Cargando…]"`;
@@ -1022,7 +1272,32 @@ Solo personas
 [Editar Taller de oficios]
 Editar
 [Eliminar Taller de oficios]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`renames and deletes items of /actor-types > screen at the start 1`] = `"[Cargando…]"`;
@@ -1121,7 +1396,32 @@ Solo personas
 [Editar Taller de oficios]
 Editar
 [Eliminar Taller de oficios]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`renames and deletes items of /sectors > screen at the start 1`] = `"[Cargando…]"`;
@@ -1220,7 +1520,32 @@ Solo personas
 [Editar Taller de oficios]
 Editar
 [Eliminar Taller de oficios]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`renames and deletes items of /tool-categories > screen at the start 1`] = `"[Cargando…]"`;
@@ -1319,7 +1644,32 @@ Solo personas
 [Editar Taller de oficios]
 Editar
 [Eliminar Taller de oficios]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`renames and deletes items of /tool-subcategories > screen at the start 1`] = `"[Cargando…]"`;
@@ -1381,7 +1731,32 @@ Agregar
 Agregar
 Herramientas
 Agregar herramienta
-Todavía no hay herramientas cargadas."
+Todavía no hay herramientas cargadas.
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`says when there are categories but no tools yet > screen at the start 1`] = `"[Cargando…]"`;
@@ -1446,7 +1821,32 @@ Agregar herramienta
 Buscar
 (Herramienta o categoría)
 [Borrar la búsqueda]
-Nada coincide con la búsqueda."
+Nada coincide con la búsqueda.
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`searches the tools by name or category > screen at the start 1`] = `"[Cargando…]"`;

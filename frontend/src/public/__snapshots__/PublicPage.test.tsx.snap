@@ -1,0 +1,156 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`lists the published reports to download > screen at the end 1`] = `
+"Municipio
+Noetinger
+Transparencia de la gestión
+[Estado de los tableros]
+Estado de los tableros
+[Proyectos]
+Proyectos
+Con atención
+Noviembre 2026
+[Octubre: En orden]
+Oct
+[Indicadores]
+Indicadores
+Proyectos retrasados
+[Qué significa Proyectos retrasados]
+Menos de 5
+[Proyectos retrasados en los últimos 12 meses]
+Meta: 4
+Presupuesto ejecutado
+[Qué significa Presupuesto ejecutado]
+46,5 %
+−0,8 p.p. respecto del mes anterior
+[Presupuesto ejecutado en los últimos 12 meses]
+Fuera de meta
+Meta: 50 %
+[Informes mensuales]
+Informes mensuales
+Informe de octubre 2026
+versión 2, cerrado el 03/11/2026
+Descargar PDF
+Los datos son agregados. Las cantidades de 1 a 4 se muestran como «menos de 5».
+Publicado con gobernar360."
+`;
+
+exports[`lists the published reports to download > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says the page does not exist for an unknown or unpublished address > screen at the end 1`] = `
+"Esta página no existe
+Puede que el municipio todavía no la haya publicado o que la dirección no sea correcta."
+`;
+
+exports[`says the page does not exist for an unknown or unpublished address > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows a small count as fewer than the threshold, never the number > screen at the end 1`] = `
+"Municipio
+Noetinger
+Transparencia de la gestión
+[Estado de los tableros]
+Estado de los tableros
+[Proyectos]
+Proyectos
+Con atención
+Noviembre 2026
+[Octubre: En orden]
+Oct
+[Indicadores]
+Indicadores
+Proyectos retrasados
+[Qué significa Proyectos retrasados]
+Menos de 5
+[Proyectos retrasados en los últimos 12 meses]
+Meta: 4
+Presupuesto ejecutado
+[Qué significa Presupuesto ejecutado]
+46,5 %
+−0,8 p.p. respecto del mes anterior
+[Presupuesto ejecutado en los últimos 12 meses]
+Fuera de meta
+Meta: 50 %
+[Informes mensuales]
+Informes mensuales
+Informe de octubre 2026
+versión 2, cerrado el 03/11/2026
+Descargar PDF
+Los datos son agregados. Las cantidades de 1 a 4 se muestran como «menos de 5».
+Publicado con gobernar360."
+`;
+
+exports[`shows a small count as fewer than the threshold, never the number > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows ratios with their change and target > screen at the end 1`] = `
+"Municipio
+Noetinger
+Transparencia de la gestión
+[Estado de los tableros]
+Estado de los tableros
+[Proyectos]
+Proyectos
+Con atención
+Noviembre 2026
+[Octubre: En orden]
+Oct
+[Indicadores]
+Indicadores
+Proyectos retrasados
+[Qué significa Proyectos retrasados]
+Menos de 5
+[Proyectos retrasados en los últimos 12 meses]
+Meta: 4
+Presupuesto ejecutado
+[Qué significa Presupuesto ejecutado]
+46,5 %
+−0,8 p.p. respecto del mes anterior
+[Presupuesto ejecutado en los últimos 12 meses]
+Fuera de meta
+Meta: 50 %
+[Informes mensuales]
+Informes mensuales
+Informe de octubre 2026
+versión 2, cerrado el 03/11/2026
+Descargar PDF
+Los datos son agregados. Las cantidades de 1 a 4 se muestran como «menos de 5».
+Publicado con gobernar360."
+`;
+
+exports[`shows ratios with their change and target > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows what the municipality published to anyone > screen at the end 1`] = `
+"Municipio
+Noetinger
+Transparencia de la gestión
+[Estado de los tableros]
+Estado de los tableros
+[Proyectos]
+Proyectos
+Con atención
+Noviembre 2026
+[Octubre: En orden]
+Oct
+[Indicadores]
+Indicadores
+Proyectos retrasados
+[Qué significa Proyectos retrasados]
+Menos de 5
+[Proyectos retrasados en los últimos 12 meses]
+Meta: 4
+Presupuesto ejecutado
+[Qué significa Presupuesto ejecutado]
+46,5 %
+−0,8 p.p. respecto del mes anterior
+[Presupuesto ejecutado en los últimos 12 meses]
+Fuera de meta
+Meta: 50 %
+[Informes mensuales]
+Informes mensuales
+Informe de octubre 2026
+versión 2, cerrado el 03/11/2026
+Descargar PDF
+Los datos son agregados. Las cantidades de 1 a 4 se muestran como «menos de 5».
+Publicado con gobernar360."
+`;
+
+exports[`shows what the municipality published to anyone > screen at the start 1`] = `"[Cargando…]"`;

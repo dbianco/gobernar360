@@ -6,7 +6,7 @@ from typing import Any
 from fastapi import APIRouter
 from sqlalchemy import ColumnElement, Select, extract, func, select
 
-from gobernar360.dashboards.registry import SummaryIndicator
+from gobernar360.dashboards.registry import IndicatorDefinition, SummaryIndicator
 from gobernar360.dashboards.social import deliveries_router, interventions_router
 from gobernar360.dashboards.social.access import Viewer
 from gobernar360.dashboards.social.models import (
@@ -31,6 +31,22 @@ from gobernar360.platform.clock import Today
 from gobernar360.platform.models import Person
 
 router = APIRouter()
+
+# Deliveries and interventions carry their own date, so their counts can be rebuilt for
+# any past day; the people and households registered are only known as they are today.
+INDICATORS = (
+    IndicatorDefinition("social.people", name="Personas asistidas", aggregate=True),
+    IndicatorDefinition("social.households", name="Grupos familiares", aggregate=True),
+    IndicatorDefinition(
+        "social.deliveries_year", reconstructible=True, name="Prestaciones del año", aggregate=True
+    ),
+    IndicatorDefinition(
+        "social.interventions_year",
+        reconstructible=True,
+        name="Intervenciones del año",
+        aggregate=True,
+    ),
+)
 
 
 def _count(ctx: RequestContext, model: type[Any], *conditions: ColumnElement[bool]) -> int:
@@ -148,13 +164,16 @@ def get_reports(ctx: Viewer, today: Today, year: Year | None = None) -> ReportsO
 
 
 def get_summary(ctx: RequestContext, today: date) -> list[SummaryIndicator]:
-    """Indicators for the general overview; records are those of the current year."""
+    """Indicators as of `today`; records are those of its year up to that day."""
+    start_of_year = date(today.year, 1, 1)
     counts = {
         "social.people": _count(ctx, SocialPerson),
         "social.households": _count(ctx, Household),
-        "social.deliveries_year": _count(ctx, Delivery, deliveries_router.in_year(today.year)),
+        "social.deliveries_year": _count(
+            ctx, Delivery, Delivery.date.between(start_of_year, today)
+        ),
         "social.interventions_year": _count(
-            ctx, Intervention, interventions_router.in_year(today.year)
+            ctx, Intervention, Intervention.date.between(start_of_year, today)
         ),
     }
     if not any(counts.values()):

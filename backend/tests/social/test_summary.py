@@ -1,7 +1,7 @@
 from datetime import date
 
 from gobernar360.platform.clock import get_today
-from tests.factories import login, make_municipality
+from tests.factories import current_overview, login, make_municipality
 from tests.social.factories import (
     BASE,
     EMAIL,
@@ -163,13 +163,14 @@ def test_overview_shows_the_social_indicators(client):
     municipality = _viewer(client)
     _populate(municipality)
 
-    assert client.get("/api/overview").json() == [
+    assert current_overview(client.get("/api/overview").json()) == [
         {
             "dashboard_key": "social",
             "indicators": [
                 {"key": "social.people", "value": 4, "unit": None},
                 {"key": "social.households", "value": 2, "unit": None},
-                {"key": "social.deliveries_year", "value": 5, "unit": None},
+                # So far this year: the delivery dated after today is not counted yet.
+                {"key": "social.deliveries_year", "value": 4, "unit": None},
                 {"key": "social.interventions_year", "value": 3, "unit": None},
             ],
             "status": [],

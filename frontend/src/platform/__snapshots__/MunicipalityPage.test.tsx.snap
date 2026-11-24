@@ -4,11 +4,14 @@ exports[`adds an administrator, who is invited by email > screen at the end 1`] 
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
 Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
 Datos del municipio
 Nombre
 Tipo
@@ -61,15 +64,82 @@ Quitar"
 
 exports[`adds an administrator, who is invited by email > screen at the start 1`] = `"[Cargando…]"`;
 
-exports[`changes the kind, and says the details were saved > screen at the end 1`] = `
+exports[`changes the kind and ignores a blank name > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
 Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
+Datos del municipio
+Datos guardados.
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`changes the kind and ignores a blank name > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`changes the kind, and says the details were saved > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
 Datos del municipio
 Datos guardados.
 Nombre
@@ -122,15 +192,144 @@ Quitar"
 
 exports[`changes the kind, and says the details were saved > screen at the start 1`] = `"[Cargando…]"`;
 
-exports[`does not save a blank name, and shows why a save failed > screen at the end 1`] = `
+exports[`closes the dialogs and the notice > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
 Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`closes the dialogs and the notice > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`disables a dashboard > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`disables a dashboard > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`does not save a blank name, and shows why a save failed > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
 Datos del municipio
 Revisá los datos ingresados.
 Nombre
@@ -187,11 +386,14 @@ exports[`enables a dashboard > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
 Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
 Datos del municipio
 Nombre
 Tipo
@@ -248,10 +450,12 @@ exports[`keeps the page away from non-operators > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -263,11 +467,14 @@ exports[`keeps the password form open when the server refuses, and closes it wit
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
 Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
 Datos del municipio
 Nombre
 Tipo
@@ -323,11 +530,14 @@ exports[`links to the configuration of the municipality > screen at the end 1`] 
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
 Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
 Datos del municipio
 Nombre
 Tipo
@@ -383,11 +593,14 @@ exports[`lists the users of the municipality and changes a level > screen at the
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
 Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
 Datos del municipio
 Nombre
 Tipo
@@ -439,15 +652,81 @@ Quitar"
 
 exports[`lists the users of the municipality and changes a level > screen at the start 1`] = `"[Cargando…]"`;
 
-exports[`names a dashboard this version does not know by its key > screen at the end 1`] = `
+exports[`makes a user an administrator > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
 Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`makes a user an administrator > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`names a dashboard this version does not know by its key > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
 Datos del municipio
 Nombre
 Tipo
@@ -474,11 +753,14 @@ exports[`names the access column of a dashboard this version does not know by it
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
 Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
 Datos del municipio
 Nombre
 Tipo
@@ -526,11 +808,14 @@ exports[`rejects a short new password without calling the server > screen at the
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
 Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
 Datos del municipio
 Nombre
 Tipo
@@ -592,11 +877,14 @@ exports[`renames the municipality > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
 Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
 Datos del municipio
 Datos guardados.
 Nombre
@@ -649,11 +937,23 @@ Quitar"
 
 exports[`renames the municipality > screen at the start 1`] = `"[Cargando…]"`;
 
+exports[`reports users, municipalities or a municipality that cannot be loaded > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+← Municipios
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`reports users, municipalities or a municipality that cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
 exports[`says so when the municipality does not exist > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 El municipio no existe."
@@ -665,11 +965,14 @@ exports[`sets a new password for a user > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
 Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
 Datos del municipio
 Nombre
 Tipo
@@ -726,7 +1029,7 @@ exports[`shows an error when the municipalities cannot be loaded > screen at the
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Ocurrió un error. Intentá de nuevo."
@@ -734,15 +1037,152 @@ Ocurrió un error. Intentá de nuevo."
 
 exports[`shows an error when the municipalities cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
 
-exports[`turns a dashboard off, and shows why a change failed > screen at the end 1`] = `
+exports[`shows why a password could not be set > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
 Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
+Datos del municipio
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar
+Cambiar contraseña de Carla Carga
+Revisá los datos ingresados.
+Contraseña nueva
+Mínimo 10 caracteres. Se cierran todas las sesiones abiertas de la cuenta.
+[Toggle password visibility]
+Guardar"
+`;
+
+exports[`shows why a password could not be set > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows why the details or the dashboards could not be saved > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
+Datos del municipio
+La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
+Nombre
+Tipo
+Municipio
+Comuna
+Guardar datos
+Identificador
+:
+noetinger
+Tableros habilitados
+Revisá los datos ingresados.
+Ambiental
+Proyectos
+Los usuarios conservan sus permisos sobre un tablero deshabilitado y los recuperan si se vuelve a habilitar.
+Usuarios
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Admin
+admin@noetinger.test
+[Administrador: Ana Admin]
+[Proyectos: Ana Admin]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Ana Admin]
+[Cambiar contraseña de Ana Admin]
+Cambiar contraseña
+[Quitar a Ana Admin]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Cambiar contraseña de Carla Carga]
+Cambiar contraseña
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`shows why the details or the dashboards could not be saved > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`turns a dashboard off, and shows why a change failed > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+← Municipios
+Noetinger
+Configuración
+Estado
+Activo: sus usuarios pueden trabajar.
+Suspender municipio
 Datos del municipio
 Nombre
 Tipo

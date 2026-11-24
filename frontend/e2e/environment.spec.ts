@@ -24,9 +24,11 @@ async function openDashboard(page: Page) {
   await expect(page.getByRole('heading', { name: 'Ambiental', level: 2 })).toBeVisible()
 }
 
-/** Values loaded so far this year, from the "3 / 13" headline card. */
+/** Values loaded so far this year, from the "3 / 13" card of the year's summary. */
 async function loadedCount(page: Page): Promise<number> {
-  const card = page.locator('[data-indicator]').filter({ hasText: 'Cargas del año' }).first()
+  const card = page
+    .locator('[data-indicator]')
+    .filter({ hasText: 'Valores cargados sobre los esperados' })
   await expect(card).toContainText('/')
   return Number((await card.locator('p').nth(1).innerText()).split('/')[0].trim())
 }

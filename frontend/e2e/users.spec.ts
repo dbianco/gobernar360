@@ -20,7 +20,8 @@ test('an administrator imports users from a CSV file and pages through them', as
   // The example is the header and two people, for the dashboards this municipality has.
   const example = await page.request.get('/api/admin/users/import-template.csv')
   const exampleRows = (await example.text()).replace('\ufeff', '').trim().split(/\r?\n/)
-  expect(exampleRows[0]).toBe(
+  // "Reclamos" is there too once another spec has enabled it for this municipality.
+  expect(exampleRows[0].replace(',Reclamos', '')).toBe(
     'email,nombre,administrador,Económico,Ambiental,Trámites,Proyectos,Social',
   )
   expect(exampleRows).toHaveLength(3)

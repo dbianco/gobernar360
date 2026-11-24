@@ -9,6 +9,16 @@ export const server = setupServer(
   http.get('*/api/auth/sso', () => HttpResponse.json({ enabled: false })),
   // Several flows end on the home page.
   http.get('*/api/overview', () => HttpResponse.json([])),
+  http.get('*/api/dashboards/:key/evolution', () => HttpResponse.json([])),
+  http.get('*/api/dashboards/:key/evolution/months', ({ request }) =>
+    HttpResponse.json({
+      year: Number(new URL(request.url).searchParams.get('year')),
+      indicators: [],
+      months: [],
+    }),
+  ),
+  http.get('*/api/dashboards/:key/targets', () => HttpResponse.json([])),
+  http.get('*/api/overview/combined', () => HttpResponse.json([])),
 )
 
 type Method = 'get' | 'post' | 'put' | 'patch' | 'delete'

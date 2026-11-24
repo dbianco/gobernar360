@@ -26,12 +26,34 @@ from gobernar360.dashboards.projects.rules import (
     milestone_in_alert,
 )
 from gobernar360.dashboards.projects.schemas import Money, Priority
-from gobernar360.dashboards.registry import SummaryIndicator
+from gobernar360.dashboards.registry import IndicatorDefinition, SummaryIndicator
 from gobernar360.platform.access import RequestContext
 from gobernar360.platform.clock import Today
 from gobernar360.platform.tenant_crud import get_or_404
 
 router = APIRouter()
+
+# None can be rebuilt for a past month: a project's status, milestones and amounts are
+# stored as they are today, with no record of when they changed.
+INDICATORS = (
+    IndicatorDefinition("projects.active", name="Proyectos activos", aggregate=True),
+    IndicatorDefinition("projects.finished", name="Proyectos finalizados", aggregate=True),
+    IndicatorDefinition(
+        "projects.delayed", higher_is_better=False, name="Proyectos retrasados", aggregate=True
+    ),
+    IndicatorDefinition(
+        "projects.average_progress", "percent", name="Avance promedio", aggregate=True
+    ),
+    IndicatorDefinition(
+        "projects.milestones_in_alert",
+        higher_is_better=False,
+        name="Hitos en alerta",
+        aggregate=True,
+    ),
+    IndicatorDefinition(
+        "projects.budget_executed_ratio", "ratio", name="Presupuesto ejecutado", aggregate=True
+    ),
+)
 
 
 class BudgetSummary(BaseModel):

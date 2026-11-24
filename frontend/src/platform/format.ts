@@ -34,6 +34,25 @@ export function formatDate(value: string | null | undefined): string {
   return `${day}/${month}/${year}`
 }
 
+/** An ISO moment as DD/MM/YYYY HH:mm in Argentine time. */
+export function formatDateTime(value: string | null | undefined): string {
+  if (!value) return EMPTY
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat(LOCALE, {
+      timeZone: 'America/Argentina/Buenos_Aires',
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23',
+    })
+      .formatToParts(new Date(value))
+      .map((part) => [part.type, part.value]),
+  )
+  return `${parts.day}/${parts.month}/${parts.year} ${parts.hour}:${parts.minute}`
+}
+
 /** 12345678 -> 12.345.678 */
 export function formatDni(dni: string | null): string {
   return dni ? dni.replace(/\B(?=(\d{3})+(?!\d))/g, '.') : EMPTY
@@ -44,4 +63,14 @@ export function todayIso(): string {
   const now = new Date()
   const pad = (value: number) => String(value).padStart(2, '0')
   return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`
+}
+
+/** The date of an ISO timestamp, in the browser's time zone, as DD/MM/YYYY. */
+export function formatTimestampDate(value: string | null | undefined): string {
+  if (!value) return EMPTY
+  return new Intl.DateTimeFormat(LOCALE, {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  }).format(new Date(value))
 }

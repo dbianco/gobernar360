@@ -4,6 +4,7 @@ exports[`asks for the chosen year and links the download of that year > screen a
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -104,6 +105,7 @@ exports[`asks for the chosen year and links the download of that year > screen a
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -149,6 +151,7 @@ exports[`explains what to do when no variable has been defined > screen at the e
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -195,6 +198,7 @@ exports[`explains what to do when no variable has been defined > screen at the s
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -240,6 +244,7 @@ exports[`names the categories that have no variables yet > screen at the end 1`]
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -340,6 +345,7 @@ exports[`names the categories that have no variables yet > screen at the start 1
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -385,6 +391,7 @@ exports[`shows a value without a target or a unit as the bare number > screen at
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -484,6 +491,7 @@ exports[`shows a value without a target or a unit as the bare number > screen at
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -529,6 +537,7 @@ exports[`shows an error when the summary cannot be loaded > screen at the end 1`
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -574,6 +583,7 @@ exports[`shows an error when the summary cannot be loaded > screen at the start 
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -619,6 +629,7 @@ exports[`shows dashes for a variable with no target and no values > screen at th
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -718,6 +729,7 @@ exports[`shows dashes for a variable with no target and no values > screen at th
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -763,6 +775,7 @@ exports[`shows each variable with its value against the target, compliance and l
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -863,6 +876,7 @@ exports[`shows each variable with its value against the target, compliance and l
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -908,6 +922,7 @@ exports[`shows the headline numbers > screen at the end 1`] = `
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -1008,6 +1023,7 @@ exports[`shows the headline numbers > screen at the start 1`] = `
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]

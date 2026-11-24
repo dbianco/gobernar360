@@ -1,7 +1,12 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { type ReactNode, useCallback, useEffect, useMemo } from 'react'
 
-import { api, ApiError, setSessionLostHandler } from '../api/client'
+import {
+  api,
+  ApiError,
+  setMunicipalitySuspendedHandler,
+  setSessionLostHandler,
+} from '../api/client'
 import { AuthContext, type AuthState } from './authContext'
 import type { Me } from './types'
 
@@ -38,11 +43,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [queryClient],
   )
 
+  const refresh = useCallback(async () => {
+    try {
+      await replaceMe(await fetchMe())
+    } catch {
+      // Unreachable server: keep what is on screen; the next request will tell.
+    }
+  }, [replaceMe])
+
   // An expired or revoked session sends the user back to the login page.
   useEffect(() => {
     setSessionLostHandler(() => void replaceMe(null))
     return () => setSessionLostHandler(null)
   }, [replaceMe])
+
+  // A suspended municipality drops out of the profile; its data on screen goes with it.
+  useEffect(() => {
+    setMunicipalitySuspendedHandler(() => void refresh())
+    return () => setMunicipalitySuspendedHandler(null)
+  }, [refresh])
 
   const state = useMemo<AuthState>(
     () => ({
@@ -61,6 +80,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
         await replaceMe(null)
       },
+      // Same identity, so every other cached answer stays valid.
+      updateMe: (updated) => queryClient.setQueryData(ME_KEY, updated),
+      refresh,
       setActiveMunicipality: async (municipalityId) => {
         await replaceMe(
           await api<Me>('/auth/active-municipality', {
@@ -70,7 +92,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         )
       },
     }),
-    [data, isLoading, replaceMe],
+    [data, isLoading, replaceMe, queryClient, refresh],
   )
 
   return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>

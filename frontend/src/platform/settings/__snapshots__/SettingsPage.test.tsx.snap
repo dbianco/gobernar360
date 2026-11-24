@@ -6,10 +6,12 @@ exports[`asks before leaving an email with unsaved changes > screen at the end 1
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -73,10 +75,12 @@ exports[`explains that single sign-on needs a provider the platform does not hav
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -145,10 +149,12 @@ exports[`finishes saving when the server stores the text it already had > screen
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -211,10 +217,12 @@ exports[`goes back to the default text after confirming > screen at the end 1`] 
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -277,10 +285,12 @@ exports[`inserts a variable in the body by default, and saves it > screen at the
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -348,10 +358,12 @@ exports[`inserts a variable in the subject and saves the text > screen at the en
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -419,10 +431,12 @@ exports[`is a tab next to the users of the municipality > screen at the end 1`] 
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Usuarios del municipio
@@ -441,7 +455,7 @@ exports[`is not reachable for members who are not administrators > screen at the
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Resumen general
 No tenés tableros habilitados
@@ -459,10 +473,12 @@ exports[`keeps the text when going back to the default is not confirmed > screen
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -525,10 +541,12 @@ exports[`lets the notice and the error of an email be closed > screen at the end
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -596,10 +614,12 @@ exports[`names no variable when the server does not say which ones a text lacks 
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -669,10 +689,12 @@ exports[`never puts the list of alerts in the subject > screen at the end 1`] = 
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -738,10 +760,12 @@ exports[`offers the formatting tools of the editor > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -809,10 +833,12 @@ exports[`points out malformed addresses without saving > screen at the end 1`] =
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -881,10 +907,12 @@ exports[`saves the list of recipients typed with commas > screen at the end 1`] 
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -953,10 +981,12 @@ exports[`says which required variable a text lost > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -1026,10 +1056,12 @@ exports[`says why single sign-on could not be changed, and leaves it as it was >
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -1098,10 +1130,12 @@ exports[`says why the recipients could not be saved > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -1170,10 +1204,12 @@ exports[`says why the settings cannot be loaded > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -1232,10 +1268,12 @@ exports[`sends the administrator a test of the text being edited > screen at the
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -1304,10 +1342,12 @@ exports[`shows an error when the texts cannot be loaded > screen at the end 1`] 
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -1337,10 +1377,12 @@ exports[`shows an example of addresses from the texts of the app > screen at the
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -1408,10 +1450,12 @@ exports[`shows each email with its text, and whether it is the default > screen 
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -1475,10 +1519,12 @@ exports[`shows other errors of saving or testing as they come > screen at the en
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -1547,10 +1593,12 @@ exports[`stays on the email already shown when it is chosen again > screen at th
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración
@@ -1619,10 +1667,12 @@ exports[`turns single sign-on on for the municipality > screen at the end 1`] = 
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Configuración

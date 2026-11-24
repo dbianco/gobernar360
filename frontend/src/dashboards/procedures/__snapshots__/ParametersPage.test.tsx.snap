@@ -43,7 +43,32 @@ Rentas
 [Editar fuente: Rentas municipal]
 Editar
 [Eliminar fuente: Rentas municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`adds an area > screen at the start 1`] = `"[Cargando…]"`;
@@ -91,7 +116,32 @@ Rentas
 [Editar fuente: Rentas municipal]
 Editar
 [Eliminar fuente: Rentas municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`closes the form with Escape without saving > screen at the start 1`] = `"[Cargando…]"`;
@@ -139,7 +189,32 @@ Rentas
 [Editar fuente: Rentas municipal]
 Editar
 [Eliminar fuente: Rentas municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`creates a municipal source with its area > screen at the start 1`] = `"[Cargando…]"`;
@@ -187,7 +262,32 @@ Rentas
 [Editar fuente: Rentas municipal]
 Editar
 [Eliminar fuente: Rentas municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`edits a source > screen at the start 1`] = `"[Cargando…]"`;
@@ -235,7 +335,32 @@ Rentas
 [Editar fuente: Rentas municipal]
 Editar
 [Eliminar fuente: Rentas municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`lists areas and sources with their level and area > screen at the start 1`] = `"[Cargando…]"`;
@@ -283,7 +408,32 @@ Rentas
 [Editar fuente: Rentas municipal]
 Editar
 [Eliminar fuente: Rentas municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`offers an area only for municipal sources > screen at the start 1`] = `"[Cargando…]"`;
@@ -331,7 +481,32 @@ Rentas
 [Editar fuente: Rentas municipal]
 Editar
 [Eliminar fuente: Rentas municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`renames and deletes items of /areas > screen at the start 1`] = `"[Cargando…]"`;
@@ -358,7 +533,32 @@ Agregar fuente
 Buscar
 (Nombre de la fuente)
 [Borrar la búsqueda]
-Nada coincide con la búsqueda."
+Nada coincide con la búsqueda.
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`says when the search matches no source > screen at the start 1`] = `"[Cargando…]"`;
@@ -383,6 +583,31 @@ Fuentes
 Quién emite o guarda cada dato o documento que se pide.
 Agregar fuente
 Todavía no hay fuentes cargadas.
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60.
 Agregar fuente
 La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
 Nombre
@@ -445,7 +670,32 @@ Rentas
 [Editar fuente: Rentas municipal]
 Editar
 [Eliminar fuente: Rentas municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`says why a source in use cannot be deleted > screen at the start 1`] = `"[Cargando…]"`;

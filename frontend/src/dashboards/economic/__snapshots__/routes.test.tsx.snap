@@ -5,7 +5,7 @@ exports[`does not open the parameters to an editor who types the address > scree
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Económico
 Económico
@@ -25,7 +25,7 @@ exports[`keeps the parameters from an editor > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Económico
 Económico
@@ -37,6 +37,7 @@ Reportes
 [Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -124,7 +125,7 @@ exports[`lists the dashboard in the navigation > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Económico
 Económico
@@ -136,6 +137,7 @@ Reportes
 [Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -223,7 +225,7 @@ exports[`moves between the sections with the tabs > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Económico
 Económico
@@ -236,6 +238,7 @@ Parámetros
 [Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -323,7 +326,7 @@ exports[`shows a dashboard admin the parameters > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Económico
 Económico
@@ -336,6 +339,7 @@ Parámetros
 [Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -423,7 +427,7 @@ exports[`shows a viewer every section except the parameters > screen at the end 
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Económico
 Económico
@@ -435,6 +439,7 @@ Reportes
 [Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]

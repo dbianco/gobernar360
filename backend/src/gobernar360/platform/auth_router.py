@@ -2,15 +2,20 @@
 
 import uuid
 from datetime import UTC, datetime, timedelta
-from typing import Literal
+from typing import Annotated, Literal
 
 from fastapi import APIRouter, Response
-from pydantic import BaseModel
+from pydantic import BaseModel, StringConstraints
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from gobernar360.core.config import get_settings
-from gobernar360.core.errors import ApiError, forbidden
+from gobernar360.core.errors import (
+    ApiError,
+    forbidden,
+    municipality_suspended,
+    validation_error,
+)
 from gobernar360.core.security import new_token, normalize_email, verify_password
 from gobernar360.platform import accounts
 from gobernar360.platform.access import (
@@ -28,7 +33,9 @@ from gobernar360.platform.schemas import (
     Email,
     Me,
     MembershipOut,
+    MunicipalityOut,
     Password,
+    Phone,
     UserOut,
 )
 
@@ -51,9 +58,11 @@ def _memberships(db: Session, user: User, session_row: SessionRow) -> list[Membe
 
 
 def build_me(db: Session, user: User, session_row: SessionRow) -> Me:
-    memberships = sorted(_memberships(db, user, session_row), key=lambda m: m.municipality.name)
+    every = sorted(_memberships(db, user, session_row), key=lambda m: m.municipality.name)
+    memberships = [m for m in every if not m.municipality.is_suspended]
     active_id = session_row.active_municipality_id
-    # A membership removed after sign-in must not leave a stale active municipality.
+    # A membership removed after sign-in must not leave a stale active municipality, and a
+    # suspended one is not active. The session keeps it, so resuming brings the user back.
     if active_id not in {m.municipality_id for m in memberships}:
         active_id = None
     profile = UserOut.model_validate(user)
@@ -61,7 +70,13 @@ def build_me(db: Session, user: User, session_row: SessionRow) -> Me:
     profile.is_platform_operator = user.is_platform_operator and session_row.auth_method != "sso"
     return Me(
         user=profile,
+        has_password=user.password_hash is not None,
         memberships=[MembershipOut.model_validate(m) for m in memberships],
+        suspended_municipalities=[
+            MunicipalityOut.model_validate(m.municipality)
+            for m in every
+            if m.municipality.is_suspended
+        ],
         active_municipality_id=active_id,
         dashboards=[
             DashboardAccessOut(key=key, level=level.name.lower())
@@ -85,8 +100,12 @@ def start_session(
         expires_at=datetime.now(UTC) + timedelta(hours=settings.session_ttl_hours),
     )
     memberships = _memberships(db, user, session_row)
-    if len(memberships) == 1:
-        session_row.active_municipality_id = memberships[0].municipality_id
+    available = [m for m in memberships if not m.municipality.is_suspended]
+    # With a single municipality to work in, it is the active one. A sole suspended one is
+    # kept too: it is not active while suspended, and resuming it needs no new choice.
+    only = available if available else memberships
+    if len(only) == 1:
+        session_row.active_municipality_id = only[0].municipality_id
     db.add(session_row)
     db.flush()
     response.set_cookie(
@@ -126,9 +145,18 @@ def me(db: Db, user: CurrentUser, session_row: CurrentSession) -> Me:
 def set_active_municipality(
     payload: ActiveMunicipalityIn, db: Db, user: CurrentUser, session_row: CurrentSession
 ) -> Me:
-    reachable_ids = {m.municipality_id for m in _memberships(db, user, session_row)}
-    if payload.municipality_id not in reachable_ids:
+    membership = next(
+        (
+            m
+            for m in _memberships(db, user, session_row)
+            if m.municipality_id == payload.municipality_id
+        ),
+        None,
+    )
+    if membership is None:
         raise forbidden("You do not belong to this municipality.")
+    if membership.municipality.is_suspended:
+        raise municipality_suspended()
     session_row.active_municipality_id = payload.municipality_id
     db.flush()
     return build_me(db, user, session_row)
@@ -139,14 +167,54 @@ class PasswordChangeIn(BaseModel):
     new_password: Password
 
 
+def _check_current_password(user: User, password: str) -> None:
+    if not verify_password(password, user.password_hash):
+        raise ApiError(403, "invalid_credentials", "The current password is incorrect.")
+
+
 @router.post("/password", status_code=204)
 def change_password(
     payload: PasswordChangeIn, db: Db, user: CurrentUser, session_row: CurrentSession
 ) -> None:
     """Change the signed-in user's password and sign out their other sessions."""
-    if not verify_password(payload.current_password, user.password_hash):
-        raise ApiError(403, "invalid_credentials", "The current password is incorrect.")
+    _check_current_password(user, payload.current_password)
     accounts.set_password(db, user, payload.new_password, keep_session_id=session_row.id)
+
+
+class AccountIn(BaseModel):
+    # Asked for every change, so an unattended open session cannot take over the account.
+    # An account without a password (it signs in through single sign-on) has none to give.
+    current_password: str | None = None
+    full_name: Annotated[
+        str, StringConstraints(strip_whitespace=True, min_length=1, max_length=200)
+    ]
+    phone: Phone = ""
+    # Null or absent keeps the current password.
+    new_password: Password | None = None
+
+
+@router.put("/account")
+def update_account(
+    payload: AccountIn, db: Db, user: CurrentUser, session_row: CurrentSession
+) -> Me:
+    """Change the signed-in user's name, phone and, optionally, password.
+
+    Nothing is saved unless the current password is right. A new password signs out the
+    user's other sessions, as `change_password` does. An account without a password changes
+    its name and phone freely, and gets a password only through a link sent to its address.
+    """
+    if user.password_hash is not None:
+        _check_current_password(user, payload.current_password or "")
+    elif payload.new_password is not None:
+        raise validation_error(
+            "An account without a password chooses one through the link sent by email."
+        )
+    user.full_name = payload.full_name
+    user.phone = payload.phone
+    if payload.new_password is not None:
+        accounts.set_password(db, user, payload.new_password, keep_session_id=session_row.id)
+    db.flush()
+    return build_me(db, user, session_row)
 
 
 class PasswordResetIn(BaseModel):

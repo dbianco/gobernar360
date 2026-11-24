@@ -32,6 +32,8 @@ export default defineConfig({
       ],
       reporter: ['text-summary', 'json-summary', 'json', 'html'],
       reportOnFailure: true,
+      // `npm run test:coverage` fails below these.
+      thresholds: { statements: 95, branches: 95, functions: 95, lines: 95 },
     },
   },
 })

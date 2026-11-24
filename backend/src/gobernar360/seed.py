@@ -3,6 +3,7 @@
 For local development, demos and end-to-end tests only: every account shares a known password.
 """
 
+from collections.abc import Callable
 from datetime import date, timedelta
 from decimal import Decimal
 
@@ -11,6 +12,8 @@ from sqlalchemy.orm import Session
 
 from gobernar360.core.db import Base, get_admin_engine, platform_session, tenant_session
 from gobernar360.core.security import hash_password
+from gobernar360.dashboards import registry
+from gobernar360.dashboards.complaints.models import ComplaintType
 from gobernar360.dashboards.economic.models import (
     Actor,
     ActorPerson,
@@ -43,6 +46,7 @@ from gobernar360.dashboards.projects.models import (
     ProjectSdg,
     Term,
 )
+from gobernar360.dashboards.registry import IndicatorDefinition
 from gobernar360.dashboards.social.models import (
     Benefit,
     BenefitCategory,
@@ -52,15 +56,26 @@ from gobernar360.dashboards.social.models import (
     InterventionType,
     SocialPerson,
 )
+from gobernar360.platform import publication, reports
+from gobernar360.platform.access import RequestContext, enabled_dashboard_keys, system_context
+from gobernar360.platform.indicators import Number, month_of, months_between, shift
 from gobernar360.platform.models import (
     DashboardGrant,
     DashboardStatus,
+    IndicatorSnapshot,
+    IndicatorTarget,
     Membership,
+    MonthlyReport,
     Municipality,
     MunicipalityDashboard,
     Person,
+    PublicSettings,
+    PublishedDashboard,
     User,
 )
+from gobernar360.platform.snapshots import snapshot_municipality
+from gobernar360.platform.tenant_crud import create_entity
+from gobernar360.seed_complaints import seed_commune_complaints, seed_complaints
 
 DEMO_PASSWORD = "gobernar360-demo"
 PROJECTS = "projects"
@@ -68,6 +83,7 @@ ENVIRONMENT = "environment"
 ECONOMIC = "economic"
 SOCIAL = "social"
 PROCEDURES = "procedures"
+COMPLAINTS = "complaints"
 
 # Status lights of the current month and the five before it, newest first.
 STATUS_LIGHTS = {
@@ -76,9 +92,31 @@ STATUS_LIGHTS = {
     ECONOMIC: ("red", "yellow", "yellow", "green", "green", "green"),
     SOCIAL: ("green", "yellow", "green", "green", "red", "yellow"),
     PROCEDURES: ("yellow", "yellow", "red", "yellow", "green", "green"),
+    COMPLAINTS: ("red", "yellow", "yellow", "red", "yellow", "green"),
 }
 # Dashboards whose lights were added to existing demo databases in one go.
 FIRST_LIT_DASHBOARDS = (PROJECTS, ENVIRONMENT, ECONOMIC, SOCIAL)
+
+# Closed months of indicator history, as if snapshots had been taken at each month's close.
+HISTORY_MONTHS = 12
+# Month-to-month variation of that history, so the charts are not straight lines.
+HISTORY_WOBBLE = (0, 1, -1, 0, 1, 0, -1, 1, 0, -1, 0, 1)
+# This year's target, from the indicator's value today: some met and some missed.
+DEMO_TARGETS: dict[str, Callable[[Number], Number]] = {
+    # Met with a little margin, so an administrator can tighten it and see it missed.
+    "projects.delayed": lambda value: value + 1,
+    "projects.finished": lambda value: value + 2,
+    "projects.average_progress": lambda value: 60,
+    "projects.budget_executed_ratio": lambda value: 0.5,
+    "environment.load_completion": lambda value: 0.9,
+    "environment.targets_missed": lambda value: 1,
+    "economic.actors": lambda value: value + 3,
+    "economic.assignments_year": lambda value: max(1, round(value * 0.8)),
+    "social.deliveries_year": lambda value: round(value * 1.5) + 5,
+    "social.interventions_year": lambda value: max(1, round(value * 0.7)),
+    "procedures.online": lambda value: value + 2,
+    "procedures.online_ratio": lambda value: 0.3,
+}
 
 PROCEDURE_AREAS = (
     "Rentas",
@@ -1321,6 +1359,165 @@ def _seed_noetinger_procedures(municipality_id, today: date) -> None:
         _add_lights(db, municipality_id, PROCEDURES, today)
 
 
+def _past_value(definition: IndicatorDefinition, today_value: Number | None, months_ago: int):
+    """A plausible value for a past month: a slow improvement up to today, with some wobble."""
+    if today_value is None:
+        return None
+    step = -0.025 if definition.higher_is_better else 0.04
+    trend = 1 + step * months_ago
+    # Each indicator wobbles out of step with the others.
+    phase = sum(map(ord, definition.key))
+    wobble = HISTORY_WOBBLE[(months_ago + phase) % len(HISTORY_WOBBLE)]
+    if definition.unit == "ratio":
+        return round(min(1.0, max(0.0, today_value * trend + 0.02 * wobble)), 4)
+    if definition.unit == "percent":
+        return round(min(100.0, max(0.0, today_value * trend + 2 * wobble)), 1)
+    return max(0, round(today_value * trend) + wobble)
+
+
+def _last_year_target(definition: IndicatorDefinition, target: Number) -> Number:
+    """Last year's target: a little less ambitious than this year's."""
+    if definition.unit in ("ratio", "percent"):
+        return round(target * (0.9 if definition.higher_is_better else 1.1), 4)
+    return max(0, round(target * 0.9) if definition.higher_is_better else round(target) + 1)
+
+
+def _seed_noetinger_history(today: date) -> bool:
+    """Twelve closed months of indicator history and this and last year's targets.
+
+    Indicators that can be rebuilt get their real past from the data; the rest get a
+    plausible one, standing for the snapshots a running installation would have taken.
+    Returns False when Noetinger already has history.
+    """
+    with platform_session() as db:
+        noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+    with tenant_session(noetinger_id) as db:
+        if db.scalar(select(IndicatorSnapshot.id).limit(1)):
+            return False
+    closed = months_between(shift(month_of(today), -HISTORY_MONTHS), shift(month_of(today), -1))
+    snapshot_municipality(noetinger_id, today, closed)
+    with tenant_session(noetinger_id) as db:
+        ctx = system_context(db, noetinger_id)
+        for key in sorted(enabled_dashboard_keys(db, noetinger_id)):
+            module = registry.get_module(key)
+            values = {
+                indicator.key: indicator.value for indicator in module.get_summary(ctx, today)
+            }
+            for definition in module.indicators:
+                value = values.get(definition.key)
+                common = {
+                    "municipality_id": noetinger_id,
+                    "dashboard_key": key,
+                    "indicator_key": definition.key,
+                }
+                if not definition.reconstructible:
+                    for months_ago, (year, month) in enumerate(reversed(closed), start=1):
+                        past = _past_value(definition, value, months_ago)
+                        db.add(IndicatorSnapshot(**common, year=year, month=month, value=past))
+                target = DEMO_TARGETS.get(definition.key)
+                if target is None or value is None:
+                    continue
+                goal = target(value)
+                db.add(IndicatorTarget(**common, year=today.year, value=goal))
+                last_year = _last_year_target(definition, goal)
+                db.add(IndicatorTarget(**common, year=today.year - 1, value=last_year))
+    return True
+
+
+# Closed reports of these months back; last month is left open to be closed by hand.
+CLOSED_MONTHS_AGO = (4, 3, 2)
+# This one was reopened and closed again, so it has two versions.
+REOPENED_MONTHS_AGO = 3
+REPORT_COMMENTS = {
+    PROJECTS: "Avanzó la obra de cloacas del barrio Norte. Dos proyectos siguen demorados por "
+    "las lluvias y se reprogramaron sus hitos.",
+    ENVIRONMENT: "Se cargaron todos los valores del mes. La calidad del aire todavía no se mide.",
+    ECONOMIC: "Creció la demanda de microcréditos y se abrió una nueva edición del curso de "
+    "costos y precios.",
+    SOCIAL: "Se reforzó la entrega de módulos alimentarios en los barrios Sur y Oeste.",
+    PROCEDURES: "Dos trámites más se pueden hacer en línea.",
+}
+PUBLISHED_DASHBOARDS = (PROJECTS, SOCIAL)
+
+
+def _admin_context(db: Session, municipality_id) -> RequestContext:
+    """Acting as Noetinger's administrator, so closings are audited under their name."""
+    admin = db.scalar(select(User).where(User.email == "admin@noetinger.test"))
+    return RequestContext(user=admin, municipality_id=municipality_id, membership=None, db=db)
+
+
+def _seed_noetinger_reports(today: date) -> bool:
+    """Closed monthly reports; returns False when Noetinger already has some."""
+    with platform_session() as db:
+        noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+    with tenant_session(noetinger_id) as db:
+        if db.scalar(select(MonthlyReport.id).limit(1)):
+            return False
+        ctx = _admin_context(db, noetinger_id)
+        for months_ago in CLOSED_MONTHS_AGO:
+            year, month = shift(month_of(today), -months_ago)
+            report = reports.close_month(ctx, year, month, REPORT_COMMENTS, today)
+            if months_ago == REOPENED_MONTHS_AGO:
+                reports.reopen(ctx, report)
+                comments = REPORT_COMMENTS | {
+                    PROJECTS: REPORT_COMMENTS[PROJECTS] + " Corregido: se sumó el avance de "
+                    "la plaza central."
+                }
+                reports.close_month(ctx, year, month, comments, today)
+    return True
+
+
+def _seed_noetinger_public_page(today: date) -> bool:
+    """The public page on, with two dashboards' lights; no indicator or report published.
+
+    Returns False when Noetinger already has one.
+    """
+    with platform_session() as db:
+        noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+    with tenant_session(noetinger_id) as db:
+        if db.scalar(select(PublicSettings.id)):
+            return False
+        ctx = _admin_context(db, noetinger_id)
+        fields = {"enabled": True, "slug": "noetinger", "small_count_threshold": 5}
+        create_entity(ctx, PublicSettings(**fields), fields)
+        for key in PUBLISHED_DASHBOARDS:
+            create_entity(ctx, PublishedDashboard(dashboard_key=key), {"dashboard_key": key})
+        publication.refresh_site(ctx, today)
+    return True
+
+
+def _seed_complaints(today: date) -> bool:
+    """Load Noetinger's complaints and their lights, leaving the dashboard for the operator
+    to enable there; enable it in the commune with a few complaints of its own.
+
+    Returns False when Noetinger already has complaint data.
+    """
+    with platform_session() as db:
+        noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+        staff = db.scalars(
+            select(User.id).where(User.email.in_(["admin@noetinger.test", "carga@noetinger.test"]))
+        ).all()
+    with tenant_session(noetinger_id) as db:
+        if db.scalar(select(ComplaintType.id).limit(1)):
+            return False
+        seed_complaints(db, noetinger_id, list(staff) or [None])
+        lit = db.scalar(
+            select(DashboardStatus.id).where(DashboardStatus.dashboard_key == COMPLAINTS).limit(1)
+        )
+        if not lit:
+            _add_lights(db, noetinger_id, COMPLAINTS, today)
+    with platform_session() as db:
+        commune = db.scalar(select(Municipality).where(Municipality.slug == "comuna-demo"))
+        # An older demo database may no longer have the second municipality.
+        added = commune is not None and _enable_dashboard(db, commune, COMPLAINTS)
+        commune_id = commune.id if commune else None
+        commune_admin = db.scalar(select(User.id).where(User.email == "admin@comuna-demo.test"))
+    if added:
+        with tenant_session(commune_id) as db:
+            seed_commune_complaints(db, commune_id, today, commune_admin)
+    return True
+
+
 def _seed_newer_dashboards(today: date) -> bool:
     added = [
         _seed_newer_dashboard(ENVIRONMENT, _seed_noetinger_environment, today),
@@ -1329,12 +1526,22 @@ def _seed_newer_dashboards(today: date) -> bool:
         _seed_newer_dashboard(SOCIAL, _seed_noetinger_social, today),
         _seed_noetinger_status(today),
         _seed_newer_dashboard(PROCEDURES, _seed_noetinger_procedures, today),
+        _seed_complaints(today),
+        # Last: it records what every dashboard above holds.
+        _seed_noetinger_history(today),
+        # From that history.
+        _seed_noetinger_reports(today),
+        _seed_noetinger_public_page(today),
     ]
     return any(added)
 
 
 def seed_demo(reset: bool = False) -> bool:
     """Load the demo data. Returns False when it was already present and nothing changed."""
+    # Imported here: the application module imports every dashboard, as this one does.
+    from gobernar360.main import register_dashboards
+
+    register_dashboards()
     if reset:
         _reset()
     today = date.today()

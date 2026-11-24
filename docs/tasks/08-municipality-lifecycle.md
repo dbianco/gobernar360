@@ -1,4 +1,4 @@
-# Task 08: Municipality lifecycle — suspend, export, restore, delete
+# Task 08: Municipality lifecycle — suspend, export, restore, delete - PARTIAL (suspend and resume DONE; export, restore, delete and the isolation audit pending)
 
 ## Task description
 

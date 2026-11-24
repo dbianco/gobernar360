@@ -1,7 +1,306 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`choosing which dashboards to show > hides a dashboard light, section and combined indicators, and shows them again > screen at the end 1`] = `
+"Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
+[Ocultar Ambiental]
+Ocultar Económico
+[Ocultar Económico]
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+[Ambiental]
+Ambiental
+Sin estado
+[Económico]
+Económico
+Sin estado
+[Indicadores combinados]
+Indicadores combinados
+Relacionan datos de dos tableros. Los ves porque tenés acceso a los dos.
+Trámites en línea por actor económico
+[Qué significa Trámites en línea por actor económico]
+[Ver la evolución de Trámites en línea por actor económico]
+1
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Trámites en línea por actor económico en los últimos 12 meses]
+Prestaciones sociales del año por proyecto activo
+[Qué significa Prestaciones sociales del año por proyecto activo]
+[Ver la evolución de Prestaciones sociales del año por proyecto activo]
+1
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Prestaciones sociales del año por proyecto activo en los últimos 12 meses]
+Proyectos
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año
+Ambiental
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año
+Económico
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año"
+`;
+
+exports[`choosing which dashboards to show > hides a dashboard light, section and combined indicators, and shows them again > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`choosing which dashboards to show > names the dashboard and what a click does on hover > screen at the end 1`] = `
+"Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
+[Ocultar Ambiental]
+Ocultar Económico
+[Ocultar Económico]
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+[Ambiental]
+Ambiental
+Sin estado
+[Económico]
+Económico
+Sin estado
+[Indicadores combinados]
+Indicadores combinados
+Relacionan datos de dos tableros. Los ves porque tenés acceso a los dos.
+Trámites en línea por actor económico
+[Qué significa Trámites en línea por actor económico]
+[Ver la evolución de Trámites en línea por actor económico]
+1
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Trámites en línea por actor económico en los últimos 12 meses]
+Prestaciones sociales del año por proyecto activo
+[Qué significa Prestaciones sociales del año por proyecto activo]
+[Ver la evolución de Prestaciones sociales del año por proyecto activo]
+1
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Prestaciones sociales del año por proyecto activo en los últimos 12 meses]
+Proyectos
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año
+Ambiental
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año
+Económico
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año"
+`;
+
+exports[`choosing which dashboards to show > names the dashboard and what a click does on hover > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`choosing which dashboards to show > offers one icon per dashboard next to the title, all shown at first > screen at the end 1`] = `
+"Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
+[Ocultar Ambiental]
+[Ocultar Económico]
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+[Ambiental]
+Ambiental
+Sin estado
+[Económico]
+Económico
+Sin estado
+[Indicadores combinados]
+Indicadores combinados
+Relacionan datos de dos tableros. Los ves porque tenés acceso a los dos.
+Trámites en línea por actor económico
+[Qué significa Trámites en línea por actor económico]
+[Ver la evolución de Trámites en línea por actor económico]
+1
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Trámites en línea por actor económico en los últimos 12 meses]
+Prestaciones sociales del año por proyecto activo
+[Qué significa Prestaciones sociales del año por proyecto activo]
+[Ver la evolución de Prestaciones sociales del año por proyecto activo]
+1
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Prestaciones sociales del año por proyecto activo en los últimos 12 meses]
+Proyectos
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año
+Ambiental
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año
+Económico
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año"
+`;
+
+exports[`choosing which dashboards to show > offers one icon per dashboard next to the title, all shown at first > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`choosing which dashboards to show > says so when every dashboard is hidden > screen at the end 1`] = `
+"Resumen general
+[Tableros que se muestran]
+[Mostrar Proyectos]
+[Mostrar Ambiental]
+Mostrar Económico
+[Mostrar Económico]
+Elegí al menos un tablero para ver su resumen."
+`;
+
+exports[`choosing which dashboards to show > says so when every dashboard is hidden > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`choosing which dashboards to show > shows every dashboard again the next time the page is opened > screen at the end 1`] = `
+"Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
+[Ocultar Ambiental]
+[Ocultar Económico]
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+[Ambiental]
+Ambiental
+Sin estado
+[Económico]
+Económico
+Sin estado
+[Indicadores combinados]
+Indicadores combinados
+Relacionan datos de dos tableros. Los ves porque tenés acceso a los dos.
+Trámites en línea por actor económico
+[Qué significa Trámites en línea por actor económico]
+[Ver la evolución de Trámites en línea por actor económico]
+1
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Trámites en línea por actor económico en los últimos 12 meses]
+Prestaciones sociales del año por proyecto activo
+[Qué significa Prestaciones sociales del año por proyecto activo]
+[Ver la evolución de Prestaciones sociales del año por proyecto activo]
+1
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Prestaciones sociales del año por proyecto activo en los últimos 12 meses]
+Proyectos
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año
+Ambiental
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año
+Económico
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año"
+`;
+
+exports[`choosing which dashboards to show > shows every dashboard again the next time the page is opened > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
 exports[`collapses and expands a section from its heading > screen at the end 1`] = `
 "Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
 [Estado de los tableros]
 [Proyectos]
 Proyectos
@@ -9,7 +308,13 @@ Sin estado
 Proyectos
 Abrir tablero
 Proyectos activos
-7"
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año"
 `;
 
 exports[`collapses and expands a section from its heading > screen at the start 1`] = `
@@ -19,6 +324,8 @@ exports[`collapses and expands a section from its heading > screen at the start 
 
 exports[`ignores a stored list of collapsed sections that makes no sense > screen at the end 1`] = `
 "Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
 [Estado de los tableros]
 [Proyectos]
 Proyectos
@@ -35,6 +342,8 @@ exports[`ignores a stored list of collapsed sections that makes no sense > scree
 
 exports[`keeps only the names in a stored list of collapsed sections > screen at the end 1`] = `
 "Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
 [Estado de los tableros]
 [Proyectos]
 Proyectos
@@ -50,6 +359,8 @@ exports[`keeps only the names in a stored list of collapsed sections > screen at
 
 exports[`leaves out a dashboard this version does not know > screen at the end 1`] = `
 "Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
 [Estado de los tableros]
 [Proyectos]
 Proyectos
@@ -64,8 +375,10 @@ exports[`leaves out a dashboard this version does not know > screen at the start
 [Cargando…]"
 `;
 
-exports[`puts the lights before the indicator sections > screen at the end 1`] = `
+exports[`leaves the combined indicators out when the member sees none > screen at the end 1`] = `
 "Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
 [Estado de los tableros]
 [Proyectos]
 Proyectos
@@ -73,7 +386,38 @@ Sin estado
 Proyectos
 Abrir tablero
 Proyectos activos
-7"
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año"
+`;
+
+exports[`leaves the combined indicators out when the member sees none > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
+exports[`puts the lights before the indicator sections > screen at the end 1`] = `
+"Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+Proyectos
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año"
 `;
 
 exports[`puts the lights before the indicator sections > screen at the start 1`] = `
@@ -83,6 +427,9 @@ exports[`puts the lights before the indicator sections > screen at the start 1`]
 
 exports[`remembers which sections were collapsed > screen at the end 1`] = `
 "Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
+[Ocultar Ambiental]
 [Estado de los tableros]
 [Proyectos]
 Proyectos
@@ -104,6 +451,8 @@ exports[`remembers which sections were collapsed > screen at the start 1`] = `
 
 exports[`renders indicators returned by the overview endpoint > screen at the end 1`] = `
 "Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
 [Estado de los tableros]
 [Proyectos]
 Proyectos
@@ -111,13 +460,36 @@ Sin estado
 Proyectos
 Abrir tablero
 Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
 7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año
 Avance promedio
+[Qué significa Avance promedio]
+[Ver la evolución de Avance promedio]
 42 %
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Avance promedio en los últimos 12 meses]
+Sin meta para este año
 Presupuesto ejecutado
+[Qué significa Presupuesto ejecutado]
+[Ver la evolución de Presupuesto ejecutado]
 25,6 %
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Presupuesto ejecutado en los últimos 12 meses]
+Sin meta para este año
 Hitos en alerta
-—"
+[Qué significa Hitos en alerta]
+[Ver la evolución de Hitos en alerta]
+—
+Sin dato del mes anterior
+Sin dato de un año atrás
+Sin meta para este año"
 `;
 
 exports[`renders indicators returned by the overview endpoint > screen at the start 1`] = `
@@ -127,6 +499,8 @@ exports[`renders indicators returned by the overview endpoint > screen at the st
 
 exports[`renders the environment indicators with their own labels > screen at the end 1`] = `
 "Resumen general
+[Tableros que se muestran]
+[Ocultar Ambiental]
 [Estado de los tableros]
 [Ambiental]
 Ambiental
@@ -134,13 +508,37 @@ Sin estado
 Ambiental
 Abrir tablero
 Variables ambientales
+[Qué significa Variables ambientales]
+[Ver la evolución de Variables ambientales]
 12
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Variables ambientales en los últimos 12 meses]
+Sin meta para este año
 Cargas del año realizadas
+[Qué significa Cargas del año realizadas]
+[Ver la evolución de Cargas del año realizadas]
 24 %
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Cargas del año realizadas en los últimos 12 meses]
+Sin meta para este año
 Metas ambientales cumplidas
+[Qué significa Metas ambientales cumplidas]
+[Ver la evolución de Metas ambientales cumplidas]
 3
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Metas ambientales cumplidas en los últimos 12 meses]
+Sin meta para este año
 Metas ambientales no cumplidas
-1"
+[Qué significa Metas ambientales no cumplidas]
+[Ver la evolución de Metas ambientales no cumplidas]
+1
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Metas ambientales no cumplidas en los últimos 12 meses]
+Sin meta para este año"
 `;
 
 exports[`renders the environment indicators with their own labels > screen at the start 1`] = `
@@ -150,6 +548,8 @@ exports[`renders the environment indicators with their own labels > screen at th
 
 exports[`says so when a dashboard has no data yet > screen at the end 1`] = `
 "Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
 [Estado de los tableros]
 [Proyectos]
 Proyectos
@@ -166,6 +566,8 @@ exports[`says so when a dashboard has no data yet > screen at the start 1`] = `
 
 exports[`says so when a dashboard has no light yet > screen at the end 1`] = `
 "Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
 [Estado de los tableros]
 [Proyectos]
 Proyectos
@@ -173,7 +575,13 @@ Sin estado
 Proyectos
 Abrir tablero
 Proyectos activos
-7"
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año"
 `;
 
 exports[`says so when a dashboard has no light yet > screen at the start 1`] = `
@@ -204,6 +612,8 @@ exports[`shows an empty state when the user has no dashboards > screen at the st
 
 exports[`shows each dashboard's latest light with its month and state, and the earlier ones > screen at the end 1`] = `
 "Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
 [Estado de los tableros]
 [Proyectos]
 Proyectos
@@ -216,7 +626,13 @@ Dic
 Proyectos
 Abrir tablero
 Proyectos activos
-7"
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año"
 `;
 
 exports[`shows each dashboard's latest light with its month and state, and the earlier ones > screen at the start 1`] = `
@@ -226,6 +642,8 @@ exports[`shows each dashboard's latest light with its month and state, and the e
 
 exports[`shows earlier lights in browsers without Array.prototype.toReversed > screen at the end 1`] = `
 "Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
 [Estado de los tableros]
 [Proyectos]
 Proyectos
@@ -243,8 +661,45 @@ exports[`shows earlier lights in browsers without Array.prototype.toReversed > s
 [Cargando…]"
 `;
 
+exports[`shows the indicators that combine dashboards after the lights > screen at the end 1`] = `
+"Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
+[Estado de los tableros]
+[Proyectos]
+Proyectos
+Sin estado
+[Indicadores combinados]
+Indicadores combinados
+Relacionan datos de dos tableros. Los ves porque tenés acceso a los dos.
+Trámites en línea por actor económico
+[Qué significa Trámites en línea por actor económico]
+[Ver la evolución de Trámites en línea por actor económico]
+0,5
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Trámites en línea por actor económico en los últimos 12 meses]
+Proyectos
+Abrir tablero
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+7
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año"
+`;
+
+exports[`shows the indicators that combine dashboards after the lights > screen at the start 1`] = `
+"Resumen general
+[Cargando…]"
+`;
+
 exports[`still works when the browser refuses to store which sections were collapsed > screen at the end 1`] = `
 "Resumen general
+[Tableros que se muestran]
+[Ocultar Proyectos]
 [Estado de los tableros]
 [Proyectos]
 Proyectos

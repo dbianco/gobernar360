@@ -55,7 +55,32 @@ Caja mensual.
 [Editar Módulo alimentario]
 Editar
 [Eliminar Módulo alimentario]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`adds an intervention type > screen at the start 1`] = `"[Cargando…]"`;
@@ -81,7 +106,32 @@ Eliminar
 (Nuevo tipo de intervención)
 Agregar
 Prestaciones
-Creá una categoría para poder cargar prestaciones."
+Creá una categoría para poder cargar prestaciones.
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`asks for a category before any benefit > screen at the start 1`] = `"[Cargando…]"`;
@@ -141,7 +191,32 @@ Caja mensual.
 [Editar Módulo alimentario]
 Editar
 [Eliminar Módulo alimentario]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`closes the form with Escape without saving > screen at the start 1`] = `"[Cargando…]"`;
@@ -201,7 +276,32 @@ Caja mensual.
 [Editar Módulo alimentario]
 Editar
 [Eliminar Módulo alimentario]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`creates a benefit from the form > screen at the start 1`] = `"[Cargando…]"`;
@@ -261,7 +361,32 @@ Caja mensual.
 [Editar Módulo alimentario]
 Editar
 [Eliminar Módulo alimentario]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`edits a benefit > screen at the start 1`] = `"[Cargando…]"`;
@@ -322,7 +447,32 @@ Caja mensual.
 [Editar Módulo alimentario]
 Editar
 [Eliminar Módulo alimentario]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`explains that a benefit already delivered cannot be deleted > screen at the start 1`] = `"[Cargando…]"`;
@@ -383,6 +533,31 @@ Caja mensual.
 Editar
 [Eliminar Módulo alimentario]
 Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60.
 Agregar prestación
 La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
 Nombre
@@ -451,7 +626,32 @@ Caja mensual.
 [Editar Módulo alimentario]
 Editar
 [Eliminar Módulo alimentario]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`lists the catalogs of the municipality > screen at the start 1`] = `"[Cargando…]"`;
@@ -511,7 +711,32 @@ Caja mensual.
 [Editar Módulo alimentario]
 Editar
 [Eliminar Módulo alimentario]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`renames and deletes items of /benefit-categories > screen at the start 1`] = `"[Cargando…]"`;
@@ -571,7 +796,32 @@ Caja mensual.
 [Editar Módulo alimentario]
 Editar
 [Eliminar Módulo alimentario]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`renames and deletes items of /intervention-types > screen at the start 1`] = `"[Cargando…]"`;
@@ -610,7 +860,32 @@ Agregar prestación
 Buscar
 (Prestación o categoría)
 [Borrar la búsqueda]
-Nada coincide con la búsqueda."
+Nada coincide con la búsqueda.
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`says when the benefit search matches nothing > screen at the start 1`] = `"[Cargando…]"`;
@@ -646,7 +921,32 @@ Eliminar
 Agregar
 Prestaciones
 Agregar prestación
-Todavía no hay prestaciones cargadas."
+Todavía no hay prestaciones cargadas.
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`says when there are categories but no benefits yet > screen at the start 1`] = `"[Cargando…]"`;

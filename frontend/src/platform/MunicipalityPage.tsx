@@ -1,14 +1,17 @@
 import {
   Alert,
   Anchor,
+  Badge,
   Button,
   Checkbox,
   Group,
   Loader,
+  Modal,
   NativeSelect,
   Paper,
   Stack,
   Text,
+  Textarea,
   TextInput,
   Title,
 } from '@mantine/core'
@@ -20,6 +23,7 @@ import { Link, useParams } from 'react-router-dom'
 import { api } from '../api/client'
 import { dashboardLabelKey } from '../dashboards/registry'
 import { errorMessage } from './errorMessage'
+import { formatDateTime } from './format'
 import { MembersPanel } from './MembersPanel'
 import {
   KINDS,
@@ -121,6 +125,95 @@ function DashboardsForm({ municipality }: { municipality: MunicipalityDetail }) 
   )
 }
 
+/** Whether people can work in the municipality; suspending it keeps its data. */
+function SuspensionPanel({ municipality }: { municipality: MunicipalityDetail }) {
+  const { t } = useTranslation()
+  const action = useAction(['platform', 'me'])
+  const [asking, setAsking] = useState(false)
+  const [reason, setReason] = useState('')
+  const label = (key: string, options = {}) => t(`platform.suspension.${key}`, options)
+  const path = `/platform/municipalities/${municipality.id}/suspension`
+  const { suspension } = municipality
+
+  async function suspend(event: FormEvent) {
+    event.preventDefault()
+    if (!reason.trim()) return
+    const done = await action.run(() =>
+      api(path, { method: 'POST', body: { reason: reason.trim() } }),
+    )
+    if (done) {
+      setAsking(false)
+      setReason('')
+    }
+  }
+
+  return (
+    <Stack gap="sm">
+      {action.error && !asking && <Alert color="red">{action.error}</Alert>}
+      {suspension ? (
+        <>
+          <Alert color="red" title={label('suspendedTitle')}>
+            <Text size="sm">
+              {label(suspension.by ? 'since' : 'sinceUnknown', {
+                at: formatDateTime(suspension.at),
+                by: suspension.by,
+              })}
+            </Text>
+            <Text size="sm">{label('reasonShown', { reason: suspension.reason })}</Text>
+          </Alert>
+          <Group>
+            <Button
+              loading={action.pending}
+              onClick={() => void action.run(() => api(path, { method: 'DELETE' }))}
+            >
+              {label('resume')}
+            </Button>
+          </Group>
+        </>
+      ) : (
+        <>
+          <Text size="sm">{label('active')}</Text>
+          <Group>
+            <Button color="red" variant="light" onClick={() => setAsking(true)}>
+              {label('suspend')}
+            </Button>
+          </Group>
+        </>
+      )}
+      <Modal
+        opened={asking}
+        onClose={() => setAsking(false)}
+        title={label('confirmTitle', { name: municipality.name })}
+      >
+        <form onSubmit={(event) => void suspend(event)}>
+          <Stack>
+            {action.error && <Alert color="red">{action.error}</Alert>}
+            <Text size="sm">{label('confirmBody', { name: municipality.name })}</Text>
+            <Textarea
+              label={label('reason')}
+              description={label('reasonHint')}
+              required
+              withAsterisk={false}
+              maxLength={500}
+              rows={3}
+              value={reason}
+              onChange={(event) => setReason(event.currentTarget.value)}
+            />
+            <Group justify="flex-end">
+              <Button variant="default" onClick={() => setAsking(false)}>
+                {t('app.cancel')}
+              </Button>
+              <Button type="submit" color="red" loading={action.pending}>
+                {label('suspend')}
+              </Button>
+            </Group>
+          </Stack>
+        </form>
+      </Modal>
+    </Stack>
+  )
+}
+
 /** Platform operator: everything configurable about one municipality. */
 export function MunicipalityPage() {
   const { t } = useTranslation()
@@ -141,7 +234,14 @@ export function MunicipalityPage() {
       {municipality && (
         <>
           <Group justify="space-between">
-            <Title order={2}>{municipality.name}</Title>
+            <Group gap="sm">
+              <Title order={2}>{municipality.name}</Title>
+              {municipality.suspension && (
+                <Badge color="red" variant="light" style={{ textTransform: 'none' }}>
+                  {t('platform.suspension.badge')}
+                </Badge>
+              )}
+            </Group>
             <Button
               component={Link}
               to={`/platform/municipalities/${municipality.id}/settings`}
@@ -151,6 +251,12 @@ export function MunicipalityPage() {
               {t('platform.settings')}
             </Button>
           </Group>
+          <Paper withBorder p="md">
+            <Title order={3} mb="sm">
+              {t('platform.suspension.title')}
+            </Title>
+            <SuspensionPanel municipality={municipality} />
+          </Paper>
           <Paper withBorder p="md">
             <Title order={3} mb="sm">
               {t('platform.details')}

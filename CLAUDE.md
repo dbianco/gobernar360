@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-gobernar360 is a multi-tenant workspace of management dashboards for Argentine local governments. A FastAPI + SQLAlchemy + PostgreSQL backend (`backend/`, managed with uv, Python 3.12) and a React 19 + Mantine + TanStack Query web app (`frontend/`, Vite, npm). Each dashboard (projects, environment, economic, social, procedures) is an independent module, enabled per municipality by the platform operator and granted per user.
+gobernar360 is a multi-tenant workspace of management dashboards for Argentine local governments. A FastAPI + SQLAlchemy + PostgreSQL backend (`backend/`, managed with uv, Python 3.12) and a React 19 + Mantine + TanStack Query web app (`frontend/`, Vite, npm). Each dashboard (projects, environment, economic, social, procedures, complaints) is an independent module, enabled per municipality by the platform operator and granted per user.
 
-`README.md` documents demo accounts, roles, and per-dashboard domain rules. Each feature has a design and a plan under `docs/superpowers/specs/` and `docs/superpowers/plans/`; `tableros-de-gestion-portal-ril.md` is the functional reference (Spanish). `docs/tasks/NN-*.md` are briefs for larger pieces of work (01, email and invitations, is built; the rest are not: indicator targets, complaints, bulk import, geography, deployment...), each with a task description, how completion is judged, and notes; read the relevant one before starting such a task.
+`README.md` documents demo accounts, roles, and per-dashboard domain rules. Each feature has a design and a plan under `docs/superpowers/specs/` and `docs/superpowers/plans/`; `tableros-de-gestion-portal-ril.md` is the functional reference (Spanish). `docs/tasks/NN-*.md` are briefs for larger pieces of work (a title ending in `- DONE` is built: 01 email and invitations, 02 indicator history and targets, 03 complaints, 05 monthly report and public page; 08 municipality lifecycle has only suspend/resume; the rest are not: cabinet commitments, bulk import, geography, deployment...), each with a task description, how completion is judged, and notes; read the relevant one before starting such a task.
 
 ## Commands
 
@@ -19,11 +19,12 @@ uv run alembic upgrade head                      # migrate the dev database
 uv run gobernar360 seed-demo                     # demo data; --reset deletes ALL data first
 uv run gobernar360 send-email [--watch]          # deliver the email outbox over SMTP
 uv run gobernar360 notify [--no-send]            # queue notification emails (run on a schedule)
+uv run gobernar360 snapshot-indicators           # this month's indicators (run daily); --from 2026-01 rebuilds
 uv run uvicorn gobernar360.main:create_app --factory --reload --port 8000
 uv run pytest                                    # runs against gobernar360_test, migrates it itself;
                                                  # tests/test_architecture.py shells out to `uv run lint-imports`
 uv run pytest tests/procedures/test_summary.py::test_name
-uv run pytest --cov --cov-report=term-missing     # statement + branch coverage (pyproject [tool.coverage])
+uv run pytest --cov --cov-report=term-missing     # statement + branch coverage; fails below 95 % ([tool.coverage])
 uv run python tests/make_test_databases.py 5     # once: gobernar360_test_0..4 for parallel runs
 GOBERNAR360_TEST_DATABASES=5 uv run mutmut run --max-children 4   # mutation testing, hours;
 uv run mutmut results; uv run mutmut show <name> # survivors and their diff ([tool.mutmut])
@@ -64,11 +65,24 @@ Dashboards may import `core`, `platform` and `dashboards/registry.py`, never eac
 
 ### Dashboard module contract
 
-Each backend dashboard package exposes `module = DashboardModule(key, router, get_summary)` (`dashboards/registry.py`). `main.register_dashboards()` registers the modules (the CLI calls it too) and `create_app` mounts each router at `/api/dashboards/<key>`. `get_summary` feeds the general overview; optional `alert_kinds` and `get_alerts(db, today) -> list[Alert]` feed email notifications (projects raises `milestone_overdue` in `dashboards/projects/alerts.py`). `platform` reaches dashboards only through the registry.
+Each backend dashboard package exposes `module = DashboardModule(key, router, get_summary, indicators)` (`dashboards/registry.py`). `main.register_dashboards()` registers the modules (the CLI calls it too) and `create_app` mounts each router at `/api/dashboards/<key>`. `platform` reaches dashboards only through the registry:
+
+- `indicators` is the dashboard's catalogue of headline indicators (`IndicatorDefinition`: key, unit, `higher_is_better`, `reconstructible`, Spanish `name`, `aggregate`). Every key `get_summary` returns must be in it with the same unit; names must match `overview.indicators` in the web app (a test checks it). Only `aggregate=True` indicators can be published.
+- `name` is the dashboard's Spanish name and `report_tables(ctx, first_day, last_day)` optionally adds tables to the monthly report (no personal data: reports are handed out and published).
+- `get_summary(ctx, date)` returns the indicators **as of that date**: today for the overview and for this month's snapshot, the last day of a past month when snapshots are rebuilt. Mark an indicator `reconstructible=True` only if it is computed from records that carry their own date (e.g. deliveries of the year up to the date); anything that depends on how data stands today is not, and its past months are never filled in.
+- The platform keeps the monthly history (`indicator_snapshots`, written by `gobernar360 snapshot-indicators`, `platform/snapshots.py`), the targets (`indicator_targets`) and the evolution shown on the summaries and the overview (`platform/indicators.py`, `indicators_router.py`). Indicators combining two dashboards are defined in `platform/indicators.py` (`COMBINED_INDICATORS`) from catalogue keys, and shown only to members who can see both dashboards.
+- Optional `alert_kinds` and `get_alerts(db, today) -> list[Alert]` feed email notifications (projects raises `milestone_overdue` in `dashboards/projects/alerts.py`).
 
 Inside a dashboard package the convention is: `access.py` (the `KEY` plus `Viewer`/`Editor`/`Admin` annotated dependencies), `models.py`, `schemas.py`, one `*_router.py` per resource, `summary.py`, `export.py` (CSV).
 
 On the frontend, `src/dashboards/registry.ts` lists each dashboard with its key, icon, base path `/d/<key>` and a lazy-loaded `routes.tsx` (default export, renders the tabs and nested routes). `App.tsx` wraps each in `RequireDashboard`.
+
+### Monthly reports and the public page
+
+- `platform/reports.py` closes a month into `monthly_reports` with its content frozen as JSON; reopening supersedes the version and creates the next as a draft. `report_pdf.py` renders it deterministically.
+- `platform/publication.py` copies what is published into `public_sites`, `public_dashboards`, `public_indicators` and `public_reports`; `public_router.py` serves `/api/public/...` from those only, through `core.db.public_session()` (role `gobernar360_public`, read-only, no tenant). Those tables have RLS policies that let anyone read and let the API role write only its own municipality's rows (`enable_public_copy_rls`). Never give the public routes the normal `get_db`/`Context`.
+- **A published report shows only what the page publishes.** Its public rendition (`publication.public_report` with `_selection`) keeps the published dashboards and their published indicators, masks small counts and leaves out the dashboards' tables (free text). Anything that changes the selection calls `publication.refresh_site`, which renders the published reports again; `refresh_indicators` is only for new snapshots. Comments are checked with `publication.names_a_person` before publishing. When the operator disables a dashboard its publication choices are dropped (`forget_dashboards`).
+- Suspended municipalities are skipped by `gobernar360 notify`.
 
 ### Tenant isolation (row-level security)
 
@@ -83,7 +97,7 @@ All municipalities share one database, separated by PostgreSQL RLS, not by query
 
 ### Access
 
-Sessions are an opaque token in the `g360_session` cookie (hashed in the `sessions` table), which also holds the active municipality. Levels are `VIEWER < EDITOR < ADMIN` per dashboard; a municipality admin is `ADMIN` on every enabled dashboard; the platform operator sees configuration only and never reaches dashboard routes. Routes declare the level by their context parameter type (`ctx: Editor`).
+Sessions are an opaque token in the `g360_session` cookie (hashed in the `sessions` table), which also holds the active municipality. A municipality the operator suspended (`municipalities.suspended_at`) is refused by `get_context` on every request (`403 municipality_suspended`) and left out of `/auth/me` memberships (listed in `suspended_municipalities` instead); the session keeps its active municipality so resuming needs nothing else. Any new route that works inside a municipality must go through `get_context` to honour this. Levels are `VIEWER < EDITOR < ADMIN` per dashboard; a municipality admin is `ADMIN` on every enabled dashboard; the platform operator sees configuration only and never reaches dashboard routes. Routes declare the level by their context parameter type (`ctx: Editor`).
 
 Unsafe methods under `/api` are rejected without the header `X-Requested-With: gobernar360` (CSRF protection). The frontend `api()` client and the pytest `client` fixture both send it.
 
@@ -91,7 +105,7 @@ Unsafe methods under `/api` are rejected without the header `X-Requested-With: g
 
 - Errors always have the shape `{"error": {"code", "message", "details"?}}`. Raise the constructors in `core/errors.py` (add a new one there for a new code); the frontend maps `code` to a localized text in `platform/errorMessage.ts`.
 - Lists use `platform/listing.py`: `PagingParams`, `Page[T]`, `page_of`, and `contains()` for accent- and case-insensitive search.
-- Anything depending on the current date takes the `Today` dependency (`platform/clock.py`, Argentine local time) so tests can pin it with `client.app.dependency_overrides[get_today]`.
+- Anything depending on the current date takes the `Today` dependency (`platform/clock.py`, Argentine local time) so tests can pin it with `client.app.dependency_overrides[get_today]`. Recording when something happened takes `Now` (`get_now`); `tests/complaints/factories.py::pin_clock` pins both.
 
 ### Email, accounts and notifications
 
@@ -117,7 +131,8 @@ Alembic revisions are numbered sequentially (`0009_procedures.py`). After autoge
 - **Lists:** every table has a `SearchInput` and a `Pager` with 10/20/50 per page. Lists the API paginates use `usePaging(key)` plus `fitPage(paging, query)` and send `q`, `limit`, `offset` (backend: `PagingParams`, `SearchText`, `listing.every_word`); lists the API returns whole use `useLocalTable(key, items, text)` (`platform/paging.ts`), which searches in the browser ignoring accents. `EditableList` catalogs get both once they exceed 10 items.
 - **Confirmations** use `useConfirm()` (`platform/confirmContext.ts`, modal rendered by `ConfirmProvider` in `main.tsx` and the test `renderApp`), never `window.confirm`; tests answer it with `answerConfirm(user, accept, title)` from `src/test/confirm.ts`.
 - Municipality administration lives under `/admin/*` (`platform/AdminRoutes.tsx`): tabs *Usuarios* (`UsersAdminPage`) and *Configuración* (`platform/settings/`), each also a sidebar link for municipality admins. The operator reaches the same *Configuración* screen for any municipality at `/platform/municipalities/:id/settings` (`MunicipalitySettingsPage`); `settings/scope.ts` tells the screen which API base and query keys to use. Email texts are edited with `settings/RichTextEditor.tsx`, a Tiptap editor with a Mantine toolbar (links may point at placeholders such as `{{link}}`).
-- A dashboard's summary page starts with `<StatusStrip dashboardKey year />` (the monthly status light, implemented entirely in `platform`).
+- A dashboard's summary page starts with `<StatusStrip dashboardKey year />` (the monthly status light with the month's indicators under it) followed by `<HeadlineIndicators dashboardKey />` (cards with evolution and targets); its parameters page includes `<IndicatorTargets dashboardKey />`. All three live in `platform` and need only the key.
+- Indicator names are `overview.indicators.<key>` in `es-AR.json`.
 
 ### Tests
 
@@ -131,8 +146,8 @@ Alembic revisions are numbered sequentially (`0009_procedures.py`). After autoge
 
 ### Adding a dashboard
 
-1. Backend: create `dashboards/<key>/` exposing `module`, register it in `main.py`, import its models in `migrations/env.py`, call `enable_tenant_rls()` per table in the migration, add the package to **both** contracts in `backend/.importlinter`, and add its name under `dashboards.<key>` in the backend locale file (status-light emails use it; `tests/platform/test_texts.py` checks it).
-2. Frontend: create `src/dashboards/<key>/` with a default-exported routes component, add an entry with its icon to `src/dashboards/registry.ts`, add its texts to `es-AR.json`, and follow the `StatusStrip` and `HelpTh` conventions above.
+1. Backend: create `dashboards/<key>/` exposing `module` with its `indicators` catalogue, register it in `register_dashboards()` in `main.py`, import its models in `migrations/env.py`, call `enable_tenant_rls()` per table in the migration, add the package to **both** contracts in `backend/.importlinter`, and add its name under `dashboards.<key>` in the backend locale file (status-light emails use it; `tests/platform/test_texts.py` checks it). Snapshots, targets and evolution then work without platform changes.
+2. Frontend: create `src/dashboards/<key>/` with a default-exported routes component, add an entry with its icon to `src/dashboards/registry.ts`, add its texts (and `overview.indicators.<key>.*`) to `es-AR.json`, and follow the `StatusStrip`, `HeadlineIndicators`, `IndicatorTargets` and `HelpTh` conventions above.
 3. Add demo data to `seed.py` so the e2e suite has something to exercise.
 
 ### Domain rules worth knowing before touching the code
@@ -140,7 +155,8 @@ Alembic revisions are numbered sequentially (`0009_procedures.py`). After autoge
 - **People registry**: one `people` table per municipality in `platform/people.py`, with no routes of its own. A dashboard keeps its own data in a link table (`economic_people`, `social_people`) and only lists people it incorporated; the rest of the registry is reachable only by exact document number. Removing a person from the last dashboard that uses them deletes the registry row.
 - **Social reserved text**: an intervention's `description` is returned only to editors and above (`dashboards/social/access.py`, `reads_reserved_text`). Every response containing interventions must be built by `interventions_router.present`; the CSV export omits the column for viewers.
 - **Procedures** is an inventory, not case tracking; only procedures marked active count in summaries and reports, and a procedure's link accepts only `http(s)` URLs because the UI renders it as a link.
+- **Complaints** is the case tracker. State changes go only through `POST /complaints/{id}/transitions`, checked against `lifecycle.TRANSITIONS`, and every change appends a `complaints_events` row (`cases.add_event`). The service clock is computed on read from those events (`clock.read_clock`, pure and unit-tested) with the municipality's calendar; never store derived clock values. A complaint references `people.id` directly (it keeps no per-dashboard person data), so a person with complaints is never released from the registry, and a complaint's detail returns only the resident's name, document and phone (`schemas.ResidentOut`), not the registry record. Period analysis is by date received, so the cases CSV reproduces the summary. The demo seeds Noetinger's complaints without enabling the dashboard there (`seed_complaints.py`).
 
 ## Configuration
 
-Settings come from `GOBERNAR360_*` environment variables or a `.env` in the working directory, normally `backend/.env` (`core/config.py`, example in `backend/.env.example`): `DATABASE_URL`, `ADMIN_DATABASE_URL`, `SESSION_TTL_HOURS`, `COOKIE_SECURE` (set to `true` behind HTTPS), `CORS_ORIGINS`, `APP_URL` (base of links in emails and of the SSO callback), `SMTP_HOST/PORT/USERNAME/PASSWORD/SECURITY`, `EMAIL_FROM`, token lifetimes and the recovery rate limit, and `OIDC_ISSUER/CLIENT_ID/CLIENT_SECRET/SCOPES`.
+Settings come from `GOBERNAR360_*` environment variables or a `.env` in the working directory, normally `backend/.env` (`core/config.py`, example in `backend/.env.example`): `DATABASE_URL`, `ADMIN_DATABASE_URL`, `PUBLIC_DATABASE_URL` (the read-only role of the public page), `PUBLIC_RATE_LIMIT_PER_MINUTE`, `SESSION_TTL_HOURS`, `COOKIE_SECURE` (set to `true` behind HTTPS), `CORS_ORIGINS`, `APP_URL` (base of links in emails and of the SSO callback), `SMTP_HOST/PORT/USERNAME/PASSWORD/SECURITY`, `EMAIL_FROM`, token lifetimes and the recovery rate limit, and `OIDC_ISSUER/CLIENT_ID/CLIENT_SECRET/SCOPES`.

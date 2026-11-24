@@ -28,7 +28,7 @@ from gobernar360.dashboards.procedures.schemas import (
     SourceOpportunity,
     SummaryOut,
 )
-from gobernar360.dashboards.registry import SummaryIndicator
+from gobernar360.dashboards.registry import IndicatorDefinition, SummaryIndicator
 from gobernar360.platform.access import RequestContext
 
 router = APIRouter()
@@ -36,6 +36,24 @@ router = APIRouter()
 TOP_REQUIREMENTS = 10
 ONLINE_CHANNELS = ("online", "both")
 ACTIVE = Procedure.is_active.is_(True)
+
+# The inventory is kept as it stands today, with no record of when a procedure went
+# online or stopped being offered, so none of these can be rebuilt for a past month.
+INDICATORS = (
+    IndicatorDefinition("procedures.active", name="Trámites vigentes", aggregate=True),
+    IndicatorDefinition("procedures.online", name="Trámites en línea", aggregate=True),
+    IndicatorDefinition(
+        "procedures.online_ratio", "ratio", name="Trámites con canal en línea", aggregate=True
+    ),
+    # Every requirement is something a person has to bring or the municipality to fetch.
+    IndicatorDefinition(
+        "procedures.requirements",
+        higher_is_better=False,
+        name="Requisitos cargados",
+        aggregate=True,
+    ),
+    IndicatorDefinition("procedures.sources", name="Fuentes cargadas", aggregate=True),
+)
 
 
 def summary_of(ctx: RequestContext) -> SummaryOut:
@@ -145,6 +163,7 @@ def get_summary(ctx: RequestContext, today: date) -> list[SummaryIndicator]:
     online_ratio = summary.online / summary.procedures if summary.procedures else None
     return [
         SummaryIndicator("procedures.active", summary.procedures),
+        SummaryIndicator("procedures.online", summary.online),
         SummaryIndicator("procedures.online_ratio", online_ratio, "ratio"),
         SummaryIndicator("procedures.requirements", summary.requirements),
         SummaryIndicator("procedures.sources", summary.sources),

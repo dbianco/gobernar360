@@ -13,10 +13,13 @@ import { ForgotPasswordPage } from './platform/ForgotPasswordPage'
 import { LoginPage } from './platform/LoginPage'
 import { MunicipalityPage } from './platform/MunicipalityPage'
 import { OperatorPage } from './platform/OperatorPage'
+import { PublicationPage } from './platform/publication/PublicationPage'
+import { ReportsPage } from './platform/reports/ReportsPage'
 import { RequireDashboard } from './platform/RequireDashboard'
 import { SetPasswordPage } from './platform/SetPasswordPage'
 import { activeMembership } from './platform/access'
 import { type Me } from './platform/types'
+import { PublicPage } from './public/PublicPage'
 
 // Loaded on demand: it brings the email editor, which is large.
 const MunicipalitySettingsPage = lazy(() => import('./platform/MunicipalitySettingsPage'))
@@ -53,6 +56,8 @@ export default function App() {
       {/* Reached from emails; they work signed in or not. */}
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/set-password" element={<SetPasswordPage />} />
+      {/* Open to anyone: reads only what the municipality published. */}
+      <Route path="/p/:slug" element={<PublicPage />} />
       <Route element={<SignedIn />}>
         <Route index element={<OverviewPage />} />
         <Route path="account" element={<AccountPage />} />
@@ -61,6 +66,22 @@ export default function App() {
           element={
             <Only when={(me) => activeMembership(me)?.is_admin === true}>
               <AdminRoutes />
+            </Only>
+          }
+        />
+        <Route
+          path="admin/reports"
+          element={
+            <Only when={(me) => activeMembership(me)?.is_admin === true}>
+              <ReportsPage />
+            </Only>
+          }
+        />
+        <Route
+          path="admin/publication"
+          element={
+            <Only when={(me) => activeMembership(me)?.is_admin === true}>
+              <PublicationPage />
             </Only>
           }
         />

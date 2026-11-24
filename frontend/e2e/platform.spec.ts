@@ -114,7 +114,9 @@ test('admin grants a user read access and the dashboard appears for them', async
   await login(page, 'sinacceso@noetinger.test')
   await sidebar(page).getByRole('link', { name: 'Proyectos' }).click()
   await expect(page.getByRole('heading', { name: 'Proyectos', level: 2 })).toBeVisible()
-  await expect(page.getByText('Proyectos activos')).toBeVisible()
+  await expect(
+    page.getByRole('region', { name: 'Indicadores clave' }).getByText('Proyectos activos'),
+  ).toBeVisible()
 })
 
 test('operator opens the configuration of a municipality and changes who gets its notices', async ({

@@ -1,0 +1,832 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds a resident the registry does not have > screen at the end 1`] = `"detail page"`;
+
+exports[`adds a resident the registry does not have > screen at the start 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Área
+Todas las áreas
+Zona
+Todas las zonas
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+[Cargando…]"
+`;
+
+exports[`asks for parameters before registering, and reports a list that cannot load > screen at the end 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Bache
+Luminaria apagada
+Operativo de ramas
+Área
+Todas las áreas
+Alumbrado Público
+Obras Públicas
+Zona
+Todas las zonas
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+Para registrar reclamos primero hay que cargar tipos y zonas en Parámetros.
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`asks for parameters before registering, and reports a list that cannot load > screen at the start 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Área
+Todas las áreas
+Zona
+Todas las zonas
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+[Cargando…]"
+`;
+
+exports[`does not look up a document that cannot be one > screen at the end 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Bache
+Luminaria apagada
+Operativo de ramas
+Área
+Todas las áreas
+Alumbrado Público
+Obras Públicas
+Zona
+Todas las zonas
+Centro
+Norte
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+Nuevo reclamo
+[Reclamos]
+N.º
+[Qué significa N.º]
+Número del reclamo en el municipio, correlativo. Es el que se le da al vecino.
+Recibido
+[Qué significa Recibido]
+Día en que se recibió el reclamo.
+Tipo
+[Qué significa Tipo]
+Qué se reclama. Define el área a la que se deriva y el plazo objetivo.
+Área
+[Qué significa Área]
+Área que tiene el reclamo en su bandeja.
+Zona
+[Qué significa Zona]
+Parte de la localidad donde está el problema.
+Dirección
+[Qué significa Dirección]
+Dónde está el problema.
+Estado
+[Qué significa Estado]
+En qué paso del circuito está el reclamo.
+Vence
+[Qué significa Vence]
+Día hábil en que se cumple el plazo objetivo. Si el reclamo espera al vecino, el vencimiento se corre.
+Situación
+[Qué significa Situación]
+En plazo, en riesgo (queda un cuarto del plazo o menos) o vencido, contado en días hábiles sin los días de espera al vecino.
+[Abrir reclamo 101]
+101
+02/03/2026
+Luminaria apagada
+Alumbrado Público
+Centro
+San Martín 450
+En curso
+05/03/2026
+En plazo
+Quedan 2 días hábiles
+Nuevo reclamo
+Tipo de reclamo
+Bache
+Luminaria apagada
+Se deriva a Obras Públicas, con un plazo de 15 días hábiles.
+Zona
+Centro
+Norte
+Dirección
+Dónde está el problema.
+Descripción
+Quién reclama
+[Quién reclama]
+Anónimo
+Vecino con DNI
+DNI del vecino
+Se busca en el padrón del municipio.
+El DNI tiene que tener entre 6 y 9 dígitos.
+Buscar en el padrón
+Cancelar
+Guardar"
+`;
+
+exports[`does not look up a document that cannot be one > screen at the start 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Área
+Todas las áreas
+Zona
+Todas las zonas
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+[Cargando…]"
+`;
+
+exports[`does not save an identified complaint with a malformed document, and cancels > screen at the end 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Bache
+Luminaria apagada
+Operativo de ramas
+Área
+Todas las áreas
+Alumbrado Público
+Obras Públicas
+Zona
+Todas las zonas
+Centro
+Norte
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+Nuevo reclamo
+[Reclamos]
+N.º
+[Qué significa N.º]
+Número del reclamo en el municipio, correlativo. Es el que se le da al vecino.
+Recibido
+[Qué significa Recibido]
+Día en que se recibió el reclamo.
+Tipo
+[Qué significa Tipo]
+Qué se reclama. Define el área a la que se deriva y el plazo objetivo.
+Área
+[Qué significa Área]
+Área que tiene el reclamo en su bandeja.
+Zona
+[Qué significa Zona]
+Parte de la localidad donde está el problema.
+Dirección
+[Qué significa Dirección]
+Dónde está el problema.
+Estado
+[Qué significa Estado]
+En qué paso del circuito está el reclamo.
+Vence
+[Qué significa Vence]
+Día hábil en que se cumple el plazo objetivo. Si el reclamo espera al vecino, el vencimiento se corre.
+Situación
+[Qué significa Situación]
+En plazo, en riesgo (queda un cuarto del plazo o menos) o vencido, contado en días hábiles sin los días de espera al vecino.
+[Abrir reclamo 101]
+101
+02/03/2026
+Luminaria apagada
+Alumbrado Público
+Centro
+San Martín 450
+En curso
+05/03/2026
+En plazo
+Quedan 2 días hábiles"
+`;
+
+exports[`does not save an identified complaint with a malformed document, and cancels > screen at the start 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Área
+Todas las áreas
+Zona
+Todas las zonas
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+[Cargando…]"
+`;
+
+exports[`files the complaint to a resident found in the registry by document > screen at the end 1`] = `"detail page"`;
+
+exports[`files the complaint to a resident found in the registry by document > screen at the start 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Área
+Todas las áreas
+Zona
+Todas las zonas
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+[Cargando…]"
+`;
+
+exports[`lists complaints with their state, deadline and how their clock stands > screen at the end 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Bache
+Luminaria apagada
+Operativo de ramas
+Área
+Todas las áreas
+Alumbrado Público
+Obras Públicas
+Zona
+Todas las zonas
+Centro
+Norte
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+[Reclamos]
+N.º
+[Qué significa N.º]
+Número del reclamo en el municipio, correlativo. Es el que se le da al vecino.
+Recibido
+[Qué significa Recibido]
+Día en que se recibió el reclamo.
+Tipo
+[Qué significa Tipo]
+Qué se reclama. Define el área a la que se deriva y el plazo objetivo.
+Área
+[Qué significa Área]
+Área que tiene el reclamo en su bandeja.
+Zona
+[Qué significa Zona]
+Parte de la localidad donde está el problema.
+Dirección
+[Qué significa Dirección]
+Dónde está el problema.
+Estado
+[Qué significa Estado]
+En qué paso del circuito está el reclamo.
+Vence
+[Qué significa Vence]
+Día hábil en que se cumple el plazo objetivo. Si el reclamo espera al vecino, el vencimiento se corre.
+Situación
+[Qué significa Situación]
+En plazo, en riesgo (queda un cuarto del plazo o menos) o vencido, contado en días hábiles sin los días de espera al vecino.
+[Abrir reclamo 101]
+101
+02/03/2026
+Luminaria apagada
+Alumbrado Público
+Centro
+San Martín 450
+En curso
+05/03/2026
+En plazo
+Quedan 2 días hábiles
+[Abrir reclamo 102]
+102
+02/03/2026
+Luminaria apagada
+Alumbrado Público
+Centro
+San Martín 450
+Esperando al vecino
+05/03/2026
+Vencido
+En pausa
+Vencido por 2 días hábiles
+[Abrir reclamo 103]
+103
+02/03/2026
+Luminaria apagada
+Alumbrado Público
+Centro
+San Martín 450
+Cerrado
+—
+Resuelto fuera de plazo
+Resuelto en 5 días hábiles"
+`;
+
+exports[`lists complaints with their state, deadline and how their clock stands > screen at the start 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Área
+Todas las áreas
+Zona
+Todas las zonas
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+[Cargando…]"
+`;
+
+exports[`pages through a long list and filters by type and area > screen at the end 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Bache
+Luminaria apagada
+Operativo de ramas
+Área
+Todas las áreas
+Alumbrado Público
+Obras Públicas
+Zona
+Todas las zonas
+Centro
+Norte
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+[Reclamos]
+N.º
+[Qué significa N.º]
+Número del reclamo en el municipio, correlativo. Es el que se le da al vecino.
+Recibido
+[Qué significa Recibido]
+Día en que se recibió el reclamo.
+Tipo
+[Qué significa Tipo]
+Qué se reclama. Define el área a la que se deriva y el plazo objetivo.
+Área
+[Qué significa Área]
+Área que tiene el reclamo en su bandeja.
+Zona
+[Qué significa Zona]
+Parte de la localidad donde está el problema.
+Dirección
+[Qué significa Dirección]
+Dónde está el problema.
+Estado
+[Qué significa Estado]
+En qué paso del circuito está el reclamo.
+Vence
+[Qué significa Vence]
+Día hábil en que se cumple el plazo objetivo. Si el reclamo espera al vecino, el vencimiento se corre.
+Situación
+[Qué significa Situación]
+En plazo, en riesgo (queda un cuarto del plazo o menos) o vencido, contado en días hábiles sin los días de espera al vecino.
+[Abrir reclamo 101]
+101
+02/03/2026
+Luminaria apagada
+Alumbrado Público
+Centro
+San Martín 450
+En curso
+05/03/2026
+En plazo
+Quedan 2 días hábiles
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–10 de 120
+Anterior
+Siguiente"
+`;
+
+exports[`pages through a long list and filters by type and area > screen at the start 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Área
+Todas las áreas
+Zona
+Todas las zonas
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+[Cargando…]"
+`;
+
+exports[`registers an anonymous complaint and opens it > screen at the end 1`] = `"detail page"`;
+
+exports[`registers an anonymous complaint and opens it > screen at the start 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Área
+Todas las áreas
+Zona
+Todas las zonas
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+[Cargando…]"
+`;
+
+exports[`sends the filters as the query and starts again from the first page > screen at the end 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Bache
+Luminaria apagada
+Operativo de ramas
+Área
+Todas las áreas
+Alumbrado Público
+Obras Públicas
+Zona
+Todas las zonas
+Centro
+Norte
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+Nuevo reclamo
+[Reclamos]
+N.º
+[Qué significa N.º]
+Número del reclamo en el municipio, correlativo. Es el que se le da al vecino.
+Recibido
+[Qué significa Recibido]
+Día en que se recibió el reclamo.
+Tipo
+[Qué significa Tipo]
+Qué se reclama. Define el área a la que se deriva y el plazo objetivo.
+Área
+[Qué significa Área]
+Área que tiene el reclamo en su bandeja.
+Zona
+[Qué significa Zona]
+Parte de la localidad donde está el problema.
+Dirección
+[Qué significa Dirección]
+Dónde está el problema.
+Estado
+[Qué significa Estado]
+En qué paso del circuito está el reclamo.
+Vence
+[Qué significa Vence]
+Día hábil en que se cumple el plazo objetivo. Si el reclamo espera al vecino, el vencimiento se corre.
+Situación
+[Qué significa Situación]
+En plazo, en riesgo (queda un cuarto del plazo o menos) o vencido, contado en días hábiles sin los días de espera al vecino.
+[Abrir reclamo 101]
+101
+02/03/2026
+Luminaria apagada
+Alumbrado Público
+Centro
+San Martín 450
+En curso
+05/03/2026
+En plazo
+Quedan 2 días hábiles"
+`;
+
+exports[`sends the filters as the query and starts again from the first page > screen at the start 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Área
+Todas las áreas
+Zona
+Todas las zonas
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+[Cargando…]"
+`;
+
+exports[`shows why the registry could not be asked, and why saving failed > screen at the end 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Bache
+Luminaria apagada
+Operativo de ramas
+Área
+Todas las áreas
+Alumbrado Público
+Obras Públicas
+Zona
+Todas las zonas
+Centro
+Norte
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+Nuevo reclamo
+[Reclamos]
+N.º
+[Qué significa N.º]
+Número del reclamo en el municipio, correlativo. Es el que se le da al vecino.
+Recibido
+[Qué significa Recibido]
+Día en que se recibió el reclamo.
+Tipo
+[Qué significa Tipo]
+Qué se reclama. Define el área a la que se deriva y el plazo objetivo.
+Área
+[Qué significa Área]
+Área que tiene el reclamo en su bandeja.
+Zona
+[Qué significa Zona]
+Parte de la localidad donde está el problema.
+Dirección
+[Qué significa Dirección]
+Dónde está el problema.
+Estado
+[Qué significa Estado]
+En qué paso del circuito está el reclamo.
+Vence
+[Qué significa Vence]
+Día hábil en que se cumple el plazo objetivo. Si el reclamo espera al vecino, el vencimiento se corre.
+Situación
+[Qué significa Situación]
+En plazo, en riesgo (queda un cuarto del plazo o menos) o vencido, contado en días hábiles sin los días de espera al vecino.
+[Abrir reclamo 101]
+101
+02/03/2026
+Luminaria apagada
+Alumbrado Público
+Centro
+San Martín 450
+En curso
+05/03/2026
+En plazo
+Quedan 2 días hábiles
+Nuevo reclamo
+Alguno de los datos seleccionados ya no existe.
+Tipo de reclamo
+Bache
+Luminaria apagada
+Se deriva a Alumbrado Público, con un plazo de 3 días hábiles.
+Zona
+Centro
+Norte
+Dirección
+Dónde está el problema.
+Descripción
+Quién reclama
+[Quién reclama]
+Anónimo
+Vecino con DNI
+Cancelar
+Guardar"
+`;
+
+exports[`shows why the registry could not be asked, and why saving failed > screen at the start 1`] = `
+"Buscar
+(Número, dirección o vecino)
+Estado
+Todos los estados
+Abiertos
+Recibido
+Asignado
+En curso
+Esperando al vecino
+Resuelto
+Cerrado
+Rechazado
+Reabierto
+Tipo
+Todos los tipos
+Área
+Todas las áreas
+Zona
+Todas las zonas
+Situación
+Todas
+En plazo
+En riesgo
+Vencido
+[Cargando…]"
+`;

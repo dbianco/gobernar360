@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next'
 
 import { EditableList, type ListItem } from '../../platform/EditableList'
 import { errorMessage } from '../../platform/errorMessage'
+import { IndicatorTargets } from '../../platform/indicators/IndicatorTargets'
 import {
   send,
   useAction,
@@ -236,6 +237,7 @@ export function ParametersPage() {
           <Tabs.Tab value="departments">{label('departments')}</Tabs.Tab>
           <Tabs.Tab value="programs">{label('programs')}</Tabs.Tab>
           <Tabs.Tab value="owners">{label('owners')}</Tabs.Tab>
+          <Tabs.Tab value="targets">{label('targets')}</Tabs.Tab>
         </Tabs.List>
         <Tabs.Panel value="terms">
           <TermsTab terms={termList} selected={selected} run={action.run} />
@@ -256,6 +258,9 @@ export function ParametersPage() {
             items={(owners.data ?? []).map((owner) => ({ id: owner.id, name: owner.full_name }))}
             run={action.run}
           />
+        </Tabs.Panel>
+        <Tabs.Panel value="targets">
+          <IndicatorTargets dashboardKey="projects" />
         </Tabs.Panel>
       </Tabs>
     </Stack>

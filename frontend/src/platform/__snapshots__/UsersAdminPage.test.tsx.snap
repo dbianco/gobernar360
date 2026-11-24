@@ -210,10 +210,12 @@ exports[`is reachable for municipality admins > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Usuarios del municipio
@@ -366,7 +368,7 @@ exports[`redirects non-admin members away > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Resumen general
 No tenés tableros habilitados

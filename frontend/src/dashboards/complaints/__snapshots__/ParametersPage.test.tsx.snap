@@ -1,0 +1,1213 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds a type routed to an area with its target > screen at the end 1`] = `
+"Áreas
+Oficinas que resuelven reclamos. Cada una tiene su bandeja.
+Alumbrado Público
+[Renombrar Alumbrado Público]
+Editar
+[Eliminar Alumbrado Público]
+Eliminar
+Obras Públicas
+[Renombrar Obras Públicas]
+Editar
+[Eliminar Obras Públicas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Zonas
+Partes de la localidad en las que se ubica cada reclamo.
+Centro
+[Renombrar Centro]
+Editar
+[Eliminar Centro]
+Eliminar
+Norte
+[Renombrar Norte]
+Editar
+[Eliminar Norte]
+Eliminar
+[Nueva zona]
+(Nueva zona)
+Agregar
+Tipos de reclamo
+Qué se reclama, a qué área se deriva y en cuántos días hábiles debería resolverse.
+Agregar tipo
+[Tipos de reclamo]
+Nombre
+[Qué significa Nombre]
+Qué se reclama.
+Área
+[Qué significa Área]
+Área a la que se derivan los reclamos nuevos de este tipo.
+Plazo
+[Qué significa Plazo]
+En cuántos días hábiles debería resolverse, sin contar los días de espera al vecino.
+Vigente
+[Qué significa Vigente]
+Los tipos no vigentes no se ofrecen para reclamos nuevos, pero siguen en los números.
+Bache
+Obras Públicas
+15 días hábiles
+Sí
+[Editar tipo: Bache]
+Editar
+[Eliminar tipo: Bache]
+Eliminar
+Luminaria apagada
+Alumbrado Público
+3 días hábiles
+Sí
+[Editar tipo: Luminaria apagada]
+Editar
+[Eliminar tipo: Luminaria apagada]
+Eliminar
+Operativo de ramas
+Alumbrado Público
+10 días hábiles
+No vigente
+[Editar tipo: Operativo de ramas]
+Editar
+[Eliminar tipo: Operativo de ramas]
+Eliminar
+Calendario
+Los días que cuenta el reloj de servicio. Un cambio acá se aplica también a los reclamos anteriores.
+Días hábiles de la semana
+Lunes
+Martes
+Miércoles
+Jueves
+Viernes
+Sábado
+Domingo
+Guardar días hábiles
+Feriados
+[Feriados]
+Fecha
+[Qué significa Fecha]
+Día que el reloj de servicio no cuenta.
+Motivo
+[Qué significa Motivo]
+Por qué no se trabaja ese día.
+24/03/2026
+Día de la Memoria
+[Eliminar feriado: Día de la Memoria 24/03/2026]
+Eliminar
+Fecha
+Motivo
+Agregar feriado
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
+`;
+
+exports[`adds a type routed to an area with its target > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`adds, renames and deletes areas and zones > screen at the end 1`] = `
+"Áreas
+Oficinas que resuelven reclamos. Cada una tiene su bandeja.
+Alumbrado Público
+[Renombrar Alumbrado Público]
+Editar
+[Eliminar Alumbrado Público]
+Eliminar
+Obras Públicas
+[Renombrar Obras Públicas]
+Editar
+[Eliminar Obras Públicas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Zonas
+Partes de la localidad en las que se ubica cada reclamo.
+Centro
+[Renombrar Centro]
+Editar
+[Eliminar Centro]
+Eliminar
+Norte
+[Renombrar Norte]
+Editar
+[Eliminar Norte]
+Eliminar
+[Nueva zona]
+(Nueva zona)
+Agregar
+Tipos de reclamo
+Qué se reclama, a qué área se deriva y en cuántos días hábiles debería resolverse.
+Agregar tipo
+[Tipos de reclamo]
+Nombre
+[Qué significa Nombre]
+Qué se reclama.
+Área
+[Qué significa Área]
+Área a la que se derivan los reclamos nuevos de este tipo.
+Plazo
+[Qué significa Plazo]
+En cuántos días hábiles debería resolverse, sin contar los días de espera al vecino.
+Vigente
+[Qué significa Vigente]
+Los tipos no vigentes no se ofrecen para reclamos nuevos, pero siguen en los números.
+Bache
+Obras Públicas
+15 días hábiles
+Sí
+[Editar tipo: Bache]
+Editar
+[Eliminar tipo: Bache]
+Eliminar
+Luminaria apagada
+Alumbrado Público
+3 días hábiles
+Sí
+[Editar tipo: Luminaria apagada]
+Editar
+[Eliminar tipo: Luminaria apagada]
+Eliminar
+Operativo de ramas
+Alumbrado Público
+10 días hábiles
+No vigente
+[Editar tipo: Operativo de ramas]
+Editar
+[Eliminar tipo: Operativo de ramas]
+Eliminar
+Calendario
+Los días que cuenta el reloj de servicio. Un cambio acá se aplica también a los reclamos anteriores.
+Días hábiles de la semana
+Lunes
+Martes
+Miércoles
+Jueves
+Viernes
+Sábado
+Domingo
+Guardar días hábiles
+Feriados
+[Feriados]
+Fecha
+[Qué significa Fecha]
+Día que el reloj de servicio no cuenta.
+Motivo
+[Qué significa Motivo]
+Por qué no se trabaja ese día.
+24/03/2026
+Día de la Memoria
+[Eliminar feriado: Día de la Memoria 24/03/2026]
+Eliminar
+Fecha
+Motivo
+Agregar feriado
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
+`;
+
+exports[`adds, renames and deletes areas and zones > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`asks for an area before any type > screen at the end 1`] = `
+"Áreas
+Oficinas que resuelven reclamos. Cada una tiene su bandeja.
+Todavía no hay elementos cargados.
+[Nueva área]
+(Nueva área)
+Agregar
+Zonas
+Partes de la localidad en las que se ubica cada reclamo.
+Centro
+[Renombrar Centro]
+Editar
+[Eliminar Centro]
+Eliminar
+Norte
+[Renombrar Norte]
+Editar
+[Eliminar Norte]
+Eliminar
+[Nueva zona]
+(Nueva zona)
+Agregar
+Tipos de reclamo
+Qué se reclama, a qué área se deriva y en cuántos días hábiles debería resolverse.
+Agregar tipo
+Para cargar tipos primero cargá un área.
+Todavía no hay tipos cargados.
+Calendario
+Los días que cuenta el reloj de servicio. Un cambio acá se aplica también a los reclamos anteriores.
+Días hábiles de la semana
+Lunes
+Martes
+Miércoles
+Jueves
+Viernes
+Sábado
+Domingo
+Guardar días hábiles
+Feriados
+[Feriados]
+Fecha
+[Qué significa Fecha]
+Día que el reloj de servicio no cuenta.
+Motivo
+[Qué significa Motivo]
+Por qué no se trabaja ese día.
+24/03/2026
+Día de la Memoria
+[Eliminar feriado: Día de la Memoria 24/03/2026]
+Eliminar
+Fecha
+Motivo
+Agregar feriado
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
+`;
+
+exports[`asks for an area before any type > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`closes the type form without saving > screen at the end 1`] = `
+"Áreas
+Oficinas que resuelven reclamos. Cada una tiene su bandeja.
+Alumbrado Público
+[Renombrar Alumbrado Público]
+Editar
+[Eliminar Alumbrado Público]
+Eliminar
+Obras Públicas
+[Renombrar Obras Públicas]
+Editar
+[Eliminar Obras Públicas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Zonas
+Partes de la localidad en las que se ubica cada reclamo.
+Centro
+[Renombrar Centro]
+Editar
+[Eliminar Centro]
+Eliminar
+Norte
+[Renombrar Norte]
+Editar
+[Eliminar Norte]
+Eliminar
+[Nueva zona]
+(Nueva zona)
+Agregar
+Tipos de reclamo
+Qué se reclama, a qué área se deriva y en cuántos días hábiles debería resolverse.
+Agregar tipo
+[Tipos de reclamo]
+Nombre
+[Qué significa Nombre]
+Qué se reclama.
+Área
+[Qué significa Área]
+Área a la que se derivan los reclamos nuevos de este tipo.
+Plazo
+[Qué significa Plazo]
+En cuántos días hábiles debería resolverse, sin contar los días de espera al vecino.
+Vigente
+[Qué significa Vigente]
+Los tipos no vigentes no se ofrecen para reclamos nuevos, pero siguen en los números.
+Bache
+Obras Públicas
+15 días hábiles
+Sí
+[Editar tipo: Bache]
+Editar
+[Eliminar tipo: Bache]
+Eliminar
+Luminaria apagada
+Alumbrado Público
+3 días hábiles
+Sí
+[Editar tipo: Luminaria apagada]
+Editar
+[Eliminar tipo: Luminaria apagada]
+Eliminar
+Operativo de ramas
+Alumbrado Público
+10 días hábiles
+No vigente
+[Editar tipo: Operativo de ramas]
+Editar
+[Eliminar tipo: Operativo de ramas]
+Eliminar
+Calendario
+Los días que cuenta el reloj de servicio. Un cambio acá se aplica también a los reclamos anteriores.
+Días hábiles de la semana
+Lunes
+Martes
+Miércoles
+Jueves
+Viernes
+Sábado
+Domingo
+Guardar días hábiles
+Feriados
+[Feriados]
+Fecha
+[Qué significa Fecha]
+Día que el reloj de servicio no cuenta.
+Motivo
+[Qué significa Motivo]
+Por qué no se trabaja ese día.
+24/03/2026
+Día de la Memoria
+[Eliminar feriado: Día de la Memoria 24/03/2026]
+Eliminar
+Fecha
+Motivo
+Agregar feriado
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
+`;
+
+exports[`closes the type form without saving > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`deletes a type, showing why when it is in use > screen at the end 1`] = `
+"No se puede eliminar porque está siendo usado por otros registros.
+Áreas
+Oficinas que resuelven reclamos. Cada una tiene su bandeja.
+Alumbrado Público
+[Renombrar Alumbrado Público]
+Editar
+[Eliminar Alumbrado Público]
+Eliminar
+Obras Públicas
+[Renombrar Obras Públicas]
+Editar
+[Eliminar Obras Públicas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Zonas
+Partes de la localidad en las que se ubica cada reclamo.
+Centro
+[Renombrar Centro]
+Editar
+[Eliminar Centro]
+Eliminar
+Norte
+[Renombrar Norte]
+Editar
+[Eliminar Norte]
+Eliminar
+[Nueva zona]
+(Nueva zona)
+Agregar
+Tipos de reclamo
+Qué se reclama, a qué área se deriva y en cuántos días hábiles debería resolverse.
+Agregar tipo
+[Tipos de reclamo]
+Nombre
+[Qué significa Nombre]
+Qué se reclama.
+Área
+[Qué significa Área]
+Área a la que se derivan los reclamos nuevos de este tipo.
+Plazo
+[Qué significa Plazo]
+En cuántos días hábiles debería resolverse, sin contar los días de espera al vecino.
+Vigente
+[Qué significa Vigente]
+Los tipos no vigentes no se ofrecen para reclamos nuevos, pero siguen en los números.
+Bache
+Obras Públicas
+15 días hábiles
+Sí
+[Editar tipo: Bache]
+Editar
+[Eliminar tipo: Bache]
+Eliminar
+Luminaria apagada
+Alumbrado Público
+3 días hábiles
+Sí
+[Editar tipo: Luminaria apagada]
+Editar
+[Eliminar tipo: Luminaria apagada]
+Eliminar
+Operativo de ramas
+Alumbrado Público
+10 días hábiles
+No vigente
+[Editar tipo: Operativo de ramas]
+Editar
+[Eliminar tipo: Operativo de ramas]
+Eliminar
+Calendario
+Los días que cuenta el reloj de servicio. Un cambio acá se aplica también a los reclamos anteriores.
+Días hábiles de la semana
+Lunes
+Martes
+Miércoles
+Jueves
+Viernes
+Sábado
+Domingo
+Guardar días hábiles
+Feriados
+[Feriados]
+Fecha
+[Qué significa Fecha]
+Día que el reloj de servicio no cuenta.
+Motivo
+[Qué significa Motivo]
+Por qué no se trabaja ese día.
+24/03/2026
+Día de la Memoria
+[Eliminar feriado: Día de la Memoria 24/03/2026]
+Eliminar
+Fecha
+Motivo
+Agregar feriado
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
+`;
+
+exports[`deletes a type, showing why when it is in use > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lists the types with their area, target and whether they are offered > screen at the end 1`] = `
+"Áreas
+Oficinas que resuelven reclamos. Cada una tiene su bandeja.
+Alumbrado Público
+[Renombrar Alumbrado Público]
+Editar
+[Eliminar Alumbrado Público]
+Eliminar
+Obras Públicas
+[Renombrar Obras Públicas]
+Editar
+[Eliminar Obras Públicas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Zonas
+Partes de la localidad en las que se ubica cada reclamo.
+Centro
+[Renombrar Centro]
+Editar
+[Eliminar Centro]
+Eliminar
+Norte
+[Renombrar Norte]
+Editar
+[Eliminar Norte]
+Eliminar
+[Nueva zona]
+(Nueva zona)
+Agregar
+Tipos de reclamo
+Qué se reclama, a qué área se deriva y en cuántos días hábiles debería resolverse.
+Agregar tipo
+[Tipos de reclamo]
+Nombre
+[Qué significa Nombre]
+Qué se reclama.
+Área
+[Qué significa Área]
+Área a la que se derivan los reclamos nuevos de este tipo.
+Plazo
+[Qué significa Plazo]
+En cuántos días hábiles debería resolverse, sin contar los días de espera al vecino.
+Vigente
+[Qué significa Vigente]
+Los tipos no vigentes no se ofrecen para reclamos nuevos, pero siguen en los números.
+Bache
+Obras Públicas
+15 días hábiles
+Sí
+[Editar tipo: Bache]
+Editar
+[Eliminar tipo: Bache]
+Eliminar
+Luminaria apagada
+Alumbrado Público
+3 días hábiles
+Sí
+[Editar tipo: Luminaria apagada]
+Editar
+[Eliminar tipo: Luminaria apagada]
+Eliminar
+Operativo de ramas
+Alumbrado Público
+10 días hábiles
+No vigente
+[Editar tipo: Operativo de ramas]
+Editar
+[Eliminar tipo: Operativo de ramas]
+Eliminar
+Calendario
+Los días que cuenta el reloj de servicio. Un cambio acá se aplica también a los reclamos anteriores.
+Días hábiles de la semana
+Lunes
+Martes
+Miércoles
+Jueves
+Viernes
+Sábado
+Domingo
+Guardar días hábiles
+Feriados
+[Feriados]
+Fecha
+[Qué significa Fecha]
+Día que el reloj de servicio no cuenta.
+Motivo
+[Qué significa Motivo]
+Por qué no se trabaja ese día.
+24/03/2026
+Día de la Memoria
+[Eliminar feriado: Día de la Memoria 24/03/2026]
+Eliminar
+Fecha
+Motivo
+Agregar feriado
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
+`;
+
+exports[`lists the types with their area, target and whether they are offered > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`removes a holiday > screen at the end 1`] = `
+"Áreas
+Oficinas que resuelven reclamos. Cada una tiene su bandeja.
+Alumbrado Público
+[Renombrar Alumbrado Público]
+Editar
+[Eliminar Alumbrado Público]
+Eliminar
+Obras Públicas
+[Renombrar Obras Públicas]
+Editar
+[Eliminar Obras Públicas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Zonas
+Partes de la localidad en las que se ubica cada reclamo.
+Centro
+[Renombrar Centro]
+Editar
+[Eliminar Centro]
+Eliminar
+Norte
+[Renombrar Norte]
+Editar
+[Eliminar Norte]
+Eliminar
+[Nueva zona]
+(Nueva zona)
+Agregar
+Tipos de reclamo
+Qué se reclama, a qué área se deriva y en cuántos días hábiles debería resolverse.
+Agregar tipo
+[Tipos de reclamo]
+Nombre
+[Qué significa Nombre]
+Qué se reclama.
+Área
+[Qué significa Área]
+Área a la que se derivan los reclamos nuevos de este tipo.
+Plazo
+[Qué significa Plazo]
+En cuántos días hábiles debería resolverse, sin contar los días de espera al vecino.
+Vigente
+[Qué significa Vigente]
+Los tipos no vigentes no se ofrecen para reclamos nuevos, pero siguen en los números.
+Bache
+Obras Públicas
+15 días hábiles
+Sí
+[Editar tipo: Bache]
+Editar
+[Eliminar tipo: Bache]
+Eliminar
+Luminaria apagada
+Alumbrado Público
+3 días hábiles
+Sí
+[Editar tipo: Luminaria apagada]
+Editar
+[Eliminar tipo: Luminaria apagada]
+Eliminar
+Operativo de ramas
+Alumbrado Público
+10 días hábiles
+No vigente
+[Editar tipo: Operativo de ramas]
+Editar
+[Eliminar tipo: Operativo de ramas]
+Eliminar
+Calendario
+Los días que cuenta el reloj de servicio. Un cambio acá se aplica también a los reclamos anteriores.
+Días hábiles de la semana
+Lunes
+Martes
+Miércoles
+Jueves
+Viernes
+Sábado
+Domingo
+Guardar días hábiles
+Feriados
+[Feriados]
+Fecha
+[Qué significa Fecha]
+Día que el reloj de servicio no cuenta.
+Motivo
+[Qué significa Motivo]
+Por qué no se trabaja ese día.
+24/03/2026
+Día de la Memoria
+[Eliminar feriado: Día de la Memoria 24/03/2026]
+Eliminar
+Fecha
+Motivo
+Agregar feriado
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
+`;
+
+exports[`removes a holiday > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`reports parameters that fail to load > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
+
+exports[`reports parameters that fail to load > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`retires a type > screen at the end 1`] = `
+"Áreas
+Oficinas que resuelven reclamos. Cada una tiene su bandeja.
+Alumbrado Público
+[Renombrar Alumbrado Público]
+Editar
+[Eliminar Alumbrado Público]
+Eliminar
+Obras Públicas
+[Renombrar Obras Públicas]
+Editar
+[Eliminar Obras Públicas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Zonas
+Partes de la localidad en las que se ubica cada reclamo.
+Centro
+[Renombrar Centro]
+Editar
+[Eliminar Centro]
+Eliminar
+Norte
+[Renombrar Norte]
+Editar
+[Eliminar Norte]
+Eliminar
+[Nueva zona]
+(Nueva zona)
+Agregar
+Tipos de reclamo
+Qué se reclama, a qué área se deriva y en cuántos días hábiles debería resolverse.
+Agregar tipo
+[Tipos de reclamo]
+Nombre
+[Qué significa Nombre]
+Qué se reclama.
+Área
+[Qué significa Área]
+Área a la que se derivan los reclamos nuevos de este tipo.
+Plazo
+[Qué significa Plazo]
+En cuántos días hábiles debería resolverse, sin contar los días de espera al vecino.
+Vigente
+[Qué significa Vigente]
+Los tipos no vigentes no se ofrecen para reclamos nuevos, pero siguen en los números.
+Bache
+Obras Públicas
+15 días hábiles
+Sí
+[Editar tipo: Bache]
+Editar
+[Eliminar tipo: Bache]
+Eliminar
+Luminaria apagada
+Alumbrado Público
+3 días hábiles
+Sí
+[Editar tipo: Luminaria apagada]
+Editar
+[Eliminar tipo: Luminaria apagada]
+Eliminar
+Operativo de ramas
+Alumbrado Público
+10 días hábiles
+No vigente
+[Editar tipo: Operativo de ramas]
+Editar
+[Eliminar tipo: Operativo de ramas]
+Eliminar
+Calendario
+Los días que cuenta el reloj de servicio. Un cambio acá se aplica también a los reclamos anteriores.
+Días hábiles de la semana
+Lunes
+Martes
+Miércoles
+Jueves
+Viernes
+Sábado
+Domingo
+Guardar días hábiles
+Feriados
+[Feriados]
+Fecha
+[Qué significa Fecha]
+Día que el reloj de servicio no cuenta.
+Motivo
+[Qué significa Motivo]
+Por qué no se trabaja ese día.
+24/03/2026
+Día de la Memoria
+[Eliminar feriado: Día de la Memoria 24/03/2026]
+Eliminar
+Fecha
+Motivo
+Agregar feriado
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
+`;
+
+exports[`retires a type > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`sets the working weekdays and adds a holiday > screen at the end 1`] = `
+"Áreas
+Oficinas que resuelven reclamos. Cada una tiene su bandeja.
+Alumbrado Público
+[Renombrar Alumbrado Público]
+Editar
+[Eliminar Alumbrado Público]
+Eliminar
+Obras Públicas
+[Renombrar Obras Públicas]
+Editar
+[Eliminar Obras Públicas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Zonas
+Partes de la localidad en las que se ubica cada reclamo.
+Centro
+[Renombrar Centro]
+Editar
+[Eliminar Centro]
+Eliminar
+Norte
+[Renombrar Norte]
+Editar
+[Eliminar Norte]
+Eliminar
+[Nueva zona]
+(Nueva zona)
+Agregar
+Tipos de reclamo
+Qué se reclama, a qué área se deriva y en cuántos días hábiles debería resolverse.
+Agregar tipo
+[Tipos de reclamo]
+Nombre
+[Qué significa Nombre]
+Qué se reclama.
+Área
+[Qué significa Área]
+Área a la que se derivan los reclamos nuevos de este tipo.
+Plazo
+[Qué significa Plazo]
+En cuántos días hábiles debería resolverse, sin contar los días de espera al vecino.
+Vigente
+[Qué significa Vigente]
+Los tipos no vigentes no se ofrecen para reclamos nuevos, pero siguen en los números.
+Bache
+Obras Públicas
+15 días hábiles
+Sí
+[Editar tipo: Bache]
+Editar
+[Eliminar tipo: Bache]
+Eliminar
+Luminaria apagada
+Alumbrado Público
+3 días hábiles
+Sí
+[Editar tipo: Luminaria apagada]
+Editar
+[Eliminar tipo: Luminaria apagada]
+Eliminar
+Operativo de ramas
+Alumbrado Público
+10 días hábiles
+No vigente
+[Editar tipo: Operativo de ramas]
+Editar
+[Eliminar tipo: Operativo de ramas]
+Eliminar
+Calendario
+Los días que cuenta el reloj de servicio. Un cambio acá se aplica también a los reclamos anteriores.
+Días hábiles de la semana
+Lunes
+Martes
+Miércoles
+Jueves
+Viernes
+Sábado
+Domingo
+Guardar días hábiles
+Feriados
+[Feriados]
+Fecha
+[Qué significa Fecha]
+Día que el reloj de servicio no cuenta.
+Motivo
+[Qué significa Motivo]
+Por qué no se trabaja ese día.
+24/03/2026
+Día de la Memoria
+[Eliminar feriado: Día de la Memoria 24/03/2026]
+Eliminar
+Fecha
+Motivo
+Agregar feriado
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
+`;
+
+exports[`sets the working weekdays and adds a holiday > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows why a type, the weekdays or a holiday could not be saved > screen at the end 1`] = `
+"Áreas
+Oficinas que resuelven reclamos. Cada una tiene su bandeja.
+Alumbrado Público
+[Renombrar Alumbrado Público]
+Editar
+[Eliminar Alumbrado Público]
+Eliminar
+Obras Públicas
+[Renombrar Obras Públicas]
+Editar
+[Eliminar Obras Públicas]
+Eliminar
+[Nueva área]
+(Nueva área)
+Agregar
+Zonas
+Partes de la localidad en las que se ubica cada reclamo.
+Centro
+[Renombrar Centro]
+Editar
+[Eliminar Centro]
+Eliminar
+Norte
+[Renombrar Norte]
+Editar
+[Eliminar Norte]
+Eliminar
+[Nueva zona]
+(Nueva zona)
+Agregar
+Tipos de reclamo
+Qué se reclama, a qué área se deriva y en cuántos días hábiles debería resolverse.
+Agregar tipo
+[Tipos de reclamo]
+Nombre
+[Qué significa Nombre]
+Qué se reclama.
+Área
+[Qué significa Área]
+Área a la que se derivan los reclamos nuevos de este tipo.
+Plazo
+[Qué significa Plazo]
+En cuántos días hábiles debería resolverse, sin contar los días de espera al vecino.
+Vigente
+[Qué significa Vigente]
+Los tipos no vigentes no se ofrecen para reclamos nuevos, pero siguen en los números.
+Bache
+Obras Públicas
+15 días hábiles
+Sí
+[Editar tipo: Bache]
+Editar
+[Eliminar tipo: Bache]
+Eliminar
+Luminaria apagada
+Alumbrado Público
+3 días hábiles
+Sí
+[Editar tipo: Luminaria apagada]
+Editar
+[Eliminar tipo: Luminaria apagada]
+Eliminar
+Operativo de ramas
+Alumbrado Público
+10 días hábiles
+No vigente
+[Editar tipo: Operativo de ramas]
+Editar
+[Eliminar tipo: Operativo de ramas]
+Eliminar
+Calendario
+Los días que cuenta el reloj de servicio. Un cambio acá se aplica también a los reclamos anteriores.
+Días hábiles de la semana
+Lunes
+Martes
+Miércoles
+Jueves
+Viernes
+Sábado
+Domingo
+Guardar días hábiles
+Feriados
+No hay feriados cargados.
+Fecha
+Motivo
+Agregar feriado
+La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
+`;
+
+exports[`shows why a type, the weekdays or a holiday could not be saved > screen at the start 1`] = `"[Cargando…]"`;

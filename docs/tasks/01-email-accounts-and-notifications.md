@@ -1,4 +1,4 @@
-# Task 01: Accounts by email, notifications and single sign-on
+# Task 01: Accounts by email, notifications and single sign-on - DONE
 
 ## Task description
 

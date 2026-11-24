@@ -1,4 +1,4 @@
-import { MantineProvider } from '@mantine/core'
+import { createTheme, MantineProvider, Popover, Tooltip } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { render } from '@testing-library/react'
@@ -11,6 +11,16 @@ import { ConfirmProvider } from '../platform/ConfirmProvider'
 import type { Me } from '../platform/types'
 import { screenText } from './screen'
 import { mockApi, mockApiError } from './server'
+
+// jsdom lays nothing out, so every element has an empty box. Popovers and tooltips would
+// then hide themselves as soon as their position is computed, as if their target had
+// scrolled out of view, and a test could find a menu open or hidden depending on timing.
+const theme = createTheme({
+  components: {
+    Popover: Popover.extend({ defaultProps: { hideDetached: false } }),
+    Tooltip: Tooltip.extend({ defaultProps: { hideDetached: false } }),
+  },
+})
 
 /** Translate a key the same way components do, so tests do not hard-code copy. */
 export const t = (key: string, options: Record<string, unknown> = {}): string =>
@@ -29,7 +39,7 @@ export function renderApp(ui: ReactElement, options: { route?: string; me?: Me |
   })
   const view = render(
     // Tests run without transitions: elements appear at once, whatever the Mantine version.
-    <MantineProvider env="test">
+    <MantineProvider env="test" theme={theme}>
       <Notifications />
       <QueryClientProvider client={queryClient}>
         <MemoryRouter initialEntries={[options.route ?? '/']}>

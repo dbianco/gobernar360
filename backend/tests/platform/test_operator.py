@@ -117,6 +117,7 @@ def test_operator_renames_a_municipality_and_changes_its_kind(operator_client):
         "slug": "noetinger",
         "kind": "commune",
         "dashboards": ["demo"],
+        "suspension": None,
     }
 
 

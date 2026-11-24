@@ -15,7 +15,32 @@ Todavía no hay elementos cargados.
 (Nueva subcategoría)
 Agregar
 Variables
-Para definir variables primero agregá una subcategoría."
+Para definir variables primero agregá una subcategoría.
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`adds a subcategory to the chosen category > screen at the start 1`] = `"[Cargando…]"`;
@@ -35,7 +60,32 @@ Todavía no hay elementos cargados.
 (Nueva subcategoría)
 Agregar
 Variables
-Para definir variables primero agregá una subcategoría."
+Para definir variables primero agregá una subcategoría.
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`asks for a subcategory before a variable can be added > screen at the start 1`] = `"[Cargando…]"`;
@@ -81,7 +131,32 @@ Mensual
 [Editar variable: Consumo del palacio municipal]
 Editar
 [Eliminar variable: Consumo del palacio municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`closes the form with Escape without saving > screen at the start 1`] = `"[Cargando…]"`;
@@ -127,7 +202,32 @@ Mensual
 [Editar variable: Consumo del palacio municipal]
 Editar
 [Eliminar variable: Consumo del palacio municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`creates a variable from the form > screen at the start 1`] = `"[Cargando…]"`;
@@ -178,7 +278,32 @@ Mensual
 [Editar variable: Consumo del palacio municipal]
 Editar
 [Eliminar variable: Consumo del palacio municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`creates an annual variable in another subcategory, and shows a missing target as none > screen at the start 1`] = `"[Cargando…]"`;
@@ -224,7 +349,32 @@ Mensual
 [Editar variable: Consumo del palacio municipal]
 Editar
 [Eliminar variable: Consumo del palacio municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`edits a variable without sending its frequency > screen at the start 1`] = `"[Cargando…]"`;
@@ -271,7 +421,32 @@ Mensual
 [Editar variable: Consumo del palacio municipal]
 Editar
 [Eliminar variable: Consumo del palacio municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`explains that a variable with values cannot be deleted > screen at the start 1`] = `"[Cargando…]"`;
@@ -318,6 +493,31 @@ Mensual
 Editar
 [Eliminar variable: Consumo del palacio municipal]
 Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60.
 Agregar variable
 La operación no se puede realizar: el registro ya existe o el municipio quedaría sin administrador.
 Subcategoría
@@ -386,7 +586,32 @@ Anual
 [Editar variable: Puntos de monitoreo]
 Editar
 [Eliminar variable: Puntos de monitoreo]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`lists the subcategories and variables of the chosen category > screen at the start 1`] = `"[Cargando…]"`;
@@ -432,7 +657,32 @@ Mensual
 [Editar variable: Consumo del palacio municipal]
 Editar
 [Eliminar variable: Consumo del palacio municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`reads a dotted target as thousands and rejects an ambiguous one > screen at the start 1`] = `"[Cargando…]"`;
@@ -478,7 +728,32 @@ Mensual
 [Editar variable: Consumo del palacio municipal]
 Editar
 [Eliminar variable: Consumo del palacio municipal]
-Eliminar"
+Eliminar
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`renames and deletes items of /subcategories > screen at the start 1`] = `"[Cargando…]"`;
@@ -506,7 +781,32 @@ Agregar variable
 Buscar
 (Variable o subcategoría)
 [Borrar la búsqueda]
-Nada coincide con la búsqueda."
+Nada coincide con la búsqueda.
+[Metas de los indicadores clave]
+Metas de los indicadores clave
+Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Indicador
+[Qué significa Indicador]
+Uno de los indicadores clave del resumen del tablero.
+Sentido
+[Qué significa Sentido]
+Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.
+Meta 2026
+[Qué significa Meta 2026]
+El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
 `;
 
 exports[`says when a category has subcategories but no variables, and when a search matches nothing > screen at the start 1`] = `"[Cargando…]"`;
