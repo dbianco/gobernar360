@@ -9,6 +9,8 @@ export interface AuthState {
   login: (email: string, password: string) => Promise<void>
   logout: () => Promise<void>
   setActiveMunicipality: (municipalityId: string) => Promise<void>
+  /** Show the user's own changes, e.g. a new name, returned by the API. */
+  updateMe: (me: Me) => void
 }
 
 export const AuthContext = createContext<AuthState | null>(null)

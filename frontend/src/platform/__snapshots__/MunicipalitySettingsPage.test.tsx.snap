@@ -6,10 +6,12 @@ exports[`keeps the configuration of a municipality away from non-operators > scr
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -25,7 +27,7 @@ exports[`saves what the operator changes in that municipality > screen at the en
 [Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Volver al municipio
 Noetinger
@@ -89,7 +91,7 @@ exports[`says so when the municipality does not exist > screen at the end 1`] = 
 [Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Volver al municipio
 El municipio no existe."
@@ -104,7 +106,7 @@ exports[`shows the operator the configuration of the municipality, with a way ba
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Volver al municipio
 Noetinger

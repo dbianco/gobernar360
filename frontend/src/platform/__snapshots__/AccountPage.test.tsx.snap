@@ -1,32 +1,59 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`changes the password > screen at the end 1`] = `
+exports[`asks for the current password before saving anything > screen at the end 1`] = `
 "Mi cuenta
-Cambiar contraseña
-La contraseña se cambió. Las demás sesiones abiertas se cerraron.
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
+*
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
+[Toggle password visibility]
+Confirmá los cambios
 Contraseña actual
 *
+Para guardar cualquier cambio de tu cuenta.
 [Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
+Guardar cambios
 Avisos por email
 Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
 `;
 
-exports[`changes the password > screen at the start 1`] = `
+exports[`asks for the current password before saving anything > screen at the start 1`] = `
 "Mi cuenta
-Cambiar contraseña
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
+exports[`changes the password along with the rest of the account > screen at the end 1`] = `
+"Mi cuenta
+Guardamos los cambios. La contraseña se cambió y las demás sesiones abiertas se cerraron.
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
+*
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
+[Toggle password visibility]
+Confirmá los cambios
 Contraseña actual
 *
+Para guardar cualquier cambio de tu cuenta.
 [Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
+Guardar cambios
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
+`;
+
+exports[`changes the password along with the rest of the account > screen at the start 1`] = `
+"Mi cuenta
 Avisos por email
 Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
 [Cargando…]"
@@ -34,15 +61,22 @@ Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó 
 
 exports[`names a kind of notification it has no words for by its key > screen at the end 1`] = `
 "Mi cuenta
-Cambiar contraseña
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
+*
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
+[Toggle password visibility]
+Confirmá los cambios
 Contraseña actual
 *
+Para guardar cualquier cambio de tu cuenta.
 [Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
+Guardar cambios
 Avisos por email
 Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
 weekly_digest"
@@ -50,15 +84,6 @@ weekly_digest"
 
 exports[`names a kind of notification it has no words for by its key > screen at the start 1`] = `
 "Mi cuenta
-Cambiar contraseña
-Contraseña actual
-*
-[Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
 Avisos por email
 Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
 [Cargando…]"
@@ -66,31 +91,89 @@ Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó 
 
 exports[`rejects a new password shorter than ten characters without calling the server > screen at the end 1`] = `
 "Mi cuenta
-Cambiar contraseña
 La contraseña debe tener al menos 10 caracteres.
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
+*
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
+[Toggle password visibility]
+Confirmá los cambios
 Contraseña actual
 *
+Para guardar cualquier cambio de tu cuenta.
 [Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
+Guardar cambios
 Avisos por email
 Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
 `;
 
 exports[`rejects a new password shorter than ten characters without calling the server > screen at the start 1`] = `
 "Mi cuenta
-Cambiar contraseña
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
+exports[`rejects a phone with letters without calling the server > screen at the end 1`] = `
+"Mi cuenta
+El teléfono solo puede tener números, espacios y los signos + - ( ).
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
+*
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
+[Toggle password visibility]
+Confirmá los cambios
 Contraseña actual
 *
+Para guardar cualquier cambio de tu cuenta.
 [Toggle password visibility]
-Contraseña nueva
+Guardar cambios
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
+`;
+
+exports[`rejects a phone with letters without calling the server > screen at the start 1`] = `
+"Mi cuenta
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
+exports[`saves the name and phone with the current password, keeping the password > screen at the end 1`] = `
+"Mi cuenta
+Guardamos los cambios.
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
 *
-Mínimo 10 caracteres.
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
 [Toggle password visibility]
-Cambiar contraseña
+Confirmá los cambios
+Contraseña actual
+*
+Para guardar cualquier cambio de tu cuenta.
+[Toggle password visibility]
+Guardar cambios
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
+`;
+
+exports[`saves the name and phone with the current password, keeping the password > screen at the start 1`] = `
+"Mi cuenta
 Avisos por email
 Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
 [Cargando…]"
@@ -98,31 +181,29 @@ Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó 
 
 exports[`says so when the current password is wrong > screen at the end 1`] = `
 "Mi cuenta
-Cambiar contraseña
-La contraseña actual no es correcta.
+La contraseña actual no es correcta. No se guardó ningún cambio.
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
+*
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
+[Toggle password visibility]
+Confirmá los cambios
 Contraseña actual
 *
+Para guardar cualquier cambio de tu cuenta.
 [Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
+Guardar cambios
 Avisos por email
 Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
 `;
 
 exports[`says so when the current password is wrong > screen at the start 1`] = `
 "Mi cuenta
-Cambiar contraseña
-Contraseña actual
-*
-[Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
 Avisos por email
 Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
 [Cargando…]"
@@ -130,15 +211,22 @@ Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó 
 
 exports[`says why a notification could not be changed, and lets the message be closed > screen at the end 1`] = `
 "Mi cuenta
-Cambiar contraseña
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
+*
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
+[Toggle password visibility]
+Confirmá los cambios
 Contraseña actual
 *
+Para guardar cualquier cambio de tu cuenta.
 [Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
+Guardar cambios
 Avisos por email
 Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
 Falta el estado mensual
@@ -149,15 +237,36 @@ Cuando un hito de un proyecto pasa su fecha sin completarse."
 
 exports[`says why a notification could not be changed, and lets the message be closed > screen at the start 1`] = `
 "Mi cuenta
-Cambiar contraseña
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
+exports[`says why the account could not be saved, and clears the passwords once it is > screen at the end 1`] = `
+"Mi cuenta
+Guardamos los cambios. La contraseña se cambió y las demás sesiones abiertas se cerraron.
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
+*
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
+[Toggle password visibility]
+Confirmá los cambios
 Contraseña actual
 *
+Para guardar cualquier cambio de tu cuenta.
 [Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
+Guardar cambios
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
+`;
+
+exports[`says why the account could not be saved, and clears the passwords once it is > screen at the start 1`] = `
+"Mi cuenta
 Avisos por email
 Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
 [Cargando…]"
@@ -165,15 +274,22 @@ Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó 
 
 exports[`says why the notifications cannot be loaded > screen at the end 1`] = `
 "Mi cuenta
-Cambiar contraseña
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
+*
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
+[Toggle password visibility]
+Confirmá los cambios
 Contraseña actual
 *
+Para guardar cualquier cambio de tu cuenta.
 [Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
+Guardar cambios
 Avisos por email
 Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
 Ocurrió un error. Intentá de nuevo."
@@ -181,47 +297,6 @@ Ocurrió un error. Intentá de nuevo."
 
 exports[`says why the notifications cannot be loaded > screen at the start 1`] = `
 "Mi cuenta
-Cambiar contraseña
-Contraseña actual
-*
-[Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
-Avisos por email
-Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
-[Cargando…]"
-`;
-
-exports[`says why the password could not be changed, and clears the fields once it is > screen at the end 1`] = `
-"Mi cuenta
-Cambiar contraseña
-La contraseña se cambió. Las demás sesiones abiertas se cerraron.
-Contraseña actual
-*
-[Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
-Avisos por email
-Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
-`;
-
-exports[`says why the password could not be changed, and clears the fields once it is > screen at the start 1`] = `
-"Mi cuenta
-Cambiar contraseña
-Contraseña actual
-*
-[Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
 Avisos por email
 Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
 [Cargando…]"
@@ -229,15 +304,22 @@ Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó 
 
 exports[`shows each kind of email notification and whether it is on > screen at the end 1`] = `
 "Mi cuenta
-Cambiar contraseña
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
+*
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
+[Toggle password visibility]
+Confirmá los cambios
 Contraseña actual
 *
+Para guardar cualquier cambio de tu cuenta.
 [Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
+Guardar cambios
 Avisos por email
 Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
 Falta el estado mensual
@@ -248,15 +330,66 @@ Cuando un hito de un proyecto pasa su fecha sin completarse."
 
 exports[`shows each kind of email notification and whether it is on > screen at the start 1`] = `
 "Mi cuenta
-Cambiar contraseña
+Avisos por email
+Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
+[Cargando…]"
+`;
+
+exports[`shows the new name in the header once saved > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana María Gómez
+[Cerrar sesión]
+Resumen general
+Mi cuenta
+Guardamos los cambios.
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
+*
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
+[Toggle password visibility]
+Confirmá los cambios
 Contraseña actual
 *
+Para guardar cualquier cambio de tu cuenta.
 [Toggle password visibility]
-Contraseña nueva
+Guardar cambios
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
+`;
+
+exports[`shows the new name in the header once saved > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`starts from the user's own name and phone > screen at the end 1`] = `
+"Mi cuenta
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
 *
-Mínimo 10 caracteres.
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
 [Toggle password visibility]
-Cambiar contraseña
+Confirmá los cambios
+Contraseña actual
+*
+Para guardar cualquier cambio de tu cuenta.
+[Toggle password visibility]
+Guardar cambios
+Avisos por email
+Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo."
+`;
+
+exports[`starts from the user's own name and phone > screen at the start 1`] = `
+"Mi cuenta
 Avisos por email
 Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
 [Cargando…]"
@@ -264,15 +397,22 @@ Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó 
 
 exports[`turns a kind of notification off > screen at the end 1`] = `
 "Mi cuenta
-Cambiar contraseña
+Email
+Es el usuario con el que ingresás; no se cambia desde acá.
+Nombre y apellido
+*
+Teléfono de contacto
+Opcional. Números, espacios y los signos + - ( ).
+Contraseña
+Contraseña nueva
+Mínimo 10 caracteres. Dejala vacía para mantener la actual.
+[Toggle password visibility]
+Confirmá los cambios
 Contraseña actual
 *
+Para guardar cualquier cambio de tu cuenta.
 [Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
+Guardar cambios
 Avisos por email
 Los avisos te llegan a ana@noetinger.test si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
 Falta el estado mensual
@@ -283,15 +423,6 @@ Cuando un hito de un proyecto pasa su fecha sin completarse."
 
 exports[`turns a kind of notification off > screen at the start 1`] = `
 "Mi cuenta
-Cambiar contraseña
-Contraseña actual
-*
-[Toggle password visibility]
-Contraseña nueva
-*
-Mínimo 10 caracteres.
-[Toggle password visibility]
-Cambiar contraseña
 Avisos por email
 Los avisos te llegan a si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.
 [Cargando…]"

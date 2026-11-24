@@ -5,7 +5,7 @@ exports[`clears the filters when the term changes > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Proyectos
 Proyectos
@@ -20,6 +20,7 @@ Estado mensual 2026
 [Año anterior]
 [Año siguiente]
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -44,6 +45,8 @@ Oct
 Nov
 [Diciembre: Sin estado]
 Dic
+Detalle de la gestión
+Según la gestión y los filtros elegidos.
 Año
 Todos
 2019
@@ -70,12 +73,6 @@ B
 C
 Descargar proyectos
 Descargar indicadores
-Proyectos activos
-10
-Proyectos finalizados
-4
-Avance promedio
-48 %
 Estado de los proyectos
 Sin iniciar
 2
@@ -85,6 +82,8 @@ Retrasado
 3
 Finalizado
 4
+Avance promedio
+48 %
 Presupuesto total
 $ 1.000.000
 Presupuesto planificado
@@ -114,7 +113,7 @@ exports[`moves between the sections with the tabs > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Proyectos
 Proyectos
@@ -130,6 +129,7 @@ Estado mensual 2026
 [Año anterior]
 [Año siguiente]
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -154,6 +154,8 @@ Oct
 Nov
 [Diciembre: Sin estado]
 Dic
+Detalle de la gestión
+Según la gestión y los filtros elegidos.
 Año
 Todos
 2023
@@ -180,12 +182,6 @@ B
 C
 Descargar proyectos
 Descargar indicadores
-Proyectos activos
-10
-Proyectos finalizados
-4
-Avance promedio
-48 %
 Estado de los proyectos
 Sin iniciar
 2
@@ -195,6 +191,8 @@ Retrasado
 3
 Finalizado
 4
+Avance promedio
+48 %
 Presupuesto total
 $ 1.000.000
 Presupuesto planificado

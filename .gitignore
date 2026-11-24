@@ -17,3 +17,4 @@ htmlcov/
 .coverage
 reports/mutation/
 .stryker-tmp/
+.import_linter_cache/

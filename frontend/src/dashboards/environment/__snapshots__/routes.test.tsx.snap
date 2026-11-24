@@ -5,7 +5,7 @@ exports[`does not open the parameters to an editor who types the address > scree
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Ambiental
 Ambiental
@@ -23,7 +23,7 @@ exports[`lists the dashboard in the navigation > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Ambiental
 Ambiental
@@ -32,6 +32,7 @@ Seguimiento
 [Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -135,7 +136,7 @@ exports[`moves between the sections with the tabs > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Ambiental
 Ambiental
@@ -146,6 +147,7 @@ Parámetros
 [Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -249,7 +251,7 @@ exports[`shows a dashboard admin every section > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Ambiental
 Ambiental
@@ -260,6 +262,7 @@ Parámetros
 [Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -363,7 +366,7 @@ exports[`shows a viewer only the read-only sections > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Ambiental
 Ambiental
@@ -372,6 +375,7 @@ Seguimiento
 [Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -475,7 +479,7 @@ exports[`shows an editor the data entry section but not the parameters > screen 
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Ambiental
 Ambiental
@@ -485,6 +489,7 @@ Carga
 [Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]

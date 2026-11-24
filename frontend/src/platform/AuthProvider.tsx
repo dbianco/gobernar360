@@ -61,6 +61,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
         await replaceMe(null)
       },
+      // Same identity, so every other cached answer stays valid.
+      updateMe: (updated) => queryClient.setQueryData(ME_KEY, updated),
       setActiveMunicipality: async (municipalityId) => {
         await replaceMe(
           await api<Me>('/auth/active-municipality', {
@@ -70,7 +72,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         )
       },
     }),
-    [data, isLoading, replaceMe],
+    [data, isLoading, replaceMe, queryClient],
   )
 
   return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>

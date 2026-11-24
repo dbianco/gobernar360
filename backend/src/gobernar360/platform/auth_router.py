@@ -2,10 +2,10 @@
 
 import uuid
 from datetime import UTC, datetime, timedelta
-from typing import Literal
+from typing import Annotated, Literal
 
 from fastapi import APIRouter, Response
-from pydantic import BaseModel
+from pydantic import BaseModel, StringConstraints
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -29,6 +29,7 @@ from gobernar360.platform.schemas import (
     Me,
     MembershipOut,
     Password,
+    Phone,
     UserOut,
 )
 
@@ -139,14 +140,47 @@ class PasswordChangeIn(BaseModel):
     new_password: Password
 
 
+def _check_current_password(user: User, password: str) -> None:
+    if not verify_password(password, user.password_hash):
+        raise ApiError(403, "invalid_credentials", "The current password is incorrect.")
+
+
 @router.post("/password", status_code=204)
 def change_password(
     payload: PasswordChangeIn, db: Db, user: CurrentUser, session_row: CurrentSession
 ) -> None:
     """Change the signed-in user's password and sign out their other sessions."""
-    if not verify_password(payload.current_password, user.password_hash):
-        raise ApiError(403, "invalid_credentials", "The current password is incorrect.")
+    _check_current_password(user, payload.current_password)
     accounts.set_password(db, user, payload.new_password, keep_session_id=session_row.id)
+
+
+class AccountIn(BaseModel):
+    # Asked for every change, so an unattended open session cannot take over the account.
+    current_password: str
+    full_name: Annotated[
+        str, StringConstraints(strip_whitespace=True, min_length=1, max_length=200)
+    ]
+    phone: Phone = ""
+    # Null or absent keeps the current password.
+    new_password: Password | None = None
+
+
+@router.put("/account")
+def update_account(
+    payload: AccountIn, db: Db, user: CurrentUser, session_row: CurrentSession
+) -> Me:
+    """Change the signed-in user's name, phone and, optionally, password.
+
+    Nothing is saved unless the current password is right. A new password signs out the
+    user's other sessions, as `change_password` does.
+    """
+    _check_current_password(user, payload.current_password)
+    user.full_name = payload.full_name
+    user.phone = payload.phone
+    if payload.new_password is not None:
+        accounts.set_password(db, user, payload.new_password, keep_session_id=session_row.id)
+    db.flush()
+    return build_me(db, user, session_row)
 
 
 class PasswordResetIn(BaseModel):

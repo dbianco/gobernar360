@@ -3,7 +3,7 @@
 import uuid
 from typing import Annotated, Literal
 
-from pydantic import AfterValidator, BaseModel, ConfigDict, Field
+from pydantic import AfterValidator, BaseModel, ConfigDict, Field, StringConstraints
 
 from gobernar360.core.security import normalize_email
 
@@ -21,6 +21,10 @@ def valid_email(raw: str) -> str:
 Email = Annotated[str, Field(max_length=320), AfterValidator(valid_email)]
 Password = Annotated[str, Field(min_length=MIN_PASSWORD_LENGTH, max_length=200)]
 FullName = Annotated[str, Field(min_length=1, max_length=200)]
+# Digits and the usual separators, e.g. "+54 9 3472 15-123456"; empty when not given.
+Phone = Annotated[
+    str, StringConstraints(strip_whitespace=True, max_length=50, pattern=r"^[0-9+()\-. ]*$")
+]
 GrantLevel = Literal["viewer", "editor", "admin"]
 
 
@@ -32,6 +36,7 @@ class UserOut(OrmModel):
     id: uuid.UUID
     email: str
     full_name: str
+    phone: str
     is_platform_operator: bool
 
 

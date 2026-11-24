@@ -18,6 +18,7 @@ export const backendEnv = {
   GOBERNAR360_OIDC_ISSUER: 'http://localhost:5556',
   GOBERNAR360_OIDC_CLIENT_ID: 'gobernar360',
   GOBERNAR360_OIDC_CLIENT_SECRET: 'gobernar360-dev-secret',
+  GOBERNAR360_PUBLIC_DATABASE_URL: `postgresql+psycopg://gobernar360_public:gobernar360_public@${DATABASE}`,
 }
 
 export default defineConfig({

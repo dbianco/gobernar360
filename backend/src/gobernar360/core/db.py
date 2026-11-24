@@ -17,6 +17,8 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, Session, declared_attr, mapp
 from gobernar360.core.config import get_settings
 
 APP_ROLE = "gobernar360_app"
+# Reads the published copies and nothing else.
+PUBLIC_ROLE = "gobernar360_public"
 TENANT_SETTING = "app.municipality_id"
 
 
@@ -77,6 +79,26 @@ def get_admin_engine() -> Engine:
     return create_engine(get_settings().admin_database_url, pool_pre_ping=True)
 
 
+@lru_cache
+def get_public_engine() -> Engine:
+    """Engine for the public role, which can only read the published copies."""
+    return create_engine(get_settings().public_database_url, pool_pre_ping=True)
+
+
+@contextmanager
+def public_session() -> Iterator[Session]:
+    """Read-only session of the public role: no tenant, no account data, no writes."""
+    with Session(get_public_engine()) as session, session.begin():
+        session.execute(text("SET TRANSACTION READ ONLY"))
+        yield session
+
+
+def get_public_db() -> Iterator[Session]:
+    """FastAPI dependency for the public routes."""
+    with public_session() as session:
+        yield session
+
+
 @contextmanager
 def platform_session() -> Iterator[Session]:
     """Session with no tenant set: platform tables only, tenant tables appear empty."""
@@ -118,6 +140,41 @@ def grant_app_access(table_name: str) -> None:  # pragma: no mutate block
     from alembic import op
 
     op.execute(f'GRANT SELECT, INSERT, UPDATE, DELETE ON "{table_name}" TO {APP_ROLE}')
+
+
+def create_public_role() -> None:  # pragma: no mutate block
+    """Migration helper: the role of the public routes, when the cluster does not have it.
+
+    Fresh databases get it from db/init; the password here only matches that default and
+    must be changed wherever the database is reachable by others.
+    """
+    from alembic import op
+
+    op.execute(
+        f"DO $$ BEGIN IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = '{PUBLIC_ROLE}') "
+        f"THEN CREATE ROLE {PUBLIC_ROLE} LOGIN PASSWORD '{PUBLIC_ROLE}'; END IF; END $$"
+    )
+
+
+def enable_public_copy_rls(table_name: str) -> None:  # pragma: no mutate block
+    """Migration helper for a table of published copies.
+
+    Anyone allowed to read it sees every row: the public routes run with no municipality
+    set. The API role may only write the rows of the municipality its transaction is set to,
+    and the public role may only read.
+    """
+    from alembic import op
+
+    tenant = f"NULLIF(current_setting('{TENANT_SETTING}', true), '')::uuid"
+    op.execute(f'ALTER TABLE "{table_name}" ENABLE ROW LEVEL SECURITY')
+    op.execute(f'ALTER TABLE "{table_name}" FORCE ROW LEVEL SECURITY')
+    op.execute(f'CREATE POLICY public_read ON "{table_name}" FOR SELECT USING (true)')
+    op.execute(
+        f'CREATE POLICY tenant_write ON "{table_name}" FOR ALL TO {APP_ROLE} '
+        f"USING (municipality_id = {tenant}) WITH CHECK (municipality_id = {tenant})"
+    )
+    grant_app_access(table_name)
+    op.execute(f'GRANT SELECT ON "{table_name}" TO {PUBLIC_ROLE}')
 
 
 def enable_tenant_rls(table_name: str) -> None:  # pragma: no mutate block

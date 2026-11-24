@@ -8,7 +8,13 @@ export interface Municipality {
 }
 
 export interface Me {
-  user: { id: string; email: string; full_name: string; is_platform_operator: boolean }
+  user: {
+    id: string
+    email: string
+    full_name: string
+    phone: string
+    is_platform_operator: boolean
+  }
   memberships: { municipality: Municipality; is_admin: boolean }[]
   active_municipality_id: string | null
   dashboards: { key: string; level: AccessLevel }[]

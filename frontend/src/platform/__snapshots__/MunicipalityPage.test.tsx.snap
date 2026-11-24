@@ -4,7 +4,7 @@ exports[`adds an administrator, who is invited by email > screen at the end 1`] 
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
@@ -65,7 +65,7 @@ exports[`changes the kind, and says the details were saved > screen at the end 1
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
@@ -126,7 +126,7 @@ exports[`does not save a blank name, and shows why a save failed > screen at the
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
@@ -187,7 +187,7 @@ exports[`enables a dashboard > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
@@ -248,10 +248,12 @@ exports[`keeps the page away from non-operators > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -263,7 +265,7 @@ exports[`keeps the password form open when the server refuses, and closes it wit
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
@@ -323,7 +325,7 @@ exports[`links to the configuration of the municipality > screen at the end 1`] 
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
@@ -383,7 +385,7 @@ exports[`lists the users of the municipality and changes a level > screen at the
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
@@ -443,7 +445,7 @@ exports[`names a dashboard this version does not know by its key > screen at the
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
@@ -474,7 +476,7 @@ exports[`names the access column of a dashboard this version does not know by it
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
@@ -526,7 +528,7 @@ exports[`rejects a short new password without calling the server > screen at the
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
@@ -592,7 +594,7 @@ exports[`renames the municipality > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
@@ -653,7 +655,7 @@ exports[`says so when the municipality does not exist > screen at the end 1`] = 
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 El municipio no existe."
@@ -665,7 +667,7 @@ exports[`sets a new password for a user > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger
@@ -726,7 +728,7 @@ exports[`shows an error when the municipalities cannot be loaded > screen at the
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Ocurrió un error. Intentá de nuevo."
@@ -738,7 +740,7 @@ exports[`turns a dashboard off, and shows why a change failed > screen at the en
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Plataforma
 ← Municipios
 Noetinger

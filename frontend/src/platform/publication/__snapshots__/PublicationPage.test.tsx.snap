@@ -1,0 +1,135 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`publishes and unpublishes dashboards and indicators at once > screen at the end 1`] = `
+"Página pública
+Una página que cualquiera puede ver sin ingresar. Se publica solo lo que elegís acá: el tablero (con sus semáforos) y, dentro de él, cada indicador. Los informes se publican desde Informes.
+[La página]
+La página
+Página pública activa
+Dirección
+*
+Letras minúsculas, números y guiones.
+/p/
+Mostrar como «menos de N» las cantidades menores a
+*
+Protege a las personas detrás de números chicos. 0 o 1 no oculta nada.
+Guardar
+Ver la página pública
+[Qué se publica]
+Qué se publica
+Publicar Proyectos
+Sus semáforos de los últimos 12 meses.
+Publicar Proyectos retrasados
+Publicar Proyectos activos
+No es un indicador agregado: no se puede publicar.
+Publicar Social
+Sus semáforos de los últimos 12 meses.
+Publicar Personas asistidas"
+`;
+
+exports[`publishes and unpublishes dashboards and indicators at once > screen at the start 1`] = `
+"Página pública
+Una página que cualquiera puede ver sin ingresar. Se publica solo lo que elegís acá: el tablero (con sus semáforos) y, dentro de él, cada indicador. Los informes se publican desde Informes.
+[Cargando…]"
+`;
+
+exports[`saves the page settings > screen at the end 1`] = `
+"Página pública
+Una página que cualquiera puede ver sin ingresar. Se publica solo lo que elegís acá: el tablero (con sus semáforos) y, dentro de él, cada indicador. Los informes se publican desde Informes.
+[La página]
+La página
+Página pública activa
+Dirección
+*
+Letras minúsculas, números y guiones.
+/p/
+Mostrar como «menos de N» las cantidades menores a
+*
+Protege a las personas detrás de números chicos. 0 o 1 no oculta nada.
+Guardar
+Guardado.
+Ver la página pública
+[Qué se publica]
+Qué se publica
+Publicar Proyectos
+Sus semáforos de los últimos 12 meses.
+Publicar Proyectos retrasados
+Publicar Proyectos activos
+No es un indicador agregado: no se puede publicar.
+Publicar Social
+Sus semáforos de los últimos 12 meses.
+Publicar Personas asistidas"
+`;
+
+exports[`saves the page settings > screen at the start 1`] = `
+"Página pública
+Una página que cualquiera puede ver sin ingresar. Se publica solo lo que elegís acá: el tablero (con sus semáforos) y, dentro de él, cada indicador. Los informes se publican desde Informes.
+[Cargando…]"
+`;
+
+exports[`says so when the address is taken > screen at the end 1`] = `
+"Página pública
+Una página que cualquiera puede ver sin ingresar. Se publica solo lo que elegís acá: el tablero (con sus semáforos) y, dentro de él, cada indicador. Los informes se publican desde Informes.
+Esa dirección ya la usa otro municipio. Elegí otra.
+[La página]
+La página
+Página pública activa
+Dirección
+*
+Letras minúsculas, números y guiones.
+/p/
+Mostrar como «menos de N» las cantidades menores a
+*
+Protege a las personas detrás de números chicos. 0 o 1 no oculta nada.
+Guardar
+Ver la página pública
+[Qué se publica]
+Qué se publica
+Publicar Proyectos
+Sus semáforos de los últimos 12 meses.
+Publicar Proyectos retrasados
+Publicar Proyectos activos
+No es un indicador agregado: no se puede publicar.
+Publicar Social
+Sus semáforos de los últimos 12 meses.
+Publicar Personas asistidas"
+`;
+
+exports[`says so when the address is taken > screen at the start 1`] = `
+"Página pública
+Una página que cualquiera puede ver sin ingresar. Se publica solo lo que elegís acá: el tablero (con sus semáforos) y, dentro de él, cada indicador. Los informes se publican desde Informes.
+[Cargando…]"
+`;
+
+exports[`shows the page settings and what is published > screen at the end 1`] = `
+"Página pública
+Una página que cualquiera puede ver sin ingresar. Se publica solo lo que elegís acá: el tablero (con sus semáforos) y, dentro de él, cada indicador. Los informes se publican desde Informes.
+[La página]
+La página
+Página pública activa
+Dirección
+*
+Letras minúsculas, números y guiones.
+/p/
+Mostrar como «menos de N» las cantidades menores a
+*
+Protege a las personas detrás de números chicos. 0 o 1 no oculta nada.
+Guardar
+Ver la página pública
+[Qué se publica]
+Qué se publica
+Publicar Proyectos
+Sus semáforos de los últimos 12 meses.
+Publicar Proyectos retrasados
+Publicar Proyectos activos
+No es un indicador agregado: no se puede publicar.
+Publicar Social
+Sus semáforos de los últimos 12 meses.
+Publicar Personas asistidas"
+`;
+
+exports[`shows the page settings and what is published > screen at the start 1`] = `
+"Página pública
+Una página que cualquiera puede ver sin ingresar. Se publica solo lo que elegís acá: el tablero (con sus semáforos) y, dentro de él, cada indicador. Los informes se publican desde Informes.
+[Cargando…]"
+`;

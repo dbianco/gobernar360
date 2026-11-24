@@ -1,6 +1,7 @@
 """Platform operator: municipalities, their enabled dashboards and their users."""
 
 import uuid
+from datetime import date
 from typing import Annotated, Literal
 
 from fastapi import APIRouter, Depends
@@ -11,9 +12,16 @@ from sqlalchemy.orm import Session
 from gobernar360.core.db import set_tenant
 from gobernar360.core.errors import conflict, not_found, validation_error
 from gobernar360.dashboards import registry
-from gobernar360.platform import accounts, members, settings_router
-from gobernar360.platform.access import CurrentUser, Db, RequestContext, require_operator
+from gobernar360.platform import accounts, members, publication, settings_router
+from gobernar360.platform.access import (
+    CurrentUser,
+    Db,
+    RequestContext,
+    require_operator,
+    system_context,
+)
 from gobernar360.platform.audit import record_change
+from gobernar360.platform.clock import Today
 from gobernar360.platform.models import Municipality, MunicipalityDashboard, User
 from gobernar360.platform.schemas import MunicipalityOut, Password
 
@@ -97,9 +105,15 @@ def list_registered_dashboards() -> list[str]:
     return sorted(module.key for module in registry.all_modules())
 
 
+def _refresh_publication(db: Session, municipality_id: uuid.UUID, today: date) -> None:
+    """Keep the public page in step: a disabled dashboard or an old name must not linger."""
+    set_tenant(db, municipality_id)
+    publication.refresh_site(system_context(db, municipality_id), today)
+
+
 @router.put("/municipalities/{municipality_id}/dashboards")
 def set_enabled_dashboards(
-    municipality_id: uuid.UUID, payload: DashboardKeysIn, db: Db
+    municipality_id: uuid.UUID, payload: DashboardKeysIn, db: Db, today: Today
 ) -> MunicipalityDetail:
     municipality = _get_municipality(db, municipality_id)
     unknown = sorted(key for key in payload.keys if registry.get_module(key) is None)
@@ -115,17 +129,19 @@ def set_enabled_dashboards(
         for key in set(payload.keys)
     )
     db.flush()
+    _refresh_publication(db, municipality_id, today)
     return _detail(db, municipality)
 
 
 @router.patch("/municipalities/{municipality_id}")
 def update_municipality(
-    municipality_id: uuid.UUID, payload: MunicipalityPatch, db: Db
+    municipality_id: uuid.UUID, payload: MunicipalityPatch, db: Db, today: Today
 ) -> MunicipalityDetail:
     municipality = _get_municipality(db, municipality_id)
     for field, value in payload.model_dump(exclude_unset=True).items():
         setattr(municipality, field, value)
     db.flush()
+    _refresh_publication(db, municipality_id, today)
     return _detail(db, municipality)
 
 

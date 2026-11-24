@@ -2,6 +2,10 @@
 -- security; migrations run as the owner role instead.
 CREATE ROLE gobernar360_app LOGIN PASSWORD 'gobernar360_app';
 
+-- Role of the public transparency page. It can only read the published copies (granted by
+-- the migrations), never tenant or account data.
+CREATE ROLE gobernar360_public LOGIN PASSWORD 'gobernar360_public';
+
 -- Separate database for the automated test suite.
 CREATE DATABASE gobernar360_test OWNER gobernar360;
 

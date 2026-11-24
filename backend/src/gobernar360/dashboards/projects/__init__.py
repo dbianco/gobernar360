@@ -7,6 +7,7 @@ from gobernar360.dashboards.projects import (
     export,
     parameters_router,
     projects_router,
+    report,
     summary,
 )
 from gobernar360.dashboards.projects.access import KEY
@@ -20,8 +21,11 @@ router.include_router(export.router)
 
 module = DashboardModule(
     key=KEY,
+    name="Proyectos",
     router=router,
     get_summary=summary.get_summary,
+    indicators=summary.INDICATORS,
+    report_tables=report.report_tables,
     alert_kinds=(alerts.MILESTONE_OVERDUE,),
     get_alerts=alerts.get_alerts,
 )

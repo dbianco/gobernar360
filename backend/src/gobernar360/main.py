@@ -16,9 +16,13 @@ from gobernar360.dashboards import (
 from gobernar360.platform import (
     admin_router,
     auth_router,
+    indicators_router,
     notifications_router,
     operator_router,
     overview_router,
+    public_router,
+    publication_router,
+    reports_router,
     settings_router,
     sso_router,
     status_router,
@@ -85,6 +89,11 @@ def create_app() -> FastAPI:
     api.include_router(settings_router.router)
     api.include_router(overview_router.router)
     api.include_router(status_router.router)
+    api.include_router(indicators_router.router)
+    api.include_router(reports_router.router)
+    api.include_router(publication_router.router)
+    # Reads only the published copies, as a role that can read nothing else.
+    api.include_router(public_router.router)
     for module in registry.all_modules():
         api.include_router(module.router, prefix=f"/dashboards/{module.key}", tags=[module.key])
     app.include_router(api)

@@ -80,12 +80,23 @@ class RequestContext:
     `db` is already scoped to that municipality by row-level security.
     `membership` is None when a platform operator manages the municipality from
     outside; such a context never reaches dashboard routes.
+    `user` is None only in a system context (see `system_context`).
     """
 
-    user: User
+    user: User | None
     municipality_id: uuid.UUID
     membership: Membership | None
     db: Session
+
+
+def system_context(db: Session, municipality_id: uuid.UUID) -> RequestContext:
+    """A context for work done outside a request, such as taking monthly snapshots.
+
+    `db` must already be scoped to the municipality (`core.db.tenant_session`). There is no
+    user, so it can only be handed to code that reads, like a dashboard's `get_summary`,
+    never to the audited writes of `tenant_crud`.
+    """
+    return RequestContext(user=None, municipality_id=municipality_id, membership=None, db=db)
 
 
 def get_context(db: Db, user: CurrentUser, session_row: CurrentSession) -> RequestContext:

@@ -8,7 +8,7 @@ gobernar360
 Noetinger
 Saira
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Resumen general
 No tenés tableros habilitados
@@ -22,7 +22,7 @@ exports[`blocks direct navigation to a dashboard the user cannot see > screen at
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 No tenés acceso a este tablero
 Pedile al administrador de tu municipio que te habilite."
@@ -38,7 +38,7 @@ gobernar360
 Noetinger
 Saira
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Resumen general
 No tenés tableros habilitados
@@ -52,7 +52,7 @@ exports[`does not list dashboards the user has no access to > screen at the end 
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Resumen general
 No tenés tableros habilitados
@@ -65,7 +65,7 @@ exports[`explains the situation to a user without any municipality > screen at t
 "[Abrir menú]
 gobernar360
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Todavía no pertenecés a ningún municipio
 Pedile al administrador de tu municipio que te agregue como usuario."
 `;
@@ -77,7 +77,7 @@ exports[`gives every navigation link an icon > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Proyectos
 Ambiental
@@ -85,6 +85,8 @@ Económico
 Social
 Usuarios
 Configuración
+Informes
+Página pública
 Plataforma
 Resumen general
 No tenés tableros habilitados
@@ -98,7 +100,7 @@ exports[`hides the users link from non-admin members > screen at the end 1`] = `
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Resumen general
 No tenés tableros habilitados
@@ -112,7 +114,7 @@ exports[`lists only the dashboards granted to the user > screen at the end 1`] =
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Proyectos
 Resumen general
@@ -122,15 +124,144 @@ Pedile al administrador de tu municipio que te dé acceso a un tablero."
 
 exports[`lists only the dashboards granted to the user > screen at the start 1`] = `"[Cargando…]"`;
 
+exports[`offers reports and the public page to municipality admins only > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Proyectos
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`offers reports and the public page to municipality admins only > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`opens /admin/publication for a municipality administrator > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Usuarios
+Configuración
+Informes
+Página pública
+Página pública
+Una página que cualquiera puede ver sin ingresar. Se publica solo lo que elegís acá: el tablero (con sus semáforos) y, dentro de él, cada indicador. Los informes se publican desde Informes.
+[La página]
+La página
+Página pública activa
+Dirección
+*
+Letras minúsculas, números y guiones.
+/p/
+Mostrar como «menos de N» las cantidades menores a
+*
+Protege a las personas detrás de números chicos. 0 o 1 no oculta nada.
+Guardar
+[Qué se publica]
+Qué se publica
+Activá la página para que se vea lo que elegís."
+`;
+
+exports[`opens /admin/publication for a municipality administrator > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`opens /admin/reports for a municipality administrator > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Usuarios
+Configuración
+Informes
+Página pública
+Informes mensuales
+Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.
+Mes
+Estado
+Cerrado el
+Publicado
+Octubre 2026
+Abierto
+—
+[Cerrar Octubre 2026]
+Cerrar el mes
+Septiembre 2026
+Abierto
+—
+[Cerrar Septiembre 2026]
+Cerrar el mes
+Agosto 2026
+Abierto
+—
+[Cerrar Agosto 2026]
+Cerrar el mes
+Julio 2026
+Abierto
+—
+[Cerrar Julio 2026]
+Cerrar el mes
+Junio 2026
+Abierto
+—
+[Cerrar Junio 2026]
+Cerrar el mes
+Mayo 2026
+Abierto
+—
+[Cerrar Mayo 2026]
+Cerrar el mes
+Abril 2026
+Abierto
+—
+[Cerrar Abril 2026]
+Cerrar el mes
+Marzo 2026
+Abierto
+—
+[Cerrar Marzo 2026]
+Cerrar el mes
+Febrero 2026
+Abierto
+—
+[Cerrar Febrero 2026]
+Cerrar el mes
+Enero 2026
+Abierto
+—
+[Cerrar Enero 2026]
+Cerrar el mes
+Diciembre 2025
+Abierto
+—
+[Cerrar Diciembre 2025]
+Cerrar el mes
+Noviembre 2025
+Abierto
+—
+[Cerrar Noviembre 2025]
+Cerrar el mes"
+`;
+
+exports[`opens /admin/reports for a municipality administrator > screen at the start 1`] = `"[Cargando…]"`;
+
 exports[`opens the users of the municipality at /admin > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Usuarios
 Configuración
 Usuarios del municipio
@@ -153,6 +284,36 @@ Ingresar
 
 exports[`returns to the login page when the session has expired > screen at the start 1`] = `"[Cargando…]"`;
 
+exports[`sends a member who is not an administrator from /admin/publication to the overview > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Proyectos
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`sends a member who is not an administrator from /admin/publication to the overview > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`sends a member who is not an administrator from /admin/reports to the overview > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Proyectos
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`sends a member who is not an administrator from /admin/reports to the overview > screen at the start 1`] = `"[Cargando…]"`;
+
 exports[`shows the municipality switcher only with several memberships > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
@@ -161,7 +322,7 @@ gobernar360
 Noetinger
 Saira
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Resumen general
 No tenés tableros habilitados
@@ -175,16 +336,33 @@ exports[`shows the users and configuration links to municipality admins > screen
 gobernar360
 Noetinger
 Ana Gómez
-Cerrar sesión
+[Cerrar sesión]
 Resumen general
 Usuarios
 Configuración
+Informes
+Página pública
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
 `;
 
 exports[`shows the users and configuration links to municipality admins > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`signs out from an icon that says what it does on hover > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+[Cerrar sesión]
+Resumen general
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`signs out from an icon that says what it does on hover > screen at the start 1`] = `"[Cargando…]"`;
 
 exports[`signs out locally even when the request fails > screen at the end 1`] = `
 "Ingresar a gobernar360

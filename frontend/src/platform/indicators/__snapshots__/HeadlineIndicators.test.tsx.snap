@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`shows every indicator of the dashboard's catalogue with its evolution > screen at the end 1`] = `
+"[Indicadores clave]
+Indicadores clave
+Valor de hoy frente al cierre del mes anterior y al mismo mes del año pasado. Tocá una tarjeta para ver su evolución.
+Proyectos activos
+[Qué significa Proyectos activos]
+[Ver la evolución de Proyectos activos]
+10
++2 respecto del mes anterior
+Sin dato de un año atrás
+[Proyectos activos en los últimos 12 meses]
+Sin meta para este año
+Proyectos retrasados
+[Qué significa Proyectos retrasados]
+[Ver la evolución de Proyectos retrasados]
+3
+Sin dato del mes anterior
+Sin dato de un año atrás
+[Proyectos retrasados en los últimos 12 meses]
+Sin meta para este año"
+`;
+
+exports[`shows the error when the indicators cannot be read > screen at the end 1`] = `"No tenés permiso para realizar esta acción."`;

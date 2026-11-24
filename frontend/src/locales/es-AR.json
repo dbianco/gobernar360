@@ -71,7 +71,13 @@
     "invalid_token": "El enlace venció o ya se usó.",
     "too_many_requests": "Hiciste demasiados pedidos seguidos. Esperá un rato y volvé a intentar.",
     "template_unknown_variable": "El texto usa variables que este correo no tiene.",
-    "template_missing_variable": "Al texto le falta una variable obligatoria."
+    "template_missing_variable": "Al texto le falta una variable obligatoria.",
+    "month_not_over": "Solo se puede cerrar un mes que ya terminó.",
+    "not_aggregate": "Solo se pueden publicar indicadores agregados.",
+    "dashboard_not_published": "Primero publicá el tablero; después, sus indicadores.",
+    "personal_data": "Un comentario del informe nombra a una persona o un número de documento del padrón. Corregilo (reabriendo el mes) antes de publicarlo.",
+    "slug_taken": "Esa dirección ya la usa otro municipio. Elegí otra.",
+    "rate_limited": "Demasiados pedidos seguidos. Esperá un momento y volvé a intentar."
   },
   "login": {
     "title": "Ingresar a gobernar360",
@@ -120,7 +126,9 @@
     "platform": "Plataforma",
     "dashboards": "Tableros",
     "municipality": "Municipio",
-    "openMenu": "Abrir menú"
+    "openMenu": "Abrir menú",
+    "reports": "Informes",
+    "publication": "Página pública"
   },
   "municipality": {
     "choose": "Elegí el municipio con el que querés trabajar",
@@ -155,9 +163,47 @@
       "procedures.active": "Trámites vigentes",
       "procedures.online_ratio": "Trámites con canal en línea",
       "procedures.requirements": "Requisitos cargados",
-      "procedures.sources": "Fuentes cargadas"
+      "procedures.sources": "Fuentes cargadas",
+      "procedures.online": "Trámites en línea",
+      "combined.online_procedures_per_actor": "Trámites en línea por actor económico",
+      "combined.deliveries_per_active_project": "Prestaciones sociales del año por proyecto activo"
     },
-    "lights": "Estado de los tableros"
+    "descriptions": {
+      "projects.active": "Proyectos de la gestión más reciente que no están finalizados: sin iniciar, en implementación o retrasados.",
+      "projects.finished": "Proyectos de la gestión más reciente marcados como finalizados.",
+      "projects.delayed": "Proyectos sin finalizar cuya fecha de fin ya pasó o que tienen algún hito vencido sin completar. Más bajo es mejor.",
+      "projects.average_progress": "Avance promedio de los proyectos de la gestión más reciente: hitos completados sobre el total de hitos, o el avance cargado a mano si el proyecto no tiene hitos. Los finalizados cuentan como 100 %.",
+      "projects.milestones_in_alert": "Hitos con la fecha comprometida vencida y sin completar, en proyectos que no están finalizados. Más bajo es mejor.",
+      "projects.budget_executed_ratio": "Presupuesto ejecutado sobre el presupuesto planificado de los proyectos de la gestión más reciente.",
+      "environment.variables": "Variables que el municipio definió para medir su agenda ambiental.",
+      "environment.load_completion": "Valores cargados en lo que va del año sobre los esperados en el año completo: doce por cada variable mensual y uno por cada variable anual.",
+      "environment.targets_met": "Variables con meta anual cuyo valor del año la alcanza, según si conviene que suba o que baje.",
+      "environment.targets_missed": "Variables con meta anual cuyo valor del año todavía no la alcanza. Más bajo es mejor.",
+      "economic.actors": "Empresas, comercios, emprendimientos y organizaciones de la economía local registrados en el tablero.",
+      "economic.people": "Personas incorporadas al tablero económico.",
+      "economic.tools": "Herramientas de apoyo que ofrece el municipio, como créditos, cursos o programas.",
+      "economic.assignments_year": "Herramientas asignadas a actores o personas desde el 1 de enero hasta hoy.",
+      "social.people": "Personas incorporadas al tablero social.",
+      "social.households": "Grupos familiares registrados en el tablero social.",
+      "social.deliveries_year": "Prestaciones entregadas desde el 1 de enero hasta hoy.",
+      "social.interventions_year": "Intervenciones del equipo (entrevistas, visitas, acompañamientos, derivaciones) desde el 1 de enero hasta hoy.",
+      "procedures.active": "Trámites que el municipio ofrece hoy. Los dados de baja no cuentan.",
+      "procedures.online_ratio": "Parte de los trámites vigentes que se pueden hacer en línea, ya sea solo en línea o también en forma presencial.",
+      "procedures.requirements": "Requisitos distintos de la lista única del municipio. Más bajo es mejor: cada requisito es algo que la persona tiene que traer o el municipio conseguir.",
+      "procedures.sources": "Fuentes cargadas: quién emite o guarda cada dato o documento que se pide.",
+      "procedures.online": "Trámites vigentes que se pueden hacer en línea, ya sea solo en línea o también en forma presencial.",
+      "combined.online_procedures_per_actor": "Trámites vigentes que se pueden hacer en línea, divididos por los actores económicos registrados. Combina los tableros Trámites y Económico.",
+      "combined.deliveries_per_active_project": "Prestaciones sociales entregadas en lo que va del año, divididas por los proyectos activos de la gestión más reciente. Combina los tableros Social y Proyectos."
+    },
+    "lights": "Estado de los tableros",
+    "combined": {
+      "title": "Indicadores combinados",
+      "hint": "Relacionan datos de dos tableros. Los ves porque tenés acceso a los dos."
+    },
+    "toggles": "Tableros que se muestran",
+    "hide": "Ocultar {{name}}",
+    "show": "Mostrar {{name}}",
+    "noneShown": "Elegí al menos un tablero para ver su resumen."
   },
   "dashboards": {
     "forbiddenTitle": "No tenés acceso a este tablero",
@@ -213,7 +259,9 @@
       "showTable": "Ver como tabla",
       "showChart": "Ver como gráfico",
       "downloadProjects": "Descargar proyectos",
-      "downloadIndicators": "Descargar indicadores"
+      "downloadIndicators": "Descargar indicadores",
+      "detail": "Detalle de la gestión",
+      "detailHint": "Según la gestión y los filtros elegidos."
     },
     "list": {
       "create": "Cargar nuevo proyecto",
@@ -301,7 +349,8 @@
       "addObjective": "Agregar objetivo",
       "newObjectiveFor": "Nuevo objetivo de {{name}}",
       "newItem": "Nuevo nombre",
-      "noTerm": "Primero cargá una gestión."
+      "noTerm": "Primero cargá una gestión.",
+      "targets": "Metas"
     },
     "sdg": {
       "1": "Fin de la pobreza",
@@ -699,13 +748,22 @@
   "account": {
     "title": "Mi cuenta",
     "link": "Mi cuenta",
-    "passwordTitle": "Cambiar contraseña",
-    "current": "Contraseña actual",
+    "email": "Email",
+    "emailHint": "Es el usuario con el que ingresás; no se cambia desde acá.",
+    "fullName": "Nombre y apellido",
+    "phone": "Teléfono de contacto",
+    "phoneHint": "Opcional. Números, espacios y los signos + - ( ).",
+    "phoneInvalid": "El teléfono solo puede tener números, espacios y los signos + - ( ).",
+    "passwordSection": "Contraseña",
     "new": "Contraseña nueva",
-    "newHint": "Mínimo 10 caracteres.",
-    "submit": "Cambiar contraseña",
-    "done": "La contraseña se cambió. Las demás sesiones abiertas se cerraron.",
-    "wrongCurrent": "La contraseña actual no es correcta.",
+    "newHint": "Mínimo 10 caracteres. Dejala vacía para mantener la actual.",
+    "confirmSection": "Confirmá los cambios",
+    "current": "Contraseña actual",
+    "currentHint": "Para guardar cualquier cambio de tu cuenta.",
+    "submit": "Guardar cambios",
+    "done": "Guardamos los cambios.",
+    "donePassword": "Guardamos los cambios. La contraseña se cambió y las demás sesiones abiertas se cerraron.",
+    "wrongCurrent": "La contraseña actual no es correcta. No se guardó ningún cambio.",
     "notifications": {
       "title": "Avisos por email",
       "hint": "Los avisos te llegan a {{email}} si administrás un tablero o si tu municipio te incluyó entre sus destinatarios. Podés apagar cada tipo.",
@@ -1201,7 +1259,9 @@
       "12": "Dic"
     },
     "previousYear": "Año anterior",
-    "nextYear": "Año siguiente"
+    "nextYear": "Año siguiente",
+    "numbers": "Indicadores del mes",
+    "tableLabel": "Estado e indicadores de cada mes de {{year}}"
   },
   "help": {
     "about": "Qué significa {{column}}"
@@ -1417,5 +1477,130 @@
         "volume": "Suma de la cantidad anual estimada de esos trámites. Cada trámite cuenta una sola vez."
       }
     }
+  },
+  "indicators": {
+    "title": "Indicadores clave",
+    "hint": "Valor de hoy frente al cierre del mes anterior y al mismo mes del año pasado. Tocá una tarjeta para ver su evolución.",
+    "vsPreviousMonth": "{{change}} respecto del mes anterior",
+    "vsLastYear": "{{change}} respecto de un año atrás",
+    "noPreviousMonth": "Sin dato del mes anterior",
+    "noLastYear": "Sin dato de un año atrás",
+    "sparkline": "{{name}} en los últimos 12 meses",
+    "open": "Ver la evolución de {{name}}",
+    "onTrack": "En meta",
+    "offTrack": "Fuera de meta",
+    "noTarget": "Sin meta para este año",
+    "targetOf": "Meta: {{target}}",
+    "atTarget": "Justo en la meta de {{target}}",
+    "aboveTarget": "{{amount}} por encima de la meta de {{target}}",
+    "belowTarget": "{{amount}} por debajo de la meta de {{target}}",
+    "detail": {
+      "today": "Hoy",
+      "previousMonth": "Cierre del mes anterior",
+      "lastYear": "Mismo mes del año pasado",
+      "change": "Variación: {{change}}",
+      "target": "Meta {{year}}",
+      "lastMonths": "Últimos 12 meses",
+      "month": "Mes",
+      "value": "Valor",
+      "targetColumn": "Meta",
+      "showTable": "Ver como tabla",
+      "showChart": "Ver como gráfico",
+      "higherIsBetter": "Más alto es mejor",
+      "lowerIsBetter": "Más bajo es mejor",
+      "neutral": "Ninguno de los dos sentidos es mejor en sí mismo.",
+      "gaps": "Los meses vacíos no tienen datos cargados.",
+      "gapsNotReconstructible": "Este indicador depende de cómo están hoy los datos, así que solo se conoce desde que se empezó a guardar cada mes: los meses anteriores quedan vacíos."
+    },
+    "targets": {
+      "title": "Metas de los indicadores clave",
+      "hint": "Una meta por indicador y año. Se cumple al llegar o superarla cuando más alto es mejor, y al no pasarse cuando más bajo es mejor. Para quitar una meta, dejala vacía y guardá.",
+      "indicator": "Indicador",
+      "direction": "Sentido",
+      "target": "Meta {{year}}",
+      "inputLabel": "Meta {{year}} de {{name}}",
+      "save": "Guardar",
+      "help": {
+        "indicator": "Uno de los indicadores clave del resumen del tablero.",
+        "direction": "Si conviene que el valor suba o que baje: define si la meta se cumple al alcanzarla o al no superarla.",
+        "target": "El valor que el municipio se propone para ese año. Los porcentajes se cargan como porcentaje, por ejemplo 60."
+      }
+    },
+    "openHint": "Ver en un gráfico los últimos 12 meses y la meta"
+  },
+  "reports": {
+    "title": "Informes mensuales",
+    "intro": "Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.",
+    "month": "Mes",
+    "state": "Estado",
+    "closedAt": "Cerrado el",
+    "publishedColumn": "Publicado",
+    "states": {
+      "open": "Abierto",
+      "draft": "Reabierto, sin cerrar",
+      "closed": "Cerrado"
+    },
+    "version": "versión {{version}}",
+    "earlier": "Versiones anteriores:",
+    "close": "Cerrar el mes",
+    "closeNamed": "Cerrar {{month}}",
+    "download": "Descargar PDF",
+    "downloadNamed": "Descargar el informe de {{month}}",
+    "downloadVersion": "Versión {{version}}",
+    "reopen": "Reabrir",
+    "reopenNamed": "Reabrir {{month}}",
+    "reopenTitle": "¿Reabrir {{month}}?",
+    "reopenBody": "La versión {{version}} queda guardada como historia y se empieza la {{next}} con los mismos comentarios. Si estaba publicada, deja de estarlo.",
+    "publish": "Publicar",
+    "publishNamed": "Publicar el informe de {{month}}",
+    "unpublish": "Dejar de publicar",
+    "unpublishNamed": "Dejar de publicar el informe de {{month}}",
+    "published": "Publicado",
+    "notPublished": "No publicado",
+    "closeTitle": "Cerrar {{month}}",
+    "closeIntro": "Esto es lo que va a quedar congelado. Agregá un comentario por tablero si querés explicar el mes.",
+    "comment": "Comentario sobre {{dashboard}}",
+    "commentHint": "El informe se puede publicar: no incluyas nombres ni datos de personas.",
+    "indicatorsOnTrack": "{{met}} de {{total}} indicadores con meta en meta",
+    "noTargets": "Sin metas para este año",
+    "confirmClose": "Cerrar y congelar",
+    "closed": "Se cerró {{month}}.",
+    "noMonths": "Todavía no hay meses terminados para cerrar."
+  },
+  "publication": {
+    "title": "Página pública",
+    "intro": "Una página que cualquiera puede ver sin ingresar. Se publica solo lo que elegís acá: el tablero (con sus semáforos) y, dentro de él, cada indicador. Los informes se publican desde Informes.",
+    "pageSection": "La página",
+    "enabled": "Página pública activa",
+    "slug": "Dirección",
+    "slugHint": "Letras minúsculas, números y guiones.",
+    "threshold": "Mostrar como «menos de N» las cantidades menores a",
+    "thresholdHint": "Protege a las personas detrás de números chicos. 0 o 1 no oculta nada.",
+    "save": "Guardar",
+    "saved": "Guardado.",
+    "open": "Ver la página pública",
+    "whatSection": "Qué se publica",
+    "dashboard": "Publicar {{name}}",
+    "dashboardHint": "Sus semáforos de los últimos 12 meses.",
+    "indicator": "Publicar {{name}}",
+    "notAggregate": "No es un indicador agregado: no se puede publicar.",
+    "needsPage": "Activá la página para que se vea lo que elegís."
+  },
+  "public": {
+    "subtitle": "Transparencia de la gestión",
+    "municipality": "Municipio",
+    "commune": "Comuna",
+    "lights": "Estado de los tableros",
+    "indicators": "Indicadores",
+    "reports": "Informes mensuales",
+    "report": "Informe de {{month}}",
+    "reportVersion": "versión {{version}}, cerrado el {{date}}",
+    "download": "Descargar PDF",
+    "noReports": "Todavía no hay informes publicados.",
+    "below": "Menos de {{count}}",
+    "note": "Los datos son agregados. Las cantidades de 1 a {{last}} se muestran como «menos de {{count}}».",
+    "notFoundTitle": "Esta página no existe",
+    "notFoundBody": "Puede que el municipio todavía no la haya publicado o que la dirección no sea correcta.",
+    "poweredBy": "Publicado con gobernar360."
   }
 }

@@ -18,4 +18,10 @@ router.include_router(procedures_router.router)
 router.include_router(summary.router)
 router.include_router(export.router)
 
-module = DashboardModule(key=KEY, router=router, get_summary=summary.get_summary)
+module = DashboardModule(
+    key=KEY,
+    name="Trámites",
+    router=router,
+    get_summary=summary.get_summary,
+    indicators=summary.INDICATORS,
+)

@@ -4,6 +4,7 @@ exports[`asks for another year and points the downloads at it > screen at the en
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -96,6 +97,7 @@ exports[`asks for another year and points the downloads at it > screen at the st
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -144,6 +146,7 @@ exports[`invites an editor to load people when the dashboard is empty > screen a
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -194,6 +197,7 @@ exports[`invites an editor to load people when the dashboard is empty > screen a
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -242,6 +246,7 @@ exports[`names interventions without a type as none > screen at the end 1`] = `
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -332,6 +337,7 @@ exports[`names interventions without a type as none > screen at the start 1`] = 
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -380,6 +386,7 @@ exports[`points an admin of an empty dashboard at the parameters first > screen 
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -431,6 +438,7 @@ exports[`points an admin of an empty dashboard at the parameters first > screen 
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -479,6 +487,7 @@ exports[`says so when the year has no records > screen at the end 1`] = `
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -541,6 +550,7 @@ exports[`says so when the year has no records > screen at the start 1`] = `
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -589,6 +599,7 @@ exports[`shows an error when the summary cannot be loaded > screen at the end 1`
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -637,6 +648,7 @@ exports[`shows an error when the summary cannot be loaded > screen at the start 
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -685,6 +697,7 @@ exports[`shows the headline numbers and both tables > screen at the end 1`] = `
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -777,6 +790,7 @@ exports[`shows the headline numbers and both tables > screen at the start 1`] = 
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -825,6 +839,7 @@ exports[`tells a viewer of an empty dashboard to wait for the team > screen at t
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -874,6 +889,7 @@ exports[`tells a viewer of an empty dashboard to wait for the team > screen at t
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]

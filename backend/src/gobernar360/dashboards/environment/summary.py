@@ -23,12 +23,30 @@ from gobernar360.dashboards.environment.schemas import (
     VariableOut,
     VariableSummary,
 )
-from gobernar360.dashboards.registry import SummaryIndicator
+from gobernar360.dashboards.registry import IndicatorDefinition, SummaryIndicator
 from gobernar360.platform.access import RequestContext
 from gobernar360.platform.api_types import Year
 from gobernar360.platform.clock import Today
 
 router = APIRouter()
+
+# Values are loaded late and corrected, and variables and their targets are edited in
+# place, so what the summary said on a past date cannot be told from today's data.
+INDICATORS = (
+    IndicatorDefinition("environment.variables", name="Variables ambientales", aggregate=True),
+    IndicatorDefinition(
+        "environment.load_completion", "ratio", name="Cargas del año realizadas", aggregate=True
+    ),
+    IndicatorDefinition(
+        "environment.targets_met", name="Metas ambientales cumplidas", aggregate=True
+    ),
+    IndicatorDefinition(
+        "environment.targets_missed",
+        higher_is_better=False,
+        name="Metas ambientales no cumplidas",
+        aggregate=True,
+    ),
+)
 
 
 def compute_summary(

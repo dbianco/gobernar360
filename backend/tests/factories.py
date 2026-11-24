@@ -120,3 +120,19 @@ def accept_invitation(client: TestClient, email: str, password: str = DEFAULT_PA
     token = link_token(emails_to(email)[-1])
     response = client.post("/api/auth/tokens/redeem", json={"token": token, "password": password})
     assert response.status_code == 204, response.text
+
+
+def current_overview(overview: list[dict]) -> list[dict]:
+    """The general overview without the evolution of its indicators: each dashboard's
+    indicators as key, value and unit, and its lights."""
+    return [
+        {
+            "dashboard_key": section["dashboard_key"],
+            "indicators": [
+                {"key": item["key"], "value": item["value"], "unit": item["unit"]}
+                for item in section["indicators"]
+            ],
+            "status": section["status"],
+        }
+        for section in overview
+    ]

@@ -4,6 +4,7 @@ exports[`does not let a viewer or an editor change a month > screen at the end 1
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -34,6 +35,7 @@ exports[`does not let a viewer or an editor change a month > screen at the start
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -64,6 +66,7 @@ exports[`does not let months that have not started be changed > screen at the en
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -94,6 +97,7 @@ exports[`does not let months that have not started be changed > screen at the st
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -124,6 +128,7 @@ exports[`does not offer to clear a month that has no state > screen at the end 1
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -157,6 +162,7 @@ exports[`does not offer to clear a month that has no state > screen at the start
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -187,6 +193,7 @@ exports[`lets an admin clear a month > screen at the end 1`] = `
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -217,6 +224,7 @@ exports[`lets an admin clear a month > screen at the start 1`] = `
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -247,6 +255,7 @@ exports[`lets an admin set the color of a month > screen at the end 1`] = `
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -277,6 +286,7 @@ exports[`lets an admin set the color of a month > screen at the start 1`] = `
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -307,6 +317,7 @@ exports[`lets every month of a past year be changed and none of a future one > s
 "[Estado mensual]
 Estado mensual 2026
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -337,6 +348,7 @@ exports[`lets every month of a past year be changed and none of a future one > s
 "[Estado mensual]
 Estado mensual 2024
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2024]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -369,6 +381,7 @@ Estado mensual 2025
 [Año anterior]
 [Año siguiente]
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -401,6 +414,7 @@ Estado mensual 2024
 [Año anterior]
 [Año siguiente]
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2024]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -431,6 +445,7 @@ exports[`offers no year buttons when the page has a year of its own > screen at 
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -461,6 +476,7 @@ exports[`offers no year buttons when the page has a year of its own > screen at 
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -491,6 +507,7 @@ exports[`says why the lights cannot be loaded > screen at the end 1`] = `
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -522,6 +539,7 @@ exports[`says why the lights cannot be loaded > screen at the start 1`] = `
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -552,6 +570,7 @@ exports[`shows the error when the change is refused > screen at the end 1`] = `
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -583,6 +602,77 @@ exports[`shows the error when the change is refused > screen at the start 1`] = 
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic"
+`;
+
+exports[`shows the numbers of each month under its light > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2025
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
+Indicadores del mes
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: En orden]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Proyectos retrasados
+4
+5
+3
+Presupuesto ejecutado
+25 %
+—"
+`;
+
+exports[`shows the numbers of each month under its light > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2025
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -613,6 +703,7 @@ exports[`shows the twelve months with their state > screen at the end 1`] = `
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]
@@ -643,6 +734,7 @@ exports[`shows the twelve months with their state > screen at the start 1`] = `
 "[Estado mensual]
 Estado mensual 2025
 El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2025]
 [Enero: Sin estado]
 Ene
 [Febrero: Sin estado]

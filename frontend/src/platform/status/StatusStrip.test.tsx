@@ -36,7 +36,7 @@ it('shows the twelve months with their state', async () => {
   expect(await screen.findByRole('img', { name: monthName(3, 'green') })).toBeInTheDocument()
   expect(screen.getByRole('img', { name: monthName(5, 'red') })).toBeInTheDocument()
   expect(screen.getByRole('img', { name: monthName(4, 'none') })).toBeInTheDocument()
-  expect(screen.getAllByRole('listitem')).toHaveLength(12)
+  expect(screen.getAllByRole('columnheader')).toHaveLength(12)
   expect(requests[0].url.searchParams.get('year')).toBe('2025')
 })
 
@@ -150,4 +150,50 @@ it('offers no year buttons when the page has a year of its own', async () => {
 
   await screen.findByRole('img', { name: monthName(1, 'none') })
   expect(screen.queryByRole('button', { name: t('status.previousYear') })).toBeNull()
+})
+
+it('shows the numbers of each month under its light', async () => {
+  mockApi('get', URL, [{ month: 3, color: 'green' }])
+  const numbers = mockApi('get', '/dashboards/projects/evolution/months', {
+    year: 2025,
+    indicators: [
+      { key: 'projects.delayed', unit: null, higher_is_better: false, reconstructible: false },
+      {
+        key: 'projects.budget_executed_ratio',
+        unit: 'ratio',
+        higher_is_better: true,
+        reconstructible: false,
+      },
+      // Never recorded this year: no row.
+      { key: 'projects.finished', unit: null, higher_is_better: true, reconstructible: false },
+    ],
+    months: [
+      { month: 1, values: { 'projects.delayed': 4 } },
+      { month: 2, values: { 'projects.delayed': 5, 'projects.budget_executed_ratio': 0.25 } },
+      { month: 3, values: { 'projects.delayed': 3, 'projects.budget_executed_ratio': null } },
+    ],
+  })
+  renderStrip('viewer')
+
+  const delayed = await screen.findByRole('row', {
+    name: new RegExp(t('overview.indicators.projects.delayed')),
+  })
+  const cells = within(delayed).getAllByRole('cell')
+  expect(cells.slice(0, 4).map((cell) => cell.textContent)).toEqual(['4', '5', '3', ''])
+  const budget = screen.getByRole('row', {
+    name: new RegExp(t('overview.indicators.projects.budget_executed_ratio')),
+  })
+  expect(within(budget).getAllByRole('cell').slice(0, 3).map((cell) => cell.textContent)).toEqual([
+    '',
+    '25 %',
+    '—',
+  ])
+  expect(
+    screen.queryByRole('row', { name: new RegExp(t('overview.indicators.projects.finished')) }),
+  ).not.toBeInTheDocument()
+  // The month's light heads its column.
+  expect(screen.getAllByRole('columnheader')[3]).toContainElement(
+    screen.getByRole('img', { name: monthName(3, 'green') }),
+  )
+  expect(numbers[0].url.searchParams.get('year')).toBe('2025')
 })
