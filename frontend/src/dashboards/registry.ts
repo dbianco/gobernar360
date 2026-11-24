@@ -4,6 +4,7 @@ import {
   IconFileText,
   IconHeartHandshake,
   IconLeaf,
+  IconMessageReport,
   type Icon,
 } from '@tabler/icons-react'
 import { type ComponentType, lazy, type LazyExoticComponent } from 'react'
@@ -57,6 +58,13 @@ export const dashboards: DashboardEntry[] = [
     icon: IconFileText,
     basePath: '/d/procedures',
     routes: lazy(() => import('./procedures/routes')),
+  },
+  {
+    key: 'complaints',
+    labelKey: 'complaints.title',
+    icon: IconMessageReport,
+    basePath: '/d/complaints',
+    routes: lazy(() => import('./complaints/routes')),
   },
 ]
 

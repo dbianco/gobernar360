@@ -68,6 +68,14 @@ def validation_error(message: str) -> ApiError:
     return ApiError(422, "validation_error", message)
 
 
+def invalid_transition(message: str) -> ApiError:
+    return ApiError(409, "invalid_transition", message)
+
+
+def case_not_open() -> ApiError:
+    return ApiError(409, "case_not_open", "The complaint is no longer open.")
+
+
 def future_month() -> ApiError:
     return ApiError(422, "future_month", "A month that has not started cannot be given a status.")
 

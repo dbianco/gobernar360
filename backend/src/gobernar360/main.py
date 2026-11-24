@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from gobernar360.core.config import get_settings
 from gobernar360.core.errors import error_response, install_error_handlers
 from gobernar360.dashboards import (
+    complaints,
     economic,
     environment,
     procedures,
@@ -65,6 +66,7 @@ def create_app() -> FastAPI:
     registry.register(economic.module)
     registry.register(social.module)
     registry.register(procedures.module)
+    registry.register(complaints.module)
 
     api.include_router(auth_router.router)
     api.include_router(operator_router.router)

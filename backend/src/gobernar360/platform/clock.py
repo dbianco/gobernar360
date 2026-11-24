@@ -1,4 +1,4 @@
-"""The current date, as a dependency so tests can pin it."""
+"""The current date and time, as dependencies so tests can pin them."""
 
 from datetime import date, datetime
 from typing import Annotated
@@ -14,4 +14,10 @@ def get_today() -> date:
     return datetime.now(LOCAL_TIMEZONE).date()
 
 
+def get_now() -> datetime:
+    """The current moment, timezone-aware, for recording when something happened."""
+    return datetime.now(LOCAL_TIMEZONE)
+
+
 Today = Annotated[date, Depends(get_today)]
+Now = Annotated[datetime, Depends(get_now)]

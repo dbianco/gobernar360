@@ -12,6 +12,7 @@ modules =
     gobernar360.dashboards.economic
     gobernar360.dashboards.social
     gobernar360.dashboards.procedures
+    gobernar360.dashboards.complaints
 
 [importlinter:contract:platform-does-not-depend-on-dashboards]
 name = Core and platform do not depend on any dashboard module
@@ -25,3 +26,4 @@ forbidden_modules =
     gobernar360.dashboards.economic
     gobernar360.dashboards.social
     gobernar360.dashboards.procedures
+    gobernar360.dashboards.complaints

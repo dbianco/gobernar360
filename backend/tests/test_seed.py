@@ -1,6 +1,7 @@
 from sqlalchemy import delete, func, select
 
 from gobernar360.core.db import platform_session, tenant_session
+from gobernar360.dashboards.complaints import models as complaints
 from gobernar360.dashboards.economic.models import (
     Actor,
     ActorPerson,
@@ -175,8 +176,19 @@ def test_seed_demo_survives_a_demo_database_without_the_second_municipality():
         assert _count(db, Variable) >= 8
 
 
+# The complaints dashboard came last and points at the registry, so it goes first of all.
+COMPLAINTS_MODELS = (
+    complaints.ComplaintEvent,
+    complaints.Complaint,
+    complaints.ComplaintType,
+    complaints.Holiday,
+    complaints.WorkingWeek,
+    complaints.Zone,
+    complaints.Area,
+)
 # Children first, so the rows can be deleted without tripping foreign keys.
 SOCIAL_MODELS = (
+    *COMPLAINTS_MODELS,
     Delivery,
     Intervention,
     SocialPerson,
@@ -208,7 +220,9 @@ def test_seed_demo_adds_the_economic_dashboard_to_an_older_demo_database():
         for model in ECONOMIC_MODELS:
             session.execute(delete(model))
         for model in (DashboardGrant, MunicipalityDashboard):
-            session.execute(delete(model).where(model.dashboard_key.in_(["economic", "social"])))
+            session.execute(
+                delete(model).where(model.dashboard_key.in_(["economic", "social", "complaints"]))
+            )
     with platform_session() as db:
         noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
         users_before = _count(db, User)
@@ -266,7 +280,7 @@ def test_seed_demo_adds_the_social_dashboard_to_an_older_demo_database():
             session.execute(delete(model))
         session.execute(delete(Person).where(Person.id.not_in(select(EconomicPerson.person_id))))
         for model in (DashboardGrant, MunicipalityDashboard):
-            session.execute(delete(model).where(model.dashboard_key == "social"))
+            session.execute(delete(model).where(model.dashboard_key.in_(["social", "complaints"])))
     with platform_session() as db:
         noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
         users_before = _count(db, User)
@@ -423,3 +437,121 @@ def test_seed_demo_adds_the_procedures_dashboard_to_an_older_demo_database():
     seed_demo()
     with admin_session() as session:
         assert _count(session, Procedure) == procedures_count
+
+
+COMPLAINTS_API = "/api/dashboards/complaints"
+
+
+def _noetinger_id():
+    with platform_session() as db:
+        return db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+
+
+def test_seeded_complaints_wait_for_the_operator_in_noetinger(client):
+    seed_demo()
+
+    with platform_session() as db:
+        enabled = {
+            (row.municipality_id, row.dashboard_key)
+            for row in db.scalars(select(MunicipalityDashboard))
+        }
+        commune_id = db.scalar(select(Municipality.id).where(Municipality.slug == "comuna-demo"))
+    assert (_noetinger_id(), "complaints") not in enabled
+    assert (commune_id, "complaints") in enabled
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+    assert client.get(f"{COMPLAINTS_API}/complaints").status_code == 403
+    with tenant_session(_noetinger_id()) as db:
+        count = _count(db, complaints.Complaint)
+        states = set(db.scalars(select(complaints.Complaint.state)))
+        identified = db.scalar(
+            select(func.count()).where(complaints.Complaint.person_id.is_not(None))
+        )
+        retired = db.scalar(
+            select(func.count()).where(complaints.ComplaintType.is_active.is_(False))
+        )
+    assert count >= 300
+    assert states == {
+        "received",
+        "assigned",
+        "in_progress",
+        "waiting",
+        "resolved",
+        "closed",
+        "rejected",
+        "reopened",
+    }
+    assert 0 < identified < count
+    assert retired == 1
+
+
+def test_seeded_complaints_give_a_year_of_analysis_once_enabled(client):
+    seed_demo()
+    with admin_session() as session, session.begin():
+        session.add(
+            MunicipalityDashboard(municipality_id=_noetinger_id(), dashboard_key="complaints")
+        )
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+
+    summary = client.get(f"{COMPLAINTS_API}/summary").json()
+    queues = client.get(f"{COMPLAINTS_API}/queues").json()
+    overview = client.get("/api/overview").json()
+
+    assert summary["totals"]["received"] >= 300
+    assert 0.3 < summary["totals"]["on_time_ratio"] < 0.9
+    assert len(summary["monthly"]) == 12
+    assert all(month["received"] > 0 and month["resolved"] > 0 for month in summary["monthly"])
+    assert len(summary["by_type"]) >= 10 and len(summary["by_area"]) >= 5
+    medians = {row["median_days"] for row in summary["by_type"]}
+    assert len(medians) > 3
+    backlog = summary["backlog"]
+    assert backlog["open"] > 0 and backlog["overdue"] > 0 and backlog["paused"] > 0
+    assert summary["repeated"] and len(summary["top_zones"]) == 6
+    assert sum(queue["open"] for queue in queues) == backlog["open"]
+    section = next(s for s in overview if s["dashboard_key"] == "complaints")
+    assert [i["key"] for i in section["indicators"]] == [
+        "complaints.open",
+        "complaints.overdue",
+        "complaints.on_time_ratio",
+        "complaints.median_resolution_days",
+    ]
+    assert len(section["status"]) == 6
+    lucia = client.get(f"{COMPLAINTS_API}/people/lookup", params={"dni": "33123456"}).json()
+    assert lucia["person"]["full_name"] == "Fernández, Lucía"
+
+
+def test_seeded_complaints_stay_inside_noetinger(client):
+    seed_demo()
+    login(client, "admin@comuna-demo.test", DEMO_PASSWORD)
+
+    listed = client.get(f"{COMPLAINTS_API}/complaints").json()
+    types = client.get(f"{COMPLAINTS_API}/types").json()
+
+    assert listed["total"] == 4
+    assert {item["area"]["name"] for item in listed["items"]} == {"Servicios Públicos"}
+    assert {t["name"] for t in types} == {"Luminaria apagada", "Camino rural intransitable"}
+    assert client.get(f"{COMPLAINTS_API}/calendar").json()["holidays"] == []
+
+
+def test_seed_demo_adds_the_complaints_to_an_older_demo_database_once():
+    seed_demo()
+    # A database seeded before the complaints dashboard existed.
+    with admin_session() as session, session.begin():
+        for model in COMPLAINTS_MODELS:
+            session.execute(delete(model))
+        session.execute(
+            delete(DashboardStatus).where(DashboardStatus.dashboard_key == "complaints")
+        )
+        for model in (DashboardGrant, MunicipalityDashboard):
+            session.execute(delete(model).where(model.dashboard_key == "complaints"))
+    with tenant_session(_noetinger_id()) as db:
+        projects_before, people_before = _count(db, Project), _count(db, Person)
+
+    changed = seed_demo()
+    changed_again = seed_demo()
+
+    assert (changed, changed_again) == (True, False)
+    with tenant_session(_noetinger_id()) as db:
+        assert _count(db, Project) == projects_before
+        # Complainants already in the registry are reused, not loaded twice.
+        assert _count(db, Person) == people_before
+        assert _count(db, complaints.Complaint) >= 300

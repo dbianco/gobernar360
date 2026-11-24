@@ -26,7 +26,8 @@ export function renderApp(ui: ReactElement, options: { route?: string; me?: Me |
     defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
   })
   return render(
-    <MantineProvider>
+    // Without transitions and portals: a tooltip caught mid-transition by jsdom stayed hidden.
+    <MantineProvider env="test">
       <Notifications />
       <QueryClientProvider client={queryClient}>
         <MemoryRouter initialEntries={[options.route ?? '/']}>
