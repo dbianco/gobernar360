@@ -1,0 +1,537 @@
+name	title
+idecor:CBA_Areas_Promocion_Urbana_8256	Córdoba: Áreas Promoción Urbana (Ord 8256)
+idecor:CBA_Centro_de_Manzana_8256	Córdoba: Centros de Manzanas (Ord 8256)
+idecor:CBA_Ordenanza_8060_Modificaciones	Córdoba: Fraccionamiento (Ord 8060)
+idecor:CBA_Ordenanza_8133	Córdoba: Uso del Suelo (Ord 8133)
+idecor:CBA_Ordenanza_8256	Córdoba: Ocupación del Suelo (Ord 8256)
+idecor:CBA_Red_Vial_8060	Córdoba: Clasificación Vial (Ord 8060)
+idecor:CBA_Red_Vial_9089	Córdoba: Distancia Ejes Viales (Ord 9089)
+idecor:Carlos_Paz_Anegamiento_Humedales	Carlos Paz: Anegamiento Humedales
+idecor:Carlos_Paz_Area_Protegida_Camiare	Carlos Paz: Área Protegida Camiare
+idecor:Carlos_Paz_Area_Protegida_Norte	Carlos Paz: Área Protegida Norte
+idecor:Carlos_Paz_Area_Urbanizada	Carlos Paz: Área Urbanizada
+idecor:Carlos_Paz_Arqueologico_Molienda	Carlos Paz: Puntos Arqueológicos Molienda
+idecor:Carlos_Paz_Calles	Carlos Paz: Ejes de Calles
+idecor:Carlos_Paz_Comunidades_Vegetales	Carlos Paz: Comunidades Vegetales
+idecor:Carlos_Paz_Cuencas_Completas	Carlos Paz: Cuencas
+idecor:Carlos_Paz_Drenajes	Carlos Paz: Drenajes
+idecor:Carlos_Paz_Equipamientos	Carlos Paz: Equipamiento
+idecor:Carlos_Paz_Espacios_Verdes	Carlos Paz: Espacios Verdes
+idecor:Carlos_Paz_Estado_Comunidades_Vegetales	Carlos Paz: Estado Comunidades Vegetales
+idecor:Carlos_Paz_Litologia_Geomorfologia	Carlos Paz: Litología Geomorfología
+idecor:Carlos_Paz_Manzanas	Carlos Paz: Manzanas
+idecor:Carlos_Paz_Normativa_Urbana	Carlos Paz: Normativa Urbana
+idecor:Carlos_Paz_Parcelas	Carlos Paz: Parcelas
+idecor:Carlos_Paz_Peligrosidad	Carlos Paz: Peligrosidad por Inundación de Anegamiento
+idecor:Carlos_Paz_Zonas_Yacimientos	Carlos Paz: Zonas Yacimientos
+idecor:Carlos_Paz_zona_A_de_servicios	Carlos Paz: Zona A de Servicios
+idecor:Centros_Salud	Geografía Social: Centros de Salud
+idecor:Jesus_Maria_Barrios	Jesús María: Barrios
+idecor:Jesus_Maria_Ejes_Calles	Jesús María: Ejes de Calles
+idecor:Jesus_Maria_Espacios_Verdes	Jesús María: Espacios Verdes
+idecor:Jesus_Maria_Luminarias_Apostacion	Jesús María: Luminarias (apostación)
+idecor:Jesus_Maria_Luminarias_Red	Jesús María: Luminarias (red)
+idecor:Jesus_Maria_Manzanas	Jesús María: Manzanas
+idecor:Jesus_Maria_Parcelas	Jesús María: Parcelas
+idecor:Jesus_Maria_Patrones_Asentamiento	Jesús María: Usos de Suelo (Ord4196)
+idecor:Jesus_Maria_Red_Agua	Jesús María: Red de Agua
+idecor:Jesus_Maria_Red_Cloacas	Jesús María: Red de Cloacas
+idecor:Jesus_Maria_Red_Desagues	Jesús María: Red de Desagues
+idecor:Jesus_Maria_Red_Gas_Cobertura	Jesús María: Cobertura de Gas
+idecor:Villa_Giardino_Barrios	Villa Giardino: Barrios
+idecor:Villa_Giardino_Cobertura_de_Agua	Villa Giardino: Cobertura de Agua
+idecor:Villa_Giardino_Cobertura_de_Gas	Villa Giardino: Cobertura de Gas
+idecor:Villa_Giardino_Dimensiones_Parcelas	Villa Giardino: Dimensiones de Parcelas
+idecor:Villa_Giardino_Ejes_de_Calle	Villa Giardino: Ejes de Calles
+idecor:Villa_Giardino_Equipamientos	Villa Giardino: Equipamiento
+idecor:Villa_Giardino_Parcelas	Villa Giardino: Parcelas
+idecor:Villa_Giardino_Sectores_Servicios	Villa Giardino: Sectores de Servicios
+idecor:Villa_Giardino_Uso_Ocupacion_del_Suelo	Villa Giardino: Uso Ocupación del Suelo (Ord 430)
+idecor:a_gracia_areas_proteccion	Alta Gracia: Áreas de protección
+idecor:a_gracia_ejesarroyos	Alta Gracia: Ejes de arroyos
+idecor:a_gracia_ord8457	Alta Gracia: Ordenanza N°8457
+idecor:a_grales_bv	Bell Ville: Áreas Generales
+idecor:acueductos	Hidrografía: Acueductos
+idecor:agro_grilla_dist5	Edafología: Agroforestal - Áreas Prioritarias para la Restauración de Agroecosistemas
+idecor:agua_bv	Bell Ville: Red de distribución de agua
+idecor:aldea_sta_ma_acc_agua	Aldea Santa María: Accesorios Red Agua
+idecor:aldea_sta_ma_agua	Aldea Santa María: Red de distribución de agua
+idecor:aldea_sta_ma_alum_pub	Aldea Santa María: Alumbrado público
+idecor:aldea_sta_ma_calles	Aldea Santa María: Calles
+idecor:aldea_sta_ma_equipamiento	Aldea Santa María: Equipamiento
+idecor:aldea_sta_ma_gas	Aldea Santa María: Red de distribución de gas
+idecor:aldea_sta_ma_hidrantes	Aldea Santa María: Hidrantes
+idecor:alquileres_parcela_urbano_2022	Valor Unitario de Alquiler 2021 ($/m2)
+idecor:alquileres_parcela_urbano_2023	Valor Unitario de Alquiler feb/23 ($/m2)
+idecor:alquileres_parcela_urbano_2024	Valor Unitario de Alquiler feb/24 ($/m2)
+idecor:alquileres_parcela_urbano_2025	Valor Unitario de Alquiler enero/25 ($/m2)
+idecor:alquileres_parcela_urbano_2026	Valor Unitario de Alquiler enero/26 ($/m2)
+idecor:ambientes_geomorfologicos	Edafología: Ambientes Geomorfológicos
+idecor:anisacate_areas_administrativas	Anisacate: Área Administrativa
+idecor:anisacate_barrios	Anisacate: Barrios
+idecor:anisacate_calles_cortafuego	Anisacate: Picadas Cortafuego
+idecor:anisacate_cisternas	Anisacate: Cisternas
+idecor:anisacate_distritos	Anisacate: Distritos
+idecor:anisacate_uso_del_suelo	Anisacate: Usos de suelo
+idecor:anisacate_zonas	Anisacate: Zonas
+idecor:anp_corredores_biogeograficos	Ambiente ANP: Corredores Biogeograficos
+idecor:anp_defensa	Ambiente ANP: Áreas Naturales de la Defensa
+idecor:arcilla_2021	Edafología: Suelo - Arcilla
+idecor:area_quemada_2021	Áreas Afectadas por Incendios 2021
+idecor:area_quemada_2022	Áreas Afectadas por Incendios 2022
+idecor:area_quemada_2023	Áreas Afectadas por Incendios 2023
+idecor:area_quemada_2024	Áreas Afectadas por Incendios 2024
+idecor:area_quemada_2025	Áreas Afectadas por Incendios 2025
+idecor:area_quemada_2026	Áreas Afectadas por Incendios 2026
+idecor:areas_amortiguamiento	Ambiente ANP: Áreas de Amortiguamiento
+idecor:areas_naturales_nacionales	Ambiente: Áreas Naturales Protegidas - Nacionales
+idecor:areas_naturales_provinciales	Ambiente: Áreas Naturales Protegidas - Provinciales
+idecor:arena_2021	Edafología: Suelo - Arena
+idecor:arrendamiento_rural_2025	Valor Unitario de Arrendamiento 2025 (qq-soja/ha)
+idecor:arroyito_eje_com_1081	Arroyito: Corredores (Ord. 1081)
+idecor:arroyito_zonas_1081	Arroyito: Zonificación (Ord. 1081)
+idecor:barrios_lf	La Falda: Barrios
+idecor:barrios_salsipuedes	Salsipuedes: Barrios
+idecor:bioenergia_forsu_2025	Eenergias Renovables: Fracción Orgánica de Residuos Sólidos Urbanos (FORSU)
+idecor:bioenergia_origen_pecuario_2025	Eenergias Renovables: Biomasa húmeda de origen pecuario
+idecor:bolsa_alfalfa_historico	Bolsa de Cereales: Cultivo Alfalfa
+idecor:bolsa_garbanzo_historico	Bolsa de Cereales: Cultivo Garbanzo
+idecor:bolsa_girasol_historico	Bolsa de Cereales: Cultivo Girasol
+idecor:bolsa_maiz_historico	Bolsa de Cereales: Cultivo Maíz
+idecor:bolsa_mani_historico	Bolsa de Cereales: Cultivo Maní
+idecor:bolsa_precipitaciones	Bolsa de Cereales: Estaciones Meteorológicas
+idecor:bolsa_soja_historico	Bolsa de Cereales: Cultivo Soja
+idecor:bolsa_sorgo_historico	Bolsa de Cereales: Cultivo Sorgo
+idecor:bpa2019	BPA 2019
+idecor:bpa2020	BPA 2020
+idecor:bpa2021	BPA 2021
+idecor:bpa2022	BPA 2022
+idecor:bpa2023	BPA 2023
+idecor:bpa2024	BPA 2024
+idecor:bpa2025	BPA 2025
+idecor:buffer_13131	Córdoba: Zona de Resguardo
+idecor:c1_chorrillos	Cobertura: Chorrillos C1 - Potencial de conservación de cuencas
+idecor:c1_traslasierras	Cobertura: Traslasierras C1 - Potencial de conservación de cuenca
+idecor:c3_chorrillos	Cobertura: Chorrillos C3 - Superficie de ecosistemas de alto valor biológico y funcional
+idecor:c3_traslasierras	Cobertura: Traslasierras C3 - Superficie de bosque
+idecor:c4_chorrillos	Cobertura: Chorrillos C4 - Estado de conservación
+idecor:c5_traslasierras	Cobertura: Traslasierras C5 - Valores biológicos y funcionales sobresalientes
+idecor:c6_chorrillos	Cobertura: Chorrillos C6 - Vinculación entre áreas naturales protegidas
+idecor:c6_traslasierras	Cobertura: Traslasierras C6 - Vinculación entre áreas naturales protegidas
+idecor:c7_chorrillos	Cobertura: Chorrillos C7 - Vinculación con otras comunidades naturales
+idecor:c7_traslasierras	Cobertura: Traslasierras C7 - Vinculación con otras comunidades naturales
+idecor:calles_bv	Bell Ville: Ejes de Calles
+idecor:calles_planeamiento_salsipuedes	Salsipuedes: Gestión de Calles
+idecor:calles_salsipuedes	Salsipuedes: Ejes de Calles
+idecor:canales_riego	Hidrografía: Canales de Riego
+idecor:capilla_usos_suelo	Capilla del Monte: Zonificación
+idecor:carta_suelo_100mil_2025	Edafología: Cartas de Suelo - Mapa de Suelos a escala 1:100.000
+idecor:carta_suelo_250mil_2022	Edafología: Cartas de Suelo - Mapa de Suelos a escala 1:250.000
+idecor:carta_suelo_500mil_2024	Edafología: Cartas de Suelo - Mapa de Suelos a escala de reconocimiento 1:500.000
+idecor:carta_suelo_500mil_completa_2024	Edafología: Cartas de Suelo - Mapa de Suelos a escala de reconocimiento 1:500.000 (completa)
+idecor:carta_suelo_50mil_2025	Edafología: Cartas de Suelo - Mapa de Suelos a escala de semidetalle 1:50.000
+idecor:cartas_provincia_2024	Edafología: Portal Cartas de Suelo
+idecor:cartas_suelo_unidas_2025_cu	Edafología: Cartas de Suelo (capacidad de uso)
+idecor:cartas_suelo_unidas_2025_ip	Edafología: Cartas de Suelo (índice de productividad)
+idecor:cba_area_arqueologica_de_riesgo	Córdoba: Área Arqueológica de Riesgo
+idecor:cba_area_de_proteccion_patrimonial	Córdoba: Área de Protección Patrimonial
+idecor:cba_elemento_urbano_ambiental	Córdoba: Elemento Urbano Ambiental
+idecor:cba_galerias_comerciales	Córdoba: Red de Galerías y Pasajes Comerciales
+idecor:cba_inmuebles_catalogados	Córdoba: Bienes Catalogados
+idecor:cba_sitios_de_interes	Córdoba: Sitio Catalogado Singular
+idecor:cc_e_educacion	Colonia Caroya: Encuesta de Hogares (Educación)
+idecor:cc_e_empleo	Colonia Caroya: Encuesta de Hogares (Empleo)
+idecor:cc_e_hogares	Colonia Caroya: Encuesta de Hogares (Hogares)
+idecor:cc_e_nbi	Colonia Caroya: Encuesta de Hogares (Indicador NBI)
+idecor:cc_e_poblacion	Colonia Caroya: Encuesta de Hogares (Población)
+idecor:cc_e_salud	Colonia Caroya: Encuesta de Hogares (Salud)
+idecor:cc_e_seg_soc	Colonia Caroya: Encuesta de Hogares (Seguridad Social)
+idecor:ccaroya_areas	Colonia Caroya: Planeamiento Urbano (áreas)
+idecor:ccaroya_barrios	Colonia Caroya: Barrios
+idecor:ccaroya_corredores	Colonia Caroya: Corredores (Ord. 2361/20)
+idecor:ccaroya_ejes_calles	Colonia Caroya: Ejes Calles
+idecor:ccaroya_espacios_verdes	Colonia Caroya: Espacios Verde
+idecor:ccaroya_mz	Colonia Caroya: Manzanas
+idecor:ccaroya_parcelas	Colonia Caroya: Parcelas
+idecor:ccaroya_puntos_interes	Colonia Caroya: Puntos de Interes
+idecor:ccaroya_subareas	Colonia Caroya: Planeamiento Urbano (subáreas)
+idecor:chili_alumbrado	Chilibroste: Alumbrado Público
+idecor:chili_calles	Chilibroste: Calle
+idecor:chili_canales	Chilibroste: Canales
+idecor:chili_edificaciones	Chilibroste: Edificaciones
+idecor:chili_equipamiento	Chilibroste: Equipamiento
+idecor:chili_manzanas	Chilibroste: Manzanas
+idecor:chili_parcelas	Chilibroste: Parcelas
+idecor:chili_red_gas	Chilibroste: Red gas
+idecor:circunscripciones	Parcelario: Circunscripciones
+idecor:cizalla_geol	Geología: Fajas de Cizalla
+idecor:cloacas_bv	Bell Ville: Red de cobertura de cloacas
+idecor:cobertura_2020_2021_dpto	Cobertura y Uso de Suelo 2020/2021 (por departamento)
+idecor:cobertura_chorrillos	Cobertura: Chorrillos - Cobertura de Suelo de la cuenca del río los Chorrillos
+idecor:consorcios_canaleros	Hidrografía: Consorcios Canaleros
+idecor:corralito_barrios	Corralito: Barrios
+idecor:corralito_ejes_calles	Corralito: Ejes Calles
+idecor:corralito_manz	Corralito: Manzana
+idecor:corralito_parc_urb	Corralito: Parcelas Urbanas
+idecor:corralito_zonif_trib	Corralito: Zonificación Tributaria
+idecor:corredor_usos_bv	Bell Ville: Corredores - Usos del Suelo
+idecor:corredores	Transporte Interurbano: Corredores
+idecor:corredores_bv	Bell Ville: Corredores (Ord. 1866/14)
+idecor:cosquin_barrios	Cosquín: Barrios
+idecor:cosquin_cota_punto	Cosquín: Cotas msnm
+idecor:cosquin_ejes_de_calles	Cosquín: Ejes de Calles
+idecor:cosquin_equipamiento_de_salud	Cosquín: Equipamiento de Salud
+idecor:cosquin_equipamiento_educativos	Cosquín: Equipamiento Educativo
+idecor:cosquin_equipamiento_institucional	Cosquín: Equipamiento Institucional
+idecor:cosquin_esquinas_conmemorativas	Cosquín: Esquinas Conmemorativas
+idecor:cosquin_gestion_de_calles	Cosquín: Gestión de Calles
+idecor:cosquin_hitos	Cosquín: Hitos
+idecor:cosquin_manzanas	Cosquín: Manzanas
+idecor:cosquin_puentes	Cosquín: Puentes
+idecor:cosquin_red_cobertura_de_gas	Cosquín: Red de Gas
+idecor:cosquin_zonificacion_codigo_edificacion	Cosquín: Código de Edificación (Ord 72)
+idecor:cruzalta_agua	Cruz Alta - Red de agua
+idecor:cruzalta_barrios	Cruz Alta: Barrios
+idecor:cruzalta_equipamiento	Cruz Alta: Equipamiento
+idecor:cruzalta_ev	Cruz Alta: Espacios verdes
+idecor:cruzalta_plantas	Cruz Alta: Plantas
+idecor:cruzalta_ptos_int	Cruz Alta: Puntos de interés
+idecor:cruzalta_rec_trib	Cruz Alta: Recargo por plusvalía
+idecor:cruzalta_recol	Cruz Alta: Recorrido de recolección de residuos
+idecor:cruzalta_usos	Cruz Alta: Zona y usos
+idecor:cuarteles_bbvv	Bomberos Voluntarios: Cuarteles
+idecor:cuencas_hidrograficas	Hidrografía: Cuencas Hidrográficas
+idecor:cuerpos_de_agua_naturales_aprhi	Hidrografía: Cuerpos de Agua Naturales
+idecor:cultivos_por_dpto_mapa	Coberturas Agrícolas Estivales 17/18 (por departamento)
+idecor:cursos_agua	Hidrografía: Cursos de Agua
+idecor:delca_alum_pub	Del Campillo: Alumbrado público
+idecor:delca_ejes	Del Campillo: Ejes de calles
+idecor:delca_equipa	Del Campillo: Equipamiento
+idecor:delca_equipa_pto	Del Campillo: Equipamientos punto
+idecor:delca_ev	Del Campillo: Espacios Verdes
+idecor:delca_gas	Del Campillo: Red de gas
+idecor:delca_pou	Del Campillo: Planeamiento Urbano
+idecor:departamentos	Demarcación: Departamentos
+idecor:deuda_tsp_240826_vgb	Villa General Belgrano: Deuda por Tasa de Servicios
+idecor:dto_defunciones	Registro Civil: Defunciones por depto
+idecor:dto_matrimonios	Registro Civil: Matrimonios por depto
+idecor:dto_nacimiento	Registro Civil: Nacimientos por depto
+idecor:e_avicola_dpto	Ganadería: Establecimientos Avícolas por departamento
+idecor:e_avicola_pedania	Ganadería: Establecimientos Avícolas por pedanía
+idecor:e_avicola_provincia	Ganadería: Establecimientos Avícolas por provincia
+idecor:eje_calles_vgb	Villa General Belgrano: Ejes Calles
+idecor:ejes_de_calle_lf	La Falda: Ejes de Calles
+idecor:elena_zonificacion	Elena: Zonificación
+idecor:emb_alu_pub	Embalse: Alumbrado Público
+idecor:emb_barrios_y_clubes	Embalse: Barrios y clubes
+idecor:emb_calles_hecho	Embalse: Calles
+idecor:emb_gestion_calle	Embalse: Gestión de calles
+idecor:emb_parcelas_20201001	Embalce: Parcelas
+idecor:emb_ptas_cloaca	Embalse: Plantas de cloacas
+idecor:emb_zonif_trib_2027	Embalse: Zonas tributarias
+idecor:embalses	Hidrografía: Embalses
+idecor:ensayos_restauracion_agroforestal	Edafología: Agroforestal - Red de Ensayos Forestales
+idecor:equipamiento_urbano_lf	La Falda: Equipamiento Urbano
+idecor:espacios_verdes_bv	Bell Ville: Espacios Verdes
+idecor:espacios_verdes_salsipuedes	Salsipuedes: Espacios Verdes
+idecor:espacios_verdes_vgb	Villa General Belgrano: Espacios Verdes
+idecor:est_faenadores_transito_nacional	Establecimientos Faenadores - Tránsito Nacional
+idecor:est_faenadores_transito_provincial	Establecimientos Faenadores - Tránsito Provincial
+idecor:establecimientos_educativos	Geografía Social: Establecimientos Educativos
+idecor:estructuras_geol	Geología: Estructuras Geológicas
+idecor:expedientes	Parcelario: Expedientes en MEUL
+idecor:extraccion_miel	Ganadería: Salas de Extracción de Miel
+idecor:fraccionamiento_suelo_salsipuedes	Salsipuedes: Fraccionamiento Urbano
+idecor:franja_ecoprod_13131	Córdoba: Franja ecoproductiva (Ord.13131/21)
+idecor:gas_bv	Bell Ville: Red de distribución de gas
+idecor:hernando_barrios	Hernando: Barrios
+idecor:hernando_uso_suelo	Hernando: Uso del Suelo (Ord. 55/18)
+idecor:hernando_zonificacion	Hernando: Zonificación (Ord. 55/18)
+idecor:huach_alumbrado	Huanchilla: Alumbrado Público
+idecor:huach_eje_calles	Huanchilla: Ejes de Calles
+idecor:huach_red_gas	Huanchilla: Red de distribución de gas
+idecor:huanch_edificaciones	Huanchilla: Edificación
+idecor:huanch_equipamientos	Huanchilla: Equipamientos
+idecor:huanch_ev	Huanchilla: Espacios Verdes
+idecor:icho_cruz_zonificacion	Icho Cruz: Zonificación (Ord. 214/2023)
+idecor:imagenes_aereas_historicas	Imágenes y Vuelos Históricos: Información Complementaria
+idecor:jp_plan_ou_ord_27_23	Justiniano Posse: Plan Ord. Urbano (Ord. 27/23)
+idecor:jp_zonas_ord_38_07	Justiniano Posse: Zonificación (Ord. 38/07)
+idecor:jurisdicciones_bbvv_1	Bomberos Voluntarios: Jurisdicción por Cuartel
+idecor:lagun_lar_ord_1573_20	Laguna Larga: Código de edificación (ord. 1573)
+idecor:las_higueras_ord_16_2015	Las Higueras: Zonificación (Ord: 16/2015)
+idecor:lc_zonificacion	La Calera: Zonificación
+idecor:lg_pc_cat_agua	La Granja: Parcelas distancia red agua
+idecor:lg_traza_ag	La Granja: Red de agua
+idecor:lg_zonificacion	La Granja: Zonificación
+idecor:limitantes_edaficas	Edafología: Limitantes Edáficas
+idecor:limo_2021	Edafología: Suelo - Limo
+idecor:linea_ribera_vgb	Villa General Belgrano: Linea Ribera
+idecor:lineas_interurbanas	Transporte Interurbano: Líneas Interurbanas
+idecor:litologia_geol	Geología: Litología
+idecor:localidad_punto	Demarcación: Localidades (puntos)
+idecor:los_surg_alum_pub	Los Surgentes: Alumbrado Público
+idecor:los_surg_calles	Los Surgentes: Ejes de calles
+idecor:loteos_muni_aprobados	Córdoba: Loteos Aprobados
+idecor:loteos_muni_autorizados	Córdoba: Loteos Autorizados
+idecor:lu_cordoba_2022	Cobertura y Uso de Suelo Urbano 2021/2022 (Cba, Villa María, Villa Nueva, Jesús María, Colonia Caroya, Sinsacate)
+idecor:lv_corredor_ord_480_2022	Las Varillas: Corredores (Ord 480/2022)
+idecor:lv_zonas_ord_480_2022	Las Varillas: Zonificación (Ord 480/2022)
+idecor:manzana	Parcelario: Manzanas
+idecor:manzanas_bv	Bell Ville: Manzanas
+idecor:manzanas_lf	La Falda: Manzanas
+idecor:manzanas_salsipuedes	Salsipuedes: Manzanas
+idecor:manzanas_vgb	Villa General Belgrano: Manzanas
+idecor:mar_chiquita	Hidrografía: Laguna Mar Chiquita
+idecor:mayu_sumaj_zonas	Mayu Sumaj: Zonas
+idecor:mc_calles	Mina Clavero: Ejes de Calles
+idecor:mc_conectores_ambientales	Mina Clavero: Conectores Ambientales
+idecor:mc_ejido_municipal	Mina Clavero: Ejido Municipal
+idecor:mc_inhibicion_caminos_ord819	Mina Clavero: Inhibición de Caminos Ord819
+idecor:mc_parcelas	Mina Clavero: parcelas
+idecor:mc_sist_viario_ord819	Mina Clavero: Sistema Viario Ord819
+idecor:mc_sitios_patrimoniales	Mina Clavero: Sitios Patrimoniales
+idecor:mc_unidades_vecinales	Mina Clavero: Unidades Vecinales
+idecor:mc_zonificacion_ord819	Mina Clavero: Zonificación Ord819
+idecor:mineria_area_amparo	Catastro Minero: Áreas de Amparo
+idecor:mineria_area_cateo	Catastro Minero: Áreas de Cateo
+idecor:mineria_canteras	Catastro Minero: Áreas de Canteras
+idecor:mineria_minas	Catastro Minero: Minas
+idecor:mineria_pertenencias_mineras	Catastro Minero: Pertenencias Mineras
+idecor:mineria_plantas	Catastro Minero: Plantas
+idecor:mineria_plantas_benefico	Catastro Minero: Plantas de Beneficio
+idecor:mineria_plantas_elaboracion	Catastro Minero: Plantas de Elaboración
+idecor:mineria_punto_canteras	Catastro Minero: Canteras
+idecor:mtebuey_agua	Monte Buey: Red de agua
+idecor:mtebuey_baja_t	Monte Buey: Baja tensión
+idecor:mtebuey_cloacas	Monte Buey: Red cloacas
+idecor:mtebuey_media_t	Monte Buey: Media tensión
+idecor:mtebuey_media_t_ru	Monte Buey: Media tensión rural
+idecor:mtebuey_telecom	Monte Buey: Red de telecomunicación - fibra óptica
+idecor:mtebuey_zonificacion	Monte Buey: Zonificación (Ord. 24/24)
+idecor:mteros_agua_red	Morteros: Red de agua
+idecor:mteros_alumbrado_publico	Morteros: Alumbrado público
+idecor:mteros_barrios	Morteros: Barrios
+idecor:mteros_canales	Morteros: Canales
+idecor:mteros_cloacas_nivel	Morteros: Nivel red de cloacas
+idecor:mteros_cloacas_red	Morteros: Red de cloacas
+idecor:mteros_ejes_de_calle	Morteros: Ejes de calles
+idecor:mteros_equipamiento_ord_1529	Morteros: Equipamiento (Ord. 1529)
+idecor:mteros_espacios_y_areas_verdes	Morteros: Áreas verdes
+idecor:mteros_gas_red	Morteros: Red de gas
+idecor:mteros_gestion_calles	Morteros: Gestión de calles
+idecor:mteros_lagos	Morteros: Lagos artificiales
+idecor:mteros_manzanas	Morteros: Manzanas
+idecor:mteros_parcelas	Morteros: Parcelas
+idecor:mteros_secciones	Morteros: Secciones
+idecor:mteros_zonificacion_ord_1529	Morteros: Zonificación (Ord. 1529)
+idecor:nono_zonificacion	Nono: Zonificación
+idecor:normativas_urbanas_fraccionamiento_v	Normativas Urbanas: Fraccionamiento
+idecor:normativas_urbanas_ocupacion_v	Normativas Urbanas: Ocupación del Suelo
+idecor:normativas_urbanas_usos_suelos_v	Normativas Urbanas: Usos del Suelo
+idecor:omi_baldio	Observatorio del Mercado Inmobiliario (OMI): Baldío
+idecor:omi_edificado	Observatorio del Mercado Inmobiliario (OMI): Edificado
+idecor:omi_ph	Observatorio del Mercado Inmobiliario (OMI): PH
+idecor:omi_rural	Observatorio del Mercado Inmobiliario (OMI): Rural
+idecor:oncativo_bv_cortinas	Oncativo: Boulevares y Cortinas Verdes (Ord. 1993/11)
+idecor:oncativo_ord_1993_11	Oncativo: Uso del Suelo Urbano (Ord. 1993/11)
+idecor:oncativo_ord_333_87	Oncativo: Plan Ordenamiento Urbano (Ord. 333/87)
+idecor:oncativo_pc_cat_cloacas	Oncativo: Parcelas distancia red cloacas
+idecor:oncativo_red_cloacas	Oncativo: Red cloacas
+idecor:ord_13131	Córdoba: Ordenanza 13131/21
+idecor:ord_1599_zona_rest_vgb	Villa General Belgrano: Zonas de Restricción (Ord. 1599)
+idecor:ord_1655_franja_verde_vgb	Villa General Belgrano: Franja Verde (Ord. 1655)
+idecor:ord_1655_zonificacion_vgb	Villa General Belgrano: Zonificación (Ord. 1655)
+idecor:ord_1779_restriccion_edif_vgb	Villa General Belgrano: Restricción de Edificación (Ord. 1779)
+idecor:parcelario_salsipuedes	Salsipuedes: Parcelas
+idecor:parcelas	Parcelario: Parcelas
+idecor:parcelas_bv	Bell Ville: Parcelas
+idecor:parcelas_cosquin	Cosquín: Parcelas
+idecor:parcelas_vgb	Villa General Belgrano: Parcelas
+idecor:pedania	Demarcación: Pedanías
+idecor:perc_edif_2018	Ocupación del Suelo Urbano: Factor de Ocupación por Mz. 2018
+idecor:perc_edif_2019	Ocupación del Suelo Urbano: Factor de Ocupación por Mz. 2019
+idecor:perc_edif_2020	Ocupación del Suelo Urbano: Factor de Ocupación por Mz. 2020
+idecor:perc_edif_2021	Ocupación del Suelo Urbano: Factor de Ocupación por Mz. 2021
+idecor:perc_edif_2022	Ocupación del Suelo Urbano: Factor de Ocupación por Mz. 2022
+idecor:portenia_interv_obras	Porteña: Intervenciones obras
+idecor:portenia_obras	Porteña: Obras
+idecor:portenia_pou	Porteña: Planeamiento Urbano
+idecor:portenia_zona_interv	Porteña: Zona intervenida
+idecor:produccion_lts_leche	Ganadería: Producción de litros de leche por departamento
+idecor:prom_baldiom_manzana_2018	Tierra Urbana Vacante: % Tierra Vacante 2018
+idecor:prom_baldiom_manzana_2019	Tierra Urbana Vacante: % Tierra Vacante 2019
+idecor:prom_baldiom_manzana_2020	Tierra Urbana Vacante: % Tierra Vacante 2020
+idecor:prom_baldiom_manzana_2021	Tierra Urbana Vacante: % Tierra Vacante 2021
+idecor:prom_baldiom_manzana_2022	Tierra Urbana Vacante: % Tierra Vacante 2022
+idecor:provincia	Demarcación: Límite Provincial
+idecor:puntos_interes_bv	Bell Ville: Puntos de Interes
+idecor:radios_urbanos	Demarcación: Radios Urbanos
+idecor:rc_calles	Río Ceballos: Ejes de Calles
+idecor:rc_parcelas	Río Ceballos: Parcelas
+idecor:rc_radio_aprobado	Río Ceballos: Radio aprobado
+idecor:rc_radio_pretendido	Río Ceballos: Radio pretendido
+idecor:rc_rh_manantiales	Río Ceballos: Reserva Hídirca Los Manantiales
+idecor:rc_rh_quebrada	Río Ceballos: Reserva Hídirca La Quebrada
+idecor:rc_uso_suelo_comercio	Rio Ceballos: Uso de Suelo Comercial (Ord. 2651/2019)
+idecor:rc_zonificacion_uso_suelo	Río Ceballos: Uso y Ocupación del Suelo (Ord. 2651/2019)
+idecor:recetas_fitosanitarias_2021	Recetas Fitosanitarias - campaña 2021/2022
+idecor:recetas_fitosanitarias_2022	Recetas Fitosanitarias - campaña 2022/2023
+idecor:recetas_fitosanitarias_2023	Recetas Fitosanitarias - campaña 2023/2024
+idecor:recetas_fitosanitarias_2024	Recetas Fitosanitarias - campaña 2024/2025
+idecor:recetas_fitosanitarias_2025	Recetas Fitosanitarias - campaña 2025/2026
+idecor:recetas_fitosanitarias_2026	Recetas Fitosanitarias - campaña 2026/2027
+idecor:red_agua_vgb	Villa General Belgrano: Red de distribución de agua
+idecor:red_cloacas_vgb	Villa General Belgrano: Red de cobertura de cloacas
+idecor:red_gas_vgb	Villa General Belgrano: Red de distribución de gas
+idecor:red_vial_nacional	Vialidad: Red Nacional
+idecor:red_vial_provincial	Vialidad: Red Provincial
+idecor:regionales	Vialidad: Regionales
+idecor:regiones_naturales	Ambiente ANP: Regiones Naturales
+idecor:registro_c_defunciones	Registro Civil: Defunciones por localidad
+idecor:registro_c_matrimonios	Registro Civil: Matrimonios por localidad
+idecor:registro_c_nacimientos	Registro Civil: Nacimientos por localidad
+idecor:rendimiento_maiz	Rendimiento Maíz (qq/ha) 20/21
+idecor:rendimiento_maiz_2122	Rendimiento Maíz (qq/ha) 21/22
+idecor:rendimiento_maiz_2223	Rendimiento Maíz (qq/ha) 22/23
+idecor:rendimiento_maiz_2324	Rendimiento Maíz (qq/ha) 23/24
+idecor:rendimiento_maiz_2425	Rendimiento Maíz (qq/ha) 24/25
+idecor:rendimiento_soja	Rendimiento Soja (qq/ha) 20/21
+idecor:rendimiento_soja_2122	Rendimiento Soja (qq/ha) 21/22
+idecor:rendimiento_soja_2223	Rendimiento Soja (qq/ha) 22/23
+idecor:rendimiento_soja_2324	Rendimiento Soja (qq/ha) 23/24
+idecor:rendimiento_soja_2425	Rendimiento Soja (qq/ha) 24/25
+idecor:rendimiento_soja_2526	Rendimiento Soja (qq/ha) 25/26
+idecor:reserva_arqueologica	Ambiente ANP: Reservas Arquelógicas
+idecor:reserva_salsipuedes	Salsipuedes: Reserva Hídrica y Natural Municipal
+idecor:rio_bv	Bell Ville: Río Ctalamochita
+idecor:riocuarto_disp_areacob	Río Cuarto: Dispensarios (jurisdiccion)
+idecor:riocuarto_disp_punto	Río Cuarto: Dispensarios
+idecor:riocuarto_edificaciones	Río Cuarto: Edificaciones
+idecor:riocuarto_ejes_ca	Río Cuarto: Ejes calles
+idecor:riocuarto_ev	Río Cuarto: Espacios verdes
+idecor:riocuarto_mz	Río Cuarto: Manzanas
+idecor:riocuarto_parcelas	Río Cuarto: Parcelas Municipales
+idecor:riocuarto_pu	Río Cuarto: Planeamiento Urb. (Ord. 1082/11)
+idecor:riocuarto_secc	Río Cuarto: Secciones
+idecor:riocuarto_vecinales	Río Cuarto: Vecinales (barrios)
+idecor:rios_salsipuedes	Salsipuedes: Cursos de Agua
+idecor:saarre_res_19_08	San Antonio de Arredondo: Zonificación
+idecor:saarre_zonas_tributarias	San Antonio de Arredondo: Zonas Tributarias
+idecor:salinas	Hidrografía: Salinas
+idecor:secciones	Parcelario: Secciones
+idecor:sf_zonificacion	San Francisco: Zonificación
+idecor:sinsacate_areas_protegidas	Sinsacate: Áreas protegidas
+idecor:sinsacate_ord_1207_2022	Sinsacate: Zonas
+idecor:sn_isid_a_especial	Villa San Isidro: Áreas Especiales
+idecor:sn_isid_cam_hist	Villa San Isidro: Caminos históricos (territorio y memoria)
+idecor:sn_isid_mant_calle	Villa San Isidro: Mantenimiento de calles
+idecor:sn_isid_mant_ev	Villa San Isidro: Mantenimiento EV
+idecor:sn_isid_nv_ptos_int	Villa San Isidro: Transporte
+idecor:sn_isid_ptos_int	Villa San Isidro: Puntos de interés (territorio y memoria)
+idecor:sn_isid_rec_bas	Villa San Isidro: Recorrido de recolección de residuos
+idecor:sn_isid_rec_residuos	Villa San Isidro: Área de recolección de basura
+idecor:sn_isid_red_agua	Villa San Isidro: Red agua
+idecor:sn_isid_red_gas	Villa San Isidro: Red gas
+idecor:sn_isid_ref_liber_areas	Villa San Isidro: Ref. Libertad - Áreas internas (territorio y memoria)
+idecor:sn_isid_ref_liber_lin	Villa San Isidro: Ref. Libertad - Infraestructura (territorio y memoria)
+idecor:sn_isid_sector_identif	Villa San Isidro: Sectores identificados (territorio y memoria)
+idecor:sn_isid_usos	Villa San Isidro: Zonas y usos
+idecor:sta_rosaca_corredor_ruta5	Santa Rosa de Calamuchita: Corredor - Ruta 5
+idecor:sta_rosaca_zonificacion	Santa Rosa de Calamuchita: Planeamiento Urbano
+idecor:stock_departamento	Ganadería: Stock Ganadero por Departamento
+idecor:stock_pedania	Ganadería: Stock Ganadero por Pedanía
+idecor:stock_veterinaria	Ganadería: Habilitación Veterinarias
+idecor:sup_construida_vgb	Villa General Belgrano: Superficie Construida (Google)
+idecor:unidades_ejecutoras_cyt	SECYT: Unidades Ejecutoras
+idecor:unidades_gestion_hidrica	Hidrografía: Unidades de Gestión Hídrica
+idecor:universidades_cyt	SECYT: Universidades
+idecor:unq_a_precintos	Unquillo: Precintos
+idecor:unq_a_riesgo	Unquillo: Áreas de riesgo
+idecor:unq_a_urb_diferida	Unquillo: Áreas Urbanización Diferida
+idecor:unq_barrios	Unquillo: Barrios
+idecor:unq_corredor	Unquillo: Corredores
+idecor:unq_cota750	Unquillo: Cota 750
+idecor:unq_normativa_edif	Unquillo: Norma vigente edificación
+idecor:unq_retiros	Unquillo: Retiros
+idecor:unq_rhrnm	Unquillo: Límite de Reserva Hídrica Recreativa Natural Municipal Los Quebrachitos
+idecor:unq_rva_areas	Unquillo: Áreas de reservas
+idecor:unq_sector_urbano	Unquillo: Sector Urbano
+idecor:unq_suba_especial	Unquillo: Áreas Urbanizables Especiales
+idecor:unq_suba_industrial	Unquillo: Áreas Urbanizables Especiales
+idecor:unq_suba_natural_prot	Unquillo: Áreas Naturales Protegidas
+idecor:unq_suba_prod_agro	Unquillo: Áreas No Urbanizables Producción Agropecuaria
+idecor:unq_suba_ries_inun	Unquillo: Áreas No Urbanizables Riesgo Inundación
+idecor:unq_suba_urbana	Unquillo: Áreas urbanizables urbanas
+idecor:unq_vias_prim	Unquillo: Red vial
+idecor:unq_z_verde_rec	Unquillo: Zonas verdes recreativas
+idecor:unq_zonas_degradadas	Unquillo: Zonas Degradadas
+idecor:unq_zonas_usos	Unquillo: Zonas y usos
+idecor:unq_zv_estrategico	Unquillo: Zonas Valor Estratégico
+idecor:unq_zv_pais_amb	Unquillo: Zonas Valor Paisajistico Ambiental
+idecor:unq_zv_patrimonial	Unquillo: Zonas Valor Patrimonial
+idecor:usos_del_suelo_iplam	IPLAM - Usos del suelo
+idecor:usos_suelo_bv	Bell Ville: Usos del Suelo
+idecor:v_delas_rosas_agua	Villa de las Rosas: Agua
+idecor:v_delas_rosas_codigo	Villa de las Rosas: Código
+idecor:v_delas_rosas_gas	Villa de las Rosas: Gas
+idecor:v_delas_rosas_gestioncalle	Villa de las Rosas: Gestión de Calles
+idecor:v_delas_rosas_parc	Villa de las Rosas: Parcelas
+idecor:va_areas_verdes	Villa Allende: Espacios verdes
+idecor:va_barrios	Villa Allende: Barrios
+idecor:va_calles	Villa Allende: Calles
+idecor:va_corredores	Villa Allende: Corredores (Ord. 02/26)
+idecor:va_normativaurbana	Villa Allende: Zonificación (Ord. 02/26)
+idecor:va_parcelas	Villa Allende: Parcelas
+idecor:valor_arrendamiento_rural	Valor Unitario de Arrendamiento 2021 (qq-soja/ha)
+idecor:valor_arrendamiento_rural_2022	Valor Unitario de Arrendamiento 2022 (qq-soja/ha)
+idecor:valor_arrendamiento_rural_2023	Valor Unitario de Arrendamiento 2023 (qq-soja/ha)
+idecor:valor_arrendamiento_rural_2024	Valor Unitario de Arrendamiento 2024 (qq-soja/ha)
+idecor:valor_tierra_rural_2018	Valores de Tierra Rural 2018
+idecor:valor_tierra_rural_2019	Valores de Tierra Rural 2019
+idecor:valor_tierra_rural_2020	Valores de Tierra Rural 2020
+idecor:valor_tierra_rural_2021	Valores de Tierra Rural 2021
+idecor:valor_tierra_rural_2022	Valores de Tierra Rural 2022
+idecor:valor_tierra_rural_2023	Valores de Tierra Rural 2023
+idecor:valor_tierra_rural_2024	Valores de Tierra Rural 2024
+idecor:valor_tierra_rural_2025	Valores de Tierra Rural 2025
+idecor:valor_tierra_urbana_2018	Valores de Tierra Urbana 2018
+idecor:valor_tierra_urbana_2019	Valores de Tierra Urbana 2019
+idecor:valor_tierra_urbana_2020	Valores de Tierra Urbana 2020
+idecor:valor_tierra_urbana_2021	Valores de Tierra Urbana 2021
+idecor:valor_tierra_urbana_2022	Valores de Tierra Urbana 2022
+idecor:valor_tierra_urbana_2023	Valores de Tierra Urbana 2023
+idecor:valor_tierra_urbana_2024	Valores de Tierra Urbana 2024
+idecor:valor_tierra_urbana_2025	Valores de Tierra Urbana 2025
+idecor:vdrosario_2_anillo	Villa del Rosario: Segundo anillo - Patrón de asentamiento
+idecor:vdrosario_cod_edif_vcp	Villa del Rosario: Vías Comerciales Primarias
+idecor:vdrosario_cod_edif_zonificacion	Villa del Rosario: Código Urbanismo y Edificación
+idecor:vic_mack_patron	Vicuña Mackenna: Usos del suelo
+idecor:vic_mack_red_vial	Vicuña Mackenna: Red vial
+idecor:vic_mack_zonificacion	Vicuña Mackenna: Zonificación (Ord.1067/2015)
+idecor:villa_nva_cod_urb_rur	Villa Nueva: Código urbano rural
+idecor:villa_nva_ejes_vial_des	Villa Nueva: Ejes de Calles y Desagües
+idecor:vm_barrios	Villa María: Barrios
+idecor:vm_cobertura_desagues	Villa María: Cobertura de Desagües
+idecor:vm_ejes_de_calle	Villa María: Ejes de Calles
+idecor:vm_equipamientos	Villa María: Equipamiento
+idecor:vm_espacios_verdes	Villa María: Espacios Verdes
+idecor:vm_limites_zona_periurbana	Villa María: Zonas Periurbanas
+idecor:vm_municerca	Villa María: Municerca
+idecor:vm_perfiles_constructivos	Villa María: Código de Edificación (Ord 6402)
+idecor:vm_red_transporte_urb	Villa María: Red de Transporte
+idecor:vm_rio_ctalamochita	Villa María: Río Ctalamochita
+idecor:vm_semaforos	Villa María: Semáforos
+idecor:vm_usos_suelo_periurbano	Villa María: Usos del Suelo Periurbano
+idecor:zonas_agro_forestacion_obligatoria	Edafología: Agroforestal - Forestación Obligatoria (%)
+idecor:zonas_impositivas_salsipuedes	Salsipuedes: Zonas Impositivas
+idecor:zonas_riesgo_cuarteles	Bomberos Voluntarios: Zonificación de Riesgo de Incendio
+idecor:zonas_uso_suelo_salsipuedes	Salsipuedes: Zonificación
+idecor:zonificacion_bv	Bell Ville: Zonificación (Ord. 1866/14)
+idecor:zonificacion_lf	La Falda: Edificación y Urbanización (Ord. 3329)
+mosquitos:vw_mosquitos_municipios	Collect Mosquitos: Municipios
+mosquitos:vw_mosquitos_relevamientos_geo	Collect Mosquitos: Aedes Collect
+omi:omi_completo_baldio	OMI - privado: Inmuebles Baldíos
+omi:omi_completo_edificado	OMI - privado: Inmuebles Edificados
+omi:omi_completo_ph	OMI - privado: Inmuebles PH
+omi:omi_completo_rural	OMI - privado: Inmuebles Rurales

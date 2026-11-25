@@ -1,0 +1,1369 @@
+    DECRETO 1280 
+ 
+ 
+CÓRDOBA, 18 de noviembre de 2014, 
+                          
+ VISTO:  
+  El artículo 11 de la Constitución de la Provincia de Córdoba y 
+leyes provinciales N° 8835 y N° 8836;  
+Y CONSIDERANDO: 
+Que la Constitución de la Provincia de Córdoba establece como 
+responsabilidad del Estado, el resguardo del equilibrio ecológico, la protección del 
+medio ambiente y la preservación de lo s recursos naturales; objetivos que pueden 
+cumplirse mediante la utilización de distintas herramientas informáticas.  
+Que dentro de los objetivos de la  presente gestión de gobierno se 
+encuentran los de promover y desarrollar  acciones tendiente s a satisfacer las 
+necesidades y aspiraciones de la ciudadanía, a través de programas que propendan a 
+la mejora de los servicios que el Estado brinda; todo ello en concordancia con las 
+prescripciones establecidas en las Leyes N° 8835 y N° 8836. 
+Que los avances en materia de Tecnologías de la Información de 
+las Comunicaciones (TIC´s) han favorecido y modificado sustancialmente las 
+relaciones entre ciudadanos, empresas y Gobierno, dando lugar a nuevas demandas 
+hacia la Administración Pública, confi gurando ellas un proceso de simplificación 
+administrativa, constituyendo una propuest a adecuada orientada a mejorar los 
+servicios y la atención a la ciudadanía. 
+Que el desarrollo de un gobierno electrónico – “e-government” – 
+presupone la transformación de las funciones gubernamentales mediante la adquisición 
+de nuevos valores de comunicación, cooperación y participación, y el proyecto 
+exhaustivo de la infraestructura tecnológica Provincial. 
+Que, en virtud de ello y en el marco del proceso de 
+profundización de las políticas de Modernización del Estado  que viene ejecutando esta 
+gestión de gobierno, tales como El programa “Córdoba Cerca”, que permitió ampliar 
+y agilizar los canales de atención al ciudadano en sus diferentes modalidades, la 
+creación del “Portal e-trámites” que central izó y administró los trámites y servicios 
+que brinda el Estado Provin cial y demás Programas implementados, resulta necesario 
+la Creación de una nueva plataforma info rmática, que englobe y responda a todas las 
+premisas enunciadas, constituyéndose co mo una herramienta fundamental para 
+mejorar la prestación de servicios. 
+                                  Que, con la finalidad de incrementar la transparencia en la 
+administración de los bienes  y servicios, generar espacios de encuentro con la 
+comunidad, posibilitar la participación de la  ciudadanía en las decisiones de gobierno 
+y lograr la colaboración en la búsqueda de las soluciones a los problemas, el Estado, 
+mediante la creación de la Plataforma mencionada en el párrafo precedente, propende 
+a que la administración y operación de t odos los servicios públicos que brinda puedan 
+ser supervisados por la comunidad. 
+Que asimismo, atento a lo expresado en los considerandos 
+anteriores y a efectos de pode r llevar a cabo la virtualización que se pretende, 
+corresponde incorporar en form a obligatoria la constitución  del domicilio electrónico 
+por parte del ciudadano registrado en la plataforma informática, determinando el 
+concepto, alcance y efectos del mismo.   
+Que, a los fines de unificar la normativa provincial que rige la 
+materia y en particular con lo preceptuado por el artículo 9 bis de la Ley de 
+Procedimiento Administrativo N° 9350, y con el objetivo estratégico de despapelizar los 
+ámbitos de la administración pública, preservar la informac ión, liberar espacio físico, 
+agilizar y aumentar la capacidad de búsqueda y acceso a la documentación 
+permitiendo mejores tiempos de respuestas, corresponde en esta instancia determinar 
+la validez de los documentos digitales que se incorporen a la Plataforma.  
+Por ello, y en uso de sus atribuciones;  
+ 
+EL GOBERNADOR DE LA PROVINCIA DE CÓRDOBA 
+DECRETA: 
+ 
+ARTÍCULO 1º: CRÉASE la Plataforma de Servic ios “Ciudadano Digital” del 
+Gobierno de la Provincia de Córdoba con el  objeto de centralizar y facilitar a los 
+ciudadanos el acceso a los servicios digitales que brinda el Estado Provincial, 
+comprendiendo la misma el Portal Web, el Sitio Institucional, la Gestión de 
+Comunicaciones, Documentación Digitalizada y la Gestión de Cuenta y Administrador 
+de Relaciones, conforme texto, términos y condiciones establecidos en los Anexos I 
+(Aspectos Generales y Regulación de Pr ocedimientos), II (Aviso Legal), III 
+(Formularios y Constancias) y IV (Políticas de Seguridad), que compuestos de       (….) 
+fojas útiles, forman parte integrante del presente instrumento legal.  
+ARTICULO 2°: LA Plataforma de Servicios “Ciudadano Digital”, contemplará la 
+relación que la Administración Pública Pr ovincial pueda mantener con toda persona 
+física o jurídica, a través de sus respectivas autoridades y/ o representantes legales, 
+quienes serán los “usuarios” de la Plataforma. 
+ARTÍCULO 3°: CRÉANSE los Centros de Constatación de Identidad (CCI), cuya 
+principal función consiste en constatar la  identidad de los usuarios a través de la 
+documentación requerida para tal efecto. 
+Será atribución de la Autoridad de Aplicación, establecer a través de la normativa 
+correspondiente las funciones inherentes a los mencionados Centros de Constatación 
+de Identidad (CCI), como así también los lugares de atención a los usuarios de la 
+Plataforma.  
+ARTÍCULO 4°: CRÉASE el Centro de Documentación Di gital (CDD), con el objetivo 
+de almacenar en un solo lugar y bajo estrictas condicion es de seguridad todos los 
+documentos digitales vinculados a los ciudada nos de la Provincia de Córdoba y que 
+sean ingresados a través de los Centros de Constatación de Identidad (CCI). 
+ARTÍCULO 5°: LA  documentación en formato di gital que sea incorporada a la 
+Plataforma Informática “Ciudadano Digital” , por un representante del Centro de 
+Constatación de Identidad (CCI) bajo los procedimientos establecidos por la Autoridad 
+de Aplicación, tendrá la mism a validez que cualquier documentación en formato papel 
+y su contenido será utilizado de igual manera en un formato u otro.  
+ARTÍCULO 6°: LA  documentación que se encuentre digitalizada y almacenada e 
+incorporada en el Centro de Documentación Digital (CDD) será de utilización 
+obligatoria para todas las reparticiones del Gobierno de la Provincia de Córdoba.  
+ARTÍCULO 7°:  CONSIDÉRASE domicilio electrónico al correo electrónico 
+informado por el ciudadano al momento de su registración en la Plataforma 
+Informática “Ciudadano Digital”, el que será utilizado para el envió y/o recepción de 
+comunicaciones entre el G obierno de la Provincia de Córdoba y el usuario, siendo 
+válidas, vinculantes y plenamente eficaces  todas notificaciones,  emplazamientos y 
+comunicaciones efectuadas en el marco de la Plataforma de Servicios que mediante la 
+presente normativa se crea, que se practiquen en el domicilio electrónico.  
+Las mismas quedarán asimismo registradas en  la Plataforma “Ciudadano Digital”  y 
+disponibles en el centro de comunicaciones del Portal Web, para el supuesto caso de 
+que por alguna causa la comunicación no llegue al domicilio electrónico 
+oportunamente declarado. 
+Su constitución, implementación, funcionamiento y cambio se efectuará conforme a las 
+formas, requisitos y condiciones que establezca la autoridad de aplicación. 
+ARTÍCULO 8°: ESTABLÉCESE que la Secretaría de I nnovación de la Gestión 
+Pública dependiente del Ministerio de Gestión Pública, o quien en un futuro la 
+remplace, será la autoridad de aplicación y monitoreo de la Plat aforma de Servicios 
+“Ciudadano Digital” del Gobierno de la Provincia de Córdoba.  
+En el marco de la Ley N° 25.326 de Protección de los Datos Personales, la autoridad 
+de aplicación deberá adoptar todo tipo de medidas de seguridad necesarias para 
+garantizar la reserva de los datos pertenec ientes a los ciudadanos y que consten en el 
+banco de datos de la Plataforma de Servicios; como así también guardar máxima 
+confidencialidad sobre la información a la que  acceda en ocasión o en ejercicio de sus 
+funciones, salvo lo necesario para no entorpecer el proceder administrativo. 
+ARTÍCULO 9°: DISPÓNESE que los respectivos Ministerios, Secretarías, Agencias, 
+Empresas y/o entes centralizados, descentralizados y autárquicos del Estado 
+Provincial, serán responsables de adaptar e integrar a través de la Plataforma de 
+Servicios “Ciudadano Digital”, los sistemas de información que brinden servicios 
+digitales a los ciudadanos, en lo s próximos ciento veinte días (120) días corridos desde 
+la entrada en vigencia de la presente normativa, de tal manera que puedan adecuarse a 
+los requerimientos tecnológicos que demanda el sistema.- 
+La Dirección General de Rentas (D.G.R) del Ministerio de Finanzas de la Provincia de 
+Córdoba, podrá acceder a los servicios digitales a través de la clave de “Ciudadano 
+Digital” o mediante la “Clave Fiscal” provista por la A.F.I.P. (Administración Federal 
+de Ingresos Públicos), de manera indistinta. 
+El control de identidad de las personas en los términos del art. 31 de la Ley N° 5.771, a 
+los fines del acceso a los servicios digitale s que ofrezca el Registro General de la 
+Provincia se tendrá  por realizado de acuerdo a lo que se determine en el Anexo I del 
+presente Decreto.- 
+ARTÍCULO 10°: ESTABLÉCESE que el acceso a todos los sistemas informáticos del 
+Gobierno de la Provincia de Córdoba mediante la utilización pública de internet, 
+deberá realizarse de manera obligatoria a través de la Cla ve Única de “Ciudadano 
+Digital”. 
+ARTÍCULO 11°: INVÍTASE al Poder Legislativo y Judicial, y a todos los Municipios 
+de la Provincia de Córdoba y organizacion es privadas o concesi onarias del Estado 
+Provincial que brinden serv icios públicos, a adherirse to tal o parcialmente a la 
+presente normativa, a efec tos de integrar la Plataforma Informática “Ciudadano 
+Digital”. Todo ello de acuerdo a las c ondiciones de adhesión que establezca la 
+autoridad de aplicación. 
+ARTÍCULO 12°: PROTOCOLÍCESE, comuníquese, publíquese en el Boletín Oficial y 
+archívese. 
+ 
+DECRETO  
+N° 1280 
+ 
+V.B. 
+ANEXO I    
+ASPECTOS GENERALES Y REGULACIÓN DE 
+PROCEDIMIENTOS 
+Capítulo I: CONCEPTOS GENERALES  
+A los fines del presente Anexo se entenderá por:  
+Plataforma de Servicios: Plataforma tecnológica que posibilita al Ciudadano acceder a 
+través de una única cuenta de usuario a t odos los trámites y servicios digitales que 
+brinda el Gobierno de la Provincia de Córdoba. 
+Servicio Web: Aplicación o servicio “on line” provis to a través de la Plataforma de 
+Servicios. 
+Sitio Institucional:  Sitio Web Oficial de libre acceso en el que se informa los 
+componentes de la plataforma, procedimientos, normativas y medios de contactos. 
+Gestión de Comunicaciones: Herramienta tecnológica que br inda el servicio de envío 
+y recepción de comunicaciones entre el us uario y los servicios web que brinda la 
+plataforma. 
+Documentación Digitalizada: Repositorio único de Documentación Digital que será de 
+utilización obligatoria para todas las repar ticiones del Gobierno de la Provincia de 
+Córdoba, con el objetivo de almacenar y resguardar en un solo lugar y bajo estrictas 
+condiciones de seguridad, todos los docum entos digitales vinc ulados a los ciudadanos 
+de la Provincia de Córdoba y que sean ingresados a través de los Centros de 
+Constatación de Identidad (CCI) y/o Centros de Documentación Digital (CDD). 
+Gestión de Cuentas: Herramienta informática que  permite al usuario actualizar 
+algunos de sus datos personales, a saber: clave de acceso, mail, número de teléfono 
+celular y fijo, pregunta secreta y domicilio.  
+Administrador de Relaciones:  Herramienta informática que posibilita a Usuarios de 
+Página 1 de 23 
+ 
+nivel de Seguridad 2 o superior, autorizar a te rceros para actuar en su nombre y hacer 
+uso de los servicios web disponibles en la plataforma. 
+Subadministrador de Relaciones: Persona física que el Administrador de Relaciones 
+designa para ejercer las facultades propias de su condición, sea para que lo sustituya o 
+para que actúe en forma simultánea o indistinta con él. 
+Capítulo II: ACCESO Y REGISTRACIÓN  
+ 
+1. CUENTA DE USUARIO 
+Para acceder a la Plataforma de Servic ios de la Provincia de Córdoba “Ciudadano 
+Digital”, el usuario deberá ingresar a la dirección web ciudadanodigital.cba.gov.ar y 
+allí ingresar para poder generar su cuenta y acceder así a los distintos servicios 
+digitales disponibles. 
+La cuenta de cada usuario se compondrá por su N° de CUIL y por una contraseña 
+elegida por el usuario al momento de registrarse.  
+2. NIVELES DE SEGURIDAD 
+Nivel 1- Confirmado: para acceder a este nivel de seguridad el usuario deberá 
+ingresar a la Plataforma Ciudadano Digital y cumplir las instrucciones que el sistema 
+proporcione al momento de registrarse. De es ta manera se solicitará el ingreso de 
+ciertos datos personales necesarios para obtener su cuenta: 
+ N° de CUIL 
+ Apellido 
+ Nombre 
+ Fecha de Nacimiento 
+ Sexo 
+ Email 
+ Contraseña 
+ Pregunta Secreta 
+ Respuesta Secreta 
+Página 2 de 23 
+ 
+ Teléfono Celular 
+ Teléfono Fijo 
+ 
+Ingresado dichos datos, el usuario deberá aceptar los “Términos y Condiciones de Uso 
+y Políticas de Privacidad”. 
+Una vez aceptado, el usuario ingresará a la  cuenta de correo que haya consignado al 
+momento de registrarse y deberá seguir los pasos que se le indican para su 
+confirmación. 
+La registración “Nivel 1 – Confirmado” proporcionará al usuario  el beneficio de 
+utilizar determinados servicios web y co municación digital uni direccional entre el 
+ciudadano y el Gobierno de la Provincia de Córdoba.  
+Nivel 2- Verificado: para garantizar la identidad de la persona podrá acceder a este 
+Nivel, para lo cual deberá acercarse a un Centro de Constatación de Identidad (CCI) 
+disponible en las Mesas de Entradas de la Administración Pública Provincial 
+designadas a tal efecto. (Ver Capítulo IV. Pto.3 del presente anexo). 
+Dicho nivel permitirá al usuario el acceso a una mayor cantidad de  servicios web,  
+información que consta en organismos públicos, documentación digitalizada y a 
+mantener una comunicación electrónica con el gobierno provincial. 
+Nivel 3- Autenticado:  el usuario podrá acceder a este nivel cuando posea un 
+certificado de firma digital, obtenida a través del Gobierno de la Provincia de Córdoba 
+o por algún Certificador Licenciado por ON TI (Oficina Nacional de Tecnologías de 
+Información). 
+Este nivel de seguridad permite a los usuarios la realización de transacciones seguras a 
+través de dichos certificados. 
+3. RECUPERACIÓN DE CLAVE 
+En caso de olvido de la contraseña de acceso, la Plataforma de Servicios le permitirá al 
+usuario generar una nueva contraseña; siguiendo para ello los siguientes pasos: 
+Página 3 de 23 
+ 
+1) Ingresar a “¿Olvidaste tu contraseña?” :  al ingresar a dicha opción, se 
+le solicitará el ingreso de los siguientes datos: 
+ 
+- N° de CUIL 
+- Correo: aquí deberá ingresar el email registrado  
+al momento de generar su cuenta. 
+ 
+2) Selecci
+onar opción “Enviar Clave”: la Plataforma le indicará que se ha enviado 
+la nueva clave a su correo. Luego, de berá  ingresar a su email, para 
+conocer la “nueva clave de acceso a Ciudadano Digital”, con la que 
+DEBERÁ INGRESAR NUEVAMENTE para poder acceder a la 
+Plataforma de Servicios Provincial. 
+Aclaración: la cuenta se bloquea tras tres (3) intentos fallidos de inicio de sesión; por 
+lo que si no recuerda su contraseña le recomendamos acceder directamente a 
+“¿Olvidaste tu Contraseña?”. 
+4. RESTAURACIÓN DE CORREO 
+Puede suceder, que por olvido o cualquier otro motivo, el usuario no tenga más acceso 
+al email ingresado al momento de registrarse . En este caso, para recuperar su cuenta 
+de acceso a la Plataforma, deberá modificar su email, siguiendo los pasos que se 
+indican a continuación:  
+a) Selecci
+onar la opción “¿Olvidaste tu Contra seña?”: una vez ingresada a dicha opción 
+deberá hacer seguir las instrucciones indicadas a través de la Plataforma. 
+ 
+b) Ingres
+ar los siguientes datos: 
+‐ N° de CUIL 
+‐ Correo: aquí deberá ingresar el email registrado 
+al momento de generar su cuenta. 
+ 
+ 
+c) Seleccionar nuevamente opción “Aquí” : una vez seleccionada dicha opción, se 
+le solicitará el ingreso de nuevos  datos. 
+ 
+ 
+Página 4 de 23 
+ 
+d) Selecci
+onar “Restablecer”: el sistema le indicará que se ha enviado un correo a su 
+nueva cuenta de email. Deberá ingresar a su correo para validar su email.  
+ 
+Luego de realizar los pasos anteriores, a tr avés de la Plataforma se le enviará una 
+nueva clave al email registrado. Deberá ingr esar a su correo, para conocer la “Nueva 
+clave de acceso” con la que ACCEDERÁ NUEVAMENTE  a la Plataforma de 
+Servicios. 
+5. DOMICILIO ELECTRÓNICO 
+5.1. Concepto 
+Se considerará Domicilio Electrónico, al correo electrónico personalizado, válido y 
+optativo que sea informado por el usuario al momento de su registración en la 
+Plataforma de Servicios “Ciudadano Digital”. 
+5.2. Constitución  
+Será de carácter obligatorio la constitución del domicilio electrónico para los 
+usuarios de “Ciudadano Digital”, mediante u na cuenta de correo a la cual el 
+usuario tenga acceso.  
+Su registración, habilitación y constitución, se enmarcan en la normativa legal 
+vigente y sus respectivos anexos, para tal fin.  
+5.3. Modificación 
+El usuario podrá modificar su cuenta de correo electrónico todas las veces que lo 
+considere necesario; dicha modificación alcanzará a todos los servicios web 
+(aplicaciones) que formen parte de la plataforma.  
+Para modificarlo deberá hacerlo a través  de la plataforma accediendo a la opción 
+“Cuenta” y luego “Mi Cuenta”; una vez ingresada a dicha opción podrá actualizar 
+su e-mail ingresando la nueva dirección de correo. 
+Página 5 de 23 
+ 
+Una vez que el usuario modifique su e-mail, recibirá un correo a la casilla que haya 
+consignado para su confirmación. 
+*Importante: El domicilio electrónico constituido se reputará subsistente mientras 
+no sea modificado. 
+5.4. Notificaciones por medio electrónico 
+Las reparticiones públicas adheridas a la  Plataforma Informática “Ciudadano 
+Digital” podrán enviar notificacione s on-line mediante el Gestor de 
+Comunicaciones al domicilio electrónico c onstituido por el us uario; todo ello sin 
+perjuicio de lo contemplado en el artícul o 55 “Medios de Notificación” de la Ley 
+N° 5.350 (T.O. Ley N° 6.658) de Proced imiento Administrativo. Dichas 
+notificaciones serán válidas, vinculantes y plenamente eficaces. 
+Asimismo, las notificacione s, emplazamientos y com unicaciones remitidas a los 
+usuarios quedarán registrados y disponibles en la Plataforma. 
+ 
+Capítulo III: DE LA AUTORIDAD DE APLICACIÓN. 
+ 
+1. ORGANISMO RESPONSABLE 
+De acuerdo a lo previsto en el artículo 8° del presente Decr eto, la autoridad de 
+aplicación de la Plataforma de Servicios “Ciudadano Digital” será la Secretaría de 
+Innovación de la Gestión Pública dependien te del Ministerio de Gestión Pública o 
+quien  en un futuro la reemplace.  
+ 
+2. FUNCIONES Y ATRIBUCIONES  
+La Secretaría de Innovación de la Gesti ón Pública dependiente del Ministerio de 
+Gestión Pública, como autoridad de aplic ación de la Plataforma de Servicios 
+“Ciudadano Digital”, tendrá las siguientes funciones y atribuciones:  
+Página 6 de 23 
+ 
+a) Máximo responsable de  la administración, monitoreo y control de la 
+Plataforma de Servicios “Ciudadano Digital”.  
+ 
+b) Regular, establecer e impartir políticas de  organización que permitan alcanzar 
+eficiencia en la implementación de la Plataforma de Servicios. 
+ 
+c) Adoptar las medidas de seguridad necesarias para garantizar la reserva de los 
+datos pertenecientes a usuarios oportunamente registrados.  
+ 
+d) Planificar y coordinar políticas y/o planes de ejecución con organismos 
+públicos para adhesión de nuevos servicios web a la Plataforma. 
+ 
+e) Establecer las funciones inherentes a los Centros de Constatación de Identidad, 
+como así también de los lugares de atenci ón a los usuarios de la Plataforma de 
+Servicios. 
+ 
+f) Establecer y regular nuevos niveles de segur idad de la Plataforma de Servicios, 
+mediante la creación de nuevos niveles o modificación y/o elim inación de los ya 
+existentes con sus consiguientes requisitos. 
+ 
+g) Máximo responsable de la organización integral, funcionamiento, control y 
+seguimiento de las funciones propias de cada Centro de Constatación de 
+Identidad. 
+ 
+h) Responsable de la supervisión y control del Centro de Documentación Digital. 
+ 
+i) Velar por el cumplimiento del presen te Decreto, Anexos y demás normativa 
+aplicable. 
+ 
+j) Solicitar información, documentación, ar chivos, que considere necesaria para 
+un eficiente uso y administración de la Plataforma y mayor logro de objetivos 
+establecidos. 
+ 
+k) Administrar los recursos informáticos necesarios y/o resultantes de la 
+Plataforma , y determinación de estándares informáticos para su uso. 
+ 
+ 
+Capítulo IV: DE LOS CENTROS DE CONSTATACIÓN DE IDENTIDAD (CCI) 
+ 
+1. LUGARES DE ATENCIÓN 
+Página 7 de 23 
+ 
+Los Centros de Constatación de Identidad, es tarán disponibles en todas las Mesas de 
+Entradas (SUAC) de cada una de las repar ticiones de la Administración Pública 
+Provincial, o aquellas que por su naturaleza lo requieran. 
+ 
+2. ORGANIZACIÓN 
+Cada Centro de Constatación de Identidad, estará conformado por personal designado 
+por el responsable de Mesa de Entr ada (SUAC) de cada repartición de la 
+Administración Pública Provincial.    
+2.1. Derechos y Obligaciones 
+A continuación se detallará de manera meramente enunciativa, los derechos y 
+obligaciones del personal que conforma cada CCI disponible en la provincia.  
+2.1.1. Jefe de Mesa de Entradas de cada Repartición 
+Facultades:  
+a) Designar al  personal encargado de la atención en cada CCI. 
+ 
+b) Supervisar el correcto desempeño de la actividad encomendada al personal de 
+cada CCI. 
+ 
+c) Establecer reglas de conducta de trabajo, que en ningún caso podrán ser 
+incompatibles  a las finalidades por las cuales han sido creados los CCI. 
+ 
+d) Acceder a la información y/o documenta ción resultante de la administración 
+diaria de la Plataforma de Servicios. 
+ 
+e) Tomar decisiones que permitan una mayor eficiencia para el logro de objetivos. 
+Deberes: 
+a) Ser el máximo responsable del correcto funcionamiento del CCI disponible en la 
+repartición en la que desempeña funciones. 
+ 
+b) Conservar la documentación resultante del uso diario de la Plataforma de 
+Servicios. 
+ 
+Página 8 de 23 
+ 
+c) Obedecer las políticas de organización impartidas por la autoridad de 
+aplicación. 
+ 
+d) Brindar toda información, documento, arch ivo, fuente de información, que le 
+sea solicitada oportunamente por la aut oridad de aplicación para lograr un 
+eficiente uso y administración de la Plataforma y alcanzar así, los objetivos 
+propuestos. 
+ 
+2.1.2. Empleado Administrativo:  
+Funciones: 
+a) En ocasión al ejercicio y/o desempeño de  sus funciones, podrá acceder a través 
+de la Plataforma, a cuentas de usuari os cuando las circunstancias lo requieran 
+cumpliendo previamente los requisitos y condiciones en cada caso. 
+ 
+b) Receptar toda consulta, comentario, reclamo, denuncia, atinente al uso de la 
+Plataforma de Servicios. 
+ 
+c) Receptar toda documentación presentada por el usuario a los fines de 
+actualizar, suprimir, rectificar inform ación que consta en el registro de 
+información que almacena la plataforma digital. Asimismo, tendrá la facultad 
+de digitalizar dicha documentación cumpliendo las condiciones y exigencias 
+propias del procedimiento establecido para tales fines. 
+ 
+Deberes: 
+a)  Guardar máxima reserva y secreto de datos y/o información personal a la que 
+acceda  en virtud del ejercicio de las  funciones propias de CCI. 
+ 
+b) Constatar la identidad de los usuarios que poseen Nivel 1 – Confirmado. 
+ 
+c) Dar de alta a usuarios que al momento de realizar una gestión administrativa 
+no posean una cuenta de acceso a la Plataforma de Servicios (Alta Provisoria). 
+ 
+d) Observar y adoptar toda medida de seguridad  que sea necesaria para asegurar 
+la confidencialidad, secreto e integridad de los datos de  carácter personal a los 
+que tenga acceso. 
+ 
+e) No ceder en ningún caso a terceras pers onas los datos de carácter personal a 
+los que tenga acceso, ni siquiera a efectos de su conservación, salvo 
+autorización o instrucción expresa y por escrito de la Autoridad de Aplicación. 
+Página 9 de 23 
+ 
+ 
+f) Asesorar a los usuarios que se presente n en los CCI por inquietudes, dudas o 
+inconvenientes en el uso y/o administración de su cuenta en la Plataforma.  
+ 
+g) Desempeñar funciones y obedecer órdenes impartidas por el jefe de mesa de 
+entradas de cada repartición en la que funcione un CCI.  
+ 
+J) Brindar toda información, documento, fuentes de información que solicite el jefe 
+de mesa de entradas para un mejor desenvolvimiento de las funciones y logro de 
+objetivos. 
+ 
+3. PROCEDIMIENTO ANTE CCI – Acceso a Nivel 2 de Seguridad 
+ 
+ 
+Una vez que el usuario registre su cuenta  y obtenga así “Nivel 1 - Confirmado”, para 
+poder acceder a “Nivel 2 – Verificado” deberá acercarse a un Centro de Constatación 
+de Identidad (CCI), disponibl e en las Mesas de Entradas de  la Administración Pública 
+Provincial, designadas a tal efecto. 
+Dicho nivel permitirá al usuario el acceso a una mayor cantidad de servicios on line, a 
+información que conste en organismos públicos, a documentación digitalizada y a 
+mantener una comunicación vía electrónica con el gobierno provincial. 
+El usuario deberá dirigirse a un CCI  acompañando la siguiente documentación:  
+‐ Argentinos nativos o naturalizados y extranjeros: documento nacional de 
+identidad. Los extranjeros deberán presen tar documento de identidad del país de 
+origen, pasaporte o cédula del MERCOSUR  (de tratarse de un país limítrofe).  En 
+caso de e xtranjeros con residencia en el país -incluida la temporaria o 
+transitoria- que no posean documento naci onal de identidad deberán presentar 
+cédula de identidad, o certificado o comp robante que acredite el número de 
+expediente asignado por la Dirección Naci onal de Migraciones, donde conste el 
+carácter de su residencia; 
+ 
+‐ Constancia de CUIL expedido por ANSeS o AFIP; y 
+ 
+‐ Para Profesionales: Constancia de matriculación o fotocopia de título habilitante  
+(en caso de no requerir matriculación). 
+ 
+Página 10 de 23 
+ 
+El responsable de cada CCI, solicitará la  documentación indicada anteriormente para 
+constatar la identidad de los usuarios registrados oportunamente; y procederá a 
+digitalizar la documentación para incorpor arla a la Plataforma de Servicios y 
+vincularla a la cuenta en cuestión. 
+Además se le solicitará al ciudadano que proceda a completar una “Declaración 
+Jurada de Domicilio” a los fines de acreditar por medio fehaciente su domicilio real. 
+Se le hará entrega al ciudadano, de una “Constancia de Ciudadano Digital 
+Verificado”; la que deberá firmar a los fines de acreditar su manifiesta voluntad en la 
+realización de la presente gestión admin istrativa. Una vez que la firma haya sido 
+suscripta, el agente de CCI procederá a digitalizar dicha Const ancia, entregando al 
+usuario el original. 
+El procedimiento culmina c on la toma de una fotografía  al ciudadano y la entrega de 
+una Credencial, la cual lo acreditará como “Ciudadano Digital” certificando así, el 
+nivel precedentemente señalado. 
+En dicha Credencial constarán los siguientes datos: 
+‐ Foto 
+‐ Nombre y Apellido 
+‐ CUIL 
+‐ Código QR 
+‐ Fecha de nacimiento 
+‐ Pin de verificación 
+De esta manera, dichos documentos y constancia expedida por cada CCI  se 
+constituirán en medios de prueba tendiente a garantizar la titulari dad de la cuenta en 
+la Plataforma de Servicios. 
+ 
+4. ALTA PROVISORIA. 
+ 
+Página 11 de 23 
+ 
+Todo usuario que al momento de realizar presencialmente una gestión administrativa 
+en el ámbito público provincial no posea  una cuenta en la Plataforma “Ciudadano 
+Digital”, será registrado por el agente responsable de cada CCI de la dependencia 
+provincial ante la cual se presente. 
+De esta manera se le solicitará al usuario, un correo electrónico para poder dar de alta 
+una cuenta, al que luego deberá ingresar par a confirmar su usuario y obtener así, su 
+clave de acceso (contraseña) a la Plataforma. 
+ 
+Capítulo V – ADHESIÓN DE SISTEMAS INFORMÁTICOS A LA PLATAFORMA 
+DE SERVICIOS “CIUDADANO DIGITAL” 
+1. OBJETO 
+El presente procedimiento que tiene por finalidad lograr que los distintos sistemas 
+digitales provinciales puedan incorporarse a la Plataforma de Servicios a los fines de 
+centralizar allí la mayor cantidad de servicios digitales dirigidos a ciudadanos, agentes 
+públicos y organizaciones.   
+2. PROCEDIMIENTO 
+En el procedimiento de adhesión intervienen tres partes:  
+‐ La máxima autoridad de las repartici ones de la Administración Pública 
+Provincial; 
+‐ Centro de Constatación de Identidad; 
+‐ Autoridad de Aplicación. 
+La máxima autoridad responsable de la repartición en que se implemente un sistema on 
+line próximo a adherirse a la Plataforma de Servicios deberá descargar de la 
+plataforma el “Formulario de Adhesión” (Ver  Anexo III).  El mismo se completará por 
+cada uno de los sistemas web a adherirse. 
+Una vez ingresado los datos solicitados, se de berá imprimir el mi smo para proceder a 
+su firma.   
+Página 12 de 23 
+ 
+Una vez suscrito el formulario se deberá presentar ante la Autoridad de Aplicación. 
+ 
+ 
+ 
+3. RESOLUCION  
+La Autoridad de Aplicación será la competente para resolver la solicitud de Adhesión.  
+La respuesta al mismo deberá encontra rse debidamente fundada, y comunicarse al 
+organismo peticionante a través de medio fehaciente. 
+ 
+ADHESION TOTAL O PARCIAL 
+La adhesión de cada sistema on line a la Pl ataforma de Servicios puede ser total 
+(adhesión a todos los alcances de participació n y los que en su futuro se adicionen) o 
+parcial (sólo algunos de ellos). 
+A continuación se detallan los distintos al cances de participación. La siguiente 
+enumeración no es taxativa, pudiendo la Au toridad de Aplicación modificar todas o 
+algunas de ellas, previa notificación fehaciente a la Área s Informáticas de los sistemas 
+adheridos total o parcialmente a la Plataforma de Servicios 
+‐ Acceder con clave única a la Plataforma de Servicios. 
+‐ Enviar mensajería a través de la Plataforma – “Mis Comunicaciones”. 
+‐ Almacenar documentación en Centro de Documentación Digital. 
+‐ Incorporar información registrada en las bases de datos – “Mis Datos”. 
+‐ Alta Provisoria al momento de realizar una gestión ante el gobierno y no poseer 
+una cuenta de acceso a la Plataforma. 
+‐ Formulario de solicitud de permiso a la aplicación.  
+‐ Compartir documentación con otros organismos (todos o algunos). 
+‐ Visualizar sólo si la documentación fue presentada (no acceder al archivo).     
+ 
+Capítulo VI – ADMINISTRADOR DE RELACIONES. 
+1. REPRESENTACIÓN -  
+Página 13 de 23 
+ 
+La representación es una fi gura típica y autónoma, en virt ud de la cual una persona, 
+llamada representante, celebra uno o más ac tos administrativos en cautela de los 
+intereses de otra, llamada representado.  
+Asimismo podemos afirmar que existe Representación cuando una persona actúa por 
+otra. 
+2. ADMINISTRADOR DE RELACIONES. 
+A través de la opción  “Administrador de Relaciones” disponible en la Plataforma de 
+Servicios, la persona física con su “Clave de Ciudadano Digital”, podrá realiza actos o 
+gestiones:  
+a) para sí misma, o  
+b) como representante legal de una pers ona física o jurídica, en nombre y por 
+cuenta de ésta. 
+2.1. Acciones del Administrador de Relaciones 
+El Administrador de Relaciones, además de la utilización de los servicios 
+informáticos en nombre propio, podrá efectuar -a través de la herramienta informática 
+“Administrador de Relaciones”- las siguientes transacciones: 
+a) Designar uno o más Subadministradores de Relaciones para que lo 
+sustituyan o para que actúen en forma simultánea e indistinta con él.  
+b) Designar usuarios para que -en su nom bre o en nombre de la persona 
+jurídica cuya representación legal ejer ce- utilicen y/o interactúen con aquellos 
+servicios web que específicamente les hayan sido autorizados.  
+c) Otorgar poderes -generales o especial es- o autorizaciones para efectuar 
+determinados actos o gestiones.  
+d) Revocar las designaciones, poderes y/o autorizaciones a que se refieren 
+los incisos anteriores.  
+ 
+2.2. Cese del Administrador de Relaciones de Personas Jurídicas – Efectos 
+El cese del mandato de la persona físi ca que actúa como Administrador de 
+Relaciones de una persona jurí dica, cualquiera sea la causa, no implicará la baja 
+automática de las designaci ones, poderes y/o autorizacio nes que hubiera efectuado. 
+Página 14 de 23 
+ 
+Las mismas serán transferidas al nuevo repr esentante que lo sustituya, permitiéndole 
+hacer uso, en su caso, de la facultad de revocación. 
+2.3. Procedimiento   
+El procedimiento para registrar una representación en Plataforma “Ciudadano 
+Digital” variará conforme a las siguientes circunstancias: 
+2.3.1. De Personas Físicas a Personas Físicas 
+Para registrar una representación a través  de la Plataforma, el representado 
+deberá seguir los siguientes pasos: 
+a) Ingresar a la opción  “Cuenta” y luego  “Administrador de Relaciones”.   
+b) Una vez seleccionada dicha opción, deberá acceder a “Nueva Relación”. La 
+plataforma le mostrará una grilla con los servicios web disponibles, debiendo 
+seleccionar el que desee autorizar.  
+c) Ingresar el N° de CUIL del represent ante y luego  “Buscar”. El representado 
+podrá determinar si el representante puede delegar el servicio seleccionado. 
+d) Seleccionar “Guardar” y por último confirmar dicha delegación a través de la 
+opción “Aceptar”.  
+Dicha delegación estará sujeta a la aceptación por parte del representante.  
+A través de la opción “Mis Representantes” el representado podrá consultar 
+dicha aceptación; como así también la posibilidad de revocar las delegaciones 
+oportunamente otorgadas. 
+Para los siguientes casos debe remitirse a “Procedimiento ante Casos 
+Especiales”:  
+‐ Discapacidad 
+‐ Incapacidad (dementes, incapacidad física temporal, sordomudos que no sepan 
+darse a entender por escrito y otros.) 
+Página 15 de 23 
+ 
+‐ Residencia en el Exterior 
+ 
+2.3.2. De Personas Físicas a Personas Jurídicas 
+Toda persona física que desee repres entar a una persona jurídica debe 
+presentar ante un Centro de Constatación de Identidad la siguiente documentación:  
+‐ Personas jurídicas de carácter públic o o privado, asociaciones civiles, 
+religiosas que revistan calidad de sujetos de derecho, entidades de hecho 
+con finalidad y gestión patrimonial  autónoma, Uniones Transitorias de 
+Empresas, Agrupaciones de Colaboración Empresaria, Fideicomisos, 
+Fondos Comunes de Inversión: acta  de designación de autoridades, 
+actualizada, salvo que constare en contrato social o estatuto. 
+ 
+‐ Persona debidamente autorizada para gestionar representación en 
+Plataforma: instrumento con indicación del/los servicio/s web. Dicho 
+documento deberá estar certificado ant e autoridad competente (policía, 
+escribano, juez de paz). 
+ 
+‐ Sucesiones Indivisas: resolución de designación de administrador de la 
+sucesión. En caso de inexistencia de  administrador judicial, acreditar 
+vínculo con el causante de la sucesión.  
+ 
+‐ En todos los casos se deberá adjuntar la Clave Única de Identificación 
+Tributaria (C.U.I.T.), o Clave de Identificación (C.D.I.) del 
+representante, otorgado por la AFIP. 
+ 
+De esta manera cada CCI procederá a digitalizar dichos instrumentos según 
+corresponda, para luego poder otorgar el caráct er de “representante” a través de la 
+Plataforma.  
+2.4. Subdelegación 
+Las personas designadas de acuerdo con lo previsto en los incisos a), b) y c)  
+podrán, a su vez, designar a uno o varios de sus dependientes para que utilicen o 
+interactúen con aquellos servicios informátic os o realicen los actos o gestiones que 
+Página 16 de 23 
+ 
+específicamente les hayan sido autorizados, siempre que: 
+ 
+a) el Administrador de Relaciones haya dejado expresa constancia, en la autorización, 
+que están facultados para realizar tales subdelegaciones, en su nombre y por su 
+cuenta, y  
+b) los servicios web, actos o gestiones admitan dicha subdelegación.  
+ 
+En la nómina de los servicios informátic os se indicará cuales permiten tales 
+designaciones. 
+En el supuesto que se produzca la revocación o el vencimiento de las 
+designaciones realizadas por el Administrador de Relaciones conforme a los incisos a), 
+b) y c), las designaciones efectuadas por estos últimos, caducarán automáticamente. 
+3. PROCEDIMIENTO ANTE CASOS ESPECIALES 
+3.1. Discapacidad 
+Considerase discapacitada a “toda persona que padezca una alteración 
+funcional permanente o prolongada, física o mental, que en relación a su edad y medio 
+social implique desventajas considerables  para su integración familiar, social, 
+educacional o laboral” (Ley N° 22431 de Protección Integral para los Discapacitados). 
+3.1.1. Procedimiento  
+Etapa Previa 
+En aquellos casos en que la persona padezca de una discapacidad y necesite 
+realizar ciertas gestiones on-line contempl adas en la Plataf orma de Servicios 
+“Ciudadano Digital”, deberá observarse el siguiente procedimiento: 
+1) Que el representante posea nivel 2 de seguridad: deberá só lo gestionar la 
+representación por motivo de discapacidad del representado. 
+ 
+Página 17 de 23 
+ 
+2) Que el representante no posea nivel 2 de seguridad: ver “Capítulo IV Pto.3”. 
+Una vez que accedió a dicho nivel, deberá gestionar la representación por 
+motivo de discapacidad del representado.   
+Procedimiento propiamente dicho por discapacidad del representado 
+El representante deberá dirigirse a un CCI  de la Provincia y asesorarse si el 
+representado posee “Nivel de Seguridad 2” ya  que el procedimiento variará conforme 
+a ello. 
+A) Si la discapacidad sobrevino al momento de obtener nive l 2 de seguridad  en la 
+plataforma provincial; el represen tante deberá acompañar la siguiente 
+documentación: 
+ 
+‐ Instrumento en el que conste dicha re presentación, debidamente legalizado ante 
+autoridad competente (policía, escribano o juez de paz); y 
+‐ Certificado Único de Discapacidad exp edido por la Dirección General de 
+Inclusión Sanitaria dependiente del Ministerio de Salud o la que en el futuro la 
+reemplace. 
+ 
+B) Si la discapacidad fué preexistente y el representado no obtuvo un usuario en la 
+plataforma provincial o sólo accedió a nivel 1 de seguridad; el representante 
+deberá acompañar la siguiente documentación: 
+ 
+‐ Instrumento en el que conste dicha re presentación, debidamente legalizado ante 
+autoridad competente (policía, escribano o juez de paz); 
+‐ Certificado Único de Discapacidad exp edido por la Dirección General de 
+Inclusión Sanitaria dependiente del Ministerio de Salud o la que en el futuro la 
+reemplace; y 
+‐ Documento Nacional de Identidad del re presentante y representado (quien 
+padece discapacidad) 
+ 
+El personal responsable de la atención del CCI, procederá a digitalizar el poder 
+y asociarlo a la cuenta del “representan te”. Luego, CCI deberá registrar en la 
+plataforma al representado (según corresponda) y digitalizar el Certificado de 
+Discapacidad y DNI para asociarlo a la misma. Excepcionalmente, la foto que se toma 
+Página 18 de 23 
+ 
+de manera presencial para poder acceder a Nivel 2, será suplida con iguales efectos 
+administrativos, por la foto que consta en DNI del representado. 
+3.2. Incapacidad  
+Considerase como tal, aquellos ca sos en que la persona padece de una 
+imposibilidad física que por su dependencia de una representación necesaria, no 
+pueden ejercer por si actos en el ámbito de la admin istración pública provincial 
+(desenvolvimiento en la vida civil). 
+3.2.1. Procedimiento 
+Etapa Previa 
+En aquellos casos en que la persona padezca de una incapacidad y necesite 
+realizar ciertas gestiones on line contempl adas en la Plataforma “Ciudadano Digital”, 
+deberá observarse el siguiente procedimiento: 
+1) Que el representante posea nivel 2 de seguridad: deberá só lo gestionar la 
+representación por motivo de incapacidad física temporal del representado. 
+ 
+2) Que el representante no posea nivel 2 de seguridad: ver “Capítulo IV Pto.3”. 
+Una vez que accedió a dicho nivel, deberá gestionar la representación por 
+motivo de incapacidad física temporal del representado.   
+Procedimiento de Representación propiamente  dicho por incapacidad física temporal  
+del representado 
+El representante deberá asesorarse si su representado posee una cuenta de 
+“Ciudadano Digital” con  Nivel de Seguridad  2 o bien, dirigirse a un CCI de la 
+Provincia. 
+A)     Si la incapacidad sobrevino al mome nto de obtener nivel 2 de seguridad  en la 
+plataforma provincial; el represent ante deberá acompañar la documentación 
+prevista para los siguientes supuestos: 
+ 
+Página 19 de 23 
+ 
+‐ Demencia: declaración judicial de de mencia o inhabilitación judicial. Si en 
+dicho instrumento jurídico no consta la designación del representante, deberá 
+acompañarse documento en el que c onste (debidamente  certificado ante 
+escribano público, juez de paz o policía); 
+ 
+‐ Incapacidad física temporal: instrumento en  el que conste dicha representación 
+(debidamente certificado ante escribano público,  juez de paz o policía), y 
+Certificado Médico en el que conste expresamente la incapacidad por la que no 
+puede trasladarse. 
+ 
+‐ Sordomudos que no sepan darse a entender por escrito: declaración judicial de 
+incapacidad. Si en dicho instrumento jurídico no consta la designación del 
+representante, deberá acompañarse documen to en el que cons te (debidamente 
+certificado ante escribano público, juez de paz o policía); y 
+ 
+‐ En los demás casos no contemplados expresamente en el presente anexo: deberá 
+acompañarse el respectivo instrumento que  acredite dicha incapacidad y en el 
+que conste la representación (deb idamente certific ado ante autoridad 
+competente). 
+ 
+B)     Si la incapacidad fué preexistente y el representado no obt uvo un usuario en la 
+plataforma provincial o sólo accedió a nivel 1 de seguridad; el representante 
+deberá acompañar además de la documentación indicada anteriormente la 
+siguiente: 
+‐ Documento Nacional de Identidad del representante; y  
+‐ Documento Nacional de Identidad del representado (quien padece la 
+incapacidad). 
+ 
+El personal responsable de la atención del CCI, procederá a digitalizar cada uno de los 
+instrumentos indicados anteriormente y as ociarlo a la cuenta del “representante”. 
+Luego, cada CCI deberá registrar en la plat aforma al representado o bien digitalizar 
+DNI para asociarlo a la misma. Excepcionalmen te, la foto que se toma de manera 
+presencial para poder acceder a Nivel 2,  será suplida con iguales efectos 
+administrativos, por la foto que consta en DNI del representado.  
+Página 20 de 23 
+ 
+En caso que la incapacidad sea temporaria,  el nivel 2 de seguridad tendrá una validez 
+temporal de sesenta (60) días corridos desde la fecha de registración, salvo que por 
+instrumento respectivo se acredite un plazo mayor, en cuyo caso se estará a lo 
+dispuesto por el mismo. Una vez transcurrido  el plazo de incapacidad, caducará el 
+nivel de seguridad oportunamente otorgado, volviendo a nivel 1.  
+Si la incapacidad persiste por un plaz o mayor no previsto oportunamente, el 
+representante deberá gesti onar nuevamente el nivel 2 de seguridad, acreditando dicha 
+situación ante un CCI. 
+De igual manera, si la in capacidad cualquiera sea su naturaleza haya cesado, deberá 
+el representante concurrir a un CCI con el instrumento respectivo para acreditar dicha 
+situación de hecho; permitiéndole al representado administrar su propia cuenta de 
+usuario.  
+3.3. Residente en el Exterior 
+Considerase como tal, aquellos casos en que la persona se encuentra de manera 
+transitoria o permanente fuera de su asiento habitual y/o negocios en su caso. 
+3.3.1. Procedimiento 
+Etapa Previa 
+En aquellos casos en que la persona resida en el exterior y necesite realizar 
+ciertas gestiones on line cont empladas en la Plataforma de Servicios “Ciudadano 
+Digital”, deberá observarse el siguiente procedimiento: 
+1) Que el representante posea nivel 2 de seguridad: deberá só lo gestionar la 
+representación por motivo de residencia en el exterior del representado. 
+ 
+2) Que el representante no posea nivel 2 de seguridad: ver “Capítulo IV 
+Pto.3”.Una vez que accedió a dicho nivel, deberá gestionar la representación 
+por motivo de residencia en el exterior del representado.   
+ 
+ 
+Página 21 de 23 
+ 
+ 
+ 
+Procedimiento propiamente dicho por residencia en el exterior del representado 
+El representante deberá dirigirse a un CCI  de la Provincia y asesorarse si el 
+representado posee “Nivel de Seguridad 2” ya  que el procedimiento variará conforme 
+a ello. 
+A) Si quien reside en el exterior posee nivel 2 de seguridad  en la plataforma 
+provincial; el representante deberá acompañar la siguiente documentación: 
+ 
+‐ Instrumento en el que conste dicha re presentación, debidamente legalizado ante 
+autoridad competente (policía, escribano o juez de paz); y 
+‐ Certificado de residencia en el exterior legalizado por Cancillería con 
+traducción efectuada por traductor Público refrendada por Colegio Público de 
+Traductores. 
+ 
+B) Si quien reside en el exterior no obtuvo un usuario en la plataforma provincial o 
+sólo accedió a nivel 1 de seguridad; el representante deberá acompañar la 
+siguiente documentación: 
+ 
+‐ Instrumento en el que conste dicha re presentación, debidamente legalizado ante 
+autoridad competente (policía, escribano o juez de paz); 
+‐ Certificado de residencia en el exterior legalizado por Cancillería con 
+traducción efectuada por traductor Público refrendada por Colegio Público de 
+Traductores; y 
+‐ DNI del representante 
+‐ Copia del DNI del representado, de bidamente legalizad a por Consulado 
+Argentino. Dicha copia legalizada podr á ser presentada ante CCI por el 
+representante o remitida por el representado a través de correo  
+cidi@cba.gov.ar 
+ 
+El personal responsable de la atención del CCI, procederá a digitalizar el poder 
+y asociarlo a la cuenta del “representan te”. Luego, CCI deberá registrar en la 
+plataforma al representado (según corresponda) y digitalizar el Certificado de 
+Página 22 de 23 
+ 
+Página 23 de 23 
+ 
+Residencia y copia del DNI para asociarlo a la misma. Excepcionalmente, la foto que 
+se toma de manera presencial para poder a cceder a Nivel 2, será suplida con iguales 
+efectos administrativos, por la foto que consta en copia del DNI del representado. 
+Capítulo VII – DISPOSICIONES TRANSITORIAS. 
+A los fines de no obstaculizar el funcionamiento de los la  página web de la Dirección 
+General de Rentas (D.G.R) dependiente de la Secretaría de Ingresos Públicos del 
+Ministerio de Finanzas de la Provincia de Córdoba, se podrá acceder a los servicios 
+digitales que presta la mencionada reparti ción, a través de la clave de “Ciudadano 
+Digital” o mediante la “Clave Fiscal” provista por la A.F.I.P. (Administración Federal 
+de Ingresos Públicos), de manera indistinta. 
+El control de identidad de la s personas en los términos de l artículo 31 de la Ley N° 
+5.771, se tendrá por realizada a través la  obtención de una cuenta CIDI de Nivel 2 –  
+Verificado en un Centro de Constatación de Iden tidad  (CCI), a los fines del acceso a 
+los servicios web que ofrezca el Registro Ge neral de la Provincia, sin perjuicio de la 
+disponibilidad y reglamentación  que el mismo establezca. En este sentido, los usuarios 
+actuales de tales servicios deberán obtener  una cuenta CIDI de Nivel 2 - Verificado 
+dentro del plazo de 6 (seis) meses a contar de la entrada en vigencia de la presente, 
+lapso durante el cual podrán continuar ope rando en las condiciones  vigentes en la 
+actualidad". 
+ 
+ 
+ANEXO II  
+TÉRMINOS Y CONDICIONES DE USO – POLÍTICAS 
+DE PRIVACIDAD 
+  
+TTéérrmmiinnooss  yy  ccoonnddiicciioonneess  ddee  uussoo  
+ 
+La Plataforma de Servicios Ciudadano Digital, con dominio 
+http://ciudadanodigital.cba.gov.ar; es creada y puesta a disposic ión de manera gratuita a 
+los usuarios de Internet, para su uso, y administrado por la Secretaría de Innovación de la 
+Gestión Pública dependiente del Ministerio de Gestión Pública del Gobierno de la 
+Provincia de Córdoba y/o quien en un futuro lo reemplace, en adelante Administrador.  
+La Plataforma tiene como principal objetivo, centralizar y brindar al ciudadano de la 
+Provincia de Córdoba, en adelante Usuario, el acceso mediante una clave de identificación 
+única  a las aplicaciones informáticas de l Gobierno, Municipios, Comunas y Empresas 
+privadas que brinden servicios web, Las aplic aciones informáticas, que soliciten datos 
+personales de los ciudadanos, lo realizan me diante las herramientas brindados por la 
+Plataforma de Servicios, siendo ésta la única administradora de dicha información. 
+El uso de la Plataforma pres upone la plena aceptación de las Condiciones de Uso y 
+Políticas de Privacidad, por lo que se recomienda al Usuario su lectura atenta, previa a la 
+navegación.  
+El Administrador se reserva el derecho de cambiar las  Condiciones de Uso y Políticas de 
+Privacidad en cualquier momento, sin comunicación previa. Su uso continuo significa la 
+aceptación de esos cambios. 
+La utilización de algunos servicios informáticos, se encuentra reservada a Usuarios 
+específicos que cumplan con determinados re quisitos o se encuentren en condiciones 
+particulares. 
+1. REGISTRACIÓN 
+1.1. Claves de acceso y niveles de seguridad 
+Para obtener la clave de acceso a la Plataforma  de Servicios, es necesaria su registración 
+a través de la Plataforma Ciudadano Digital cuyo dominio es  
+http://ciudadanodigital.cba.gov.ar.  
+A) Nivel de Seguridad 1 – CONFIRMADO. La  registración se constituye consignando 
+los datos solicitados y luego confirm ándolos, de acuerdo al procedimiento 
+establecido, habilitando así su clave de acceso a la Plataforma de Servicios. 
+ 
+B) Nivel de Seguridad 2 – VERIFICADO . La obtención por parte del Usuario de éste 
+nivel, es necesario para acceder a servicios específicos que brinda la Plataforma, y 
+que exigen un nivel de verificación de la  identidad de la persona y autenticidad de 
+los datos previamente ingresados. Para la obtención de este nivel, el Usuario 
+interesado, deberá presentarse en un Centro de Constatación de Identidad (CCI), 
+donde se verificará dicha información. 
+ 
+C) Nivel de Seguridad 3 – AUTENTICADO. Es te nivel de seguridad permite a los 
+Usuarios la realización de transacciones median te el uso de certificados de firma 
+digital, obtenidos en el Gobierno de  la Provincia de Córdoba o por algún 
+certificador licenciado por la Oficina Nacional de Tecnologías Informáticas 
+(O.N.T.I.).  
+ 
+Alta Provisoria: El ciudadano que al momento de realizar de manera presencial un 
+trámite no posea una cuenta de Ciudadano Digital, será registrado por el agente de 
+mesa de entradas de la repartición ante la cual realice la gestión. Se le solicitará 
+un correo electrónico para poder dar de alta su cuenta,  al que luego deberá 
+ingresar para confirmar su usuario y obten er su clave de acceso (contraseña) a la 
+Plataforma de Servicios. 
+ 
+1.2. Confidencialidad y Responsabilidad 
+El Usuario es responsable por la confidencialidad de su clave y en caso de poseer nivel de
+ 
+Seguridad 2- Verificado, del resguardo de su credencial de Ciudadano Digital, la cual 
+cuenta con un código de seguridad.  
+El Administrador, aunque garantiza la seguridad informática de las contraseñas mediante 
+protocolos de encriptación al ineados a los estándares inform áticos del Gobierno de la 
+Provincia de Córdoba, no se responsabiliza por  los daños ocasionados por el mal uso, uso 
+indebido y/o fraudulento por parte terceros y de los Usuarios, de las claves registradas.  
+Es responsabilidad del Usuario Registrado, la efectiva y fehaciente comunicación al 
+Administrador, de la existencia del uso no autorizado de su clave.  
+La Plataforma, al igual que la mayoría de lo s sitios en Internet, usa Cookies para mejorar 
+la experiencia del usuario. Las Cookies son archivos que el porta l o la aplicación que 
+utilice, instala en su navegador o en su dispositivo (Smartphone, tableta o televisión 
+conectada) durante su recorrido por las pági nas o por la aplicación, y sirven para 
+almacenar información sobre su visita. El us o de las Cookies en este Plataforma es 
+necesario para utilizar la característica "Mant ener la sesión iniciada". En esta Cookie se 
+genera un código único de sesión de usuar io, encriptado conforme a estándares de 
+seguridad, que solo la Plataforma pueda identificar. 
+2. ENLACES (Links) 
+Esta Plataforma contiene enlaces o lin ks a otros Sitios Web operados por otros 
+administradores, que no son mantenidos ni  controlados por este sistema, y en 
+consecuencia, éste no es responsable por sus contenidos o disponibilidad.  
+Solamente se enlazan Sitios pertenecientes a organismos e instituciones tanto nacionales 
+como provinciales, por lo que se presume la inexistencia de material inadecuado. 
+Asimismo, la Plataforma presume que la información que se encuentra en Internet es de 
+pública disposición.  
+El enlace a otros sitios de Internet desde la Plataforma de Servicios es legal. Si el acceso a 
+algunos de los sitios enlazados en particular es restricto, su administrador deberá notificar 
+fehacientemente a nuestro Administrador. 
+Por lo descripto en los párrafos precedentes el Usuario deberá verificar por sí mismo la 
+Política de Uso de cada Sitio Web enlazado. 
+ 
+3. LIMITACIÓN DE RESPONSABILIDAD. 
+El Administrador realiza un esfuerzo razonable por incluir información exacta, completa y 
+actual. No obstante, no garantiza que el conten ido del sitio sea exacto, completo, actual o 
+libre de errores técnicos o tipográficos. 
+El Administrador se reserva el derecho de realiz ar cambios y/o actualizaciones de 
+cualquier información contenida en el sitio sin previo aviso.  
+El Administrador no se responsabiliza por cualquier daño que resultara por el uso o la 
+inhabilidad en el uso de la Pl ataformao cualquiera de los sitios enlazados, o descarga de 
+cualquier información, dato, texto, imagen, video, audio, software u otros materiales 
+accesibles a través del mismo. 
+El Administrador emplea programas de Software para la seguridad de la Plataforma y 
+protección contra virus, pero  no garantiza su ausencia ni la de otros elementos de 
+naturaleza dañina o destructiva en la Plataforma y/o en el servidor que lo hace disponible, 
+que pudieran ocasionar alteraciones en el Sistema Informático del Usuario, tanto software 
+como hardware, o en documentos electrónicos, archivos o directorios de archivos 
+almacenados en su equipo informático. En consecuencia, el Usuario tiene la 
+responsabilidad de tomar todas las precauc iones necesarias para su protección y 
+seguridad. 
+El Administrador no garantiza que las funciones cont enidas en la Plataforma estarán 
+libres de interrupciones en el servicio o libres de error, tampoco garantiza inmediatez en la 
+corrección de los defectos. 
+El Administrador no se responsabiliza por el  uso indebido que hagan los Usuarios de los 
+contenidos de la plataforma; entendiéndose por contenidos toda información, dato, texto, 
+imagen, video, audio, software u otros materiales multimedia accesibles a través del 
+mismo. 
+  
+PPoollííttiiccaass  ddee  PPrriivvaacciiddaadd  
+ 
+Por medio de la Política de Privacidad se de termina el tratamiento que La Plataforma de 
+Servicios, en adelante Ciudadano Digital , dará a los datos recibi dos por parte de los 
+Usuarios, y que estará en un todo de acuerdo a lo establecido en la Ley Nacional N° 
+25.326 de Habeas Data, y en consecuencia debi damente registrado en “Registro Nacional 
+de Bases de Datos” de la Dirección Nacional de Protección de Datos Personales. 
+El Gobierno de la Provincia de Córdoba proporciona a los  Usuarios los recursos técnicos 
+adecuados para que tomen conocimiento de la s presentes Políticas  de Privacidad y 
+Protección de Datos Personales, y de cualquier otra información que pueda ser relevante. 
+Asimismo, las mismas tienen por objeto esta blecer los criterios para el uso de la 
+Plataforma por medio de la cual se podrán utilizar los servicios que brinda el Gobierno de 
+la Provincia de Córdoba que incluyen desde la comunicación hasta la realización de 
+trámites en línea. 
+Las presentes políticas describen: 
+1. Cuáles serán los datos recolectados, cómo se utilizarán y la finalidad de los 
+mismos. 
+2. Las consecuencias que deriven de proporcionar los datos o de la inexactitud de los 
+mismos. 
+3. Facultad y modo de ejercer los derechos de acceso, rectificación, actualización y 
+supresión de los datos. 
+4. La existencia de archivo, registro, base o banco de datos, electrónico o de 
+cualquier otro tipo de que se trate y la identidad y domicilio de su responsable. 
+ 
+1. Cuáles serán los datos recolectados, cómo serán utilizados y la finalidad para la que 
+serán tratados: 
+El Portal no recoge ningún tipo de información personal por parte de los Usuarios sin que 
+la misma sea explícitamente provista voluntariamente.  
+Al crear su cuenta de Ciudadano Digital el Usuario deberá consignar sus datos en un 
+formulario que contiene campos obligatorios y campos opcionales. 
+Los datos solicitados serán utilizados exclus ivamente para su inclusión en una base de 
+datos de la Plataforma Ciudadano Digital. 
+Campos Obligatorios: 
+ Nombre. 
+ Apellido.  
+ Nro. De C.U.I.L. 
+ Dirección de correo electrónico (E-mail). 
+ Contraseña. 
+ Confirmación de contraseña. 
+ Pregunta secreta. 
+ Respuesta Secreta. 
+ Nro. De teléfono personal. 
+ Fecha de Nacimiento 
+ Sexo 
+ 
+Campos Opcionales. 
+ Teléfono fijo. 
+ 
+Toda información que sea recibida por la Plataforma de Servicios Ciudadano Digital, 
+determinada por ley y referida a los usuarios, es confidencial y no puede hacerse pública 
+sin el consentimiento previo de aquellos, salvo que sea requerida por la autoridad 
+competente, cumpliendo con las normas y r ecaudos establecidos para la  protección de 
+datos personales.  
+Los datos recolectados podrán ser utilizados para: 
+ Satisfacer y optimizar los servicios prest ados por el Gobierno de la Provincia de 
+Córdoba. 
+ Acceder de una manera centralizada a los trámites en curso. 
+ Personalizar el perfil de cada usuario. 
+ Obtener métricas de uso en Gobierno de la Provincia de Córdoba. 
+ 
+2. Las consecuencias que deriven de proporcion ar los datos o de la inexactitud de los 
+mismos: 
+La Ley Nacional Nro. 25.326 establece que ninguna persona puede ser obligada a 
+proporcionar datos sensibles, entendiendo por tales a aquellos datos personales que 
+revelan origen racial  y étnico, opiniones políticas, convicciones religiosas, filosóficas o 
+morales, afiliación sindical e información referente a la salud o a la vida sexual,  pudiendo 
+ser objeto de tratamiento cuando medien razone s de interés general o autorizadas por ley. 
+Del mismo modo esta ley, tiene por objeto la protección integral de los datos personales 
+asentados en archivos, registros, bancos de datos u otros medios técnicos sean públicos o 
+privados, garantizando el derecho al honor y a la intimidad de las personas, conforme art. 
+43 tercer párrafo de la Constitución Nacional. 
+ 
+La información que se reci ba será tratada en forma conf idencial. Sólo podrán darse a 
+conocer los datos que el marco normativo aut orice y aquellos que expresamente consienta 
+el Usuario, a excepción de: 
+a) Un pedido formal de autoridades judiciales. 
+b) Un pedido formal de otras autoridades con competencia suficiente. 
+ 
+3. Facultad y modo de ejercer los derechos de  acceso, rectificación, actualización y 
+supresión de los datos: 
+El derecho de acceso es uno de los derechos  establecidos por la Ley Nacional Nro. 25.326 
+- Protección de Datos Personales , que permite a los ciudadanos (U suarios), acceder a la 
+información registrada, pudiendo administrar así, el uso que se hace de sus datos 
+personales. 
+El Usuario podrá ejercer los siguientes derechos ante el Gobierno Provincial  y a través de 
+la Plataforma: 
+ Solicitar información al organismo de control, relativa a la existencia de 
+archivos, registros, bases o bancos de datos personales, sus finalidades y la 
+identidad de sus responsables. El registro que se lleve al efect o será de consulta 
+pública y gratuita. 
+ Solicitar y obtener inform ación de sus datos personales incluidos en los 
+bancos de datos públicos, o privados destinados a proveer informes. 
+ Solicitar la modificaci ón de sus datos personales cuando ellos no sean 
+correctos o no estén actualizados, si fuere procedente, y; 
+ Solicitar la rectificación, actualización, supresión, c onfidencialidad de los 
+datos personales de los que sea titular y que se encuentren incluidos en un banco de 
+datos. 
+ 
+4. La existencia del archivo, registro, base o banco de datos, electrónico o de cualquier 
+otro tipo de que se trate y la identidad y domicilio de su responsable: 
+En cada oportunidad en que el Usuario haga uso de los servicios incluidos enla 
+Plataforma, existe la posib ilidad que de manera automática, obtenga y almacene 
+información en los registros del servidor. Estos datos podrán incluir: 
+ información detallada sobre utilización del servicio.  
+ dirección de IP, 
+ cookies, que permitirán identificar tu navegador o tu cuenta de Ciudadano Digital. 
+El Gobierno de la Provincia de Córdoba aplica medidas de seguridad, destinadas a  
+diseñar procedimientos, métodos y técnicas  a los fines de conseguir un sistema de 
+información seguro y confiable. 
+Se establecen una serie de es tándares, protocolos, métodos, reglas, herramientas y leyes 
+concebidas para minimizar los posibles riesgos a la infraestructura o a la información. Se 
+pretende con ello la protección de la infr aestructura y todo lo relacionado con esta y, 
+especialmente, la información contenida o circulante. 
+Se han establecido como tales: 
+a) El ingreso a la Plataforma de Servicios es realizado exclusivamente mediante la 
+utilización del mecanismo de Nro. De C.U. I.L. y contraseña. Para el uso de ciertos 
+servicios propios de la plataforma se requi ere el código de seguridad impreso en la 
+Credencial de Ciudadano Digital.  
+b) La transmisión de los datos es realizada mediante sesiones seguras. 
+c) El almacenamiento de los datos se efec túa en equipamiento amparado por mecanismos 
+de alta seguridad física. 
+ 
+A los fines de  contactarse con el Gobierno de la Provincia de Córdoba a cerca de los 
+alcances de las presentes Políticas de Pr ivacidad, tendrá a disposición los siguientes 
+medios de comunicación: 
+Por teléfono: 0800-888-1234 
+Por e-mail: cidi@cba.gov.ar 
+Personalmente: ante una Mesa de Entradas del Gobierno de la Provincia de Córdoba. 
+ 
+ 
+ANEXO III  
+FORMULARIOS Y CONSTANCIAS 
+ 
+DECLARACION JURADA DE DOMICILIO 
+ 
+ 
+Quien suscribe…………………………………..; D.N.I. Nro…………………. DECLARA BAJO 
+JURAMENTO que su domicilio real, lugar de su residencia habitual, y a los efectos que 
+correspondiere, es el siguiente:  
+ 
+Calle/Ruta: …………………………………………………………….. N°…………………  
+ 
+Monoblok/Torre:  .…………   Piso: ………    Depto: ……….......   Manzana: ..………… 
+ 
+Casa/Lote: ……...   Barrio: …………..………………… Localidad:……………………   
+       
+      Departamento: ………………… Provincia: ……………….. Código Postal: …………… 
+       
+      País: …………………….. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ACLARACIÓN: 
+ 
+.................................................................................................. 
+FIRMA: 
+ 
+  
+ 
+CERTI
+FICO que la firma que antecede pertenece al compareciente.  
+ 
+ 
+ 
+ 
+CÓRDOBA,............... de...................................................... de 20.…. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+…………….,a los…….días del mes de……………………, 20….. 
+ 
+ 
+Formulario de Adhesión de Sistema Informático a  Plataforma “Ciudadano Digital” 
+ 
+Por medio de la presente se manifiesta la intención de incorporar el siguiente Sistema de Información 
+a la Plataforma Tecnológica Ciudadano Digital. 
+   
+Nombre del Sistema:……………………………………………………………………………………………… 
+Url de Publicación: ……………………………………………………………………………………………….. 
+Repartición Pública:.……………………………………………………………………………………………… 
+Responsable:……………………………………………………………………………………………………….. 
+Domicilio:…………………………………………………………………………………………………………… 
+Teléfono:…………………………………………………………………………………………………………… 
+Correo :………………………………………………………………………………........................................... 
+ 
+Marcar el alcance funcional que dicho sistema tendrá en la Plataforma Ciudadano Digital: 
+ 
+Acceder con Clave Única de Ciudadano Digital. 
+ 
+Enviar  mensajería a través de la P
+lataforma - “Mis Comunicaciones”. 
+ 
+Almacenar Documentación en Centro de Documentación Digital. 
+ 
+Mostrar Información registrada en las bases de datos en sección “Mis D
+atos”. 
+ 
+ 
+Este formulario deberá ser  presentado ante la autoridad de aplicación. 
+ 
+Leer atentamente: 
+ 
+1)- Se ha tomado conocimiento y aceptado ple namente los "Términos  y Condiciones de 
+Uso" y "Políticas de Privacidad" que rigen el acceso y uso de la presente Plataforma. 
+   
+      2)- La adhesión efectiva del Sistema Informático a la plataforma Ciudadano Digital 
+comenzará a partir de la fecha en que la  autoridad de aplicación determine la 
+compatibilidad tecnológica. 
+ 
+ 
+ Firma............................................................................... 
+(Máxima autoridad de la repartición. 
+ 
+Aclaración:..................................................................... 
+POLITICAS DE SEGURIDAD 
+ 
+1. SEGURIDAD DE LA CUENTA. 
+2. SEGURIDAD DE DATOS. 
+3. CREDENCIALES  
+4. INFRAESTRUCTURA TE CNOLÓGICA de SEGURIDAD 
+5. REGISTRO NACIONAL DE BANCO DE DATOS 
+6. RECUPERACIÓN DE LA CONTRASEÑA. 
+ 
+1. SEGURIDAD DE LA CUENTA. 
+1.1   Inicio de sesión. 
+Una vez que se encuentra r egistrado como Ciudadano Digital, el portal exige para 
+su ingreso, N° de Cuil y contraseña. 
+Contraseña válida: Aquella que posea como mí nimo ocho (8) caracteres, y 
+obligatoriamente dentro de la misma deben existir nú meros y letras mayúsculas y 
+minúsculas. 
+1.2 Controles de Inicio de sesión. 
+La Plataforma registra información de sde donde el ciudadano esté intentando 
+acceder. 
+Si la plataforma detecta accesos distinto s a los habituales (luga r o dispositivos), 
+luego del tercer dispositivo diferente, se le enviará un sms o correo electrónico 
+según la elección del usuario , con un Código de Verifica ción para poder permitirle 
+el ingreso. Este procedimi ento se repetirá cada vez que la plataforma detecte que 
+el ciudadano desea ingresar desde un dispositivo o lugar distintos a las habituales. 
+ 
+1.2.1 Bloqueos de Cuenta. 
+Para ingresar a la cuenta de Ciudadano Digital se deber á consignar N° de Cuil y 
+contraseña. 
+Si el ciudadano ingresa inco rrectamente su contraseña, la plataforma bloqueará 
+momentáneamente de manera automática la cuenta luego de tres (3) intentos 
+fallidos 
+ 
+2. SEGURIDAD DE DATOS. 
+2.1 Encriptación de Datos  
+ 
+Toda la información de los ciudadanos y de la Plataforma de Ciudadano Digital 
+que se trafica desde y hacia los navegadores (browsers), se realiza a través de 
+protocolo seguro (https), lo que significa , que la información sea transmitida en 
+forma encriptada. 
+A su vez, en los bancos de datos también se guarda en forma encriptada, datos 
+del usuario, como la contraseña, la respuesta a la pregunta secreta, etc. 
+El Gobierno de la Provincia de Córdoba ut iliza Certificados Digitales en todos los 
+servicios de publicación. 
+2.2 Acceso a Mis Datos y Mi Documentación dentro del Portal  
+Para el caso de que el ciudadano digital tenga nivel de seguridad  “ Nivel 2 – 
+Verificado”, cuando desee ingresar a Mis Datos  o Mi Documentación , la 
+Plataforma exigirá que ingrese el Pin de Verificación  que se encuentra impreso 
+en la Credencial de Ciu dadano Digital, perm itiéndole de esta forma al usuario, 
+visualizar sus datos pers onales y toda su documentaci ón digitalizada, lo que le 
+garantiza así mayor seguridad, ya que de no ingresar ese Pin de Verificación, o 
+ingresándolo 3 veces en forma fallida, se le  bloqueará la cuenta y se le cerrará la 
+sesión. 
+Para poder recuperar así su cuenta nuev amente, deberá recuperar su contraseña 
+(Léase 2. Recuperación de la contraseña punto 2.1) 
+ 
+ 
+2.3. Encriptación de Documentación Digitalizada  
+ 
+La Plataforma de Servicios “Ciudadano Digital” almacena en banco de datos 
+protegidos, toda la documentación digi talizada a través de los Centros de 
+Constatación de Identidad y/o Centros de Documentación. 
+Todos los documentos, constancias, imágenes, y toda otra documentación que las 
+reparticiones consideren que debe  ser digitaliza da se resguarda en forma 
+encriptada. 
+2.4. Validez y verificación en impresión de documentos  
+Todos los documentos digitalizados se imprimen desde la Plataforma de Servicios 
+“Ciudadano Digital” con un código de verificación. Este  código garantiza que el 
+documento impreso, es idéntico del original digitalizado en la Base de Datos. En el 
+momento de la impresión, la  Plataforma de Ciudadano Digital, registra fechas, 
+horarios, lugares y usuarios que realizaron la solicitud de visualización/impresión. 
+2.5. Políticas de Auditorías.  Registro de Actividad La Plataforma de Servicios 
+“Ciudadano Digital” lleva un registro de actividades que se realizan dentro de la 
+misma.  Entre las auditadas se encuentran los inicios de sesión (exitosa y fallida), 
+los accesos a Mis Datos, Mi documentac ión, bloqueos de cuenta, IP desde donde 
+se accede al Portal, recuperación de contraseñas, cambios de correo electrónico, 
+etc. 
+ 
+ 
+ 3. CREDENCIALES  
+ 
+Credencial “CIUDADANO DIGITAL” Los Ciudadanos que se presenten a 
+un Centro de Constatación de Identidad  (CCI) a los fines de solicitar Nivel de 
+seguridad 2 “Verificado” , obtendrán al culminar dicha verificación, una 
+Credencial de Ciudadano Digital, la cual contendrá la siguiente información: 
+ Foto. 
+  Nombre y Apellido. 
+ CUIL. 
+ Código QR: el cual le permitirá acceder a una versión limitada de su 
+escritorio virtual dentro del Portal de Ciudadano Digital. 
+ Fecha de Nacimiento. 
+ Pin de Verificación. 
+ 
+4. INFRAESTRUCTURA TECNOLÓGICA DE SEGURIDAD 
+La infraestructura tecnológica que soporta a la Plataforma de Servicios 
+“Ciudadano Digital” y a otro s Sistemas del Gobierno, cuenta con las políticas de 
+protección de la información basadas en el "Modelo de políticas de seguridad 
+de la información para organismos de la Administración Pública 
+Nacional" según Decisión Administrativa Nº 669/2004, y las respectivas leyes de 
+la Administración Pública Provincial para asegurar  la prestación de servicios. 
+Para leer sobre las políticas de segur idad de la información de la APN puede 
+consultar el documento PSI Modelo v1 200507 
+El equipamiento de seguridad con el que se protege la plataforma es del tipo 
+U.T.M. (Centro unificado de amenazas), tanto en el perí metro como en el centro 
+de operaciones; proveyendo entre otros, los siguientes métodos: 
+ Sistemas de detección y denegación de instrucciones. 
+ Balanceadores de carga para alta disponibilidad del servicio. 
+ Auditoría y control de acceso a las bases de datos. 
+ Antivirus de host local y de perímetro. 
+ 
+5. REGISTRO NACIONAL DE BANCO DE DATOS 
+Cumpliendo con lo previsto por  el artículo 21 de la ley 25. 326, se registró la Base 
+de Datos de la Plataforma  ciudadano digital, en la Dirección Nacional de 
+Protección de datos Personales, bajo el número de trámite 358722 
+ 
+6. RECUPERACIÓN DE LA CONTRASEÑA. 
+ 
+La Plataforma de Servicios Digital “Ciudadano Digital” le ofrece al usuario distintos 
+métodos para recuperar su contraseña en el caso de pérdida u olvido. Para el 
+supuesto de: 
+6.1.Pérdida u olvido de la contraseña. 
+El usuario desde la pantalla de inicio  de Ciudadano Digital pod rá recuperar su 
+contraseña. Deberá ingresar a ¿Olvidaste tu contraseña? y allí consignar su N° de 
+CUIL y correo electrónico; la Plataforma validará esta información, y 
+automáticamente se le enviará una nueva contraseña al correo electrónico. 
+6.2. Pérdida u olvido de la contraseña y no puede acceder a su correo 
+electrónico oportunamente registrado. 
+ El usuario desde la pantalla de inicio de Ciu dadano Digital  podrá recuperar su 
+contraseña y modificar su correo electrónico. Deberá ingresar a ¿Olvidaste tu 
+contraseña? y allí consignar su N° de CUIL y correo electrónico; Si no tiene 
+acceso al correo registrado en Ciudada no Digital y desea cambiarlo, debe 
+presionar “aquí” tal como se indica en el Portal . Recuerde previamente ingresar 
+los datos requeridos, incluyendo su correo electrónico registr ado. La Plataforma 
+validará esta información, y de ser co rrecta le permitirá continuar con el 
+procedimiento, para lo cual se le  solicitará que responda a la “Pregunta 
+Secreta” (Ver Anexo I capítulos II y III) e informe el nuevo correo electrónico. Si el 
+nuevo correo no figura dentro de los registro s de la Plataforma, ésta enviará un 
+correo de confirmación de nueva direcció n electrónica, al igual que cuando se 
+registro en Ciudadano Digital por primera vez. (Ver Anexo I capítulos II y III). 
+Luego de que el ciudadano ha confirmado su nuevo correo, podrá ahora si solicitar 
+su nueva contraseña tal como se indico en el punto 2.1. 
+ 
+ 
+6.3. Métodos adicionales de recupero de contraseña: 
+ 
+Para el caso de que el ciudadano no desee utilizar los métodos de recuperación 
+que el Portal le ofrece, el gobierno pone a disposición de lunes a viernes de 8 a 
+20 hs. un servicio de atención telefónico (0800-888-1234), al cu al el Ciudadano 
+Digital podrá comunicarse solicitando el desbloqueo de la cuenta, generando así 
+una nueva contraseña o bien un cambio de correo electrónico según lo solicitado. 
+ 

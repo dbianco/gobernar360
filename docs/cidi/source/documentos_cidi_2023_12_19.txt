@@ -1,0 +1,808 @@
+Documentos técnicos y condiciones de uso  
+de la Plataforma de Servicios Ciudadano Digital  
+  
+DOCUMENTO  I  
+ASPECTOS GENERALES Y REGULACIÓN DE PROCEDIMIENTOS  
+ 
+  
+ 
+Capitulo I: DEFINICIONES  
+Plataforma de Servicios: Plataforma tecnológica que posibilita a las personas acceder a través de una única 
+cuenta de usuario a todos los trámites y servicios digitales que brinda el Gobierno de la Provincia de Córdoba. 
+Brinda interoperabilidad y acceso a información a los servicios adheridos.   
+Servicio Web: Aplicación o servicio “online” provisto a través de la Plataforma de Servicios. Sitio Institucional: 
+Sitio Web Oficial de libre acceso en el que se informa los componentes de la CiDi, procedimientos, normativas y 
+medios de contactos.  
+Gestión de Cuentas: Herramienta tecnológica que permite al usuario actualizar algunos de sus datos personales, 
+a saber: clave de acceso, mail, número de teléfono celular y fijo, pregunta secreta y domicilio.  
+Cuenta de Usuario: es la identificación única y exclusiva de cada persona registrada en CiDi y está compuesta 
+por un nombre de usuario (CUIT/CUIL o CDI) y una contraseña.  
+Usuario: Persona humana registrada en CiDi.  
+Delegación de Relaciones: es la acción de delegar a una persona humana, que el Administrador de Relaciones 
+designa, para ejercer las facultades propias de su condición sea para que lo sustituya o para que actúe en forma 
+simultánea o indistinta con él.  
+Domicilio electrónico: es la cuenta de usuario que se asocia a las personas al momento de su registración en 
+CiDi. Dicho domicilio es el único medio de notificación entre el Gobierno de la Provincia de Córdoba y el 
+usuario.   
+Notificación Electrónica: Comunicación formal respecto a una decisión administrativa efectuada a través de 
+CiDi y al domicilio electrónico del usuario.  
+Ecosistema Digital: Es el entorno tecnológico en el cual se interconectan servicios, elementos, componentes, 
+herramientas digitales y canales de información que en conjunto facilitan la gestión, disponibilidad de datos y 
+servicios a las personas.  
+Roles: Son funciones, restricciones, permisos o estados que según una clasificación particular pueden otorgarse 
+a cuentas de usuario.  
+  
+ 
+ 
+ 
+
+Capítulo II: ACCESO Y REGISTRACIÓN  
+  
+1.   CUENTA DE USUARIO  
+Para acceder a la Plataforma de Servicios de la Provincia de Córdoba “Ciudadano  
+Digital”, el usuario deberá ingresar a la dirección web cidi.cba.gov.ar para poder generar su cuenta 
+e ingresar a los distintos servicios digitales disponibles.  
+  
+  
+ 2.   NIVELES DE SEGURIDAD  
+Nivel 1- Confirmado: Proporciona al usuario el beneficio de utilizar determinados servicios web y comunicación 
+digital entre las personas y el Gobierno de la Provincia de Córdoba.  
+Para acceder a este nivel de seguridad el usuario deberá ingresar a CiDi y cumplir las instrucciones que el 
+sistema proporcione al momento de registrarse. De esta manera se solicitará el ingreso de ciertos datos 
+personales necesarios para obtener su cuenta:  
+a) N° de CUIL/CUIT/CDI  
+b) Apellido  
+c) Nombre  
+d) Fecha de Nacimiento  
+e) Sexo  
+f) Email  
+g) Contraseña  
+h) Pregunta Secreta  
+i) Respuesta Secreta  
+j) Teléfono Celular  
+k) Teléfono Fijo  
+Ingresado dichos datos, el usuario deberá aceptar los “Términos y Condiciones de Uso y Políticas de 
+Privacidad”.   
+Una vez aceptado, el usuario ingresará a la cuenta de correo que haya consignado al momento de registrarse y 
+deberá seguir los pasos que se le indican para su confirmación.  
+CiDi valida que los datos proporcionados coincidan con registros de bases de datos provinciales y/o nacionales 
+para corroborar la identidad de las personas y la veracidad de la información suministrada.  
+  
+Nivel 2- Verificado: Permite al usuario el acceso a una mayor cantidad de servicios web, información que consta 
+en organismos públicos, documentación digitalizada y a brindar mayor seguridad a través de verificaciones de 
+acceso especiales como es el pin de seguridad. 
+Una vez que el usuario registre su cuenta y obtenga así “Nivel 1 - Confirmado”, para poder acceder a “Nivel 2 
+– Verificado” debe elegir una de las opciones de Procedimiento que se detallan a continuación:  
+A)  Procedimiento ante un Centro de Constatación de Identidad (CCI)   
+1. Acercarse al CCI: El usuario debe acercarse a un Centro de Constatación de Identidad (CCI) con el 
+Documento nacional de identidad y Constancia de CUIL, CUIT o CDI expedido por ANSeS o AFIP, sólo 
+necesario en casos que el documento de Identidad no incluya información sobre el número de CUIL de las 
+personas. El responsable de cada CCI, solicitará la documentación indicada anteriormente para constatar la 
+identidad de los usuarios registrados oportunamente; y procederá a digitalizar la documentación para 
+incorporarla a CiDi y vincularla a la cuenta en cuestión.  
+2. Realizar una “Declaración Jurada de Domicilio” se le solicitará a la persona que proceda  a  informar sus 
+datos de domicilio para generar  una  “Declaración Jurada de Domicilio” a los fines de acreditar por medio 
+fehaciente su domicilio real. 
+3. Fotografía:  El procedimiento continúa con la toma de una foto de rostro (perfil) a la persona. 
+4. Notificación de fin del trámite: Una vez realizada la aceptación y suscripción de la gestión administrativa a 
+través de CiDi, finaliza el procedimiento de acreditación de “Nivel 2 – Verificado”, y se realizará una 
+notificación electrónica a través de CiDi, generando, según corresponda, una “Constancia de Ciudadano 
+Digital Verificado”. 
+5. Credencial: Posteriormente, el ciudadano podrá disponer de una Credencial digital disponible en la app 
+móvil de Ciudadano Digital, la cual lo acreditará como “Ciudadano Digital” certificando así, el nivel 
+precedentemente señalado.  Por requerimiento del usuario, el responsable del CCI también podrá indicarle a 
+éste el número de pin de su credencial.   
+  
+B)  Procedimiento de Validación a través de “Clave Fiscal Nivel 3” otorgada por la Administración Federal 
+De Ingresos Públicos (AFIP)   
+1. Acceder a CiDi.cba.gov.ar con su usuario Nivel 1 e ingresar a la opción “Ingresar con Clave  
+2. Afip”.  
+3. Identificarse a través de la página web de la Administración Federal de Ingresos Públicos debiendo para 
+ello contar con “Clave Fiscal Nivel 3” de AFIP.  
+4. Realizar la obtención del "Nivel 2 - Verificado" de CiDi ingresando con su “Clave Fiscal Nivel 3” de AFIP 
+y cumpliendo con los pasos que informa la Plataforma.  
+5. “Declaración Jurada de Domicilio”: deberá completar a los fines de acreditar por medio fehaciente su 
+domicilio real una “Declaración Jurada de Domicilio”.  
+6. Otras validaciones: Además, se le solicitará a la persona, en los casos que CiDi considere necesario realizar 
+otras validaciones, adjuntar Documento nacional de identidad (frente y dorso) y Foto 4x4 o "selfie" 
+(Autofoto) de rostro.  
+7. Credencial: Posteriormente, el ciudadano podrá disponer de una Credencial y de una “Constancia de 
+Ciudadano Digital Verificado”, la cual lo acreditará como “Ciudadano Digital” certificando así, el nivel 
+precedentemente señalado.   
+ 
+C)  Procedimiento de Validación a través de App móvil de CiDi con datos biométricos   
+1. Contar con usuario Nivel 1 e ingresar a la opción “Obtener Nivel 2”, luego de iniciar sesión, desde la 
+aplicación móvil oficial de Ciudadano Digital (CiDi).  
+2.  Fotografías del DNI: deberá cargar una foto del frente y dorso del Documento Nacional de Identidad (DNI) 
+el cual se validarán con datos de bases de datos oficiales del Gobierno de la Provincia de Córdoba y/o 
+organismos nacionales.  
+3. Datos Biométricos: se solicitará la obtención y carga de diversas fotografías o autofoto de rostro tipo 
+“selfie” el cual se validarán de manera automática con los servicios de validación del Registro Nacional de 
+las Personas (RENAPER) de CiDi ingresando con su “Clave Fiscal Nivel 3” de AFIP y cumpliendo con los 
+pasos que informa la Plataforma.  
+4. “Declaración Jurada de Domicilio”: deberá completar a los fines de acreditar por medio fehaciente su 
+domicilio real una “Declaración Jurada de Domicilio”.  
+5. Credencial: A finalizar, el ciudadano podrá disponer de una Credencial y de una “Constancia de Ciudadano 
+Digital Verificado”, la cual lo acreditará como “Ciudadano Digital” certificando así, el nivel 
+precedentemente señalado.   
+ 
+Nivel  3-  Autenticado:  Permite a los usuarios la realización de transacciones seguras a través de 
+certificados al que el usuario  podrá  acceder  cuando  posea  un certificado de firma digital, obtenida a 
+través del Gobierno de la Provincia de Córdoba o por algún Certificador Licenciado por ONTI (Oficina 
+Nacional de Tecnologías de Información) o quien en un futuro la reemplace.   
+ 
+3.- DISPOSICIONES COMUNES A LOS PROCEDIMIENTOS DE VERIFICACIÓN CIDI NIVEL 2  
+1. Los procedimientos B y C, para la realización del “Nivel 2-Verificado” son alternativos al procedimiento 
+a y podrán ser habilitados o deshabilitados cuando la Autoridad de aplicación lo considere necesario.  
+2. Para el caso de los extranjeros, el requisito de presentación del DNI a los fines de la verificación de 
+identidad, se cumple con la presentación del documento de identidad del país de origen, pasaporte o cédula 
+del MERCOSUR (de tratarse de un país limítrofe). En caso de no poseer CUIL/CUIT, a los fines de la 
+creación de la cuenta de usuario, debe presentar CUIL o CUIT PROVISORIO o CDI.  
+3. En casos de que surjan inconvenientes en que un ciudadano no pueda finalizar la validación por los 
+procedimientos de medios digitales establecidos, el sistema informará como medio alternativo la 
+realización del mismo sobre un e-tramite (herramienta digital de trámites disponible en la Plataforma 
+Ciudadano Digital), establecido para tal fin, el cual el usuario deberá cargar toda la información relevante 
+que la autoridad de aplicación estableciera. Dicho proceso, será revisado por un agente con funciones 
+especiales que resolverá, según corresponda, y notificará al usuario sobre la resolución del mismo.  
+4. En la Credencial constarán los siguientes datos: Foto, Nombre y Apellido, CUIL, Código QR, Fecha de 
+nacimiento, Pin de verificación. La credencial estará disponible en forma digital, en la aplicación móvil 
+de Ciudadano Digital, sección “Mis documentos”, o por otra vía que la Autoridad de Aplicación 
+estableciera.  
+5. Toda la documentación e información solicitada anteriormente, para constatar la identidad de los usuarios 
+registrados oportunamente, se procederá a guardar en CiDi y vincularla a la cuenta en cuestión. Dichos 
+documentos e información brindada se constituirán en medios de prueba tendiente a garantizar la 
+titularidad de la cuenta en CiDi.  
+  
+CAPITULO III.-   PROCEDIMIENTO ANTE CASOS ESPECIALES  
+Este Anexo reconoce especialmente situaciones en que se puede necesitar un procedimiento especial a los fines 
+de cubrir la eventual indefensión de la persona.  
+Están especialmente reconocidos las siguientes circunstancias o estados:  
+a) Discapacidad  
+Considerase discapacitada conforme a la Ley N° 22431 de Protección Integral para los  
+Discapacitados, a “toda persona que padezca una alteración funcional permanente o prolongada, física o mental, 
+que en relación a su edad y medio social implique desventajas considerables para su integración familiar, social, 
+educacional o laboral”  
+b) Persona con capacidad restringida o Incapacidad o Imposibilidad física temporal Considerase Persona con 
+capacidad restringida a la persona mayor de trece años que padece una adicción o una alteración mental 
+permanente o prolongada, de suficiente gravedad (Art 32 Código Civil y Comercial de la Nación).  
+Considerase Persona con incapacidad cuando la misma se encuentre absolutamente imposibilitada de 
+interaccionar con su entorno y expresar su voluntad por cualquier modo, medio o formato adecuado y el sistema 
+de apoyos resulte ineficaz. (Art 32 Código Civil y Comercial de la Nación). Considerase Imposibilidad física 
+temporal al impedimento transitorio proveniente de afecciones físicas que imposibilitan a la persona trasladarse 
+a cumplir con las obligaciones.  
+c) Residente en el Exterior  
+Considerase como tal, aquellos casos en que la persona tenga, de manera transitoria o permanente, asiento 
+habitual de residencia y/o negocios, fuera de la República Argentina.  
+ 
+Procedimiento para representar a personas en circunstancias o estado de asistencia especial  
+1. Representante con Clave de CiDi “Nivel 2”: En primer lugar, la persona habilitada para desempeñarse 
+como el representante de la persona que requiera asistencia por la circunstancia o estado de atención especial, 
+deberá poseer la Clave de CiDi “Nivel 2 – Verificado”. En caso de no tenerla deberá gestionarla conforme a lo 
+establecido.  
+2. Trámite ante el CCI: El representante deberá dirigirse a un CCI de la Provincia y asesorarse si el 
+representado posee “Nivel 2 – Verificado” de Seguridad, ya que el procedimiento variará conforme a ello.  
+A) Si la circunstancia o el estado que habilita el procedimiento especial sobrevino al momento de obtener “Nivel 
+2 – Verificado” de Seguridad, el representante deberá acompañar la siguiente documentación:  
+a) Instrumento en el que conste la representación que invoca, debidamente legalizado ante autoridad 
+competente (policía, escribano o juez de paz)  
+b) Documentos que acrediten la circunstancia o estado de asistencia especial:  
+Discapacidad: Certificado Único de Discapacidad expedido por la autoridad oficial.  
+Incapacidad, capacidad restringida para realizar actos frente a la Administración Pública, Imposibilidad física 
+temporal: declaración judicial de incapacidad, capacidad restringida o inhabilitación judicial, Certificado 
+Médico en el que conste expresamente la imposibilidad física por la que no puede trasladarse;  
+Residente en el Exterior: Certificado de residencia en el exterior legalizado, salvo que conste en su DNI su 
+domicilio declarado en otro país.  
+‐En los demás casos no contemplados expresamente en el presente anexo: deberá acompañarse el respectivo 
+instrumento que acredite la circunstancia o estado de atención especial a tener en consideración  
+B) Si la circunstancia o el estado que habilita el procedimiento especial fue preexistente y el representado no 
+obtuvo un usuario en CiDi o sólo accedió al “Nivel 1 – Confirmado” de Seguridad, el representante deberá 
+acompañar, además de la documentación antedicha, el Documento Nacional de Identidad del representado a los 
+fines de su verificación para acceder al Nivel 2 – Verificado.  
+3. Digitalización de la documentación y asociación a la cuenta de usuario del representante: El personal 
+responsable de la atención del CCI, procederá a digitalizar la documentación presentada y asociarla a la cuenta 
+del “representante”.   
+4. Fotografía: Excepcionalmente, la foto que se toma de manera presencial para poder acceder a “Nivel 2 – 
+Verificado” de Seguridad, será suplida con iguales efectos administrativos, por la foto que consta en DNI del 
+representado. Para el caso de la persona residente en el exterior, la copia del DNI debe presentarse debidamente 
+legalizada.   
+En caso que la circunstancia o estado especial sea temporario, el “Nivel 2 – Verificado” de Seguridad la 
+asociación de la cuenta del representado a la del representante tendrá una validez temporal de sesenta (60) días 
+corridos desde la fecha de registración, salvo que por instrumento respectivo se acredite un plazo mayor, en cuyo 
+caso se estará a lo dispuesto por el mismo. Si la incapacidad persiste por un plazo mayor no previsto 
+oportunamente, el representante deberá gestionar nuevamente el “Nivel 2 – Verificado” de Seguridad, 
+acreditando dicha situación ante un CCI.  
+De igual manera, si la circunstancia o estado de atención especial cualquiera sea su naturaleza haya cesado, el 
+representante con el instrumento respectivo para acreditar dicha situación de hecho concurriendo a un CCI, o 
+informarlo conforme lo establezca la autoridad de aplicación. Dicha acción habilita el permiso al representado 
+para administrar su propia cuenta de usuario.  
+La autoridad de aplicación debe arbitrar los medios para obtener la información que corresponda a la 
+circunstancia o estado de asistencia especial a los fines de evitar su presentación por medios presenciales.   
+  
+CAPITULO IV.– ADMINISTRADOR DE RELACIONES.  
+ ADMINISTRADOR DE RELACIONES (Mis Representados y Autorizados).  
+La opción “Administrador de Relaciones”, también denominada como “Mis Representados y autorizados”, 
+disponible en CiDi habilita a una persona humana para que, a través de su Clave de CiDi Nivel 2 o superior, 
+pueda realizar actos o gestiones como representante de una persona humana o jurídica, en nombre y por cuenta 
+de ésta.  
+El otorgamiento de la calidad de Administrador de relaciones de un usuario estará sujeta a la aceptación por 
+parte de la persona designada como Administrador de relaciones.  
+A través de la opción “Mis Representantes” el usuario representado podrá consultar dicha aceptación; como así 
+también la posibilidad de revocar las delegaciones oportunamente otorgadas por su Administrador de 
+Relaciones.  
+2.1. Acciones del Administrador de Relaciones  
+El Administrador de Relaciones podrá efectuar -a través de la herramienta informática  
+“Administrador de Relaciones”- las siguientes operaciones:  
+a) Delegar y subdelegar en otras personas para que -en su nombre o en nombre de la persona cuya representación 
+ejerce- utilicen y/o interactúen con aquellos servicios web que específicamente les hayan sido autorizados.   
+b) Otorgar autorizaciones para efectuar determinados actos o gestiones.  
+c) Revocar las designaciones, poderes y/o autorizaciones a que se refieren los incisos anteriores.  
+2.2. Cese del Administrador de Relaciones de Personas Jurídicas – Efectos  
+El cese del mandato de la persona humana que actúa como Administrador de Relaciones de una persona jurídica, 
+cualquiera sea la causa, no implicará la baja automática de las designaciones, poderes y/o autorizaciones que 
+hubiera efectuado. Las mismas serán transferidas al nuevo representante que lo sustituya, permitiéndole hacer 
+uso, en su caso, de la facultad de revocación.  
+2.3. Procedimiento  
+El procedimiento para registrar una representación en CiDi variará conforme a las siguientes circunstancias:  
+2.3.1.   De Personas Humanas a Personas Humanas  
+Para registrar una representación a través de CiDi, el representado deberá seguir los siguientes pasos:  
+a) Ingresar a la opción “Cuenta” y luego “Mis Representantes y autorizados”.  
+b) Una vez seleccionada dicha opción, deberá acceder a “Nueva Relación”. CiDi le mostrará una grilla con los 
+servicios web disponibles, debiendo seleccionar el que desee autorizar.  
+c) Ingresar el N° de CUIL del representante y luego “Buscar”. El representado podrá determinar si el 
+representante puede delegar el servicio seleccionado.  
+d) Seleccionar “Guardar” y por último confirmar dicha delegación a través de la opción “Aceptar”.  
+Para los casos especiales debe remitirse a “Procedimiento ante Casos Especiales”:  
+2.3.2.   De Personas Jurídicas a Personas Humanas  
+La Persona Jurídica se relaciona con la Administración pública a través de la persona humana designada como 
+su Administrador de Relaciones.  
+Toda persona humana habilitada para representar a una persona jurídica debe seleccionar uno del 
+procedimiento para constituirse en Administrador de Relaciones de la misma:  
+ 
+A)  Procedimiento Digital:   
+1. A través de la designación de nuevo representante legal desde el Administrador de Relaciones: a través de 
+este procedimiento se realizarán validaciones en tiempo real y constatación de información con los datos 
+almacenados en las bases de datos oficiales del Gobierno de la Provincia de Córdoba y/o organismos nacionales, 
+podrán utilizar este medio: 
+a) Las personas jurídicas que se encontrasen registradas en la Dirección de Inspecciones Jurídicas del Gobierno 
+de la Provincia de Córdoba y existiesen en los registros informáticos de esa Repartición con la información 
+de sus administradores.   
+b) Las Comunas y Municipios de la Provincia de Córdoba.  
+c) Las personas jurídicas que cuenten con representante autorizado en AFIP, habilitado el servicio o aplicación 
+“Ciudadano Digital” de la Provincia de Córdoba y una relación sobre el mismo.  
+d) Las Cooperativas y Mutuales que se encontrasen registradas en el Registro de Cooperativas y Mutuales de la 
+Provincia de Córdoba. 
+Los procedimientos anteriormente mencionados podrán ser habilitados, deshabilitados o actualizados cuando 
+la Autoridad de aplicación lo considere necesario.  
+ 
+2- Tipos jurídicos que requieren de validación de documentación:  Para los casos donde no se pueda realizar 
+de manera automática la validación, se dispondrá de un e-tramite especial establecido para tal fin, el cual el 
+usuario deberá cargar toda la información relevante que la autoridad de aplicación estableciera. Dicho proceso, 
+será revisado por un agente con funciones especiales que resolverá, según corresponda, y notificará al usuario 
+sobre la resolución del mismo.  
+ 
+B)  Procedimiento ante un Centro de Constatación de Identidad (CCI).   
+La persona humana designada por la Persona Jurídica como representante legal de la misma debe acompañar 
+ante el CCI la siguiente documentación:  
+a) En caso de ser personas jurídicas de carácter público o privado, asociaciones civiles, religiosas que revistan 
+calidad de sujetos de derecho, entidades de hecho con finalidad y gestión patrimonial autónoma, Uniones 
+Transitorias de Empresas, Agrupaciones de Colaboración Empresaria, Fideicomisos, Fondos Comunes de 
+Inversión: Acta, contrato o estatuto donde consta la designación de autoridades; o instrumento general 
+certificado por escribano público con indicación de gestiones ante organismos provinciales para las que queda 
+autorizado o autorizados en forma indistinta; o informe de la Inspección de Personas Jurídicas (IPJ) donde 
+conste la inscripción de la designación como representante.   
+Para el caso de ser sucesiones indivisa debe presentar Resolución de designación de administrador de la 
+sucesión. En caso de inexistencia de administrador judicial de la sucesión, la persona humana que pretenda 
+designarse administrador de relaciones debe acreditar vínculo con el causante de la sucesión y la 
+correspondiente conformidad de los restantes herederos. 
+  b)  Constancia de CUIT de la Persona Jurídica.  
+De esta manera cada CCI procederá a digitalizar dichos instrumentos según corresponda, para luego poder 
+otorgar el carácter de “representante” a través de CiDi.  
+2.4.  Delegación  
+La persona designada como Administrador de Relaciones, podrá, a su vez, designar a una o varias personas para 
+que utilicen o interactúen con aquellos servicios informáticos o realicen los actos o gestiones que específicamente 
+les hayan sido autorizados, siempre que:  
+a) el Administrador de Relaciones haya dejado expresa constancia, en la autorización, que están facultados para 
+realizar tales subdelegaciones, en su nombre y por su cuenta; b) los servicios web, actos o gestiones admitan 
+dicha subdelegación.  
+En la nómina de los servicios informáticos se indicará cuales permiten tales designaciones.  
+En el supuesto que se produzca la revocación o el vencimiento de las designaciones realizadas por el 
+Administrador de Relaciones las designaciones efectuadas por estos últimos, caducarán automáticamente.  
+  
+Capítulo V.– ADHESIÓN DE SISTEMAS INFORMÁTICOS A CiDi  
+1.   OBJETO  
+El presente procedimiento tiene por finalidad dar de alta nuevos servicios web para adherirse a CiDi.  
+2.   PROCEDIMIENTO  
+En el procedimiento de adhesión intervienen dos partes:  
+‐ La autoridad  de  las  reparticiones  de  la  Administración  Pública Provincial o entidad y organizaciones  que 
+deseen realizar la solicitud de adhesión; 
+ ‐ Autoridad de Aplicación.  
+La máxima autoridad responsable de la repartición u organismo en que se implemente un sistema online próximo 
+a adherirse a CiDi deberá realizar la solicitud para la conformación de la correspondiente aprobación.  
+3.   RESOLUCION  
+La Autoridad de Aplicación será la competente para resolver la solicitud de Adhesión. La respuesta al mismo 
+deberá encontrarse debidamente fundada, y comunicarse al organismo peticionante a través de medio fehaciente.  
+Puede resolverse también la adhesión a CiDi a través de un Convenio Marco entre la autoridad de aplicación y 
+la máxima autoridad responsable de la repartición u organización.  
+4.  ADHESION TOTAL O PARCIAL  
+La adhesión de cada sistema on line a CiDi puede ser total (adhesión a todos los alcances de participación y los 
+que en su futuro se adicionen) o parcial (sólo algunos de ellos).  
+A continuación, se detallan los distintos alcances de participación. La siguiente enumeración no es taxativa, 
+pudiendo la Autoridad de Aplicación modificar todas o algunas de ellas, previa notificación fehaciente a la Áreas 
+Informáticas de los sistemas adheridos total o parcialmente a CiDi  
+‐  Acceder con clave única a CiDi (Autenticación).  
+‐  Enviar comunicaciones a través de CiDi – “Mis Comunicaciones”.   
+‐  Almacenar, consultar y/o compartir documentación en Centro de Documentación 
+Digital.  
+‐  Compartir información y permitir visualizarla en la Plataforma.  
+-  
+  
+Acceder a la información de CiDi, total o parcialmente.  
+Capítulo VI: DE LOS CENTROS DE CONSTATACIÓN DE IDENTIDAD (CCI)  
+Funciones  
+a) Constatar la identidad de los usuarios que poseen Nivel 1 – Confirmado.  
+b) Dar de alta a usuarios que al momento de realizar una gestión administrativa no posean una cuenta de 
+acceso a CiDi (Alta Provisoria)  
+c) Receptar toda documentación presentada el usuario a los fines de actualizar, suprimir, rectificar 
+información que consta en el registro de información que almacena CiDi.  
+d) Digitalizar dicha documentación cumpliendo las condiciones y exigencias propias del procedimiento 
+establecido para tales fines  
+e) Receptar toda consulta, comentario, reclamo, denuncia, atinente al uso de CiDi.   
+f) Asesorar a los usuarios que se presenten en los CCI por inquietudes, dudas o inconvenientes en el uso 
+y/o administración de su cuenta CiDi.  
+g) Guardar máxima reserva y secreto de datos y/o información personal a la que acceda en virtud del 
+ejercicio de las funciones propias de CCI. Observar y adoptar toda medida de seguridad que sea 
+necesaria para asegurar la confidencialidad, secreto e integridad de los datos de carácter personal a los 
+que tenga acceso.  
+2.1. Deberes  
+A continuación, se detalla de manera meramente enunciativa, los derechos y obligaciones del personal que 
+conforma cada CCI disponible.  
+2.1.1.  Jefe responsable de un CCI: Es el Máximo responsable del correcto funcionamiento del CCI disponible en 
+la repartición en la que desempeña funciones.  
+a) Designar al  personal encargado de la atención en cada CCI.  
+b) Supervisar el correcto desempeño de la actividad encomendada al personal de cada CCI.  
+c) Establecer reglas de conducta de trabajo, que en ningún caso podrán ser incompatibles a las finalidades por 
+las cuales han sido creados los CCI.  
+d) Tomar decisiones que permitan una mayor eficiencia para el logro de objetivos.   
+e) Obedecer las  políticas  de  organización  impartidas  por  la  autoridad  de aplicación.  
+  
+2.1.2.  Empleado Administrativo:  
+Funciones:  
+a) Constatar la identidad de los usuarios que poseen Nivel 1 – Confirmado.  
+b) Dar de alta a usuarios que al momento de realizar una gestión administrativa no posean una cuenta de 
+acceso a CiDi (Alta Provisoria).  
+c) Receptar toda documentación presentada por el usuario a los fines de actualizar, suprimir, rectificar 
+información que consta en el registro de información que almacena CiDi. Asimismo, tendrá la facultad 
+de digitalizar dicha documentación cumpliendo las condiciones y exigencias propias del procedimiento 
+establecido para tales fines.  
+d) Receptar toda consulta, comentario, reclamo, denuncia, atinente al uso de CiDi.  
+e) Asesorar a los usuarios que se presenten en los CCI por inquietudes, dudas o inconvenientes en el uso 
+y/o administración de su cuenta en CiDi.  
+f) En ocasión al ejercicio y/o desempeño de sus funciones con el consentimiento del usuario, podrá acceder 
+a través de CiDi, a cuentas de usuarios cuando las circunstancias lo requieran cumpliendo previamente 
+los requisitos y condiciones en cada caso.  
+Deberes  
+a) Guardar máxima reserva y secreto de datos y/o información personal a la que acceda en virtud del ejercicio 
+de las funciones propias de CCI.  
+b) Observar y adoptar toda medida de seguridad que sea necesaria para asegurar la confidencialidad, secreto e 
+integridad de los datos de carácter personal a los que tenga acceso.  
+c) No ceder en ningún caso a terceras personas los datos de carácter personal a los que tenga acceso, ni siquiera 
+a efectos de su conservación, salvo autorización o instrucción expresa y por escrito de la Autoridad de 
+Aplicación.  
+d) Obedecer órdenes impartidas por el jefe responsable de un CCI.  
+  
+DOCUMENTO  II  
+TÉRMINOS Y CONDICIONES DE USO – POLÍTICAS DE PRIVACIDAD  
+   
+Términos y condiciones de uso  
+La Plataforma de Servicios Ciudadano Digital (en adelante CiDi), con dominio http://cidi.cba.gov.ar; es creada 
+y puesta a disposición de manera gratuita a las personas, para su uso, y administrado por la Secretaría de 
+Innovación de la Gestión dependiente del Ministerio de Coordinación de la Provincia de Córdoba y/o quien en 
+un futuro lo reemplace, en adelante Administrador.  
+CiDi tiene como principal objetivo, centralizar y brindar a las personas (en adelante Usuario), el acceso mediante 
+una clave de identificación única a las aplicaciones informáticas del Gobierno, Municipios, Comunas y 
+
+organizaciones que brinden servicios web, Las aplicaciones informáticas, que soliciten datos personales de las 
+personas, lo realizan mediante las herramientas brindados por CiDi, siendo ésta la única administradora de 
+dicha información.  
+El uso de CiDi presupone la plena aceptación de las Condiciones de Uso y Políticas de Privacidad, por lo que 
+se recomienda al Usuario su lectura atenta, previa a la navegación.  
+El Administrador se reserva el derecho de cambiar las Condiciones de Uso y Políticas de Privacidad en cualquier 
+momento, sin comunicación previa. Su uso continuo significa la aceptación de esos cambios.  
+La utilización de algunos servicios informáticos, se encuentra reservada a Usuarios específicos que cumplan con 
+determinados requisitos o se encuentren en condiciones particulares.  
+  
+1. REGISTRACIÓN  
+1.1. Claves de acceso y niveles de seguridad  
+Para obtener la clave de acceso a la Plataforma de Servicios, es necesaria su registración a través de CiDi cuyo 
+dominio es http://cidi.cba.gov.ar.  
+A) Nivel de Seguridad 1 – CONFIRMADO. La registración se constituye consignando los datos solicitados y 
+luego confirmándolos, de acuerdo al procedimiento establecido, habilitando así su clave de acceso a la 
+Plataforma de Servicios.  
+B) Nivel de Seguridad 2 – VERIFICADO. La obtención por parte del Usuario de éste nivel, es necesario para 
+acceder a servicios específicos que brinda la Plataforma, y que exigen un nivel de verificación de la identidad de 
+la persona y autenticidad de los datos previamente ingresados. Para la obtención de este nivel, el Usuario 
+interesado, deberá seguir alguno de los procedimientos establecidos por la autoridad de aplicación.  
+C) Nivel de Seguridad 3 – AUTENTICADO. Este nivel de seguridad permite a los Usuarios la realización de 
+transacciones mediante el uso de certificados de firma digital, obtenidos en el Gobierno de la Provincia de 
+Córdoba o por algún certificador licenciado por la Oficina Nacional de Tecnologías Informáticas (O.N.T.I.) o 
+quien en un futuro la reemplace.  
+ 
+Alta Provisoria: La persona que al momento de realizar de manera presencial un trámite no posea una cuenta 
+de CiDi, será registrado por el agente de Atención ante la cual realice la gestión. Se le solicitará un correo 
+electrónico para poder dar de alta su cuenta, al que luego deberá ingresar para confirmar su usuario y obtener 
+su clave de acceso (contraseña) a CiDi.  
+ 
+Menores: Las personas menores de 16 pueden registrarse en la Plataforma sin estar obligados a informar el 
+correo electrónico y otros datos de contacto, teniendo acceso a funciones y servicios limitados que la autoridad 
+de aplicación estableciera. En caso de que declarare un correo electrónico, el menor contará con el Nivel de 
+Seguridad 1 – Confirmado.  
+ 
+ 
+  
+1.2. Confidencialidad y Responsabilidad  
+El Usuario es responsable por la confidencialidad de su clave y en caso de poseer nivel de Seguridad 2- 
+Verificado, del resguardo de su credencial de CiDi, la cual cuenta con un código de seguridad.  
+El Administrador, aunque garantiza la seguridad informática de las contraseñas mediante protocolos de 
+encriptación alineados a los estándares informáticos del Gobierno de la Provincia de Córdoba, no se 
+responsabiliza por los daños ocasionados por el mal uso, uso indebido y/o fraudulento por parte terceros y de 
+los Usuarios, de las claves registradas.  
+Es responsabilidad del  Usuario  Registrado,  la  efectiva  y  fehaciente  comunicación  al Administrador, de la 
+existencia del uso no autorizado de su clave.  
+La Plataforma, al igual que la mayoría de los sitios en Internet, usa Cookies para mejorar la experiencia del 
+usuario. Las Cookies son archivos que el portal o la aplicación que utilice, instala en su navegador o en su 
+dispositivo (Smartphone, tableta o televisión conectada) durante su recorrido por las páginas o por la aplicación, 
+y sirven para almacenar información sobre su visita. El uso de las Cookies en este Plataforma es necesario para 
+utilizar la característica "Mantener la sesión iniciada". En esta Cookie se genera un código único de sesión de 
+usuario, encriptado conforme a estándares de seguridad, que solo la Plataforma pueda identificar.  
+  
+1.3 Declaración Jurada  
+La documentación incorporada a CiDi se entiende realizada bajo declaración jurada de autenticidad por parte 
+del Usuario a través de los procedimientos establecidos por la Autoridad de Aplicación. El Usuario debe 
+resguardar los elementos de prueba que justifiquen la autenticidad de los documentos.  
+La inexactitud, falsedad u omisión, de carácter esencial, de cualquier dato o información que se incorpore a una 
+Declaración Jurada o la no presentación ante la Administración Pública de la documentación que sea en su caso 
+requerida para acreditar el cumplimiento de lo declarado, generará una sanción, sin perjuicio de las 
+responsabilidades penales o civiles a que hubiera lugar.  La resolución de la Administración Pública que declare 
+tales circunstancias podrá determinar la obligación del interesado de restituir la situación jurídica al momento 
+previo al reconocimiento o al ejercicio del derecho o al inicio de la actividad correspondiente.   
+  
+1.4 Domicilio Electrónico  
+La cuenta de usuario de CiDi es considerada el domicilio electrónico constituido en donde deben ser notificadas 
+las actuaciones administrativas y otras de interés de la plataforma.   
+Son válidas, vinculantes y plenamente eficaces todas las notificaciones, emplazamientos y comunicaciones que se 
+practiquen en este domicilio. Las Notificaciones quedan registradas y disponibles en el centro de comunicaciones.  
+La constitución, implementación, funcionamiento y cambio del domicilio electrónico debe efectuarse conforme a 
+las formas, requisitos y condiciones que establezca la autoridad de aplicación.  
+ 
+  
+1.5 Aviso de Cortesía  
+Con independencia del medio escogido para la notificación, se enviará un aviso a la última dirección de correo 
+electrónico que el usuario haya comunicado en CiDi, informando de la puesta a disposición de una notificación 
+en el domicilio electrónico. No es un medio de notificación.  
+  
+2.   ENLACES (Links)  
+Esta Plataforma contiene enlaces o links a otros Sitios Web operados por otros administradores, que   no   son   
+mantenidos   ni   controlados   por   este   sistema, y en consecuencia, éste no es responsable por sus contenidos 
+o disponibilidad.  
+Solamente se enlazan Sitios pertenecientes a organismos e instituciones tanto nacionales como provinciales, por 
+lo que se presume la inexistencia de material inadecuado.  
+Asimismo, la Plataforma presume que la información que se encuentra en Internet es de pública disposición.  
+El enlace a otros sitios de Internet desde la Plataforma de Servicios es legal. Si el acceso a algunos de los sitios 
+enlazados en particular es restricto, su administrador deberá notificar fehacientemente a nuestro 
+Administrador.  
+Por lo descripto en los párrafos precedentes el Usuario deberá verificar por sí mismo la Política de Uso de cada 
+Sitio Web enlazado.  
+  
+3.   LIMITACIÓN DE RESPONSABILIDAD.  
+El Administrador realiza un esfuerzo razonable por incluir información exacta, completa y actual. No obstante, 
+no garantiza que el contenido del sitio sea exacto, completo, actual o libre de errores técnicos o tipográficos.  
+El Administrador se reserva el derecho de realizar cambios y/o actualizaciones de cualquier información 
+contenida en el sitio sin previo aviso.  
+El Administrador no se responsabiliza por cualquier daño que resultara por el uso o la inhabilidad en el uso de 
+la Plataforma cualquiera de los sitios enlazados, o descarga de cualquier información, dato, texto, imagen, video, 
+audio, software u otros materiales accesibles a través del mismo. El Administrador emplea programas de 
+Software para la seguridad de la Plataforma y protección contra virus, pero no garantiza su ausencia ni la de 
+otros elementos de naturaleza dañina o destructiva en la Plataforma y/o en el servidor que lo hace disponible, 
+que pudieran ocasionar alteraciones en el Sistema Informático del Usuario, tanto software como hardware, o en 
+documentos electrónicos, archivos o directorios de archivos almacenados en su equipo informático. En 
+consecuencia, el Usuario tiene la responsabilidad de tomar todas las precauciones necesarias para su protección 
+y seguridad.  
+El Administrador no garantiza que las funciones contenidas en la Plataforma estarán libres de interrupciones en 
+el servicio o libres de error, tampoco garantiza inmediatez en la corrección de los defectos.  
+El Administrador no se responsabiliza por el uso indebido que hagan los Usuarios de los contenidos de la 
+plataforma; entendiéndose por contenidos toda información, dato, texto, imagen, video, audio, software u otros  
+materiales  multimedia  accesibles  a  través  del mismo.  
+  
+  
+  
+Políticas de Privacidad  
+  
+Por medio de la Política de Privacidad se determina el tratamiento que la Plataforma de Servicios, en adelante 
+CiDi, dará a los datos recibidos por parte de los Usuarios, y que estará en un todo de acuerdo a lo establecido en 
+la Ley Nacional N°  
+25.326 de Habeas Data, y en consecuencia debidamente registrado en “Registro Nacional de Bases de Datos” de 
+la Dirección Nacional de Protección de Datos Personales.  
+El Gobierno de la Provincia de Córdoba proporciona a los Usuarios los recursos técnicos adecuados para que 
+tomen conocimiento de las presentes Políticas de Privacidad y Protección de Datos Personales, y de cualquier 
+otra información que pueda ser relevante.  
+Asimismo, las mismas tienen por objeto establecer los criterios para el uso de la Plataforma por medio de la cual 
+se podrán utilizar los servicios que brinda el Gobierno de la Provincia de Córdoba que incluyen desde la 
+comunicación hasta la realización de trámites en línea.  
+ 
+Las presentes políticas describen:  
+1. Cuáles serán los datos recolectados, cómo se utilizarán y la finalidad de los mismos.  
+2. Las consecuencias que deriven de proporcionar los datos o de la inexactitud de los mismos.  
+3. Facultad y modo de ejercer los derechos de acceso, rectificación, actualización y supresión de los datos.  
+4. La existencia de archivo, registro, base o banco de datos, electrónico o de cualquier otro tipo de que se trate y 
+la identidad y domicilio de su responsable.  
+  
+1. Cuáles serán los datos recolectados, cómo serán utilizados y la finalidad para la que serán tratados:  
+Al crear su cuenta de CiDi el Usuario deberá consignar sus datos en un formulario que contiene campos 
+obligatorios y campos opcionales.  
+Los datos solicitados serán utilizados exclusivamente para su inclusión en una base de datos de CiDi.  
+Campos Obligatorios:  
+ Nombre.  
+ Apellido.  
+ Nro. De C.U.I.L/CUIT/CDI.  
+ Dirección de correo electrónico (E-mail).  
+ Contraseña.  
+ Confirmación de contraseña.  
+ Pregunta secreta.  
+ Respuesta Secreta.  
+ Nro. De teléfono personal.  
+ Fecha de Nacimiento  
+ Sexo  
+Campos Opcionales.  
+ Teléfono fijo.  
+  
+Toda información que sea recibida por CiDi, determinada por ley y referida a los usuarios, es confidencial y no 
+puede hacerse pública sin el consentimiento previo de aquellos, salvo que sea requerida por la autoridad 
+competente, cumpliendo con las normas y recaudos establecidos para la   protección de datos personales.  
+Los datos recolectados podrán ser utilizados para:  
+ Satisfacer y optimizar los servicios prestados por el Gobierno de la Provincia de Córdoba.  
+ Acceder de una manera centralizada a los trámites en curso.  
+ Personalizar el perfil de cada usuario.  
+ Obtener métricas de uso en Gobierno de la Provincia de Córdoba.  
+El Portal no recoge ningún tipo de información personal por parte de los Usuarios sin que la misma sea 
+explícitamente provista voluntariamente.  
+  
+2. Las consecuencias que deriven de proporcionar los datos o de la inexactitud de los mismos:  
+La Ley Nacional Nro. 25.326 establece que ninguna persona puede ser obligada a proporcionar datos sensibles, 
+entendiendo por tales a aquellos datos personales que revelan origen racial y étnico, opiniones políticas, 
+convicciones religiosas, filosóficas o morales, afiliación sindical e información referente a la salud o a la vida 
+sexual, pudiendo ser objeto de tratamiento cuando medien razones de interés general o autorizadas por ley. Del 
+mismo modo esta ley, tiene por objeto la protección integral de los datos personales asentados en archivos, 
+registros, bancos de datos u otros medios técnicos sean públicos o privados, garantizando el derecho al honor y a 
+la intimidad de las personas, conforme art. 43 tercer párrafo de la Constitución Nacional.  
+La información que se reciba será tratada en forma confidencial. Sólo podrán darse a conocer los datos que el 
+marco normativo autorice y aquellos que expresamente consienta el Usuario, a excepción de: a) Un pedido formal 
+de autoridades judiciales.  
+b) Un pedido formal de otras autoridades con competencia suficiente.   
+  
+3. Facultad y modo de ejercer los derechos de acceso, rectificación, actualización y supresión de los datos:  
+El derecho de acceso es uno de los derechos establecidos por la Ley Nacional Nro. 25.326  
+- Protección de Datos Personales, que permite a los Usuarios acceder a la información registrada, pudiendo 
+administrar así el uso que se hace de sus datos personales.  
+El Usuario podrá ejercer los siguientes derechos ante el Gobierno Provincial y a través de la Plataforma:  
+ Solicitar información al organismo de control, relativa a la existencia de archivos, registros, bases o bancos 
+de datos personales, sus finalidades y la identidad de sus responsables. El registro que se lleve al efecto será 
+de consulta pública y gratuita.  
+ Solicitar y obtener información de sus datos personales incluidos en los bancos de datos públicos, o privados 
+destinados a proveer informes.  
+ Solicitar la modificación de sus datos personales cuando ellos no sean correctos o no estén actualizados, si 
+fuere procedente, y;  
+ Solicitar la rectificación, actualización, confidencialidad de los datos personales de los que sea titular y que 
+se encuentren incluidos en un banco de datos.  
+  
+4. La existencia del archivo, registro, base o banco de datos, electrónico o de cualquier otro tipo de que se trate 
+y la identidad y domicilio de su responsable:  
+En cada oportunidad en que el Usuario haga uso de los servicios incluidos en la Plataforma, existe la posibilidad 
+que de manera automática, obtenga y almacene información en los registros del servidor. Estos datos podrán 
+incluir:  
+ información detallada sobre utilización del servicio.  
+ dirección de IP,   
+ cookies, que permitirán identificar tu navegador o tu cuenta de CiDi.   
+  
+El Gobierno de la Provincia de Córdoba aplica medidas de seguridad, destinadas a diseñar procedimientos, 
+métodos y técnicas a los fines de conseguir un sistema de información seguro y confiable.  
+Se establecen una serie de estándares, protocolos, métodos, reglas, herramientas y leyes concebidas para 
+minimizar los posibles riesgos a la infraestructura o a la información. Se pretende con ello la protección de la 
+infraestructura y todo lo relacionado con esta y, especialmente, la información contenida o circulante.  
+Se han establecido como tales:  
+a) El ingreso a la Plataforma de Servicios es realizado exclusivamente mediante la utilización del mecanismo de 
+Nro.  de C.U.I.L./CUIT/CDI y contraseña.  Para el uso de ciertos servicios propios de la plataforma se requiere 
+el código de seguridad (PIN) incluido en la Credencial de CiDi.  
+b) La transmisión de los datos es realizada mediante sesiones seguras.  
+c) El almacenamiento de los datos se efectúa en equipamiento amparado por mecanismos de alta seguridad física.  
+d) A los fines de contactarse con el Gobierno de la Provincia de Córdoba a cerca de los alcances de las presentes 
+Políticas de Privacidad, tendrá a disposición los siguientes medios de comunicación:  
+Por teléfono: 0800-888-1234  
+Por e-tramite: https://fid.cba.gov.ar  
+Por Consulta Ciudadana o los medíos electrónicos que establezca la autoridad de aplicación.  
+Personalmente: en  Centros de atención y en oficinas del Gobierno la Provincia de Córdoba.  
+  
+ 
+DOCUMENTO III  
+FORMULARIOS Y CONSTANCIAS  
+  
+  
+Modelo de Formulario de Adhesión de Sistema Informático a  Plataforma de Servicios  
+“Ciudadano Digital”  
+  
+Por medio de la presente se manifiesta la intención de incorporar el siguiente Sistema de Información a 
+CiDi.  
+  
+Nombre del Sistema:………………………………………………………………………………………………  
+Url de Publicación: ……………………………………………………………………………………………….  
+ Repartición Pública/Organización:.………………………………………………………………………………  
+Responsable:………………………………………………………………………………………………………  
+Domicilio:……………………………………………………………………………………………………………  
+Teléfono:……………………………………………………………………………………………………………   
+Correo :……………………………………………………………………………… ……………………………  
+Marcar el alcance funcional que dicho sistema tendrá en CiDi            Acceder con Clave Única de CiDi.  
+  
+Enviar  mensajería a través de CiDi - “Mis Comunicaciones”.  
+Almacenar Documentación en Centro de Documentación Digital.  
+Mostrar Información registrada en las bases de datos en sección “Mis Datos”.  
+  
+Este formulario deberá ser presentado o enviado digitalmente ante la autoridad de aplicación.  
+  
+Leer atentamente:  
+  
+1)- Se ha tomado conocimiento y aceptado plenamente los "Términos y Condiciones de Uso" y 
+"Políticas de Privacidad" que rigen el acceso y uso de la presente Plataforma.  
+  
+2)- La adhesión efectiva del Sistema Informático a CiDi comenzará a partir de la fecha en que la 
+autoridad de aplicación determine la compatibilidad tecnológica.  
+  
+  
+  
+  
+Firma............................................................................... (Máxima autoridad de la repartición u 
+organización).  
+  
+Aclaración:.....................................................................   
+  
+  
+
+  
+  
+DOCUMENTO IV  
+POLITICAS DE SEGURIDAD  
+ 
+  
+1. SEGURIDAD DE LA CUENTA.  
+2. SEGURIDAD DE DATOS.  
+3. CREDENCIALES  
+4. INFRAESTRUCTURA TECNOLÓGICA DE SEGURIDAD  
+5. REGISTRO NACIONAL DE BANCO DE DATOS  
+6. RECUPERACIÓN DE LA CONTRASEÑA.  
+  
+1. SEGURIDAD DE LA CUENTA.  
+1.1 Inicio de sesión.  
+Una vez que se encuentra registrado como Usuario en CiDi, el portal exige para su ingreso, N° de Cuil/Cuit/Cdi 
+y contraseña.  
+Contraseña válida: Aquella que posea como mínimo ocho (8) caracteres, y obligatoriamente dentro de la misma 
+deben existir números y letras mayúsculas y minúsculas.  
+  
+1.2 Controles de Inicio de sesión.  
+CiDi registra información desde donde el ciudadano esté intentando acceder.  
+Si la plataforma detecta accesos distintos a los habituales (lugar o dispositivos), luego del tercer dispositivo 
+diferente, se le enviará un sms o correo electrónico según la elección del usuario, con un Código de Verificación 
+para poder   permitirle el ingreso. Este procedimiento se repetirá cada vez que la plataforma detecte que el 
+ciudadano desea ingresar desde un dispositivo o lugar distintos a las habituales.  
+  
+1.2.1 Bloqueos de Cuenta.  
+Para ingresar a la cuenta de CiDi se deberá consignar N° de Cuil/Cuit/Cdi y contraseña.  
+Si el ciudadano ingresa incorrectamente su contraseña, la plataforma bloqueará momentáneamente de manera 
+automática la cuenta luego de tres (3) intentos fallidos.  
+  
+2. SEGURIDAD DE DATOS.  
+2.1 Encriptación de Datos.  
+Toda la información de las personas y de CiDi que se trafica desde y hacia los navegadores (browsers), se realiza 
+a través de protocolo seguro (https), lo que significa, que la información sea transmitida en forma encriptada.  
+A su vez, en los bancos de datos también se guarda en forma encriptada, datos del usuario, como la contraseña, 
+la respuesta a la pregunta secreta, etc.  
+
+El Gobierno de la Provincia de Córdoba utiliza Certificados Digitales en todos los servicios de publicación.  
+  
+2.2     Acceso     a     Mis     Datos     y     Mi     Documentación     dentro     del     Portal.   
+Para el caso de que el usuario tenga nivel de seguridad “Nivel 2 – Verificado”, cuando  desee  ingresar  a Mis  
+Datos o Mi  Documentación,  la  Plataforma  exigirá  que ingrese el Pin de Verificación que se encuentra en la 
+Credencial de CiDi, permitiéndole de esta forma al usuario, visualizar sus datos personales y toda su 
+documentación  digitalizada,  lo  que  le  garantiza  así  mayor  seguridad,  ya  que  de  no ingresar ese Pin de 
+Verificación, o ingresándolo tres (3) veces en forma fallida, se le bloqueará la cuenta y se le cerrará la sesión.  
+Para poder recuperar así su cuenta nuevamente, deberá recuperar su contraseña.  
+  
+2.3. Encriptación de Documentación Digitalizada.  
+CiDi almacena en banco de datos protegidos, toda la documentación digitalizada a través de los Centros de 
+Constatación de Identidad y/o Centros de Documentación.  
+Todos los documentos, constancias, imágenes, y toda otra documentación que las reparticiones consideren que 
+debe ser digitalizada se resguarda en forma encriptada.  
+  
+2.4. Validez y verificación en impresión de documentos.   
+Los documentos digitalizados en CIDI cuenta con un identificador único y tipificación especial sobre el tipo de 
+documento que se trata. Este código garantiza diversas posibilidades de verificación de la documentación 
+almacenada o impresa.  En el momento de la descarga o impresión, CiDi, registra fechas, horarios, lugares y 
+usuarios que realizaron la solicitud de visualización/impresión.  
+  
+2.5.   Políticas   de   Auditorías.   Registro   de   Actividad   CiDi lleva un registro de actividades que se realizan 
+dentro de la misma. Entre las auditadas se encuentran los inicios de sesión (exitosa y fallida), los accesos a Mis 
+Datos, Mi documentación, bloqueos de cuenta, IPs, recuperación de contraseñas, cambios de correo electrónico, 
+etc.  
+  
+3. CREDENCIALES  
+Credencial “CIUDADANO DIGITAL”. Las personas que realicen de forma exitosa el procedimiento de Nivel   
+de   seguridad   2 “Verificado”, obtendrán al culminar dicha verificación, una Credencial de CiDi, la cual 
+contendrá la siguiente información:  
+ Foto.  
+ Nombre y Apellido.  
+ CUIL.  
+ Código QR: el cual le permitirá acceder a una versión limitada de su escritorio virtual dentro del Portal de 
+CiDi.  
+ Fecha de Nacimiento.  
+ Pin de Verificación.  
+La credencial es válida tanto en forma digital como impreso sobre una tarjeta o papel.  
+  
+  
+4. INFRAESTRUCTURA TECNOLÓGICA DE SEGURIDAD  
+La infraestructura tecnológica que soporta a CiDi y a otros Sistemas del Gobierno, cuenta con las políticas de 
+protección de la información basadas en el "Modelo de políticas de seguridad de la información para organismos 
+de la Administración Pública Nacional" según Decisión Administrativa Nº669/2004, y las respectivas leyes de la 
+Administración Pública Provincial para asegurar la prestación de servicios.  
+Para leer sobre las políticas de seguridad de la información de la APN puede consultar el documento PSI Modelo 
+v1 200507  
+El equipamiento de seguridad con el que se protege la plataforma es del tipo U.T.M. (Centro unificado de 
+amenazas), tanto en el perímetro como en el centro de operaciones; proveyendo entre otros, los siguientes métodos:  
+ Sistemas de detección y denegación de intrusos.  
+ Balanceadores de carga para alta disponibilidad del servicio.  
+ Auditoría y control de acceso a las bases de datos.  
+ Antivirus de host local y de perímetro.  
+  
+5. REGISTRO NACIONAL DE BANCO DE DATOS  
+Cumpliendo con lo previsto por el artículo 21 de la ley 25.326, se registró la Base de Datos de CiDi, en la Dirección 
+Nacional de Protección de datos Personales, bajo el número de legajo RL-2019-55802060-APN-DNPDP#AAIP.  
+  
+6. RECUPERACIÓN DE LA CONTRASEÑA.  
+CiDi le ofrece al usuario distintos métodos para recuperar su contraseña en el caso de pérdida u olvido. Para el 
+supuesto de:  
+ 
+6.1. Pérdida u olvido de la contraseña.  
+El usuario desde la pantalla de inicio de CiDi podrá recuperar su contraseña. Deberá ingresar a ¿Olvidaste tu 
+contraseña? y allí consignar su N° de CUIL y correo electrónico; la Plataforma validará esta información, y 
+automáticamente se le enviará una nueva contraseña al correo electrónico registrado en la Plataforma.  
+  
+6.2. Pérdida u olvido de la contraseña y no puede acceder a su correo electrónico oportunamente registrado.  
+1. El usuario desde la pantalla de inicio de CiDi podrá recuperar su contraseña   y   modificar   su   correo   
+electrónico.   Deberá   ingresar   a ¿Olvidaste   tu contraseña? y allí consignar su N° de CUIL y correo 
+electrónico; Si no tiene acceso al correo registrado en CiDi y desea cambiarlo, debe seleccionar la opción 
+disponible a tal fin en el Portal. Recuerde previamente ingresar los datos requeridos, incluyendo su correo 
+electrónico registrado. La Plataforma validará esta información, y de ser correcta le permitirá continuar con 
+el procedimiento, para lo cual se le solicitará que responda a la “Pregunta Secreta” (Ver Anexo I capítulos II 
+y III) y a algún otro tipo de información que la autoridad de aplicación considere, e informe el nuevo correo 
+electrónico. Si el nuevo correo no figura dentro de los registros de la Plataforma, ésta enviará un correo de 
+confirmación de nueva dirección electrónica, al igual que cuando se registró en CiDi por primera vez. (Ver 
+Anexo I capítulos II y III). Luego de que la persona ha confirmado su nuevo correo, podrá ahora si solicitar 
+su nueva contraseña tal como se indicó en el punto 2.1. 
+2. Por la app móvil en la opción “Recuperar mediante datos biométricos” que se encuentra disponible desde la 
+sección “Recuperar mi contraseña” el usuario podrá recuperar su cuenta a través de cumplir con ciertos 
+requisitos de solicitud de datos biométricos. 
+3. Por medio del “id trámite” disponible en el “Documento Nacional de Identidad (DNI)” los mayores de 60 
+años contarán con opciones para acceder a su cuenta 
+4. Por medio de la declaración de un tutor digital, el usuario que previamente hayan declarado una persona 
+como tutor con la función disponible para tal fin dentro del portal, y el mismo haya aceptado esa 
+responsabilidad, podrá utilizar este medio para poder obtene,r a través de la persona designada, una nueva 
+contraseña y recuperar su cuenta. 
+Los procedimientos 2,3 y 4 podrán ser habilitados o deshabilitados cuando la Autoridad de aplicación lo considere 
+necesario, así como también podrá establecer métodos adicionales para facilitar las gestiones de los usuarios. 
+ 
+6.3. Métodos adicionales de recupero de contraseña:  
+Para el caso de que la persona no desee utilizar los métodos de recuperación que el Portal le ofrece, el gobierno 
+pone a disposición un servicio de atención telefónico (0800-888-1234), al cual el usuario podrá comunicarse 
+solicitando el desbloqueo de la cuenta, generando así una nueva contraseña o bien un cambio de correo electrónico 
+según lo solicitado.  
+Asimismo, puede realizar el proceso de recupero de contraseña en Centros de Constatación de Identidad (CCI) 
+habilitados o a través de otros mecanismos que establezca la autoridad de aplicación.  
+  
+Fecha de actualización: 7 de diciembre de 2023..  
+  
