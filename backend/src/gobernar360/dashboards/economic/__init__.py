@@ -6,6 +6,7 @@ from gobernar360.dashboards.economic import (
     actors_router,
     assignments_router,
     export,
+    geography,
     parameters_router,
     people_router,
     summary,
@@ -27,4 +28,5 @@ module = DashboardModule(
     router=router,
     get_summary=summary.get_summary,
     indicators=summary.INDICATORS,
+    located=(geography.actors,),
 )

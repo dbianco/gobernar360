@@ -19,6 +19,7 @@ import { Link } from 'react-router-dom'
 
 import { api } from '../../api/client'
 import { errorMessage } from '../../platform/errorMessage'
+import { ZoneProfile } from '../../platform/geo/ZoneProfile'
 import { useCombinedIndicators } from '../../platform/indicators/api'
 import { IndicatorGrid } from '../../platform/indicators/IndicatorCard'
 import type { IndicatorEvolution } from '../../platform/indicators/types'
@@ -223,6 +224,7 @@ export function OverviewPage() {
           </Stack>
         )
       })}
+      {sections.length > 0 && <ZoneProfile />}
     </Stack>
   )
 }

@@ -17,6 +17,8 @@ import { Link } from 'react-router-dom'
 import { downloadUrl } from '../../api/client'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
+import { boundariesOf } from '../../platform/geo/asOf'
+import { ZoneBreakdown } from '../../platform/geo/ZoneBreakdown'
 import { formatNumber } from '../../platform/format'
 import { HelpTh } from '../../platform/HelpTh'
 import { HeadlineIndicators } from '../../platform/indicators/HeadlineIndicators'
@@ -26,6 +28,7 @@ import { hasLevel } from '../../platform/access'
 import { currentYear } from '../../platform/years'
 import { YearSelect } from '../../platform/YearSelect'
 import { BASE, BASE_PATH, useSummary } from './api'
+import { HOUSEHOLDS } from './located'
 
 function CountTable(props: {
   title: string
@@ -173,6 +176,7 @@ export function SummaryPage() {
               rows={data.intervention_types.map((row) => [row.name ?? t('app.none'), row.count])}
             />
           </SimpleGrid>
+          <ZoneBreakdown kind={HOUSEHOLDS} filters={{ year }} asOf={boundariesOf(year)} />
         </>
       )}
     </Stack>

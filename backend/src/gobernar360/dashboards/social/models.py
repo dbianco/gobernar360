@@ -21,6 +21,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.orm import relationship as related
 
 from gobernar360.core.db import AuditMixin, Base, TenantMixin, uuid_pk
+from gobernar360.platform.geo.located import LocatedMixin
 from gobernar360.platform.models import Person
 
 # What a person is within their household. "head" is the household's reference person.
@@ -89,8 +90,11 @@ class InterventionType(TenantMixin, AuditMixin, Base):
     name: Mapped[str] = _name()
 
 
-class Household(TenantMixin, AuditMixin, Base):
-    """A family group: the people who live together and are assisted as a unit."""
+class Household(LocatedMixin, TenantMixin, AuditMixin, Base):
+    """A family group: the people who live together and are assisted as a unit.
+
+    Where it lives is sensitive: see `access.sees_households_on_map`.
+    """
 
     __tablename__ = "social_households"
 

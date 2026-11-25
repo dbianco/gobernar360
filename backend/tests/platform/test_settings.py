@@ -7,6 +7,7 @@ from sqlalchemy import select
 
 from gobernar360.platform.clock import get_today
 from gobernar360.platform.email_templates import to_text
+from gobernar360.platform.geo import backgrounds
 from gobernar360.platform.models import AuditLog, EmailTemplate, MunicipalitySettings, User
 from gobernar360.platform.texts import format_datetime
 from tests.factories import (
@@ -23,6 +24,9 @@ INVITATION = {
     "subject": "Bienvenida a {{municipality}}",
     "html": "<p>Hola {{name}}, entrá acá: <a href='{{link}}'>elegir contraseña</a></p>",
 }
+
+
+MAP_BACKGROUNDS = [vars(background) for background in backgrounds.BACKGROUNDS]
 
 
 @pytest.fixture
@@ -46,6 +50,10 @@ def test_settings_start_empty_with_single_sign_on_off(admin_client):
         "notification_emails": [],
         "sso_enabled": False,
         "sso_available": False,
+        "small_zone_threshold": 5,
+        "map_background": "standard",
+        "map_api_key": None,
+        "map_backgrounds": MAP_BACKGROUNDS,
     }
 
 
@@ -367,6 +375,10 @@ def test_the_operator_reads_and_changes_the_configuration_of_a_municipality(
         "notification_emails": ["jefa@noetinger.test"],
         "sso_enabled": True,
         "sso_available": False,
+        "small_zone_threshold": 5,
+        "map_background": "standard",
+        "map_api_key": None,
+        "map_backgrounds": MAP_BACKGROUNDS,
     }
     theirs = {t["key"]: t for t in operator_client.get(f"{url}/email-templates").json()}
     assert theirs["invitation"]["subject"] == INVITATION["subject"]
@@ -411,6 +423,18 @@ def test_the_operator_gets_not_found_for_a_municipality_that_does_not_exist(oper
     url = "/api/platform/municipalities/00000000-0000-0000-0000-000000000000/settings"
 
     assert operator_client.get(url).status_code == 404
+
+
+def test_a_text_saved_again_replaces_the_one_before(admin_client):
+    for subject in ("Primero {{municipality}}", "Segundo {{municipality}}"):
+        saved = admin_client.put(
+            "/api/admin/email-templates/invitation",
+            json={"subject": subject, "html": "<p>{{link}}</p>"},
+        )
+        assert saved.status_code == 200, saved.text
+
+    assert _template(admin_client, "invitation")["subject"] == "Segundo {{municipality}}"
+    assert _template(admin_client, "invitation")["customized"] is True
 
 
 def test_settings_and_texts_saved_again_replace_those_there_were(admin_client):

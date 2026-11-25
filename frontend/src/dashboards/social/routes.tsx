@@ -10,6 +10,7 @@ import { DeliveriesPage } from './DeliveriesPage'
 import { HouseholdDetailPage } from './HouseholdDetailPage'
 import { HouseholdsPage } from './HouseholdsPage'
 import { InterventionsPage } from './InterventionsPage'
+import { MapPage } from './MapPage'
 import { ParametersPage } from './ParametersPage'
 import { PeoplePage } from './PeoplePage'
 import { PersonDetailPage } from './PersonDetailPage'
@@ -20,6 +21,7 @@ const SECTIONS = [
   'summary',
   'people',
   'households',
+  'map',
   'deliveries',
   'interventions',
   'reports',
@@ -42,7 +44,7 @@ export default function SocialRoutes() {
         <Tabs.List>
           {SECTIONS.map((key) => (
             <Tabs.Tab key={key} value={key}>
-              {t(`social.tabs.${key}`)}
+              {key === 'map' ? t('geo.tab') : t(`social.tabs.${key}`)}
             </Tabs.Tab>
           ))}
           {hasLevel(me, 'social', 'admin') && (
@@ -56,6 +58,7 @@ export default function SocialRoutes() {
         <Route path="people/:id" element={<PersonDetailPage />} />
         <Route path="households" element={<HouseholdsPage />} />
         <Route path="households/:id" element={<HouseholdDetailPage />} />
+        <Route path="map" element={<MapPage />} />
         <Route path="deliveries" element={<DeliveriesPage />} />
         <Route path="interventions" element={<InterventionsPage />} />
         <Route path="reports" element={<ReportsPage />} />

@@ -62,6 +62,7 @@ export function makeActor(overrides: Partial<Actor> = {}): Actor {
     email: 'espiga@example.test',
     employee_count: 6,
     notes: '',
+    zones: [],
     ...overrides,
   }
 }

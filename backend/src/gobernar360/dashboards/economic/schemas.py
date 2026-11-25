@@ -135,6 +135,8 @@ class ActorOut(OrmModel):
     email: str
     employee_count: int | None
     notes: str
+    # Worked out from the actor's location.
+    zones: list[NamedRef]
 
 
 class EconomicPersonIn(BaseModel):

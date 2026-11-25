@@ -9,6 +9,7 @@ from typing import Any
 
 from fastapi import APIRouter
 from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 
 from gobernar360.core.errors import invalid_reference, validation_error
 from gobernar360.dashboards.projects.access import Editor, Viewer
@@ -111,6 +112,7 @@ def project_out(project: Project, today: date) -> ProjectOut:
         manual_progress=project.manual_progress,
         sdgs=sorted(sdg.sdg_number for sdg in project.sdgs),
         milestones=[_milestone_out(m, project, today) for m in project.milestones],
+        zones=[_ref(zone) for zone in project.zones],
     )
 
 
@@ -169,7 +171,7 @@ def query_projects(
     status: str | None = None,
 ) -> list[Project]:
     """Projects matching the filters, ordered by name. `status` is the effective status."""
-    query = select(Project).order_by(Project.name)
+    query = select(Project).options(selectinload(Project.zones)).order_by(Project.name)
     filters = {
         Project.term_id: term_id,
         Project.year: year,

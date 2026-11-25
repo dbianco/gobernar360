@@ -43,6 +43,16 @@ Object.defineProperty(document, 'fonts', {
   value: { addEventListener: vi.fn(), removeEventListener: vi.fn(), ready: Promise.resolve() },
 })
 window.HTMLElement.prototype.scrollIntoView = vi.fn()
+// The maps (Leaflet) draw with SVG, if it looks supported, and need a size to show anything.
+Object.defineProperty(SVGElement.prototype, 'createSVGRect', { configurable: true, value: vi.fn() })
+for (const [property, size] of [['clientWidth', 800], ['clientHeight', 600]] as const) {
+  Object.defineProperty(HTMLElement.prototype, property, {
+    configurable: true,
+    get(this: HTMLElement) {
+      return this.classList.contains('leaflet-container') ? size : 0
+    },
+  })
+}
 window.scrollTo = vi.fn() as unknown as typeof window.scrollTo
 
 // Every test runs on the same day, so what a screen shows does not change with the date

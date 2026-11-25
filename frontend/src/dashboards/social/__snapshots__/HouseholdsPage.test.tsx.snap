@@ -39,6 +39,9 @@ Domicilio donde vive el grupo.
 Barrio
 [Qué significa Barrio]
 Barrio del domicilio del grupo.
+Zona
+[Qué significa Zona]
+Zona donde vive el grupo familiar, según su ubicación en el mapa. Solo la ven quienes cargan datos.
 Referente
 [Qué significa Referente]
 Integrante de referencia del grupo, con quien se trata habitualmente.
@@ -48,11 +51,13 @@ Cantidad de personas que integran el grupo.
 Familia Gómez
 Belgrano 45
 Centro
+—
 Sin referente
 0
 Familia Pérez
 Belgrano 45
 Centro
+—
 Pérez, Juana
 2"
 `;

@@ -81,3 +81,15 @@ it('says why the reports cannot be loaded', async () => {
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })
+
+it('names what each chart counts, and what has no name', async () => {
+  mockApi('get', `${BASE}/reports`, makeReports({
+    deliveries_by_category: [{ name: null, count: 4 }],
+    interventions_by_type: [{ name: null, count: 3 }],
+  } as never))
+  renderSocial(<ReportsPage />, { level: 'viewer' })
+  await screen.findByRole('heading', { name: label('deliveriesByCategory') })
+
+  expect(await tableOf(label('deliveriesByCategory'))).toEqual([`${t('app.none')}|4`])
+  expect(await tableOf(label('interventionsByType'))).toEqual([`${t('app.none')}|3`])
+})

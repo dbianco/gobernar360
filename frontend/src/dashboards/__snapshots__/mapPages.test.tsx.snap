@@ -1,0 +1,148 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`filters the actors on the map as in their list > screen at the end 1`] = `
+"Buscar
+(Nombre o CUIT)
+[Borrar la búsqueda]
+Tipo
+Todos los tipos
+Comercio
+Industria
+Sector
+Todos los sectores
+Alimentos
+[Mapa de actores económicos]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+0 registros en el área visible.
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`filters the actors on the map as in their list > screen at the start 1`] = `
+"Buscar
+(Nombre o CUIT)
+Tipo
+Todos los tipos
+Sector
+Todos los sectores
+[Cargando…]
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+[Cargando…]"
+`;
+
+exports[`filters the projects of the term on the map as in their list > screen at the end 1`] = `
+"Buscar
+(Nombre del proyecto)
+[Borrar la búsqueda]
+Año
+Todos
+2023
+2024
+2025
+2026
+2027
+Eje
+Todos
+Ciudad inclusiva
+Ciudad segura
+Dependencia
+Todos
+Obras Públicas
+Salud
+Responsable
+(Todos)
+María Pérez
+Prioridad
+Todos
+A+
+A
+B
+C
+Estado
+Todos
+Sin iniciar
+En implementación
+Retrasado
+Finalizado
+[Mapa de proyectos]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+0 registros en el área visible.
+[Proyectos sin zona]
+Proyectos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`filters the projects of the term on the map as in their list > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows households on the map to those who load data > screen at the end 1`] = `
+"Buscar
+(Nombre o domicilio)
+[Borrar la búsqueda]
+[Mapa de grupos familiares]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+0 registros en el área visible.
+[Grupos familiares sin zona]
+Grupos familiares sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`shows households on the map to those who load data > screen at the start 1`] = `
+"La ubicación de cada grupo familiar es un dato sensible: acá se ven solo las cantidades por zona.
+[Cargando…]"
+`;
+
+exports[`shows viewers counts by zone only, and asks for nothing else > screen at the end 1`] = `"La ubicación de cada grupo familiar es un dato sensible: acá se ven solo las cantidades por zona."`;
+
+exports[`shows viewers counts by zone only, and asks for nothing else > screen at the start 1`] = `
+"La ubicación de cada grupo familiar es un dato sensible: acá se ven solo las cantidades por zona.
+[Cargando…]"
+`;

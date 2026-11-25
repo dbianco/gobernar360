@@ -20,6 +20,8 @@ interface RequestOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
   body?: unknown
   query?: Query
+  /** Cancels the request, e.g. when the map moved on before it was answered. */
+  signal?: AbortSignal
 }
 
 function withQuery(path: string, query?: Query): string {
@@ -63,6 +65,7 @@ export async function api<T = unknown>(path: string, options: RequestOptions = {
       credentials: 'include',
       headers,
       body: options.body === undefined ? undefined : JSON.stringify(options.body),
+      signal: options.signal,
     })
   } catch {
     throw new ApiError(0, 'network', 'Could not reach the server.')

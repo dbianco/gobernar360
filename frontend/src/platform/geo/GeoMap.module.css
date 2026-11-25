@@ -1,0 +1,92 @@
+.frame {
+  position: relative;
+  border: 1px solid var(--mantine-color-default-border);
+  border-radius: var(--mantine-radius-default);
+  overflow: hidden;
+  /* Leaflet stacks its panes up to 1000: kept below the app's header and menus. */
+  isolation: isolate;
+}
+
+.map {
+  height: 100%;
+  width: 100%;
+}
+
+.card {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  max-width: min(300px, 80%);
+  max-height: calc(100% - 20px);
+  overflow: auto;
+}
+
+.drawing :global(.leaflet-container),
+.drawing :global(.leaflet-interactive) {
+  cursor: crosshair;
+}
+
+.zoneLabel {
+  background: rgb(255 255 255 / 85%);
+  border: 0;
+  box-shadow: none;
+  color: #212529;
+  font-size: 12px;
+  line-height: 1.25;
+  padding: 1px 5px;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.zoneLabel::before {
+  display: none;
+}
+
+.pin,
+.cluster,
+.corner,
+.middle {
+  align-items: center;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 45%);
+  box-sizing: border-box;
+  color: #fff;
+  display: flex;
+  font-size: 12px;
+  font-weight: 700;
+  justify-content: center;
+}
+
+.pin {
+  background: #c2255c;
+}
+
+.cluster {
+  background: #1864ab;
+}
+
+.corner {
+  background: #e8590c;
+}
+
+.middle {
+  background: #e8590c;
+  opacity: 0.55;
+}
+
+.pin:focus-visible,
+.cluster:focus-visible,
+.corner:focus-visible,
+.middle:focus-visible {
+  outline: 3px solid #212529;
+  outline-offset: 2px;
+}
+
+.swatch {
+  border: 1px solid #495057;
+  display: inline-block;
+  height: 14px;
+  width: 22px;
+}

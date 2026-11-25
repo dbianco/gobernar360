@@ -141,8 +141,9 @@ it('gives every navigation link an icon', async () => {
 
   const links = (await navigation()).getAllByRole('link')
 
-  // Overview, commitments, four dashboards, users, settings, reports, public page and platform.
-  expect(links).toHaveLength(11)
+  // Overview, commitments, four dashboards, users, settings, zones, reports, public page
+  // and platform.
+  expect(links).toHaveLength(12)
   for (const link of links) expect(link.querySelector('svg')).not.toBeNull()
 })
 

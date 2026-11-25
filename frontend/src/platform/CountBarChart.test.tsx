@@ -59,3 +59,29 @@ it('says when there is nothing to draw', () => {
   expect(screen.getByText(t('app.chart.noData'))).toBeInTheDocument()
   expect(screen.queryByRole('button', { name: t('app.chart.showTable') })).toBeNull()
 })
+
+it('offers neither the chart nor the table while there is nothing', () => {
+  const { container } = renderApp(
+    <CountBarChart title="Por categoría" valueLabel="Entregas" rows={[]} />,
+    { me: null },
+  )
+
+  expect(screen.queryAllByRole('button')).toEqual([])
+  expect(container.querySelector('.recharts-wrapper')).toBeNull()
+  expect(screen.queryByRole('table')).toBeNull()
+})
+
+it('says nothing about lacking data when there is some', async () => {
+  const { container } = renderApp(
+    <CountBarChart title="Por categoría" valueLabel="Entregas" rows={ROWS} />,
+    { me: null },
+  )
+  const user = userEvent.setup()
+
+  expect(screen.queryByText(t('app.chart.noData'))).toBeNull()
+  expect(screen.queryByRole('table')).toBeNull()
+  await waitFor(() => expect(container.querySelector('.recharts-wrapper')).not.toBeNull())
+  await user.click(screen.getByRole('button', { name: t('app.chart.showTable') }))
+  // One or the other.
+  expect(container.querySelector('.recharts-wrapper')).toBeNull()
+})

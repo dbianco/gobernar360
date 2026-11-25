@@ -91,6 +91,9 @@ Clase de actor económico, según la lista que define el municipio en Parámetro
 Sector
 [Qué significa Sector]
 Rubro de actividad del actor, según la lista de sectores del municipio.
+Zona
+[Qué significa Zona]
+Zona donde está el actor, según su ubicación en el mapa.
 CUIT
 [Qué significa CUIT]
 Clave Única de Identificación Tributaria del actor, si está cargada.
@@ -100,9 +103,11 @@ Cantidad de personas que trabajan en el actor, según el último dato cargado.
 Panadería La Espiga
 Comercio
 Alimentos
+—
 30-71111111-8
 6
 Taller
+—
 —
 —
 —
@@ -139,6 +144,9 @@ Clase de actor económico, según la lista que define el municipio en Parámetro
 Sector
 [Qué significa Sector]
 Rubro de actividad del actor, según la lista de sectores del municipio.
+Zona
+[Qué significa Zona]
+Zona donde está el actor, según su ubicación en el mapa.
 CUIT
 [Qué significa CUIT]
 Clave Única de Identificación Tributaria del actor, si está cargada.
@@ -148,6 +156,7 @@ Cantidad de personas que trabajan en el actor, según el último dato cargado.
 Panadería La Espiga
 Comercio
 Alimentos
+—
 30-71111111-8
 6
 [Cantidad por página]
@@ -233,6 +242,9 @@ Clase de actor económico, según la lista que define el municipio en Parámetro
 Sector
 [Qué significa Sector]
 Rubro de actividad del actor, según la lista de sectores del municipio.
+Zona
+[Qué significa Zona]
+Zona donde está el actor, según su ubicación en el mapa.
 CUIT
 [Qué significa CUIT]
 Clave Única de Identificación Tributaria del actor, si está cargada.
@@ -242,6 +254,7 @@ Cantidad de personas que trabajan en el actor, según el último dato cargado.
 Panadería La Espiga
 Comercio
 Alimentos
+—
 30-71111111-8
 6"
 `;

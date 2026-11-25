@@ -56,6 +56,7 @@ export function makeProject(overrides: Partial<Project> = {}): Project {
     manual_progress: null,
     sdgs: [],
     milestones: [],
+    zones: [],
     ...overrides,
   }
 }

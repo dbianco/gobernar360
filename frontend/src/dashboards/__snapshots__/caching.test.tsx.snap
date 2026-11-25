@@ -1,0 +1,92 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`a change in economic refreshes its screens and the overview, and no other dashboard > screen at the end 1`] = `
+"projects: [{"id":"projects"}]
+environment: [{"id":"environment"}]
+economic: [{"id":"economic"}]
+social: [{"id":"social"}]
+procedures: [{"id":"procedures"}]
+change"
+`;
+
+exports[`a change in environment refreshes its screens and the overview, and no other dashboard > screen at the end 1`] = `
+"projects: [{"id":"projects"}]
+environment: [{"id":"environment"}]
+economic: [{"id":"economic"}]
+social: [{"id":"social"}]
+procedures: [{"id":"procedures"}]
+change"
+`;
+
+exports[`a change in procedures refreshes its screens and the overview, and no other dashboard > screen at the end 1`] = `
+"projects: [{"id":"projects"}]
+environment: [{"id":"environment"}]
+economic: [{"id":"economic"}]
+social: [{"id":"social"}]
+procedures: [{"id":"procedures"}]
+change"
+`;
+
+exports[`a change in projects refreshes its screens and the overview, and no other dashboard > screen at the end 1`] = `
+"projects: [{"id":"projects"}]
+environment: [{"id":"environment"}]
+economic: [{"id":"economic"}]
+social: [{"id":"social"}]
+procedures: [{"id":"procedures"}]
+change"
+`;
+
+exports[`a change in social refreshes its screens and the overview, and no other dashboard > screen at the end 1`] = `
+"projects: [{"id":"projects"}]
+environment: [{"id":"environment"}]
+economic: [{"id":"economic"}]
+social: [{"id":"social"}]
+procedures: [{"id":"procedures"}]
+change"
+`;
+
+exports[`a status light refreshes the strips and the overview > screen at the end 1`] = `
+"projects: []
+social: [{"month":1,"color":"red"}]
+set"
+`;
+
+exports[`asks for the requirements that match a search, and for all of them without one > screen at the end 1`] = `
+"all: []
+some: []"
+`;
+
+exports[`keeps the municipalities and the dashboards of the platform apart > screen at the end 1`] = `
+"municipalities: [{"id":"m"}]
+dashboards: ["projects"]"
+`;
+
+exports[`keeps the rows on screen while the next search loads > screen at the end 1`] = `
+"rows: b
+next"
+`;
+
+exports[`lists of economic do not take the place of each other > screen at the end 1`] = `
+"first: [{"id":"one"}]
+second: [{"id":"two"}]"
+`;
+
+exports[`lists of environment do not take the place of each other > screen at the end 1`] = `
+"first: [{"id":"one"}]
+second: [{"id":"two"}]"
+`;
+
+exports[`lists of procedures do not take the place of each other > screen at the end 1`] = `
+"first: [{"id":"one"}]
+second: [{"id":"two"}]"
+`;
+
+exports[`lists of projects do not take the place of each other > screen at the end 1`] = `
+"first: [{"id":"one"}]
+second: [{"id":"two"}]"
+`;
+
+exports[`lists of social do not take the place of each other > screen at the end 1`] = `
+"first: [{"id":"one"}]
+second: [{"id":"two"}]"
+`;

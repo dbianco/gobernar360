@@ -1,0 +1,522 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks for the key of the provider, and tries the map with it > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Compromisos
+Usuarios
+Zonas
+Configuración
+Informes
+Página pública
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Mapas y zonas
+Cambios guardados.
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+Ciclovías y relieve, de Thunderforest.
+Clave de Thunderforest
+La da Thunderforest al registrarse; los planes gratuitos tienen límites de uso. No es secreta: los navegadores la envían con cada parte del mapa, así que conviene limitarla en el sitio del proveedor a la dirección de esta aplicación.
+[Vista previa del mapa]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas"
+`;
+
+exports[`asks for the key of the provider, and tries the map with it > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`keeps a key for other maps of its provider, and no other > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Compromisos
+Usuarios
+Zonas
+Configuración
+Informes
+Página pública
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Mapas y zonas
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+Un mapa de calles claro y actual, de MapTiler.
+Clave de MapTiler
+La da MapTiler al registrarse; los planes gratuitos tienen límites de uso. No es secreta: los navegadores la envían con cada parte del mapa, así que conviene limitarla en el sitio del proveedor a la dirección de esta aplicación.
+Escribí la clave para ver cómo queda.
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas"
+`;
+
+exports[`keeps a key for other maps of its provider, and no other > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`lets the operator choose without seeing anything of the municipality > screen at the end 1`] = `
+"Mapas y zonas
+Cambios guardados.
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+El mapa de openstreetmap.org. Sus servidores son para un uso moderado.
+[Vista previa del mapa]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas"
+`;
+
+exports[`lets the operator choose without seeing anything of the municipality > screen at the start 1`] = `
+"Mapas y zonas
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+El mapa de openstreetmap.org. Sus servidores son para un uso moderado.
+[Vista previa del mapa]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas"
+`;
+
+exports[`offers every background of the list, with and without key > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Compromisos
+Usuarios
+Zonas
+Configuración
+Informes
+Página pública
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Mapas y zonas
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+El mapa de openstreetmap.org. Sus servidores son para un uso moderado.
+[Vista previa del mapa]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas"
+`;
+
+exports[`offers every background of the list, with and without key > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says when the background being tried does not load > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Compromisos
+Usuarios
+Zonas
+Configuración
+Informes
+Página pública
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Mapas y zonas
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+El mapa de openstreetmap.org. Sus servidores son para un uso moderado.
+[Vista previa del mapa]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+No se pudo cargar el fondo del mapa. Las zonas y los registros se muestran igual.
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas"
+`;
+
+exports[`says when the background being tried does not load > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why it was not saved > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Compromisos
+Usuarios
+Zonas
+Configuración
+Informes
+Página pública
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Mapas y zonas
+Ese mapa necesita una clave de su proveedor.
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+El mapa de openstreetmap.org. Sus servidores son para un uso moderado.
+[Vista previa del mapa]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas"
+`;
+
+exports[`says why it was not saved > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`sends no key with a background that needs none > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Compromisos
+Usuarios
+Zonas
+Configuración
+Informes
+Página pública
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Mapas y zonas
+Cambios guardados.
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+El mapa de openstreetmap.org. Sus servidores son para un uso moderado.
+[Vista previa del mapa]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas"
+`;
+
+exports[`sends no key with a background that needs none > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`sets from how many a zone is shown, within its limits > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Compromisos
+Usuarios
+Zonas
+Configuración
+Informes
+Página pública
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Mapas y zonas
+Cambios guardados.
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+El mapa de openstreetmap.org. Sus servidores son para un uso moderado.
+[Vista previa del mapa]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas"
+`;
+
+exports[`sets from how many a zone is shown, within its limits > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows how the map looks before saving it, and saves it > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Compromisos
+Usuarios
+Zonas
+Configuración
+Informes
+Página pública
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Mapas y zonas
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+El mapa de la comunidad francesa, con más detalle de cerca.
+[Vista previa del mapa]
+Centro
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas"
+`;
+
+exports[`shows how the map looks before saving it, and saves it > screen at the start 1`] = `"[Cargando…]"`;

@@ -319,6 +319,14 @@ class SsoLogin(Base):
     created_at: Mapped[datetime] = created_at_column()
 
 
+# Counts per zone of sensitive records (Social households) are shown to those who may not see
+# the records one by one only from this many up. It cannot be turned off: a count of one
+# points at a family.
+DEFAULT_SMALL_ZONE_THRESHOLD = 5
+MIN_SMALL_ZONE_THRESHOLD = 2
+MAX_SMALL_ZONE_THRESHOLD = 100
+
+
 class MunicipalitySettings(Base):
     """What a municipality's administrators configure for it.
 
@@ -327,6 +335,13 @@ class MunicipalitySettings(Base):
     """
 
     __tablename__ = "municipality_settings"
+    __table_args__ = (
+        CheckConstraint(
+            f"small_zone_threshold BETWEEN {MIN_SMALL_ZONE_THRESHOLD} "
+            f"AND {MAX_SMALL_ZONE_THRESHOLD}",
+            name="small_zone_threshold_range",
+        ),
+    )
 
     id: Mapped[uuid.UUID] = uuid_pk()
     municipality_id: Mapped[uuid.UUID] = mapped_column(
@@ -339,6 +354,18 @@ class MunicipalitySettings(Base):
     sso_enabled: Mapped[bool] = mapped_column(
         Boolean, nullable=False, default=False, server_default=false()
     )
+    small_zone_threshold: Mapped[int] = mapped_column(
+        Integer,
+        nullable=False,
+        default=DEFAULT_SMALL_ZONE_THRESHOLD,
+        server_default=str(DEFAULT_SMALL_ZONE_THRESHOLD),
+    )
+    # A key of geo/backgrounds.py, and the municipality's own key for its provider, if it
+    # needs one. It is not a secret: browsers send it with every piece of the map.
+    map_background: Mapped[str] = mapped_column(
+        String(30), nullable=False, default="standard", server_default="standard"
+    )
+    map_api_key: Mapped[str | None] = mapped_column(String(100), nullable=True)
     updated_at: Mapped[datetime] = created_at_column()
     updated_by: Mapped[uuid.UUID | None] = mapped_column(
         Uuid, ForeignKey("users.id", ondelete="SET NULL"), nullable=True

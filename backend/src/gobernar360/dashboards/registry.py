@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from sqlalchemy.orm import Session
 
     from gobernar360.platform.access import RequestContext
+    from gobernar360.platform.geo.contract import LocatedRecord
 
 
 @dataclass(frozen=True)
@@ -163,6 +164,8 @@ class DashboardModule:
     get_commitment_origins: (
         Callable[[RequestContext, Collection[uuid.UUID]], dict[uuid.UUID, CommitmentOrigin]] | None
     ) = None
+    # Records with a place: they get maps, zones and breakdowns by zone from the platform.
+    located: tuple[LocatedRecord, ...] = ()
 
 
 _modules: dict[str, DashboardModule] = {}

@@ -21,11 +21,13 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { hasLevel } from '../../platform/access'
+import { LocationPanel } from '../../platform/geo/LocationPanel'
 import { ActorForm } from './ActorForm'
 import { BASE_PATH, send, useAction, useActor, usePeople } from './api'
 import { AssignmentsPanel } from './AssignmentsPanel'
 import { Field } from '../../platform/Field'
 import { formatCuit } from './format'
+import { ACTORS } from './located'
 import { type ActorDetail, type Role, ROLES } from './types'
 import { useConfirm } from '../../platform/confirmContext'
 
@@ -158,6 +160,8 @@ export function ActorDetailPage() {
               <Field label={label('notes')}>{data.notes}</Field>
             </SimpleGrid>
           </Paper>
+
+          <LocationPanel key={data.id} kind={ACTORS} recordId={data.id} canEdit={canEdit} />
 
           <Stack gap="xs" component="section">
             <Group justify="space-between">

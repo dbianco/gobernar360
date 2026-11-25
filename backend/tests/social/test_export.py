@@ -222,3 +222,14 @@ def test_downloads_come_in_order_whatever_order_things_were_loaded_in(client):
     interventions = rows("interventions")
     assert [r["date"] for r in interventions] == days
     assert "XXXX" not in str(interventions)
+
+
+def test_households_csv_does_not_count_people_without_a_household(client):
+    municipality = _member(client)
+    household = make_household(municipality, "Familia Pérez")
+    make_social_person(municipality, household=household)
+    make_social_person(municipality, "Sola")
+
+    rows = _rows(client.get(f"{BASE}/export/households.csv"))
+
+    assert rows[1:] == [["Familia Pérez", "", "", "1", ""]]

@@ -4,7 +4,7 @@ Workspace of management dashboards for local governments (municipalities and
 communes). Each dashboard is an independent module, enabled per municipality
 and granted per user. Today it ships the platform base (municipalities, users,
 per-dashboard access, people registry, monthly status lights, accounts by email with
-notifications and single sign-on), the Projects, Environment, Economic, Social,
+notifications and single sign-on, zones and maps), the Projects, Environment, Economic, Social,
 Procedures, Complaints and Cabinet dashboards, and a general overview.
 
 - Platform and Projects: design `docs/superpowers/specs/2026-11-18-gobernar360-platform-design.md`,
@@ -35,6 +35,8 @@ Procedures, Complaints and Cabinet dashboards, and a general overview.
   task `docs/tasks/04-cabinet-commitments.md`
 - Commitments for everyone and notifications: design
   `docs/superpowers/specs/2026-11-24-commitments-and-notices-design.md`
+- Geographic layer: design `docs/superpowers/specs/2026-11-24-geographic-layer-design.md`,
+  task `docs/tasks/07-geographic-layer.md`
 - Functional reference: `tableros-de-gestion-portal-ril.md`
 
 ## Quick start
@@ -126,9 +128,11 @@ name and phone without being asked for one, and gets a password only through the
   recorded in the municipality's audit log. The operator sees configuration only, never
   dashboard data, unless added as a user of that municipality.
 - A **municipality administrator** manages a subset of that for their own municipality:
-  its users and their permissions, and its configuration (*Configuración*, in the menu):
-  who receives notification emails, whether members may use single sign-on, and the text
-  of every email it sends. They cannot rename it, enable dashboards or change passwords.
+  its users and their permissions, its zones (*Zonas*, in the menu) and its configuration
+  (*Configuración*, in the menu), in tabs by kind: *Correos* (who receives notification
+  emails, and the text of every email it sends), *Acceso* (whether members may use single
+  sign-on) and *Mapas y zonas* (the background of its maps, and how small a count per zone
+  viewers see). They cannot rename it, enable dashboards or change passwords.
 
 Every list in the app (users, dashboard tables, parameter catalogs, the operator's
 municipalities) has a search by name or its main field and shows 10, 20 or 50 rows per
@@ -221,6 +225,45 @@ with interventions is built by `interventions_router.present`.
 Data of different municipalities lives in the same database and is separated by
 PostgreSQL row-level security: every tenant table has `municipality_id`, and the
 API role can only see rows of the municipality set for the current transaction.
+
+### Geographic layer
+
+Place is part of the platform (`platform/geo`): a municipality draws its zones, and any
+dashboard can give its records a location.
+
+- **Zones** are drawn on a map or uploaded as GeoJSON (*Zonas*, for administrators). A
+  boundary that is not closed or crosses itself is refused; overlapping zones are saved and
+  reported. Moving a boundary adds a version from that moment on: the figures of a past year
+  use the boundaries in force when it ended (before the first zone was drawn, today's).
+- **Located records**: projects (a point, or a line for works along a street), social
+  households and economic actors. The location is set by clicking on the map or typing
+  coordinates; nothing is sent to a geocoding service and the address stays as text.
+- **Zone assignment** is done by database triggers, for every version of every zone, when a
+  location or a boundary changes. A line belongs to every zone it crosses; a record where
+  two zones overlap is in both and counts once in totals. What has no zone is listed for
+  review in each map and in *Zonas*. `uv run gobernar360 assign-zones` works everything out
+  again, e.g. after restoring a backup with the triggers off.
+- **Maps** ask only for what is inside the visible area, with the filters of the list, and
+  the API groups close records, so the answer stays small however many there are.
+- **Sensitive places.** Where a household lives, and its zone, are for editors and above.
+  Viewers get counts per zone: those under the municipality's minimum (*Configuración*,
+  tab *Mapas y zonas*; 5 by default, from 2 to 100) are hidden, and so are the others needed to keep them from being worked out by subtracting;
+  and a viewer cannot narrow the counts with a search. CSV files follow the same rule.
+- **Isolation.** Zones, versions and assignments are tenant tables under row-level security,
+  and the triggers also filter by municipality themselves. There are no spatial indexes on
+  purpose: row-level security keeps the API role from using them (PostGIS operators are not
+  leakproof), so queries narrow by municipality first.
+  The list of households, with the address typed as text, is open to viewers as always.
+- **Background.** Each municipality chooses it in *Configuración*, tab *Mapas y zonas*, with a
+  preview, from OpenStreetMap's list (`platform/geo/backgrounds.py`): standard,
+  humanitarian, CyclOSM, German, French, topographic and public transport need no key;
+  Thunderforest's cycle and transport maps, Tracestrack and MapTiler ask for the key the
+  provider gives the municipality. The default needs none. Public servers are meant for
+  moderate use: a busy municipality should choose one with a key. Without the background,
+  zones and records are still drawn.
+
+The database needs PostGIS; migration 0019 enables it, which takes a superuser (the local
+container's owner role is one).
 
 ### Procedures dashboard
 
@@ -410,6 +453,7 @@ file. `dashboards/tableHeaders.test.ts` fails when a dashboard table uses a plai
    `dashboards.<key>` in `backend/src/gobernar360/locales/es-AR.json`.
    To email its administrators about events, give the module `alert_kinds` and `get_alerts`.
    To let commitments point at its records, give it `linkable`.
+   To put its records on the map, see *Located records* in `CLAUDE.md`.
    Helpers shared by dashboards live in `platform` (`tenant_crud`, `api_types`, `csv_export`).
 2. Frontend: create `src/dashboards/<key>/` with a default-exported routes component and add an
    entry (with its icon) to `src/dashboards/registry.ts`; put its texts, and its indicators'

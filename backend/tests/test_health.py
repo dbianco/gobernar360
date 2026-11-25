@@ -64,8 +64,8 @@ def test_another_origin_is_not_allowed(client):
     assert "access-control-allow-origin" not in preflight.headers
 
 
-def test_unsafe_requests_need_the_csrf_header(app):
-    plain = TestClient(app)
+def test_unsafe_requests_need_the_csrf_header():
+    plain = TestClient(create_app())
 
     response = plain.post("/api/auth/logout")
 

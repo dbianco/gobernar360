@@ -32,6 +32,12 @@ from gobernar360.platform import (
     status_router,
     subjects_router,
 )
+from gobernar360.platform.geo import (
+    background_router,
+    profile_router,
+    records_router,
+    zones_router,
+)
 
 CSRF_HEADER = "x-requested-with"
 CSRF_HEADER_VALUE = "gobernar360"
@@ -104,6 +110,10 @@ def create_app() -> FastAPI:
     api.include_router(subjects_router.router)
     api.include_router(directory.router)
     api.include_router(commitments_router.router)
+    api.include_router(zones_router.router)
+    api.include_router(background_router.router)
+    api.include_router(profile_router.router)
+    api.include_router(records_router.router)
     for module in registry.all_modules():
         api.include_router(module.router, prefix=f"/dashboards/{module.key}", tags=[module.key])
     app.include_router(api)

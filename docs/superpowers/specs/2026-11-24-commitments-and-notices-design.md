@@ -47,7 +47,7 @@ quién sigue viendo un compromiso que pasó a otro.
 - La plataforma no conoce Gabinete: le pregunta por el registro de dónde viene un compromiso
   (`DashboardModule.get_commitment_origins`) y muestra la reunión solo a quien accede al tablero.
 - La vista inversa (tira de estado, ficha de proyecto) suma los informales, a quienes los ven.
-- La migración 0013 renombra las tablas, sin copiar filas.
+- La migración 0018 renombra las tablas, sin copiar filas.
 
 ## Pantallas
 

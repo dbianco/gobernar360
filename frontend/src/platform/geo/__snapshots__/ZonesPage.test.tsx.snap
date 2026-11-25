@@ -1,0 +1,1521 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`does not save what is not coordinates > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`does not save what is not coordinates > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`draws a new zone on the map > screen at the end 1`] = `
+"Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Centro
+Norte
+Sur
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+Sur
+1
+10/03/2025
+[Editar Sur]
+Editar
+[Historial de Sur]
+Historial
+[Dar de baja Sur]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona.
+[autosize measurement]"
+`;
+
+exports[`draws a new zone on the map > screen at the start 1`] = `
+"Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`imports the zones of a file > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Importación terminada. Zonas creadas: 2. Con límite nuevo: 1. Sin cambios: 0.
+[Cerrar el aviso]
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`imports the zones of a file > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`is reached from the menu by administrators only > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Compromisos
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`is reached from the menu by administrators only > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`leaves boundaries with holes to files, but renames them > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Zona Centro guardada.
+[Cerrar el aviso]
+[Mapa de las zonas del municipio]
+Centro
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`leaves boundaries with holes to files, but renames them > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`lists every problem of a file > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona.
+Importar zonas
+Un archivo GeoJSON con una zona por elemento y su nombre en la propiedad "nombre" o "name". Las zonas que ya existen con ese nombre toman el límite nuevo; el resto se crea. Si alguna tiene un problema, no se cambia nada.
+No se importó nada
+Zona 2 (Norte): el límite se cruza consigo mismo.
+Zona 3 (sin nombre): le falta el nombre.
+Archivo
+zonas.geojson
+Importar
+Cancelar"
+`;
+
+exports[`lists every problem of a file > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`lists the zones with their version, and draws them > screen at the end 1`] = `
+"Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+3
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`lists the zones with their version, and draws them > screen at the start 1`] = `
+"Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`moves a boundary from the version it was opened with > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Zona Centro guardada.
+[Cerrar el aviso]
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+4
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`moves a boundary from the version it was opened with > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`moves, adds and removes corners, and undoes it > screen at the end 1`] = `
+"[autosize measurement]
+[Nueva zona]
+Nueva zona
+Nombre
+*
+Hacé clic en el mapa para agregar esquinas. Arrastrá una esquina para moverla, hacé clic en ella para quitarla, y arrastrá el medio de un lado para agregar otra.
+[Mapa para dibujar la zona]
+[Agregar una esquina en el lado 1]
+[Agregar una esquina en el lado 2]
+[Agregar una esquina en el lado 3]
+[Agregar una esquina en el lado 4]
+[Esquina 1]
+[Esquina 2]
+[Esquina 3]
+[Esquina 4]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Esquinas
+Latitud y longitud de cada esquina, una por renglón. También se pueden escribir o pegar acá.
+-31.500000, -62.500000 -31.000000, -61.000000 -30.500000, -61.000000 -30.000000, -61.000000
+Guardar
+Cancelar
+Deshacer
+Borrar el dibujo"
+`;
+
+exports[`moves, adds and removes corners, and undoes it > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`refuses a file that is not GeoJSON: 7 > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona.
+Importar zonas
+Un archivo GeoJSON con una zona por elemento y su nombre en la propiedad "nombre" o "name". Las zonas que ya existen con ese nombre toman el límite nuevo; el resto se crea. Si alguna tiene un problema, no se cambia nada.
+El archivo no se puede leer: no es un GeoJSON.
+Archivo
+zonas.geojson
+Importar
+Cancelar"
+`;
+
+exports[`refuses a file that is not GeoJSON: 7 > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`refuses a file that is not GeoJSON: no es json > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona.
+Importar zonas
+Un archivo GeoJSON con una zona por elemento y su nombre en la propiedad "nombre" o "name". Las zonas que ya existen con ese nombre toman el límite nuevo; el resto se crea. Si alguna tiene un problema, no se cambia nada.
+El archivo no se puede leer: no es un GeoJSON.
+Archivo
+zonas.geojson
+Importar
+Cancelar"
+`;
+
+exports[`refuses a file that is not GeoJSON: no es json > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`refuses a file that is not GeoJSON: null > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona.
+Importar zonas
+Un archivo GeoJSON con una zona por elemento y su nombre en la propiedad "nombre" o "name". Las zonas que ya existen con ese nombre toman el límite nuevo; el resto se crea. Si alguna tiene un problema, no se cambia nada.
+El archivo no se puede leer: no es un GeoJSON.
+Archivo
+zonas.geojson
+Importar
+Cancelar"
+`;
+
+exports[`refuses a file that is not GeoJSON: null > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`renames a zone without touching its boundary > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Zona Microcentro guardada.
+[Cerrar el aviso]
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`renames a zone without touching its boundary > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`reports the zones that overlap > screen at the end 1`] = `
+"Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Hay zonas que se superponen
+Lo que está en la parte compartida cuenta en las dos.
+Centro y Norte: 1,23 ha
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`reports the zones that overlap > screen at the start 1`] = `
+"Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`retires a zone after asking > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Zona Centro dada de baja.
+[Cerrar el aviso]
+[Mapa de las zonas del municipio]
+Norte
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`retires a zone after asking > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`says when somebody else moved the boundary in the meantime > screen at the end 1`] = `
+"[autosize measurement]
+[Editar zona]
+Editar zona
+Otra persona cambió el límite de esta zona mientras lo editabas. Cancelá y volvé a abrirla para ver el límite actual.
+Nombre
+*
+Hacé clic en el mapa para agregar esquinas. Arrastrá una esquina para moverla, hacé clic en ella para quitarla, y arrastrá el medio de un lado para agregar otra.
+[Mapa para dibujar la zona]
+[Agregar una esquina en el lado 1]
+[Agregar una esquina en el lado 2]
+[Agregar una esquina en el lado 3]
+[Agregar una esquina en el lado 4]
+[Agregar una esquina en el lado 5]
+[Esquina 1]
+[Esquina 2]
+[Esquina 3]
+[Esquina 4]
+[Esquina 5]
+Norte
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Esquinas
+Latitud y longitud de cada esquina, una por renglón. También se pueden escribir o pegar acá.
+-32.000000, -62.000000 -32.000000, -61.000000 -31.000000, -61.000000 -31.000000, -62.000000 -30.914007, -62.460022
+El límite nuevo rige desde hoy. Los datos de los años anteriores siguen con el límite que tenían.
+Guardar
+Cancelar
+Deshacer
+Borrar el dibujo"
+`;
+
+exports[`says when somebody else moved the boundary in the meantime > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`says when the file as a whole is not right, or the import fails > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`says when the file as a whole is not right, or the import fails > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`says when the file cannot even be read > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona.
+Importar zonas
+Un archivo GeoJSON con una zona por elemento y su nombre en la propiedad "nombre" o "name". Las zonas que ya existen con ese nombre toman el límite nuevo; el resto se crea. Si alguna tiene un problema, no se cambia nada.
+El archivo no se puede leer: no es un GeoJSON.
+Archivo
+zonas.geojson
+Importar
+Cancelar"
+`;
+
+exports[`says when the file cannot even be read > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`says when there are no zones, and why they cannot be shown > screen at the end 1`] = `
+"[autosize measurement]
+[Nueva zona]
+Nueva zona
+Nombre
+*
+Hacé clic en el mapa para agregar esquinas. Arrastrá una esquina para moverla, hacé clic en ella para quitarla, y arrastrá el medio de un lado para agregar otra.
+[Mapa para dibujar la zona]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Esquinas
+Latitud y longitud de cada esquina, una por renglón. También se pueden escribir o pegar acá.
+Guardar
+Cancelar
+Deshacer
+Borrar el dibujo"
+`;
+
+exports[`says when there are no zones, and why they cannot be shown > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`says why a boundary was refused and keeps the drawing > screen at the end 1`] = `
+"[autosize measurement]
+[Nueva zona]
+Nueva zona
+El límite de la zona se cruza consigo mismo. Mové las esquinas para que ninguno de sus lados corte a otro.
+Nombre
+*
+Hacé clic en el mapa para agregar esquinas. Arrastrá una esquina para moverla, hacé clic en ella para quitarla, y arrastrá el medio de un lado para agregar otra.
+[Mapa para dibujar la zona]
+[Agregar una esquina en el lado 1]
+[Agregar una esquina en el lado 2]
+[Agregar una esquina en el lado 3]
+[Agregar una esquina en el lado 4]
+[Esquina 1]
+[Esquina 2]
+[Esquina 3]
+[Esquina 4]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Esquinas
+Latitud y longitud de cada esquina, una por renglón. También se pueden escribir o pegar acá.
+0, 0 1, 1 1, 0 0, 1
+Guardar
+Cancelar
+Deshacer
+Borrar el dibujo"
+`;
+
+exports[`says why a boundary was refused and keeps the drawing > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`says why a zone was not retired > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+No se encontró el registro.
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`says why a zone was not retired > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`says why the history cannot be shown > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona.
+Historial de Centro
+Los datos de cada año usan el límite vigente al terminar ese año.
+No se encontró el registro."
+`;
+
+exports[`says why the history cannot be shown > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`says why the zones and their overlaps cannot be shown > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Ocurrió un error. Intentá de nuevo.
+No tenés permiso para realizar esta acción."
+`;
+
+exports[`says why the zones and their overlaps cannot be shown > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`searches the zones > screen at the end 1`] = `
+"Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Borrar la búsqueda]
+Nada coincide con la búsqueda.
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`searches the zones > screen at the start 1`] = `
+"Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
+exports[`shows every boundary a zone has had > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`shows every boundary a zone has had > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;

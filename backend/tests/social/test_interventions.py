@@ -312,3 +312,22 @@ def test_correcting_an_intervention_keeps_who_recorded_it(client):
         row = db.scalars(select(Intervention)).unique().one()
     assert row.updated_by == other.id
     assert row.created_by not in (None, other.id)
+
+
+def test_the_audit_trail_keeps_everything_but_the_reserved_text(client):
+    municipality = _editor(client)
+    person = make_social_person(municipality)
+    intervention = make_intervention(
+        municipality, make_intervention_type(municipality), person, description="Reservado"
+    )
+    path = f"{BASE}/interventions/{intervention.id}"
+
+    client.patch(path, json={"performed_by": "Ana"})
+    client.patch(path, json={"performed_by": "Luis", "description": "Muy reservado"})
+
+    with tenant_session(municipality.id) as db:
+        changes = db.scalars(select(AuditLog.changes).order_by(AuditLog.created_at)).all()
+    assert changes == [
+        {"performed_by": "Ana"},
+        {"performed_by": "Luis", "description": "[reserved]"},
+    ]

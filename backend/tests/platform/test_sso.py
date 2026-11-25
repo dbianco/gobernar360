@@ -564,3 +564,16 @@ def test_each_attempt_has_its_own_secrets_and_those_expired_are_forgotten(
     assert all(len(set(values)) == 2 for values in zip(*secrets, strict=True))
     # 64 random bytes, as PKCE recommends at most.
     assert {len(a.code_verifier) for a in attempts} == {86}
+
+
+def test_coming_back_after_the_municipality_stopped_allowing_it_is_refused(
+    client, provider, noetinger
+):
+    answer = provider.authorize(_start(client), "ana@noetinger.test", True)
+    with admin_session() as session, session.begin():
+        session.execute(update(MunicipalitySettings).values(sso_enabled=False))
+
+    response = client.get(CALLBACK, params=answer, follow_redirects=False)
+
+    assert _login_error(response) == "disabled"
+    assert _session_count() == 0

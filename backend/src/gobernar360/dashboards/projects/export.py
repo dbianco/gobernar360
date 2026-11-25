@@ -5,6 +5,7 @@ import uuid
 from fastapi import APIRouter, Response
 
 from gobernar360.dashboards.projects.access import Viewer
+from gobernar360.dashboards.projects.models import Project
 from gobernar360.dashboards.projects.projects_router import (
     project_effective_status,
     project_progress,
@@ -14,6 +15,7 @@ from gobernar360.dashboards.projects.projects_router import (
 from gobernar360.dashboards.projects.schemas import EffectiveStatus, Priority
 from gobernar360.platform.clock import Today
 from gobernar360.platform.csv_export import csv_response, plain_number, safe_text
+from gobernar360.platform.geo.export import LOCATION_COLUMNS, location_cells, places_of
 
 router = APIRouter()
 
@@ -34,6 +36,7 @@ PROJECT_COLUMNS = (
     "start_date",
     "end_date",
     "sdgs",
+    *LOCATION_COLUMNS,
 )
 INDICATOR_COLUMNS = ("name", "axis", "objective", "unit", "baseline", "target", "current_value")
 
@@ -53,6 +56,7 @@ def export_projects(
     projects = query_projects(
         ctx, today, term_id, year, axis_id, department_id, owner_id, priority, status
     )
+    places = places_of(ctx.db, Project, [p.id for p in projects])
     rows = (
         (
             safe_text(p.name),
@@ -71,6 +75,7 @@ def export_projects(
             p.start_date or "",
             p.end_date or "",
             ";".join(str(number) for number in sorted(sdg.sdg_number for sdg in p.sdgs)),
+            *location_cells(p, places),
         )
         for p in projects
     )

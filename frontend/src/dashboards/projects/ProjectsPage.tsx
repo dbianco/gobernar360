@@ -18,6 +18,7 @@ import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatPercent } from '../../platform/format'
+import { zoneNames } from '../../platform/geo/zoneNames'
 import { hasLevel } from '../../platform/access'
 import { useProjects } from './api'
 import { FilterBar } from './FilterBar'
@@ -74,6 +75,7 @@ export function ProjectsPage() {
                 <HelpTh help={t('projects.help.projectsPage.owner')}>
                   {t('projects.filters.owner')}
                 </HelpTh>
+                <HelpTh help={t('projects.help.projectsPage.zones')}>{t('geo.zone')}</HelpTh>
                 <HelpTh help={t('projects.help.projectsPage.priority')}>
                   {t('projects.filters.priority')}
                 </HelpTh>
@@ -96,6 +98,7 @@ export function ProjectsPage() {
                   <Table.Td>{project.axis.name}</Table.Td>
                   <Table.Td>{project.department.name}</Table.Td>
                   <Table.Td>{project.owner?.full_name ?? t('app.none')}</Table.Td>
+                  <Table.Td>{zoneNames(project.zones, t('app.none'))}</Table.Td>
                   <Table.Td>{project.priority}</Table.Td>
                   <Table.Td>
                     <StatusBadge status={project.effective_status} />

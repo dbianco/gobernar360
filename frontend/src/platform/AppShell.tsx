@@ -15,6 +15,7 @@ import {
   IconChecklist,
   IconFileReport,
   IconLayoutDashboard,
+  IconMap2,
   IconSettings,
   IconLogout,
   IconUsers,
@@ -142,6 +143,7 @@ export function AppShell() {
         {membership && link('/commitments', t('commitments.section'), IconChecklist)}
         {membership && visibleDashboards.map((d) => link(d.basePath, t(d.labelKey), d.icon))}
         {membership?.is_admin && link('/admin/users', t('nav.users'), IconUsers)}
+        {membership?.is_admin && link('/admin/zones', t('nav.zones'), IconMap2)}
         {membership?.is_admin && link('/admin/settings', t('nav.settings'), IconSettings)}
         {membership?.is_admin && link('/admin/reports', t('nav.reports'), IconFileReport)}
         {membership?.is_admin &&

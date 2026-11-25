@@ -124,6 +124,9 @@ Dependencia
 Responsable
 [Qué significa Responsable]
 Persona responsable del proyecto.
+Zona
+[Qué significa Zona]
+Zonas donde está el proyecto, según su ubicación en el mapa. Una obra a lo largo de una calle puede estar en varias.
 Prioridad
 [Qué significa Prioridad]
 Importancia que la gestión le dio al proyecto: A+, A, B o C.
@@ -136,6 +139,7 @@ Porcentaje de hitos finalizados. Si el proyecto no tiene hitos, es el avance car
 Pavimentación
 Ciudad inclusiva
 Obras Públicas
+—
 —
 A
 En implementación
@@ -228,6 +232,9 @@ Dependencia
 Responsable
 [Qué significa Responsable]
 Persona responsable del proyecto.
+Zona
+[Qué significa Zona]
+Zonas donde está el proyecto, según su ubicación en el mapa. Una obra a lo largo de una calle puede estar en varias.
 Prioridad
 [Qué significa Prioridad]
 Importancia que la gestión le dio al proyecto: A+, A, B o C.
@@ -240,6 +247,7 @@ Porcentaje de hitos finalizados. Si el proyecto no tiene hitos, es el avance car
 Pavimentación
 Ciudad inclusiva
 Obras Públicas
+—
 —
 A
 En implementación
@@ -294,6 +302,9 @@ Dependencia
 Responsable
 [Qué significa Responsable]
 Persona responsable del proyecto.
+Zona
+[Qué significa Zona]
+Zonas donde está el proyecto, según su ubicación en el mapa. Una obra a lo largo de una calle puede estar en varias.
 Prioridad
 [Qué significa Prioridad]
 Importancia que la gestión le dio al proyecto: A+, A, B o C.
@@ -306,6 +317,7 @@ Porcentaje de hitos finalizados. Si el proyecto no tiene hitos, es el avance car
 Pavimentación
 Ciudad inclusiva
 Obras Públicas
+—
 —
 A
 En implementación
@@ -488,6 +500,9 @@ Dependencia
 Responsable
 [Qué significa Responsable]
 Persona responsable del proyecto.
+Zona
+[Qué significa Zona]
+Zonas donde está el proyecto, según su ubicación en el mapa. Una obra a lo largo de una calle puede estar en varias.
 Prioridad
 [Qué significa Prioridad]
 Importancia que la gestión le dio al proyecto: A+, A, B o C.
@@ -500,6 +515,7 @@ Porcentaje de hitos finalizados. Si el proyecto no tiene hitos, es el avance car
 Pavimentación
 Ciudad inclusiva
 Obras Públicas
+—
 —
 A
 Retrasado

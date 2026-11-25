@@ -397,3 +397,17 @@ def test_what_changed_in_a_member_s_access_is_in_the_audit_log(admin_client):
         ("delete", {"email": "carla@noetinger.test"}),
     ]
     assert {str(entry.entity_id) for entry in entries} == {membership_id}
+
+
+def test_an_account_that_was_deactivated_is_added_without_emailing_it(client):
+    municipality = make_municipality()
+    make_membership(make_user("admin@noetinger.test"), municipality, admin=True)
+    make_user("baja@noetinger.test", active=False)
+    login(client, "admin@noetinger.test")
+
+    response = client.post(
+        "/api/admin/users", json={"email": "baja@noetinger.test", "full_name": "Blas Baja"}
+    )
+
+    assert response.status_code == 201, response.text
+    assert emails_to("baja@noetinger.test") == []

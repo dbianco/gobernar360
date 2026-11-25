@@ -7,7 +7,7 @@ from gobernar360.dashboards import registry
 from gobernar360.dashboards.registry import DashboardModule
 from gobernar360.main import create_app
 from gobernar360.platform.access import AccessLevel, RequestContext, require_dashboard
-from gobernar360.platform.models import Membership
+from gobernar360.platform.models import Membership, User
 from tests.factories import admin_session, login, make_membership, make_municipality, make_user
 
 
@@ -208,15 +208,18 @@ def test_a_membership_elsewhere_does_not_open_the_active_municipality(demo_clien
     )
 
 
-def test_an_account_deactivated_while_signed_in_is_out_at_once(client):
+def test_an_account_deactivated_while_signed_in_is_out_at_once(demo_client):
     user = make_user("ana@noetinger.test")
-    make_membership(user, make_municipality("Noetinger"))
-    login(client, "ana@noetinger.test")
-    assert client.get("/api/auth/me").status_code == 200
+    make_membership(user, make_municipality(), grants={"demo": "viewer"})
+    login(demo_client, "ana@noetinger.test")
+    assert demo_client.get("/api/auth/me").status_code == 200
     with admin_session() as session, session.begin():
-        session.merge(user).is_active = False
+        session.get(User, user.id).is_active = False
 
-    response = client.get("/api/auth/me")
+    response = demo_client.get("/api/overview")
 
     assert response.status_code == 401
-    assert response.json()["error"]["code"] == "not_authenticated"
+    assert response.json()["error"] == {
+        "code": "not_authenticated",
+        "message": "Authentication is required.",
+    }

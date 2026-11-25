@@ -106,7 +106,16 @@
     "meeting_already_open": "Ya hay una reunión abierta. Cerrala antes de preparar la siguiente.",
     "meeting_before_last": "La fecha no puede ser anterior a la de la última reunión.",
     "agenda_changed": "Lo que se propone para el temario cambió. Revisalo y volvé a intentar.",
-    "commitment_finished": "El compromiso ya no está pendiente: reabrilo para cambiarlo."
+    "commitment_finished": "El compromiso ya no está pendiente: reabrilo para cambiarlo.",
+    "invalid_location": "La ubicación no es válida. Revisá las coordenadas.",
+    "invalid_area": "No se pudo mostrar esa parte del mapa.",
+    "invalid_boundary": "El límite de la zona no es válido: tiene que encerrar un área y tener al menos tres esquinas.",
+    "zone_not_closed": "El límite de la zona no está cerrado: la última esquina tiene que ser la primera.",
+    "zone_self_intersects": "El límite de la zona se cruza consigo mismo. Mové las esquinas para que ninguno de sus lados corte a otro.",
+    "zone_name_exists": "Ya hay otra zona con ese nombre.",
+    "zone_changed": "Otra persona cambió el límite de esta zona mientras lo editabas. Cancelá y volvé a abrirla para ver el límite actual.",
+    "zone_file_invalid": "El archivo no se importó porque algunas zonas tienen problemas.",
+    "map_api_key_required": "Ese mapa necesita una clave de su proveedor."
   },
   "login": {
     "title": "Ingresar a gobernar360",
@@ -151,6 +160,7 @@
   "nav": {
     "overview": "Resumen general",
     "users": "Usuarios",
+    "zones": "Zonas",
     "settings": "Configuración",
     "platform": "Plataforma",
     "dashboards": "Tableros",
@@ -436,6 +446,7 @@
         "axis": "Eje de gobierno al que aporta el proyecto.",
         "department": "Área del municipio que lleva adelante el proyecto.",
         "owner": "Persona responsable del proyecto.",
+        "zones": "Zonas donde está el proyecto, según su ubicación en el mapa. Una obra a lo largo de una calle puede estar en varias.",
         "priority": "Importancia que la gestión le dio al proyecto: A+, A, B o C.",
         "status": "Sin iniciar, en implementación o finalizado. Se marca retrasado si venció su fecha de fin o tiene algún hito vencido.",
         "progress": "Porcentaje de hitos finalizados. Si el proyecto no tiene hitos, es el avance cargado a mano."
@@ -674,6 +685,7 @@
   "admin": {
     "tabs": {
       "users": "Usuarios",
+      "zones": "Zonas",
       "settings": "Configuración"
     }
   },
@@ -681,6 +693,11 @@
     "title": "Configuración",
     "intro": "Lo que elijas acá vale para todo el municipio.",
     "saved": "Cambios guardados.",
+    "tabs": {
+      "emails": "Correos",
+      "access": "Acceso",
+      "maps": "Mapas y zonas"
+    },
     "recipients": {
       "title": "Avisos por email",
       "label": "Destinatarios de los avisos",
@@ -694,6 +711,68 @@
       "label": "Permitir ingresar con inicio de sesión único",
       "hint": "Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.",
       "unavailable": "La plataforma no tiene un proveedor de identidad configurado. Pedíselo a quien opera la plataforma."
+    },
+    "map": {
+      "title": "Mapas y zonas",
+      "background": "Fondo de los mapas",
+      "backgroundHint": "El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.",
+      "withoutKey": "Sin clave",
+      "withKey": "Con clave del proveedor",
+      "preview": "Vista previa del mapa",
+      "apiKey": "Clave de {{provider}}",
+      "apiKeyHint": "La da {{provider}} al registrarse; los planes gratuitos tienen límites de uso. No es secreta: los navegadores la envían con cada parte del mapa, así que conviene limitarla en el sitio del proveedor a la dirección de esta aplicación.",
+      "apiKeyInvalid": "La clave solo puede tener letras, números, puntos y guiones.",
+      "previewNeedsKey": "Escribí la clave para ver cómo queda.",
+      "threshold": "Cantidad mínima para mostrar una zona",
+      "thresholdHint": "En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De {{min}} a {{max}}: con un número más bajo se protege menos a las familias.",
+      "thresholdInvalid": "Tiene que ser un número entero de {{min}} a {{max}}.",
+      "save": "Guardar mapas y zonas",
+      "backgrounds": {
+        "standard": {
+          "name": "Estándar",
+          "description": "El mapa de openstreetmap.org. Sus servidores son para un uso moderado."
+        },
+        "humanitarian": {
+          "name": "Humanitario",
+          "description": "Del equipo humanitario de OpenStreetMap: destaca servicios, caminos y construcciones. Lo aloja OpenStreetMap Francia."
+        },
+        "cyclosm": {
+          "name": "CyclOSM (bicicletas)",
+          "description": "Destaca ciclovías y todo lo que sirve para andar en bicicleta. Lo aloja OpenStreetMap Francia."
+        },
+        "germany": {
+          "name": "Estilo alemán",
+          "description": "El mapa de la comunidad alemana, con sus propios colores para calles y rutas."
+        },
+        "france": {
+          "name": "Estilo francés",
+          "description": "El mapa de la comunidad francesa, con más detalle de cerca."
+        },
+        "topographic": {
+          "name": "Topográfico (OpenTopoMap)",
+          "description": "Con curvas de nivel y relieve. Tiene menos detalle de cerca."
+        },
+        "public_transport": {
+          "name": "Transporte público (ÖPNVKarte)",
+          "description": "Destaca líneas y paradas de transporte público."
+        },
+        "cycle": {
+          "name": "Mapa ciclista (Thunderforest)",
+          "description": "Ciclovías y relieve, de Thunderforest."
+        },
+        "transport": {
+          "name": "Mapa de transporte (Thunderforest)",
+          "description": "Líneas y paradas de transporte, de Thunderforest."
+        },
+        "tracestrack": {
+          "name": "Topográfico (Tracestrack)",
+          "description": "Relieve y senderos, de Tracestrack."
+        },
+        "maptiler": {
+          "name": "MapTiler",
+          "description": "Un mapa de calles claro y actual, de MapTiler."
+        }
+      }
     },
     "templates": {
       "title": "Textos de los correos",
@@ -1006,6 +1085,7 @@
         "name": "Nombre o razón social del comercio, industria o emprendimiento.",
         "type": "Clase de actor económico, según la lista que define el municipio en Parámetros.",
         "sector": "Rubro de actividad del actor, según la lista de sectores del municipio.",
+        "zones": "Zona donde está el actor, según su ubicación en el mapa.",
         "cuit": "Clave Única de Identificación Tributaria del actor, si está cargada.",
         "employees": "Cantidad de personas que trabajan en el actor, según el último dato cargado."
       },
@@ -1245,6 +1325,7 @@
         "name": "Nombre con el que el equipo identifica al grupo familiar.",
         "address": "Domicilio donde vive el grupo.",
         "neighborhood": "Barrio del domicilio del grupo.",
+        "zones": "Zona donde vive el grupo familiar, según su ubicación en el mapa. Solo la ven quienes cargan datos.",
         "head": "Integrante de referencia del grupo, con quien se trata habitualmente.",
         "members": "Cantidad de personas que integran el grupo."
       },
@@ -2284,5 +2365,236 @@
     "newsLabel_other": "Notificaciones: {{count}} novedades",
     "more_one": "y {{count}} más",
     "more_other": "y {{count}} más"
+  },
+  "geo": {
+    "tab": "Mapa",
+    "zone": "Zona",
+    "map": {
+      "zoomIn": "Acercar",
+      "zoomOut": "Alejar",
+      "noBackground": "No se pudo cargar el fondo del mapa. Las zonas y los registros se muestran igual.",
+      "cluster_one": "{{count}} registro",
+      "cluster_other": "{{count}} registros juntos: acercar para separarlos",
+      "inView_one": "{{count}} registro en el área visible.",
+      "inView_other": "{{count}} registros en el área visible.",
+      "truncated_one": "Se muestra solo uno: acercá el mapa para ver el resto.",
+      "truncated_other": "Se muestran los primeros {{count}}: acercá el mapa para ver el resto.",
+      "closeSelection": "Cerrar la selección",
+      "restricted": "La ubicación de cada grupo familiar es un dato sensible: acá se ven solo las cantidades por zona.",
+      "labels": {
+        "projects": {
+          "projects": "Mapa de proyectos"
+        },
+        "economic": {
+          "actors": "Mapa de actores económicos"
+        },
+        "social": {
+          "households": "Mapa de grupos familiares"
+        }
+      }
+    },
+    "location": {
+      "title": "Ubicación",
+      "none": "Todavía no tiene ubicación en el mapa.",
+      "outside": "Fuera de todas las zonas",
+      "set": "Ubicar en el mapa",
+      "change": "Cambiar ubicación",
+      "remove": "Quitar ubicación",
+      "removeConfirm": "¿Quitar la ubicación? El registro deja de aparecer en el mapa y en las zonas. La dirección no cambia.",
+      "kind": "Tipo de ubicación",
+      "kinds": {
+        "Point": "Punto",
+        "LineString": "Tramo"
+      },
+      "clickPoint": "Hacé clic en el mapa para marcar el lugar, o escribí las coordenadas.",
+      "clickLine": "Hacé clic en el mapa para agregar los puntos del tramo en orden; se pueden arrastrar.",
+      "coordinates": "Coordenadas",
+      "coordinatesHint": "Latitud y longitud, por ejemplo: -32.365500, -62.310500",
+      "lineCoordinates": "Puntos del tramo",
+      "lineCoordinatesHint": "Latitud y longitud de cada punto, uno por renglón.",
+      "invalidCoordinates": "No son coordenadas válidas: escribí latitud y longitud.",
+      "undo": "Quitar el último punto",
+      "mark": "Punto {{number}}",
+      "mapLabel": "Mapa de la ubicación"
+    },
+    "breakdown": {
+      "titles": {
+        "projects": {
+          "projects": "Proyectos por zona"
+        },
+        "economic": {
+          "actors": "Actores económicos por zona"
+        },
+        "social": {
+          "households": "Grupos familiares por zona"
+        }
+      },
+      "boundariesToday": "Con los límites actuales de las zonas.",
+      "boundariesAsOf": "Con los límites que tenían las zonas al {{date}}.",
+      "shadeBy": "Sombrear por",
+      "download": "Descargar por zona",
+      "mapLabel": "Zonas sombreadas por: {{metric}}",
+      "legend": "Referencias del mapa",
+      "range": "{{from}} a {{to}}",
+      "outside": "Fuera de todas las zonas",
+      "unlocated": "Sin ubicación",
+      "total": "Total",
+      "zoneHelp": "Barrio o distrito. Lo que está en más de una zona cuenta en cada una, y una sola vez en el total.",
+      "hidden": "Reservado",
+      "hiddenNote_one": "Las cantidades menores a {{count}} no se muestran, ni las que permitirían deducirlas.",
+      "hiddenNote_other": "Las cantidades menores a {{count}} no se muestran, ni las que permitirían deducirlas.",
+      "noZones": "El municipio todavía no tiene zonas para ver estos datos por barrio.",
+      "goToZones": "Dibujar zonas"
+    },
+    "metrics": {
+      "projects": {
+        "projects": {
+          "active": {
+            "label": "Activos",
+            "help": "Proyectos sin finalizar ubicados en la zona."
+          },
+          "planned_budget": {
+            "label": "Planificado en activos",
+            "help": "Presupuesto planificado de los que están sin finalizar. Una obra en varias zonas suma completa en cada una."
+          },
+          "executed_budget": {
+            "label": "Ejecutado en activos",
+            "help": "Presupuesto ejecutado de los que están sin finalizar. Una obra en varias zonas suma completa en cada una."
+          },
+          "projects": {
+            "label": "Todos",
+            "help": "Todos los proyectos ubicados en la zona, también los finalizados."
+          }
+        }
+      },
+      "economic": {
+        "actors": {
+          "actors": {
+            "label": "Actores económicos",
+            "help": "Actores ubicados en la zona."
+          }
+        }
+      },
+      "social": {
+        "households": {
+          "households": {
+            "label": "Grupos familiares",
+            "help": "Grupos familiares registrados que viven en la zona."
+          },
+          "assisted": {
+            "label": "Asistidos en el año",
+            "help": "Grupos familiares con al menos una prestación o intervención para alguno de sus miembros en el año."
+          }
+        }
+      }
+    },
+    "groupings": {
+      "sector": {
+        "label": "Por sector",
+        "none": "Sin sector",
+        "help": "Cuántos actores de la zona hay en cada sector."
+      }
+    },
+    "unzoned": {
+      "titles": {
+        "projects": {
+          "projects": "Proyectos sin zona"
+        },
+        "economic": {
+          "actors": "Actores económicos sin zona"
+        },
+        "social": {
+          "households": "Grupos familiares sin zona"
+        }
+      },
+      "reason": "Qué revisar",
+      "reasons": {
+        "outside": "Fuera de las zonas",
+        "unlocated": "Sin ubicación"
+      },
+      "searchHint": "Buscar por nombre",
+      "record": "Nombre",
+      "recordHelp": "Registro para revisar. Abrilo para corregir su ubicación.",
+      "empty": {
+        "outside": "Todo lo ubicado está dentro de alguna zona.",
+        "unlocated": "Todo tiene ubicación."
+      }
+    },
+    "profile": {
+      "title": "Perfil de zona",
+      "choose": "Elegir una zona",
+      "mapLabel": "Mapa de zonas",
+      "empty": "Ninguno de tus tableros tiene datos por zona."
+    },
+    "zones": {
+      "title": "Zonas",
+      "intro": "Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.",
+      "draw": "Dibujar zona",
+      "empty": "Todavía no hay zonas. Dibujá la primera o importá un archivo GeoJSON.",
+      "searchHint": "Buscar por nombre",
+      "mapLabel": "Mapa de las zonas del municipio",
+      "name": "Nombre",
+      "version": "Versión",
+      "from": "Vigente desde",
+      "to": "Vigente hasta",
+      "current": "Actual",
+      "help": {
+        "name": "Nombre del barrio o distrito.",
+        "version": "Cuántas veces se definió el límite de la zona.",
+        "from": "Día desde el que rige este límite.",
+        "to": "Día hasta el que rigió el límite."
+      },
+      "editNamed": "Editar {{name}}",
+      "versions": "Historial",
+      "versionsNamed": "Historial de {{name}}",
+      "retire": "Dar de baja",
+      "retireNamed": "Dar de baja {{name}}",
+      "retireConfirm": "¿Dar de baja la zona {{name}}? Sus registros quedan sin esa zona desde hoy. Los años anteriores la conservan.",
+      "saved": "Zona {{name}} guardada.",
+      "retired": "Zona {{name}} dada de baja.",
+      "closeNotice": "Cerrar el aviso",
+      "newTitle": "Nueva zona",
+      "editTitle": "Editar zona",
+      "drawHint": "Hacé clic en el mapa para agregar esquinas. Arrastrá una esquina para moverla, hacé clic en ella para quitarla, y arrastrá el medio de un lado para agregar otra.",
+      "drawingLabel": "Mapa para dibujar la zona",
+      "corner": "Esquina {{number}}",
+      "side": "Agregar una esquina en el lado {{number}}",
+      "corners": "Esquinas",
+      "cornersHint": "Latitud y longitud de cada esquina, una por renglón. También se pueden escribir o pegar acá.",
+      "undo": "Deshacer",
+      "clear": "Borrar el dibujo",
+      "notEditable": "El límite de esta zona tiene varias partes o huecos. Para cambiarlo, importá un archivo GeoJSON con el mismo nombre de zona.",
+      "versionNote": "El límite nuevo rige desde hoy. Los datos de los años anteriores siguen con el límite que tenían.",
+      "overlapsTitle": "Hay zonas que se superponen",
+      "overlapsBody": "Lo que está en la parte compartida cuenta en las dos.",
+      "overlap": "{{zone}} y {{other}}: {{area}} ha",
+      "versionsTitle": "Historial de {{name}}",
+      "versionsIntro": "Los datos de cada año usan el límite vigente al terminar ese año.",
+      "showVersion": "Ver la versión {{number}}",
+      "versionMapLabel": "Límite de {{name}}, versión {{number}}",
+      "import": {
+        "open": "Importar GeoJSON",
+        "title": "Importar zonas",
+        "intro": "Un archivo GeoJSON con una zona por elemento y su nombre en la propiedad \"nombre\" o \"name\". Las zonas que ya existen con ese nombre toman el límite nuevo; el resto se crea. Si alguna tiene un problema, no se cambia nada.",
+        "file": "Archivo",
+        "choose": "Elegir archivo",
+        "submit": "Importar",
+        "unreadable": "El archivo no se puede leer: no es un GeoJSON.",
+        "done": "Importación terminada. Zonas creadas: {{created}}. Con límite nuevo: {{moved}}. Sin cambios: {{unchanged}}.",
+        "problems": "No se importó nada",
+        "problem": "Zona {{row}} ({{name}}): {{problem}}",
+        "unnamed": "sin nombre",
+        "codes": {
+          "not_a_collection": "El archivo no es una colección de zonas (FeatureCollection).",
+          "empty": "El archivo no tiene zonas.",
+          "too_many": "El archivo tiene más de 300 zonas.",
+          "no_name": "le falta el nombre.",
+          "repeated_name": "el nombre está repetido en el archivo.",
+          "invalid_boundary": "el límite no es un polígono válido.",
+          "zone_not_closed": "el límite no está cerrado.",
+          "zone_self_intersects": "el límite se cruza consigo mismo."
+        }
+      }
+    }
   }
 }

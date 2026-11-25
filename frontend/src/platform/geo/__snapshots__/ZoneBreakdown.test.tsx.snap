@@ -1,0 +1,302 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`neither shades nor tells what is hidden > screen at the end 1`] = `
+"[Actores económicos por zona]
+Actores económicos por zona
+Con los límites actuales de las zonas.
+Descargar por zona
+[Zonas sombreadas por: Actores económicos]
+Centro Reservado
+Norte 8
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+[Referencias del mapa]
+8
+[Actores económicos por zona]
+Zona
+[Qué significa Zona]
+Barrio o distrito. Lo que está en más de una zona cuenta en cada una, y una sola vez en el total.
+Actores económicos
+[Qué significa Actores económicos]
+Actores ubicados en la zona.
+Centro
+Reservado
+Norte
+8
+Fuera de todas las zonas
+1
+Sin ubicación
+2
+Total
+6
+Las cantidades menores a 5 no se muestran, ni las que permitirían deducirlas."
+`;
+
+exports[`neither shades nor tells what is hidden > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says the range of each shade when several zones share one > screen at the end 1`] = `
+"[Actores económicos por zona]
+Actores económicos por zona
+Con los límites actuales de las zonas.
+Descargar por zona
+[Zonas sombreadas por: Actores económicos]
+Zona 0 10
+Zona 1 20
+Zona 2 30
+Zona 3 40
+Zona 4 50
+Zona 5 60
+Zona 6 70
+Zona 7 80
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+[Referencias del mapa]
+10 a 20
+30 a 40
+50 a 60
+70 a 80
+[Actores económicos por zona]
+Zona
+[Qué significa Zona]
+Barrio o distrito. Lo que está en más de una zona cuenta en cada una, y una sola vez en el total.
+Actores económicos
+[Qué significa Actores económicos]
+Actores ubicados en la zona.
+Por sector
+[Qué significa Por sector]
+Cuántos actores de la zona hay en cada sector.
+Zona 0
+10
+Zona 1
+20
+Zona 2
+30
+Zona 3
+40
+Zona 4
+50
+Zona 5
+60
+Zona 6
+70
+Zona 7
+80
+Fuera de todas las zonas
+1
+Sin ubicación
+2
+Total
+6"
+`;
+
+exports[`says the range of each shade when several zones share one > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why the figures cannot be shown > screen at the end 1`] = `"No tenés permiso para realizar esta acción."`;
+
+exports[`says why the figures cannot be shown > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shades by the figure chosen, amounts included > screen at the end 1`] = `
+"[Proyectos por zona]
+Proyectos por zona
+Con los límites actuales de las zonas.
+Sombrear por
+Activos
+Planificado en activos
+Descargar por zona
+[Zonas sombreadas por: Planificado en activos]
+Centro $ 900.000
+Norte $ 1.500
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+[Referencias del mapa]
+$ 1.500
+$ 900.000
+[Proyectos por zona]
+Zona
+[Qué significa Zona]
+Barrio o distrito. Lo que está en más de una zona cuenta en cada una, y una sola vez en el total.
+Activos
+[Qué significa Activos]
+Proyectos sin finalizar ubicados en la zona.
+Planificado en activos
+[Qué significa Planificado en activos]
+Presupuesto planificado de los que están sin finalizar. Una obra en varias zonas suma completa en cada una.
+Centro
+1
+$ 900.000
+Norte
+4
+$ 1.500
+Fuera de todas las zonas
+0
+$ 0
+Sin ubicación
+0
+$ 0
+Total
+5
+$ 901.500"
+`;
+
+exports[`shades by the figure chosen, amounts included > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shades the zones and writes each figure on its zone > screen at the end 1`] = `
+"[Actores económicos por zona]
+Actores económicos por zona
+Con los límites actuales de las zonas.
+Descargar por zona
+[Zonas sombreadas por: Actores económicos]
+Centro 3
+Norte 0
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+[Referencias del mapa]
+3
+[Actores económicos por zona]
+Zona
+[Qué significa Zona]
+Barrio o distrito. Lo que está en más de una zona cuenta en cada una, y una sola vez en el total.
+Actores económicos
+[Qué significa Actores económicos]
+Actores ubicados en la zona.
+Por sector
+[Qué significa Por sector]
+Cuántos actores de la zona hay en cada sector.
+Centro
+3
+Alimentos 2 · Sin sector 1
+Norte
+0
+Fuera de todas las zonas
+1
+Sin ubicación
+2
+Total
+6"
+`;
+
+exports[`shades the zones and writes each figure on its zone > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the figures of every zone, of what has none, and the total > screen at the end 1`] = `
+"[Actores económicos por zona]
+Actores económicos por zona
+Con los límites actuales de las zonas.
+Descargar por zona
+[Zonas sombreadas por: Actores económicos]
+Centro 3
+Norte 0
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+[Referencias del mapa]
+3
+[Actores económicos por zona]
+Zona
+[Qué significa Zona]
+Barrio o distrito. Lo que está en más de una zona cuenta en cada una, y una sola vez en el total.
+Actores económicos
+[Qué significa Actores económicos]
+Actores ubicados en la zona.
+Por sector
+[Qué significa Por sector]
+Cuántos actores de la zona hay en cada sector.
+Centro
+3
+Alimentos 2 · Sin sector 1
+Norte
+0
+Fuera de todas las zonas
+1
+Sin ubicación
+2
+Total
+6"
+`;
+
+exports[`shows the figures of every zone, of what has none, and the total > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`tells only administrators that there are no zones yet > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`uses and draws the boundaries of a past period, and says so > screen at the end 1`] = `
+"[Actores económicos por zona]
+Actores económicos por zona
+Con los límites que tenían las zonas al 31/12/2025.
+Descargar por zona
+[Zonas sombreadas por: Actores económicos]
+Centro 3
+Norte 0
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+[Referencias del mapa]
+3
+[Actores económicos por zona]
+Zona
+[Qué significa Zona]
+Barrio o distrito. Lo que está en más de una zona cuenta en cada una, y una sola vez en el total.
+Actores económicos
+[Qué significa Actores económicos]
+Actores ubicados en la zona.
+Por sector
+[Qué significa Por sector]
+Cuántos actores de la zona hay en cada sector.
+Centro
+3
+Alimentos 2 · Sin sector 1
+Norte
+0
+Fuera de todas las zonas
+1
+Sin ubicación
+2
+Total
+6"
+`;
+
+exports[`uses and draws the boundaries of a past period, and says so > screen at the start 1`] = `"[Cargando…]"`;

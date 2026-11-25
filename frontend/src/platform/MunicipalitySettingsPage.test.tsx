@@ -6,6 +6,7 @@ import App from '../App'
 import { makeMe, NOETINGER } from '../test/fixtures'
 import { renderApp, t } from '../test/render'
 import { mockApi, mockApiError } from '../test/server'
+import { MAP_SETTINGS } from './settings/testData'
 import type { EmailTemplate, MunicipalitySettings } from './settings/types'
 
 const OPERATOR = makeMe({ isOperator: true, municipalities: [] })
@@ -14,6 +15,7 @@ const SETTINGS: MunicipalitySettings = {
   notification_emails: ['jefa@noetinger.test'],
   sso_enabled: false,
   sso_available: true,
+  ...MAP_SETTINGS,
 }
 const RESET: EmailTemplate = {
   key: 'password_reset',
@@ -58,7 +60,10 @@ it('saves what the operator changes in that municipality', async () => {
   })
   renderPage()
   const user = userEvent.setup()
+  const openTab = async (key: string) =>
+    user.click(await screen.findByRole('tab', { name: t(`settings.tabs.${key}`) }))
 
+  await openTab('access')
   const toggle = await screen.findByRole('switch', {
     name: (name) => name.startsWith(t('settings.sso.label')),
   })
@@ -70,6 +75,7 @@ it('saves what the operator changes in that municipality', async () => {
   })
   await waitFor(() => expect(toggle).toBeChecked())
 
+  await openTab('emails')
   await user.type(
     await screen.findByLabelText(t('settings.templates.subject'), { exact: false }),
     ' ya',

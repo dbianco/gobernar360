@@ -5,10 +5,12 @@ import uuid
 from typing import Any
 
 from fastapi import APIRouter
-from sqlalchemy import or_, select
+from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 
 from gobernar360.core.errors import conflict, not_found
 from gobernar360.dashboards.economic.access import Editor, Viewer
+from gobernar360.dashboards.economic.geography import ActorFilters, actor_conditions
 from gobernar360.dashboards.economic.models import (
     Actor,
     ActorPerson,
@@ -25,7 +27,7 @@ from gobernar360.dashboards.economic.schemas import (
     ActorPersonOut,
 )
 from gobernar360.platform.access import RequestContext
-from gobernar360.platform.listing import Page, PagingParams, SearchText, contains, page_of
+from gobernar360.platform.listing import Page, PagingParams, SearchText, page_of
 from gobernar360.platform.models import Person
 from gobernar360.platform.tenant_crud import (
     create_entity,
@@ -52,18 +54,13 @@ def list_actors(
     actor_type_id: uuid.UUID | None = None,
     sector_id: uuid.UUID | None = None,
 ) -> Page[ActorOut]:
-    query = select(Actor).order_by(Actor.name, Actor.id)
-    if q and q.strip():
-        text = q.strip()
-        matches = [contains(Actor.name, text)]
-        digits = text.replace("-", "").replace(" ", "")
-        if digits.isdigit():
-            matches.append(contains(Actor.cuit, digits))
-        query = query.where(or_(*matches))
-    if actor_type_id is not None:
-        query = query.where(Actor.actor_type_id == actor_type_id)
-    if sector_id is not None:
-        query = query.where(Actor.sector_id == sector_id)
+    filters = ActorFilters(q=q, actor_type_id=actor_type_id, sector_id=sector_id)
+    query = (
+        select(Actor)
+        .options(selectinload(Actor.zones))
+        .where(*actor_conditions(filters))
+        .order_by(Actor.name, Actor.id)
+    )
     return page_of(ctx, query, paging)
 
 

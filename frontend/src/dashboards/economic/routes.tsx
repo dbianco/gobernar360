@@ -9,13 +9,14 @@ import { ActorDetailPage } from './ActorDetailPage'
 import { ActorsPage } from './ActorsPage'
 import { BASE_PATH } from './api'
 import { AssignmentsPage } from './AssignmentsPage'
+import { MapPage } from './MapPage'
 import { ParametersPage } from './ParametersPage'
 import { PeoplePage } from './PeoplePage'
 import { PersonDetailPage } from './PersonDetailPage'
 import { ReportsPage } from './ReportsPage'
 import { SummaryPage } from './SummaryPage'
 
-const SECTIONS = ['summary', 'actors', 'people', 'assignments', 'reports'] as const
+const SECTIONS = ['summary', 'actors', 'map', 'people', 'assignments', 'reports'] as const
 
 export default function EconomicRoutes() {
   const { t } = useTranslation()
@@ -34,7 +35,7 @@ export default function EconomicRoutes() {
         <Tabs.List>
           {SECTIONS.map((key) => (
             <Tabs.Tab key={key} value={key}>
-              {t(`economic.tabs.${key}`)}
+              {key === 'map' ? t('geo.tab') : t(`economic.tabs.${key}`)}
             </Tabs.Tab>
           ))}
           {hasLevel(me, 'economic', 'admin') && (
@@ -46,6 +47,7 @@ export default function EconomicRoutes() {
         <Route index element={<SummaryPage />} />
         <Route path="actors" element={<ActorsPage />} />
         <Route path="actors/:id" element={<ActorDetailPage />} />
+        <Route path="map" element={<MapPage />} />
         <Route path="people" element={<PeoplePage />} />
         <Route path="people/:id" element={<PersonDetailPage />} />
         <Route path="assignments" element={<AssignmentsPage />} />

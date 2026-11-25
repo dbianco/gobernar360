@@ -55,8 +55,21 @@ def test_actors_csv_lists_every_actor(client):
 
     assert 'filename="economic-actors.csv"' in response.headers["content-disposition"]
     assert _rows(response) == [
-        ["name", "type", "sector", "cuit", "address", "phone", "email", "employees", "notes"],
-        ["Almacén", "", "", "", "", "", "", "", ""],
+        [
+            "name",
+            "type",
+            "sector",
+            "cuit",
+            "address",
+            "phone",
+            "email",
+            "employees",
+            "notes",
+            "zones",
+            "latitude",
+            "longitude",
+        ],
+        ["Almacén", "", "", "", "", "", "", "", "", "", "", ""],
         [
             "Panadería",
             "Comercio",
@@ -67,6 +80,9 @@ def test_actors_csv_lists_every_actor(client):
             "pan@example.test",
             "4",
             "'=SUM(1)",
+            "",
+            "",
+            "",
         ],
     ]
 

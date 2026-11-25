@@ -1,6 +1,31 @@
 import { http, HttpResponse, type JsonBodyType } from 'msw'
 import { setupServer } from 'msw/node'
 
+export const STANDARD_MAP = {
+  background: {
+    key: 'standard',
+    url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    max_zoom: 19,
+    provider: null,
+    tile_size: 256,
+    zoom_offset: 0,
+  },
+  api_key: null,
+}
+const NO_FIGURES = { values: {}, groups: [], suppressed: false }
+const NO_BREAKDOWN = {
+  boundaries_as_of: null,
+  metrics: [],
+  grouping: null,
+  zones: [],
+  outside: NO_FIGURES,
+  unlocated: NO_FIGURES,
+  total: NO_FIGURES,
+  threshold: null,
+}
+
 // Answers that many screens need; tests that care about them mock them themselves.
 export const server = setupServer(
   // Every dashboard summary shows its status strip.
@@ -25,6 +50,17 @@ export const server = setupServer(
   ),
   http.get('*/api/dashboards/:key/targets', () => HttpResponse.json([])),
   http.get('*/api/overview/combined', () => HttpResponse.json([])),
+  // Summaries, detail screens and the home page show the geographic layer: no zones, no
+  // locations.
+  http.get('*/api/map-background', () => HttpResponse.json(STANDARD_MAP)),
+  http.get('*/api/zones', () => HttpResponse.json([])),
+  http.get('*/api/dashboards/:key/geo/:record/zones', () => HttpResponse.json(NO_BREAKDOWN)),
+  http.get('*/api/dashboards/:key/geo/:record/unzoned', () =>
+    HttpResponse.json({ items: [], total: 0 }),
+  ),
+  http.get('*/api/dashboards/:key/geo/:record/:id/location', () =>
+    HttpResponse.json({ location: null, kinds: ['Point'], zones: [] }),
+  ),
 )
 
 type Method = 'get' | 'post' | 'put' | 'patch' | 'delete'

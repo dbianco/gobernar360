@@ -48,6 +48,7 @@ def test_editor_creates_a_household(client):
         "neighborhood": "Centro",
         "member_count": 0,
         "head": None,
+        "zones": [],
     }
     assert client.post(f"{BASE}/households", json={"name": "  "}).status_code == 422
     assert _count(municipality, Household) == 1

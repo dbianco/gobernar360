@@ -5,10 +5,12 @@ import uuid
 from typing import Any
 
 from fastapi import APIRouter
-from sqlalchemy import case, func, or_, select
+from sqlalchemy import case, func, select
+from sqlalchemy.orm import selectinload
 
 from gobernar360.core.errors import household_has_head, in_another_household, not_found
-from gobernar360.dashboards.social.access import Editor, Viewer
+from gobernar360.dashboards.social.access import Editor, Viewer, sees_households_on_map
+from gobernar360.dashboards.social.geography import household_conditions
 from gobernar360.dashboards.social.models import Household, SocialPerson
 from gobernar360.dashboards.social.schemas import (
     HouseholdDetail,
@@ -19,7 +21,7 @@ from gobernar360.dashboards.social.schemas import (
     PersonRef,
 )
 from gobernar360.platform.access import RequestContext
-from gobernar360.platform.listing import Page, PagingParams, SearchText, contains, page_of
+from gobernar360.platform.listing import Page, PagingParams, SearchText, page_of
 from gobernar360.platform.models import Person
 from gobernar360.platform.tenant_crud import (
     create_entity,
@@ -58,6 +60,7 @@ def _summaries(ctx: RequestContext, households: list[Household]) -> list[dict[st
     by_household: dict[uuid.UUID, list[SocialPerson]] = {h.id: [] for h in households}
     for member in _members(ctx, list(by_household)):
         by_household[member.household_id].append(member)
+    with_zones = sees_households_on_map(ctx)
     summaries = []
     for household in households:
         members = by_household[household.id]
@@ -71,6 +74,7 @@ def _summaries(ctx: RequestContext, households: list[Household]) -> list[dict[st
                 "member_count": len(members),
                 "head": PersonRef.model_validate(head) if head else None,
                 "members": members,
+                "zones": household.zones if with_zones else None,
             }
         )
     return summaries
@@ -82,9 +86,12 @@ def _detail(ctx: RequestContext, household: Household) -> dict[str, Any]:
 
 @router.get("/households")
 def list_households(ctx: Viewer, paging: PagingParams, q: SearchText = None) -> Page[HouseholdOut]:
-    query = select(Household).order_by(func.unaccent(Household.name), Household.id)
-    for word in (q or "").split():
-        query = query.where(or_(contains(Household.name, word), contains(Household.address, word)))
+    query = (
+        select(Household)
+        .options(selectinload(Household.zones))
+        .where(*household_conditions(q))
+        .order_by(func.unaccent(Household.name), Household.id)
+    )
     page = page_of(ctx, query, paging)
     return {"items": _summaries(ctx, page["items"]), "total": page["total"]}
 

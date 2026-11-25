@@ -106,10 +106,15 @@ it('rejects a malformed CUIT without calling the server', async () => {
 })
 
 it('shows an unknown staff size as none, and says why the list cannot be loaded', async () => {
-  mockApi('get', `${BASE}/actors`, page([makeActor({ employee_count: null })]))
+  const zones = [
+    { id: 'z-1', name: 'Centro' },
+    { id: 'z-2', name: 'Casco histórico' },
+  ]
+  mockApi('get', `${BASE}/actors`, page([makeActor({ employee_count: null, zones })]))
   const { unmount } = renderEconomic(<ActorsPage />)
   const row = within(await screen.findByRole('row', { name: /Panadería La Espiga/ }))
   expect(row.getByText(t('app.none'))).toBeInTheDocument()
+  expect(row.getByText('Centro, Casco histórico')).toBeInTheDocument()
   unmount()
 
   mockApiError('get', `${BASE}/actors`, 500, 'boom')

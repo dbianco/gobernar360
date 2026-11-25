@@ -1,0 +1,207 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks again when the map moves > screen at the end 1`] = `
+"[Mapa de actores]
+Centro
+[Acercar]
++
+[Alejar]
+−
+10 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+0 registros en el área visible."
+`;
+
+exports[`asks only for what is inside the visible area, with the filters > screen at the end 1`] = `
+"[Mapa de actores]
+Centro
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+3 registros en el área visible."
+`;
+
+exports[`draws lines, which open their record as well > screen at the end 1`] = `
+"[Mapa de actores]
+[Pavimento]
+Centro
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Pavimento
+[Cerrar la selección]
+1 registro en el área visible."
+`;
+
+exports[`draws the background the municipality chose, with its key > screen at the end 1`] = `
+"[Mapa de actores]
+Centro
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+Map by
+Maps
+0 registros en el área visible."
+`;
+
+exports[`goes to the records of a cluster > screen at the end 1`] = `
+"[Mapa de actores]
+[12 registros juntos: acercar para separarlos]
+12
+Centro
+[Acercar]
++
+[Alejar]
+−
+500 m
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+12 registros en el área visible."
+`;
+
+exports[`keeps zones and records when the background cannot be loaded > screen at the end 1`] = `
+"[Mapa de actores]
+[Panadería]
+Centro
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+1 registro en el área visible."
+`;
+
+exports[`offers every record of a place that several share > screen at the end 1`] = `
+"[Mapa de actores]
+[Local 1, Local 2]
+2
+Centro
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Local 1
+Local 2
+[Cerrar la selección]
+2 registros en el área visible."
+`;
+
+exports[`opens a record from its mark > screen at the end 1`] = `"the shop"`;
+
+exports[`opens a record with the keyboard too, and closes what it selected > screen at the end 1`] = `
+"[Mapa de actores]
+[Panadería]
+Centro
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+1 registro en el área visible."
+`;
+
+exports[`opens on the whole country while there are no zones > screen at the end 1`] = `
+"[Mapa de actores]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+0 registros en el área visible."
+`;
+
+exports[`says when there is more than it shows > screen at the end 1`] = `
+"[Mapa de actores]
+[Uno]
+Centro
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+1500 registros en el área visible.
+Se muestra solo uno: acercá el mapa para ver el resto."
+`;
+
+exports[`says why the records cannot be shown, and keeps the map > screen at the end 1`] = `
+"No se pudo mostrar esa parte del mapa.
+[Mapa de actores]
+Centro
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`says why the zones cannot be shown > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
+
+exports[`shows zones and records when the choice of background cannot be read > screen at the end 1`] = `
+"[Mapa de actores]
+[Panadería]
+Centro
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+No se pudo cargar el fondo del mapa. Las zonas y los registros se muestran igual.
+1 registro en el área visible."
+`;

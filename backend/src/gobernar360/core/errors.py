@@ -164,6 +164,48 @@ def rate_limited(retry_after: int) -> ApiError:
     )
 
 
+def invalid_location(message: str) -> ApiError:
+    return ApiError(422, "invalid_location", message)
+
+
+def map_api_key_required() -> ApiError:
+    return ApiError(422, "map_api_key_required", "This map needs a key from its provider.")
+
+
+def invalid_area(message: str) -> ApiError:
+    return ApiError(422, "invalid_area", message)
+
+
+def invalid_boundary(message: str) -> ApiError:
+    return ApiError(422, "invalid_boundary", message)
+
+
+def zone_not_closed() -> ApiError:
+    return ApiError(
+        422, "zone_not_closed", "The boundary is not closed: its last corner must be its first one."
+    )
+
+
+def zone_self_intersects(reason: str) -> ApiError:
+    return ApiError(422, "zone_self_intersects", f"The boundary crosses itself: {reason}.")
+
+
+def zone_name_exists() -> ApiError:
+    return ApiError(409, "zone_name_exists", "Another zone already has this name.")
+
+
+def zone_changed() -> ApiError:
+    return ApiError(
+        409, "zone_changed", "Somebody else changed the boundary of this zone in the meantime."
+    )
+
+
+def zone_file_invalid(details: list[dict]) -> ApiError:
+    return ApiError(
+        422, "zone_file_invalid", "The file was not imported: some zones have problems.", details
+    )
+
+
 def install_error_handlers(app: FastAPI) -> None:
     @app.exception_handler(ApiError)
     async def handle_api_error(request: Request, exc: ApiError) -> JSONResponse:

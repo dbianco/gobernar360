@@ -18,6 +18,18 @@ Editor = Annotated[RequestContext, Depends(require_dashboard(KEY, AccessLevel.ED
 Admin = Annotated[RequestContext, Depends(require_dashboard(KEY, AccessLevel.ADMIN))]
 
 
+# The least level that sees where one household lives; those below get counts per zone.
+HOUSEHOLDS_ON_MAP = AccessLevel.EDITOR
+
+
+def sees_households_on_map(ctx: RequestContext) -> bool:
+    """Whether the member may know the place or the zone of one household.
+
+    Knowing that a family is assisted and where it lives exposes it to its neighbours.
+    """
+    return effective_level(ctx.db, ctx.membership, KEY) >= HOUSEHOLDS_ON_MAP
+
+
 def reads_reserved_text(ctx: RequestContext) -> bool:
     """Whether the member may read what the team wrote about a person.
 

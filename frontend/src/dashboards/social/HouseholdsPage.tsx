@@ -16,10 +16,12 @@ import { Link } from 'react-router-dom'
 import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
+import { zoneNames } from '../../platform/geo/zoneNames'
 import { Pager } from '../../platform/Pager'
 import { hasLevel } from '../../platform/access'
 import { BASE_PATH, useHouseholds } from './api'
 import { HouseholdForm } from './HouseholdForm'
+import { HOUSEHOLDS } from './located'
 import { fitPage, usePaging } from '../../platform/paging'
 import { SearchInput } from '../../platform/SearchInput'
 
@@ -34,6 +36,7 @@ export function HouseholdsPage() {
   const households = useHouseholds({ q, limit, offset })
   fitPage(paging, households)
   const label = (key: string) => t(`social.households.${key}`)
+  const withZones = hasLevel(me, 'social', HOUSEHOLDS.individualLevel)
 
   return (
     <Stack>
@@ -63,6 +66,9 @@ export function HouseholdsPage() {
                 <HelpTh help={t('social.help.householdsPage.neighborhood')}>
                   {label('neighborhood')}
                 </HelpTh>
+                {withZones && (
+                  <HelpTh help={t('social.help.householdsPage.zones')}>{t('geo.zone')}</HelpTh>
+                )}
                 <HelpTh help={t('social.help.householdsPage.head')}>{label('head')}</HelpTh>
                 <HelpTh help={t('social.help.householdsPage.members')} ta="right">
                   {label('members')}
@@ -79,6 +85,9 @@ export function HouseholdsPage() {
                   </Table.Td>
                   <Table.Td>{household.address || t('app.none')}</Table.Td>
                   <Table.Td>{household.neighborhood || t('app.none')}</Table.Td>
+                  {withZones && (
+                    <Table.Td>{zoneNames(household.zones ?? [], t('app.none'))}</Table.Td>
+                  )}
                   <Table.Td>
                     {household.head?.full_name ?? (
                       <Text span c="dimmed">
