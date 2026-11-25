@@ -1,8 +1,9 @@
 """Configuración: what a municipality's administrators set for it.
 
-Who receives notification emails, whether members may sign in with single sign-on, and
-the municipality's own version of each email. The same routes serve the municipality's
-administrators and the platform operator, as the member routes do (see members).
+Who receives notification emails, whether members may sign in with single sign-on, what
+its maps show, and the municipality's own version of each email. The same routes serve the
+municipality's administrators and the platform operator, as the member routes do (see
+members).
 """
 
 import html
@@ -11,16 +12,26 @@ from datetime import UTC, datetime, timedelta
 from typing import Annotated
 
 from fastapi import APIRouter, Depends
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 from sqlalchemy import select
 
 from gobernar360.core.config import get_settings
+from gobernar360.core.errors import invalid_reference, map_api_key_required
 from gobernar360.platform import email_templates, municipality_settings
 from gobernar360.platform.access import RequestContext, require_municipality_admin
 from gobernar360.platform.audit import record_change
 from gobernar360.platform.clock import Today
 from gobernar360.platform.email_templates import Html, Spec
-from gobernar360.platform.models import EmailTemplate, Municipality, MunicipalitySettings
+from gobernar360.platform.geo import backgrounds
+from gobernar360.platform.geo.background_router import BackgroundOut
+from gobernar360.platform.models import (
+    DEFAULT_SMALL_ZONE_THRESHOLD,
+    MAX_SMALL_ZONE_THRESHOLD,
+    MIN_SMALL_ZONE_THRESHOLD,
+    EmailTemplate,
+    Municipality,
+    MunicipalitySettings,
+)
 from gobernar360.platform.notifications import previous_month
 from gobernar360.platform.outbox import enqueue
 from gobernar360.platform.schemas import Email
@@ -33,6 +44,24 @@ class SettingsOut(BaseModel):
     # Whether the platform has an identity provider configured at all.
     sso_available: bool
 
+    small_zone_threshold: int
+    map_background: str
+    # Null when there is none; the background in use may not need it.
+    map_api_key: str | None
+    # What can be chosen.
+    map_backgrounds: list[BackgroundOut]
+
+
+class MapSettingsIn(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    small_zone_threshold: Annotated[
+        int, Field(ge=MIN_SMALL_ZONE_THRESHOLD, le=MAX_SMALL_ZONE_THRESHOLD, strict=True)
+    ]
+    map_background: str
+    # Only what keys are made of: it becomes part of an address.
+    map_api_key: Annotated[str, StringConstraints(pattern=r"^[A-Za-z0-9._-]{1,100}$")] | None = None
+
 
 class SettingsIn(BaseModel):
     notification_emails: Annotated[list[Email], Field(max_length=50)] = []
@@ -44,6 +73,10 @@ def _out(row: MunicipalitySettings | None) -> SettingsOut:
         notification_emails=list(row.notification_emails) if row else [],
         sso_enabled=bool(row and row.sso_enabled),
         sso_available=get_settings().sso_enabled,
+        small_zone_threshold=(row.small_zone_threshold if row else DEFAULT_SMALL_ZONE_THRESHOLD),
+        map_background=backgrounds.in_use(row.map_background if row else backgrounds.DEFAULT).key,
+        map_api_key=row.map_api_key if row else None,
+        map_backgrounds=[BackgroundOut.model_validate(b) for b in backgrounds.BACKGROUNDS],
     )
 
 
@@ -71,6 +104,15 @@ def _template_out(spec: Spec, template: email_templates.Template) -> TemplateOut
         variables=list(spec.variables),
         required=list(spec.required),
     )
+
+
+def _own_row(ctx: RequestContext) -> MunicipalitySettings:
+    """The municipality's configuration, created the first time something is set."""
+    row = municipality_settings.find(ctx.db, ctx.municipality_id)
+    if row is None:
+        row = MunicipalitySettings(municipality_id=ctx.municipality_id)
+        ctx.db.add(row)
+    return row
 
 
 def _stored(ctx: RequestContext, key: str) -> EmailTemplate | None:
@@ -110,10 +152,7 @@ def build_router(context: Callable[..., RequestContext]) -> APIRouter:
 
     @router.put("/settings")
     def update_settings(payload: SettingsIn, ctx: SettingsContext) -> SettingsOut:
-        row = municipality_settings.find(ctx.db, ctx.municipality_id)
-        if row is None:
-            row = MunicipalitySettings(municipality_id=ctx.municipality_id)
-            ctx.db.add(row)
+        row = _own_row(ctx)
         # Already normalised by `Email`; repeated addresses would get every email twice.
         row.notification_emails = list(dict.fromkeys(payload.notification_emails))
         row.sso_enabled = payload.sso_enabled
@@ -125,6 +164,34 @@ def build_router(context: Callable[..., RequestContext]) -> APIRouter:
             "update",
             row,
             {"notification_emails": row.notification_emails, "sso_enabled": row.sso_enabled},
+        )
+        return _out(row)
+
+    @router.put("/settings/map")
+    def update_map_settings(payload: MapSettingsIn, ctx: SettingsContext) -> SettingsOut:
+        """The background of the maps, and which counts per zone are too small to show."""
+        chosen = backgrounds.find(payload.map_background)
+        if chosen is None:
+            raise invalid_reference("map_background is not one of the backgrounds offered.")
+        if chosen.provider is not None and payload.map_api_key is None:
+            raise map_api_key_required()
+        row = _own_row(ctx)
+        row.small_zone_threshold = payload.small_zone_threshold
+        row.map_background = chosen.key
+        # A key nobody uses is not kept.
+        row.map_api_key = payload.map_api_key if chosen.provider is not None else None
+        row.updated_at = datetime.now(UTC)
+        row.updated_by = ctx.user.id
+        ctx.db.flush()
+        record_change(
+            ctx,
+            "update",
+            row,
+            {
+                "small_zone_threshold": row.small_zone_threshold,
+                "map_background": row.map_background,
+                "map_api_key_set": row.map_api_key is not None,
+            },
         )
         return _out(row)
 

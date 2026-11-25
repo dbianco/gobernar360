@@ -1,6 +1,13 @@
+import pytest
 from fastapi.testclient import TestClient
 
 from gobernar360.main import create_app
+
+
+@pytest.fixture
+def client():
+    """Over an application built for the test, so that how it is built is what is tested."""
+    return TestClient(create_app(), headers={"X-Requested-With": "gobernar360"})
 
 
 def test_health_endpoint_reports_ok():
@@ -52,8 +59,8 @@ def test_another_origin_is_not_allowed(client):
     assert "access-control-allow-origin" not in preflight.headers
 
 
-def test_unsafe_requests_need_the_csrf_header(app):
-    plain = TestClient(app)
+def test_unsafe_requests_need_the_csrf_header():
+    plain = TestClient(create_app())
 
     response = plain.post("/api/auth/logout")
 

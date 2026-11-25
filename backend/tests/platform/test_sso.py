@@ -511,3 +511,16 @@ def test_a_refused_sign_in_goes_back_to_the_login_page_with_a_redirect(client, p
 
     assert response.status_code == 302
     assert response.headers["location"] == "http://localhost:5173/login?sso_error=failed"
+
+
+def test_coming_back_after_the_municipality_stopped_allowing_it_is_refused(
+    client, provider, noetinger
+):
+    answer = provider.authorize(_start(client), "ana@noetinger.test", True)
+    with admin_session() as session, session.begin():
+        session.execute(update(MunicipalitySettings).values(sso_enabled=False))
+
+    response = client.get(CALLBACK, params=answer, follow_redirects=False)
+
+    assert _login_error(response) == "disabled"
+    assert _session_count() == 0

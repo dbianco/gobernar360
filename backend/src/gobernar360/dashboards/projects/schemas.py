@@ -203,6 +203,8 @@ class ProjectOut(BaseModel):
     manual_progress: int | None
     sdgs: list[int]
     milestones: list[MilestoneOut]
+    # Worked out from the project's location.
+    zones: list[NamedRef]
 
 
 class IndicatorIn(BaseModel):

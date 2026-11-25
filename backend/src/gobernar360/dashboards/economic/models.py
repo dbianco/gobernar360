@@ -16,6 +16,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from gobernar360.core.db import AuditMixin, Base, TenantMixin, uuid_pk
+from gobernar360.platform.geo.located import LocatedMixin
 from gobernar360.platform.models import Person
 
 # Who a tool can be assigned to.
@@ -108,7 +109,7 @@ class Tool(TenantMixin, AuditMixin, Base):
     subcategory: Mapped[ToolSubcategory | None] = relationship(lazy="joined")
 
 
-class Actor(TenantMixin, AuditMixin, Base):
+class Actor(LocatedMixin, TenantMixin, AuditMixin, Base):
     """A company, shop, entrepreneur or organisation of the local economy."""
 
     __tablename__ = "economic_actors"

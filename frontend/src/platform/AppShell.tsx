@@ -12,6 +12,7 @@ import { useDisclosure } from '@mantine/hooks'
 import {
   IconBuildingCommunity,
   IconLayoutDashboard,
+  IconMap2,
   IconSettings,
   IconUsers,
   type Icon,
@@ -101,6 +102,7 @@ export function AppShell() {
         {membership && link('/', t('nav.overview'), IconLayoutDashboard)}
         {membership && visibleDashboards.map((d) => link(d.basePath, t(d.labelKey), d.icon))}
         {membership?.is_admin && link('/admin/users', t('nav.users'), IconUsers)}
+        {membership?.is_admin && link('/admin/zones', t('nav.zones'), IconMap2)}
         {membership?.is_admin && link('/admin/settings', t('nav.settings'), IconSettings)}
         {isOperator && link('/platform', t('nav.platform'), IconBuildingCommunity)}
       </Shell.Navbar>

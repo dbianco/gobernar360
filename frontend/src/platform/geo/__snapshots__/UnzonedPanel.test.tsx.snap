@@ -1,0 +1,107 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`lists what has no location yet, and searches from the first page > screen at the end 1`] = `
+"[Para revisar]
+Para revisar
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+[Borrar la búsqueda]
+[Para revisar]
+Nombre
+[Qué significa Nombre]
+Registro para revisar. Abrilo para corregir su ubicación.
+Feria
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–10 de 25
+Anterior
+Siguiente"
+`;
+
+exports[`lists what has no location yet, and searches from the first page > screen at the start 1`] = `
+"[Para revisar]
+Para revisar
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+[Cargando…]"
+`;
+
+exports[`lists what is outside every zone, each with its screen > screen at the end 1`] = `
+"[Para revisar]
+Para revisar
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+[Para revisar]
+Nombre
+[Qué significa Nombre]
+Registro para revisar. Abrilo para corregir su ubicación.
+Campo
+Vivero"
+`;
+
+exports[`lists what is outside every zone, each with its screen > screen at the start 1`] = `
+"[Para revisar]
+Para revisar
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+[Cargando…]"
+`;
+
+exports[`says when there is nothing to review, and when nothing matches > screen at the end 1`] = `
+"[Para revisar]
+Para revisar
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+[Borrar la búsqueda]
+Nada coincide con la búsqueda."
+`;
+
+exports[`says when there is nothing to review, and when nothing matches > screen at the start 1`] = `
+"[Para revisar]
+Para revisar
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+[Cargando…]"
+`;
+
+exports[`says why the list cannot be shown > screen at the end 1`] = `
+"[Para revisar]
+Para revisar
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+No tenés permiso para realizar esta acción."
+`;
+
+exports[`says why the list cannot be shown > screen at the start 1`] = `
+"[Para revisar]
+Para revisar
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+[Cargando…]"
+`;

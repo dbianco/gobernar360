@@ -6,6 +6,7 @@ import { useAuth } from '../../platform/authContext'
 import { RequireDashboard } from '../../platform/RequireDashboard'
 import { hasLevel } from '../../platform/access'
 import { IndicatorsPage } from './IndicatorsPage'
+import { MapPage } from './MapPage'
 import { ParametersPage } from './ParametersPage'
 import { ProjectDetailPage } from './ProjectDetailPage'
 import { ProjectsPage } from './ProjectsPage'
@@ -37,6 +38,7 @@ function ScreensOfTerm() {
       <Route index element={<SummaryPage />} />
       <Route path="projects" element={<ProjectsPage />} />
       <Route path="projects/:id" element={<ProjectDetailPage />} />
+      <Route path="map" element={<MapPage />} />
       <Route path="indicators" element={<IndicatorsPage />} />
       <Route path="*" element={<Navigate to={BASE_PATH} replace />} />
     </Routes>
@@ -60,6 +62,7 @@ export default function ProjectsRoutes() {
         <Tabs.List>
           <Tabs.Tab value="summary">{t('projects.tabs.summary')}</Tabs.Tab>
           <Tabs.Tab value="projects">{t('projects.tabs.projects')}</Tabs.Tab>
+          <Tabs.Tab value="map">{t('geo.tab')}</Tabs.Tab>
           <Tabs.Tab value="indicators">{t('projects.tabs.indicators')}</Tabs.Tab>
           {hasLevel(me, 'projects', 'admin') && (
             <Tabs.Tab value="parameters">{t('projects.tabs.parameters')}</Tabs.Tab>

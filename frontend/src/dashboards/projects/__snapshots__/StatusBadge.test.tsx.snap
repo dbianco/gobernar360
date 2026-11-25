@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`names delayed next to its color > screen at the end 1`] = `"Retrasado"`;
+
+exports[`names delayed next to its color > screen at the start 1`] = `"Retrasado"`;
+
+exports[`names finished next to its color > screen at the end 1`] = `"Finalizado"`;
+
+exports[`names finished next to its color > screen at the start 1`] = `"Finalizado"`;
+
+exports[`names in_progress next to its color > screen at the end 1`] = `"En implementación"`;
+
+exports[`names in_progress next to its color > screen at the start 1`] = `"En implementación"`;
+
+exports[`names not_started next to its color > screen at the end 1`] = `"Sin iniciar"`;
+
+exports[`names not_started next to its color > screen at the start 1`] = `"Sin iniciar"`;

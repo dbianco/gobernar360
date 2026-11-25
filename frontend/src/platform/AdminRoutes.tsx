@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 
+import { MapLoader } from './geo/MapLoader'
 import { UsersAdminPage } from './UsersAdminPage'
 
 // Loaded on demand: the email editor is large and only administrators open this page.
@@ -10,9 +11,14 @@ const SettingsPage = lazy(() =>
   import('./settings/SettingsPage').then((module) => ({ default: module.SettingsPage })),
 )
 
-const SECTIONS = ['users', 'settings'] as const
+// Loaded on demand: it brings the map.
+const ZonesPage = lazy(() =>
+  import('./geo/ZonesPage').then((module) => ({ default: module.ZonesPage })),
+)
 
-/** What a municipality's administrators manage: its users and its configuration. */
+const SECTIONS = ['users', 'zones', 'settings'] as const
+
+/** What a municipality's administrators manage: its users, its zones and its configuration. */
 export function AdminRoutes() {
   const { t } = useTranslation()
   const location = useLocation()
@@ -33,7 +39,15 @@ export function AdminRoutes() {
       <Routes>
         <Route path="users" element={<UsersAdminPage />} />
         <Route
-          path="settings"
+          path="zones"
+          element={
+            <Suspense fallback={<MapLoader />}>
+              <ZonesPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="settings/*"
           element={
             <Suspense
               fallback={

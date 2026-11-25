@@ -1,4 +1,4 @@
-import { screen, waitFor, within } from '@testing-library/react'
+import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, expect, it, vi } from 'vitest'
 
@@ -6,6 +6,7 @@ import App from '../../App'
 import { makeMe } from '../../test/fixtures'
 import { renderApp, t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
+import { MAP_SETTINGS } from './testData'
 import type { EmailTemplate, MunicipalitySettings } from './types'
 import { answerConfirm } from '../../test/confirm'
 
@@ -13,6 +14,7 @@ const SETTINGS: MunicipalitySettings = {
   notification_emails: ['jefa@noetinger.test'],
   sso_enabled: false,
   sso_available: true,
+  ...MAP_SETTINGS,
 }
 
 const INVITATION: EmailTemplate = {
@@ -34,11 +36,15 @@ const RESET: EmailTemplate = {
 
 afterEach(() => vi.restoreAllMocks())
 
-function renderSettings(settings = SETTINGS, templates = [INVITATION, RESET]) {
+function renderSettings(settings = SETTINGS, templates = [INVITATION, RESET], tab = '') {
   mockApi('get', '/admin/settings', settings)
   mockApi('get', '/admin/email-templates', templates)
-  return renderApp(<App />, { me: makeMe({ isAdmin: true }), route: '/admin/settings' })
+  return renderApp(<App />, { me: makeMe({ isAdmin: true }), route: `/admin/settings${tab}` })
 }
+
+const renderAccess = (settings = SETTINGS) => renderSettings(settings, undefined, '/access')
+const tab = (key: string) => screen.getByRole('tab', { name: t(`settings.tabs.${key}`) })
+const heading = (key: string) => screen.queryByRole('heading', { name: t(`settings.${key}.title`) })
 
 it('is a tab next to the users of the municipality', async () => {
   mockApi('get', '/overview', [])
@@ -100,7 +106,7 @@ it('points out malformed addresses without saving', async () => {
 
 it('turns single sign-on on for the municipality', async () => {
   const requests = mockApi('put', '/admin/settings', { ...SETTINGS, sso_enabled: true })
-  renderSettings()
+  renderAccess()
   const user = userEvent.setup()
 
   const toggle = await screen.findByRole('switch', {
@@ -117,7 +123,7 @@ it('turns single sign-on on for the municipality', async () => {
 })
 
 it('explains that single sign-on needs a provider the platform does not have', async () => {
-  renderSettings({ ...SETTINGS, sso_available: false })
+  renderAccess({ ...SETTINGS, sso_available: false })
 
   expect(await screen.findByText(t('settings.sso.unavailable'))).toBeInTheDocument()
   expect(
@@ -339,7 +345,7 @@ it('says why the recipients could not be saved', async () => {
 
 it('says why single sign-on could not be changed, and leaves it as it was', async () => {
   mockApiError('put', '/admin/settings', 500, 'generic')
-  renderSettings()
+  renderAccess()
   const user = userEvent.setup()
 
   const toggle = await screen.findByRole('switch', {
@@ -440,4 +446,127 @@ it('shows an example of addresses from the texts of the app', async () => {
     'placeholder',
     t('settings.recipients.placeholder'),
   )
+})
+
+it('orders what can be configured in tabs, each with its own address', async () => {
+  const zones = mockApi('get', '/zones', [])
+  renderSettings()
+  const user = userEvent.setup()
+
+  expect(await screen.findByLabelText(t('settings.recipients.label'))).toBeInTheDocument()
+  const tabs = within(screen.getByRole('tablist', { name: t('settings.title') }))
+  expect(tabs.getAllByRole('tab').map((one) => one.textContent)).toEqual([
+    t('settings.tabs.emails'),
+    t('settings.tabs.access'),
+    t('settings.tabs.maps'),
+  ])
+  expect(tab('emails')).toHaveAttribute('aria-selected', 'true')
+  expect(heading('recipients')).toBeVisible()
+  expect(await screen.findByRole('heading', { name: t('settings.templates.title') })).toBeVisible()
+  expect(heading('sso')).toBeNull()
+  expect(heading('map')).toBeNull()
+  // Nothing of a tab is loaded until it is opened.
+  expect(zones).toHaveLength(0)
+
+  await user.click(tab('access'))
+  expect(heading('sso')).toBeVisible()
+  expect(heading('recipients')).toBeNull()
+  await user.click(tab('maps'))
+  expect(heading('map')).toBeVisible()
+  expect(heading('sso')).toBeNull()
+  await waitFor(() => expect(zones).toHaveLength(1))
+})
+
+it.each([
+  ['', 'recipients'],
+  ['/', 'recipients'],
+  ['/access', 'sso'],
+  ['/maps', 'map'],
+  // The first tab has the address of the screen, also when somebody writes its name, and
+  // so does one that does not exist.
+  ['/emails', 'recipients'],
+  ['/nothing', 'recipients'],
+  ['/maps/more', 'recipients'],
+])('opens the tab of the address "%s"', async (address, shown) => {
+  renderSettings(SETTINGS, [INVITATION], address)
+
+  expect(
+    await screen.findByRole('heading', { name: t(`settings.${shown}.title`) }),
+  ).toBeVisible()
+  expect(screen.getAllByRole('tab', { selected: true })).toHaveLength(2)
+})
+
+it('keeps what was being typed in a tab while another is looked at', async () => {
+  renderSettings()
+  const user = userEvent.setup()
+  const subject = await screen.findByLabelText(t('settings.templates.subject'), { exact: false })
+  await user.type(screen.getByLabelText(t('settings.recipients.label')), ', otra@noetinger.test')
+  await user.type(subject, ' ya')
+
+  await user.click(tab('maps'))
+  const background = screen.getByRole('combobox', { name: t('settings.map.background') })
+  await user.selectOptions(background, t('settings.map.backgrounds.france.name'))
+  await user.click(tab('emails'))
+
+  expect(screen.getByLabelText(t('settings.recipients.label'))).toHaveValue(
+    'jefa@noetinger.test, otra@noetinger.test',
+  )
+  expect(subject).toBeVisible()
+  expect(subject).toHaveValue(`${INVITATION.subject} ya`)
+  await user.click(tab('maps'))
+  expect(screen.getByRole('combobox', { name: t('settings.map.background') })).toHaveValue('france')
+})
+
+it('says in every tab why the settings cannot be loaded', async () => {
+  mockApiError('get', '/admin/settings', 500, 'generic')
+  renderApp(<App />, { me: makeMe({ isAdmin: true }), route: '/admin/settings/maps' })
+  const user = userEvent.setup()
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  expect(heading('map')).toBeNull()
+  await user.click(tab('access'))
+  expect(screen.getByText(t('errors.generic'))).toBeInTheDocument()
+})
+
+it.each([
+  ['ana@noetinger.test', true],
+  ['a@b.c', true],
+  ['ana.g+avisos@noetinger.gob.ar', true],
+  ['ana', false],
+  ['ana@noetinger', false],
+  ['@noetinger.test', false],
+  ['ana@.test', false],
+  ['ana@noetinger.', false],
+  ['ana@@noetinger.test', false],
+  ['ana@noetinger@x.test', false],
+])('takes %s for an address: %s', async (address, valid) => {
+  const saved = mockApi('put', '/admin/settings', SETTINGS)
+  renderSettings()
+  const user = userEvent.setup()
+  const field = await screen.findByLabelText(t('settings.recipients.label'))
+
+  fireEvent.change(field, { target: { value: `uno@noetinger.test; ${address}` } })
+  await user.click(screen.getByRole('button', { name: t('settings.recipients.save') }))
+
+  if (valid) {
+    await waitFor(() => expect(saved).toHaveLength(1))
+    expect(saved[0].body).toMatchObject({ notification_emails: ['uno@noetinger.test', address] })
+  } else {
+    const message = t('settings.recipients.invalid', { emails: address })
+    expect(await screen.findByText(message)).toBeInTheDocument()
+    expect(saved).toHaveLength(0)
+  }
+})
+
+it('names every address that is not one', async () => {
+  renderSettings()
+  const user = userEvent.setup()
+  const field = await screen.findByLabelText(t('settings.recipients.label'))
+  fireEvent.change(field, { target: { value: 'uno, dos\n tres@x.test' } })
+
+  await user.click(screen.getByRole('button', { name: t('settings.recipients.save') }))
+
+  expect(
+    await screen.findByText(t('settings.recipients.invalid', { emails: 'uno, dos' })),
+  ).toBeInTheDocument()
 })

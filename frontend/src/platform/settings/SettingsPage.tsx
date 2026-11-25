@@ -1,135 +1,56 @@
-import {
-  Alert,
-  Button,
-  Group,
-  Loader,
-  Paper,
-  Stack,
-  Switch,
-  Text,
-  Textarea,
-  Title,
-} from '@mantine/core'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { type FormEvent, useState } from 'react'
+import { Alert, Loader, Paper, Stack, Tabs, Text, Title } from '@mantine/core'
+import { useQuery } from '@tanstack/react-query'
+import { type ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 import { api } from '../../api/client'
 import { errorMessage } from '../errorMessage'
 import { EmailTemplatesPanel } from './EmailTemplatesPanel'
+import { MapSettingsForm } from './MapSettingsForm'
+import { RecipientsForm } from './RecipientsForm'
 import { useSettingsScope } from './scope'
+import { SsoForm } from './SsoForm'
 import type { MunicipalitySettings } from './types'
 
-const EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/
+/**
+ * What can be configured, by kind. Each tab is the last part of the address, except the
+ * first, which is the address of the screen. Something that fits none goes in a "general"
+ * tab, to be added before the rest when there is such a thing.
+ */
+const TABS = ['emails', 'access', 'maps'] as const
+type Tab = (typeof TABS)[number]
 
-/** Addresses typed in a list separated by commas (or semicolons, spaces, new lines). */
-function parseEmails(text: string): string[] {
-  return text
-    .split(/[\s,;]+/)
-    .map((email) => email.trim())
-    .filter(Boolean)
-}
+const isTab = (text: string): text is Tab => (TABS as readonly string[]).includes(text)
 
-function useSaveSettings() {
-  const queryClient = useQueryClient()
-  const { base, settingsKey } = useSettingsScope()
-  return async (body: Omit<MunicipalitySettings, 'sso_available'>) => {
-    const saved = await api<MunicipalitySettings>(`${base}/settings`, { method: 'PUT', body })
-    queryClient.setQueryData(settingsKey, saved)
-    return saved
-  }
-}
-
-function RecipientsForm({ settings }: { settings: MunicipalitySettings }) {
-  const { t } = useTranslation()
-  const save = useSaveSettings()
-  const [text, setText] = useState(settings.notification_emails.join(', '))
-  const [error, setError] = useState<string | null>(null)
-  const [saved, setSaved] = useState(false)
-  const [pending, setPending] = useState(false)
-
-  async function submit(event: FormEvent) {
-    event.preventDefault()
-    setSaved(false)
-    const emails = parseEmails(text)
-    const invalid = emails.filter((email) => !EMAIL.test(email))
-    if (invalid.length > 0) {
-      setError(t('settings.recipients.invalid', { emails: invalid.join(', ') }))
-      return
-    }
-    setPending(true)
-    setError(null)
-    try {
-      const result = await save({ notification_emails: emails, sso_enabled: settings.sso_enabled })
-      setText(result.notification_emails.join(', '))
-      setSaved(true)
-    } catch (caught) {
-      setError(errorMessage(caught))
-    } finally {
-      setPending(false)
-    }
-  }
-
+function Section({ children }: { children: ReactNode }) {
   return (
-    <form onSubmit={(event) => void submit(event)}>
-      <Stack>
-        <Title order={3}>{t('settings.recipients.title')}</Title>
-        {saved && <Alert color="green">{t('settings.saved')}</Alert>}
-        {error && <Alert color="red">{error}</Alert>}
-        <Textarea
-          label={t('settings.recipients.label')}
-          description={t('settings.recipients.hint')}
-          placeholder={t('settings.recipients.placeholder')}
-          autosize
-          minRows={2}
-          value={text}
-          onChange={(event) => {
-            setText(event.currentTarget.value)
-            setSaved(false)
-          }}
-        />
-        <Group justify="flex-end">
-          <Button type="submit" loading={pending}>
-            {t('settings.recipients.save')}
-          </Button>
-        </Group>
-      </Stack>
-    </form>
+    <Paper withBorder p="md">
+      {children}
+    </Paper>
   )
 }
 
-function SsoForm({ settings }: { settings: MunicipalitySettings }) {
-  const { t } = useTranslation()
-  const save = useSaveSettings()
-  const [error, setError] = useState<string | null>(null)
-  const [pending, setPending] = useState(false)
-
-  async function toggle(enabled: boolean) {
-    setPending(true)
-    setError(null)
-    try {
-      await save({ notification_emails: settings.notification_emails, sso_enabled: enabled })
-    } catch (caught) {
-      setError(errorMessage(caught))
-    } finally {
-      setPending(false)
-    }
+function TabContent({ tab, settings }: { tab: Tab; settings: MunicipalitySettings | undefined }) {
+  if (tab === 'emails') {
+    return (
+      <>
+        {settings && (
+          <Section>
+            <RecipientsForm settings={settings} />
+          </Section>
+        )}
+        <Section>
+          <EmailTemplatesPanel />
+        </Section>
+      </>
+    )
   }
-
+  if (!settings) return null
   return (
-    <Stack>
-      <Title order={3}>{t('settings.sso.title')}</Title>
-      {error && <Alert color="red">{error}</Alert>}
-      {!settings.sso_available && <Alert color="yellow">{t('settings.sso.unavailable')}</Alert>}
-      <Switch
-        label={t('settings.sso.label')}
-        description={t('settings.sso.hint')}
-        checked={settings.sso_enabled}
-        // It can always be turned off, even once the platform lost its provider.
-        disabled={pending || (!settings.sso_available && !settings.sso_enabled)}
-        onChange={(event) => void toggle(event.currentTarget.checked)}
-      />
-    </Stack>
+    <Section>
+      {tab === 'access' ? <SsoForm settings={settings} /> : <MapSettingsForm settings={settings} />}
+    </Section>
   )
 }
 
@@ -139,11 +60,22 @@ function SsoForm({ settings }: { settings: MunicipalitySettings }) {
  */
 export function SettingsPage() {
   const { t } = useTranslation()
-  const { base, settingsKey } = useSettingsScope()
+  const { '*': rest = '' } = useParams()
+  const navigate = useNavigate()
+  const { base, path, settingsKey } = useSettingsScope()
   const settings = useQuery({
     queryKey: settingsKey,
     queryFn: () => api<MunicipalitySettings>(`${base}/settings`),
   })
+  const address = (tab: Tab) => (tab === TABS[0] ? path : `${path}/${tab}`)
+  const known = isTab(rest)
+  const tab = known ? rest : TABS[0]
+  // A tab stays once opened, so that going to another one loses nothing half typed. Not
+  // before: a map cannot be drawn while it is hidden.
+  const [opened, setOpened] = useState<Tab[]>([tab])
+  if (!opened.includes(tab)) setOpened([...opened, tab])
+
+  if (rest !== '' && (!known || rest === TABS[0])) return <Navigate to={path} replace />
 
   return (
     <Stack maw={860}>
@@ -151,19 +83,29 @@ export function SettingsPage() {
       <Text c="dimmed">{t('settings.intro')}</Text>
       {settings.isLoading && <Loader aria-label={t('app.loading')} />}
       {settings.isError && <Alert color="red">{errorMessage(settings.error)}</Alert>}
-      {settings.data && (
-        <>
-          <Paper withBorder p="md">
-            <RecipientsForm settings={settings.data} />
-          </Paper>
-          <Paper withBorder p="md">
-            <SsoForm settings={settings.data} />
-          </Paper>
-        </>
-      )}
-      <Paper withBorder p="md">
-        <EmailTemplatesPanel />
-      </Paper>
+      <Tabs
+        variant="outline"
+        value={tab}
+        onChange={(value) => navigate(address((value ?? TABS[0]) as Tab))}
+        // Only hidden: the default also stops the effects of what is inside, and the email
+        // editor would start over with the saved text.
+        keepMountedMode="display-none"
+      >
+        <Tabs.List aria-label={t('settings.title')}>
+          {TABS.map((key) => (
+            <Tabs.Tab key={key} value={key}>
+              {t(`settings.tabs.${key}`)}
+            </Tabs.Tab>
+          ))}
+        </Tabs.List>
+        {TABS.map((key) => (
+          <Tabs.Panel key={key} value={key} pt="md">
+            <Stack>
+              {opened.includes(key) && <TabContent tab={key} settings={settings.data} />}
+            </Stack>
+          </Tabs.Panel>
+        ))}
+      </Tabs>
     </Stack>
   )
 }

@@ -9,20 +9,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -76,62 +79,21 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
-Avisos por email
-Destinatarios de los avisos
-Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
-(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
-jefa@noetinger.test
-Guardar destinatarios
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Inicio de sesión único
 La plataforma no tiene un proveedor de identidad configurado. Pedíselo a quien opera la plataforma.
 Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
-Textos de los correos
-Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
-Correo
-Acceso nuevo (invitación)
-Recuperar contraseña
-Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
-Texto por defecto
-Asunto
-*
-Variables
-Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
-[Insertar la variable Nombre de la persona]
-Nombre de la persona
-[Insertar la variable Quién dio el acceso]
-Quién dio el acceso
-[Insertar la variable Municipio]
-Municipio
-[Insertar la variable Enlace]
-Enlace
-*
-[Insertar la variable Vencimiento del enlace]
-Vencimiento del enlace
-* Obligatoria: el correo no funciona sin ella.
-Texto
-[Formato del texto]
-[Negrita]
-[Cursiva]
-[Subrayado]
-[Tachado]
-[Título]
-[Lista con viñetas]
-[Lista numerada]
-[Enlace]
-[Quitar enlace]
-[Deshacer]
-[Rehacer]
-[Texto]
-Hola, {{name}}:
-elegí tu contraseña
-Enviarme una prueba
-Guardar texto"
+Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten."
 `;
 
 exports[`explains that single sign-on needs a provider the platform does not have > screen at the start 1`] = `
@@ -148,20 +110,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -214,20 +179,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -280,20 +248,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -351,20 +322,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -422,8 +396,10 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Usuarios del municipio
 Importar CSV
@@ -462,20 +438,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -519,6 +498,110 @@ exports[`keeps the text when going back to the default is not confirmed > screen
 [Cargando…]"
 `;
 
+exports[`keeps what was being typed in a tab while another is looked at > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test, otra@noetinger.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Hay cambios sin guardar.
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto
+Mapas y zonas
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+El mapa de la comunidad francesa, con más detalle de cerca.
+[Vista previa del mapa]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas"
+`;
+
+exports[`keeps what was being typed in a tab while another is looked at > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
 exports[`lets the notice and the error of an email be closed > screen at the end 1`] = `
 "[autosize measurement]
 [Abrir menú]
@@ -528,20 +611,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -590,6 +676,81 @@ exports[`lets the notice and the error of an email be closed > screen at the sta
 [Cargando…]"
 `;
 
+exports[`names every address that is not one > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Estas direcciones no son válidas: uno, dos
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+uno, dos tres@x.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`names every address that is not one > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
 exports[`names no variable when the server does not say which ones a text lacks > screen at the end 1`] = `
 "[autosize measurement]
 [Abrir menú]
@@ -599,20 +760,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -672,20 +836,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -741,20 +908,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -803,6 +973,563 @@ exports[`offers the formatting tools of the editor > screen at the start 1`] = `
 [Cargando…]"
 `;
 
+exports[`opens the tab of the address "" > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`opens the tab of the address "" > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`opens the tab of the address "/" > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`opens the tab of the address "/" > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`opens the tab of the address "/access" > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Inicio de sesión único
+Permitir ingresar con inicio de sesión único
+Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten."
+`;
+
+exports[`opens the tab of the address "/access" > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`opens the tab of the address "/emails" > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`opens the tab of the address "/emails" > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`opens the tab of the address "/maps" > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Mapas y zonas
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+El mapa de openstreetmap.org. Sus servidores son para un uso moderado.
+[Vista previa del mapa]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas"
+`;
+
+exports[`opens the tab of the address "/maps" > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`opens the tab of the address "/maps/more" > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`opens the tab of the address "/maps/more" > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`opens the tab of the address "/nothing" > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`opens the tab of the address "/nothing" > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`orders what can be configured in tabs, each with its own address > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto
+Inicio de sesión único
+Permitir ingresar con inicio de sesión único
+Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
+Mapas y zonas
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+El mapa de openstreetmap.org. Sus servidores son para un uso moderado.
+[Vista previa del mapa]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas"
+`;
+
+exports[`orders what can be configured in tabs, each with its own address > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
 exports[`points out malformed addresses without saving > screen at the end 1`] = `
 "[autosize measurement]
 [Abrir menú]
@@ -812,11 +1539,17 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Estas direcciones no son válidas: no-es-un-email
 Destinatarios de los avisos
@@ -824,9 +1557,6 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test, no-es-un-email
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -884,11 +1614,17 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Cambios guardados.
 Destinatarios de los avisos
@@ -896,9 +1632,6 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test, prensa@example.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -947,6 +1680,34 @@ exports[`saves the list of recipients typed with commas > screen at the start 1`
 [Cargando…]"
 `;
 
+exports[`says in every tab why the settings cannot be loaded > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+Ocurrió un error. Intentá de nuevo.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas"
+`;
+
+exports[`says in every tab why the settings cannot be loaded > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
 exports[`says which required variable a text lost > screen at the end 1`] = `
 "[autosize measurement]
 [Abrir menú]
@@ -956,20 +1717,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1029,62 +1793,21 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
-Avisos por email
-Destinatarios de los avisos
-Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
-(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
-jefa@noetinger.test
-Guardar destinatarios
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Inicio de sesión único
 Ocurrió un error. Intentá de nuevo.
 Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
-Textos de los correos
-Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
-Correo
-Acceso nuevo (invitación)
-Recuperar contraseña
-Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
-Texto por defecto
-Asunto
-*
-Variables
-Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
-[Insertar la variable Nombre de la persona]
-Nombre de la persona
-[Insertar la variable Quién dio el acceso]
-Quién dio el acceso
-[Insertar la variable Municipio]
-Municipio
-[Insertar la variable Enlace]
-Enlace
-*
-[Insertar la variable Vencimiento del enlace]
-Vencimiento del enlace
-* Obligatoria: el correo no funciona sin ella.
-Texto
-[Formato del texto]
-[Negrita]
-[Cursiva]
-[Subrayado]
-[Tachado]
-[Título]
-[Lista con viñetas]
-[Lista numerada]
-[Enlace]
-[Quitar enlace]
-[Deshacer]
-[Rehacer]
-[Texto]
-Hola, {{name}}:
-elegí tu contraseña
-Enviarme una prueba
-Guardar texto"
+Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten."
 `;
 
 exports[`says why single sign-on could not be changed, and leaves it as it was > screen at the start 1`] = `
@@ -1101,11 +1824,17 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Ocurrió un error. Intentá de nuevo.
 Destinatarios de los avisos
@@ -1113,9 +1842,6 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1173,12 +1899,18 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
 Ocurrió un error. Intentá de nuevo.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1235,20 +1967,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1307,20 +2042,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Ocurrió un error. Intentá de nuevo."
@@ -1340,20 +2078,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1411,20 +2152,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1478,20 +2222,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1550,20 +2297,23 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1613,7 +2363,7 @@ exports[`stays on the email already shown when it is chosen again > screen at th
 [Cargando…]"
 `;
 
-exports[`turns single sign-on on for the municipality > screen at the end 1`] = `
+exports[`takes @noetinger.test for an address: false > screen at the end 1`] = `
 "[autosize measurement]
 [Abrir menú]
 gobernar360
@@ -1622,20 +2372,24 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Usuarios
+Zonas
 Configuración
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
+Estas direcciones no son válidas: @noetinger.test
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
-jefa@noetinger.test
+uno@noetinger.test; @noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1677,6 +2431,711 @@ Hola, {{name}}:
 elegí tu contraseña
 Enviarme una prueba
 Guardar texto"
+`;
+
+exports[`takes @noetinger.test for an address: false > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`takes a@b.c for an address: true > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Cambios guardados.
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`takes a@b.c for an address: true > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`takes ana for an address: false > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Estas direcciones no son válidas: ana
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+uno@noetinger.test; ana
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`takes ana for an address: false > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`takes ana.g+avisos@noetinger.gob.ar for an address: true > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Cambios guardados.
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`takes ana.g+avisos@noetinger.gob.ar for an address: true > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`takes ana@.test for an address: false > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Estas direcciones no son válidas: ana@.test
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+uno@noetinger.test; ana@.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`takes ana@.test for an address: false > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`takes ana@@noetinger.test for an address: false > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Estas direcciones no son válidas: ana@@noetinger.test
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+uno@noetinger.test; ana@@noetinger.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`takes ana@@noetinger.test for an address: false > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`takes ana@noetinger for an address: false > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Estas direcciones no son válidas: ana@noetinger
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+uno@noetinger.test; ana@noetinger
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`takes ana@noetinger for an address: false > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`takes ana@noetinger. for an address: false > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Estas direcciones no son válidas: ana@noetinger.
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+uno@noetinger.test; ana@noetinger.
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`takes ana@noetinger. for an address: false > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`takes ana@noetinger.test for an address: true > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Cambios guardados.
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`takes ana@noetinger.test for an address: true > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`takes ana@noetinger@x.test for an address: false > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Estas direcciones no son válidas: ana@noetinger@x.test
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+uno@noetinger.test; ana@noetinger@x.test
+Guardar destinatarios
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto"
+`;
+
+exports[`takes ana@noetinger@x.test for an address: false > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`turns single sign-on on for the municipality > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Usuarios
+Zonas
+Configuración
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Inicio de sesión único
+Permitir ingresar con inicio de sesión único
+Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten."
 `;
 
 exports[`turns single sign-on on for the municipality > screen at the start 1`] = `

@@ -129,3 +129,22 @@ def notify(
     if send and report.emails:
         delivery = _deliver(due_only=True)
         typer.echo(f"Sent: {delivery.sent}. Will be retried: {delivery.retrying}.")
+
+
+@app.command()
+def assign_zones() -> None:
+    """Work out again the zones of every record of every municipality.
+
+    The database keeps them up to date by itself; this is for after loading data with its
+    triggers off, e.g. restoring a backup. Running it twice changes nothing more.
+    """
+    from gobernar360.platform.geo.assignment import reassign
+    from gobernar360.platform.models import Municipality
+
+    with platform_session() as db:
+        municipalities = db.execute(
+            select(Municipality.id, Municipality.name).order_by(Municipality.name)
+        ).all()
+    for municipality_id, name in municipalities:
+        changed = reassign(municipality_id)
+        typer.echo(f"{name}: {changed.added} assignments added, {changed.removed} removed.")

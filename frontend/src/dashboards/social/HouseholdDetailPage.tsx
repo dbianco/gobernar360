@@ -23,8 +23,10 @@ import { errorMessage } from '../../platform/errorMessage'
 import { Field } from '../../platform/Field'
 import { formatDni } from '../../platform/format'
 import { hasLevel } from '../../platform/access'
+import { LocationPanel } from '../../platform/geo/LocationPanel'
 import { BASE_PATH, send, useAction, useHousehold } from './api'
 import { HouseholdForm } from './HouseholdForm'
+import { HOUSEHOLDS } from './located'
 import { PersonSearch } from './PersonSearch'
 import { RecordsPanel } from './RecordsPanel'
 import { type HouseholdDetail, type Relationship, RELATIONSHIPS } from './types'
@@ -154,6 +156,11 @@ export function HouseholdDetailPage() {
               <Field label={label('neighborhood')}>{data.neighborhood}</Field>
             </SimpleGrid>
           </Paper>
+
+          {/* Those who may see where the family lives are those who may change it. */}
+          {canEdit && (
+            <LocationPanel key={data.id} kind={HOUSEHOLDS} recordId={data.id} canEdit />
+          )}
 
           <Stack gap="xs" component="section">
             <Group justify="space-between">

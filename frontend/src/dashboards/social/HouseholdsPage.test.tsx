@@ -64,11 +64,12 @@ it('creates a household', async () => {
 })
 
 it('shows a missing address as none and says why the list cannot be loaded', async () => {
-  mockApi('get', `${BASE}/households`, page([makeHousehold({ address: '', neighborhood: '' })]))
+  mockApi('get', `${BASE}/households`, page([makeHousehold({ address: '', neighborhood: '', zones: [{ id: 'z-1', name: 'Sur' }] })]))
   const { unmount } = renderSocial(<HouseholdsPage />)
 
   const row = within(await screen.findByRole('row', { name: /Familia Pérez/ }))
   expect(row.getAllByText(t('app.none'))).toHaveLength(2)
+  expect(row.getByText('Sur')).toBeInTheDocument()
   unmount()
 
   mockApiError('get', `${BASE}/households`, 500, 'boom')

@@ -24,6 +24,38 @@ Hábitat
 Alimentos"
 `;
 
+exports[`offers neither the chart nor the table while there is nothing > screen at the end 1`] = `
+"Alimentos
+Por categoría
+Sin datos para mostrar."
+`;
+
+exports[`offers neither the chart nor the table while there is nothing > screen at the start 1`] = `
+"Alimentos
+Por categoría
+Sin datos para mostrar."
+`;
+
+exports[`says nothing about lacking data when there is some > screen at the end 1`] = `
+"Alimentos
+Por categoría
+Ver como gráfico
+Alimentos
+4
+Hábitat
+1"
+`;
+
+exports[`says nothing about lacking data when there is some > screen at the start 1`] = `
+"Alimentos
+Por categoría
+Ver como tabla
+Alimentos
+Hábitat
+4
+1"
+`;
+
 exports[`says when there is nothing to draw > screen at the end 1`] = `
 "Alimentos
 Por categoría

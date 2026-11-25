@@ -1,10 +1,11 @@
-import { screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { http, HttpResponse } from 'msw'
 import { expect, it } from 'vitest'
 
 import App from '../App'
 import { renderApp, t } from '../test/render'
-import { mockApi, mockApiError } from '../test/server'
+import { mockApi, mockApiError, server } from '../test/server'
 
 async function ask(email: string) {
   const user = userEvent.setup()
@@ -41,4 +42,44 @@ it('leads back to the sign-in page', async () => {
   await user.click(await screen.findByRole('link', { name: t('passwordReset.backToLogin') }))
 
   expect(await screen.findByRole('heading', { name: t('login.title') })).toBeInTheDocument()
+})
+
+it('lets the person try again after a failure, without the notice of the one before', async () => {
+  mockApiError('post', '/auth/password-reset', 429, 'too_many_requests')
+  renderApp(<App />, { me: null, route: '/forgot-password' })
+  await ask('ana@noetinger.test')
+  expect(await screen.findByText(t('errors.too_many_requests'))).toBeInTheDocument()
+
+  let answer = () => undefined as void
+  mockApi('post', '/auth/password-reset', null, 204)
+  const waiting = new Promise<void>((resolve) => {
+    answer = resolve
+  })
+  server.use(
+    http.post('*/api/auth/password-reset', async () => {
+      await waiting
+      return new HttpResponse(null, { status: 204 })
+    }),
+  )
+  const button = screen.getByRole('button', { name: t('passwordReset.submit') })
+  expect(button).not.toHaveAttribute('data-loading')
+  await userEvent.setup().click(button)
+
+  await waitFor(() => expect(button).toHaveAttribute('data-loading', 'true'))
+  expect(screen.queryByText(t('errors.too_many_requests'))).toBeNull()
+  answer()
+  expect(
+    await screen.findByText(t('passwordReset.sent', { email: 'ana@noetinger.test' })),
+  ).toBeInTheDocument()
+})
+
+it('does not leave the page when the form is sent', async () => {
+  renderApp(<App />, { me: null, route: '/forgot-password' })
+  mockApi('post', '/auth/password-reset', null, 204)
+  const field = await screen.findByLabelText(t('passwordReset.email'))
+  fireEvent.change(field, { target: { value: 'ana@noetinger.test' } })
+
+  // False when the browser was told not to do it by itself.
+  expect(fireEvent.submit(field.closest('form')!)).toBe(false)
+  expect(await screen.findByText(/ana@noetinger.test/)).toBeInTheDocument()
 })

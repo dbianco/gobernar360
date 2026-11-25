@@ -92,6 +92,7 @@ test('single sign-on is offered only once the administrator allows it', async ({
   )
 
   await openSettings(page)
+  await page.getByRole('tab', { name: 'Acceso' }).click()
   const toggle = page.getByRole('switch', { name: /Permitir ingresar con inicio de sesión único/ })
   await toggle.click()
   await expect(toggle).toBeChecked()
@@ -103,4 +104,35 @@ test('single sign-on is offered only once the administrator allows it', async ({
   await page.getByRole('button', { name: 'Ingresar' }).click()
   await expect(page.getByRole('button', { name: 'Cerrar sesión' })).toBeVisible()
   await expect(page.getByRole('banner').getByText('Leo Lectura')).toBeVisible()
+})
+
+test('the configuration is in tabs that keep what is being typed', async ({ page }) => {
+  // No background is needed: the tests run offline.
+  await page.route(/tile\.openstreetmap\.org/, (route) => route.abort())
+  await openSettings(page)
+  const tab = (name: string) => page.getByRole('tab', { name })
+  const body = page.getByRole('textbox', { name: 'Texto' })
+  await body.locator('p').first().click()
+  await page.keyboard.type('Sin guardar. ')
+
+  await tab('Acceso').click()
+  await expect(page).toHaveURL(/\/admin\/settings\/access$/)
+  await expect(page.getByRole('switch')).toBeVisible()
+  await expect(body).toBeHidden()
+  await tab('Mapas y zonas').click()
+  await expect(page).toHaveURL(/\/admin\/settings\/maps$/)
+  // The map, drawn only now, opens on the zones.
+  await expect(page.getByRole('region', { name: 'Vista previa del mapa' }).getByText('Centro')).toBeInViewport()
+
+  await page.goBack()
+  await expect(page.getByRole('switch')).toBeVisible()
+  await tab('Correos').click()
+  await expect(page).toHaveURL(/\/admin\/settings$/)
+  await expect(body).toContainText('Sin guardar.')
+  await expect(page.getByRole('button', { name: 'Guardar texto' })).toBeEnabled()
+
+  await tab('Mapas y zonas').click()
+  await expect(page.getByRole('region', { name: 'Vista previa del mapa' }).getByText('Centro')).toBeInViewport()
+  await page.reload()
+  await expect(tab('Mapas y zonas')).toHaveAttribute('aria-selected', 'true')
 })

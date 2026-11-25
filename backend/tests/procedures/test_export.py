@@ -128,3 +128,13 @@ def test_opportunities_download_matches_the_report(client):
         ["Registro Civil", "provincial", "", "1", "1", "300"],
         ["", "none", "", "1", "3", "440"],
     ]
+
+
+def test_opportunities_download_leaves_out_the_rest_when_everything_has_a_source(client):
+    municipality = signed_in(client, "viewer")
+    requirement = make_requirement(municipality, "Libre deuda", make_source(municipality))
+    link_requirement(make_procedure(municipality, annual_volume=10), requirement)
+
+    rows = _rows(client.get(f"{BASE}/export/opportunities.csv"))
+
+    assert rows[1:] == [["Rentas municipal", "municipal", "", "1", "1", "10"]]

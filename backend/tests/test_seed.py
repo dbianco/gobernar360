@@ -1,4 +1,4 @@
-from sqlalchemy import delete, func, select
+from sqlalchemy import delete, func, select, update
 
 from gobernar360.core.db import platform_session, tenant_session
 from gobernar360.dashboards.economic.models import (
@@ -30,6 +30,7 @@ from gobernar360.dashboards.social.models import (
     InterventionType,
     SocialPerson,
 )
+from gobernar360.platform.geo.models import Zone, ZoneVersion
 from gobernar360.platform.models import (
     DashboardGrant,
     DashboardStatus,
@@ -423,3 +424,71 @@ def test_seed_demo_adds_the_procedures_dashboard_to_an_older_demo_database():
     seed_demo()
     with admin_session() as session:
         assert _count(session, Procedure) == procedures_count
+
+
+def test_seeded_noetinger_has_zones_and_located_records(client):
+    seed_demo()
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+
+    names = [zone["name"] for zone in client.get("/api/zones").json()]
+    projects = client.get("/api/dashboards/projects/geo/projects/zones").json()
+    actors = client.get("/api/dashboards/economic/geo/actors/zones").json()
+    crossing = client.get(
+        "/api/dashboards/projects/projects", params={"status": "in_progress"}
+    ).json()
+
+    assert names == ["Centro", "Norte", "Oeste", "Parque industrial", "Sur"]
+    assert client.get("/api/admin/zones/overlaps").json() == []
+    for breakdown in (projects, actors):
+        assert sum(row["values"][breakdown["metrics"][0]["key"]] for row in breakdown["zones"]) > 0
+    # Something to review of each kind.
+    assert projects["outside"]["values"]["projects"] == 1
+    assert actors["outside"]["values"]["actors"] == actors["unlocated"]["values"]["actors"] == 1
+    assert any(len(project["zones"]) == 2 for project in crossing)
+
+
+def test_seeded_zones_show_a_viewer_counts_and_hide_the_small_ones(client):
+    seed_demo()
+    login(client, "lectura@noetinger.test", DEMO_PASSWORD)
+
+    body = client.get("/api/dashboards/social/geo/households/zones").json()
+
+    assert {row["zone"]["name"]: row["values"]["households"] for row in body["zones"]} == {
+        "Centro": None,
+        "Norte": 6,
+        "Oeste": None,
+        "Parque industrial": None,
+        "Sur": 7,
+    }
+
+
+def test_seed_demo_adds_the_zones_to_an_older_demo_database_once():
+    seed_demo()
+    with admin_session() as session, session.begin():
+        session.execute(delete(Zone))
+        session.execute(update(Actor).values(location=None))
+        # Tried out by somebody: neither stops the rest.
+        session.execute(delete(ActorPerson))
+        session.execute(delete(Assignment))
+        session.execute(delete(Actor).where(Actor.name == "Panadería La Espiga"))
+
+    assert seed_demo() is True
+    assert seed_demo() is False
+    with admin_session() as session:
+        located = select(func.count()).select_from(Actor).where(Actor.location.is_not(None))
+        assert session.scalar(located) == 10
+        assert _count(session, Zone) == 5
+        # Norte had another boundary last year.
+        assert _count(session, ZoneVersion) == 6
+
+
+def test_seeded_zones_stay_inside_noetinger(client):
+    seed_demo()
+    login(client, "admin@comuna-demo.test", DEMO_PASSWORD)
+
+    assert client.get("/api/zones").json() == []
+    for path in ("projects/geo/projects", "economic/geo/actors", "social/geo/households"):
+        found = client.get(
+            f"/api/dashboards/{path}/features", params={"bbox": "-180,-90,180,90", "zoom": 3}
+        ).json()
+        assert found["total"] == 0

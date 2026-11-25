@@ -237,6 +237,56 @@ exports[`lists requirements with their source and how many procedures ask for th
 [Cargando…]"
 `;
 
+exports[`opens the form with what the requirement has, and says where each source is from > screen at the end 1`] = `
+"Buscar
+(Requisito o fuente)
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se le pide al solicitante.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Si no tiene fuente, lo aporta el solicitante.
+Nivel
+[Qué significa Nivel]
+Nivel de gobierno de la fuente.
+Trámites
+[Qué significa Trámites]
+En cuántos trámites se pide, incluidos los dados de baja.
+DNI
+RENAPER
+Nacional
+9
+[Editar requisito: DNI]
+Editar
+[Eliminar requisito: DNI]
+Eliminar
+Formulario de solicitud
+Lo completa el solicitante.
+Lo aporta el solicitante
+—
+0
+[Editar requisito: Formulario de solicitud]
+Editar
+[Eliminar requisito: Formulario de solicitud]
+Eliminar
+Libre deuda municipal
+Certificado de no adeudar tasas.
+Rentas municipal
+Municipal
+4
+[Editar requisito: Libre deuda municipal]
+Editar
+[Eliminar requisito: Libre deuda municipal]
+Eliminar"
+`;
+
+exports[`opens the form with what the requirement has, and says where each source is from > screen at the start 1`] = `
+"Buscar
+(Requisito o fuente)
+[Cargando…]"
+`;
+
 exports[`says so when nothing is loaded yet > screen at the end 1`] = `
 "Buscar
 (Requisito o fuente)

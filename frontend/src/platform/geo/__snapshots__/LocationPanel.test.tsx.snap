@@ -1,0 +1,325 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`changes nothing when the edition is cancelled > screen at the end 1`] = `
+"[autosize measurement]
+[Ubicación]
+Ubicación
+Cambiar ubicación
+Quitar ubicación
+Centro
+-31.500000, -61.500000
+[Mapa de la ubicación]
+[Punto 1]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+200 m
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`changes nothing when the edition is cancelled > screen at the start 1`] = `
+"[autosize measurement]
+[Ubicación]
+Ubicación
+[Cargando…]"
+`;
+
+exports[`draws a line point by point, and takes the last one back > screen at the end 1`] = `
+"[Ubicación]
+Ubicación
+Cambiar ubicación
+Quitar ubicación
+Norte
+[Mapa de la ubicación]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+10 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+[autosize measurement]"
+`;
+
+exports[`draws a line point by point, and takes the last one back > screen at the start 1`] = `
+"[Ubicación]
+Ubicación
+[Cargando…]"
+`;
+
+exports[`moves the location by dragging its mark > screen at the end 1`] = `
+"[Ubicación]
+Ubicación
+Hacé clic en el mapa para marcar el lugar, o escribí las coordenadas.
+[Mapa de la ubicación]
+[Punto 1]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+200 m
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Coordenadas
+Latitud y longitud, por ejemplo: -32.365500, -62.310500
+Guardar
+Cancelar"
+`;
+
+exports[`moves the location by dragging its mark > screen at the start 1`] = `
+"[Ubicación]
+Ubicación
+[Cargando…]"
+`;
+
+exports[`removes the location after asking > screen at the end 1`] = `
+"[autosize measurement]
+[Ubicación]
+Ubicación
+Ubicar en el mapa
+Todavía no tiene ubicación en el mapa."
+`;
+
+exports[`removes the location after asking > screen at the start 1`] = `
+"[autosize measurement]
+[Ubicación]
+Ubicación
+[Cargando…]"
+`;
+
+exports[`says when the record is outside every zone > screen at the end 1`] = `
+"[Ubicación]
+Ubicación
+Cambiar ubicación
+Quitar ubicación
+Fuera de todas las zonas
+-31.500000, -61.500000
+[Mapa de la ubicación]
+[Punto 1]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+200 m
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`says when the record is outside every zone > screen at the start 1`] = `
+"[Ubicación]
+Ubicación
+[Cargando…]"
+`;
+
+exports[`says why a location was not saved, and keeps it to try again > screen at the end 1`] = `
+"[autosize measurement]
+[Ubicación]
+Ubicación
+La ubicación no es válida. Revisá las coordenadas.
+Hacé clic en el mapa para marcar el lugar, o escribí las coordenadas.
+[Mapa de la ubicación]
+[Punto 1]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Coordenadas
+Latitud y longitud, por ejemplo: -32.365500, -62.310500
+Guardar
+Cancelar"
+`;
+
+exports[`says why a location was not saved, and keeps it to try again > screen at the start 1`] = `
+"[autosize measurement]
+[Ubicación]
+Ubicación
+[Cargando…]"
+`;
+
+exports[`says why the location or the zones cannot be shown > screen at the end 1`] = `
+"[autosize measurement]
+[Ubicación]
+Ubicación
+No tenés permiso para realizar esta acción.
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why the location or the zones cannot be shown > screen at the start 1`] = `
+"[autosize measurement]
+[Ubicación]
+Ubicación
+[Cargando…]"
+`;
+
+exports[`sets the location by clicking on the map > screen at the end 1`] = `
+"[Ubicación]
+Ubicación
+Cambiar ubicación
+Quitar ubicación
+Norte
+-31.005863, -61.446533
+[Mapa de la ubicación]
+[Punto 1]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+200 m
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`sets the location by clicking on the map > screen at the start 1`] = `
+"[Ubicación]
+Ubicación
+[Cargando…]"
+`;
+
+exports[`sets the location by typing coordinates > screen at the end 1`] = `
+"[Ubicación]
+Ubicación
+Cambiar ubicación
+Quitar ubicación
+Norte
+-31.500000, -61.250000
+[Mapa de la ubicación]
+[Punto 1]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+200 m
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`sets the location by typing coordinates > screen at the start 1`] = `
+"[Ubicación]
+Ubicación
+[Cargando…]"
+`;
+
+exports[`shows a line without its coordinates > screen at the end 1`] = `
+"[Ubicación]
+Ubicación
+Cambiar ubicación
+Quitar ubicación
+Fuera de todas las zonas
+[Mapa de la ubicación]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+1 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`shows a line without its coordinates > screen at the start 1`] = `
+"[Ubicación]
+Ubicación
+[Cargando…]"
+`;
+
+exports[`shows where the record is and its zones > screen at the end 1`] = `
+"[Ubicación]
+Ubicación
+Centro
+-31.500000, -61.500000
+[Mapa de la ubicación]
+[Punto 1]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+200 m
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`shows where the record is and its zones > screen at the start 1`] = `
+"[Ubicación]
+Ubicación
+[Cargando…]"
+`;
+
+exports[`takes the points of a line as text, and keeps the first when it becomes a point > screen at the end 1`] = `
+"[autosize measurement]
+[Ubicación]
+Ubicación
+Cambiar ubicación
+Quitar ubicación
+Norte
+-31.500000, -61.500000
+[Mapa de la ubicación]
+[Punto 1]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+200 m
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`takes the points of a line as text, and keeps the first when it becomes a point > screen at the start 1`] = `
+"[autosize measurement]
+[Ubicación]
+Ubicación
+[Cargando…]"
+`;

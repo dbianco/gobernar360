@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 from gobernar360.dashboards import registry
 from gobernar360.platform import status
-from gobernar360.platform.access import AccessLevel, Context, effective_levels
+from gobernar360.platform.access import Context, effective_levels
 from gobernar360.platform.api_types import OrmModel
 from gobernar360.platform.clock import Today
 
@@ -34,9 +34,7 @@ class DashboardOverview(BaseModel):
 @router.get("/overview")
 def get_overview(ctx: Context, today: Today) -> list[DashboardOverview]:
     overview = []
-    for key, level in effective_levels(ctx.db, ctx.membership).items():
-        if level < AccessLevel.VIEWER:
-            continue
+    for key in effective_levels(ctx.db, ctx.membership):
         indicators = registry.get_module(key).get_summary(ctx, today)
         overview.append(
             DashboardOverview(

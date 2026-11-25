@@ -300,3 +300,17 @@ def test_member_grants_of_a_disabled_dashboard_are_hidden_and_do_not_block_edits
             "demo": "editor",
             "projects": "editor",
         }
+
+
+def test_an_account_that_was_deactivated_is_added_without_emailing_it(client):
+    municipality = make_municipality()
+    make_membership(make_user("admin@noetinger.test"), municipality, admin=True)
+    make_user("baja@noetinger.test", active=False)
+    login(client, "admin@noetinger.test")
+
+    response = client.post(
+        "/api/admin/users", json={"email": "baja@noetinger.test", "full_name": "Blas Baja"}
+    )
+
+    assert response.status_code == 201, response.text
+    assert emails_to("baja@noetinger.test") == []

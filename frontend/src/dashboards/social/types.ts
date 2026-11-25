@@ -43,6 +43,8 @@ export interface Household extends Named {
   neighborhood: string
   member_count: number
   head: PersonRef | null
+  /** Null for members who may not know where one household lives. */
+  zones: Named[] | null
 }
 
 export interface Member extends PersonRef {

@@ -3,7 +3,7 @@
 For local development, demos and end-to-end tests only: every account shares a known password.
 """
 
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from decimal import Decimal
 
 from sqlalchemy import select, text
@@ -52,6 +52,8 @@ from gobernar360.dashboards.social.models import (
     InterventionType,
     SocialPerson,
 )
+from gobernar360.platform.clock import LOCAL_TIMEZONE
+from gobernar360.platform.geo.models import Zone, ZoneVersion
 from gobernar360.platform.models import (
     DashboardGrant,
     DashboardStatus,
@@ -280,6 +282,71 @@ PROCEDURE_ROWS = [
         False,
         ("DNI", "Foto carnet"),
     ),
+]
+
+# Zones as (west, south, east, north). Every coordinate of the demo is made up.
+ZONES = {
+    "Centro": (-62.318, -32.372, -62.304, -32.360),
+    "Norte": (-62.318, -32.360, -62.304, -32.348),
+    "Sur": (-62.318, -32.384, -62.304, -32.372),
+    "Oeste": (-62.334, -32.378, -62.318, -32.354),
+    "Parque industrial": (-62.304, -32.378, -62.288, -32.354),
+}
+# The Norte zone until last year: it grew this year, and last year's figures keep the old one.
+OLD_NORTE = (-62.318, -32.360, -62.304, -32.354)
+# Longitude and latitude; two or more points are a line, for works along a street. The
+# projects that are not here happen nowhere in particular.
+PROJECT_LOCATIONS = {
+    # Crosses Centro and Norte.
+    "Pavimentación de la calle San Martín": [(-62.311, -32.369), (-62.311, -32.352)],
+    "Renovación de la plaza central": [(-62.3105, -32.3655)],
+    "Extensión de la red de cloacas barrio Norte": [(-62.316, -32.351), (-62.306, -32.351)],
+    # Outside every zone.
+    "Planta de tratamiento de residuos": [(-62.350, -32.392)],
+    "Lotes con servicios para primera vivienda": [(-62.327, -32.362)],
+    "Mejoramiento habitacional de 40 viviendas": [(-62.309, -32.378)],
+    "Centro de atención a las familias": [(-62.313, -32.376)],
+    "Recambio a luminarias LED": [(-62.315, -32.364), (-62.300, -32.364)],
+    "Centro de monitoreo y cámaras": [(-62.3085, -32.3625)],
+}
+ACTOR_LOCATIONS = {
+    "Panadería La Espiga": (-62.3112, -32.3658),
+    "Metalúrgica Noetinger SRL": (-62.294, -32.364),
+    "Agroservicios del Centro": (-62.3075, -32.3705),
+    "Tejidos Doña Rosa": (-62.3131, -32.3671),
+    "Cooperativa de Trabajo El Molino": (-62.2975, -32.3601),
+    "Hospedaje Los Aromos": (-62.3092, -32.3615),
+    "Corralón Sarmiento": (-62.3148, -32.3565),
+    "Dulces del Monte": (-62.352, -32.341),
+    "Tornería Giménez": (-62.2932, -32.3648),
+    "Almacén Don Pepe": (-62.3124, -32.3752),
+    "Estudio Contable Rivas": (-62.3101, -32.3649),
+}
+HOUSEHOLD_LOCATIONS = {
+    "Familia Sosa": (-62.3141, -32.3771),
+    "Familia Moyano": (-62.3263, -32.3672),
+    "Familia Paz": (-62.3118, -32.3743),
+    "Familia Ledesma": (-62.3087, -32.3532),
+    "Familia Quiroga": (-62.361, -32.352),
+}
+# Households added with the geographic layer, so that some zones have enough of them to be
+# shown to viewers: (surname, head's first name, DNI, neighborhood, location or None, given
+# help this year).
+MORE_HOUSEHOLDS = [
+    ("Tapia", "Beatriz", "22101101", "Sur", (-62.3079, -32.3759), True),
+    ("Toledo", "Raúl", "22202202", "Sur", (-62.3158, -32.3802), True),
+    ("Ullúa", "Marina", "23303303", "Sur", (-62.3064, -32.3817), True),
+    ("Urquiza", "Darío", "24404404", "Sur", (-62.3103, -32.3795), True),
+    ("Valdez", "Noemí", "25505505", "Sur", (-62.3129, -32.3786), True),
+    ("Varela", "Oscar", "26606606", "Norte", (-62.3122, -32.3503), True),
+    ("Vázquez", "Silvia", "27707707", "Norte", (-62.3157, -32.3551), True),
+    ("Velázquez", "Iván", "28808808", "Norte", (-62.3069, -32.3574), True),
+    ("Vera", "Teresa", "29909909", "Norte", (-62.3096, -32.3559), True),
+    ("Vergara", "Luis", "30010010", "Norte", (-62.3139, -32.3518), False),
+    ("Villalba", "Gladys", "31111011", "Oeste", (-62.3301, -32.3701), True),
+    ("Yáñez", "Adrián", "32212012", "Centro", (-62.3159, -32.3698), False),
+    ("Zabala", "Irene", "33313013", "Centro", (-62.3067, -32.3639), True),
+    ("Zárate", "Félix", "34414014", "Centro", None, False),
 ]
 
 # category -> benefits as (name, description)
@@ -1321,6 +1388,95 @@ def _seed_noetinger_procedures(municipality_id, today: date) -> None:
         _add_lights(db, municipality_id, PROCEDURES, today)
 
 
+def _box(west: float, south: float, east: float, north: float) -> dict:
+    ring = [[west, south], [east, south], [east, north], [west, north], [west, south]]
+    return {"type": "MultiPolygon", "coordinates": [[ring]]}
+
+
+def _point(location: tuple[float, float]) -> dict:
+    return {"type": "Point", "coordinates": list(location)}
+
+
+def _seed_noetinger_geography(today: date) -> bool:
+    """Zones, and the locations of the records that lack one.
+
+    Returns False when Noetinger already has zones, so older demo databases gain them once.
+    """
+    with platform_session() as db:
+        noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+    with tenant_session(noetinger_id) as db:
+        if db.scalar(select(Zone.id).limit(1)):
+            return False
+
+        def add(entity):
+            entity.municipality_id = noetinger_id
+            db.add(entity)
+            db.flush()
+            return entity
+
+        def start_of(year: int) -> datetime:
+            return datetime(year, 1, 1, tzinfo=LOCAL_TIMEZONE)
+
+        last_year, this_year = start_of(today.year - 1), start_of(today.year)
+        for name, box in ZONES.items():
+            boundaries = [(box, last_year, None)]
+            if name == "Norte":
+                boundaries = [(OLD_NORTE, last_year, this_year), (box, this_year, None)]
+            zone = add(Zone(name=name))
+            for number, (boundary, valid_from, valid_to) in enumerate(boundaries, start=1):
+                add(
+                    ZoneVersion(
+                        zone_id=zone.id,
+                        version=number,
+                        boundary=_box(*boundary),
+                        valid_from=valid_from,
+                        valid_to=valid_to,
+                    )
+                )
+
+        _seed_more_households(db, add, today)
+        for name, points in PROJECT_LOCATIONS.items():
+            line = {"type": "LineString", "coordinates": [list(point) for point in points]}
+            _locate(db, Project, name, line if len(points) > 1 else _point(points[0]))
+        for name, location in ACTOR_LOCATIONS.items():
+            _locate(db, Actor, name, _point(location))
+        for name, location in HOUSEHOLD_LOCATIONS.items():
+            _locate(db, Household, name, _point(location))
+    return True
+
+
+def _locate(db: Session, model, name: str, location: dict) -> None:
+    record = db.scalar(select(model).where(model.name == name, model.location.is_(None)).limit(1))
+    # Whoever tries the demo may have deleted it.
+    if record is not None:
+        record.location = location
+
+
+def _seed_more_households(db: Session, add, today: date) -> None:
+    benefit = db.scalar(select(Benefit).where(Benefit.name == "Módulo alimentario").limit(1))
+    # This year, and not today: the newest deliveries are whatever is loaded while trying it.
+    helped_on = max(today - timedelta(days=28), date(today.year, 1, 1))
+    for surname, first, dni, neighborhood, location, helped in MORE_HOUSEHOLDS:
+        # Somebody may have loaded the same document while trying the demo.
+        if db.scalar(select(Person.id).where(Person.dni == dni)):
+            continue
+        person = add(
+            Person(first_name=first, last_name=surname, dni=dni, neighborhood=neighborhood)
+        )
+        household = add(
+            Household(
+                name=f"Familia {surname}",
+                neighborhood=neighborhood,
+                location=_point(location) if location else None,
+            )
+        )
+        head = add(
+            SocialPerson(person_id=person.id, household_id=household.id, relationship="head")
+        )
+        if helped and benefit is not None:
+            add(Delivery(benefit_id=benefit.id, person_id=head.id, quantity=1, date=helped_on))
+
+
 def _seed_newer_dashboards(today: date) -> bool:
     added = [
         _seed_newer_dashboard(ENVIRONMENT, _seed_noetinger_environment, today),
@@ -1329,6 +1485,8 @@ def _seed_newer_dashboards(today: date) -> bool:
         _seed_newer_dashboard(SOCIAL, _seed_noetinger_social, today),
         _seed_noetinger_status(today),
         _seed_newer_dashboard(PROCEDURES, _seed_noetinger_procedures, today),
+        # After the dashboards whose records it locates.
+        _seed_noetinger_geography(today),
     ]
     return any(added)
 

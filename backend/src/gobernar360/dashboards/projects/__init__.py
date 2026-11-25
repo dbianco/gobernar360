@@ -5,6 +5,7 @@ from fastapi import APIRouter
 from gobernar360.dashboards.projects import (
     alerts,
     export,
+    geography,
     parameters_router,
     projects_router,
     summary,
@@ -24,4 +25,5 @@ module = DashboardModule(
     get_summary=summary.get_summary,
     alert_kinds=(alerts.MILESTONE_OVERDUE,),
     get_alerts=alerts.get_alerts,
+    located=(geography.projects,),
 )

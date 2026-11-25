@@ -45,6 +45,7 @@ def test_editor_creates_an_actor_with_only_a_name(client):
         "email": "",
         "employee_count": None,
         "notes": "",
+        "zones": [],
     }
 
 

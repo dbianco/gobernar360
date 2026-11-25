@@ -18,6 +18,7 @@ import { Link } from 'react-router-dom'
 import { api } from '../../api/client'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatNumber, formatPercent, formatRatio } from '../../platform/format'
+import { ZoneProfile } from '../../platform/geo/ZoneProfile'
 import { StatCard } from '../../platform/StatCard'
 import { StatusCard } from '../../platform/status/StatusCard'
 import type { DatedStatus } from '../../platform/status/types'
@@ -150,6 +151,7 @@ export function OverviewPage() {
           </Stack>
         )
       })}
+      {sections.length > 0 && <ZoneProfile />}
     </Stack>
   )
 }

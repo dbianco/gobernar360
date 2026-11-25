@@ -2,6 +2,7 @@
 
 from fastapi import APIRouter, Response
 from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 
 from gobernar360.dashboards.economic.access import Viewer
 from gobernar360.dashboards.economic.assignments_router import in_year
@@ -9,6 +10,7 @@ from gobernar360.dashboards.economic.models import Actor, Assignment, EconomicPe
 from gobernar360.platform.api_types import Year
 from gobernar360.platform.clock import Today
 from gobernar360.platform.csv_export import csv_response, safe_text
+from gobernar360.platform.geo.export import LOCATION_COLUMNS, location_cells, places_of
 from gobernar360.platform.models import Person
 
 router = APIRouter()
@@ -23,6 +25,7 @@ ACTOR_COLUMNS = (
     "email",
     "employees",
     "notes",
+    *LOCATION_COLUMNS,
 )
 PERSON_COLUMNS = (
     "last_name",
@@ -41,7 +44,10 @@ ASSIGNMENT_COLUMNS = ("date", "tool", "category", "recipient_type", "recipient",
 
 @router.get("/export/actors.csv")
 def export_actors(ctx: Viewer) -> Response:
-    actors = ctx.db.scalars(select(Actor).order_by(Actor.name, Actor.id))
+    actors = ctx.db.scalars(
+        select(Actor).options(selectinload(Actor.zones)).order_by(Actor.name, Actor.id)
+    ).all()
+    places = places_of(ctx.db, Actor, [actor.id for actor in actors])
     rows = (
         (
             safe_text(actor.name),
@@ -53,6 +59,7 @@ def export_actors(ctx: Viewer) -> Response:
             safe_text(actor.email),
             "" if actor.employee_count is None else actor.employee_count,
             safe_text(actor.notes),
+            *location_cells(actor, places),
         )
         for actor in actors
     )

@@ -1,0 +1,157 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`moves only the point that is dragged > screen at the end 1`] = `
+"[Mapa de la ubicación]
+[Punto 1]
+[Punto 2]
+[Punto 3]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+10 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`moves only the point that is dragged > screen at the start 1`] = `
+"[Mapa de la ubicación]
+[Punto 1]
+[Punto 2]
+[Punto 3]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+10 km
+Leaflet"
+`;
+
+exports[`sets a point: every click moves it > screen at the end 1`] = `
+"[Mapa de la ubicación]
+[Punto 1]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+200 m
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`sets a point: every click moves it > screen at the start 1`] = `
+"[Mapa de la ubicación]
+[Punto 1]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+200 m
+Leaflet"
+`;
+
+exports[`sets a street: every click adds a point at its end > screen at the end 1`] = `
+"[Mapa de la ubicación]
+[Punto 1]
+[Punto 2]
+[Punto 3]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+10 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`sets a street: every click adds a point at its end > screen at the start 1`] = `
+"[Mapa de la ubicación]
+[Punto 1]
+[Punto 2]
+[Punto 3]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+10 km
+Leaflet"
+`;
+
+exports[`shows a point with one mark, among the zones > screen at the end 1`] = `
+"[Mapa de la ubicación]
+[Punto 1]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+200 m
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`shows a point with one mark, among the zones > screen at the start 1`] = `
+"[Mapa de la ubicación]
+[Punto 1]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+200 m
+Leaflet"
+`;
+
+exports[`shows a street as a line, without marks > screen at the end 1`] = `
+"[Mapa de la ubicación]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+10 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`shows a street as a line, without marks > screen at the start 1`] = `
+"[Mapa de la ubicación]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+10 km
+Leaflet"
+`;

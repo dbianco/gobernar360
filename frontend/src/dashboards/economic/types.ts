@@ -52,6 +52,7 @@ export interface Actor extends Named {
   email: string
   employee_count: number | null
   notes: string
+  zones: Named[]
 }
 
 export interface ActorDetail extends Actor {

@@ -121,6 +121,8 @@ class HouseholdOut(BaseModel):
     neighborhood: str
     member_count: int
     head: PersonRef | None
+    # Null for members who may not know where one household lives.
+    zones: list[NamedRef] | None
 
 
 class MemberIn(BaseModel):

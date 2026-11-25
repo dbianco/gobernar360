@@ -70,6 +70,7 @@ export interface Project {
   manual_progress: number | null
   sdgs: number[]
   milestones: Milestone[]
+  zones: NamedRef[]
 }
 
 /** Body of a project create or update request. */

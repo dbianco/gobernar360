@@ -18,6 +18,8 @@ import { downloadUrl } from '../../api/client'
 import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
+import { boundariesOf } from '../../platform/geo/asOf'
+import { ZoneBreakdown } from '../../platform/geo/ZoneBreakdown'
 import { formatNumber } from '../../platform/format'
 import { StatCard } from '../../platform/StatCard'
 import { StatusStrip } from '../../platform/status/StatusStrip'
@@ -25,6 +27,7 @@ import { hasLevel } from '../../platform/access'
 import { currentYear } from '../../platform/years'
 import { YearSelect } from '../../platform/YearSelect'
 import { BASE, BASE_PATH, useSummary } from './api'
+import { ACTORS } from './located'
 import type { ToolCount } from './types'
 
 function ToolTable({ title, rows }: { title: string; rows: ToolCount[] }) {
@@ -124,6 +127,7 @@ export function SummaryPage() {
             <ToolTable title={label('actorTools')} rows={data.actor_tools} />
             <ToolTable title={label('personTools')} rows={data.person_tools} />
           </SimpleGrid>
+          <ZoneBreakdown kind={ACTORS} filters={{}} asOf={boundariesOf(year)} />
         </>
       )}
     </Stack>

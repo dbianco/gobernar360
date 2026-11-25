@@ -1,0 +1,385 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`closes the outline from three corners on > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`closes the outline from three corners on > screen at the end 2`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`closes the outline from three corners on > screen at the end 3`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`closes the outline from three corners on > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`closes the outline from three corners on > screen at the start 2`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`closes the outline from three corners on > screen at the start 3`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`does not take clicks on zones nobody can choose > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`does not take clicks on zones nobody can choose > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`draws only the lines among the geometries > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`draws only the lines among the geometries > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`draws zones shaded, dashed or chosen, and writes their labels as they are > screen at the end 1`] = `
+"[Mapa]
+<b>A</b>
+B
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`draws zones shaded, dashed or chosen, and writes their labels as they are > screen at the start 1`] = `
+"[Mapa]
+<b>A</b>
+B
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`goes where it is told, and no closer than streets > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+50 m
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+go"
+`;
+
+exports[`goes where it is told, and no closer than streets > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+go"
+`;
+
+exports[`leaves nothing drawn when it goes > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`makes buttons of the marks that do something, and of no other > screen at the end 1`] = `
+"[Mapa]
+[Marca a]
+<i>3</i>
+[Marca b]
+[Marca c]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`makes buttons of the marks that do something, and of no other > screen at the start 1`] = `
+"[Mapa]
+[Marca a]
+<i>3</i>
+[Marca b]
+[Marca c]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`measures itself again when its frame changes size, but not while hidden > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`measures itself again when its frame changes size, but not while hidden > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`opens on a single place at the zoom of its block > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+200 m
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`opens on a single place at the zoom of its block > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+200 m
+Leaflet"
+`;
+
+exports[`opens on what it is given, and not too close on a single place > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`opens on what it is given, and not too close on a single place > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`tells the visible area within the world, rounded, and every time it moves > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+10000 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`tells the visible area within the world, rounded, and every time it moves > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`tells where it is clicked, in the order GeoJSON takes and to ten centimetres > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`tells where it is clicked, in the order GeoJSON takes and to ten centimetres > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`zooms with a double click only while not drawing (drawing: false) > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`zooms with a double click only while not drawing (drawing: false) > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`zooms with a double click only while not drawing (drawing: true) > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`zooms with a double click only while not drawing (drawing: true) > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;

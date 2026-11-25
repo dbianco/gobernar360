@@ -158,6 +158,57 @@ El año se aplica a las prestaciones y las intervenciones.
 [Cargando…]"
 `;
 
+exports[`names what each chart counts, and what has no name > screen at the end 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las prestaciones y las intervenciones.
+Prestaciones por categoría
+Ver como gráfico
+—
+4
+Prestaciones por mes
+Ver como tabla
+Intervenciones por tipo
+Ver como gráfico
+—
+3
+Intervenciones por mes
+Ver como tabla
+Personas por barrio
+Ver como tabla
+Prestaciones por barrio
+Ver como tabla"
+`;
+
+exports[`names what each chart counts, and what has no name > screen at the start 1`] = `
+"Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+El año se aplica a las prestaciones y las intervenciones.
+[Cargando…]"
+`;
+
 exports[`says why the reports cannot be loaded > screen at the end 1`] = `
 "Año
 2027

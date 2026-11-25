@@ -74,6 +74,7 @@ export function makeHousehold(overrides: Partial<Household> = {}): Household {
     neighborhood: 'Centro',
     member_count: 2,
     head: { id: 'sp-1', full_name: 'Pérez, Juana' },
+    zones: [],
     ...overrides,
   }
 }

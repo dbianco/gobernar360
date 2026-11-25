@@ -17,6 +17,7 @@ export default function MunicipalitySettingsPage() {
   const scope = useMemo(
     () => ({
       base: `/platform/municipalities/${id}`,
+      path: `/platform/municipalities/${id}/settings`,
       key: ['platform', 'municipalities', id],
     }),
     [id],

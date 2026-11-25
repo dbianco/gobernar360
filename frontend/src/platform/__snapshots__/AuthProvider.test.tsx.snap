@@ -1,0 +1,84 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`changes municipality, asking again for everything > screen at the end 1`] = `
+"Ana Gómez
+in m-2
+login
+logout
+switch
+ask"
+`;
+
+exports[`does not restore who was signed in when their profile arrives late > screen at the end 1`] = `
+"nobody
+in none
+login
+logout
+switch
+ask"
+`;
+
+exports[`does not take a failure of the server for being signed out > screen at the end 1`] = `
+"nobody
+in none
+login
+logout
+switch
+ask"
+`;
+
+exports[`knows who is signed in > screen at the end 1`] = `
+"Ana Gómez
+in m-1
+login
+logout
+switch
+ask"
+`;
+
+exports[`sends whoever lost the session back to the start > screen at the end 1`] = `
+"nobody
+in none
+login
+logout
+switch
+ask"
+`;
+
+exports[`shows what other screens asked for > screen at the end 1`] = `"data: fresh"`;
+
+exports[`signs in, forgetting what the one before had asked for > screen at the end 1`] = `
+"Ana Gómez
+in m-1
+login
+logout
+switch
+ask"
+`;
+
+exports[`signs out whatever the server answers (204) > screen at the end 1`] = `
+"nobody
+in none
+login
+logout
+switch
+ask"
+`;
+
+exports[`signs out whatever the server answers (500) > screen at the end 1`] = `
+"nobody
+in none
+login
+logout
+switch
+ask"
+`;
+
+exports[`takes a 401 for nobody being signed in, and only a 401 > screen at the end 1`] = `
+"nobody
+in none
+login
+logout
+switch
+ask"
+`;

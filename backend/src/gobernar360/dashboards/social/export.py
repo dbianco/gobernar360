@@ -2,14 +2,20 @@
 
 from fastapi import APIRouter, Response
 from sqlalchemy import ScalarResult, func, select
+from sqlalchemy.orm import selectinload
 
 from gobernar360.dashboards.social import deliveries_router, interventions_router
-from gobernar360.dashboards.social.access import Viewer, reads_reserved_text
+from gobernar360.dashboards.social.access import (
+    Viewer,
+    reads_reserved_text,
+    sees_households_on_map,
+)
 from gobernar360.dashboards.social.models import Delivery, Household, Intervention, SocialPerson
 from gobernar360.platform.access import RequestContext
 from gobernar360.platform.api_types import Year
 from gobernar360.platform.clock import Today
 from gobernar360.platform.csv_export import csv_response, safe_text
+from gobernar360.platform.geo.export import LOCATION_COLUMNS, Places, location_cells, places_of
 from gobernar360.platform.models import Person
 
 router = APIRouter()
@@ -70,6 +76,8 @@ def export_people(ctx: Viewer) -> Response:
 
 @router.get("/export/households.csv")
 def export_households(ctx: Viewer) -> Response:
+    """The location columns exist only for those who may know where a household lives."""
+    with_places = sees_households_on_map(ctx)
     members: dict[object, int] = {}
     heads: dict[object, str] = {}
     for person in _people(ctx):
@@ -78,20 +86,26 @@ def export_households(ctx: Viewer) -> Response:
         members[person.household_id] = members.get(person.household_id, 0) + 1
         if person.relationship == "head":
             heads[person.household_id] = person.full_name
-    households = ctx.db.scalars(
-        select(Household).order_by(func.unaccent(Household.name), Household.id)
-    )
-    rows = (
-        (
+    query = select(Household).order_by(func.unaccent(Household.name), Household.id)
+    places: Places = {}
+    if with_places:
+        query = query.options(selectinload(Household.zones))
+    households = ctx.db.scalars(query).all()
+    if with_places:
+        places = places_of(ctx.db, Household, [household.id for household in households])
+
+    def row(household: Household) -> tuple[object, ...]:
+        cells: tuple[object, ...] = (
             safe_text(household.name),
             safe_text(household.address),
             safe_text(household.neighborhood),
             members.get(household.id, 0),
             safe_text(heads.get(household.id, "")),
         )
-        for household in households
-    )
-    return csv_response("social-households.csv", HOUSEHOLD_COLUMNS, rows)
+        return (*cells, *location_cells(household, places)) if with_places else cells
+
+    columns = (*HOUSEHOLD_COLUMNS, *LOCATION_COLUMNS) if with_places else HOUSEHOLD_COLUMNS
+    return csv_response("social-households.csv", columns, map(row, households))
 
 
 @router.get("/export/deliveries.csv")

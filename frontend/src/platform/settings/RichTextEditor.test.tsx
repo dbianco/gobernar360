@@ -1,4 +1,4 @@
-import { screen, waitFor, within } from '@testing-library/react'
+import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createRef } from 'react'
 import { expect, it, vi } from 'vitest'
@@ -185,4 +185,48 @@ it('names its toolbar for assistive technology', async () => {
 
   const toolbar = screen.getByRole('toolbar', { name: tool('toolbar') })
   expect(within(toolbar).getAllByRole('button')).toHaveLength(11)
+})
+
+it.each([
+  ['https://a.test', true],
+  ['http://a.test', true],
+  ['HTTPS://A.test', true],
+  ['mailto:a@b.test', true],
+  ['{{link}}', true],
+  ['{{ link }}', true],
+  ['javascript:alert(1)', false],
+  ['data:text/html,x', false],
+  ['ftp://a.test', false],
+  ['/relative', false],
+  ['x https://a.test', false],
+  ['x{{link}}', false],
+  ['{{link}}x', false],
+  ['{{}}', false],
+  ['{{a b}}', false],
+  ['{{a-b}}', false],
+])('lets a text link to %s: %s', async (address, allowed) => {
+  const { commands, lastHtml, user, onChange } = await renderEditor('<p>sitio</p>')
+
+  commands.selectAll()
+  await user.click(screen.getByRole('button', { name: tool('link') }))
+  const field = await screen.findByRole('textbox', { name: tool('linkAddress') })
+  fireEvent.change(field, { target: { value: ` ${address} ` } })
+  await user.click(screen.getByRole('button', { name: tool('apply') }))
+
+  await waitFor(() => expect(screen.queryByRole('textbox', { name: tool('linkAddress') })).toBeNull())
+  if (allowed) expect(lastHtml()).toContain(`href="${address}"`)
+  else expect(JSON.stringify(onChange.mock.calls)).not.toContain('href')
+})
+
+it('drops links and formats the emails do not have from the text it is given', async () => {
+  await renderEditor(
+    '<h1>uno</h1><h2>dos</h2><h3>tres</h3><pre><code>cuatro</code></pre>' +
+      '<p><code>cinco</code> <a href="javascript:f()">seis</a></p>',
+  )
+  const box = screen.getByRole('textbox', { name: 'Texto' })
+
+  expect([...box.children].map((child) => child.tagName)).toEqual(['P', 'H2', 'H3', 'P', 'P'])
+  expect(box.querySelector('code, pre')).toBeNull()
+  // Shown as text: a link that cannot be followed.
+  expect(box.querySelector('a')?.getAttribute('href') ?? '').not.toContain('javascript')
 })

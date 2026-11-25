@@ -18,6 +18,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from gobernar360.core.db import AuditMixin, Base, TenantMixin, uuid_pk
+from gobernar360.platform.geo.located import LINE, POINT, LocatedMixin
 
 PRIORITIES = ("A+", "A", "B", "C")
 STORED_STATUSES = ("not_started", "in_progress", "finished")
@@ -126,14 +127,17 @@ class Owner(TenantMixin, AuditMixin, Base):
     full_name: Mapped[str] = _name()
 
 
-class Project(TenantMixin, AuditMixin, Base):
+class Project(LocatedMixin, TenantMixin, AuditMixin, Base):
     __tablename__ = "projects_projects"
+    # A line, for works along a street.
+    location_kinds = (POINT, LINE)
     __table_args__ = (
         CheckConstraint(_in("priority", PRIORITIES), name="priority_valid"),
         CheckConstraint(_in("status", STORED_STATUSES), name="status_valid"),
         CheckConstraint("manual_progress BETWEEN 0 AND 100", name="manual_progress_range"),
         CheckConstraint("planned_budget >= 0", name="planned_budget_not_negative"),
         CheckConstraint("executed_budget >= 0", name="executed_budget_not_negative"),
+        CheckConstraint("GeometryType(location) IN ('POINT', 'LINESTRING')", name="location_kind"),
     )
 
     id: Mapped[uuid.UUID] = uuid_pk()

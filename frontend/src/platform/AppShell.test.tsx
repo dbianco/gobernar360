@@ -135,7 +135,7 @@ it('gives every navigation link an icon', async () => {
 
   const links = (await navigation()).getAllByRole('link')
 
-  expect(links).toHaveLength(8)
+  expect(links).toHaveLength(9)
   for (const link of links) expect(link.querySelector('svg')).not.toBeNull()
 })
 

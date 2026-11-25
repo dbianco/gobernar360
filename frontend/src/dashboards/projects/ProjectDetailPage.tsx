@@ -21,7 +21,9 @@ import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatDate, formatMoney, formatPercent } from '../../platform/format'
 import { hasLevel } from '../../platform/access'
+import { LocationPanel } from '../../platform/geo/LocationPanel'
 import { send, useAction, useProject } from './api'
+import { PROJECTS } from './located'
 import { MilestonesPanel } from './MilestonesPanel'
 import { ProjectForm } from './ProjectForm'
 import { StatusBadge } from './StatusBadge'
@@ -130,6 +132,8 @@ export function ProjectDetailPage() {
               </Field>
             </SimpleGrid>
           </Paper>
+
+          <LocationPanel key={data.id} kind={PROJECTS} recordId={data.id} canEdit={canEdit} />
 
           <MilestonesPanel project={data} canEdit={canEdit} />
 

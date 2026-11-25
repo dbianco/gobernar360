@@ -34,6 +34,48 @@ exports[`does not link to scripts > screen at the start 1`] = `
 sitio"
 `;
 
+exports[`drops links and formats the emails do not have from the text it is given > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+uno
+dos
+tres
+cuatro
+cinco seis"
+`;
+
+exports[`drops links and formats the emails do not have from the text it is given > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+uno
+dos
+tres
+cuatro
+cinco seis"
+`;
+
 exports[`edits an existing link, and removes it when the address is emptied > screen at the end 1`] = `
 "[Formato del texto]
 [Negrita]
@@ -383,6 +425,550 @@ exports[`inserts text where the cursor is, for the variable buttons > screen at 
 [Rehacer]
 [Texto]
 Hola mundo"
+`;
+
+exports[`lets a text link to /relative: false > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to /relative: false > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to {{ link }}: true > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to {{ link }}: true > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to {{}}: false > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to {{}}: false > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to {{a b}}: false > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to {{a b}}: false > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to {{a-b}}: false > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to {{a-b}}: false > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to {{link}}: true > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to {{link}}: true > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to {{link}}x: false > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to {{link}}x: false > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to HTTPS://A.test: true > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to HTTPS://A.test: true > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to data:text/html,x: false > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to data:text/html,x: false > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to ftp://a.test: false > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to ftp://a.test: false > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to http://a.test: true > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to http://a.test: true > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to https://a.test: true > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to https://a.test: true > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to javascript:alert(1): false > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to javascript:alert(1): false > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to mailto:a@b.test: true > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to mailto:a@b.test: true > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to x https://a.test: false > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to x https://a.test: false > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to x{{link}}: false > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`lets a text link to x{{link}}: false > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
 `;
 
 exports[`links the selection to the suggested placeholder > screen at the end 1`] = `

@@ -24,9 +24,11 @@ import gobernar360.dashboards.environment.models  # noqa: E402, F401
 import gobernar360.dashboards.procedures.models  # noqa: E402, F401
 import gobernar360.dashboards.projects.models  # noqa: E402, F401
 import gobernar360.dashboards.social.models  # noqa: E402, F401
+import gobernar360.platform.geo.models  # noqa: E402, F401
 import gobernar360.platform.models  # noqa: E402, F401
 from gobernar360.core.config import get_settings  # noqa: E402
 from gobernar360.core.db import Base  # noqa: E402
+from gobernar360.platform.geo.types import is_ours  # noqa: E402
 
 target_metadata = Base.metadata
 # Migrations always run as the owner role.
@@ -55,6 +57,7 @@ def run_migrations_offline() -> None:
         url=url,
         target_metadata=target_metadata,
         literal_binds=True,
+        include_object=is_ours,
         dialect_opts={"paramstyle": "named"},
     )
 
@@ -76,7 +79,9 @@ def run_migrations_online() -> None:
     )
 
     with connectable.connect() as connection:
-        context.configure(connection=connection, target_metadata=target_metadata)
+        context.configure(
+            connection=connection, target_metadata=target_metadata, include_object=is_ours
+        )
 
         with context.begin_transaction():
             context.run_migrations()

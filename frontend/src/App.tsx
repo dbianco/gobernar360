@@ -81,7 +81,7 @@ export default function App() {
           }
         />
         <Route
-          path="platform/municipalities/:id/settings"
+          path="platform/municipalities/:id/settings/*"
           element={
             <Only when={(me) => me.user.is_platform_operator}>
               <Suspense fallback={<PageLoader />}>

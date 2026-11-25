@@ -6,6 +6,7 @@ from gobernar360.dashboards.registry import DashboardModule
 from gobernar360.dashboards.social import (
     deliveries_router,
     export,
+    geography,
     households_router,
     interventions_router,
     parameters_router,
@@ -23,4 +24,9 @@ router.include_router(interventions_router.router)
 router.include_router(summary.router)
 router.include_router(export.router)
 
-module = DashboardModule(key=KEY, router=router, get_summary=summary.get_summary)
+module = DashboardModule(
+    key=KEY,
+    router=router,
+    get_summary=summary.get_summary,
+    located=(geography.households,),
+)

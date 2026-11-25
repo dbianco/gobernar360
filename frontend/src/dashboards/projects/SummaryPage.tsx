@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 
 import { downloadUrl } from '../../api/client'
 import { errorMessage } from '../../platform/errorMessage'
+import { ZoneBreakdown } from '../../platform/geo/ZoneBreakdown'
+import { boundariesOf } from '../../platform/geo/asOf'
 import { formatMoney, formatPercent, formatRatio } from '../../platform/format'
 import { StatCard } from '../../platform/StatCard'
 import { StatusStrip } from '../../platform/status/StatusStrip'
@@ -11,6 +13,7 @@ import { currentYear } from '../../platform/years'
 import { BASE, useSummary } from './api'
 import { CountBarChart } from './CountBarChart'
 import { FilterBar } from './FilterBar'
+import { PROJECTS } from './located'
 import { useTerm } from './termContext'
 import { EFFECTIVE_STATUSES, type ProjectFilters } from './types'
 
@@ -104,6 +107,12 @@ export function SummaryPage() {
               }))}
             />
           </SimpleGrid>
+
+          <ZoneBreakdown
+            kind={PROJECTS}
+            filters={{ term_id: term.id, ...filters }}
+            asOf={boundariesOf(filters.year)}
+          />
         </>
       )}
     </Stack>

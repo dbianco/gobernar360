@@ -120,3 +120,28 @@ it('says why the requirements cannot be loaded', async () => {
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })
+
+it('opens the form with what the requirement has, and says where each source is from', async () => {
+  renderProcedures(<RequirementsPage />)
+  const user = userEvent.setup()
+  const row = within(await screen.findByRole('row', { name: /Libre deuda municipal/ }))
+
+  await user.click(row.getAllByRole('button')[0])
+  const form = within(await screen.findByRole('dialog'))
+
+  expect(form.getByRole('textbox', { name: label('name') })).toHaveValue(FREE_DEBT.name)
+  expect(form.getByRole('textbox', { name: label('description') })).toHaveValue(
+    FREE_DEBT.description,
+  )
+  const source = form.getByLabelText(label('sourceField'))
+  expect(source).toHaveValue(RENTAS_SOURCE.id)
+  const options = within(source).getAllByRole('option')
+  expect(options[0]).toHaveTextContent(label('noSource'))
+  expect(options[0]).toHaveValue('')
+  expect(options.map((option) => option.textContent)).toContain(
+    `${RENTAS_SOURCE.name} (${t('procedures.levels.municipal')})`,
+  )
+  expect(form.getByText(label('sourceHint'))).toBeInTheDocument()
+  await user.click(form.getByRole('button', { name: t('app.cancel') }))
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})

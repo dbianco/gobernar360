@@ -9,6 +9,7 @@ Ana Gómez
 Cerrar sesión
 Resumen general
 Usuarios
+Zonas
 Configuración
 Resumen general
 No tenés tableros habilitados
@@ -31,15 +32,16 @@ Plataforma
 Noetinger
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -76,7 +78,10 @@ Texto
 {{link}}
 Enviarme una prueba
 Volver al texto por defecto
-Guardar texto"
+Guardar texto
+Inicio de sesión único
+Permitir ingresar con inicio de sesión único
+Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten."
 `;
 
 exports[`saves what the operator changes in that municipality > screen at the start 1`] = `
@@ -110,15 +115,16 @@ Plataforma
 Noetinger
 Configuración
 Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
 Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
-Inicio de sesión único
-Permitir ingresar con inicio de sesión único
-Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo

@@ -8,6 +8,11 @@ import {
 } from '@tabler/icons-react'
 import { type ComponentType, lazy, type LazyExoticComponent } from 'react'
 
+import type { LocatedKind } from '../platform/geo/types'
+import { ACTORS } from './economic/located'
+import { PROJECTS } from './projects/located'
+import { HOUSEHOLDS } from './social/located'
+
 /**
  * A dashboard installed in the web app. To add one: create its folder next to
  * this file and append an entry here. Entries must not import each other.
@@ -20,6 +25,8 @@ export interface DashboardEntry {
   icon: Icon
   basePath: string
   routes: LazyExoticComponent<ComponentType>
+  /** Its records that have a place on the map. */
+  located?: LocatedKind[]
 }
 
 export const dashboards: DashboardEntry[] = [
@@ -29,6 +36,7 @@ export const dashboards: DashboardEntry[] = [
     icon: IconBulb,
     basePath: '/d/projects',
     routes: lazy(() => import('./projects/routes')),
+    located: [PROJECTS],
   },
   {
     key: 'environment',
@@ -43,6 +51,7 @@ export const dashboards: DashboardEntry[] = [
     icon: IconBuildingStore,
     basePath: '/d/economic',
     routes: lazy(() => import('./economic/routes')),
+    located: [ACTORS],
   },
   {
     key: 'social',
@@ -50,6 +59,7 @@ export const dashboards: DashboardEntry[] = [
     icon: IconHeartHandshake,
     basePath: '/d/social',
     routes: lazy(() => import('./social/routes')),
+    located: [HOUSEHOLDS],
   },
   {
     key: 'procedures',

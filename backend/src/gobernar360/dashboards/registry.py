@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from sqlalchemy.orm import Session
 
     from gobernar360.platform.access import RequestContext
+    from gobernar360.platform.geo.contract import LocatedRecord
 
 
 @dataclass(frozen=True)
@@ -45,6 +46,8 @@ class DashboardModule:
     alert_kinds: tuple[str, ...] = ()
     # Current alerts, given a session scoped to one municipality and today's date.
     get_alerts: Callable[[Session, date], list[Alert]] | None = None
+    # Records with a place: they get maps, zones and breakdowns by zone from the platform.
+    located: tuple[LocatedRecord, ...] = ()
 
 
 _modules: dict[str, DashboardModule] = {}
@@ -56,10 +59,6 @@ def register(module: DashboardModule) -> None:
 
 def unregister(key: str) -> None:
     _modules.pop(key, None)
-
-
-def clear() -> None:
-    _modules.clear()
 
 
 def all_modules() -> list[DashboardModule]:

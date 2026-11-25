@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`chooses a zone on the map too, and none again from the list > screen at the end 1`] = `
+"[Perfil de zona]
+Perfil de zona
+Zona
+Elegir una zona
+Centro
+Norte"
+`;
+
+exports[`combines what every dashboard has in the zone chosen > screen at the end 1`] = `
+"[Perfil de zona]
+Perfil de zona
+Zona
+Elegir una zona
+Centro
+Norte
+[Mapa de zonas]
+Centro
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+[Económico]
+Económico
+Actores económicos
+4
+Por sector
+:
+Alimentos 3 · Sin sector 1
+[Social]
+Social
+Grupos familiares
+Reservado
+Las cantidades menores a 5 no se muestran, ni las que permitirían deducirlas."
+`;
+
+exports[`says why the profile or the zones cannot be shown > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;

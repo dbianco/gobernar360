@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom'
 import { HelpTh } from '../../platform/HelpTh'
 import { useAuth } from '../../platform/authContext'
 import { errorMessage } from '../../platform/errorMessage'
+import { zoneNames } from '../../platform/geo/zoneNames'
 import { Pager } from '../../platform/Pager'
 import { hasLevel } from '../../platform/access'
 import { ActorForm } from './ActorForm'
@@ -86,6 +87,7 @@ export function ActorsPage() {
                 <HelpTh help={t('economic.help.actorsPage.name')}>{label('name')}</HelpTh>
                 <HelpTh help={t('economic.help.actorsPage.type')}>{label('type')}</HelpTh>
                 <HelpTh help={t('economic.help.actorsPage.sector')}>{label('sector')}</HelpTh>
+                <HelpTh help={t('economic.help.actorsPage.zones')}>{t('geo.zone')}</HelpTh>
                 <HelpTh help={t('economic.help.actorsPage.cuit')}>{label('cuit')}</HelpTh>
                 <HelpTh help={t('economic.help.actorsPage.employees')} ta="right">
                   {label('employees')}
@@ -102,6 +104,7 @@ export function ActorsPage() {
                   </Table.Td>
                   <Table.Td>{actor.actor_type?.name ?? t('app.none')}</Table.Td>
                   <Table.Td>{actor.sector?.name ?? t('app.none')}</Table.Td>
+                  <Table.Td>{zoneNames(actor.zones, t('app.none'))}</Table.Td>
                   <Table.Td>{actor.cuit ? formatCuit(actor.cuit) : t('app.none')}</Table.Td>
                   <Table.Td ta="right">{actor.employee_count ?? t('app.none')}</Table.Td>
                 </Table.Tr>

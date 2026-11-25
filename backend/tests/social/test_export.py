@@ -180,3 +180,14 @@ def test_exports_need_access(client, name):
     login(client, EMAIL)
 
     assert client.get(f"{BASE}/export/{name}.csv").status_code == 403
+
+
+def test_households_csv_does_not_count_people_without_a_household(client):
+    municipality = _member(client)
+    household = make_household(municipality, "Familia Pérez")
+    make_social_person(municipality, household=household)
+    make_social_person(municipality, "Sola")
+
+    rows = _rows(client.get(f"{BASE}/export/households.csv"))
+
+    assert rows[1:] == [["Familia Pérez", "", "", "1", ""]]
