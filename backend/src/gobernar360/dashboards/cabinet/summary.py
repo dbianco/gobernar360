@@ -8,20 +8,16 @@ from pydantic import BaseModel
 from sqlalchemy import select
 
 from gobernar360.dashboards.cabinet.access import Viewer
-from gobernar360.dashboards.cabinet.models import Commitment, Meeting
-from gobernar360.dashboards.cabinet.present import present_commitments
-from gobernar360.dashboards.cabinet.rules import (
-    DONE,
-    EFFECTIVE_STATES,
-    OPEN,
-    OVERDUE,
-    CommitmentState,
-    on_time_share,
-)
-from gobernar360.dashboards.cabinet.schemas import CommitmentOut, UserRef
-from gobernar360.dashboards.registry import SubjectCommitment, SubjectsQuery, SummaryIndicator
+from gobernar360.dashboards.cabinet.models import Meeting
+from gobernar360.dashboards.cabinet.present import present_commitments, taken
+from gobernar360.dashboards.cabinet.rules import CommitmentState, on_time_share
+from gobernar360.dashboards.cabinet.schemas import CommitmentOut
+from gobernar360.dashboards.registry import SummaryIndicator
 from gobernar360.platform.access import RequestContext
 from gobernar360.platform.clock import Today
+from gobernar360.platform.commitment_models import Commitment
+from gobernar360.platform.commitment_rules import DONE, EFFECTIVE_STATES, OPEN, OVERDUE
+from gobernar360.platform.directory import UserRef
 
 router = APIRouter()
 
@@ -84,7 +80,7 @@ def _by_owner(commitments: list[CommitmentOut], today: date) -> list[OwnerRow]:
 
 def _all(ctx: RequestContext, today: date) -> list[CommitmentOut]:
     rows = ctx.db.scalars(
-        select(Commitment).order_by(Commitment.due_date, Commitment.created_at, Commitment.id)
+        taken().order_by(Commitment.due_date, Commitment.created_at, Commitment.id)
     ).unique()
     return present_commitments(ctx, list(rows), today)
 
@@ -119,33 +115,4 @@ def get_summary(ctx: RequestContext, today: date) -> list[SummaryIndicator]:
         SummaryIndicator("cabinet.overdue", states[OVERDUE]),
         SummaryIndicator("cabinet.done", states[DONE]),
         SummaryIndicator("cabinet.on_time_ratio", _on_time(commitments, today), "ratio"),
-    ]
-
-
-def get_commitments(
-    ctx: RequestContext, today: date, query: SubjectsQuery
-) -> list[SubjectCommitment]:
-    """Open commitments about some subjects, for whoever shows them (see the registry)."""
-    rows = ctx.db.scalars(
-        select(Commitment).where(
-            Commitment.state == OPEN,
-            Commitment.subject_dashboard == query.dashboard_key,
-            Commitment.subject_kind == query.kind,
-            Commitment.subject_ref.in_(query.refs),
-        )
-    ).unique()
-    rows = list(rows)
-    shown = {c.id: c for c in present_commitments(ctx, rows, today)}
-    return [
-        SubjectCommitment(
-            id=row.id,
-            ref=row.subject_ref,
-            description=row.description,
-            owner=row.owner.full_name,
-            due_date=row.due_date,
-            overdue=shown[row.id].state == OVERDUE,
-            times_postponed=shown[row.id].times_postponed,
-            path=f"/d/cabinet/commitments/{row.id}",
-        )
-        for row in rows
     ]

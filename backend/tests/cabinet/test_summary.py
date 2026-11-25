@@ -4,6 +4,7 @@ import pytest
 
 from tests.cabinet.factories import (
     URL,
+    as_member,
     cabinet_member,
     close,
     commit,
@@ -21,7 +22,7 @@ def pinned_today(client):
 
 def set_state(client, commitment, state, **fields):
     response = client.post(
-        f"{URL}/commitments/{commitment['id']}/state", json={"state": state} | fields
+        f"/api/commitments/{commitment['id']}/state", json={"state": state} | fields
     )
     assert response.status_code == 200, response.text
 
@@ -70,6 +71,25 @@ def test_it_counts_by_state_and_owner_and_the_share_on_time(client):
         "closed_meetings": 1,
         "last_meeting": "2026-02-01",
     }
+
+
+def test_the_share_on_time_goes_by_the_date_it_has_now_also_if_its_owner_moved_it(client):
+    """Decided on purpose: a date moved is a date agreed. Its history tells it was moved."""
+    municipality, _ = cabinet_member(client)
+    leo = make_user("leo@noetinger.test")
+    make_membership(leo, municipality)
+    item = prepare(client, date(2026, 2, 1))["items"][0]
+    late = commit(client, item, leo, date(2026, 2, 20))
+    assert client.get(f"{URL}/summary").json()["on_time_share"] == 0.0
+    as_member(client, "leo@noetinger.test")
+    moved = client.patch(f"/api/commitments/{late['id']}", json={"due_date": "2026-03-15"})
+    assert moved.status_code == 200, moved.text
+    set_state(client, late, "done", completed_on="2026-03-10")
+    as_member(client)
+
+    assert client.get(f"{URL}/summary").json()["on_time_share"] == 1.0
+    history = client.get(f"/api/commitments/{late['id']}").json()["history"]
+    assert history[-1]["changes"] == {"due_date": ["2026-02-20", "2026-03-15"]}
 
 
 def test_owners_are_ordered_by_what_they_owe_then_by_name(client):

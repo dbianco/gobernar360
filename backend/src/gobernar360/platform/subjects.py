@@ -16,7 +16,7 @@ Every rule about links lives here:
 
 import re
 import uuid
-from collections.abc import Collection, Iterable
+from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import date
 from typing import Annotated, Literal
@@ -27,13 +27,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 from gobernar360.core.errors import forbidden, invalid_reference
 from gobernar360.dashboards import registry
-from gobernar360.dashboards.registry import (
-    MONTH,
-    LinkableRecord,
-    SubjectCommitment,
-    SubjectRecord,
-    SubjectsQuery,
-)
+from gobernar360.dashboards.registry import MONTH, LinkableRecord, SubjectRecord
 from gobernar360.platform import status
 from gobernar360.platform.access import AccessLevel, RequestContext, effective_levels
 from gobernar360.platform.models import DashboardStatus
@@ -120,6 +114,14 @@ def _parse_id(ref: str) -> uuid.UUID | None:
         return uuid.UUID(ref)
     except ValueError:
         return None
+
+
+def normal_ref(kind: str, ref: str) -> str | None:
+    """A reference as links store it, or None when it cannot be one of that kind."""
+    if kind == MONTH:
+        return ref if _parse_month(ref) is not None else None
+    record_id = _parse_id(ref)
+    return None if record_id is None else str(record_id)
 
 
 def _dashboard_label(key: str) -> str:
@@ -305,29 +307,3 @@ def search(
         return [out for out in months if all(word in out.label.lower() for word in wanted)][:limit]
     records = _linkable(dashboard_key, kind).search(ctx, words, limit)
     return [_record_out(dashboard_key, kind, record) for record in records]
-
-
-def commitments_about(
-    ctx: RequestContext, dashboard_key: str, kind: str, refs: Collection[str], today: date
-) -> list[SubjectCommitment]:
-    """Open commitments about some subjects, soonest due first.
-
-    The member must be able to see the subjects. They get the commitments kept by the
-    dashboards they have access to: to anyone else there are none.
-    """
-    levels = _levels(ctx)
-    if not _sees(levels, dashboard_key, kind):
-        raise forbidden()
-    if kind == MONTH:
-        known = {ref for ref in refs if _parse_month(ref) is not None}
-    else:
-        known = {str(record_id) for ref in refs if (record_id := _parse_id(ref)) is not None}
-    query = SubjectsQuery(dashboard_key, kind, frozenset(known))
-    found = [
-        commitment
-        for module in registry.all_modules()
-        if module.get_commitments is not None
-        and levels.get(module.key, AccessLevel.NONE) >= AccessLevel.VIEWER
-        for commitment in module.get_commitments(ctx, today, query)
-    ]
-    return sorted(found, key=lambda c: (c.due_date, c.description, str(c.id)))

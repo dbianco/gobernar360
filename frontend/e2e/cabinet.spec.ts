@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises'
 
 import { expect, type Page, test } from '@playwright/test'
 
-import { login, logout, sidebar, statValue } from './helpers.ts'
+import { choosePerson, login, logout, sidebar, statValue } from './helpers.ts'
 
 const MONTHS = [
   'Enero',
@@ -117,10 +117,11 @@ test('commitments appear on the project and beside the red month they are about'
   await openCabinet(page, 'Reuniones')
   await page.getByRole('link', { name: /^Continuar la reunión/ }).click()
   const form = page.getByRole('dialog')
+  const owner = form.getByRole('combobox', { name: 'Responsable' })
 
   await page.getByRole('button', { name: 'Agregar compromiso en Plaza central' }).click()
-  await form.getByLabel('Qué se acordó').fill(ABOUT_PROJECT)
-  await form.getByLabel('Responsable').selectOption({ label: 'Leo Lectura' })
+  await form.getByLabel('Qué hay que hacer').fill(ABOUT_PROJECT)
+  await choosePerson(page, owner, 'leo', 'Leo Lectura')
   await form.getByLabel('Fecha comprometida').fill(inDays(20))
   await form.getByLabel('Vinculado a').selectOption({ label: 'Proyectos: proyecto' })
   await form.getByRole('combobox', { name: 'Cuál' }).fill('plaza')
@@ -130,8 +131,8 @@ test('commitments appear on the project and beside the red month they are about'
 
   // The item about the light already knows what its commitments are about.
   await page.getByRole('button', { name: `Agregar compromiso en ${LIGHT_ITEM}` }).click()
-  await form.getByLabel('Qué se acordó').fill(ABOUT_LIGHT)
-  await form.getByLabel('Responsable').selectOption({ label: 'Carla Carga' })
+  await form.getByLabel('Qué hay que hacer').fill(ABOUT_LIGHT)
+  await choosePerson(page, owner, 'carga', 'Carla Carga')
   await form.getByLabel('Fecha comprometida').fill(inDays(10))
   await form.getByRole('button', { name: 'Guardar' }).click()
   await expect(form).toBeHidden()
@@ -233,7 +234,7 @@ test('a viewer follows their own commitments and adds notes to them', async ({ p
   await login(page, 'lectura@noetinger.test')
   await openCabinet(page, 'Reuniones')
   await expect(page.getByRole('link', { name: /Preparar|Continuar/ })).toHaveCount(0)
-  await page.getByRole('tab', { name: 'Mis compromisos' }).click()
+  await sidebar(page).getByRole('link', { name: 'Compromisos' }).click()
   await page.getByRole('link', { name: ABOUT_PROJECT }).click()
 
   await page.getByLabel('Nota de avance').fill('Pedí los presupuestos.')
@@ -242,7 +243,9 @@ test('a viewer follows their own commitments and adds notes to them', async ({ p
   await expect(page.getByRole('region', { name: 'Avance e historial' })).toContainText(
     'Leo Lectura',
   )
-  await expect(page.getByRole('button', { name: 'Marcar cumplido' })).toHaveCount(0)
+  // Whoever owes it says it is done; dropping it is for those who record the meetings.
+  await expect(page.getByRole('button', { name: 'Marcar cumplido' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Descartar' })).toHaveCount(0)
 })
 
 test('a member without Projects sees the commitment but not which project', async ({ page }) => {

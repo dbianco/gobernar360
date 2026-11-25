@@ -65,6 +65,11 @@
       "nextDecade": "Década siguiente",
       "chooseMonth": "Elegir mes",
       "chooseYear": "Elegir año"
+    },
+    "person": {
+      "choose": "Escribí un nombre",
+      "chooseSeveral": "Escribí nombres",
+      "clear": "Quitar la persona"
     }
   },
   "errors": {
@@ -1477,21 +1482,91 @@
     "owed": "{{owner}}, para el {{date}}",
     "overdue": "Vencido",
     "postponed_one": "Postergado {{count}} vez",
-    "postponed_other": "Postergado {{count}} veces"
+    "postponed_other": "Postergado {{count}} veces",
+    "section": "Compromisos",
+    "create": "Nuevo compromiso",
+    "informal": "Informal",
+    "states": {
+      "open": "Pendiente",
+      "overdue": "Vencido",
+      "done": "Cumplido",
+      "dropped": "Descartado"
+    },
+    "relations": {
+      "mine": "A mi cargo",
+      "given": "Los que asigné",
+      "following": "Los que sigo"
+    },
+    "form": {
+      "description": "Qué hay que hacer",
+      "owner": "Responsable",
+      "dueDate": "Fecha comprometida",
+      "followers": "Avisar cuando se cumpla a",
+      "followersHint": "Van a ver el compromiso y se enteran cuando esté cumplido."
+    },
+    "detail": {
+      "back": "Volver a compromisos",
+      "editTitle": "Editar compromiso",
+      "owner": "Responsable",
+      "dueDate": "Fecha comprometida",
+      "completedOn": "Fecha de cumplimiento",
+      "creator": "Asignado por",
+      "followers": "Se avisa a",
+      "origin": "Origen",
+      "markDone": "Marcar cumplido",
+      "drop": "Descartar",
+      "reopen": "Reabrir",
+      "note": "Nota",
+      "newNote": "Nota de avance",
+      "addNote": "Agregar nota",
+      "history": "Avance e historial",
+      "textOfMeeting": "Lo acordado se cambia desde la reunión mientras está abierta. Acá se pueden cambiar el responsable, la fecha y a quién se avisa.",
+      "textOfCreator": "Lo acordado lo cambia quien asignó el compromiso. Se pueden cambiar el responsable, la fecha y a quién se avisa."
+    },
+    "history": {
+      "empty": "Todavía no hay notas ni cambios.",
+      "by": "{{author}}, {{when}}",
+      "unknown": "Alguien sin cuenta",
+      "change": "{{field}}: {{before}} → {{after}}",
+      "fields": {
+        "state": "Estado",
+        "due_date": "Fecha comprometida",
+        "completed_on": "Fecha de cumplimiento",
+        "owner": "Responsable",
+        "description": "Compromiso"
+      }
+    },
+    "list": {
+      "description": "Compromiso",
+      "owner": "Responsable",
+      "dueDate": "Fecha comprometida",
+      "state": "Estado",
+      "subject": "Vinculado a",
+      "origin": "Origen",
+      "searchHint": "Compromiso o responsable",
+      "pending": "Pendientes y vencidos",
+      "allStates": "Todos los estados",
+      "empty": {
+        "mine": "No tenés compromisos que coincidan.",
+        "given": "No asignaste compromisos que coincidan.",
+        "following": "No seguís compromisos que coincidan."
+      }
+    },
+    "help": {
+      "description": "Lo que hay que hacer. Al hacer clic se abre con su historial.",
+      "owner": "Quién tiene que cumplirlo.",
+      "dueDate": "Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.",
+      "state": "Pendiente, vencido, cumplido o descartado.",
+      "subject": "De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.",
+      "origin": "La reunión en la que se tomó, o informal si alguien lo asignó fuera de una reunión."
+    }
   },
   "cabinet": {
     "title": "Gabinete",
     "tabs": {
       "summary": "Resumen",
       "meetings": "Reuniones",
-      "commitments": "Compromisos",
-      "mine": "Mis compromisos"
-    },
-    "states": {
-      "open": "Pendiente",
-      "overdue": "Vencido",
-      "done": "Cumplido",
-      "dropped": "Descartado"
+      "commitments": "Compromisos"
     },
     "meetings": {
       "prepare": "Preparar reunión",
@@ -1565,42 +1640,6 @@
       "moveUp": "Subir {{name}}",
       "moveDown": "Bajar {{name}}"
     },
-    "commitment": {
-      "back": "Volver a compromisos",
-      "addTitle": "Agregar compromiso",
-      "editTitle": "Editar compromiso",
-      "description": "Qué se acordó",
-      "owner": "Responsable",
-      "chooseOwner": "Elegí quién",
-      "noAccess": "{{name}} (sin acceso a Gabinete)",
-      "dueDate": "Fecha comprometida",
-      "completedOn": "Fecha de cumplimiento",
-      "meeting": "Tomado en la reunión del",
-      "textFixed": "La reunión está cerrada: lo acordado ya no cambia. Se pueden cambiar el responsable y la fecha, y queda en el historial.",
-      "view": "Ver compromiso",
-      "viewNamed": "Ver compromiso: {{name}}",
-      "editNamed": "Editar compromiso: {{name}}",
-      "removeNamed": "Eliminar compromiso: {{name}}",
-      "markDone": "Marcar cumplido",
-      "drop": "Descartar",
-      "reopen": "Reabrir",
-      "note": "Nota",
-      "newNote": "Nota de avance",
-      "addNote": "Agregar nota",
-      "history": "Avance e historial"
-    },
-    "history": {
-      "empty": "Todavía no hay notas ni cambios.",
-      "by": "{{author}}, {{when}}",
-      "unknown": "Alguien sin cuenta",
-      "change": "{{field}}: {{before}} → {{after}}",
-      "fields": {
-        "state": "Estado",
-        "due_date": "Fecha comprometida",
-        "completed_on": "Fecha de cumplimiento",
-        "owner": "Responsable"
-      }
-    },
     "list": {
       "description": "Compromiso",
       "owner": "Responsable",
@@ -1613,8 +1652,7 @@
       "allStates": "Todos los estados",
       "allOwners": "Todos los responsables",
       "download": "Descargar CSV",
-      "empty": "Ningún compromiso coincide.",
-      "emptyMine": "No tenés compromisos que coincidan."
+      "empty": "Ningún compromiso coincide."
     },
     "summary": {
       "download": "Descargar compromisos (CSV)",
@@ -1660,6 +1698,52 @@
         "dropped": "Los que se decidió no hacer.",
         "onTime": "Cumplidos hasta la fecha comprometida, sobre el total de cumplidos y vencidos."
       }
+    },
+    "commitment": {
+      "view": "Ver compromiso",
+      "viewNamed": "Ver compromiso: {{name}}",
+      "editNamed": "Editar compromiso: {{name}}",
+      "removeNamed": "Eliminar compromiso: {{name}}",
+      "addTitle": "Agregar compromiso",
+      "editTitle": "Editar compromiso"
     }
+  },
+  "notices": {
+    "title": "Notificaciones",
+    "readAll": "Marcar todo como leído",
+    "read": "Marcar como leída",
+    "readNamed": "Marcar como leída: {{name}}",
+    "seeAll": "Ver la lista completa",
+    "searchHint": "Compromiso o responsable",
+    "news": "Novedad",
+    "help": {
+      "news": "Lo que pasó desde la última vez que lo viste."
+    },
+    "sections": {
+      "mine": "Compromisos a mi cargo",
+      "others": "Compromisos de otros que sigo"
+    },
+    "hints": {
+      "mine": "Los que tenés pendientes.",
+      "others": "Los que asignaste o en los que te agregaron. Los cumplidos quedan hasta que los marques como leídos."
+    },
+    "empty": {
+      "mine": "No tenés compromisos pendientes.",
+      "others": "No seguís compromisos pendientes de otras personas."
+    },
+    "kinds": {
+      "assigned": "{{actor}} te lo asignó",
+      "done": "{{actor}} lo cumplió"
+    },
+    "someone": "Alguien sin cuenta",
+    "noNews": "No hay novedades.",
+    "mineLabel_one": "Compromisos a mi cargo: {{count}} pendiente",
+    "mineLabel_other": "Compromisos a mi cargo: {{count}} pendientes",
+    "mineOverdueLabel_one": "Compromisos a mi cargo: {{count}} pendiente (vencidos: {{overdue}})",
+    "mineOverdueLabel_other": "Compromisos a mi cargo: {{count}} pendientes (vencidos: {{overdue}})",
+    "newsLabel_one": "Notificaciones: {{count}} novedad",
+    "newsLabel_other": "Notificaciones: {{count}} novedades",
+    "more_one": "y {{count}} más",
+    "more_other": "y {{count}} más"
   }
 }

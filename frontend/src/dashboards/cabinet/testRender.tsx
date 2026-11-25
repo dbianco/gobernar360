@@ -10,7 +10,7 @@ export const BASE = '/dashboards/cabinet'
 
 /** Mock who may owe commitments and what they may be linked to. */
 export function mockCatalog() {
-  mockApi('get', `${BASE}/members`, [ANA, LEO, ZOE])
+  mockApi('get', '/members', [ANA, LEO, ZOE])
   mockApi('get', '/subjects/kinds', [
     { dashboard_key: 'environment', kind: 'month' },
     { dashboard_key: 'projects', kind: 'project' },

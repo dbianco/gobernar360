@@ -2,19 +2,18 @@ import { Anchor, Group, Table } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import { PATH } from '../../platform/commitments/api'
 import { PostponedBadge } from '../../platform/commitments/PostponedBadge'
+import { StateBadge } from '../../platform/commitments/StateBadge'
 import { formatDate } from '../../platform/format'
 import { HelpTh } from '../../platform/HelpTh'
 import { SubjectLabel } from '../../platform/subjects/SubjectLabel'
 import { BASE_PATH } from './api'
-import { StateBadge } from './StateBadge'
 import type { Commitment } from './types'
 
 export function CommitmentsTable(props: {
   commitments: Commitment[]
   label: string
-  /** Left out where every row has the same owner. */
-  hideOwner?: boolean
 }) {
   const { t } = useTranslation()
   const label = (key: string) => t(`cabinet.list.${key}`)
@@ -26,7 +25,7 @@ export function CommitmentsTable(props: {
         <Table.Thead>
           <Table.Tr>
             <HelpTh help={help('description')}>{label('description')}</HelpTh>
-            {!props.hideOwner && <HelpTh help={help('owner')}>{label('owner')}</HelpTh>}
+            <HelpTh help={help('owner')}>{label('owner')}</HelpTh>
             <HelpTh help={help('dueDate')}>{label('dueDate')}</HelpTh>
             <HelpTh help={help('state')}>{label('state')}</HelpTh>
             <HelpTh help={help('subject')}>{label('subject')}</HelpTh>
@@ -37,11 +36,11 @@ export function CommitmentsTable(props: {
           {props.commitments.map((commitment) => (
             <Table.Tr key={commitment.id}>
               <Table.Td>
-                <Anchor component={Link} to={`${BASE_PATH}/commitments/${commitment.id}`}>
+                <Anchor component={Link} to={`${PATH}/${commitment.id}`}>
                   {commitment.description}
                 </Anchor>
               </Table.Td>
-              {!props.hideOwner && <Table.Td>{commitment.owner.full_name}</Table.Td>}
+              <Table.Td>{commitment.owner.full_name}</Table.Td>
               <Table.Td>{formatDate(commitment.due_date)}</Table.Td>
               <Table.Td>
                 <Group gap={4}>

@@ -4,9 +4,12 @@ exports[`clears the filters when the term changes > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Proyectos
 Proyectos
 Resumen
@@ -60,7 +63,7 @@ Todos
 Obras Públicas
 Salud
 Responsable
-Todos
+(Todos)
 María Pérez
 Prioridad
 Todos
@@ -113,9 +116,12 @@ exports[`moves between the sections with the tabs > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Proyectos
 Proyectos
 Resumen
@@ -170,7 +176,7 @@ Todos
 Obras Públicas
 Salud
 Responsable
-Todos
+(Todos)
 María Pérez
 Prioridad
 Todos

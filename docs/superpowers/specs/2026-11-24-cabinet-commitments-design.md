@@ -1,5 +1,9 @@
 # Gabinete: reuniones y compromisos — diseño
 
+> Los compromisos pasaron después a la plataforma: ver
+> `2026-11-24-commitments-and-notices-design.md`. Lo que sigue sobre quién los ve, quién los
+> cambia y dónde se guardan queda reemplazado por ese documento.
+
 Tarea: `docs/tasks/04-cabinet-commitments.md`. Sexto tablero (clave `cabinet`) y una pieza
 nueva de la plataforma (`2026-11-18-gobernar360-platform-design.md`): los sujetos vinculables.
 

@@ -15,7 +15,6 @@ from gobernar360.dashboards import registry
 from gobernar360.dashboards.registry import (
     DashboardModule,
     LinkableRecord,
-    SubjectCommitment,
     SubjectRecord,
 )
 from tests.cabinet.factories import (
@@ -110,7 +109,7 @@ def test_a_dashboard_that_only_declares_its_records_can_receive_commitments(clie
             "due_date": "2026-03-20",
             "overdue": False,
             "times_postponed": 0,
-            "path": f"/d/cabinet/commitments/{taken['id']}",
+            "path": f"/commitments/{taken['id']}",
         }
     ]
 
@@ -122,7 +121,7 @@ def test_its_records_are_restricted_to_those_without_access(client):
     close(client, meeting)
     cabinet_member(client, "viewer", "leo@noetinger.test", municipality, enable=ENABLED)
 
-    seen = client.get(f"{URL}/commitments/{taken['id']}").json()["subject"]
+    seen = client.get(f"/api/commitments/{taken['id']}").json()["subject"]
 
     assert (seen["access"], seen["kind"], seen["dashboard_key"]) == ("restricted", "thing", "demo")
     assert (seen["label"], seen["ref"], seen["path"]) == (None, None, None)
@@ -143,7 +142,7 @@ def test_a_kind_may_ask_for_more_than_viewing_the_dashboard(client):
     cabinet_member(
         client, "editor", "leo@noetinger.test", municipality, {"demo": "viewer"}, ENABLED
     )
-    seen = client.get(f"{URL}/commitments/{taken['id']}").json()["subject"]
+    seen = client.get(f"/api/commitments/{taken['id']}").json()["subject"]
     assert seen["access"] == "restricted"
     assert error(about(client, kind="secret")) == (403, "forbidden")
     assert error(search(client, kind="secret")) == (403, "forbidden")
@@ -157,7 +156,7 @@ def test_a_record_that_is_gone_reads_as_deleted(client, monkeypatch):
     taken = commit(client, meeting["items"][0], ana, subject=thing())
     monkeypatch.delitem(THINGS, FIRST)
 
-    seen = client.get(f"{URL}/commitments/{taken['id']}").json()["subject"]
+    seen = client.get(f"/api/commitments/{taken['id']}").json()["subject"]
 
     assert seen == {
         "access": "deleted",
@@ -178,7 +177,7 @@ def test_a_dashboard_that_is_uninstalled_leaves_its_links_restricted(client):
     taken = commit(client, prepare(client)["items"][0], ana, subject=thing())
     registry.unregister("demo")
 
-    seen = client.get(f"{URL}/commitments/{taken['id']}").json()["subject"]
+    seen = client.get(f"/api/commitments/{taken['id']}").json()["subject"]
 
     assert (seen["access"], seen["label"]) == ("restricted", None)
 
@@ -287,8 +286,8 @@ def test_commitments_about_a_subject_are_the_open_ones_soonest_first(client):
     done = commit(client, item, ana, date(2026, 3, 1), subject=subject)
     dropped = commit(client, item, ana, date(2026, 3, 1), subject=subject)
     commit(client, item, ana, date(2026, 3, 1))
-    client.post(f"{URL}/commitments/{done['id']}/state", json={"state": "done"})
-    client.post(f"{URL}/commitments/{dropped['id']}/state", json={"state": "dropped"})
+    client.post(f"/api/commitments/{done['id']}/state", json={"state": "done"})
+    client.post(f"/api/commitments/{dropped['id']}/state", json={"state": "dropped"})
     close(client, meeting)
     prepare(client)
 
@@ -360,35 +359,3 @@ def test_another_municipality_s_commitments_are_not_shown(client):
 
     # The same reference means nothing in another municipality.
     assert about(client).json() == []
-
-
-def test_any_dashboard_may_keep_commitments(client):
-    def get_commitments(ctx, today, query):
-        assert (query.dashboard_key, query.kind) == ("environment", "month")
-        return [
-            SubjectCommitment(
-                id=uuid.UUID(int=9),
-                ref=ref,
-                description="De otro tablero",
-                owner="Leo",
-                due_date=today,
-                overdue=False,
-                times_postponed=0,
-                path="/d/demo",
-            )
-            for ref in sorted(query.refs)[:1]
-        ]
-
-    registry.register(
-        DashboardModule(
-            key="demo",
-            router=APIRouter(),
-            get_summary=lambda ctx, today: [],
-            get_commitments=get_commitments,
-        )
-    )
-    cabinet_member(client, None, others={"demo": "viewer", "environment": "viewer"}, enable=ENABLED)
-
-    found = client.get("/api/subjects/environment/commitments?year=2026").json()
-
-    assert [(c["ref"], c["description"]) for c in found] == [("2026-01", "De otro tablero")]

@@ -1,16 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { api, type Query } from '../../api/client'
-import { COMMITMENTS } from '../../platform/commitments/api'
+import { COMMITMENTS, NOTICES } from '../../platform/commitments/api'
 import type { Page } from '../../platform/types'
 import { useAction as usePlatformAction } from '../../platform/useAction'
 import type {
   AgendaProposal,
   Commitment,
-  CommitmentDetail,
   MeetingDetail,
   MeetingRow,
-  Member,
   Summary,
 } from './types'
 
@@ -29,15 +27,12 @@ function useGet<T>(name: string, path: string, query?: Query, enabled = true) {
 }
 
 export const useSummary = () => useGet<Summary>('summary', '/summary')
-export const useMembers = () => useGet<Member[]>('members', '/members')
 export const useMeetings = (query: Query) => useGet<Page<MeetingRow>>('meetings', '/meetings', query)
 export const useMeeting = (id: string) => useGet<MeetingDetail>('meeting', `/meetings/${id}`)
 export const useAgendaProposal = (date: string) =>
   useGet<AgendaProposal>('proposal', '/agenda-proposal', { date }, date !== '')
 export const useCommitments = (query: Query) =>
   useGet<Page<Commitment>>('commitments', '/commitments', query)
-export const useCommitment = (id: string) =>
-  useGet<CommitmentDetail>('commitment', `/commitments/${id}`)
 
 /** The meeting being prepared or held, if any: it is always the latest. */
 export function useOpenMeeting() {
@@ -46,7 +41,7 @@ export function useOpenMeeting() {
 }
 
 /** Changes refresh every cabinet query, what other pages show of them and the overview. */
-export const useAction = () => usePlatformAction([KEY, COMMITMENTS, 'overview'])
+export const useAction = () => usePlatformAction([KEY, COMMITMENTS, NOTICES, 'overview'])
 
 export const send = <T = unknown>(
   method: 'POST' | 'PUT' | 'PATCH' | 'DELETE',

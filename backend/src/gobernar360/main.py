@@ -17,6 +17,8 @@ from gobernar360.dashboards import (
 from gobernar360.platform import (
     admin_router,
     auth_router,
+    commitments_router,
+    directory,
     notifications_router,
     operator_router,
     overview_router,
@@ -89,6 +91,8 @@ def create_app() -> FastAPI:
     api.include_router(overview_router.router)
     api.include_router(status_router.router)
     api.include_router(subjects_router.router)
+    api.include_router(directory.router)
+    api.include_router(commitments_router.router)
     for module in registry.all_modules():
         api.include_router(module.router, prefix=f"/dashboards/{module.key}", tags=[module.key])
     app.include_router(api)

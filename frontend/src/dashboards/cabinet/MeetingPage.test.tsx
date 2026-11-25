@@ -5,6 +5,7 @@ import { expect, it } from 'vitest'
 
 import type { AccessLevel } from '../../platform/types'
 import { answerConfirm } from '../../test/confirm'
+import { choosePerson } from '../../test/person'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { MeetingPage } from './MeetingPage'
@@ -15,7 +16,8 @@ import type { MeetingDetail } from './types'
 const URL = `${BASE}/meetings/me-1`
 const label = (key: string, options = {}) => t(`cabinet.meeting.${key}`, options)
 const agenda = (key: string, options = {}) => t(`cabinet.agenda.${key}`, options)
-const form = (key: string, options = {}) => t(`cabinet.commitment.${key}`, options)
+const form = (key: string, options = {}) => t(`commitments.form.${key}`, options)
+const named = (key: string, name: string) => t(`cabinet.commitment.${key}`, { name })
 const FERIA = { name: 'Feria del libro' }
 const OCT = { name: 'Ambiental, octubre de 2026' }
 
@@ -60,7 +62,7 @@ it('shows who came, what was carried over and the agenda', async () => {
   const carried = within(await section(label('carriedOver')))
   expect(carried.getByRole('link', { name: 'Certificar la obra' })).toHaveAttribute(
     'href',
-    '/d/cabinet/commitments/co-1',
+    '/commitments/co-1',
   )
   expect(carried.getByText(t('commitments.postponed', { count: 2 }))).toBeInTheDocument()
   const feria = within(await section('Feria del libro'))
@@ -72,10 +74,10 @@ it('shows who came, what was carried over and the agenda', async () => {
   // Its name is not the person's to change.
   expect(light.queryByRole('button', { name: agenda('editNamed', OCT) })).toBeNull()
   const topic = within(await section('Pedir presupuesto'))
-  expect(topic.getByText(t('cabinet.states.overdue'))).toBeInTheDocument()
+  expect(topic.getByText(t('commitments.states.overdue'))).toBeInTheDocument()
   expect(
-    topic.getByRole('link', { name: form('viewNamed', { name: 'Pedir presupuesto' }) }),
-  ).toHaveAttribute('href', '/d/cabinet/commitments/co-5')
+    topic.getByRole('link', { name: named('viewNamed', 'Pedir presupuesto') }),
+  ).toHaveAttribute('href', '/commitments/co-5')
 })
 
 it('saves notes when leaving them, only if they changed', async () => {
@@ -216,14 +218,14 @@ it('records a commitment about what the item is about', async () => {
 
   await user.click(await screen.findByRole('button', { name: agenda('addCommitmentTo', OCT) }))
   const box = await dialog()
-  const owner = box.getByLabelText(form('owner'))
-  await within(owner).findByRole('option', { name: LEO.full_name })
-  // Whoever could not follow it is told apart.
-  expect(
-    within(owner).getByRole('option', { name: form('noAccess', { name: ZOE.full_name }) }),
-  ).toBeInTheDocument()
   await user.type(box.getByLabelText(form('description')), 'Reparar la balanza')
-  await user.selectOptions(owner, LEO.id)
+  await choosePerson(user, box.getByRole('combobox', { name: form('owner') }), 'paz', LEO.full_name)
+  await choosePerson(
+    user,
+    box.getByRole('combobox', { name: form('followers') }),
+    'zoe',
+    ZOE.full_name,
+  )
   fireEvent.change(box.getByLabelText(form('dueDate')), { target: { value: '01/12/2026' } })
   await user.click(box.getByRole('button', { name: t('app.save') }))
 
@@ -232,6 +234,7 @@ it('records a commitment about what the item is about', async () => {
     description: 'Reparar la balanza',
     owner_id: LEO.id,
     due_date: '2026-12-01',
+    follower_ids: [ZOE.id],
     subject: { dashboard_key: 'environment', kind: 'month', ref: '2026-10' },
   })
 })
@@ -271,9 +274,8 @@ it('says why a commitment could not be recorded and keeps what was typed', async
 
   await user.click(await screen.findByRole('button', { name: agenda('addCommitmentTo', FERIA) }))
   const box = await dialog()
-  await within(box.getByLabelText(form('owner'))).findByRole('option', { name: LEO.full_name })
   await user.type(box.getByLabelText(form('description')), 'Pedir sede')
-  await user.selectOptions(box.getByLabelText(form('owner')), LEO.id)
+  await choosePerson(user, box.getByRole('combobox', { name: form('owner') }), LEO.full_name)
   fireEvent.change(box.getByLabelText(form('dueDate')), { target: { value: '01/12/2026' } })
   await user.click(box.getByRole('button', { name: t('app.save') }))
 
@@ -290,9 +292,7 @@ it('corrects and removes commitments while the meeting is open', async () => {
   const user = renderMeeting(makeMeeting({ items: [makeItem({ commitments: [taken] })] }))
   const patches = mockApi('patch', `${BASE}/commitments/co-1`, taken)
   const deletes = mockApi('delete', `${BASE}/commitments/co-1`, null, 204)
-  const name = { name: 'Certificar la obra' }
-
-  await user.click(await screen.findByRole('button', { name: form('editNamed', name) }))
+  await user.click(await screen.findByRole('button', { name: named('editNamed', 'Certificar la obra') }))
   const box = await dialog()
   await user.type(box.getByLabelText(form('description')), ' vial')
   await user.selectOptions(box.getByLabelText(t('subjects.about')), '')
@@ -301,7 +301,7 @@ it('corrects and removes commitments while the meeting is open', async () => {
   // Only what changed.
   expect(patches[0].body).toEqual({ description: 'Certificar la obra vial', subject: null })
 
-  await user.click(screen.getByRole('button', { name: form('removeNamed', name) }))
+  await user.click(screen.getByRole('button', { name: named('removeNamed', 'Certificar la obra') }))
   await answerConfirm(user, true)
   await waitFor(() => expect(deletes).toHaveLength(1))
   // With commitments taken it cannot be discarded.
@@ -335,7 +335,7 @@ it('corrects its date and people', async () => {
 it('says why its data could not be saved', async () => {
   const user = renderMeeting()
   mockApiError('patch', URL, 422, 'meeting_before_last')
-  mockApiError('get', `${BASE}/members`, 500, 'boom')
+  mockApiError('get', '/members', 500, 'boom')
 
   await user.click(await screen.findByRole('button', { name: label('edit') }))
   const box = await dialog()

@@ -1,19 +1,8 @@
+import type { State } from '../../platform/commitments/types'
+import type { UserRef } from '../../platform/directory'
 import type { Subject } from '../../platform/subjects/types'
 
-/** In the order they are shown. */
-export const STATES = ['overdue', 'open', 'done', 'dropped'] as const
-export type State = (typeof STATES)[number]
 export type ItemSource = 'manual' | 'light' | 'commitment'
-
-export interface UserRef {
-  id: string
-  full_name: string
-}
-
-export interface Member extends UserRef {
-  /** Whoever has no access to this dashboard cannot follow their commitments here. */
-  has_access: boolean
-}
 
 export interface MeetingRef {
   id: string
@@ -30,23 +19,11 @@ export interface Commitment {
   completed_on: string | null
   times_postponed: number
   subject: Subject | null
+  /** Told when it is done. */
+  followers: UserRef[]
   item_id: string
   /** Where it was taken. */
   meeting: MeetingRef
-}
-
-export interface HistoryEntry {
-  id: string
-  at: string
-  author: string | null
-  note: string
-  /** field -> [before, after] */
-  changes: Record<string, [string | null, string | null]>
-}
-
-export interface CommitmentDetail extends Commitment {
-  /** Newest first. */
-  history: HistoryEntry[]
 }
 
 export interface Proposal {

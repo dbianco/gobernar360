@@ -2,11 +2,11 @@ import { Anchor, Button, Group, Stack, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import { PATH } from '../../platform/commitments/api'
 import { PostponedBadge } from '../../platform/commitments/PostponedBadge'
+import { StateBadge } from '../../platform/commitments/StateBadge'
 import { formatDate } from '../../platform/format'
 import { SubjectLabel } from '../../platform/subjects/SubjectLabel'
-import { BASE_PATH } from './api'
-import { StateBadge } from './StateBadge'
 import type { Commitment } from './types'
 
 /** A commitment inside a meeting or a proposal. */
@@ -25,7 +25,7 @@ export function CommitmentLine(props: {
       <Stack gap={2} miw={0}>
         <Group gap="xs">
           {!props.hideName && (
-            <Anchor component={Link} to={`${BASE_PATH}/commitments/${commitment.id}`}>
+            <Anchor component={Link} to={`${PATH}/${commitment.id}`}>
               {commitment.description}
             </Anchor>
           )}
@@ -43,7 +43,7 @@ export function CommitmentLine(props: {
               <Anchor
                 component={Link}
                 size="sm"
-                to={`${BASE_PATH}/commitments/${commitment.id}`}
+                to={`${PATH}/${commitment.id}`}
                 aria-label={t('cabinet.commitment.viewNamed', { name: commitment.description })}
               >
                 {t('cabinet.commitment.view')}

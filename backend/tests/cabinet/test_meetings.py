@@ -37,7 +37,7 @@ def get(client, meeting) -> dict:
 
 
 def postponed(client, commitment) -> int:
-    return client.get(f"{URL}/commitments/{commitment['id']}").json()["times_postponed"]
+    return client.get(f"/api/commitments/{commitment['id']}").json()["times_postponed"]
 
 
 def test_a_meeting_is_prepared_with_its_date_attendees_guests_and_agenda(client):
@@ -220,27 +220,6 @@ def test_an_attendee_who_left_the_municipality_stays_in_the_meeting(client):
     assert [a["full_name"] for a in response.json()["attendees"]] == ["Ana", "Leo"]
 
 
-def test_members_are_offered_by_name_saying_who_can_follow_the_dashboard(client):
-    municipality, _ = cabinet_member(client)
-    make_membership(make_user("zoe@noetinger.test"), municipality, grants={"projects": "admin"})
-    make_membership(make_user("álvaro@noetinger.test"), municipality, admin=True)
-    beto = make_user("zz@noetinger.test")
-    make_membership(beto, municipality, grants={"cabinet": "viewer"}, enable=[])
-    with admin_session() as session, session.begin():
-        session.merge(beto).full_name = "beto"
-    make_membership(make_user("ida@noetinger.test", active=False), municipality)
-    make_membership(make_user("beto@saira.test"), make_municipality("Saira"))
-
-    members = client.get(f"{URL}/members").json()
-
-    assert [(m["full_name"], m["has_access"]) for m in members] == [
-        ("Álvaro", True),
-        ("Ana", True),
-        ("beto", True),
-        ("Zoe", False),
-    ]
-
-
 def test_agenda_items_are_added_changed_ordered_and_removed(client):
     municipality, _ = cabinet_member(client, others={"projects": "viewer"})
     project = make_simple_project(municipality)
@@ -349,8 +328,8 @@ def test_open_commitments_carry_over_to_the_next_meeting_and_count_once(client):
     late, later, done, dropped = held(
         client, ana, date(2026, 3, 1), date(2026, 9, 1), date(2026, 3, 1), date(2026, 3, 1)
     )
-    client.post(f"{URL}/commitments/{done['id']}/state", json={"state": "done"})
-    client.post(f"{URL}/commitments/{dropped['id']}/state", json={"state": "dropped"})
+    client.post(f"/api/commitments/{done['id']}/state", json={"state": "done"})
+    client.post(f"/api/commitments/{dropped['id']}/state", json={"state": "dropped"})
 
     meeting = prepare(client)
 
@@ -486,7 +465,7 @@ def test_viewers_read_but_do_not_write(client):
         ),
         client.patch(commitment_url, json={"description": "x"}),
         client.delete(commitment_url),
-        client.post(f"{commitment_url}/state", json={"state": "done"}),
+        client.post(f"/api/commitments/{taken['id']}/state", json={"state": "done"}),
     ):
         assert error(response) == (403, "forbidden"), response.request.url
 
@@ -494,7 +473,7 @@ def test_viewers_read_but_do_not_write(client):
 def test_members_without_the_dashboard_see_nothing(client):
     cabinet_member(client, None, others={"projects": "admin"})
 
-    for path in ("meetings", "members", "commitments", "summary", "export/commitments.csv"):
+    for path in ("meetings", "commitments", "summary", "export/commitments.csv"):
         assert client.get(f"{URL}/{path}").status_code == 403, path
 
 
@@ -514,9 +493,9 @@ def test_another_municipality_s_meetings_are_not_found(client):
         client.patch(f"{URL}/meetings/{meeting['id']}", json={"notes": "x"}),
         client.post(f"{URL}/meetings/{meeting['id']}/close"),
         client.post(f"{URL}/items/{item['id']}/commitments", json=new_commitment),
-        client.get(f"{URL}/commitments/{taken['id']}"),
-        client.post(f"{URL}/commitments/{taken['id']}/state", json={"state": "done"}),
-        client.post(f"{URL}/commitments/{taken['id']}/notes", json={"note": "x"}),
+        client.get(f"/api/commitments/{taken['id']}"),
+        client.post(f"/api/commitments/{taken['id']}/state", json={"state": "done"}),
+        client.post(f"/api/commitments/{taken['id']}/notes", json={"note": "x"}),
     ):
         assert error(response) == (404, "not_found"), response.request.url
     as_member(client)

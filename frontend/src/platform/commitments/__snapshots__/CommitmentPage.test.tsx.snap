@@ -1,0 +1,685 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`does not mark what has no news, nor what others have > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`does not mark what has no news, nor what others have > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`is corrected by whoever gave it > screen at the end 1`] = `
+"Volver a compromisos
+Enviar la nota
+Pendiente
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+01/12/2026
+Asignado por
+Ana Gómez
+Se avisa a
+—
+Origen
+:
+Informal
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`is corrected by whoever gave it > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`is dropped by whoever gave it, who does not say it is done > screen at the end 1`] = `
+"Volver a compromisos
+Enviar la nota
+Pendiente
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+01/12/2026
+Asignado por
+Ana Gómez
+Se avisa a
+—
+Origen
+:
+Informal
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`is dropped by whoever gave it, who does not say it is done > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`is given to another by another day and attached to others, keeping what was agreed > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+Zoe Ruiz
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`is given to another by another day and attached to others, keeping what was agreed > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`is marked done on the day it was by whoever owes it, who does not drop it > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`is marked done on the day it was by whoever owes it, who does not drop it > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`is not delivered in the future > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios.
+Marcar cumplido
+Fecha de cumplimiento
+(dd/mm/aaaa)
+[Abrir calendario]
+La fecha no puede ser posterior al 23/11/2026.
+Nota
+Cancelar
+Guardar"
+`;
+
+exports[`is not delivered in the future > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`is only read by those attached > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+[Avance e historial]
+Avance e historial
+Todavía no hay notas ni cambios."
+`;
+
+exports[`is only read by those attached > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`is reopened when it is done > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Cumplido
+Postergado 2 veces
+Reabrir
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`is reopened when it is done > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`is reopened when it is dropped > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Descartado
+Postergado 2 veces
+Reabrir
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`is reopened when it is dropped > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`keeps an owner and people attached who left, and a link that cannot be read > screen at the end 1`] = `
+"Volver a compromisos
+Enviar la nota
+Pendiente
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Ex Miembro
+Fecha comprometida
+01/12/2026
+Asignado por
+Ana Gómez
+Se avisa a
+Ex Miembro
+Origen
+:
+Informal
+Vinculado a
+:
+Un proyecto al que no tenés acceso
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`keeps an owner and people attached who left, and a link that cannot be read > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`keeps the note when it could not be added > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Ocurrió un error. Intentá de nuevo.
+Nota de avance
+Falta.
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`keeps the note when it could not be added > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`leaves for the lists when it was given to somebody else > screen at the end 1`] = `"every list"`;
+
+exports[`leaves for the lists when it was given to somebody else > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`names only the dashboard of a meeting to whoever cannot open it > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Gabinete
+Vinculado a
+:
+Un proyecto al que no tenés acceso
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`names only the dashboard of a meeting to whoever cannot open it > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`reads the news of another's by being opened > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`reads the news of another's by being opened > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`reads the news of one's own by being opened > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`reads the news of one's own by being opened > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`says when it cannot be loaded > screen at the end 1`] = `
+"Volver a compromisos
+No se encontró el registro."
+`;
+
+exports[`says when it cannot be loaded > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`says who gave an informal one, and when it was delivered > screen at the end 1`] = `
+"Volver a compromisos
+Enviar la nota
+Cumplido
+Responsable
+Leo Paz
+Fecha comprometida
+01/12/2026
+Fecha de cumplimiento
+19/11/2026
+Asignado por
+Ana Gómez
+Se avisa a
+—
+Origen
+:
+Informal
+[Avance e historial]
+Avance e historial
+Todavía no hay notas ni cambios."
+`;
+
+exports[`says who gave an informal one, and when it was delivered > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`says why it could not be changed and closes the form with Escape > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`says why it could not be changed and closes the form with Escape > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`says why it could not be reopened > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Cumplido
+Postergado 2 veces
+Reabrir
+No tenés permiso para realizar esta acción.
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`says why it could not be reopened > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`says why its state could not be changed, and cancels > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`says why its state could not be changed, and cancels > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`shows what was agreed and everything that happened to it > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+Ana Gómez, Zoe Ruiz
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Ana Gómez, 18/11/2026, 10:30
+Estado: Pendiente → Cumplido
+Fecha de cumplimiento: — → 18/11/2026
+Alguien sin cuenta, 31/10/2026, 23:00
+Responsable: Ana Gómez → Leo Paz
+Fecha comprometida: 10/11/2026 → 20/11/2026
+Compromiso: Certificar → Certificar la obra
+Leo Paz, 21/10/2026, 10:30
+Empecé."
+`;
+
+exports[`shows what was agreed and everything that happened to it > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`stays as news, and the page works, when it could not be marked > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`stays as news, and the page works, when it could not be marked > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`takes progress notes > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`takes progress notes > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;

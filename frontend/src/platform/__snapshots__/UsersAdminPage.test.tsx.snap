@@ -209,9 +209,12 @@ exports[`is reachable for municipality admins > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -365,9 +368,12 @@ exports[`redirects non-admin members away > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."

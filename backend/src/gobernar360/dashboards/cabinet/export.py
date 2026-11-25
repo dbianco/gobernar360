@@ -5,10 +5,11 @@ import uuid
 from fastapi import APIRouter, Response
 
 from gobernar360.dashboards.cabinet.access import Viewer
-from gobernar360.dashboards.cabinet.commitments_router import StateFilter, query_commitments
+from gobernar360.dashboards.cabinet.commitments_router import query_taken
 from gobernar360.dashboards.cabinet.minutes import subject_line
 from gobernar360.dashboards.cabinet.present import present_commitments
 from gobernar360.platform.clock import Today
+from gobernar360.platform.commitment_schemas import StateFilter
 from gobernar360.platform.csv_export import csv_response, safe_text
 from gobernar360.platform.listing import SearchText
 
@@ -34,9 +35,8 @@ def export_commitments(
     q: SearchText = None,
     state: StateFilter | None = None,
     owner_id: uuid.UUID | None = None,
-    mine: bool = False,
 ) -> Response:
-    query = query_commitments(today, q, state, ctx.user.id if mine else owner_id)
+    query = query_taken(today, q, state, owner_id)
     commitments = present_commitments(ctx, list(ctx.db.scalars(query).unique()), today)
     rows = (
         (

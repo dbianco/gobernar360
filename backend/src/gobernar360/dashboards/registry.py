@@ -72,27 +72,13 @@ class LinkableRecord:
 
 
 @dataclass(frozen=True)
-class SubjectCommitment:
-    """An open commitment about a subject, shown next to it wherever it appears."""
+class CommitmentOrigin:
+    """Where a dashboard recorded a commitment, e.g. a meeting."""
 
-    id: uuid.UUID
-    # Which of the subjects asked about it is for.
-    ref: str
-    description: str
-    owner: str
-    due_date: date
-    overdue: bool
-    times_postponed: int
+    label: str
+    # Path in the web app, for whoever may open it.
     path: str
-
-
-@dataclass(frozen=True)
-class SubjectsQuery:
-    """Subjects of one kind in one dashboard, by reference (see `platform.subjects`)."""
-
-    dashboard_key: str
-    kind: str
-    refs: frozenset[str]
+    times_postponed: int = 0
 
 
 @dataclass(frozen=True)
@@ -107,9 +93,10 @@ class DashboardModule:
     get_alerts: Callable[[Session, date], list[Alert]] | None = None
     # Records of this dashboard that others may point at.
     linkable: tuple[LinkableRecord, ...] = ()
-    # Open commitments this dashboard keeps about those subjects, of any dashboard.
-    get_commitments: Callable[[RequestContext, date, SubjectsQuery], list[SubjectCommitment]] | (
-        None
+    # Where the commitments it recorded (`Commitment.source`) were taken, by their id.
+    # Only members with access to the dashboard are shown the label and the path.
+    get_commitment_origins: (
+        Callable[[RequestContext, Collection[uuid.UUID]], dict[uuid.UUID, CommitmentOrigin]] | None
     ) = None
 
 

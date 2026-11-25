@@ -7,9 +7,12 @@ gobernar360
 [Municipio]
 Noetinger
 Saira
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -21,9 +24,12 @@ exports[`blocks direct navigation to a dashboard the user cannot see > screen at
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 No tenés acceso a este tablero
 Pedile al administrador de tu municipio que te habilite."
 `;
@@ -37,9 +43,12 @@ gobernar360
 [Municipio]
 Noetinger
 Saira
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -51,9 +60,12 @@ exports[`does not list dashboards the user has no access to > screen at the end 
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -76,9 +88,12 @@ exports[`gives every navigation link an icon > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Proyectos
 Ambiental
 Económico
@@ -93,13 +108,27 @@ Pedile al administrador de tu municipio que te dé acceso a un tablero."
 
 exports[`gives every navigation link an icon > screen at the start 1`] = `"[Cargando…]"`;
 
+exports[`has no notices without a municipality to have them in > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Todavía no pertenecés a ningún municipio
+Pedile al administrador de tu municipio que te agregue como usuario."
+`;
+
+exports[`has no notices without a municipality to have them in > screen at the start 1`] = `"[Cargando…]"`;
+
 exports[`hides the users link from non-admin members > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -111,9 +140,12 @@ exports[`lists only the dashboards granted to the user > screen at the end 1`] =
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Proyectos
 Resumen general
 No tenés tableros habilitados
@@ -126,9 +158,12 @@ exports[`opens the users of the municipality at /admin > screen at the end 1`] =
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -160,9 +195,12 @@ gobernar360
 [Municipio]
 Noetinger
 Saira
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -174,9 +212,12 @@ exports[`shows the users and configuration links to municipality admins > screen
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Resumen general
@@ -185,6 +226,35 @@ Pedile al administrador de tu municipio que te dé acceso a un tablero."
 `;
 
 exports[`shows the users and configuration links to municipality admins > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows what one owes and follows beside the name, and their pages > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+Cerrar sesión
+Resumen general
+Compromisos
+Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+No tenés compromisos que coincidan."
+`;
+
+exports[`shows what one owes and follows beside the name, and their pages > screen at the start 1`] = `"[Cargando…]"`;
 
 exports[`signs out locally even when the request fails > screen at the end 1`] = `
 "Ingresar a gobernar360

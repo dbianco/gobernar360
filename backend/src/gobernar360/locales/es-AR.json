@@ -44,6 +44,7 @@
     }
   },
   "cabinet": {
+    "origin": "Reunión del {{date}}",
     "restrictedLight": "Estado mensual de un tablero al que no tenés acceso",
     "states": {
       "open": "pendiente",

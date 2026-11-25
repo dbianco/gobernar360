@@ -6,7 +6,7 @@ export function PostponedBadge({ times }: { times: number }) {
   const { t } = useTranslation()
   if (times === 0) return null
   return (
-    <Badge variant="light" color="orange" tt="none">
+    <Badge variant="light" color="orange" tt="none" miw="max-content">
       {t('commitments.postponed', { count: times })}
     </Badge>
   )

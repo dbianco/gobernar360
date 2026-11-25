@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next'
 
 import { DateField } from '../../platform/DateField'
 import { errorMessage } from '../../platform/errorMessage'
+import { PersonSelect } from '../../platform/PersonSelect'
 import {
   send,
   useAction,
@@ -145,14 +146,12 @@ export function ProjectForm(props: {
             onChange={(event) => set('department_id', event.currentTarget.value)}
             data={[choose, ...named(departments.data)]}
           />
-          <NativeSelect
+          <PersonSelect
             label={label('owner')}
+            placeholder={label('unassigned')}
             value={values.owner_id ?? ''}
-            onChange={(event) => set('owner_id', event.currentTarget.value || null)}
-            data={[
-              unassigned,
-              ...(owners.data ?? []).map((o) => ({ value: o.id, label: o.full_name })),
-            ]}
+            onChange={(id) => set('owner_id', id || null)}
+            people={owners.data ?? []}
           />
           <NativeSelect
             label={label('program')}

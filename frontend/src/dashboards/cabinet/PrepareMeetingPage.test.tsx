@@ -51,7 +51,7 @@ it('proposes the agenda for today, saying where each item comes from', async () 
   expect(light.getByText(t('cabinet.agenda.sources.light'))).toBeInTheDocument()
   expect(light.getByRole('link', { name: t('status.states.red') })).toBeInTheDocument()
   expect(commitment.getByText(t('cabinet.agenda.sources.commitment'))).toBeInTheDocument()
-  expect(commitment.getByText(t('cabinet.states.overdue'))).toBeInTheDocument()
+  expect(commitment.getByText(t('commitments.states.overdue'))).toBeInTheDocument()
   expect(commitment.getByText(t('commitments.postponed', { count: 2 }))).toBeInTheDocument()
   expect(carried.getByText(t('cabinet.agenda.carried'))).toBeInTheDocument()
   expect(screen.getByText(label('carryOver', { count: 2 }))).toBeInTheDocument()
@@ -199,7 +199,7 @@ it('leads to the open meeting instead, when there is one', async () => {
 it('says when the proposal or the members cannot be loaded', async () => {
   renderPrepare()
   mockApiError('get', `${BASE}/agenda-proposal`, 500, 'boom')
-  mockApiError('get', `${BASE}/members`, 500, 'boom')
+  mockApiError('get', '/members', 500, 'boom')
 
   await waitFor(() => expect(screen.getAllByText(t('errors.generic'))).toHaveLength(2))
   expect(await submit()).toBeDisabled()

@@ -13,8 +13,8 @@ const COLORS: Record<State, string> = {
 export function StateBadge({ state }: { state: State }) {
   const { t } = useTranslation()
   return (
-    <Badge color={COLORS[state]} variant="light" tt="none">
-      {t(`cabinet.states.${state}`)}
+    <Badge color={COLORS[state]} variant="light" tt="none" miw="max-content">
+      {t(`commitments.states.${state}`)}
     </Badge>
   )
 }

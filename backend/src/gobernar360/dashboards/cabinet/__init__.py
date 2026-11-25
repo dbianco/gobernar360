@@ -1,7 +1,7 @@
-"""Cabinet dashboard: meetings, the commitments taken in them and their follow-up.
+"""Cabinet dashboard: meetings, the commitments taken in them and how they are delivered.
 
-Commitments point at months and records of other dashboards only through
-`platform.subjects`; this package imports no other dashboard.
+The commitments are the platform's (`platform.commitments`); this package imports no other
+dashboard, and knows what they are about only through `platform.subjects`.
 """
 
 from fastapi import APIRouter
@@ -10,6 +10,7 @@ from gobernar360.dashboards.cabinet import (
     commitments_router,
     export,
     meetings_router,
+    present,
     summary,
 )
 from gobernar360.dashboards.cabinet.access import KEY
@@ -25,5 +26,5 @@ module = DashboardModule(
     key=KEY,
     router=router,
     get_summary=summary.get_summary,
-    get_commitments=summary.get_commitments,
+    get_commitment_origins=present.origins,
 )

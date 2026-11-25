@@ -5,6 +5,7 @@ project is renamed or deleted. Who may read those names is still decided for eac
 when the document is built.
 """
 
+import uuid
 from datetime import date
 from html import escape
 from typing import Any
@@ -12,11 +13,12 @@ from typing import Any
 from sqlalchemy import select
 
 from gobernar360.dashboards.cabinet import agenda
-from gobernar360.dashboards.cabinet.models import Attendee, Carryover, Commitment, Meeting
-from gobernar360.dashboards.cabinet.present import item_title, times_postponed
-from gobernar360.dashboards.cabinet.rules import effective_state
+from gobernar360.dashboards.cabinet.models import Attendee, Carryover, Meeting, Taken
+from gobernar360.dashboards.cabinet.present import item_title, taken, times_postponed
 from gobernar360.platform import subjects
 from gobernar360.platform.access import RequestContext
+from gobernar360.platform.commitment_models import Commitment
+from gobernar360.platform.commitment_rules import effective_state
 from gobernar360.platform.models import Municipality, User
 from gobernar360.platform.subjects import Subject, SubjectOut
 from gobernar360.platform.texts import format_date, format_datetime, has_text, text
@@ -38,10 +40,23 @@ def commitments_of(ctx: RequestContext, meeting: Meeting) -> list[Commitment]:
     item_ids = [item.id for item in agenda.items_of(ctx, meeting)]
     return list(
         ctx.db.scalars(
-            select(Commitment)
-            .where(Commitment.item_id.in_(item_ids))
+            taken()
+            .where(Taken.item_id.in_(item_ids))
             .order_by(Commitment.created_at, Commitment.id)
         ).unique()
+    )
+
+
+def items_taken_in(
+    ctx: RequestContext, commitments: list[Commitment]
+) -> dict[uuid.UUID, uuid.UUID]:
+    """The agenda item each commitment was taken on."""
+    return dict(
+        ctx.db.execute(
+            select(Taken.commitment_id, Taken.item_id).where(
+                Taken.commitment_id.in_([c.id for c in commitments])
+            )
+        ).all()
     )
 
 
@@ -59,7 +74,8 @@ def carried_over_to(ctx: RequestContext, meeting: Meeting) -> list[Commitment]:
 def snapshot(ctx: RequestContext, meeting: Meeting, today: date) -> dict[str, Any]:
     """Everything the minutes say, as plain data. Names what is linked whoever closes it."""
     items = agenda.items_of(ctx, meeting)
-    taken = commitments_of(ctx, meeting)
+    agreed = commitments_of(ctx, meeting)
+    item_of = items_taken_in(ctx, agreed)
     carried = carried_over_to(ctx, meeting)
     topics = {
         c.id: c
@@ -69,7 +85,7 @@ def snapshot(ctx: RequestContext, meeting: Meeting, today: date) -> dict[str, An
             )
         ).unique()
     }
-    described = subjects.describe(ctx, [row.subject for row in (*items, *taken, *carried)])
+    described = subjects.describe(ctx, [row.subject for row in (*items, *agreed, *carried)])
     postponed = times_postponed(ctx, [c.id for c in carried])
 
     def subject(value: Subject | None) -> dict[str, Any] | None:
@@ -99,7 +115,7 @@ def snapshot(ctx: RequestContext, meeting: Meeting, today: date) -> dict[str, An
                 "notes": item.notes,
                 "discussed": item.discussed,
                 "subject": subject(item.subject),
-                "commitments": [commitment(c) for c in taken if c.item_id == item.id],
+                "commitments": [commitment(c) for c in agreed if item_of[c.id] == item.id],
             }
             for item in items
         ],

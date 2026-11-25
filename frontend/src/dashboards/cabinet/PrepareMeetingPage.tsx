@@ -16,10 +16,11 @@ import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { useMembers } from '../../platform/directory'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatDate, todayIso } from '../../platform/format'
 import { SubjectLabel } from '../../platform/subjects/SubjectLabel'
-import { BASE_PATH, send, useAction, useAgendaProposal, useMembers, useOpenMeeting } from './api'
+import { BASE_PATH, send, useAction, useAgendaProposal, useOpenMeeting } from './api'
 import { CommitmentLine } from './CommitmentLine'
 import { MeetingFields } from './MeetingFields'
 import { MoveButtons } from './MoveButtons'
@@ -106,7 +107,7 @@ export function PrepareMeetingPage() {
         <MeetingFields
           values={values}
           onChange={setValues}
-          members={members.data ?? []}
+          members={members.data}
           minDate={proposal.data?.previous_meeting_date}
         />
         <Stack gap="xs" component="section" aria-label={label('agenda')}>

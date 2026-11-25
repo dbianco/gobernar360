@@ -22,9 +22,9 @@ from gobernar360.core.errors import (
     not_found,
     validation_error,
 )
-from gobernar360.dashboards.cabinet import agenda, members, minutes
-from gobernar360.dashboards.cabinet.access import Editor, Viewer
-from gobernar360.dashboards.cabinet.models import AgendaItem, Attendee, Commitment, Meeting
+from gobernar360.dashboards.cabinet import agenda, minutes
+from gobernar360.dashboards.cabinet.access import KEY, Editor, Viewer
+from gobernar360.dashboards.cabinet.models import AgendaItem, Attendee, Meeting, Taken
 from gobernar360.dashboards.cabinet.present import (
     item_title,
     present_commitment,
@@ -33,7 +33,6 @@ from gobernar360.dashboards.cabinet.present import (
 from gobernar360.dashboards.cabinet.schemas import (
     AgendaEntryIn,
     AgendaProposalOut,
-    CommitmentIn,
     CommitmentOut,
     ItemIn,
     ItemOut,
@@ -42,14 +41,15 @@ from gobernar360.dashboards.cabinet.schemas import (
     MeetingIn,
     MeetingOut,
     MeetingPatch,
-    MemberOut,
     OrderIn,
     ProposalOut,
-    UserRef,
 )
-from gobernar360.platform import subjects
+from gobernar360.platform import commitments, directory, subjects
 from gobernar360.platform.access import RequestContext
 from gobernar360.platform.clock import Today
+from gobernar360.platform.commitment_models import Commitment
+from gobernar360.platform.commitment_schemas import CommitmentIn
+from gobernar360.platform.directory import UserRef
 from gobernar360.platform.listing import Page, PagingParams, SearchText, contains, page_of
 from gobernar360.platform.tenant_crud import (
     create_entity,
@@ -91,7 +91,7 @@ def _set_attendees(ctx: RequestContext, meeting: Meeting, user_ids: Iterable[uui
         for row in ctx.db.scalars(select(Attendee).where(Attendee.meeting_id == meeting.id))
     }
     # Someone already in the list may have left the municipality since: they stay.
-    members.resolve_members(ctx, wanted - set(current), "attendee_ids")
+    directory.resolve_members(ctx, wanted - set(current), "attendee_ids")
     for user_id in current.keys() - wanted:
         delete_entity(ctx, current[user_id])
     for user_id in sorted(wanted - current.keys()):
@@ -102,6 +102,7 @@ def _set_attendees(ctx: RequestContext, meeting: Meeting, user_ids: Iterable[uui
 def _detail(ctx: RequestContext, meeting: Meeting, today: date) -> MeetingDetail:
     items = agenda.items_of(ctx, meeting)
     taken = minutes.commitments_of(ctx, meeting)
+    item_of = minutes.items_taken_in(ctx, taken)
     carried = minutes.carried_over_to(ctx, meeting)
     topics = list(
         ctx.db.scalars(
@@ -135,7 +136,7 @@ def _detail(ctx: RequestContext, meeting: Meeting, today: date) -> MeetingDetail
                 carried=item.carried_from_id is not None,
                 subject=seen.get(item.subject),
                 topic=shown.get(item.commitment_id),
-                commitments=[shown[c.id] for c in taken if c.item_id == item.id],
+                commitments=[shown[c.id] for c in taken if item_of[c.id] == item.id],
             )
             for item in items
         ],
@@ -143,22 +144,13 @@ def _detail(ctx: RequestContext, meeting: Meeting, today: date) -> MeetingDetail
     )
 
 
-@router.get("/members")
-def list_members(ctx: Viewer) -> list[MemberOut]:
-    """Who may attend meetings and owe commitments."""
-    return [
-        MemberOut(id=user.id, full_name=user.full_name, has_access=has_access)
-        for user, has_access in members.list_members(ctx)
-    ]
-
-
 @router.get("/agenda-proposal")
 def get_agenda_proposal(ctx: Editor, today: Today, date: date) -> AgendaProposalOut:
     """What a meeting on that date would discuss. Looking at it changes nothing."""
     proposals = agenda.propose(ctx, date, today)
     seen = subjects.present(ctx, [p.subject for p in proposals])
-    commitments = [p.commitment for p in proposals if p.commitment is not None]
-    shown = {c.id: c for c in present_commitments(ctx, commitments, today)}
+    proposed = [p.commitment for p in proposals if p.commitment is not None]
+    shown = {c.id: c for c in present_commitments(ctx, proposed, today)}
     last = agenda.last_closed_meeting(ctx)
     return AgendaProposalOut(
         proposals=[
@@ -189,7 +181,8 @@ def _mentions(word: str) -> ColumnElement[bool]:
         items.where(or_(contains(AgendaItem.title, word), contains(AgendaItem.notes, word)))
         .correlate(Meeting)
         .exists(),
-        items.join(Commitment, Commitment.item_id == AgendaItem.id)
+        items.join(Taken, Taken.item_id == AgendaItem.id)
+        .join(Commitment, Commitment.id == Taken.commitment_id)
         .where(contains(Commitment.description, word))
         .correlate(Meeting)
         .exists(),
@@ -216,10 +209,8 @@ def list_meetings(ctx: Viewer, paging: PagingParams, q: SearchText = None) -> Pa
         )
 
     items = count(select(AgendaItem.meeting_id, func.count()))
-    commitments = count(
-        select(AgendaItem.meeting_id, func.count()).join(
-            Commitment, Commitment.item_id == AgendaItem.id
-        )
+    taken = count(
+        select(AgendaItem.meeting_id, func.count()).join(Taken, Taken.item_id == AgendaItem.id)
     )
     return Page[MeetingOut](
         items=[
@@ -229,7 +220,7 @@ def list_meetings(ctx: Viewer, paging: PagingParams, q: SearchText = None) -> Pa
                 closed=meeting.closed_at is not None,
                 closed_at=meeting.closed_at,
                 items=items.get(meeting.id, 0),
-                commitments=commitments.get(meeting.id, 0),
+                commitments=taken.get(meeting.id, 0),
             )
             for meeting in page["items"]
         ],
@@ -395,17 +386,18 @@ def create_commitment(
 ) -> CommitmentOut:
     """Record something agreed on an item of an open meeting."""
     item = open_item(ctx, item_id)
-    owner = members.resolve_member(ctx, payload.owner_id, "owner_id")
-    commitment = Commitment(
-        item_id=item.id,
+    commitment = commitments.create(
+        ctx,
+        today,
         description=payload.description,
-        owner_id=owner.id,
+        owner_id=payload.owner_id,
         due_date=payload.due_date,
+        subject=payload.subject,
+        follower_ids=payload.follower_ids,
+        source=KEY,
     )
-    if payload.subject is not None:
-        commitment.subject = subjects.resolve(ctx, payload.subject, today)
-    create_entity(ctx, commitment, payload.model_dump())
+    fields = {"commitment_id": commitment.id, "item_id": item.id}
+    create_entity(ctx, Taken(**fields), fields)
     if not item.discussed:
         update_entity(ctx, item, {"discussed": True})
-    ctx.db.refresh(commitment)
     return present_commitment(ctx, commitment, today)

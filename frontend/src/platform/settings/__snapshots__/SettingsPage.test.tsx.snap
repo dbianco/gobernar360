@@ -5,9 +5,12 @@ exports[`asks before leaving an email with unsaved changes > screen at the end 1
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -72,9 +75,12 @@ exports[`explains that single sign-on needs a provider the platform does not hav
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -144,9 +150,12 @@ exports[`finishes saving when the server stores the text it already had > screen
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -210,9 +219,12 @@ exports[`goes back to the default text after confirming > screen at the end 1`] 
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -276,9 +288,12 @@ exports[`inserts a variable in the body by default, and saves it > screen at the
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -347,9 +362,12 @@ exports[`inserts a variable in the subject and saves the text > screen at the en
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -418,9 +436,12 @@ exports[`is a tab next to the users of the municipality > screen at the end 1`] 
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -440,9 +461,12 @@ exports[`is not reachable for members who are not administrators > screen at the
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -458,9 +482,12 @@ exports[`keeps the text when going back to the default is not confirmed > screen
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -524,9 +551,12 @@ exports[`lets the notice and the error of an email be closed > screen at the end
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -595,9 +625,12 @@ exports[`names no variable when the server does not say which ones a text lacks 
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -668,9 +701,12 @@ exports[`never puts the list of alerts in the subject > screen at the end 1`] = 
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -737,9 +773,12 @@ exports[`offers the formatting tools of the editor > screen at the end 1`] = `
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -808,9 +847,12 @@ exports[`points out malformed addresses without saving > screen at the end 1`] =
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -880,9 +922,12 @@ exports[`saves the list of recipients typed with commas > screen at the end 1`] 
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -952,9 +997,12 @@ exports[`says which required variable a text lost > screen at the end 1`] = `
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -1025,9 +1073,12 @@ exports[`says why single sign-on could not be changed, and leaves it as it was >
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -1097,9 +1148,12 @@ exports[`says why the recipients could not be saved > screen at the end 1`] = `
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -1169,9 +1223,12 @@ exports[`says why the settings cannot be loaded > screen at the end 1`] = `
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -1231,9 +1288,12 @@ exports[`sends the administrator a test of the text being edited > screen at the
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -1303,9 +1363,12 @@ exports[`shows an error when the texts cannot be loaded > screen at the end 1`] 
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -1336,9 +1399,12 @@ exports[`shows an example of addresses from the texts of the app > screen at the
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -1407,9 +1473,12 @@ exports[`shows each email with its text, and whether it is the default > screen 
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -1474,9 +1543,12 @@ exports[`shows other errors of saving or testing as they come > screen at the en
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -1546,9 +1618,12 @@ exports[`stays on the email already shown when it is chosen again > screen at th
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios
@@ -1618,9 +1693,12 @@ exports[`turns single sign-on on for the municipality > screen at the end 1`] = 
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Usuarios

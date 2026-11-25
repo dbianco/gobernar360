@@ -1,7 +1,7 @@
 import { execFileSync } from 'node:child_process'
 import path from 'node:path'
 
-import { type APIRequestContext, expect, type Page } from '@playwright/test'
+import { type APIRequestContext, expect, type Locator, type Page } from '@playwright/test'
 
 import { backendEnv } from '../playwright.config.ts'
 
@@ -28,6 +28,12 @@ export async function statValue(page: Page, label: string): Promise<number> {
   await expect(card).toBeVisible()
   const text = await card.locator('p').nth(1).innerText()
   return Number(text.replace(/[^\d-]/g, ''))
+}
+
+/** Choose somebody in a list of people, typing part of their name. */
+export async function choosePerson(page: Page, list: Locator, typed: string, name: string) {
+  await list.fill(typed)
+  await page.getByRole('option', { name }).click()
 }
 
 const MAILPIT = process.env.MAILPIT_URL ?? 'http://localhost:8025'

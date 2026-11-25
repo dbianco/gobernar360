@@ -6,11 +6,14 @@ from datetime import date
 from sqlalchemy import select
 
 from gobernar360.dashboards import registry
-from gobernar360.dashboards.cabinet.models import AgendaItem, Carryover, Commitment, Meeting
-from gobernar360.dashboards.cabinet.rules import OPEN, light_to_discuss
+from gobernar360.dashboards.cabinet.models import AgendaItem, Carryover, Meeting
+from gobernar360.dashboards.cabinet.present import taken
+from gobernar360.dashboards.cabinet.rules import light_to_discuss
 from gobernar360.dashboards.registry import MONTH
 from gobernar360.platform import status, subjects
 from gobernar360.platform.access import RequestContext, effective_levels, enabled_dashboard_keys
+from gobernar360.platform.commitment_models import Commitment
+from gobernar360.platform.commitment_rules import OPEN
 from gobernar360.platform.subjects import Subject
 from gobernar360.platform.tenant_crud import create_entity
 
@@ -38,7 +41,7 @@ def last_closed_meeting(ctx: RequestContext) -> Meeting | None:
 def open_commitments(ctx: RequestContext) -> list[Commitment]:
     return list(
         ctx.db.scalars(
-            select(Commitment)
+            taken()
             .where(Commitment.state == OPEN)
             .order_by(Commitment.due_date, Commitment.created_at, Commitment.id)
         ).unique()

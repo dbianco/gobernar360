@@ -17,14 +17,15 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import { downloadUrl } from '../../api/client'
 import { useAuth } from '../../platform/authContext'
+import { CommitmentForm } from '../../platform/commitments/CommitmentForm'
 import { useConfirm } from '../../platform/confirmContext'
+import { useMembers } from '../../platform/directory'
 import { errorMessage } from '../../platform/errorMessage'
 import { Field } from '../../platform/Field'
 import { formatDate } from '../../platform/format'
 import { hasLevel } from '../../platform/access'
 import { AgendaItemCard, type ItemActions } from './AgendaItemCard'
-import { BASE, BASE_PATH, done, KEY, send, useAction, useMeeting, useMembers } from './api'
-import { CommitmentForm } from './CommitmentForm'
+import { BASE, BASE_PATH, done, KEY, send, useAction, useMeeting } from './api'
 import { CommitmentLine } from './CommitmentLine'
 import { ItemForm } from './ItemForm'
 import { MeetingFields } from './MeetingFields'
@@ -61,7 +62,7 @@ function MeetingDataForm({ meeting, onDone }: { meeting: MeetingDetail; onDone: 
         <MeetingFields
           values={values}
           onChange={setValues}
-          members={members.data ?? []}
+          members={members.data}
           attendees={meeting.attendees}
         />
         <Group justify="flex-end">
@@ -272,7 +273,17 @@ export function MeetingPage() {
           <ItemForm meetingId={id} item={dialog.item} onDone={close} />
         )}
         {dialog?.kind === 'commitment' && (
-          <CommitmentForm item={dialog.item} commitment={dialog.commitment} onDone={close} />
+          <CommitmentForm
+            editing={dialog.commitment}
+            // What its item is about, or what the commitment it follows up is about.
+            subject={dialog.item.subject ?? dialog.item.topic?.subject}
+            save={(body) =>
+              dialog.commitment
+                ? send('PATCH', `/commitments/${dialog.commitment.id}`, body)
+                : send('POST', `/items/${dialog.item.id}/commitments`, body)
+            }
+            onDone={close}
+          />
         )}
       </Modal>
     </Stack>

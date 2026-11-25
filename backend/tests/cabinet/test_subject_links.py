@@ -168,19 +168,19 @@ def test_a_member_without_projects_sees_the_commitment_but_not_the_project_s_nam
     client.post(f"{URL}/meetings/{meeting['id']}/close")
     cabinet_member(client, "viewer", "leo@noetinger.test", municipality)
 
-    one = client.get(f"{URL}/commitments/{taken['id']}")
+    one = client.get(f"/api/commitments/{taken['id']}")
     assert one.json()["description"] == "Certificar la obra"
     assert one.json()["subject"] == RESTRICTED_PROJECT
     # Nor anywhere else the commitment is shown.
     for path in (
-        "commitments",
-        f"commitments/{taken['id']}",
-        f"meetings/{meeting['id']}",
-        f"meetings/{meeting['id']}/minutes.html",
-        "summary",
-        "export/commitments.csv",
+        f"/api/commitments/{taken['id']}",
+        f"{URL}/commitments",
+        f"{URL}/meetings/{meeting['id']}",
+        f"{URL}/meetings/{meeting['id']}/minutes.html",
+        f"{URL}/summary",
+        f"{URL}/export/commitments.csv",
     ):
-        body = client.get(f"{URL}/{path}")
+        body = client.get(path)
         assert body.status_code == 200, path
         assert "reservada" not in body.text, path
         assert str(project.id) not in body.text, path
@@ -190,7 +190,7 @@ def test_a_member_without_projects_sees_the_commitment_but_not_the_project_s_nam
     )
     assert "Un proyecto al que no tenés acceso" in client.get(f"{URL}/export/commitments.csv").text
     as_member(client)
-    assert client.get(f"{URL}/commitments/{taken['id']}").json()["subject"]["label"] == (
+    assert client.get(f"/api/commitments/{taken['id']}").json()["subject"]["label"] == (
         "Pavimentación reservada"
     )
 
@@ -203,7 +203,7 @@ def test_a_month_the_member_cannot_see_does_not_even_say_whose_it_is(client):
     assert taken["subject"]["color"] == "red"
     cabinet_member(client, "viewer", "leo@noetinger.test", municipality)
 
-    seen = client.get(f"{URL}/commitments/{taken['id']}").json()["subject"]
+    seen = client.get(f"/api/commitments/{taken['id']}").json()["subject"]
 
     assert seen == RESTRICTED_PROJECT | {"kind": "month", "dashboard_key": None}
 
@@ -226,11 +226,11 @@ def test_a_deleted_project_reads_as_deleted_only_to_those_who_could_see_it(clien
     close(client, meeting)
     assert client.delete(f"/api/dashboards/projects/projects/{project.id}").status_code == 204
 
-    seen = client.get(f"{URL}/commitments/{taken['id']}").json()["subject"]
+    seen = client.get(f"/api/commitments/{taken['id']}").json()["subject"]
     assert (seen["access"], seen["label"], seen["path"]) == ("deleted", None, None)
     assert "Un proyecto que ya no existe" in client.get(f"{URL}/export/commitments.csv").text
     cabinet_member(client, "viewer", "leo@noetinger.test", municipality)
-    hidden = client.get(f"{URL}/commitments/{taken['id']}").json()["subject"]
+    hidden = client.get(f"/api/commitments/{taken['id']}").json()["subject"]
     assert hidden == RESTRICTED_PROJECT
 
 
@@ -243,7 +243,7 @@ def test_a_dashboard_turned_off_takes_its_names_with_it(client):
             text("DELETE FROM municipality_dashboards WHERE dashboard_key = 'projects'")
         )
 
-    seen = client.get(f"{URL}/commitments/{taken['id']}").json()["subject"]
+    seen = client.get(f"/api/commitments/{taken['id']}").json()["subject"]
 
     assert seen == RESTRICTED_PROJECT
     enable_dashboards(municipality, list(ALL))
@@ -258,7 +258,8 @@ def test_an_editor_without_projects_keeps_the_link_it_cannot_read_or_removes_it(
 
     assert client.patch(url, json={"description": "Otra"}).json()["subject"] == RESTRICTED_PROJECT
     as_member(client, EMAIL)
-    assert client.get(url).json()["subject"]["ref"] == str(project.id)
+    shown = client.get(f"/api/commitments/{taken['id']}").json()
+    assert shown["subject"]["ref"] == str(project.id)
     as_member(client, "leo@noetinger.test")
     assert client.patch(url, json={"subject": None}).json()["subject"] is None
 
@@ -269,7 +270,7 @@ def test_a_renamed_project_is_shown_with_its_new_name(client):
     taken = commit(client, prepare(client)["items"][0], ana, subject=project_subject(project))
     client.patch(f"/api/dashboards/projects/projects/{project.id}", json={"name": "Después"})
 
-    assert client.get(f"{URL}/commitments/{taken['id']}").json()["subject"]["label"] == "Después"
+    assert client.get(f"/api/commitments/{taken['id']}").json()["subject"]["label"] == "Después"
 
 
 def test_the_database_refuses_half_a_link(client):
@@ -279,7 +280,7 @@ def test_the_database_refuses_half_a_link(client):
     with pytest.raises(IntegrityError, match="subject_complete"):
         with admin_session() as session, session.begin():
             session.execute(
-                text("UPDATE cabinet_commitments SET subject_kind = 'project' WHERE id = :id"),
+                text("UPDATE commitments SET subject_kind = 'project' WHERE id = :id"),
                 {"id": taken["id"]},
             )
 

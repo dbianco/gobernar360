@@ -1,7 +1,7 @@
 import { Paper, Stack, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
-import { formatDate } from '../../platform/format'
+import { formatDate } from '../format'
 import type { HistoryEntry } from './types'
 
 const DATE_FIELDS = ['due_date', 'completed_on']
@@ -21,11 +21,11 @@ function moment(at: string): string {
 /** Progress notes and changes of a commitment, newest first. */
 export function CommitmentHistory({ history }: { history: HistoryEntry[] }) {
   const { t } = useTranslation()
-  const label = (key: string, options = {}) => t(`cabinet.history.${key}`, options)
+  const label = (key: string, options = {}) => t(`commitments.history.${key}`, options)
 
   const value = (field: string, raw: string | null) => {
     if (raw === null) return t('app.none')
-    if (field === 'state') return t(`cabinet.states.${raw}`)
+    if (field === 'state') return t(`commitments.states.${raw}`)
     return DATE_FIELDS.includes(field) ? formatDate(raw) : raw
   }
 

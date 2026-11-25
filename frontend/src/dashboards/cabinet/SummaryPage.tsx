@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { downloadUrl } from '../../api/client'
 import { useAuth } from '../../platform/authContext'
+import { STATES } from '../../platform/commitments/types'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatDate, formatNumber, formatRatio } from '../../platform/format'
 import { HelpTh } from '../../platform/HelpTh'
@@ -17,7 +18,7 @@ import { useLocalTable } from '../../platform/paging'
 import { currentYear } from '../../platform/years'
 import { BASE, BASE_PATH, KEY, useSummary } from './api'
 import { CommitmentsTable } from './CommitmentsTable'
-import { type OwnerRow, STATES } from './types'
+import type { OwnerRow } from './types'
 
 function OwnersTable({ rows }: { rows: OwnerRow[] }) {
   const { t } = useTranslation()

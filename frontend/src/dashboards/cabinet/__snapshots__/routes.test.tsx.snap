@@ -5,15 +5,17 @@ exports[`is reached from the app at its own address > screen at the end 1`] = `
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Gabinete
 Gabinete
 Resumen
 Reuniones
 Compromisos
-Mis compromisos
 [Estado mensual]
 Estado mensual 2026
 [Año anterior]
@@ -130,7 +132,6 @@ Gabinete
 Resumen
 Reuniones
 Compromisos
-Mis compromisos
 No tenés acceso a este tablero
 Pedile al administrador de tu municipio que te habilite."
 `;
@@ -141,9 +142,29 @@ Gabinete
 Resumen
 Reuniones
 Compromisos
-Mis compromisos
 No tenés acceso a este tablero
 Pedile al administrador de tu municipio que te habilite."
+`;
+
+exports[`leads the addresses commitments had while they were the cabinet's to their own > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+Cerrar sesión
+Resumen general
+Compromisos
+Gabinete
+Volver a compromisos
+No se encontró el registro."
+`;
+
+exports[`leads the addresses commitments had while they were the cabinet's to their own > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
 `;
 
 exports[`leads unknown addresses to the summary > screen at the end 1`] = `
@@ -152,7 +173,6 @@ Gabinete
 Resumen
 Reuniones
 Compromisos
-Mis compromisos
 [Estado mensual]
 Estado mensual 2026
 [Año anterior]
@@ -264,7 +284,6 @@ Gabinete
 Resumen
 Reuniones
 Compromisos
-Mis compromisos
 [Estado mensual]
 Estado mensual 2026
 [Año anterior]
@@ -303,7 +322,6 @@ exports[`moves between the sections with the tabs > screen at the end 1`] = `
 Resumen
 Reuniones
 Compromisos
-Mis compromisos
 [Estado mensual]
 Estado mensual 2026
 [Año anterior]
@@ -414,7 +432,6 @@ exports[`moves between the sections with the tabs > screen at the start 1`] = `
 Resumen
 Reuniones
 Compromisos
-Mis compromisos
 [Estado mensual]
 Estado mensual 2026
 [Año anterior]
@@ -448,55 +465,11 @@ Descargar compromisos (CSV)
 [Cargando…]"
 `;
 
-exports[`opens commitments/co-1 > screen at the end 1`] = `
-"[autosize measurement]
-Gabinete
-Resumen
-Reuniones
-Compromisos
-Mis compromisos
-Volver a compromisos
-Certificar la obra
-Vencido
-Postergado 2 veces
-Marcar cumplido
-Editar
-Descartar
-Responsable
-Leo Paz
-Fecha comprometida
-20/11/2026
-Fecha de cumplimiento
-—
-Tomado en la reunión del
-20/10/2026
-Vinculado a
-:
-Plaza central
-[Avance e historial]
-Avance e historial
-Nota de avance
-Agregar nota
-Todavía no hay notas ni cambios."
-`;
-
-exports[`opens commitments/co-1 > screen at the start 1`] = `
-"[autosize measurement]
-Gabinete
-Resumen
-Reuniones
-Compromisos
-Mis compromisos
-Volver a compromisos
-[Cargando…]"
-`;
-
 exports[`opens meetings/me-1 > screen at the end 1`] = `
 "Gabinete
 Resumen
 Reuniones
 Compromisos
-Mis compromisos
 Volver a reuniones
 Reunión del 23/11/2026
 Abierta
@@ -546,7 +519,6 @@ exports[`opens meetings/me-1 > screen at the start 1`] = `
 Resumen
 Reuniones
 Compromisos
-Mis compromisos
 Volver a reuniones
 [Cargando…]"
 `;
@@ -557,13 +529,13 @@ Gabinete
 Resumen
 Reuniones
 Compromisos
-Mis compromisos
 Volver a reuniones
 Preparar reunión
 Fecha
 (dd/mm/aaaa)
 [Abrir calendario]
 Participantes
+(Escribí nombres)
 Ana Gómez
 Leo Paz
 Zoe Ruiz
@@ -606,7 +578,6 @@ Gabinete
 Resumen
 Reuniones
 Compromisos
-Mis compromisos
 No tenés acceso a este tablero
 Pedile al administrador de tu municipio que te habilite."
 `;

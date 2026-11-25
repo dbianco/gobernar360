@@ -25,6 +25,7 @@ import gobernar360.dashboards.environment.models  # noqa: E402, F401
 import gobernar360.dashboards.procedures.models  # noqa: E402, F401
 import gobernar360.dashboards.projects.models  # noqa: E402, F401
 import gobernar360.dashboards.social.models  # noqa: E402, F401
+import gobernar360.platform.commitment_models  # noqa: E402, F401
 import gobernar360.platform.models  # noqa: E402, F401
 from gobernar360.core.config import get_settings  # noqa: E402
 from gobernar360.core.db import Base  # noqa: E402

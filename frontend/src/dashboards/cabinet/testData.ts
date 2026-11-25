@@ -1,21 +1,20 @@
+import type { UserRef } from '../../platform/directory'
 import type { Subject } from '../../platform/subjects/types'
 import type { Page } from '../../platform/types'
 import type {
   AgendaItem,
   AgendaProposal,
   Commitment,
-  CommitmentDetail,
   MeetingDetail,
   MeetingRow,
-  Member,
   Proposal,
   Summary,
 } from './types'
 
 // The same id as the signed-in person of test/fixtures.ts.
-export const ANA: Member = { id: 'u-1', full_name: 'Ana Gómez', has_access: true }
-export const LEO: Member = { id: 'u-2', full_name: 'Leo Paz', has_access: true }
-export const ZOE: Member = { id: 'u-3', full_name: 'Zoe Ruiz', has_access: false }
+export const ANA: UserRef = { id: 'u-1', full_name: 'Ana Gómez' }
+export const LEO: UserRef = { id: 'u-2', full_name: 'Leo Paz' }
+export const ZOE: UserRef = { id: 'u-3', full_name: 'Zoe Ruiz' }
 
 export const PLAZA: Subject = {
   access: 'visible',
@@ -45,26 +44,21 @@ export const HIDDEN: Subject = {
   color: null,
 }
 
-const user = ({ id, full_name }: Member) => ({ id, full_name })
-
 export function makeCommitment(overrides: Partial<Commitment> = {}): Commitment {
   return {
     id: 'co-1',
     description: 'Certificar la obra',
-    owner: user(LEO),
+    owner: LEO,
     due_date: '2026-11-20',
     state: 'overdue',
     completed_on: null,
     times_postponed: 2,
     subject: PLAZA,
+    followers: [],
     item_id: 'it-9',
     meeting: { id: 'me-0', date: '2026-10-20', closed: true },
     ...overrides,
   }
-}
-
-export function makeCommitmentDetail(overrides: Partial<CommitmentDetail> = {}): CommitmentDetail {
-  return { ...makeCommitment(), history: [], ...overrides }
 }
 
 export function makeItem(overrides: Partial<AgendaItem> = {}): AgendaItem {
@@ -95,7 +89,7 @@ export function makeMeeting(overrides: Partial<MeetingDetail> = {}): MeetingDeta
     date: '2026-11-23',
     closed: false,
     closed_at: null,
-    attendees: [user(ANA), user(LEO)],
+    attendees: [ANA, LEO],
     guests: 'Ing. Funes',
     notes: '',
     items: [makeItem(), LIGHT_ITEM],
@@ -165,12 +159,12 @@ export function makeSummary(overrides: Partial<Summary> = {}): Summary {
     on_time_share: 0.4,
     by_owner: [
       {
-        owner: user(LEO),
+        owner: LEO,
         by_state: { overdue: 2, open: 1, done: 1, dropped: 0 },
         on_time_share: 0.25,
       },
       {
-        owner: user(ANA),
+        owner: ANA,
         by_state: { overdue: 0, open: 2, done: 2, dropped: 1 },
         on_time_share: null,
       },

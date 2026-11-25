@@ -54,7 +54,7 @@ def test_the_csv_has_every_commitment_with_what_it_is_about(client):
         description="Sin estado",
         subject=month_subject("environment", "2026-01"),
     )
-    client.post(f"{URL}/commitments/{old['id']}/state", json={"state": "done"})
+    client.post(f"/api/commitments/{old['id']}/state", json={"state": "done"})
 
     found = rows(client)
 
@@ -108,14 +108,12 @@ def test_the_csv_has_every_commitment_with_what_it_is_about(client):
 
 
 def test_the_csv_takes_the_filters_of_the_list(client):
-    municipality, ana = cabinet_member(client)
+    _, ana = cabinet_member(client)
     held(client, ana, date(2026, 3, 1), date(2026, 4, 1))
 
     assert [r["description"] for r in rows(client, state="overdue")] == ["Compromiso 1"]
     assert [r["description"] for r in rows(client, q="2")] == ["Compromiso 2"]
     assert len(rows(client, owner_id=str(ana.id))) == 2
-    cabinet_member(client, "viewer", "leo@noetinger.test", municipality)
-    assert rows(client, mine="true") == []
 
 
 def test_the_csv_is_a_download(client):

@@ -17,8 +17,12 @@ it('lists only the dashboards granted to the user', async () => {
 
   expect(nav.getByRole('link', { name: t('nav.overview') })).toBeInTheDocument()
   expect(nav.getByRole('link', { name: t('projects.title') })).toBeInTheDocument()
-  // Only the overview and the one dashboard this build knows about.
-  expect(nav.getAllByRole('link')).toHaveLength(2)
+  expect(nav.getByRole('link', { name: t('commitments.section') })).toHaveAttribute(
+    'href',
+    '/commitments',
+  )
+  // Only the overview, the commitments and the one dashboard this build knows about.
+  expect(nav.getAllByRole('link')).toHaveLength(3)
 })
 
 it('does not list dashboards the user has no access to', async () => {
@@ -135,7 +139,7 @@ it('gives every navigation link an icon', async () => {
 
   const links = (await navigation()).getAllByRole('link')
 
-  expect(links).toHaveLength(8)
+  expect(links).toHaveLength(9)
   for (const link of links) expect(link.querySelector('svg')).not.toBeNull()
 })
 
@@ -164,4 +168,28 @@ it('opens the users of the municipality at /admin', async () => {
     'aria-selected',
     'true',
   )
+})
+
+it('shows what one owes and follows beside the name, and their pages', async () => {
+  mockApi('get', '/commitments', { items: [], total: 0 })
+  mockApi('get', '/notifications', { mine: [], others: [] })
+  renderApp(<App />, { me: makeMe() })
+  const user = userEvent.setup()
+
+  await user.click(
+    await screen.findByRole('link', { name: t('notices.newsLabel', { count: 0 }) }),
+  )
+  expect(await screen.findByRole('heading', { name: t('notices.title') })).toBeInTheDocument()
+  await user.click((await navigation()).getByRole('link', { name: t('commitments.section') }))
+  expect(
+    await screen.findByRole('heading', { name: t('commitments.section') }),
+  ).toBeInTheDocument()
+})
+
+it('has no notices without a municipality to have them in', async () => {
+  renderApp(<App />, { me: makeMe({ municipalities: [], active: null }) })
+
+  expect(await screen.findByText(t('municipality.noneTitle'))).toBeInTheDocument()
+  expect(screen.queryByRole('link', { name: t('notices.newsLabel', { count: 0 }) })).toBeNull()
+  expect(screen.queryByRole('link', { name: t('commitments.section') })).toBeNull()
 })

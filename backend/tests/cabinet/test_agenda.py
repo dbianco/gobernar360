@@ -35,7 +35,7 @@ def keys(answer: dict) -> list[str]:
 
 
 def set_state(client, commitment, state="done"):
-    response = client.post(f"{URL}/commitments/{commitment['id']}/state", json={"state": state})
+    response = client.post(f"/api/commitments/{commitment['id']}/state", json={"state": state})
     assert response.status_code == 200, response.text
 
 
@@ -318,7 +318,7 @@ def test_looking_at_the_proposal_changes_nothing_and_needs_an_editor(client):
     for _ in range(3):
         proposal(client)
 
-    assert client.get(f"{URL}/commitments/{taken['id']}").json()["times_postponed"] == 0
+    assert client.get(f"/api/commitments/{taken['id']}").json()["times_postponed"] == 0
     cabinet_member(client, "viewer", "leo@noetinger.test", municipality)
     assert client.get(f"{URL}/agenda-proposal?date=2026-03-10").status_code == 403
 

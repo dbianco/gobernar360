@@ -11,7 +11,6 @@ import CabinetRoutes from './routes'
 import {
   makeAgendaProposal,
   makeCommitment,
-  makeCommitmentDetail,
   makeMeeting,
   makeRow,
   makeSummary,
@@ -24,7 +23,6 @@ function mockAll() {
   mockApi('get', `${BASE}/meetings`, page([makeRow({ closed: true })]))
   mockApi('get', `${BASE}/meetings/me-1`, makeMeeting())
   mockApi('get', `${BASE}/agenda-proposal`, makeAgendaProposal())
-  mockApi('get', `${BASE}/commitments/co-1`, makeCommitmentDetail())
   return mockApi('get', `${BASE}/commitments`, page([makeCommitment()]))
 }
 
@@ -50,9 +48,7 @@ it('moves between the sections with the tabs', async () => {
   await waitFor(() => expect(tab('meetings')).toHaveAttribute('aria-selected', 'true'))
   await user.click(tab('commitments'))
   await screen.findByRole('table', { name: t('cabinet.tabs.commitments') })
-  await user.click(tab('mine'))
-  await screen.findByRole('table', { name: t('cabinet.tabs.mine') })
-  expect(requests[requests.length - 1].url.searchParams.get('mine')).toBe('true')
+  expect(requests.length).toBeGreaterThan(0)
   await user.click(tab('summary'))
 
   expect(await screen.findByRole('table', { name: t('cabinet.summary.byOwner') })).toBeInTheDocument()
@@ -61,7 +57,6 @@ it('moves between the sections with the tabs', async () => {
 it.each([
   ['meetings/me-1', 'meetings', t('cabinet.meeting.title', { date: '23/11/2026' })],
   ['meetings/new', 'meetings', t('cabinet.prepare.title')],
-  ['commitments/co-1', 'commitments', 'Certificar la obra'],
 ])('opens %s', async (path, section, title) => {
   renderRoutes('editor', `/d/cabinet/${path}`)
 
@@ -86,4 +81,20 @@ it('is reached from the app at its own address', async () => {
   renderCabinet(<App />, { level: 'viewer', route: '/d/cabinet' })
 
   expect(await screen.findByRole('heading', { name: t('cabinet.title') })).toBeInTheDocument()
+})
+
+it('leads the addresses commitments had while they were the cabinet\'s to their own', async () => {
+  mockAll()
+  mockApi('get', '/commitments', page([]))
+  const view = renderCabinet(<App />, { level: 'viewer', route: '/d/cabinet/mine' })
+  expect(
+    await screen.findByRole('heading', { name: t('commitments.section') }),
+  ).toBeInTheDocument()
+  view.unmount()
+
+  const requests = mockApi('get', '/commitments/co-1', {
+    error: { code: 'not_found', message: 'x' },
+  }, 404)
+  renderCabinet(<App />, { level: 'viewer', route: '/d/cabinet/commitments/co-1' })
+  await waitFor(() => expect(requests).toHaveLength(1))
 })

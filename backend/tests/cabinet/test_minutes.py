@@ -142,9 +142,9 @@ def test_the_minutes_do_not_change_with_what_happens_later(client):
     assert "Nombre de entonces" in before and "crítico" in before
 
     client.patch(f"{URL}/commitments/{taken['id']}", json={"due_date": "2027-01-01"})
-    client.post(f"{URL}/commitments/{taken['id']}/state", json={"state": "done"})
-    client.post(f"{URL}/commitments/{late['id']}/state", json={"state": "dropped"})
-    client.post(f"{URL}/commitments/{taken['id']}/notes", json={"note": "Listo."})
+    client.post(f"/api/commitments/{taken['id']}/state", json={"state": "done"})
+    client.post(f"/api/commitments/{late['id']}/state", json={"state": "dropped"})
+    client.post(f"/api/commitments/{taken['id']}/notes", json={"note": "Listo."})
     client.patch(f"{PROJECTS}/{project.id}", json={"name": "Nombre nuevo"})
     client.put("/api/dashboards/environment/status/2026/2", json={"color": "green"})
     with admin_session() as session, session.begin():

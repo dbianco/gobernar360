@@ -1,8 +1,9 @@
-import { MultiSelect, Stack, Textarea } from '@mantine/core'
+import { Stack, Textarea } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
 import { DateField } from '../../platform/DateField'
-import type { Member, UserRef } from './types'
+import { type UserRef, withFormer } from '../../platform/directory'
+import { PeopleSelect } from '../../platform/PersonSelect'
 
 export interface MeetingValues {
   date: string
@@ -14,18 +15,15 @@ export interface MeetingValues {
 export function MeetingFields(props: {
   values: MeetingValues
   onChange: (values: MeetingValues) => void
-  members: Member[]
+  members: UserRef[] | undefined
   /** Already in the list; some may have left the municipality. */
   attendees?: UserRef[]
   /** No meeting may be dated before it. */
   minDate?: string | null
 }) {
   const { t } = useTranslation()
-  const { values, members } = props
+  const { values } = props
   const set = (changes: Partial<MeetingValues>) => props.onChange({ ...values, ...changes })
-  const former = (props.attendees ?? []).filter(
-    (attendee) => !members.some((member) => member.id === attendee.id),
-  )
 
   return (
     <Stack>
@@ -37,16 +35,11 @@ export function MeetingFields(props: {
         value={values.date}
         onChange={(date) => set({ date })}
       />
-      <MultiSelect
+      <PeopleSelect
         label={t('cabinet.meeting.attendees')}
-        searchable
-        nothingFoundMessage={t('app.noMatches')}
         value={values.attendee_ids}
         onChange={(attendee_ids) => set({ attendee_ids })}
-        data={[...members, ...former].map((member) => ({
-          value: member.id,
-          label: member.full_name,
-        }))}
+        people={withFormer(props.members, props.attendees ?? [])}
       />
       <Textarea
         label={t('cabinet.meeting.guests')}

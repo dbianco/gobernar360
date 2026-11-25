@@ -7,9 +7,8 @@ from gobernar360.dashboards.cabinet.models import (
     AgendaItem,
     Attendee,
     Carryover,
-    Commitment,
     Meeting,
-    ProgressEntry,
+    Taken,
 )
 from gobernar360.dashboards.economic.models import (
     Actor,
@@ -40,6 +39,7 @@ from gobernar360.dashboards.social.models import (
     InterventionType,
     SocialPerson,
 )
+from gobernar360.platform.commitment_models import Commitment, CommitmentEntry
 from gobernar360.platform.models import (
     DashboardGrant,
     DashboardStatus,
@@ -48,7 +48,7 @@ from gobernar360.platform.models import (
     Person,
     User,
 )
-from gobernar360.seed import DEMO_PASSWORD, seed_demo
+from gobernar360.seed import DEMO_PASSWORD, INFORMAL_COMMITMENTS, seed_demo
 from tests.factories import admin_session, login, make_user
 
 
@@ -456,8 +456,6 @@ def test_seeded_cabinet_has_closed_meetings_with_linked_commitments(client):
     assert all(count > 0 for count in summary["by_state"].values())
     assert [c["times_postponed"] for c in summary["most_postponed"]] == [2, 1]
     assert 0 < summary["on_time_share"] < 1
-    mine = client.get(f"{CABINET_API}/commitments", params={"mine": "true"}).json()
-    assert mine["total"] >= 1
 
 
 def test_seeded_minutes_tell_what_was_true_at_each_meeting(client):
@@ -504,7 +502,7 @@ def test_seeded_cabinet_stays_inside_noetinger(client):
 
 
 # Children first, as the rest of the tables a reset would empty.
-CABINET_MODELS = (ProgressEntry, Carryover, Commitment, Attendee, AgendaItem, Meeting)
+CABINET_MODELS = (CommitmentEntry, Carryover, Taken, Attendee, AgendaItem, Commitment, Meeting)
 
 
 def _forget_cabinet() -> None:
@@ -523,7 +521,7 @@ def test_seed_demo_adds_the_cabinet_dashboard_to_an_older_demo_database():
     assert (seed_demo(), seed_demo()) == (True, False)
 
     with admin_session() as session:
-        assert (_count(session, Meeting), _count(session, Commitment)) == (3, 8)
+        assert (_count(session, Meeting), _count(session, Taken)) == (3, 8)
 
 
 def test_seed_demo_adds_the_cabinet_to_a_demo_database_that_lost_its_projects():
@@ -536,4 +534,51 @@ def test_seed_demo_adds_the_cabinet_to_a_demo_database_that_lost_its_projects():
     assert seed_demo() is True
 
     with admin_session() as session:
-        assert _count(session, Commitment) == 8
+        assert _count(session, Taken) == 8
+
+
+def test_seeded_people_have_commitments_outside_meetings_and_news_about_them(client):
+    seed_demo()
+    seen = {}
+    for name in ("admin", "carga", "lectura", "sinacceso"):
+        login(client, f"{name}@noetinger.test", DEMO_PASSWORD)
+        rows = client.get("/api/notifications").json()
+        seen[name] = [
+            (row["description"], row["state"], [news["kind"] for news in row["news"]])
+            for row in rows["mine"] + rows["others"]
+            if row["description"] in {row[0] for row in INFORMAL_COMMITMENTS}
+        ]
+
+    note, suppliers, photos, hall = (row[0] for row in INFORMAL_COMMITMENTS)
+    assert seen == {
+        "admin": [(hall, "done", ["done"]), (note, "open", []), (photos, "open", [])],
+        "carga": [
+            (suppliers, "overdue", []),
+            (note, "open", ["assigned"]),
+            (hall, "done", ["done"]),
+            (photos, "open", []),
+        ],
+        "lectura": [(photos, "open", ["assigned"]), (note, "open", [])],
+        "sinacceso": [],
+    }
+
+
+def test_seed_demo_adds_informal_commitments_to_an_older_demo_database_once():
+    seed_demo()
+    with admin_session() as session, session.begin():
+        session.execute(delete(Commitment).where(Commitment.source.is_(None)))
+
+    assert (seed_demo(), seed_demo()) == (True, False)
+
+    with admin_session() as session:
+        assert _count(session, Commitment) == 8 + len(INFORMAL_COMMITMENTS)
+
+
+def test_seed_demo_survives_a_demo_database_that_lost_the_people_who_give_commitments():
+    seed_demo()
+    with admin_session() as session, session.begin():
+        session.execute(delete(Commitment).where(Commitment.source.is_(None)))
+        reader = session.scalar(select(User).where(User.email == "lectura@noetinger.test"))
+        reader.email = "otra@noetinger.test"
+
+    assert seed_demo() is False

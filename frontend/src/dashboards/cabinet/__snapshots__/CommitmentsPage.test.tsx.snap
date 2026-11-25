@@ -12,7 +12,7 @@ Cumplido
 Descartado
 Todos los estados
 Responsable
-Todos los responsables
+(Todos los responsables)
 Ana Gómez
 Leo Paz
 Zoe Ruiz
@@ -63,7 +63,8 @@ Cumplido
 Descartado
 Todos los estados
 Responsable
-Todos los responsables
+(Todos los responsables)
+Nada coincide con la búsqueda.
 Descargar CSV
 [Cargando…]"
 `;
@@ -79,7 +80,7 @@ Cumplido
 Descartado
 Todos los estados
 Responsable
-Todos los responsables
+(Todos los responsables)
 Ana Gómez
 Leo Paz
 Zoe Ruiz
@@ -136,7 +137,8 @@ Cumplido
 Descartado
 Todos los estados
 Responsable
-Todos los responsables
+(Todos los responsables)
+Nada coincide con la búsqueda.
 Descargar CSV
 [Cargando…]"
 `;
@@ -151,8 +153,13 @@ Pendiente
 Cumplido
 Descartado
 Todos los estados
+Responsable
+(Todos los responsables)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
 Descargar CSV
-No tenés compromisos que coincidan."
+Ningún compromiso coincide."
 `;
 
 exports[`says when none match > screen at the start 1`] = `
@@ -166,7 +173,8 @@ Cumplido
 Descartado
 Todos los estados
 Responsable
-Todos los responsables
+(Todos los responsables)
+Nada coincide con la búsqueda.
 Descargar CSV
 [Cargando…]"
 `;
@@ -182,7 +190,7 @@ Cumplido
 Descartado
 Todos los estados
 Responsable
-Todos los responsables
+(Todos los responsables)
 Ana Gómez
 Leo Paz
 Zoe Ruiz
@@ -201,56 +209,8 @@ Cumplido
 Descartado
 Todos los estados
 Responsable
-Todos los responsables
-Descargar CSV
-[Cargando…]"
-`;
-
-exports[`shows only their own to whoever is signed in > screen at the end 1`] = `
-"Buscar
-(Compromiso o responsable)
-Estado
-Pendientes y vencidos
-Vencido
-Pendiente
-Cumplido
-Descartado
-Todos los estados
-Descargar CSV
-[Mis compromisos]
-Compromiso
-[Qué significa Compromiso]
-Lo que se acordó. Al hacer clic se abre con su historial.
-Para el
-[Qué significa Para el]
-Fecha comprometida. Pasado ese día, un compromiso pendiente figura como vencido.
-Estado
-[Qué significa Estado]
-Cómo está y cuántas veces llegó sin cumplir a una reunión posterior.
-Vinculado a
-[Qué significa Vinculado a]
-De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.
-Reunión
-[Qué significa Reunión]
-Reunión en la que se tomó.
-Certificar la obra
-20/11/2026
-Vencido
-Postergado 2 veces
-Plaza central
-20/10/2026"
-`;
-
-exports[`shows only their own to whoever is signed in > screen at the start 1`] = `
-"Buscar
-(Compromiso o responsable)
-Estado
-Pendientes y vencidos
-Vencido
-Pendiente
-Cumplido
-Descartado
-Todos los estados
+(Todos los responsables)
+Nada coincide con la búsqueda.
 Descargar CSV
 [Cargando…]"
 `;

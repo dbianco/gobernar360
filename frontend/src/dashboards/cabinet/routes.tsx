@@ -4,14 +4,13 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 
 import { RequireDashboard } from '../../platform/RequireDashboard'
 import { BASE_PATH, KEY } from './api'
-import { CommitmentPage } from './CommitmentPage'
 import { CommitmentsPage } from './CommitmentsPage'
 import { MeetingPage } from './MeetingPage'
 import { MeetingsPage } from './MeetingsPage'
 import { PrepareMeetingPage } from './PrepareMeetingPage'
 import { SummaryPage } from './SummaryPage'
 
-const SECTIONS = ['summary', 'meetings', 'commitments', 'mine'] as const
+const SECTIONS = ['summary', 'meetings', 'commitments'] as const
 
 export default function CabinetRoutes() {
   const { t } = useTranslation()
@@ -46,10 +45,7 @@ export default function CabinetRoutes() {
           }
         />
         <Route path="meetings/:id" element={<MeetingPage />} />
-        {/* Separate keys: each list keeps its own filters and page. */}
-        <Route path="commitments" element={<CommitmentsPage key="all" />} />
-        <Route path="commitments/:id" element={<CommitmentPage />} />
-        <Route path="mine" element={<CommitmentsPage key="mine" mine />} />
+        <Route path="commitments" element={<CommitmentsPage />} />
         <Route path="*" element={<Navigate to={BASE_PATH} replace />} />
       </Routes>
     </Stack>

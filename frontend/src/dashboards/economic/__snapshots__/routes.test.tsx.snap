@@ -4,9 +4,12 @@ exports[`does not open the parameters to an editor who types the address > scree
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Económico
 Económico
 Resumen
@@ -24,9 +27,12 @@ exports[`keeps the parameters from an editor > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Económico
 Económico
 Resumen
@@ -123,9 +129,12 @@ exports[`lists the dashboard in the navigation > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Económico
 Económico
 Resumen
@@ -222,9 +231,12 @@ exports[`moves between the sections with the tabs > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Económico
 Económico
 Resumen
@@ -322,9 +334,12 @@ exports[`shows a dashboard admin the parameters > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Económico
 Económico
 Resumen
@@ -422,9 +437,12 @@ exports[`shows a viewer every section except the parameters > screen at the end 
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 Cerrar sesión
 Resumen general
+Compromisos
 Económico
 Económico
 Resumen

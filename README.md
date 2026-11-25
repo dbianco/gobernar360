@@ -26,6 +26,8 @@ Procedures and Cabinet dashboards, and a general overview.
 - Cabinet meetings, commitments and linkable subjects: design
   `docs/superpowers/specs/2026-11-24-cabinet-commitments-design.md`,
   task `docs/tasks/04-cabinet-commitments.md`
+- Commitments for everyone and notifications: design
+  `docs/superpowers/specs/2026-11-24-commitments-and-notices-design.md`
 - Functional reference: `tableros-de-gestion-portal-ril.md`
 
 ## Quick start
@@ -216,7 +218,25 @@ them, who owes each one and by when.
   one was postponed is how many meetings it was carried to.
 - "Overdue" is computed from the date, never stored. The share delivered on time counts overdue
   commitments against it.
-- Editors record and change; whoever owes a commitment may add progress notes even as a viewer.
+- Editors record and change; whoever owes a commitment says it is done and may move its date or
+  pass it on, with or without access to this dashboard.
+
+### Commitments and notifications
+
+Every member of a municipality has *Compromisos* in the menu, whatever their dashboards.
+
+- Anyone gives a commitment to anyone, or to themselves, and attaches people to be told when it
+  is done. Those of a cabinet meeting and the informal ones are listed together: the ones you
+  owe, gave or follow.
+- An informal one is seen only by whoever gave it, whoever owes it and those attached, not by
+  administrators or the cabinet. One of a meeting is seen by the cabinet's members too.
+- Whoever owes it says it is done and changes its date or its owner. Whoever gave an informal
+  one corrects, drops or reopens it. Those attached only read it.
+- Two icons beside the user's name count what they owe and what is new; hovering previews them
+  and clicking opens *Notificaciones*, with the status and target date of each. Delivered ones
+  stay there until they are read. Nothing is emailed.
+- Informal ones do not count in the cabinet's figures, agenda or postponements. They show beside
+  a project or a month only to those who may see them.
 
 ### Linkable subjects
 
@@ -227,8 +247,9 @@ How one module points at another without importing it (`platform/subjects.py`):
   (Projects: `dashboards/projects/subjects.py`).
 - Links are checked on write against the municipality and the person's access. Whoever cannot
   see what is linked reads that something of that kind is, and nothing else.
-- A module that keeps commitments gives `DashboardModule.get_commitments`; status strips and
-  record pages (`<SubjectCommitments>`) show them to whoever can open both dashboards.
+- Status strips and record pages (`<SubjectCommitments>`) show the open commitments about them
+  to whoever may see both. A dashboard that records commitments tells where each was taken with
+  `DashboardModule.get_commitment_origins`.
 
 ### Status lights
 

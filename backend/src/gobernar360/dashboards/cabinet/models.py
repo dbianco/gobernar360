@@ -1,4 +1,6 @@
-"""Tables of the cabinet dashboard. All are tenant data protected by row-level security."""
+"""Tables of the cabinet dashboard. All are tenant data protected by row-level security.
+
+The commitments themselves are the platform's (`platform.commitment_models`)."""
 
 import datetime as dt
 import uuid
@@ -20,14 +22,11 @@ from sqlalchemy import (
     text,
 )
 from sqlalchemy.dialects.postgresql import JSONB
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column
 
 from gobernar360.core.db import AuditMixin, Base, TenantMixin, uuid_pk
-from gobernar360.platform.models import User
 from gobernar360.platform.subjects import SubjectMixin, subject_check
 
-# "overdue" is never stored: it is an open commitment past its due date.
-STORED_STATES = ("open", "done", "dropped")
 # Where an agenda item came from: typed, a status light or a commitment.
 ITEM_SOURCES = ("manual", "light", "commitment")
 
@@ -106,18 +105,9 @@ class AgendaItem(SubjectMixin, TenantMixin, AuditMixin, Base):
     discussed: Mapped[bool] = mapped_column(
         Boolean, nullable=False, default=False, server_default=false()
     )
-    # The commitment the item is about, for those that follow one up. Commitments point at
-    # the item they were taken in, hence use_alter.
+    # The commitment the item is about, for those that follow one up.
     commitment_id: Mapped[uuid.UUID | None] = mapped_column(
-        Uuid,
-        ForeignKey(
-            "cabinet_commitments.id",
-            ondelete="CASCADE",
-            use_alter=True,
-            name="cabinet_agenda_items_commitment_id_fkey",
-        ),
-        nullable=True,
-        index=True,
+        Uuid, ForeignKey("commitments.id", ondelete="CASCADE"), nullable=True, index=True
     )
     # The undiscussed item of the previous meeting this one comes from.
     carried_from_id: Mapped[uuid.UUID | None] = mapped_column(
@@ -125,36 +115,16 @@ class AgendaItem(SubjectMixin, TenantMixin, AuditMixin, Base):
     )
 
 
-class Commitment(SubjectMixin, TenantMixin, AuditMixin, Base):
-    """Something agreed in a meeting: what, who owes it and by when."""
+class Taken(TenantMixin, AuditMixin, Base):
+    """That a commitment was taken on an agenda item, and so in its meeting."""
 
-    __tablename__ = "cabinet_commitments"
-    __table_args__ = (
-        CheckConstraint(_in("state", STORED_STATES), name="state_valid"),
-        CheckConstraint("(state = 'done') = (completed_on IS NOT NULL)", name="done_has_date"),
-        subject_check(),
-        Index(
-            "ix_cabinet_commitments_subject",
-            "municipality_id",
-            "subject_dashboard",
-            "subject_kind",
-            "subject_ref",
-        ),
-    )
+    __tablename__ = "cabinet_taken"
 
     id: Mapped[uuid.UUID] = uuid_pk()
-    # The agenda item, and so the meeting, it was taken in.
-    item_id: Mapped[uuid.UUID] = _fk("cabinet_agenda_items.id")
-    description: Mapped[str] = mapped_column(String(500), nullable=False)
-    owner_id: Mapped[uuid.UUID] = _fk("users.id")
-    due_date: Mapped[dt.date] = mapped_column(Date, nullable=False)
-    state: Mapped[str] = mapped_column(
-        String(20), nullable=False, default="open", server_default="open"
+    commitment_id: Mapped[uuid.UUID] = mapped_column(
+        Uuid, ForeignKey("commitments.id", ondelete="CASCADE"), nullable=False, unique=True
     )
-    completed_on: Mapped[dt.date | None] = mapped_column(Date, nullable=True)
-
-    owner: Mapped[User] = relationship(foreign_keys=[owner_id], lazy="joined")
-    item: Mapped[AgendaItem] = relationship(foreign_keys=[item_id], viewonly=True, lazy="joined")
+    item_id: Mapped[uuid.UUID] = _fk("cabinet_agenda_items.id")
 
 
 class Carryover(TenantMixin, AuditMixin, Base):
@@ -168,20 +138,5 @@ class Carryover(TenantMixin, AuditMixin, Base):
     __table_args__ = (UniqueConstraint("commitment_id", "meeting_id"),)
 
     id: Mapped[uuid.UUID] = uuid_pk()
-    commitment_id: Mapped[uuid.UUID] = _fk("cabinet_commitments.id", ondelete="CASCADE")
+    commitment_id: Mapped[uuid.UUID] = _fk("commitments.id", ondelete="CASCADE")
     meeting_id: Mapped[uuid.UUID] = _fk("cabinet_meetings.id", ondelete="CASCADE")
-
-
-class ProgressEntry(TenantMixin, AuditMixin, Base):
-    """One entry of a commitment's history: a progress note, a change, or both.
-    Entries are only ever added."""
-
-    __tablename__ = "cabinet_progress_entries"
-
-    id: Mapped[uuid.UUID] = uuid_pk()
-    commitment_id: Mapped[uuid.UUID] = _fk("cabinet_commitments.id", ondelete="CASCADE")
-    note: Mapped[str] = _long_text()
-    # field -> [before, after], as text: state, due_date, owner, completed_on.
-    changes: Mapped[dict[str, Any]] = mapped_column(
-        JSONB, nullable=False, default=dict, server_default="{}"
-    )

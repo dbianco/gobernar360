@@ -2,28 +2,27 @@ import { Alert, Button, Group, Stack, Textarea } from '@mantine/core'
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { DateField } from '../../platform/DateField'
-import { todayIso } from '../../platform/format'
-import { send, useAction } from './api'
-import type { Commitment } from './types'
+import { DateField } from '../DateField'
+import { todayIso } from '../format'
+import { PATH, send, useCommitmentAction } from './api'
 
 /** Says a commitment was delivered, and when, or that it was dropped. */
 export function StateForm(props: {
-  commitment: Commitment
+  commitmentId: string
   state: 'done' | 'dropped'
   onDone: () => void
 }) {
   const { t } = useTranslation()
-  const action = useAction()
+  const action = useCommitmentAction()
   const [completedOn, setCompletedOn] = useState(todayIso)
   const [note, setNote] = useState('')
-  const label = (key: string) => t(`cabinet.commitment.${key}`)
+  const label = (key: string) => t(`commitments.detail.${key}`)
   const isDone = props.state === 'done'
 
   async function submit(event: FormEvent) {
     event.preventDefault()
     const saved = await action.run(() =>
-      send('POST', `/commitments/${props.commitment.id}/state`, {
+      send('POST', `${PATH}/${props.commitmentId}/state`, {
         state: props.state,
         ...(isDone && { completed_on: completedOn }),
         note,

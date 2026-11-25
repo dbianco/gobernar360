@@ -17,9 +17,8 @@ from gobernar360.dashboards.cabinet.models import (
     AgendaItem,
     Attendee,
     Carryover,
-    Commitment,
     Meeting,
-    ProgressEntry,
+    Taken,
 )
 from gobernar360.dashboards.economic.models import (
     Actor,
@@ -63,6 +62,12 @@ from gobernar360.dashboards.social.models import (
     SocialPerson,
 )
 from gobernar360.platform.access import RequestContext
+from gobernar360.platform.commitment_models import (
+    Commitment,
+    CommitmentEntry,
+    CommitmentFollower,
+    CommitmentNotice,
+)
 from gobernar360.platform.models import (
     DashboardGrant,
     DashboardStatus,
@@ -458,6 +463,24 @@ CABINET_MEETINGS = [
             ("Cronograma de fin de año", None, "", False, []),
         ],
     ),
+]
+
+# Informal commitments as (description, project linked, creator, owner, due in days from
+# today, delivered in days from today, people attached). Who is waiting for those delivered
+# has not read about it yet, nor those who were given the rest.
+INFORMAL_COMMITMENTS = [
+    ("Enviar la nota al Concejo Deliberante", None, ADMIN, EDITOR, 3, None, (VIEWER,)),
+    ("Actualizar el listado de proveedores", None, EDITOR, EDITOR, -2, None, ()),
+    (
+        "Pedir fotos del avance de la plaza",
+        "Renovación de la plaza central",
+        EDITOR,
+        VIEWER,
+        6,
+        None,
+        (ADMIN,),
+    ),
+    ("Reservar el salón para la audiencia pública", None, ADMIN, VIEWER, 1, -1, (EDITOR,)),
 ]
 
 # category -> benefits as (name, description)
@@ -1540,7 +1563,7 @@ def _seed_noetinger_cabinet(municipality_id, today: date) -> None:
                 commitment.state = state
                 commitment.completed_on = finished if state == "done" else None
                 add(
-                    ProgressEntry(
+                    CommitmentEntry(
                         commitment_id=commitment.id,
                         changes={"state": ["open", state]}
                         | (
@@ -1580,7 +1603,7 @@ def _seed_noetinger_cabinet(municipality_id, today: date) -> None:
                 add(item, held, admin_id)
                 for description, project, owner, due, state, finished, progress in rows:
                     commitment = Commitment(
-                        item_id=item.id,
+                        source=CABINET,
                         description=description,
                         owner_id=people[owner].id,
                         due_date=today + timedelta(days=due),
@@ -1592,11 +1615,12 @@ def _seed_noetinger_cabinet(municipality_id, today: date) -> None:
                         else item.subject
                     )
                     add(commitment, held, admin_id)
+                    add(Taken(commitment_id=commitment.id, item_id=item.id), held, admin_id)
                     if finished is not None:
                         pending.append((commitment, state, today + timedelta(days=finished)))
                     for when, author, note in progress:
                         add(
-                            ProgressEntry(commitment_id=commitment.id, note=note),
+                            CommitmentEntry(commitment_id=commitment.id, note=note),
                             today + timedelta(days=when),
                             people[author].id,
                         )
@@ -1605,6 +1629,63 @@ def _seed_noetinger_cabinet(municipality_id, today: date) -> None:
             db.flush()
         finish(None)
         _add_lights(db, municipality_id, CABINET, today)
+
+
+def _seed_noetinger_commitments(today: date) -> bool:
+    """Commitments people gave each other outside any meeting. Returns False when there are
+    some already, or when the demo no longer has the people who give them."""
+    with platform_session() as db:
+        noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+    with tenant_session(noetinger_id) as db:
+        people = {
+            user.email: user.id
+            for user in db.scalars(select(User).where(User.email.in_([ADMIN, EDITOR, VIEWER])))
+        }
+        exists = db.scalar(select(Commitment.id).where(Commitment.source.is_(None)).limit(1))
+        if exists or len(people) < 3:
+            return False
+        projects = dict(db.execute(select(Project.name, Project.id)).all())
+
+        def add(entity, author: str):
+            entity.municipality_id = noetinger_id
+            entity.created_by = entity.updated_by = people[author]
+            db.add(entity)
+            db.flush()
+            return entity
+
+        for description, project, creator, owner, due, done, attached in INFORMAL_COMMITMENTS:
+            finished = None if done is None else today + timedelta(days=done)
+            commitment = Commitment(
+                description=description,
+                owner_id=people[owner],
+                due_date=today + timedelta(days=due),
+                state="open" if finished is None else "done",
+                completed_on=finished,
+            )
+            if project in projects:
+                commitment.subject = Subject(PROJECTS, "project", str(projects[project]))
+            add(commitment, creator)
+            for email in attached:
+                add(CommitmentFollower(commitment_id=commitment.id, user_id=people[email]), creator)
+            if finished is not None:
+                changes = {
+                    "state": ["open", "done"],
+                    "completed_on": [None, finished.isoformat()],
+                }
+                add(CommitmentEntry(commitment_id=commitment.id, changes=changes), owner)
+                told = {creator, *attached} - {owner}
+            else:
+                told = {owner} - {creator}
+            for email in sorted(told):
+                add(
+                    CommitmentNotice(
+                        commitment_id=commitment.id,
+                        user_id=people[email],
+                        kind="assigned" if finished is None else "done",
+                    ),
+                    creator if finished is None else owner,
+                )
+    return True
 
 
 def _seed_newer_dashboards(today: date) -> bool:
@@ -1617,6 +1698,7 @@ def _seed_newer_dashboards(today: date) -> bool:
         _seed_newer_dashboard(PROCEDURES, _seed_noetinger_procedures, today),
         # Last: its commitments point at projects and at the lights of the rest.
         _seed_newer_dashboard(CABINET, _seed_noetinger_cabinet, today),
+        _seed_noetinger_commitments(today),
     ]
     return any(added)
 

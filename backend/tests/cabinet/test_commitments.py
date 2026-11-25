@@ -22,17 +22,15 @@ def pinned_today(client):
 
 
 def get(client, commitment) -> dict:
-    return client.get(f"{URL}/commitments/{commitment['id']}").json()
+    return client.get(f"/api/commitments/{commitment['id']}").json()
 
 
 def set_state(client, commitment, state, **fields):
-    return client.post(
-        f"{URL}/commitments/{commitment['id']}/state", json={"state": state} | fields
-    )
+    return client.post(f"/api/commitments/{commitment['id']}/state", json={"state": state} | fields)
 
 
 def add_note(client, commitment, note="Avanza."):
-    return client.post(f"{URL}/commitments/{commitment['id']}/notes", json={"note": note})
+    return client.post(f"/api/commitments/{commitment['id']}/notes", json={"note": note})
 
 
 def test_a_commitment_says_what_who_when_and_where_it_was_taken(client):
@@ -51,10 +49,30 @@ def test_a_commitment_says_what_who_when_and_where_it_was_taken(client):
         "completed_on": None,
         "times_postponed": 0,
         "subject": None,
+        "followers": [],
         "item_id": item["id"],
         "meeting": {"id": meeting["id"], "date": "2026-03-10", "closed": False},
     }
-    assert get(client, taken) == taken | {"history": []}
+    # Anyone with the dashboard opens it as any other commitment, and reaches the meeting.
+    assert get(client, taken) == {
+        name: value for name, value in taken.items() if name not in ("item_id", "meeting")
+    } | {
+        "creator": None,
+        "source": "cabinet",
+        "origin": {
+            "label": "Reunión del 10/03/2026",
+            "path": f"/d/cabinet/meetings/{meeting['id']}",
+        },
+        "rights": {
+            "see": True,
+            "finish": True,
+            "reschedule": True,
+            "manage": True,
+            "edit": False,
+            "note": True,
+        },
+        "history": [],
+    }
 
 
 def test_a_commitment_becomes_overdue_by_itself(client):
@@ -88,7 +106,7 @@ def test_while_its_meeting_is_open_a_commitment_is_corrected_or_removed(client):
     patched = client.patch(f"{URL}/commitments/{taken['id']}", json={"description": "Firmar"})
     assert (patched.status_code, patched.json()["description"]) == (200, "Firmar")
     assert client.delete(f"{URL}/commitments/{other['id']}").status_code == 204
-    assert error(client.get(f"{URL}/commitments/{other['id']}")) == (404, "not_found")
+    assert error(client.get(f"/api/commitments/{other['id']}")) == (404, "not_found")
 
 
 # Follow-up
@@ -199,8 +217,11 @@ def test_whoever_owes_it_adds_notes_whatever_their_level_and_others_need_to_be_e
     assert noted.status_code == 201
     assert [(e["author"], e["note"]) for e in noted.json()["history"]] == [("Leo", "Avanza.")]
     assert error(add_note(client, hers)) == (403, "forbidden")
-    # Saying it is done is not his call.
-    assert error(set_state(client, his, "done")) == (403, "forbidden")
+    # Whoever owes it also says it is done, and by when; dropping it is not their call.
+    assert error(set_state(client, his, "dropped")) == (403, "forbidden")
+    assert set_state(client, his, "done").status_code == 200
+    assert error(set_state(client, his, "open")) == (403, "forbidden")
+    assert error(set_state(client, hers, "done")) == (403, "forbidden")
     as_member(client)
     assert add_note(client, his).status_code == 201
     assert error(add_note(client, his, "  ")) == (422, "validation_error")
@@ -241,8 +262,6 @@ def test_commitments_are_listed_open_first_by_due_date_and_filtered(client):
     assert listed(state="done") == [done]
     assert listed(state="dropped") == [dropped]
     assert listed(owner_id=str(leo.id)) == [his]
-    assert listed(mine="true") == [late, soon, done, dropped]
-    assert listed(mine="true", state="pending") == [late, soon]
     assert listed(q="senalizacion") == [his]
     assert listed(q="leo vial") == [his]
     assert listed(q="nada") == []
@@ -264,11 +283,55 @@ def test_the_list_goes_by_due_date_and_only_open_ones_are_in_time(client):
     assert listed(state="open") == [first["id"], second["id"]]
 
 
-def test_my_commitments_are_mine_whoever_is_asked_for(client):
+def test_informal_commitments_are_not_the_cabinet_s(client):
+    _, ana = cabinet_member(client)
+    body = {"description": "Informal", "owner_id": str(ana.id), "due_date": "2026-01-01"}
+    informal = client.post("/api/commitments", json=body).json()
+
+    assert client.get(f"{URL}/commitments").json() == {"items": [], "total": 0}
+    assert "Informal" not in client.get(f"{URL}/export/commitments.csv").text
+    assert client.get(f"{URL}/summary").json()["total"] == 0
+    assert client.get("/api/overview").json()[0]["indicators"] == []
+    proposed = client.get(f"{URL}/agenda-proposal?date=2026-03-10").json()
+    assert (proposed["proposals"], proposed["to_carry_over"]) == ([], 0)
+    meeting = prepare(client)
+    assert meeting["carried_over"] == []
+    assert get(client, informal)["times_postponed"] == 0
+    for response in (
+        client.patch(f"{URL}/commitments/{informal['id']}", json={"description": "x"}),
+        client.delete(f"{URL}/commitments/{informal['id']}"),
+    ):
+        assert error(response) == (404, "not_found")
+
+
+def test_people_are_attached_to_commitments_of_a_meeting(client):
     municipality, ana = cabinet_member(client)
-    held(client, ana, date(2026, 3, 9))
-    _, leo = cabinet_member(client, "viewer", "leo@noetinger.test", municipality)
+    leo = make_user("leo@noetinger.test")
+    make_membership(leo, municipality)
+    item = prepare(client)["items"][0]
 
-    page = client.get(f"{URL}/commitments?mine=true&owner_id={ana.id}").json()
+    taken = commit(client, item, ana, follower_ids=[str(leo.id)])
 
-    assert page == {"items": [], "total": 0}
+    assert taken["followers"] == [{"id": str(leo.id), "full_name": "Leo"}]
+    url = f"{URL}/commitments/{taken['id']}"
+    assert client.patch(url, json={"follower_ids": []}).json()["followers"] == []
+
+
+def test_the_text_of_a_meeting_s_commitment_is_changed_only_through_the_meeting(client):
+    _, ana = cabinet_member(client)
+    taken = commit(client, prepare(client)["items"][0], ana)
+
+    refused = client.patch(f"/api/commitments/{taken['id']}", json={"description": "Otra"})
+
+    assert error(refused) == (403, "forbidden")
+    assert get(client, taken)["description"] == "Certificar la obra"
+
+
+def test_one_delivered_before_its_meeting_closes_is_not_rewritten(client):
+    _, ana = cabinet_member(client)
+    taken = commit(client, prepare(client)["items"][0], ana)
+    set_state(client, taken, "done")
+
+    refused = client.patch(f"{URL}/commitments/{taken['id']}", json={"description": "Otra"})
+
+    assert error(refused) == (409, "commitment_finished")
