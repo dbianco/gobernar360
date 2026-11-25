@@ -38,6 +38,24 @@ María José Núñez
 José Paz"
 `;
 
+exports[`closes the list of several with Escape and by going elsewhere > screen at the end 1`] = `
+"Persona
+(Escribí nombres)
+Ana Gómez
+Leo Paz
+María José Núñez
+José Paz"
+`;
+
+exports[`closes the list of several with Escape and by going elsewhere > screen at the start 1`] = `
+"Persona
+(Escribí nombres)
+Ana Gómez
+Leo Paz
+María José Núñez
+José Paz"
+`;
+
 exports[`goes back to nobody only when nobody is required > screen at the end 1`] = `
 "Persona
 (Todos)

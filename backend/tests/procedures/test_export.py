@@ -128,3 +128,56 @@ def test_opportunities_download_matches_the_report(client):
         ["Registro Civil", "provincial", "", "1", "1", "300"],
         ["", "none", "", "1", "3", "440"],
     ]
+
+
+def test_opportunities_have_no_last_row_when_everything_asked_has_a_source(client):
+    municipality = signed_in(client, "viewer")
+    asked = make_requirement(municipality, source=make_source(municipality))
+    link_requirement(make_procedure(municipality), asked)
+
+    rows = _rows(client.get(f"{BASE}/export/opportunities.csv"))
+
+    assert [row[:2] for row in rows[1:]] == [["Rentas municipal", "municipal"]]
+
+
+def test_downloads_are_named_after_what_they_hold(client):
+    signed_in(client, "viewer")
+
+    for path, name in (
+        ("procedures", "procedures.csv"),
+        ("procedure-requirements", "procedure-requirements.csv"),
+        ("opportunities", "procedures-opportunities.csv"),
+    ):
+        response = client.get(f"{BASE}/export/{path}.csv")
+        assert response.headers["content-disposition"] == f'attachment; filename="{name}"', path
+
+
+def test_what_is_asked_comes_by_procedure_and_requirement_ignoring_case_and_accents(client):
+    municipality = signed_in(client, "viewer")
+    requirements = [make_requirement(municipality, name) for name in ("dni", "Álbum", "boleta")]
+    for name in ("poda", "Árboles", "Baldío"):
+        procedure = make_procedure(municipality, name=name)
+        for requirement in requirements:
+            link_requirement(procedure, requirement)
+
+    _, *rows = _rows(client.get(f"{BASE}/export/procedure-requirements.csv"))
+
+    assert [(row[0], row[3]) for row in rows] == [
+        (procedure, requirement)
+        for procedure in ("Árboles", "Baldío", "poda")
+        for requirement in ("Álbum", "boleta", "dni")
+    ]
+
+
+def test_a_procedure_of_no_days_and_no_volume_is_told_from_one_not_known(client):
+    municipality = signed_in(client, "viewer")
+    make_procedure(municipality, name="Cero", duration_days=0, annual_volume=0)
+    make_procedure(municipality, name="Nada")
+
+    header, *rows = _rows(client.get(f"{BASE}/export/procedures.csv"))
+
+    columns = [header.index(c) for c in ("duration_days", "annual_volume")]
+    assert {row[0]: [row[c] for c in columns] for row in rows} == {
+        "Cero": ["0", "0"],
+        "Nada": ["", ""],
+    }

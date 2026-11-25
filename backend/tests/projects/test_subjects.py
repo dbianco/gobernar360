@@ -72,3 +72,11 @@ def test_projects_are_not_offered_to_members_without_the_dashboard(client):
     )
 
     assert response.status_code == 403
+
+
+def test_projects_of_a_year_come_by_name_whatever_order_they_were_loaded_in(client):
+    municipality = projects_member("viewer")
+    make_projects(municipality, *((name, 2024) for name in ("zanja", "Árbol", "bache", "Cordón")))
+    login(client, "ana@noetinger.test")
+
+    assert [label for label, _ in search(client)] == ["Árbol", "bache", "Cordón", "zanja"]

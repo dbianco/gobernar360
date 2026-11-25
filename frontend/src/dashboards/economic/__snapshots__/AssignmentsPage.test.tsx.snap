@@ -660,3 +660,72 @@ Todas las herramientas
 Descargar asignaciones
 [Cargando…]"
 `;
+
+exports[`shows and corrects an assignment whose recipient is no longer there > screen at the end 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Microcrédito productivo
+Feria de emprendedores
+Taller de oficios
+Descargar asignaciones
+Fecha
+[Qué significa Fecha]
+Día en que se otorgó la herramienta.
+Herramienta
+[Qué significa Herramienta]
+Programa, crédito, capacitación u otra herramienta que el municipio otorgó.
+Destinatario
+[Qué significa Destinatario]
+Actor económico o persona que recibió la herramienta.
+Tipo
+[Qué significa Tipo]
+Indica si quien la recibió es un actor económico o una persona.
+Nota
+[Qué significa Nota]
+Aclaración libre sobre la asignación.
+10/03/2026
+Microcrédito productivo
+Persona
+Primera cuota
+[Editar la asignación de ]
+Editar
+[Eliminar la asignación de ]
+Eliminar"
+`;
+
+exports[`shows and corrects an assignment whose recipient is no longer there > screen at the start 1`] = `
+"Buscar
+(Herramienta, actor o persona)
+Año
+2027
+2026
+2025
+2024
+2023
+2022
+2021
+2020
+2019
+2018
+2017
+2016
+Herramienta
+Todas las herramientas
+Descargar asignaciones
+[Cargando…]"
+`;

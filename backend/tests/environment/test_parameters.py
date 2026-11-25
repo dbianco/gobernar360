@@ -274,3 +274,17 @@ def test_variables_are_listed_by_subcategory_then_name_and_filtered(client):
         "Consumo del palacio",
     ]
     assert names(subcategory_id=str(lighting.id)) == ["Consumo del alumbrado", "Luminarias LED"]
+
+
+def test_a_variable_changes_subcategory_or_only_its_name(client):
+    municipality = environment_member("admin")
+    login(client, "ana@noetinger.test")
+    first = make_subcategory(municipality, name="Consumo")
+    second = make_subcategory(municipality, name="Renovables")
+    variable = make_variable(municipality, first, name="Luz")
+    url = f"{BASE}/variables/{variable.id}"
+
+    renamed = client.patch(url, json={"name": "Electricidad"}).json()
+    assert (renamed["name"], renamed["subcategory"]["id"]) == ("Electricidad", str(first.id))
+    moved = client.patch(url, json={"subcategory_id": str(second.id)}).json()
+    assert (moved["name"], moved["subcategory"]["id"]) == ("Electricidad", str(second.id))

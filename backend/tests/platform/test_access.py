@@ -206,3 +206,17 @@ def test_a_membership_elsewhere_does_not_open_the_active_municipality(demo_clien
     assert demo_client.get("/api/dashboards/demo/read").json()["error"]["message"] == (
         "You do not belong to this municipality."
     )
+
+
+def test_an_account_deactivated_while_signed_in_is_out_at_once(client):
+    user = make_user("ana@noetinger.test")
+    make_membership(user, make_municipality("Noetinger"))
+    login(client, "ana@noetinger.test")
+    assert client.get("/api/auth/me").status_code == 200
+    with admin_session() as session, session.begin():
+        session.merge(user).is_active = False
+
+    response = client.get("/api/auth/me")
+
+    assert response.status_code == 401
+    assert response.json()["error"]["code"] == "not_authenticated"

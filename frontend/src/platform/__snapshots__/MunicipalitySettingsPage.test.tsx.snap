@@ -103,6 +103,22 @@ exports[`says so when the municipality does not exist > screen at the start 1`] 
 [Cargando…]"
 `;
 
+exports[`says when the municipality cannot be loaded > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Ana Gómez
+Cerrar sesión
+Plataforma
+← Volver al municipio
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says when the municipality cannot be loaded > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
 exports[`shows the operator the configuration of the municipality, with a way back > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360

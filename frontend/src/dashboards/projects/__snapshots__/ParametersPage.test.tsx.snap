@@ -439,6 +439,46 @@ Presupuesto total 2027"
 
 exports[`renames and deletes terms > screen at the start 1`] = `"[Cargando…]"`;
 
+exports[`says why axes cannot be loaded > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why axes cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why departments cannot be loaded > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
+
+exports[`says why departments cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why objectives cannot be loaded > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says why objectives cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why owners cannot be loaded > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
+
+exports[`says why owners cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why programs cannot be loaded > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
+
+exports[`says why programs cannot be loaded > screen at the start 1`] = `"[Cargando…]"`;
+
 exports[`sets the total budget of a year > screen at the end 1`] = `
 "[Cambiar gestión]
 Gestión 2019-2023
@@ -477,6 +517,106 @@ exports[`sets the total budget of a year > screen at the start 1`] = `"[Cargando
 exports[`shows an error instead of an empty catalog when loading fails > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;
 
 exports[`shows an error instead of an empty catalog when loading fails > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the axes tab with nothing in it when there are no axes at all > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Todavía no hay elementos cargados.
+[Nuevo eje]
+(Nuevo eje)
+Agregar"
+`;
+
+exports[`shows the axes tab with nothing in it when there are no axes at all > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the axes tab with nothing in it when there are no objectives at all > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Ciudad inclusiva
+[Renombrar Ciudad inclusiva]
+Editar
+[Eliminar Ciudad inclusiva]
+Eliminar
+[Nuevo objetivo de Ciudad inclusiva]
+(Nuevo objetivo de Ciudad inclusiva)
+Agregar
+Ciudad segura
+[Renombrar Ciudad segura]
+Editar
+[Eliminar Ciudad segura]
+Eliminar
+[Nuevo objetivo de Ciudad segura]
+(Nuevo objetivo de Ciudad segura)
+Agregar
+[Nuevo eje]
+(Nuevo eje)
+Agregar"
+`;
+
+exports[`shows the axes tab with nothing in it when there are no objectives at all > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the departments tab with nothing in it when there are no departments at all > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Todavía no hay elementos cargados.
+[Nuevo nombre]
+(Nuevo nombre)
+Agregar"
+`;
+
+exports[`shows the departments tab with nothing in it when there are no departments at all > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the owners tab with nothing in it when there are no owners at all > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Todavía no hay elementos cargados.
+[Nuevo nombre]
+(Nuevo nombre)
+Agregar"
+`;
+
+exports[`shows the owners tab with nothing in it when there are no owners at all > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the programs tab with nothing in it when there are no programs at all > screen at the end 1`] = `
+"[Cambiar gestión]
+Gestión 2019-2023
+Gestión 2023-2027
+Gestiones
+Ejes y objetivos
+Dependencias
+Programas
+Responsables
+Todavía no hay elementos cargados.
+[Nuevo nombre]
+(Nuevo nombre)
+Agregar"
+`;
+
+exports[`shows the programs tab with nothing in it when there are no programs at all > screen at the start 1`] = `"[Cargando…]"`;
 
 exports[`shows why the axes or the budgets could not be loaded > screen at the end 1`] = `
 "[Cambiar gestión]

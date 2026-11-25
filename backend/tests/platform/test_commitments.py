@@ -7,6 +7,7 @@ from datetime import date, timedelta
 import pytest
 from sqlalchemy import select
 
+from gobernar360.dashboards import registry
 from gobernar360.platform.commitment_models import CommitmentNotice
 from gobernar360.platform.models import AuditLog
 from tests.cabinet.factories import (
@@ -629,3 +630,50 @@ def test_notices_of_another_member_are_not_touched(client, people):
     with admin_session() as session:
         [notice] = session.scalars(select(CommitmentNotice))
     assert (notice.user_id, notice.read_at) == (people["leo"].id, None)
+
+
+def test_one_recorded_by_a_dashboard_no_longer_installed_has_no_origin(client):
+    municipality, ana = cabinet_member(client)
+    taken = commit(client, prepare(client)["items"][0], ana)
+    module = registry.get_module("cabinet")
+    registry.unregister("cabinet")
+    try:
+        seen = get(client, taken).json()
+    finally:
+        registry.register(module)
+
+    # Theirs to deliver all the same.
+    assert (seen["origin"], seen["times_postponed"], seen["rights"]["finish"]) == (None, 0, True)
+
+
+def test_an_owner_changed_to_a_stranger_is_refused_by_name(client, people):
+    as_(client, "ana")
+    given = give(client, people["leo"])
+    stranger = make_user("beto@saira.test")
+
+    refused = patch(client, given, owner_id=str(stranger.id))
+
+    assert refused.status_code == 422
+    assert refused.json()["error"] == {
+        "code": "invalid_reference",
+        "message": "owner_id does not reference a member of the municipality.",
+    }
+
+
+def test_an_informal_one_is_linked_to_months_up_to_the_current_one(client):
+    _, ana = cabinet_member(client, None, "ana@noetinger.test", others={"projects": "viewer"})
+
+    def link(month):
+        return {"dashboard_key": "projects", "kind": "month", "ref": month}
+
+    given = give(client, ana, subject=link("2026-03"))
+    assert given["subject"]["ref"] == "2026-03"
+    assert patch(client, given, subject=link("2026-02")).json()["subject"]["ref"] == "2026-02"
+    assert error(patch(client, given, subject=link("2026-04"))) == (422, "invalid_reference")
+    body = {
+        "description": "x",
+        "owner_id": str(ana.id),
+        "due_date": "2026-03-20",
+        "subject": link("2026-04"),
+    }
+    assert error(client.post(URL, json=body)) == (422, "invalid_reference")

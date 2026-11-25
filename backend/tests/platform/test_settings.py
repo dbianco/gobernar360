@@ -7,7 +7,7 @@ from sqlalchemy import select
 
 from gobernar360.platform.clock import get_today
 from gobernar360.platform.email_templates import to_text
-from gobernar360.platform.models import AuditLog
+from gobernar360.platform.models import AuditLog, EmailTemplate, MunicipalitySettings, User
 from gobernar360.platform.texts import format_datetime
 from tests.factories import (
     admin_session,
@@ -411,3 +411,89 @@ def test_the_operator_gets_not_found_for_a_municipality_that_does_not_exist(oper
     url = "/api/platform/municipalities/00000000-0000-0000-0000-000000000000/settings"
 
     assert operator_client.get(url).status_code == 404
+
+
+def test_settings_and_texts_saved_again_replace_those_there_were(admin_client):
+    body = {"notification_emails": ["a@noetinger.test"], "sso_enabled": True}
+    admin_client.put("/api/admin/settings", json=body)
+    body = {"notification_emails": [], "sso_enabled": False}
+    saved = admin_client.put("/api/admin/settings", json=body).json()
+    assert (saved["notification_emails"], saved["sso_enabled"]) == ([], False)
+
+    admin_client.put("/api/admin/email-templates/invitation", json=INVITATION)
+    again = INVITATION | {"subject": "Otra vez"}
+    admin_client.put("/api/admin/email-templates/invitation", json=again)
+    assert _template(admin_client, "invitation")["subject"] == "Otra vez"
+
+
+def test_restoring_a_text_that_was_never_changed_answers_the_default(admin_client):
+    before = _template(admin_client, "invitation")
+
+    restored = admin_client.delete("/api/admin/email-templates/invitation")
+
+    assert restored.status_code == 200
+    assert restored.json() == before
+
+
+def test_a_municipality_s_texts_are_its_own_and_each_kind_apart(client, noetinger):
+    saira = make_municipality("Saira")
+    for municipality, email in ((saira, "admin@saira.test"), (noetinger, "admin@noetinger.test")):
+        make_membership(make_user(email), municipality, admin=True)
+    url = "/api/admin/email-templates"
+    reset = {"subject": "Clave de Saira", "html": "<p>{{link}}</p>"}
+    login(client, "admin@saira.test")
+    client.put(f"{url}/invitation", json=INVITATION | {"subject": "De Saira"})
+    client.put(f"{url}/password_reset", json=reset)
+    client.cookies.clear()
+    login(client, "admin@noetinger.test")
+
+    assert _template(client, "invitation")["customized"] is False
+    client.put(f"{url}/invitation", json=INVITATION | {"subject": "De Noetinger"})
+    client.delete(f"{url}/password_reset")
+
+    client.cookies.clear()
+    login(client, "admin@saira.test")
+    assert _template(client, "invitation")["subject"] == "De Saira"
+    assert _template(client, "password_reset")["subject"] == "Clave de Saira"
+    client.delete(f"{url}/invitation")
+    assert _template(client, "password_reset")["subject"] == "Clave de Saira"
+    client.cookies.clear()
+    login(client, "admin@noetinger.test")
+    assert _template(client, "invitation")["subject"] == "De Noetinger"
+
+
+def test_links_in_a_text_keep_where_they_lead_and_their_title_and_nothing_else(admin_client):
+    html = (
+        '<p><a href="{{link}}" title="Entrar" onclick="x()" target="_blank" class="c">acá</a></p>'
+    )
+
+    admin_client.put("/api/admin/email-templates/invitation", json=INVITATION | {"html": html})
+
+    assert _template(admin_client, "invitation")["html"] == (
+        '<p><a href="{{link}}" title="Entrar">acá</a></p>'
+    )
+
+
+def test_who_changed_the_configuration_and_what_is_known(admin_client):
+    settings = {"notification_emails": ["a@noetinger.test"], "sso_enabled": True}
+    url = "/api/admin/email-templates/invitation"
+
+    admin_client.put("/api/admin/settings", json=settings)
+    admin_client.put(url, json=INVITATION)
+
+    with admin_session() as session:
+        admin = session.scalars(select(User)).one()
+        for model in (MunicipalitySettings, EmailTemplate):
+            row = session.scalars(select(model)).one()
+            assert row.updated_by == admin.id
+            assert datetime.now(UTC) - row.updated_at < timedelta(minutes=1)
+
+    admin_client.delete(url)
+
+    with admin_session() as session:
+        entries = session.scalars(select(AuditLog).order_by(AuditLog.created_at)).all()
+    assert [(entry.entity_type, entry.action, entry.changes) for entry in entries] == [
+        ("municipality_settings", "update", settings),
+        ("email_templates", "update", {"key": "invitation", "subject": INVITATION["subject"]}),
+        ("email_templates", "delete", {"key": "invitation"}),
+    ]

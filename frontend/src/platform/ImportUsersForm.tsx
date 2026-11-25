@@ -53,8 +53,7 @@ export function ImportUsersForm(props: {
   const [rowErrors, setRowErrors] = useState<RowError[]>([])
   const [failure, setFailure] = useState<string | null>(null)
 
-  async function submit() {
-    if (!file) return
+  async function submit(file: File) {
     setRowErrors([])
     setFailure(null)
     let content: string
@@ -148,7 +147,11 @@ export function ImportUsersForm(props: {
         <Button variant="default" onClick={props.onCancel}>
           {t('app.cancel')}
         </Button>
-        <Button disabled={!file} loading={action.pending} onClick={() => void submit()}>
+        <Button
+          disabled={!file}
+          loading={action.pending}
+          onClick={file ? () => void submit(file) : undefined}
+        >
           {t('users.import.submit')}
         </Button>
       </Group>

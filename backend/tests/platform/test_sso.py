@@ -1,7 +1,7 @@
 """Single sign-on through OpenID Connect: signs in existing accounts, and nothing else."""
 
 import logging
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from urllib.parse import parse_qs, urlparse
 
 import httpx2
@@ -511,3 +511,56 @@ def test_a_refused_sign_in_goes_back_to_the_login_page_with_a_redirect(client, p
 
     assert response.status_code == 302
     assert response.headers["location"] == "http://localhost:5173/login?sso_error=failed"
+
+
+def test_a_callback_while_single_sign_on_is_off_goes_back_to_the_login_page(client):
+    response = client.get("/api/auth/sso/callback", follow_redirects=False)
+
+    assert response.status_code in (302, 303, 307)
+    assert "sso_error=disabled" in response.headers["location"]
+
+
+def test_the_attempt_s_cookie_is_out_of_reach_of_scripts_and_other_sites(
+    client, provider, noetinger, monkeypatch
+):
+    def attributes() -> tuple[str, set[str]]:
+        response = client.get("/api/auth/sso/start", follow_redirects=False)
+        value, *rest = response.headers["set-cookie"].split("; ")
+        return value.split("=")[0], set(rest)
+
+    name, plain = attributes()
+    assert name == "g360_sso"
+    assert plain == {"HttpOnly", "Max-Age=600", "Path=/api/auth/sso", "SameSite=lax"}
+    monkeypatch.setattr(get_settings(), "cookie_secure", True)
+    assert attributes()[1] == plain | {"Secure"}
+
+
+def test_the_attempt_s_cookie_is_removed_where_it_was_set_however_it_ends(client, provider, ana):
+    for email in ("ana@noetinger.test", "nobody@noetinger.test"):
+        response = _sign_in(client, provider, email=email)
+        [removed] = [
+            cookie
+            for cookie in response.headers.get_list("set-cookie")
+            if cookie.startswith("g360_sso=")
+        ]
+        assert "Max-Age=0" in removed and "Path=/api/auth/sso" in removed, email
+
+
+def test_each_attempt_has_its_own_secrets_and_those_expired_are_forgotten(
+    client, provider, noetinger
+):
+    _start(client)
+    with admin_session() as session, session.begin():
+        old = session.scalars(select(SsoLogin)).one()
+        old.expires_at = datetime.now(UTC) - timedelta(seconds=1)
+        old_secrets = (old.state_hash, old.nonce, old.code_verifier)
+    _start(client)
+    _start(client)
+
+    with admin_session() as session:
+        attempts = session.scalars(select(SsoLogin)).all()
+    secrets = [(a.state_hash, a.nonce, a.code_verifier) for a in attempts]
+    assert len(secrets) == 2 and old_secrets not in secrets
+    assert all(len(set(values)) == 2 for values in zip(*secrets, strict=True))
+    # 64 random bytes, as PKCE recommends at most.
+    assert {len(a.code_verifier) for a in attempts} == {86}

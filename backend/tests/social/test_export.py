@@ -180,3 +180,45 @@ def test_exports_need_access(client, name):
     login(client, EMAIL)
 
     assert client.get(f"{BASE}/export/{name}.csv").status_code == 403
+
+
+def test_households_count_only_their_own_people(client):
+    municipality = _member(client)
+    household = make_household(municipality, "Familia Sosa")
+    make_social_person(municipality, "Ana", "Sosa", household=household, relationship="head")
+    make_social_person(municipality, "Leo", "Sosa", household=household, relationship="child")
+    make_social_person(municipality, "Zoe", "Paz")
+
+    [_, row] = _rows(client.get(f"{BASE}/export/households.csv"))
+
+    assert row[-2:] == ["2", "Sosa, Ana"]
+
+
+def test_downloads_come_in_order_whatever_order_things_were_loaded_in(client):
+    municipality = _member(client)
+    for first, last in (("Zoe", "Gómez"), ("Ana", "Pérez"), ("Bea", "Gómez")):
+        person = make_social_person(municipality, first, last)
+    for name in ("Sosa", "álvarez", "Paz"):
+        make_household(municipality, name)
+    benefit, visit = make_benefit(municipality), make_intervention_type(municipality)
+    for day in (9, 2, 5):
+        make_delivery(municipality, benefit, person, on=date(2026, 3, day))
+        make_intervention(municipality, visit, person, on=date(2026, 3, day))
+
+    def rows(name):
+        header, *found = _rows(client.get(f"{BASE}/export/{name}.csv"))
+        return [dict(zip(header, row, strict=True)) for row in found]
+
+    assert [(r["last_name"], r["first_name"]) for r in rows("people")] == [
+        ("Gómez", "Bea"),
+        ("Gómez", "Zoe"),
+        ("Pérez", "Ana"),
+    ]
+    households = rows("households")
+    assert [r["name"] for r in households] == ["álvarez", "Paz", "Sosa"]
+    assert {r["head"] for r in households} == {""}
+    days = ["2026-03-02", "2026-03-05", "2026-03-09"]
+    assert [r["date"] for r in rows("deliveries")] == days
+    interventions = rows("interventions")
+    assert [r["date"] for r in interventions] == days
+    assert "XXXX" not in str(interventions)

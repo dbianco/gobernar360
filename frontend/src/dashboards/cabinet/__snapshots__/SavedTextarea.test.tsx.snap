@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`follows what others save while nothing is typed > screen at the end 1`] = `
+"Notas
+De otra persona
+other
+mine"
+`;
+
+exports[`follows what others save while nothing is typed > screen at the start 1`] = `
+"Notas
+Guardado
+other
+mine"
+`;
+
+exports[`keeps what was typed when others save something else meanwhile > screen at the end 1`] = `
+"Notas
+De otra persona
+other
+mine"
+`;
+
+exports[`keeps what was typed when others save something else meanwhile > screen at the start 1`] = `
+"Notas
+Guardado
+other
+mine"
+`;
+
+exports[`saves what was typed on leaving, and nothing when only spaces changed > screen at the end 1`] = `
+"Notas
+Guardado y más
+other
+mine"
+`;
+
+exports[`saves what was typed on leaving, and nothing when only spaces changed > screen at the start 1`] = `
+"Notas
+Guardado
+other
+mine"
+`;

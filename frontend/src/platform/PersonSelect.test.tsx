@@ -132,3 +132,17 @@ it('chooses several people, each once', async () => {
   expect(onChange).toHaveBeenLastCalledWith(['u-3', 'u-1'])
   expect(offered()).toEqual(['Leo Paz', 'José Paz'])
 })
+
+it('closes the list of several with Escape and by going elsewhere', async () => {
+  renderApp(<PeopleSelect label="Persona" value={[]} onChange={() => undefined} people={PEOPLE} />, {
+    me: makeMe(),
+  })
+  const user = userEvent.setup()
+
+  for (const leave of ['{Escape}', '{Tab}']) {
+    await user.click(await box())
+    expect(offered()).toHaveLength(4)
+    await user.keyboard(leave)
+    await waitFor(() => expect(screen.queryByRole('option')).toBeNull())
+  }
+})

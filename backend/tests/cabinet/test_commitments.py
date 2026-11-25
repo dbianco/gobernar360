@@ -335,3 +335,16 @@ def test_one_delivered_before_its_meeting_closes_is_not_rewritten(client):
     refused = client.patch(f"{URL}/commitments/{taken['id']}", json={"description": "Otra"})
 
     assert error(refused) == (409, "commitment_finished")
+
+
+def test_the_link_of_one_is_changed_to_months_up_to_the_current_one(client):
+    _, ana = cabinet_member(client, others={"environment": "viewer"})
+    taken = commit(client, prepare(client)["items"][0], ana)
+    url = f"{URL}/commitments/{taken['id']}"
+
+    def link(month):
+        subject = {"dashboard_key": "environment", "kind": "month", "ref": month}
+        return client.patch(url, json={"subject": subject})
+
+    assert link("2026-03").json()["subject"]["ref"] == "2026-03"
+    assert error(link("2026-04")) == (422, "invalid_reference")

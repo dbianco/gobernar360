@@ -186,3 +186,55 @@ it('names its toolbar for assistive technology', async () => {
   const toolbar = screen.getByRole('toolbar', { name: tool('toolbar') })
   expect(within(toolbar).getAllByRole('button')).toHaveLength(11)
 })
+
+it.each([
+  'https://noetinger.gob.ar',
+  'http://noetinger.gob.ar',
+  'HTTPS://NOETINGER.GOB.AR',
+  'mailto:mesa@noetinger.gob.ar',
+  '{{link}}',
+  '{{ account_link }}',
+])('keeps a link to %s', async (href) => {
+  await renderEditor(`<p><a href="${href}">sitio</a></p>`)
+
+  expect(screen.getByText('sitio')).toHaveAttribute('href', href)
+})
+
+it.each([
+  'javascript:alert(1)',
+  'javascript:void("https://x.test")',
+  'ftp://noetinger.gob.ar',
+  'tel:3472555',
+  'noetinger.gob.ar',
+  '{{}}',
+  '{{a b}}',
+  'x{{link}}',
+  '{{link}}x',
+])('drops a link to %s', async (href) => {
+  await renderEditor(`<p><a href='${href}'>sitio</a> web</p>`)
+
+  const box = screen.getByRole('textbox', { name: 'Texto' })
+  expect(box.textContent).toBe('sitio web')
+  expect(box.querySelector(`a[href='${href}']`)).toBeNull()
+})
+
+it('has two sizes of headings and no code', async () => {
+  await renderEditor('<h1>uno</h1><h2>dos</h2><h3>tres</h3><p><code>x</code></p><pre>y</pre>')
+
+  const box = screen.getByRole('textbox', { name: 'Texto' })
+  expect(within(box).getByText('dos').tagName).toBe('H2')
+  expect(within(box).getByText('tres').tagName).toBe('H3')
+  expect(box.querySelector('h1, code, pre')).toBeNull()
+})
+
+it('links to an address without the spaces around it', async () => {
+  const { commands, lastHtml, user } = await renderEditor('<p>sitio</p>')
+
+  commands.selectAll()
+  await user.click(screen.getByRole('button', { name: tool('link') }))
+  const address = await screen.findByRole('textbox', { name: tool('linkAddress') })
+  await user.clear(address)
+  await user.type(address, '  https://noetinger.gob.ar  {Enter}')
+
+  await waitFor(() => expect(lastHtml()).toContain('href="https://noetinger.gob.ar"'))
+})

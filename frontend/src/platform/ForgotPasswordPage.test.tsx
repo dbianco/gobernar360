@@ -42,3 +42,22 @@ it('leads back to the sign-in page', async () => {
 
   expect(await screen.findByRole('heading', { name: t('login.title') })).toBeInTheDocument()
 })
+
+it('lets the person try again after a failure, and forgets the failure', async () => {
+  mockApiError('post', '/auth/password-reset', 500, 'boom')
+  renderApp(<App />, { me: null, route: '/forgot-password' })
+
+  expect(await screen.findByLabelText(t('passwordReset.email'))).toHaveValue('')
+  expect(screen.queryByRole('alert')).toBeNull()
+  await ask('ana@noetinger.test')
+  expect(await screen.findByRole('alert')).toHaveTextContent(t('errors.generic'))
+
+  mockApi('post', '/auth/password-reset', null, 204)
+  const button = screen.getByRole('button', { name: t('passwordReset.submit') })
+  expect(button).not.toHaveAttribute('data-loading')
+  await userEvent.click(button)
+
+  const sent = t('passwordReset.sent', { email: 'ana@noetinger.test' })
+  expect(await screen.findByText(sent)).toBeInTheDocument()
+  expect(screen.queryByText(t('errors.generic'))).toBeNull()
+})

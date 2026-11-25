@@ -211,3 +211,38 @@ def test_a_month_set_by_someone_else_meanwhile_ends_as_one_row(client, monkeypat
     assert put(client, 2025, 3, "red").status_code == 204
 
     assert client.get(URL, params={"year": 2025}).json() == [{"month": 3, "color": "red"}]
+
+
+def test_setting_or_clearing_a_month_touches_only_that_dashboard_year_and_month(client):
+    municipality = member(client, "admin")
+    others = [("projects", 2025, 3), ("demo", 2024, 3), ("demo", 2025, 4)]
+    for key, year, month in others:
+        make_status(municipality, year, month, "yellow", key)
+
+    assert put(client, 2025, 3, "red").status_code == 204
+    assert put(client, 2025, 3, "green").status_code == 204
+
+    def lights():
+        with tenant_session(municipality.id) as db:
+            rows = db.scalars(select(DashboardStatus)).all()
+        return {(r.dashboard_key, r.year, r.month): r.color for r in rows}
+
+    untouched = dict.fromkeys(others, "yellow")
+    assert lights() == untouched | {("demo", 2025, 3): "green"}
+    put(client, 2025, 3, None)
+    assert lights() == untouched
+
+
+def test_the_recent_lights_are_the_latest_and_those_of_the_five_months_before(client):
+    municipality = member(client, "viewer")
+    for month in (1, 2, 3, 4, 5, 6, 7):
+        make_status(municipality, 2025, month, "green")
+    make_status(municipality, 2024, 12, "red")
+
+    def months(today, **options):
+        with tenant_session(municipality.id) as db:
+            return [(row.year, row.month) for row in status.recent(db, "demo", today, **options)]
+
+    assert months(date(2025, 6, 15)) == [(2025, month) for month in (6, 5, 4, 3, 2, 1)]
+    assert months(date(2025, 2, 1)) == [(2025, 2), (2025, 1), (2024, 12)]
+    assert months(date(2025, 6, 15), previous=1) == [(2025, 6), (2025, 5)]

@@ -381,6 +381,45 @@ Volver a reuniones
 [Cargando…]"
 `;
 
+exports[`links an item a person typed to a record, or to none > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+Plaza central
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+Notas generales"
+`;
+
+exports[`links an item a person typed to a record, or to none > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
 exports[`marks an item as discussed > screen at the end 1`] = `
 "[autosize measurement]
 Volver a reuniones

@@ -188,6 +188,10 @@ Ingresar
 
 exports[`returns to the login page when the session has expired > screen at the start 1`] = `"[Cargando…]"`;
 
+exports[`shows nothing of the frame to whoever is signed out > screen at the end 1`] = `"signed out"`;
+
+exports[`shows nothing of the frame to whoever is signed out > screen at the start 1`] = `"signed out"`;
+
 exports[`shows the municipality switcher only with several memberships > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360

@@ -1,15 +1,17 @@
 """What people are told, inside the app, about the commitments they have to do with."""
 
 import threading
+import uuid
 from datetime import date
 
 import pytest
-from sqlalchemy import select
+from sqlalchemy import select, text
+from sqlalchemy.exc import OperationalError
 
 from gobernar360.core.db import tenant_session
 from gobernar360.platform import commitments
 from gobernar360.platform.access import RequestContext
-from gobernar360.platform.commitment_models import CommitmentNotice
+from gobernar360.platform.commitment_models import Commitment, CommitmentNotice
 from gobernar360.platform.models import EmailOutbox, Membership, User
 from tests.cabinet.factories import cabinet_member, commit, pin_today, prepare
 from tests.factories import admin_session, make_membership, make_user
@@ -308,3 +310,56 @@ def test_finishing_it_twice_at_once_tells_everyone_once(client, people):
             if notice.kind == "done"
         ]
     assert sorted(told) == sorted([people["ana"].id, people["zoe"].id])
+
+
+def test_one_delivered_says_when(client, people):
+    as_(client, "ana")
+    given = give(client, people["leo"])
+    as_(client, "leo")
+    set_state(client, given, "done", completed_on="2026-03-08")
+    as_(client, "ana")
+
+    [row] = client.get("/api/notifications").json()["others"]
+
+    assert row["completed_on"] == "2026-03-08"
+
+
+def test_changing_one_waits_for_whoever_is_changing_it(client, people):
+    """Otherwise two changes at once would each tell its own."""
+    as_(client, "ana")
+    given = give(client, people["ana"])
+    with admin_session() as other, other.begin():
+        other.get(Commitment, uuid.UUID(given["id"]), with_for_update={"of": Commitment})
+        for lock in (True, False):
+            with tenant_session(people["municipality"].id) as db:
+                membership = db.scalar(
+                    select(Membership).where(Membership.user_id == people["ana"].id)
+                )
+                ctx = RequestContext(people["ana"], people["municipality"].id, membership, db)
+                db.execute(text("SET LOCAL lock_timeout = '100ms'"))
+                if lock:
+                    with pytest.raises(OperationalError, match="lock timeout"):
+                        commitments.load(ctx, uuid.UUID(given["id"]), lock=True)
+                    db.rollback()
+                else:
+                    assert commitments.load(ctx, uuid.UUID(given["id"]))
+
+
+@pytest.mark.parametrize("path", ["", "/state"])
+def test_the_routes_that_change_one_ask_for_that_lock(client, people, monkeypatch, path):
+    as_(client, "ana")
+    given = give(client, people["ana"])
+    asked = []
+    load = commitments.load
+    monkeypatch.setattr(
+        commitments,
+        "load",
+        lambda ctx, commitment_id, lock=False: asked.append(lock) or load(ctx, commitment_id, lock),
+    )
+
+    if path:
+        set_state(client, given, "done")
+    else:
+        patch(client, given, due_date="2026-04-01")
+
+    assert asked == [True]

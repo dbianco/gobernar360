@@ -149,3 +149,44 @@ def test_unsafe_request_without_csrf_header_is_rejected():
 
     assert response.status_code == 403
     assert response.json()["error"]["code"] == "csrf_header_missing"
+
+
+def test_signing_out_removes_the_cookie_from_the_whole_site(client):
+    make_membership(make_user("ana@noetinger.test"), make_municipality("Noetinger"))
+    login(client, "ana@noetinger.test")
+
+    response = client.post("/api/auth/logout")
+
+    cookie = response.headers["set-cookie"]
+    assert cookie.startswith("g360_session=") and "Max-Age=0" in cookie
+    assert "Path=/;" in f"{cookie};"
+
+
+def test_switching_to_a_municipality_that_is_not_one_s_own_is_refused(client):
+    make_membership(make_user("ana@noetinger.test"), make_municipality("Noetinger"))
+    other = make_municipality("Saira")
+    login(client, "ana@noetinger.test")
+
+    response = client.post("/api/auth/active-municipality", json={"municipality_id": str(other.id)})
+
+    assert response.status_code == 403
+    assert response.json()["error"] == {
+        "code": "forbidden",
+        "message": "You do not belong to this municipality.",
+    }
+
+
+def test_changing_the_password_asks_for_the_current_one(client):
+    make_membership(make_user("ana@noetinger.test"), make_municipality("Noetinger"))
+    login(client, "ana@noetinger.test")
+
+    response = client.post(
+        "/api/auth/password",
+        json={"current_password": "not-this-one", "new_password": "another-pass-2"},
+    )
+
+    assert response.status_code == 403
+    assert response.json()["error"] == {
+        "code": "invalid_credentials",
+        "message": "The current password is incorrect.",
+    }

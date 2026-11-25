@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`starts without a category when there are none, and says so to the server > screen at the end 1`] = `
+"Nombre
+Descripción
+Categoría
+Subcategoría
+Sin subcategoría
+Destinatarios
+Actores y personas
+Solo actores
+Solo personas
+Cancelar
+Guardar"
+`;
+
+exports[`starts without a category when there are none, and says so to the server > screen at the start 1`] = `
+"Nombre
+Descripción
+Categoría
+Subcategoría
+Sin subcategoría
+Destinatarios
+Actores y personas
+Solo actores
+Solo personas
+Cancelar
+Guardar"
+`;

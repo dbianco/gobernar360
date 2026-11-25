@@ -2,6 +2,7 @@ import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
+import { choosePerson } from '../../test/person'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { ProjectsPage } from './ProjectsPage'
@@ -142,4 +143,22 @@ it('drops a filter set back to all', async () => {
   await user.selectOptions(status, t('app.all'))
 
   await waitFor(() => expect(requests.at(-1)?.url.searchParams.has('status')).toBe(false))
+})
+
+it('filters by owner, found by typing, and goes back to all', async () => {
+  const requests = mockApi('get', `${BASE}/projects`, [makeProject()])
+  renderProjects(<ProjectsPage />)
+  const user = userEvent.setup()
+  const owner = await screen.findByRole('combobox', { name: t('projects.filters.owner') })
+  expect(owner).toHaveAttribute('placeholder', t('app.all'))
+
+  await choosePerson(user, owner, 'perez', 'María Pérez')
+  await waitFor(() =>
+    expect(requests[requests.length - 1].url.searchParams.get('owner_id')).toBe('w-1'),
+  )
+  await user.click(screen.getByRole('button', { name: t('app.person.clear') }))
+
+  await waitFor(() =>
+    expect(requests[requests.length - 1].url.searchParams.has('owner_id')).toBe(false),
+  )
 })

@@ -171,3 +171,14 @@ def test_the_overview_has_no_indicators_without_commitments(client):
     prepare(client)
 
     assert client.get("/api/overview").json()[0]["indicators"] == []
+
+
+def test_the_last_meeting_is_the_latest_closed(client):
+    cabinet_member(client)
+    for day in (3, 10, 17):
+        close(client, prepare(client, date(2026, 2, day)))
+    prepare(client, date(2026, 2, 24))
+
+    summary = client.get(f"{URL}/summary").json()
+
+    assert (summary["closed_meetings"], summary["last_meeting"]) == (3, "2026-02-17")

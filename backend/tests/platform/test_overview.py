@@ -1,5 +1,7 @@
 from datetime import date
 
+from gobernar360.platform import overview_router
+from gobernar360.platform.access import AccessLevel
 from gobernar360.platform.clock import get_today
 from gobernar360.platform.models import DashboardStatus
 from tests.factories import admin_session, login, make_membership, make_municipality, make_user
@@ -130,3 +132,24 @@ def test_overview_takes_the_latest_term_and_of_two_alike_the_first_by_name(clien
     [section] = client.get("/api/overview").json()
 
     assert section["indicators"][0] == {"key": "projects.active", "value": 2, "unit": None}
+
+
+def test_a_level_below_viewer_shows_nothing_of_a_dashboard(client, monkeypatch):
+    projects_member("viewer")
+    login(client, "ana@noetinger.test")
+    monkeypatch.setattr(
+        overview_router, "effective_levels", lambda db, membership: {"projects": AccessLevel.NONE}
+    )
+
+    assert client.get("/api/overview").json() == []
+
+
+def test_a_dashboard_without_access_does_not_hide_those_after_it(client, monkeypatch):
+    projects_member("viewer")
+    login(client, "ana@noetinger.test")
+    levels = {"environment": AccessLevel.NONE, "projects": AccessLevel.VIEWER}
+    monkeypatch.setattr(overview_router, "effective_levels", lambda db, membership: levels)
+
+    assert [section["dashboard_key"] for section in client.get("/api/overview").json()] == [
+        "projects"
+    ]

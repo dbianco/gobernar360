@@ -1,6 +1,8 @@
 import csv
 import io
+from datetime import date
 
+from gobernar360.platform.clock import get_today
 from tests.environment.factories import (
     BASE,
     environment_member,
@@ -62,3 +64,31 @@ def test_values_csv_requires_access(client):
     login(client, "ana@noetinger.test")
 
     assert client.get(f"{BASE}/export/values.csv").status_code == 403
+
+
+def test_values_csv_is_of_the_year_asked_or_the_current_one_in_the_order_of_the_screens(client):
+    client.app.dependency_overrides[get_today] = lambda: date(2026, 6, 15)
+    municipality = environment_member("viewer")
+    login(client, "ana@noetinger.test")
+    for category, name, variable in (
+        ("water", "A", "Uno"),
+        ("energy", "B", "Dos"),
+        ("energy", "A", "Zeta"),
+        ("energy", "A", "Beta"),
+    ):
+        made = make_variable(municipality, make_subcategory(municipality, category, name), variable)
+        for year, month in ((2026, 2), (2026, 1), (2025, 1)):
+            make_value(municipality, made, year, month, 1)
+
+    def rows(**params):
+        _, *found = _rows(client.get(f"{BASE}/export/values.csv", params=params))
+        return [(row[0], row[1], row[2], row[6]) for row in found]
+
+    order = [
+        ("energy", "A", "Beta"),
+        ("energy", "A", "Zeta"),
+        ("energy", "B", "Dos"),
+        ("water", "A", "Uno"),
+    ]
+    assert rows() == [(*variable, month) for variable in order for month in ("1", "2")]
+    assert rows(year=2025) == [(*variable, "1") for variable in order]

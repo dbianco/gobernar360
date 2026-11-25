@@ -134,15 +134,15 @@ npm run e2e              # browser tests; starts its own API and web server on p
                          # and the sign-on provider of `docker compose up -d`
 ```
 
-Coverage and mutation testing (the targets are 95 % coverage and 80 % of mutants killed,
-in both halves):
+Coverage and mutation testing (the targets are 95 % coverage, of every file and not only in
+total, and 80 % of mutants killed, in both halves):
 
 ```bash
 cd backend
 uv run pytest --cov --cov-report=term-missing
 uv run python tests/make_test_databases.py 5        # once: a test database per mutmut worker
-GOBERNAR360_TEST_DATABASES=5 uv run mutmut run --max-children 4
-uv run mutmut results                               # what survived; `mutmut show <name>` for the diff
+GOBERNAR360_TEST_DATABASES=5 uv run python -m tests.run_mutmut run --max-children 4
+uv run python -m tests.run_mutmut results           # what survived; `show <name>` for the diff
 
 cd ../frontend
 npm run test:coverage    # report in coverage/
@@ -150,8 +150,9 @@ npm run test:mutation    # Stryker; report in reports/mutation/index.html
 ```
 
 Mutation testing takes hours on a laptop. Both tools keep their results, so later runs
-only test again what changed (`mutmut run <names>` re-checks given mutants; Stryker runs
-incrementally).
+only test again what changed (`tests.run_mutmut run <names>` re-checks given mutants; Stryker
+runs incrementally). `tests/run_mutmut.py` is mutmut with one addition: alone, mutmut skips every
+decorated function, which here means all the API routes, commands and validators.
 
 ## How it is organised
 

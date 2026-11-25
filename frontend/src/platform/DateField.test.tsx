@@ -212,3 +212,13 @@ it('closes with Escape without closing the window it is in', async () => {
   await user.keyboard('{Escape}')
   await waitFor(() => expect(screen.queryByRole('dialog', { name: 'Ventana' })).toBeNull())
 })
+
+it('stays open while other keys move through the calendar', async () => {
+  const { user } = renderField({ initial: '2026-11-24' })
+
+  await user.click(await screen.findByRole('button', { name: date('open') }))
+  await user.click(await screen.findByRole('button', { name: date('nextMonth') }))
+  await user.keyboard('{Shift}')
+
+  expect(screen.getByRole('button', { name: date('nextMonth') })).toBeInTheDocument()
+})

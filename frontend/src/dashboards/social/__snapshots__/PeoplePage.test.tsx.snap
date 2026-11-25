@@ -200,6 +200,21 @@ Barrio
 [Cargando…]"
 `;
 
+exports[`registers everything about a person, the day they were born included > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan."
+`;
+
+exports[`registers everything about a person, the day they were born included > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
 exports[`says so when nobody matches > screen at the end 1`] = `
 "Buscar
 (Nombre, apellido o DNI)

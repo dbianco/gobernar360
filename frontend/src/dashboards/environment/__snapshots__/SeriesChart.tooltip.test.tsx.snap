@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`titles the tooltip with the period, or with nothing over no point > screen at the end 1`] = `
+"Consumo
+Ver como tabla
+Ene
+0
+0,8
+1,5
+2,3
+3
+0"
+`;
+
+exports[`titles the tooltip with the period, or with nothing over no point > screen at the start 1`] = `
+"Consumo
+Ver como tabla
+Ene
+0
+0,8
+1,5
+2,3
+3
+0"
+`;

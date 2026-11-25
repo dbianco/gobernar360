@@ -12,6 +12,8 @@ from tests.projects.factories import (
     make_department,
     make_indicator,
     make_objective,
+    make_owner,
+    make_program,
     make_project,
     make_term,
     projects_member,
@@ -155,3 +157,93 @@ def test_export_requires_dashboard_access(client):
     login(client, "ana@noetinger.test")
 
     assert client.get(f"{BASE}/export/projects.csv").status_code == 403
+
+
+def test_projects_csv_has_every_detail_and_blanks_for_what_is_not_known(client, plan):
+    municipality = plan["municipality"]
+    _project(plan, name="Sin nada")
+    _project(
+        plan,
+        name="Con todo",
+        objective_id=make_objective(municipality, plan["axis"], "Luz").id,
+        owner_id=make_owner(municipality, "María Pérez").id,
+        program_id=make_program(municipality, "Bacheo").id,
+        start_date=date(2025, 1, 2),
+        end_date=date(2025, 12, 3),
+    )
+
+    full, bare = _rows(client.get(f"{BASE}/export/projects.csv"))
+
+    def details(row):
+        return [row[c] for c in ("objective", "owner", "program", "start_date", "end_date")]
+
+    assert details(full) == ["Luz", "María Pérez", "Bacheo", "2025-01-02", "2025-12-03"]
+    assert details(bare) == ["", "", "", "", ""]
+
+
+def test_projects_csv_takes_every_filter_of_the_list(client, plan):
+    municipality, term = plan["municipality"], plan["term"]
+    other_term = make_term(municipality, "Otra", 2028, 2031)
+    owner = make_owner(municipality)
+    other_axis = make_axis(municipality, term, "Otro")
+    other_department = make_department(municipality, "Hacienda")
+    base = {
+        "term": term,
+        "axis": plan["axis"],
+        "department": plan["department"],
+        "year": 2024,
+        "priority": "A",
+    }
+    for name, changes in {
+        "base": {},
+        "term": {"term": other_term, "axis": make_axis(municipality, other_term), "year": 2028},
+        "year": {"year": 2025},
+        "axis": {"axis": other_axis},
+        "department": {"department": other_department},
+        "owner": {"owner_id": owner.id},
+        "priority": {"priority": "C"},
+        "status": {"end_date": date(2025, 1, 1)},
+    }.items():
+        fields = base | changes
+        make_project(
+            municipality,
+            fields.pop("term"),
+            fields.pop("axis"),
+            fields.pop("department"),
+            name=name,
+            **fields,
+        )
+
+    def names(**params):
+        response = client.get(f"{BASE}/export/projects.csv", params=params)
+        return {row["name"] for row in _rows(response)}
+
+    assert len(names()) == 8
+    assert names(term_id=str(other_term.id)) == {"term"}
+    assert names(year=2025) == {"year"}
+    assert names(axis_id=str(other_axis.id)) == {"axis"}
+    assert names(department_id=str(other_department.id)) == {"department"}
+    assert names(owner_id=str(owner.id)) == {"owner"}
+    assert names(priority="C") == {"priority"}
+    # Judged against the day it is downloaded.
+    assert names(status="delayed") == {"status"}
+
+
+def test_indicators_csv_is_of_a_term_an_objective_or_all(client, plan):
+    municipality = plan["municipality"]
+    other_term = make_term(municipality, "Otra", 2028, 2031)
+    first = make_objective(municipality, plan["axis"], "Uno")
+    second = make_objective(municipality, plan["axis"], "Dos")
+    third = make_objective(municipality, make_axis(municipality, other_term), "Tres")
+    make_indicator(municipality, first, "A", current_value=Decimal("7.50"))
+    make_indicator(municipality, second, "B")
+    make_indicator(municipality, third, "C")
+
+    def rows(**params):
+        response = client.get(f"{BASE}/export/indicators.csv", params=params)
+        assert response.headers["content-disposition"] == 'attachment; filename="indicators.csv"'
+        return {row["name"]: row["current_value"] for row in _rows(response)}
+
+    assert rows() == {"A": "7.5", "B": "", "C": ""}
+    assert set(rows(term_id=str(plan["term"].id))) == {"A", "B"}
+    assert set(rows(objective_id=str(second.id))) == {"B"}

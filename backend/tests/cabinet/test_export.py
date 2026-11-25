@@ -16,6 +16,7 @@ from tests.cabinet.factories import (
     prepare,
     project_subject,
 )
+from tests.factories import make_membership, make_user
 
 
 @pytest.fixture(autouse=True)
@@ -122,3 +123,14 @@ def test_the_csv_is_a_download(client):
     response = client.get(f"{URL}/export/commitments.csv")
 
     assert response.headers["content-disposition"] == 'attachment; filename="commitments.csv"'
+
+
+def test_the_csv_is_of_one_owner_when_asked(client):
+    municipality, ana = cabinet_member(client)
+    leo = make_user("leo@noetinger.test")
+    make_membership(leo, municipality)
+    item = prepare(client)["items"][0]
+    for owner, name in ((ana, "De Ana"), (leo, "De Leo")):
+        commit(client, item, owner, description=name)
+
+    assert [r["description"] for r in rows(client, owner_id=str(leo.id))] == ["De Leo"]

@@ -5,7 +5,7 @@ import { expect, it } from 'vitest'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { ParametersPage } from './ParametersPage'
-import { TERM } from './testData'
+import { AXES, TERM } from './testData'
 import { BASE, mockCatalogs } from './testRender'
 import { makeMe } from '../../test/fixtures'
 import { renderApp } from '../../test/render'
@@ -304,4 +304,39 @@ it('keeps what was typed for a term the server refused', async () => {
 
   expect(await screen.findByText(t('errors.conflict'))).toBeInTheDocument()
   expect(name).toHaveValue('Gestión 2027-2031')
+})
+
+it.each(['departments', 'programs', 'owners', 'axes', 'objectives'])(
+  'says why %s cannot be loaded',
+  async (catalog) => {
+    renderParameters()
+    mockApiError('get', `${BASE}/${catalog}`, 500, 'boom')
+    // Axes and objectives are looked up when their tab opens; the rest, at once.
+    if (['axes', 'objectives'].includes(catalog)) await openTab(userEvent.setup(), 'axes')
+
+    expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  },
+)
+
+it.each([
+  ['departments', 'departments'],
+  ['programs', 'programs'],
+  ['owners', 'owners'],
+  ['axes', 'axes'],
+  ['axes', 'objectives'],
+])('shows the %s tab with nothing in it when there are no %s at all', async (tab, catalog) => {
+  renderParameters()
+  mockApi('get', `${BASE}/${catalog}`, null)
+  const user = userEvent.setup()
+
+  await openTab(user, tab)
+
+  const add = t('projects.parameters.newItem')
+  const axis = t('projects.parameters.newAxis')
+  expect(await screen.findByLabelText(tab === 'axes' ? axis : add)).toBeInTheDocument()
+  const rename = /^Renombrar/
+  // With no objectives the axes are still there.
+  expect(screen.queryAllByRole('button', { name: rename })).toHaveLength(
+    catalog === 'objectives' ? AXES.length : 0,
+  )
 })

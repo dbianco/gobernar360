@@ -3,6 +3,8 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import App from '../App'
+import { AppShell } from './AppShell'
+import { MunicipalitySwitcher } from './MunicipalitySwitcher'
 import { makeMe, NOETINGER, SAIRA } from '../test/fixtures'
 import { renderApp, t } from '../test/render'
 import { mockApi, mockApiError } from '../test/server'
@@ -192,4 +194,20 @@ it('has no notices without a municipality to have them in', async () => {
   expect(await screen.findByText(t('municipality.noneTitle'))).toBeInTheDocument()
   expect(screen.queryByRole('link', { name: t('notices.newsLabel', { count: 0 }) })).toBeNull()
   expect(screen.queryByRole('link', { name: t('commitments.section') })).toBeNull()
+})
+
+it('shows nothing of the frame to whoever is signed out', async () => {
+  renderApp(
+    <>
+      <AppShell />
+      <MunicipalitySwitcher />
+      <p>signed out</p>
+    </>,
+    { me: null },
+  )
+
+  expect(await screen.findByText('signed out')).toBeInTheDocument()
+  expect(screen.queryByRole('navigation')).toBeNull()
+  expect(screen.queryByRole('button', { name: t('app.logout') })).toBeNull()
+  expect(screen.queryByRole('combobox')).toBeNull()
 })

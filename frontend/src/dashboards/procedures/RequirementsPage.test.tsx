@@ -120,3 +120,50 @@ it('says why the requirements cannot be loaded', async () => {
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })
+
+it('opens a requirement with what it has, and closes once it is saved', async () => {
+  const requests = mockApi('patch', `${BASE}/requirements/${FREE_DEBT.id}`, FREE_DEBT)
+  renderProcedures(<RequirementsPage />)
+  const user = userEvent.setup()
+
+  await user.click(
+    await screen.findByRole('button', { name: label('editNamed', { name: FREE_DEBT.name }) }),
+  )
+  const form = within(await screen.findByRole('dialog'))
+  expect(form.queryByRole('alert')).toBeNull()
+  expect(form.getByRole('textbox', { name: label('name') })).toHaveValue(FREE_DEBT.name)
+  const description = form.getByRole('textbox', { name: label('description') })
+  expect(description).toHaveValue(FREE_DEBT.description)
+  expect(form.getByText(label('sourceHint'))).toBeInTheDocument()
+  const source = form.getByLabelText(label('sourceField'))
+  expect(source).toHaveValue(RENTAS_SOURCE.id)
+  const options = within(source)
+    .getAllByRole('option')
+    .map((option) => option.textContent)
+  expect(options[0]).toBe(label('noSource'))
+  expect(options).toContain(`${RENTAS_SOURCE.name} (${t('procedures.levels.municipal')})`)
+  await user.clear(description)
+  await user.type(description, 'Con sello.')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+  expect(requests[0].body).toEqual({
+    name: FREE_DEBT.name,
+    description: 'Con sello.',
+    source_id: RENTAS_SOURCE.id,
+  })
+})
+
+it('opens a new requirement empty, without a source, and Cancel closes it', async () => {
+  renderProcedures(<RequirementsPage />)
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: label('add') }))
+  const form = within(await screen.findByRole('dialog'))
+  expect(form.getByRole('textbox', { name: label('name') })).toHaveValue('')
+  expect(form.getByRole('textbox', { name: label('description') })).toHaveValue('')
+  expect(form.getByLabelText(label('sourceField'))).toHaveValue('')
+  await user.click(form.getByRole('button', { name: t('app.cancel') }))
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+})

@@ -162,3 +162,18 @@ it('shows an error when the assignments cannot be loaded', async () => {
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
 })
+
+it('shows and corrects an assignment whose recipient is no longer there', async () => {
+  mockApi('get', `${BASE}/assignments`, page([makeAssignment({ actor: null, person: null })]))
+  const patches = mockApi('patch', `${BASE}/assignments/:id`, makeAssignment())
+  renderEconomic(<AssignmentsPage />)
+  const user = userEvent.setup()
+
+  const rows = (await screen.findAllByRole('row')).slice(1)
+  expect(rows).toHaveLength(1)
+  await user.click(within(rows[0]).getAllByRole('button')[0])
+  const form = within(await screen.findByRole('dialog', { name: label('editTitle') }))
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(patches).toHaveLength(1))
+})

@@ -9,7 +9,7 @@ import { choosePerson } from '../../test/person'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { MeetingPage } from './MeetingPage'
-import { HIDDEN, LEO, LIGHT_ITEM, makeCommitment, makeItem, makeMeeting, ZOE } from './testData'
+import { HIDDEN, LEO, LIGHT_ITEM, makeCommitment, makeItem, makeMeeting, PLAZA, ZOE } from './testData'
 import { BASE, renderCabinet } from './testRender'
 import type { MeetingDetail } from './types'
 
@@ -457,4 +457,19 @@ it('says when it cannot be loaded', async () => {
   )
 
   expect(await screen.findByText(t('errors.not_found'))).toBeInTheDocument()
+})
+
+it('links an item a person typed to a record, or to none', async () => {
+  const user = renderMeeting(makeMeeting({ items: [makeItem({ subject: PLAZA })] }))
+  const patches = mockApi('patch', `${BASE}/items/it-1`, makeMeeting())
+
+  await user.click(await screen.findByRole('button', { name: agenda('editNamed', FERIA) }))
+  const box = await dialog()
+  await waitFor(() =>
+    expect(box.getByLabelText(t('subjects.about'))).toHaveValue('projects/project'),
+  )
+  await user.selectOptions(box.getByLabelText(t('subjects.about')), '')
+  await user.click(box.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(patches[0]?.body).toEqual({ title: FERIA.name, subject: null }))
 })

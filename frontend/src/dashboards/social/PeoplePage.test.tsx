@@ -103,6 +103,36 @@ it('registers a new person after looking the document up', async () => {
   })
 })
 
+it('registers everything about a person, the day they were born included', async () => {
+  mockApi('get', `${BASE}/people/lookup`, { person: null, registered_id: null })
+  const requests = mockApi('post', `${BASE}/people`, makePerson(), 201)
+  const { user, form } = await openForm()
+  const type = (key: string, text: string) =>
+    user.type(form.getByRole('textbox', { name: t(`people.${key}`) }), text)
+
+  await type('firstName', 'Elena')
+  await type('lastName', 'Paz')
+  await type('birthDate', '05/01/1983')
+  await type('phone', '111')
+  await type('email', 'elena@noetinger.test')
+  await type('address', 'Mitre 780')
+  await type('neighborhood', 'Sur')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(requests).toHaveLength(1))
+  expect(requests[0].body).toMatchObject({
+    person: {
+      first_name: 'Elena',
+      last_name: 'Paz',
+      birth_date: '1983-01-05',
+      phone: '111',
+      email: 'elena@noetinger.test',
+      address: 'Mitre 780',
+      neighborhood: 'Sur',
+    },
+  })
+})
+
 it('offers the data of a person another dashboard already loaded', async () => {
   const known = makeRegistryPerson({
     id: 'p-9',

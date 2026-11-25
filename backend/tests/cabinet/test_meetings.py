@@ -20,10 +20,12 @@ from tests.cabinet.factories import (
     error,
     held,
     make_simple_project,
+    month_subject,
     pin_today,
     prepare,
     project_subject,
 )
+from tests.contract import check_trace
 from tests.factories import admin_session, make_membership, make_municipality, make_user
 
 
@@ -516,3 +518,73 @@ def test_what_is_done_is_audited_without_repeating_the_minutes(client):
     by_action = {action: changes for action, changes in entries}
     assert by_action["create"]["date"] == "2026-03-10"
     assert list(by_action["update"]) == ["closed_at"]
+
+
+def test_ordering_writes_only_the_items_that_moved(client):
+    cabinet_member(client)
+    meeting = prepare(client, agenda=["Uno", "Dos", "Tres"])
+    first, second, third = (item["id"] for item in meeting["items"])
+
+    client.put(
+        f"{URL}/meetings/{meeting['id']}/items/order", json={"item_ids": [first, third, second]}
+    )
+
+    with admin_session() as session:
+        moved = session.scalars(
+            select(AuditLog.entity_id).where(
+                AuditLog.entity_type == "cabinet_agenda_items", AuditLog.action == "update"
+            )
+        ).all()
+    assert sorted(moved) == sorted([second, third])
+
+
+def test_meetings_count_their_own_items_and_commitments(client):
+    _, ana = cabinet_member(client)
+    first = prepare(client, date(2026, 2, 1), ["Uno", "Dos"])
+    commit(client, first["items"][0], ana)
+    close(client, first)
+    second = prepare(client, date(2026, 2, 2), ["Tres"])
+    for _ in range(2):
+        commit(client, second["items"][0], ana)
+
+    rows = client.get(f"{URL}/meetings").json()["items"]
+
+    assert [(r["date"], r["items"], r["commitments"]) for r in rows] == [
+        ("2026-02-02", 1, 2),
+        ("2026-02-01", 2, 1),
+    ]
+
+
+def test_items_added_come_after_those_there_are_even_once_reordered_or_removed(client):
+    cabinet_member(client)
+    meeting = prepare(client, agenda=[])
+    url = f"{URL}/meetings/{meeting['id']}/items"
+    for title in ("Uno", "Dos", "Tres"):
+        items = client.post(url, json={"title": title}).json()["items"]
+    client.delete(f"{URL}/items/{items[1]['id']}")
+
+    items = client.post(url, json={"title": "Cuatro"}).json()["items"]
+
+    assert [item["title"] for item in items] == ["Uno", "Tres", "Cuatro"]
+
+
+def test_an_item_added_leaves_a_trace_of_what_it_was(client):
+    cabinet_member(client)
+    meeting = prepare(client, agenda=[])
+
+    check_trace(
+        client, "POST", f"{URL}/meetings/{meeting['id']}/items", {"title": "Clima"}, "create"
+    )
+
+
+def test_items_of_an_open_meeting_are_linked_to_months_up_to_the_current_one(client):
+    cabinet_member(client, others={"environment": "viewer"})
+    meeting = prepare(client, agenda=["Uno"])
+    url = f"{URL}/items/{meeting['items'][0]['id']}"
+    added = f"{URL}/meetings/{meeting['id']}/items"
+
+    for month, status in (("2026-03", True), ("2026-04", False)):
+        subject = month_subject("environment", month)
+        patched = client.patch(url, json={"subject": subject})
+        posted = client.post(added, json={"title": "Dos", "subject": subject})
+        assert (patched.status_code < 300, posted.status_code < 300) == (status, status), month
