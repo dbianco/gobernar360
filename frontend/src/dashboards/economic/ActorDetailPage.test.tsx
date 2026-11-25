@@ -99,7 +99,7 @@ it('assigns a tool, offering only the tools meant for actors', async () => {
   ])
   expect([...tool.options].map((option) => option.text)).not.toContain(WORKSHOP.name)
   await user.selectOptions(tool, FAIR.id)
-  fireEvent.change(form.getByLabelText(assignment('date')), { target: { value: '2026-04-02' } })
+  fireEvent.change(form.getByLabelText(assignment('date')), { target: { value: '02/04/2026' } })
   await user.type(form.getByRole('textbox', { name: assignment('note') }), 'Puesto 12')
   await user.click(form.getByRole('button', { name: t('app.save') }))
 

@@ -55,7 +55,7 @@ it('proposes the agenda for today, saying where each item comes from', async () 
   expect(commitment.getByText(t('commitments.postponed', { count: 2 }))).toBeInTheDocument()
   expect(carried.getByText(t('cabinet.agenda.carried'))).toBeInTheDocument()
   expect(screen.getByText(label('carryOver', { count: 2 }))).toBeInTheDocument()
-  expect(screen.getByLabelText(t('cabinet.meeting.date'))).toHaveAttribute('min', '2026-10-20')
+  expect(screen.getByLabelText(t('cabinet.meeting.date'))).toHaveValue('23/11/2026')
   expect(screen.queryByText(/no tenés acceso/)).toBeNull()
 })
 
@@ -138,7 +138,7 @@ it('proposes again for another date and keeps the decisions taken', async () => 
   )
 
   fireEvent.change(screen.getByLabelText(t('cabinet.meeting.date')), {
-    target: { value: '2026-12-01' },
+    target: { value: '01/12/2026' },
   })
 
   expect(await screen.findByRole('checkbox', { name: 'Social' })).toBeChecked()
@@ -154,6 +154,20 @@ it('asks for a date before proposing or creating anything', async () => {
 
   await waitFor(async () => expect(await submit()).toBeDisabled())
   expect(proposals).toHaveLength(1)
+})
+
+it('does not take a date before the last meeting', async () => {
+  const { user } = renderPrepare()
+  const posts = mockApi('post', `${BASE}/meetings`, makeMeeting(), 201)
+  await rows()
+
+  fireEvent.change(screen.getByLabelText(t('cabinet.meeting.date')), {
+    target: { value: '19/10/2026' },
+  })
+  await user.click(await submit())
+
+  expect(await screen.findByText(t('app.date.min', { date: '20/10/2026' }))).toBeInTheDocument()
+  expect(posts).toHaveLength(0)
 })
 
 it('says how many dashboards it did not look at', async () => {

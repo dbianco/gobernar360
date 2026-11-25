@@ -50,7 +50,22 @@
     ],
     "confirmTitle": "¿Estás seguro?",
     "clearSearch": "Borrar la búsqueda",
-    "noMatches": "Nada coincide con la búsqueda."
+    "noMatches": "Nada coincide con la búsqueda.",
+    "date": {
+      "placeholder": "dd/mm/aaaa",
+      "open": "Abrir calendario",
+      "invalid": "Escribí la fecha como día/mes/año, por ejemplo 24/11/2026.",
+      "min": "La fecha no puede ser anterior al {{date}}.",
+      "max": "La fecha no puede ser posterior al {{date}}.",
+      "previousMonth": "Mes anterior",
+      "nextMonth": "Mes siguiente",
+      "previousYear": "Año anterior",
+      "nextYear": "Año siguiente",
+      "previousDecade": "Década anterior",
+      "nextDecade": "Década siguiente",
+      "chooseMonth": "Elegir mes",
+      "chooseYear": "Elegir año"
+    }
   },
   "errors": {
     "generic": "Ocurrió un error. Intentá de nuevo.",

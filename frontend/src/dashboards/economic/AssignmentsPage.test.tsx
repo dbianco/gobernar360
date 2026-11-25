@@ -92,7 +92,7 @@ it('lets an editor correct the date and the note of an assignment', async () => 
   expect(form.getByLabelText(label('tool'))).toBeDisabled()
   expect(form.getByLabelText(label('tool'))).toHaveValue('Microcrédito productivo')
   expect(form.getByRole('textbox', { name: label('note') })).toHaveValue('Primera cuota')
-  fireEvent.change(form.getByLabelText(label('date')), { target: { value: '2026-03-12' } })
+  fireEvent.change(form.getByLabelText(label('date')), { target: { value: '12/03/2026' } })
   await user.click(form.getByRole('button', { name: t('app.save') }))
 
   await waitFor(() => expect(requests).toHaveLength(1))

@@ -4,6 +4,8 @@ exports[`adds items with the button and not without a title > screen at the end 
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Ana Gómez
 Leo Paz
@@ -27,6 +29,8 @@ exports[`adds items with the button and not without a title > screen at the star
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Nada coincide con la búsqueda.
 Invitados
@@ -45,6 +49,8 @@ exports[`asks for a date before proposing or creating anything > screen at the e
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Ana Gómez
 Leo Paz
@@ -86,6 +92,8 @@ exports[`asks for a date before proposing or creating anything > screen at the s
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Nada coincide con la búsqueda.
 Invitados
@@ -106,6 +114,72 @@ exports[`creates the meeting with what was accepted, in the order chosen > scree
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+Nada coincide con la búsqueda.
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+[Cargando…]
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;
+
+exports[`does not take a date before the last meeting > screen at the end 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+La fecha no puede ser anterior al 20/10/2026.
+Participantes
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+Ambiental, octubre de 2026
+Estado de tablero
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Crítico
+Certificar la obra
+Compromiso
+[Subir Certificar la obra]
+[Bajar Certificar la obra]
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+·
+[Ver compromiso: Certificar la obra]
+Ver compromiso
+Plaza central
+Cronograma
+Tema propio
+Quedó de la reunión anterior
+[Subir Cronograma]
+[Bajar Cronograma]
+Tema propio
+Agregar
+Al crear la reunión, 2 compromisos pendientes se arrastran y cuentan como postergados una vez más.
+Cancelar
+Crear reunión"
+`;
+
+exports[`does not take a date before the last meeting > screen at the start 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Nada coincide con la búsqueda.
 Invitados
@@ -129,6 +203,8 @@ exports[`leads to the open meeting instead, when there is one > screen at the st
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Nada coincide con la búsqueda.
 Invitados
@@ -147,6 +223,8 @@ exports[`loads the proposal again when it changed meanwhile > screen at the end 
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Ana Gómez
 Leo Paz
@@ -189,6 +267,8 @@ exports[`loads the proposal again when it changed meanwhile > screen at the star
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Nada coincide con la búsqueda.
 Invitados
@@ -207,6 +287,8 @@ exports[`proposes again for another date and keeps the decisions taken > screen 
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Ana Gómez
 Leo Paz
@@ -253,6 +335,8 @@ exports[`proposes again for another date and keeps the decisions taken > screen 
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Nada coincide con la búsqueda.
 Invitados
@@ -271,6 +355,8 @@ exports[`proposes the agenda for today, saying where each item comes from > scre
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Ana Gómez
 Leo Paz
@@ -312,6 +398,8 @@ exports[`proposes the agenda for today, saying where each item comes from > scre
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Nada coincide con la búsqueda.
 Invitados
@@ -330,6 +418,8 @@ exports[`says how many dashboards it did not look at > screen at the end 1`] = `
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Ana Gómez
 Leo Paz
@@ -372,6 +462,8 @@ exports[`says how many dashboards it did not look at > screen at the start 1`] =
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Nada coincide con la búsqueda.
 Invitados
@@ -391,6 +483,8 @@ exports[`says when the proposal or the members cannot be loaded > screen at the 
 Preparar reunión
 Ocurrió un error. Intentá de nuevo.
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Nada coincide con la búsqueda.
 Invitados
@@ -409,6 +503,8 @@ exports[`says when the proposal or the members cannot be loaded > screen at the 
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Nada coincide con la búsqueda.
 Invitados
@@ -427,6 +523,8 @@ exports[`takes back what was dropped > screen at the end 1`] = `
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Ana Gómez
 Leo Paz
@@ -468,6 +566,8 @@ exports[`takes back what was dropped > screen at the start 1`] = `
 "Volver a reuniones
 Preparar reunión
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Participantes
 Nada coincide con la búsqueda.
 Invitados

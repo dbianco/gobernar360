@@ -1,7 +1,8 @@
-import { Alert, Button, Group, NativeSelect, Stack, Text, Textarea, TextInput } from '@mantine/core'
+import { Alert, Button, Group, NativeSelect, Stack, Text, Textarea } from '@mantine/core'
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { DateField } from '../../platform/DateField'
 import { errorMessage } from '../../platform/errorMessage'
 import { SubjectLabel } from '../../platform/subjects/SubjectLabel'
 import { SubjectPicker } from '../../platform/subjects/SubjectPicker'
@@ -102,14 +103,7 @@ export function CommitmentForm(props: {
               })),
             ]}
           />
-          <TextInput
-            label={label('dueDate')}
-            type="date"
-            required
-            withAsterisk={false}
-            value={dueDate}
-            onChange={(event) => setDueDate(event.currentTarget.value)}
-          />
+          <DateField label={label('dueDate')} required value={dueDate} onChange={setDueDate} />
         </Group>
         {!textFixed && (
           <>

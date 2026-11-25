@@ -167,6 +167,8 @@ Domínguez, Mirta ya está en el padrón del municipio. Revisá sus datos y guar
 DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
 Fecha de nacimiento
+(dd/mm/aaaa)
+[Abrir calendario]
 Nombre
 Apellido
 Teléfono
@@ -221,6 +223,8 @@ Abrir su ficha
 DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
 Fecha de nacimiento
+(dd/mm/aaaa)
+[Abrir calendario]
 Nombre
 Apellido
 Teléfono
@@ -305,6 +309,8 @@ DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
 El DNI tiene que tener entre 6 y 9 dígitos.
 Fecha de nacimiento
+(dd/mm/aaaa)
+[Abrir calendario]
 Nombre
 Apellido
 Teléfono

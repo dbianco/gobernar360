@@ -2,6 +2,7 @@ import { Alert, Button, Group, NativeSelect, Stack, Text, Textarea, TextInput } 
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { DateField } from '../../platform/DateField'
 import { errorMessage } from '../../platform/errorMessage'
 import { todayIso } from '../../platform/format'
 import { send, useAction, useBenefits } from './api'
@@ -71,14 +72,7 @@ export function DeliveryForm(props: { personId?: string; delivery?: Delivery; on
           />
         )}
         <Group grow align="flex-start">
-          <TextInput
-            label={label('date')}
-            type="date"
-            required
-            withAsterisk={false}
-            value={date}
-            onChange={(event) => setDate(event.currentTarget.value)}
-          />
+          <DateField label={label('date')} required value={date} onChange={setDate} />
           <TextInput
             label={label('quantity')}
             type="number"

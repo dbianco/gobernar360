@@ -2,6 +2,7 @@ import { Alert, Badge, Button, Group, Stack, Table, Text, TextInput, Title } fro
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { DateField } from '../../platform/DateField'
 import { formatDate } from '../../platform/format'
 import { send, useAction } from './api'
 import type { Milestone, Project } from './types'
@@ -125,12 +126,11 @@ export function MilestonesPanel({ project, canEdit }: { project: Project; canEdi
               value={name}
               onChange={(event) => setName(event.currentTarget.value)}
             />
-            <TextInput
+            <DateField
               aria-label={t('projects.milestones.dueDate')}
-              type="date"
               required
               value={dueDate}
-              onChange={(event) => setDueDate(event.currentTarget.value)}
+              onChange={setDueDate}
             />
             <Button type="submit" variant="default" loading={action.pending}>
               {t('projects.milestones.add')}

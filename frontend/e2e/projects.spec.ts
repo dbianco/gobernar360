@@ -23,7 +23,7 @@ test('editor creates a project with a milestone and the summary updates', async 
   await page.getByRole('link', { name: 'Proyecto E2E' }).click()
   await expect(page.getByRole('heading', { name: 'Proyecto E2E' })).toBeVisible()
   await page.getByLabel('Hito', { exact: true }).fill('Hito E2E')
-  await page.getByLabel('Fecha comprometida').fill('2030-01-15')
+  await page.getByLabel('Fecha comprometida').fill('15/01/2030')
   await page.getByRole('button', { name: 'Agregar hito' }).click()
   await expect(page.getByRole('row', { name: /Hito E2E/ })).toContainText('15/01/2030')
 

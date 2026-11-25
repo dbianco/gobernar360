@@ -33,11 +33,15 @@ const OVERDUE = [
   'Habilitar en línea la renovación de licencias de conducir',
 ]
 
-/** An ISO date some days from today. */
+const pad = (value: number) => String(value).padStart(2, '0')
+
+/** Today as an ISO date. */
+const TODAY = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`
+
+/** A date some days from today, as a person writes it. */
 function inDays(days: number): string {
   const date = new Date(now.getFullYear(), now.getMonth(), now.getDate() + days)
-  const pad = (value: number) => String(value).padStart(2, '0')
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+  return `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()}`
 }
 
 const openCommitments = (page: Page) => page.getByRole('region', { name: 'Compromisos pendientes' })
@@ -59,6 +63,16 @@ async function setGrants(page: Page, grants: Record<string, string>) {
 
 // One story, from preparing a meeting to the next one: each step needs the one before.
 test.describe.configure({ mode: 'serial' })
+
+// Other specs count on this member having no access and on last month as it was seeded,
+// also when one of these fails.
+test.afterAll(async ({ browser }) => {
+  const page = await browser.newPage()
+  await login(page, 'admin@noetinger.test')
+  await setGrants(page, {})
+  await page.request.put(STATUS_URL, { headers: HEADERS, data: { color: 'green' } })
+  await page.close()
+})
 
 test('the proposed agenda has the red dashboard and every overdue commitment', async ({ page }) => {
   await login(page, 'admin@noetinger.test')
@@ -152,7 +166,7 @@ test('a closed meeting has minutes and can no longer be edited', async ({ page }
 
   const minutes = page.getByRole('link', { name: 'Descargar acta' })
   const [download] = await Promise.all([page.waitForEvent('download'), minutes.click()])
-  expect(download.suggestedFilename()).toBe(`acta-gabinete-${inDays(0)}.html`)
+  expect(download.suggestedFilename()).toBe(`acta-gabinete-${TODAY}.html`)
   const text = await readFile(await download.path(), 'utf8')
   for (const piece of [
     `${LIGHT_ITEM} (crítico)`,
@@ -242,18 +256,13 @@ test('a member without Projects sees the commitment but not which project', asyn
   await expect(row).toContainText('Un proyecto al que no tenés acceso')
   await expect(page.getByText(PROJECT)).toHaveCount(0)
   await row.getByRole('link', { name: ABOUT_PROJECT }).click()
+  await expect(page.getByRole('heading', { name: ABOUT_PROJECT })).toBeVisible()
   await expect(page.getByText('Un proyecto al que no tenés acceso')).toBeVisible()
   const csv = await (
     await page.request.get('/api/dashboards/cabinet/export/commitments.csv')
   ).text()
   expect(csv).toContain(ABOUT_PROJECT)
   expect(csv).not.toContain(PROJECT)
-
-  // Other specs count on this member having no access, and on last month as it was seeded.
-  await logout(page)
-  await login(page, 'admin@noetinger.test')
-  await setGrants(page, {})
-  await page.request.put(STATUS_URL, { headers: HEADERS, data: { color: 'green' } })
 })
 
 test('the second municipality has the dashboard and none of this data', async ({ page }) => {

@@ -93,6 +93,45 @@ exports[`gives it to someone else by another day, keeping what was agreed > scre
 [Cargando…]"
 `;
 
+exports[`is not delivered in the future > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Fecha de cumplimiento
+—
+Tomado en la reunión del
+20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios.
+Marcar cumplido
+Fecha de cumplimiento
+(dd/mm/aaaa)
+[Abrir calendario]
+La fecha no puede ser posterior al 23/11/2026.
+Nota
+Cancelar
+Guardar"
+`;
+
+exports[`is not delivered in the future > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
 exports[`keeps an owner who left the municipality and a link the person cannot read > screen at the end 1`] = `
 "Volver a compromisos
 Certificar la obra
@@ -391,13 +430,13 @@ Plaza central
 Avance e historial
 Nota de avance
 Agregar nota
-Ana Gómez, 18/11/26, 10:30 a. m.
+Ana Gómez, 18/11/2026, 10:30
 Estado: Pendiente → Cumplido
 Fecha de cumplimiento: — → 18/11/2026
-Alguien sin cuenta, 31/10/26, 11:00 p. m.
+Alguien sin cuenta, 31/10/2026, 23:00
 Responsable: Ana Gómez → Leo Paz
 Fecha comprometida: 10/11/2026 → 20/11/2026
-Leo Paz, 21/10/26, 10:30 a. m.
+Leo Paz, 21/10/2026, 10:30
 Empecé."
 `;
 

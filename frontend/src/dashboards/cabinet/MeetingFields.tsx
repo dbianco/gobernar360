@@ -1,6 +1,7 @@
-import { MultiSelect, Stack, Textarea, TextInput } from '@mantine/core'
+import { MultiSelect, Stack, Textarea } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
+import { DateField } from '../../platform/DateField'
 import type { Member, UserRef } from './types'
 
 export interface MeetingValues {
@@ -28,15 +29,13 @@ export function MeetingFields(props: {
 
   return (
     <Stack>
-      <TextInput
+      <DateField
         label={t('cabinet.meeting.date')}
-        type="date"
         required
-        withAsterisk={false}
         maw={220}
-        min={props.minDate ?? undefined}
+        min={props.minDate}
         value={values.date}
-        onChange={(event) => set({ date: event.currentTarget.value })}
+        onChange={(date) => set({ date })}
       />
       <MultiSelect
         label={t('cabinet.meeting.attendees')}

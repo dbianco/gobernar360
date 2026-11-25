@@ -224,7 +224,7 @@ it('records a commitment about what the item is about', async () => {
   ).toBeInTheDocument()
   await user.type(box.getByLabelText(form('description')), 'Reparar la balanza')
   await user.selectOptions(owner, LEO.id)
-  fireEvent.change(box.getByLabelText(form('dueDate')), { target: { value: '2026-12-01' } })
+  fireEvent.change(box.getByLabelText(form('dueDate')), { target: { value: '01/12/2026' } })
   await user.click(box.getByRole('button', { name: t('app.save') }))
 
   await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
@@ -274,7 +274,7 @@ it('says why a commitment could not be recorded and keeps what was typed', async
   await within(box.getByLabelText(form('owner'))).findByRole('option', { name: LEO.full_name })
   await user.type(box.getByLabelText(form('description')), 'Pedir sede')
   await user.selectOptions(box.getByLabelText(form('owner')), LEO.id)
-  fireEvent.change(box.getByLabelText(form('dueDate')), { target: { value: '2026-12-01' } })
+  fireEvent.change(box.getByLabelText(form('dueDate')), { target: { value: '01/12/2026' } })
   await user.click(box.getByRole('button', { name: t('app.save') }))
 
   expect(await box.findByText(t('errors.invalid_reference'))).toBeInTheDocument()
@@ -318,7 +318,7 @@ it('corrects its date and people', async () => {
   const box = await dialog()
   // Someone who left the municipality is still in the list.
   expect(box.getAllByText('Ex Miembro').length).toBeGreaterThan(0)
-  fireEvent.change(box.getByLabelText(label('date')), { target: { value: '2026-11-25' } })
+  fireEvent.change(box.getByLabelText(label('date')), { target: { value: '25/11/2026' } })
   await user.click(box.getByRole('combobox', { name: label('attendees') }))
   await user.click(await screen.findByRole('option', { name: LEO.full_name }))
   await user.type(box.getByLabelText(label('guests')), ' y prensa')

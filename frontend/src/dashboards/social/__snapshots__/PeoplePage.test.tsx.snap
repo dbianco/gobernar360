@@ -51,6 +51,8 @@ Nueva persona
 DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
 Fecha de nacimiento
+(dd/mm/aaaa)
+[Abrir calendario]
 Nombre
 Apellido
 Teléfono
@@ -79,6 +81,8 @@ Ya hay otra persona con ese DNI en el padrón del municipio.
 DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
 Fecha de nacimiento
+(dd/mm/aaaa)
+[Abrir calendario]
 Nombre
 Apellido
 Teléfono
@@ -162,6 +166,8 @@ Abrir su ficha
 DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
 Fecha de nacimiento
+(dd/mm/aaaa)
+[Abrir calendario]
 Nombre
 Apellido
 Teléfono
@@ -220,6 +226,8 @@ Ocurrió un error. Intentá de nuevo.
 DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
 Fecha de nacimiento
+(dd/mm/aaaa)
+[Abrir calendario]
 Nombre
 Apellido
 Teléfono

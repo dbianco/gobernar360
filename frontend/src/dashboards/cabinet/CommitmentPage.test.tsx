@@ -84,7 +84,7 @@ it('shows what was agreed and everything that happened to it', async () => {
   )
   // In Argentine time it was still October.
   expect(changed).toHaveTextContent(history('unknown'))
-  expect(changed).toHaveTextContent('31/10/26')
+  expect(changed).toHaveTextContent('31/10/2026, 23:00')
   expect(changed).toHaveTextContent('Ana Gómez → Leo Paz')
   expect(changed).toHaveTextContent('10/11/2026 → 20/11/2026')
   expect(note).toHaveTextContent('Empecé.')
@@ -97,14 +97,26 @@ it('marks it done on the day it was', async () => {
   await user.click(await button(label('markDone')))
   const box = await dialog()
   const day = box.getByLabelText(label('completedOn'))
-  expect(day).toHaveValue('2026-11-23')
-  expect(day).toHaveAttribute('max', '2026-11-23')
-  fireEvent.change(day, { target: { value: '2026-11-19' } })
+  expect(day).toHaveValue('23/11/2026')
+  fireEvent.change(day, { target: { value: '19/11/2026' } })
   await user.type(box.getByLabelText(label('note')), 'Firmado.')
   await user.click(box.getByRole('button', { name: t('app.save') }))
 
   await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
   expect(posts[0].body).toEqual({ state: 'done', completed_on: '2026-11-19', note: 'Firmado.' })
+})
+
+it('is not delivered in the future', async () => {
+  const user = renderCommitment()
+  const posts = mockApi('post', `${URL}/state`, makeCommitmentDetail())
+
+  await user.click(await button(label('markDone')))
+  const box = await dialog()
+  fireEvent.change(box.getByLabelText(label('completedOn')), { target: { value: '24/11/2026' } })
+  await user.click(box.getByRole('button', { name: t('app.save') }))
+
+  expect(await box.findByText(t('app.date.max', { date: '23/11/2026' }))).toBeInTheDocument()
+  expect(posts).toHaveLength(0)
 })
 
 it('drops it, without a date', async () => {
@@ -163,7 +175,7 @@ it('gives it to someone else by another day, keeping what was agreed', async () 
   expect(box.queryByLabelText(t('subjects.about'))).toBeNull()
   await within(box.getByLabelText(label('owner'))).findByRole('option', { name: ANA.full_name })
   await user.selectOptions(box.getByLabelText(label('owner')), ANA.id)
-  fireEvent.change(box.getByLabelText(label('dueDate')), { target: { value: '2026-12-15' } })
+  fireEvent.change(box.getByLabelText(label('dueDate')), { target: { value: '15/12/2026' } })
   await user.click(box.getByRole('button', { name: t('app.save') }))
 
   await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())

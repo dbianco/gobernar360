@@ -1,7 +1,8 @@
-import { Alert, Button, Group, Stack, Textarea, TextInput } from '@mantine/core'
+import { Alert, Button, Group, Stack, Textarea } from '@mantine/core'
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { DateField } from '../../platform/DateField'
 import { todayIso } from '../../platform/format'
 import { send, useAction } from './api'
 import type { Commitment } from './types'
@@ -36,15 +37,13 @@ export function StateForm(props: {
       <Stack>
         {action.error && <Alert color="red">{action.error}</Alert>}
         {isDone && (
-          <TextInput
+          <DateField
             label={label('completedOn')}
-            type="date"
             required
-            withAsterisk={false}
             max={todayIso()}
             maw={220}
             value={completedOn}
-            onChange={(event) => setCompletedOn(event.currentTarget.value)}
+            onChange={setCompletedOn}
           />
         )}
         <Textarea
