@@ -548,6 +548,142 @@ Nov
 Dic"
 `;
 
+exports[`shows beside each month what was agreed about it, in calendar order > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2025
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+1
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Crítico]
+May
+2
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+[Compromisos pendientes]
+Compromisos pendientes
+[Febrero: Sin estado]
+Febrero: Sin estado
+Acuerdo 2
+Ana Gómez, para el 30/06/2025
+[Mayo: Crítico]
+Mayo: Crítico
+Acuerdo 1
+Ana Gómez, para el 30/06/2025
+Vencido
+Acuerdo 3
+Ana Gómez, para el 30/06/2025"
+`;
+
+exports[`shows beside each month what was agreed about it, in calendar order > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2025
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic"
+`;
+
+exports[`shows no commitments when there are none, and says when they cannot be loaded > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2025
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`shows no commitments when there are none, and says when they cannot be loaded > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2025
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic"
+`;
+
 exports[`shows the error when the change is refused > screen at the end 1`] = `
 "[Estado mensual]
 Estado mensual 2025

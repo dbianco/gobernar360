@@ -1,0 +1,1091 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds an item linked to a record > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales"
+`;
+
+exports[`adds an item linked to a record > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`cannot change anything in a closed meeting > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Cerrada
+Descargar acta
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+[Feria del libro]
+1. Feria del libro
+Se confirma.
+Compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+Plaza central
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+Sin tratar
+Notas generales
+Cierre general"
+`;
+
+exports[`cannot change anything in a closed meeting > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`cannot change anything in an open meeting read by a viewer > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+[Feria del libro]
+1. Feria del libro
+Se confirma.
+Compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+Plaza central
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+Sin tratar
+Notas generales
+Cierre general"
+`;
+
+exports[`cannot change anything in an open meeting read by a viewer > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`corrects and removes commitments while the meeting is open > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+Compromisos
+Certificar la obra
+Pendiente
+Leo Paz, para el 20/11/2026
+Plaza central
+[Editar compromiso: Certificar la obra]
+Editar
+[Eliminar compromiso: Certificar la obra]
+Eliminar
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+Notas generales"
+`;
+
+exports[`corrects and removes commitments while the meeting is open > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`corrects its date and people > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ex Miembro
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales"
+`;
+
+exports[`corrects its date and people > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`is closed after confirming > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales"
+`;
+
+exports[`is closed after confirming > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`is discarded after confirming, while it took no commitments > screen at the end 1`] = `
+"[autosize measurement]
+every meeting"
+`;
+
+exports[`is discarded after confirming, while it took no commitments > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`keeps the item form open and says why it failed, and closes it on cancel > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales"
+`;
+
+exports[`keeps the item form open and says why it failed, and closes it on cancel > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`keeps the notes typed when saving fails, and follows those saved elsewhere > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+Se confirma.
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+De otra persona
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales"
+`;
+
+exports[`keeps the notes typed when saving fails, and follows those saved elsewhere > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`marks an item as discussed > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales"
+`;
+
+exports[`marks an item as discussed > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`moves items > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales"
+`;
+
+exports[`moves items > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`records a commitment about what the item is about > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales"
+`;
+
+exports[`records a commitment about what the item is about > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`removes an item that produced nothing, after confirming > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+Compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+Plaza central
+[Editar compromiso: Certificar la obra]
+Editar
+[Eliminar compromiso: Certificar la obra]
+Eliminar
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+Notas generales"
+`;
+
+exports[`removes an item that produced nothing, after confirming > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`renames an item without touching a link the person cannot read > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+Un proyecto al que no tenés acceso
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+Notas generales"
+`;
+
+exports[`renames an item without touching a link the person cannot read > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`saves notes when leaving them, only if they changed > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+Se confirma.
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales
+Fin."
+`;
+
+exports[`saves notes when leaving them, only if they changed > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`saves what was being typed before closing, and does not close if that fails > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Ocurrió un error. Intentá de nuevo.
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+AB
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales"
+`;
+
+exports[`saves what was being typed before closing, and does not close if that fails > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`says when it cannot be loaded > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+No se encontró el registro."
+`;
+
+exports[`says when it cannot be loaded > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`says when it has no agenda > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Participantes
+—
+Invitados
+—
+[Temario]
+Temario
+La reunión no tiene temas."
+`;
+
+exports[`says when it has no agenda > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`says why a commitment could not be recorded and keeps what was typed > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales
+Agregar compromiso
+Alguno de los datos seleccionados ya no existe.
+Qué se acordó
+Pedir sede
+Responsable
+Elegí quién
+Ana Gómez
+Leo Paz
+Zoe Ruiz (sin acceso a Gabinete)
+Fecha comprometida
+Vinculado a
+Sin vínculo
+Ambiental: estado mensual
+Proyectos: proyecto
+Cancelar
+Guardar"
+`;
+
+exports[`says why a commitment could not be recorded and keeps what was typed > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`says why its data could not be saved > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales"
+`;
+
+exports[`says why its data could not be saved > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`shows who came, what was carried over and the agenda > screen at the end 1`] = `
+"Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Compromisos arrastrados]
+Compromisos arrastrados
+Venían de reuniones anteriores y seguían pendientes cuando se preparó esta.
+Certificar la obra
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+Plaza central
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+Un proyecto al que no tenés acceso
+Quedó de la reunión anterior
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+Falta sede.
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+[Pedir presupuesto]
+3. Pedir presupuesto
+[Subir Pedir presupuesto]
+[Bajar Pedir presupuesto]
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+·
+[Ver compromiso: Pedir presupuesto]
+Ver compromiso
+Plaza central
+Notas
+[Notas de Pedir presupuesto]
+[Tratado: Pedir presupuesto]
+Tratado
+[Agregar compromiso en Pedir presupuesto]
+Agregar compromiso
+[Quitar tema: Pedir presupuesto]
+Quitar
+Notas generales
+[autosize measurement]"
+`;
+
+exports[`shows who came, what was carried over and the agenda > screen at the start 1`] = `
+"Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`starts a commitment from what the followed up one is about, or from nothing > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Certificar la obra]
+2. Certificar la obra
+[Subir Certificar la obra]
+[Bajar Certificar la obra]
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+·
+[Ver compromiso: Certificar la obra]
+Ver compromiso
+Plaza central
+Notas
+[Notas de Certificar la obra]
+[Tratado: Certificar la obra]
+Tratado
+[Agregar compromiso en Certificar la obra]
+Agregar compromiso
+[Quitar tema: Certificar la obra]
+Quitar
+Notas generales
+Agregar compromiso
+Qué se acordó
+Responsable
+Elegí quién
+Ana Gómez
+Leo Paz
+Zoe Ruiz (sin acceso a Gabinete)
+Fecha comprometida
+Vinculado a
+Sin vínculo
+Ambiental: estado mensual
+Proyectos: proyecto
+Cancelar
+Guardar"
+`;
+
+exports[`starts a commitment from what the followed up one is about, or from nothing > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`stays where it is when discarding fails > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+No se puede eliminar porque está siendo usado por otros registros.
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales"
+`;
+
+exports[`stays where it is when discarding fails > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;

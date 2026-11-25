@@ -5,6 +5,9 @@ import { setupServer } from 'msw/node'
 export const server = setupServer(
   // Every dashboard summary shows its status strip.
   http.get('*/api/dashboards/:key/status', () => HttpResponse.json([])),
+  // ...with what was agreed about each month; records show what was agreed about them.
+  http.get('*/api/subjects/:key/commitments', () => HttpResponse.json([])),
+  http.get('*/api/subjects/:key/:kind/:ref/commitments', () => HttpResponse.json([])),
   // The sign-in page asks whether to offer single sign-on.
   http.get('*/api/auth/sso', () => HttpResponse.json({ enabled: false })),
   // Several flows end on the home page.

@@ -1,6 +1,16 @@
+from datetime import date
+
 from sqlalchemy import delete, func, select
 
 from gobernar360.core.db import platform_session, tenant_session
+from gobernar360.dashboards.cabinet.models import (
+    AgendaItem,
+    Attendee,
+    Carryover,
+    Commitment,
+    Meeting,
+    ProgressEntry,
+)
 from gobernar360.dashboards.economic.models import (
     Actor,
     ActorPerson,
@@ -83,6 +93,7 @@ def test_seeded_accounts_can_sign_in_with_their_roles(client):
     operator = login(client, "operador@gobernar360.test", DEMO_PASSWORD).json()
 
     assert editor["dashboards"] == [
+        {"key": "cabinet", "level": "editor"},
         {"key": "economic", "level": "editor"},
         {"key": "environment", "level": "editor"},
         {"key": "procedures", "level": "editor"},
@@ -345,6 +356,7 @@ def test_seeded_noetinger_has_lights_in_every_dashboard(client):
         "economic",
         "social",
         "procedures",
+        "cabinet",
     }
     assert all(len(section["status"]) == 6 for section in overview)
     colors = {light["color"] for section in overview for light in section["status"]}
@@ -423,3 +435,105 @@ def test_seed_demo_adds_the_procedures_dashboard_to_an_older_demo_database():
     seed_demo()
     with admin_session() as session:
         assert _count(session, Procedure) == procedures_count
+
+
+CABINET_API = "/api/dashboards/cabinet"
+
+
+def test_seeded_cabinet_has_closed_meetings_with_linked_commitments(client):
+    seed_demo()
+    login(client, "lectura@noetinger.test", DEMO_PASSWORD)
+
+    meetings = client.get(f"{CABINET_API}/meetings").json()
+    commitments = client.get(f"{CABINET_API}/commitments").json()["items"]
+    summary = client.get(f"{CABINET_API}/summary").json()
+
+    assert meetings["total"] == 3 and all(m["closed"] for m in meetings["items"])
+    linked = [c["subject"] for c in commitments if c["subject"]]
+    assert {s["kind"] for s in linked} == {"project", "month"}
+    assert {s["color"] for s in linked if s["kind"] == "month"} == {"red"}
+    assert all(s["access"] == "visible" for s in linked)
+    assert all(count > 0 for count in summary["by_state"].values())
+    assert [c["times_postponed"] for c in summary["most_postponed"]] == [2, 1]
+    assert 0 < summary["on_time_share"] < 1
+    mine = client.get(f"{CABINET_API}/commitments", params={"mine": "true"}).json()
+    assert mine["total"] >= 1
+
+
+def test_seeded_minutes_tell_what_was_true_at_each_meeting(client):
+    seed_demo()
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+    latest, middle, first = client.get(f"{CABINET_API}/meetings").json()["items"]
+
+    def minutes(meeting):
+        return client.get(f"{CABINET_API}/meetings/{meeting['id']}/minutes.html").text
+
+    assert "venían de reuniones anteriores" not in minutes(first)
+    assert "vencido" not in minutes(first)
+    assert "postergado una vez" in minutes(middle)
+    # Delivered before the second meeting, so it never reached it.
+    assert "ejecución presupuestaria del trimestre" not in minutes(middle)
+    assert "postergado 2 veces" in minutes(latest)
+
+
+def test_seeded_noetinger_can_prepare_its_next_meeting(client):
+    seed_demo()
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+
+    today = date.today().isoformat()
+    answer = client.get(f"{CABINET_API}/agenda-proposal", params={"date": today}).json()
+
+    sources = [(p["source"], p["carried"]) for p in answer["proposals"]]
+    assert sources == [
+        ("light", False),
+        ("light", False),
+        ("light", False),
+        ("commitment", False),
+        ("commitment", False),
+        ("manual", True),
+    ]
+    assert answer["to_carry_over"] == 4
+
+
+def test_seeded_cabinet_stays_inside_noetinger(client):
+    seed_demo()
+    login(client, "admin@comuna-demo.test", DEMO_PASSWORD)
+
+    assert client.get(f"{CABINET_API}/meetings").json() == {"items": [], "total": 0}
+    assert client.get(f"{CABINET_API}/commitments").json() == {"items": [], "total": 0}
+
+
+# Children first, as the rest of the tables a reset would empty.
+CABINET_MODELS = (ProgressEntry, Carryover, Commitment, Attendee, AgendaItem, Meeting)
+
+
+def _forget_cabinet() -> None:
+    """Leave the database as seeded before the cabinet dashboard existed."""
+    with admin_session() as session, session.begin():
+        for model in CABINET_MODELS:
+            session.execute(delete(model))
+        for model in (DashboardGrant, MunicipalityDashboard, DashboardStatus):
+            session.execute(delete(model).where(model.dashboard_key == "cabinet"))
+
+
+def test_seed_demo_adds_the_cabinet_dashboard_to_an_older_demo_database():
+    seed_demo()
+    _forget_cabinet()
+
+    assert (seed_demo(), seed_demo()) == (True, False)
+
+    with admin_session() as session:
+        assert (_count(session, Meeting), _count(session, Commitment)) == (3, 8)
+
+
+def test_seed_demo_adds_the_cabinet_to_a_demo_database_that_lost_its_projects():
+    seed_demo()
+    _forget_cabinet()
+    with admin_session() as session, session.begin():
+        for project in session.scalars(select(Project)).unique():
+            project.name = f"{project.name} (renombrado)"
+
+    assert seed_demo() is True
+
+    with admin_session() as session:
+        assert _count(session, Commitment) == 8

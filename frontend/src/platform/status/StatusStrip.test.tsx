@@ -151,3 +151,51 @@ it('offers no year buttons when the page has a year of its own', async () => {
   await screen.findByRole('img', { name: monthName(1, 'none') })
   expect(screen.queryByRole('button', { name: t('status.previousYear') })).toBeNull()
 })
+
+const COMMITMENTS = '/subjects/projects/commitments'
+const agreed = (id: string, ref: string, overdue = false) => ({
+  id,
+  ref,
+  description: `Acuerdo ${id}`,
+  owner: 'Ana Gómez',
+  due_date: '2025-06-30',
+  overdue,
+  times_postponed: 0,
+  path: `/d/cabinet/commitments/${id}`,
+})
+
+it('shows beside each month what was agreed about it, in calendar order', async () => {
+  mockApi('get', URL, [{ month: 5, color: 'red' }])
+  const requests = mockApi('get', COMMITMENTS, [
+    agreed('1', '2025-05', true),
+    agreed('2', '2025-02'),
+    agreed('3', '2025-05'),
+  ])
+  renderStrip('viewer')
+
+  const section = within(await screen.findByRole('region', { name: t('commitments.title') }))
+  await section.findByRole('group', { name: monthName(5, 'red') })
+  expect(section.getAllByRole('group').map((group) => group.getAttribute('aria-label'))).toEqual([
+    monthName(2, 'none'),
+    monthName(5, 'red'),
+  ])
+  const may = within(section.getByRole('group', { name: monthName(5, 'red') }))
+  expect(may.getAllByRole('link').map((link) => link.textContent)).toEqual(['Acuerdo 1', 'Acuerdo 3'])
+  expect(may.getAllByText(t('commitments.overdue'))).toHaveLength(1)
+  expect(requests[0].url.searchParams.get('year')).toBe('2025')
+  // The lights keep their names.
+  expect(screen.getByRole('img', { name: monthName(5, 'red') })).toBeInTheDocument()
+})
+
+it('shows no commitments when there are none, and says when they cannot be loaded', async () => {
+  mockApi('get', URL, [])
+  const { unmount } = renderStrip('viewer')
+  await screen.findByRole('img', { name: monthName(5, 'none') })
+  expect(screen.queryByRole('region', { name: t('commitments.title') })).toBeNull()
+  unmount()
+
+  mockApiError('get', COMMITMENTS, 500, 'boom')
+  renderStrip('viewer')
+
+  expect(await screen.findByRole('alert')).toHaveTextContent(t('errors.generic'))
+})

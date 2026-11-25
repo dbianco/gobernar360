@@ -71,7 +71,13 @@
     "invalid_token": "El enlace venció o ya se usó.",
     "too_many_requests": "Hiciste demasiados pedidos seguidos. Esperá un rato y volvé a intentar.",
     "template_unknown_variable": "El texto usa variables que este correo no tiene.",
-    "template_missing_variable": "Al texto le falta una variable obligatoria."
+    "template_missing_variable": "Al texto le falta una variable obligatoria.",
+    "meeting_closed": "La reunión está cerrada: su acta ya no se puede modificar.",
+    "meeting_not_closed": "El acta se puede descargar cuando la reunión está cerrada.",
+    "meeting_already_open": "Ya hay una reunión abierta. Cerrala antes de preparar la siguiente.",
+    "meeting_before_last": "La fecha no puede ser anterior a la de la última reunión.",
+    "agenda_changed": "Lo que se propone para el temario cambió. Revisalo y volvé a intentar.",
+    "commitment_finished": "El compromiso ya no está pendiente: reabrilo para cambiarlo."
   },
   "login": {
     "title": "Ingresar a gobernar360",
@@ -155,7 +161,11 @@
       "procedures.active": "Trámites vigentes",
       "procedures.online_ratio": "Trámites con canal en línea",
       "procedures.requirements": "Requisitos cargados",
-      "procedures.sources": "Fuentes cargadas"
+      "procedures.sources": "Fuentes cargadas",
+      "cabinet.pending": "Compromisos pendientes",
+      "cabinet.overdue": "Compromisos vencidos",
+      "cabinet.done": "Compromisos cumplidos",
+      "cabinet.on_time_ratio": "Cumplidos en término"
     },
     "lights": "Estado de los tableros"
   },
@@ -1415,6 +1425,225 @@
         "requirements": "Cuántos requisitos distintos de esta fuente se piden en trámites vigentes.",
         "procedures": "En cuántos trámites vigentes distintos se pide algo de esta fuente.",
         "volume": "Suma de la cantidad anual estimada de esos trámites. Cada trámite cuenta una sola vez."
+      }
+    }
+  },
+  "subjects": {
+    "about": "Vinculado a",
+    "none": "Sin vínculo",
+    "which": "Cuál",
+    "searchHint": "Escribí para buscar",
+    "kindOf": "{{dashboard}}: {{kind}}",
+    "withState": "{{label}} ({{state}})",
+    "kinds": {
+      "month": "estado mensual",
+      "record": "registro",
+      "projects": {
+        "project": "proyecto"
+      }
+    },
+    "restricted": {
+      "month": "Un estado mensual de un tablero al que no tenés acceso",
+      "record": "Un registro de un tablero al que no tenés acceso",
+      "projects": {
+        "project": "Un proyecto al que no tenés acceso"
+      }
+    },
+    "deleted": {
+      "month": "Un estado mensual que ya no existe",
+      "record": "Un registro que ya no existe",
+      "projects": {
+        "project": "Un proyecto que ya no existe"
+      }
+    }
+  },
+  "commitments": {
+    "title": "Compromisos pendientes",
+    "owed": "{{owner}}, para el {{date}}",
+    "overdue": "Vencido",
+    "postponed_one": "Postergado {{count}} vez",
+    "postponed_other": "Postergado {{count}} veces"
+  },
+  "cabinet": {
+    "title": "Gabinete",
+    "tabs": {
+      "summary": "Resumen",
+      "meetings": "Reuniones",
+      "commitments": "Compromisos",
+      "mine": "Mis compromisos"
+    },
+    "states": {
+      "open": "Pendiente",
+      "overdue": "Vencido",
+      "done": "Cumplido",
+      "dropped": "Descartado"
+    },
+    "meetings": {
+      "prepare": "Preparar reunión",
+      "continue": "Continuar la reunión del {{date}}",
+      "searchHint": "Temas, compromisos o notas",
+      "empty": "Todavía no hay reuniones.",
+      "date": "Fecha",
+      "state": "Estado",
+      "items": "Temas",
+      "commitments": "Compromisos"
+    },
+    "meeting": {
+      "title": "Reunión del {{date}}",
+      "back": "Volver a reuniones",
+      "open": "Abierta",
+      "closed": "Cerrada",
+      "date": "Fecha",
+      "attendees": "Participantes",
+      "guests": "Invitados",
+      "guestsHint": "Personas sin usuario que también participan.",
+      "notes": "Notas generales",
+      "agenda": "Temario",
+      "emptyAgenda": "La reunión no tiene temas.",
+      "edit": "Editar datos",
+      "editTitle": "Datos de la reunión",
+      "close": "Cerrar reunión",
+      "closeTitle": "Cerrar la reunión",
+      "closeMessage": "El acta queda fija y la reunión no se puede volver a editar. Los temas sin tratar se proponen para la próxima.",
+      "download": "Descargar acta",
+      "discard": "Descartar reunión",
+      "discardMessage": "La reunión se elimina y los compromisos que arrastró dejan de contarla como postergación.",
+      "removeMessage": "Se va a eliminar «{{name}}».",
+      "carriedOver": "Compromisos arrastrados",
+      "carriedOverHint": "Venían de reuniones anteriores y seguían pendientes cuando se preparó esta."
+    },
+    "prepare": {
+      "title": "Preparar reunión",
+      "agenda": "Temario propuesto",
+      "agendaHint": "Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.",
+      "nothing": "No hay nada que proponer para esa fecha.",
+      "newItem": "Tema propio",
+      "submit": "Crear reunión",
+      "notConsidered_one": "No se miró el estado de {{count}} tablero al que no tenés acceso.",
+      "notConsidered_other": "No se miró el estado de {{count}} tableros a los que no tenés acceso.",
+      "carryOver_one": "Al crear la reunión, {{count}} compromiso pendiente se arrastra y cuenta como postergado una vez más.",
+      "carryOver_other": "Al crear la reunión, {{count}} compromisos pendientes se arrastran y cuentan como postergados una vez más.",
+      "alreadyOpen": "Ya hay una reunión abierta. Cerrala antes de preparar la siguiente."
+    },
+    "agenda": {
+      "sources": {
+        "manual": "Tema propio",
+        "light": "Estado de tablero",
+        "commitment": "Compromiso"
+      },
+      "carried": "Quedó de la reunión anterior",
+      "notDiscussed": "Sin tratar",
+      "add": "Agregar tema",
+      "addTitle": "Agregar tema",
+      "editTitle": "Editar tema",
+      "itemTitle": "Tema",
+      "notes": "Notas",
+      "notesOf": "Notas de {{name}}",
+      "discussed": "Tratado",
+      "discussedNamed": "Tratado: {{name}}",
+      "agreed": "Compromisos",
+      "addCommitment": "Agregar compromiso",
+      "addCommitmentTo": "Agregar compromiso en {{name}}",
+      "editNamed": "Editar tema: {{name}}",
+      "remove": "Quitar",
+      "removeNamed": "Quitar tema: {{name}}",
+      "moveUp": "Subir {{name}}",
+      "moveDown": "Bajar {{name}}"
+    },
+    "commitment": {
+      "back": "Volver a compromisos",
+      "addTitle": "Agregar compromiso",
+      "editTitle": "Editar compromiso",
+      "description": "Qué se acordó",
+      "owner": "Responsable",
+      "chooseOwner": "Elegí quién",
+      "noAccess": "{{name}} (sin acceso a Gabinete)",
+      "dueDate": "Fecha comprometida",
+      "completedOn": "Fecha de cumplimiento",
+      "meeting": "Tomado en la reunión del",
+      "textFixed": "La reunión está cerrada: lo acordado ya no cambia. Se pueden cambiar el responsable y la fecha, y queda en el historial.",
+      "view": "Ver compromiso",
+      "viewNamed": "Ver compromiso: {{name}}",
+      "editNamed": "Editar compromiso: {{name}}",
+      "removeNamed": "Eliminar compromiso: {{name}}",
+      "markDone": "Marcar cumplido",
+      "drop": "Descartar",
+      "reopen": "Reabrir",
+      "note": "Nota",
+      "newNote": "Nota de avance",
+      "addNote": "Agregar nota",
+      "history": "Avance e historial"
+    },
+    "history": {
+      "empty": "Todavía no hay notas ni cambios.",
+      "by": "{{author}}, {{when}}",
+      "unknown": "Alguien sin cuenta",
+      "change": "{{field}}: {{before}} → {{after}}",
+      "fields": {
+        "state": "Estado",
+        "due_date": "Fecha comprometida",
+        "completed_on": "Fecha de cumplimiento",
+        "owner": "Responsable"
+      }
+    },
+    "list": {
+      "description": "Compromiso",
+      "owner": "Responsable",
+      "dueDate": "Para el",
+      "state": "Estado",
+      "subject": "Vinculado a",
+      "meeting": "Reunión",
+      "searchHint": "Compromiso o responsable",
+      "pending": "Pendientes y vencidos",
+      "allStates": "Todos los estados",
+      "allOwners": "Todos los responsables",
+      "download": "Descargar CSV",
+      "empty": "Ningún compromiso coincide.",
+      "emptyMine": "No tenés compromisos que coincidan."
+    },
+    "summary": {
+      "download": "Descargar compromisos (CSV)",
+      "lastMeeting_one": "{{count}} reunión cerrada, el {{date}}.",
+      "lastMeeting_other": "{{count}} reuniones cerradas; la última, el {{date}}.",
+      "emptyTitle": "Todavía no hay compromisos",
+      "goToMeetings": "Ir a reuniones",
+      "emptyViewerBody": "Los carga quien prepara las reuniones.",
+      "columns": {
+        "overdue": "Vencidos",
+        "open": "Pendientes",
+        "done": "Cumplidos",
+        "dropped": "Descartados"
+      },
+      "onTime": "Cumplidos en término",
+      "onTimeHint": "De los cumplidos y los vencidos.",
+      "byOwner": "Por responsable",
+      "owner": "Responsable",
+      "searchOwner": "Responsable",
+      "mostPostponed": "Los más postergados",
+      "noPostponed": "Ningún compromiso pendiente fue postergado."
+    },
+    "help": {
+      "meetingsPage": {
+        "date": "Día de la reunión. Al hacer clic se abre.",
+        "state": "Una reunión cerrada ya no se edita y tiene su acta para descargar.",
+        "items": "Cantidad de temas del temario.",
+        "commitments": "Compromisos que se tomaron en la reunión."
+      },
+      "list": {
+        "description": "Lo que se acordó. Al hacer clic se abre con su historial.",
+        "owner": "Quién tiene que cumplirlo.",
+        "dueDate": "Fecha comprometida. Pasado ese día, un compromiso pendiente figura como vencido.",
+        "state": "Cómo está y cuántas veces llegó sin cumplir a una reunión posterior.",
+        "subject": "De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.",
+        "meeting": "Reunión en la que se tomó."
+      },
+      "summaryPage": {
+        "owner": "Quién tiene que cumplir los compromisos.",
+        "overdue": "Pendientes cuya fecha ya pasó.",
+        "open": "Pendientes que todavía están en fecha.",
+        "done": "Los que se marcaron como cumplidos.",
+        "dropped": "Los que se decidió no hacer.",
+        "onTime": "Cumplidos hasta la fecha comprometida, sobre el total de cumplidos y vencidos."
       }
     }
   }

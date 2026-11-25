@@ -1,0 +1,610 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`is reached from the app at its own address > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Noetinger
+Ana Gómez
+Cerrar sesión
+Resumen general
+Gabinete
+Gabinete
+Resumen
+Reuniones
+Compromisos
+Mis compromisos
+[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+3 reuniones cerradas; la última, el 17/11/2026.
+Vencidos
+2
+Pendientes
+3
+Cumplidos
+3
+Descartados
+1
+Cumplidos en término
+40 %
+De los cumplidos y los vencidos.
+Por responsable
+Buscar
+(Responsable)
+[Por responsable]
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplir los compromisos.
+Vencidos
+[Qué significa Vencidos]
+Pendientes cuya fecha ya pasó.
+Pendientes
+[Qué significa Pendientes]
+Pendientes que todavía están en fecha.
+Cumplidos
+[Qué significa Cumplidos]
+Los que se marcaron como cumplidos.
+Descartados
+[Qué significa Descartados]
+Los que se decidió no hacer.
+Cumplidos en término
+[Qué significa Cumplidos en término]
+Cumplidos hasta la fecha comprometida, sobre el total de cumplidos y vencidos.
+Leo Paz
+2
+1
+1
+0
+25 %
+Ana Gómez
+0
+2
+2
+1
+—
+Los más postergados
+[Los más postergados]
+Compromiso
+[Qué significa Compromiso]
+Lo que se acordó. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Para el
+[Qué significa Para el]
+Fecha comprometida. Pasado ese día, un compromiso pendiente figura como vencido.
+Estado
+[Qué significa Estado]
+Cómo está y cuántas veces llegó sin cumplir a una reunión posterior.
+Vinculado a
+[Qué significa Vinculado a]
+De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.
+Reunión
+[Qué significa Reunión]
+Reunión en la que se tomó.
+Certificar la obra
+Leo Paz
+20/11/2026
+Vencido
+Postergado 2 veces
+Plaza central
+20/10/2026"
+`;
+
+exports[`is reached from the app at its own address > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`keeps viewers from preparing meetings > screen at the end 1`] = `
+"[autosize measurement]
+Gabinete
+Resumen
+Reuniones
+Compromisos
+Mis compromisos
+No tenés acceso a este tablero
+Pedile al administrador de tu municipio que te habilite."
+`;
+
+exports[`keeps viewers from preparing meetings > screen at the start 1`] = `
+"[autosize measurement]
+Gabinete
+Resumen
+Reuniones
+Compromisos
+Mis compromisos
+No tenés acceso a este tablero
+Pedile al administrador de tu municipio que te habilite."
+`;
+
+exports[`leads unknown addresses to the summary > screen at the end 1`] = `
+"[autosize measurement]
+Gabinete
+Resumen
+Reuniones
+Compromisos
+Mis compromisos
+[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+3 reuniones cerradas; la última, el 17/11/2026.
+Vencidos
+2
+Pendientes
+3
+Cumplidos
+3
+Descartados
+1
+Cumplidos en término
+40 %
+De los cumplidos y los vencidos.
+Por responsable
+Buscar
+(Responsable)
+[Por responsable]
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplir los compromisos.
+Vencidos
+[Qué significa Vencidos]
+Pendientes cuya fecha ya pasó.
+Pendientes
+[Qué significa Pendientes]
+Pendientes que todavía están en fecha.
+Cumplidos
+[Qué significa Cumplidos]
+Los que se marcaron como cumplidos.
+Descartados
+[Qué significa Descartados]
+Los que se decidió no hacer.
+Cumplidos en término
+[Qué significa Cumplidos en término]
+Cumplidos hasta la fecha comprometida, sobre el total de cumplidos y vencidos.
+Leo Paz
+2
+1
+1
+0
+25 %
+Ana Gómez
+0
+2
+2
+1
+—
+Los más postergados
+[Los más postergados]
+Compromiso
+[Qué significa Compromiso]
+Lo que se acordó. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Para el
+[Qué significa Para el]
+Fecha comprometida. Pasado ese día, un compromiso pendiente figura como vencido.
+Estado
+[Qué significa Estado]
+Cómo está y cuántas veces llegó sin cumplir a una reunión posterior.
+Vinculado a
+[Qué significa Vinculado a]
+De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.
+Reunión
+[Qué significa Reunión]
+Reunión en la que se tomó.
+Certificar la obra
+Leo Paz
+20/11/2026
+Vencido
+Postergado 2 veces
+Plaza central
+20/10/2026"
+`;
+
+exports[`leads unknown addresses to the summary > screen at the start 1`] = `
+"[autosize measurement]
+Gabinete
+Resumen
+Reuniones
+Compromisos
+Mis compromisos
+[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+[Cargando…]"
+`;
+
+exports[`moves between the sections with the tabs > screen at the end 1`] = `
+"Gabinete
+Resumen
+Reuniones
+Compromisos
+Mis compromisos
+[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+3 reuniones cerradas; la última, el 17/11/2026.
+Vencidos
+2
+Pendientes
+3
+Cumplidos
+3
+Descartados
+1
+Cumplidos en término
+40 %
+De los cumplidos y los vencidos.
+Por responsable
+Buscar
+(Responsable)
+[Por responsable]
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplir los compromisos.
+Vencidos
+[Qué significa Vencidos]
+Pendientes cuya fecha ya pasó.
+Pendientes
+[Qué significa Pendientes]
+Pendientes que todavía están en fecha.
+Cumplidos
+[Qué significa Cumplidos]
+Los que se marcaron como cumplidos.
+Descartados
+[Qué significa Descartados]
+Los que se decidió no hacer.
+Cumplidos en término
+[Qué significa Cumplidos en término]
+Cumplidos hasta la fecha comprometida, sobre el total de cumplidos y vencidos.
+Leo Paz
+2
+1
+1
+0
+25 %
+Ana Gómez
+0
+2
+2
+1
+—
+Los más postergados
+[Los más postergados]
+Compromiso
+[Qué significa Compromiso]
+Lo que se acordó. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Para el
+[Qué significa Para el]
+Fecha comprometida. Pasado ese día, un compromiso pendiente figura como vencido.
+Estado
+[Qué significa Estado]
+Cómo está y cuántas veces llegó sin cumplir a una reunión posterior.
+Vinculado a
+[Qué significa Vinculado a]
+De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.
+Reunión
+[Qué significa Reunión]
+Reunión en la que se tomó.
+Certificar la obra
+Leo Paz
+20/11/2026
+Vencido
+Postergado 2 veces
+Plaza central
+20/10/2026"
+`;
+
+exports[`moves between the sections with the tabs > screen at the start 1`] = `
+"Gabinete
+Resumen
+Reuniones
+Compromisos
+Mis compromisos
+[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+[Cargando…]"
+`;
+
+exports[`opens commitments/co-1 > screen at the end 1`] = `
+"[autosize measurement]
+Gabinete
+Resumen
+Reuniones
+Compromisos
+Mis compromisos
+Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Fecha de cumplimiento
+—
+Tomado en la reunión del
+20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`opens commitments/co-1 > screen at the start 1`] = `
+"[autosize measurement]
+Gabinete
+Resumen
+Reuniones
+Compromisos
+Mis compromisos
+Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`opens meetings/me-1 > screen at the end 1`] = `
+"Gabinete
+Resumen
+Reuniones
+Compromisos
+Mis compromisos
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales
+[autosize measurement]"
+`;
+
+exports[`opens meetings/me-1 > screen at the start 1`] = `
+"Gabinete
+Resumen
+Reuniones
+Compromisos
+Mis compromisos
+Volver a reuniones
+[Cargando…]"
+`;
+
+exports[`opens meetings/new > screen at the end 1`] = `
+"[autosize measurement]
+Gabinete
+Resumen
+Reuniones
+Compromisos
+Mis compromisos
+Volver a reuniones
+Preparar reunión
+Fecha
+Participantes
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+Ambiental, octubre de 2026
+Estado de tablero
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Crítico
+Certificar la obra
+Compromiso
+[Subir Certificar la obra]
+[Bajar Certificar la obra]
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+·
+[Ver compromiso: Certificar la obra]
+Ver compromiso
+Plaza central
+Cronograma
+Tema propio
+Quedó de la reunión anterior
+[Subir Cronograma]
+[Bajar Cronograma]
+Tema propio
+Agregar
+Al crear la reunión, 2 compromisos pendientes se arrastran y cuentan como postergados una vez más.
+Cancelar
+Crear reunión"
+`;
+
+exports[`opens meetings/new > screen at the start 1`] = `
+"[autosize measurement]
+Gabinete
+Resumen
+Reuniones
+Compromisos
+Mis compromisos
+No tenés acceso a este tablero
+Pedile al administrador de tu municipio que te habilite."
+`;

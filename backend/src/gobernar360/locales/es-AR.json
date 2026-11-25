@@ -4,7 +4,8 @@
     "environment": "Ambiental",
     "economic": "Económico",
     "social": "Social",
-    "procedures": "Trámites"
+    "procedures": "Trámites",
+    "cabinet": "Gabinete"
   },
   "months": {
     "1": "enero",
@@ -19,6 +20,53 @@
     "10": "octubre",
     "11": "noviembre",
     "12": "diciembre"
+  },
+  "subjects": {
+    "month": "{{dashboard}}, {{month}} de {{year}}",
+    "withState": "{{label}} ({{state}})",
+    "states": {
+      "green": "en orden",
+      "yellow": "con atención",
+      "red": "crítico"
+    },
+    "restricted": {
+      "month": "Un estado mensual de un tablero al que no tenés acceso",
+      "record": "Un registro de un tablero al que no tenés acceso",
+      "projects": {
+        "project": "Un proyecto al que no tenés acceso"
+      }
+    },
+    "deleted": {
+      "record": "Un registro que ya no existe",
+      "projects": {
+        "project": "Un proyecto que ya no existe"
+      }
+    }
+  },
+  "cabinet": {
+    "restrictedLight": "Estado mensual de un tablero al que no tenés acceso",
+    "states": {
+      "open": "pendiente",
+      "overdue": "vencido",
+      "done": "cumplido",
+      "dropped": "descartado"
+    },
+    "minutes": {
+      "title": "Acta de la reunión de gabinete del {{date}}",
+      "attendees": "Participantes",
+      "guests": "También participaron: {{names}}",
+      "agenda": "Temario",
+      "agreed": "Compromisos",
+      "carried": "Compromisos que venían de reuniones anteriores",
+      "notes": "Notas generales",
+      "none": "Sin datos.",
+      "notDiscussed": "No se trató en esta reunión.",
+      "commitment": "{{owner}}, para el {{due_date}}",
+      "carriedOnce": "{{state}}, postergado una vez",
+      "carriedTimes": "{{state}}, postergado {{times}} veces",
+      "about": "Sobre: {{subject}}",
+      "closed": "Reunión cerrada por {{name}} el {{when}}."
+    }
   },
   "dateTime": "{{date}} a las {{time}}",
   "membersCsv": {

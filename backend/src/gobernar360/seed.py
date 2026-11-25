@@ -3,7 +3,8 @@
 For local development, demos and end-to-end tests only: every account shares a known password.
 """
 
-from datetime import date, timedelta
+import uuid
+from datetime import UTC, date, datetime, time, timedelta
 from decimal import Decimal
 
 from sqlalchemy import select, text
@@ -11,6 +12,15 @@ from sqlalchemy.orm import Session
 
 from gobernar360.core.db import Base, get_admin_engine, platform_session, tenant_session
 from gobernar360.core.security import hash_password
+from gobernar360.dashboards.cabinet import minutes
+from gobernar360.dashboards.cabinet.models import (
+    AgendaItem,
+    Attendee,
+    Carryover,
+    Commitment,
+    Meeting,
+    ProgressEntry,
+)
 from gobernar360.dashboards.economic.models import (
     Actor,
     ActorPerson,
@@ -52,6 +62,7 @@ from gobernar360.dashboards.social.models import (
     InterventionType,
     SocialPerson,
 )
+from gobernar360.platform.access import RequestContext
 from gobernar360.platform.models import (
     DashboardGrant,
     DashboardStatus,
@@ -61,6 +72,7 @@ from gobernar360.platform.models import (
     Person,
     User,
 )
+from gobernar360.platform.subjects import Subject, month_ref
 
 DEMO_PASSWORD = "gobernar360-demo"
 PROJECTS = "projects"
@@ -68,6 +80,7 @@ ENVIRONMENT = "environment"
 ECONOMIC = "economic"
 SOCIAL = "social"
 PROCEDURES = "procedures"
+CABINET = "cabinet"
 
 # Status lights of the current month and the five before it, newest first.
 STATUS_LIGHTS = {
@@ -76,6 +89,7 @@ STATUS_LIGHTS = {
     ECONOMIC: ("red", "yellow", "yellow", "green", "green", "green"),
     SOCIAL: ("green", "yellow", "green", "green", "red", "yellow"),
     PROCEDURES: ("yellow", "yellow", "red", "yellow", "green", "green"),
+    CABINET: ("green", "green", "yellow", "green", "yellow", "green"),
 }
 # Dashboards whose lights were added to existing demo databases in one go.
 FIRST_LIT_DASHBOARDS = (PROJECTS, ENVIRONMENT, ECONOMIC, SOCIAL)
@@ -279,6 +293,170 @@ PROCEDURE_ROWS = [
         None,
         False,
         ("DNI", "Foto carnet"),
+    ),
+]
+
+ADMIN = "admin@noetinger.test"
+EDITOR = "carga@noetinger.test"
+VIEWER = "lectura@noetinger.test"
+# Cabinet meetings as (days ago, guests, general notes, agenda). Agenda items are
+# (title, light as (dashboard, months ago), notes, discussed, commitments); commitments are
+# (description, project linked, owner, due in days from today, state, delivered in days from
+# today, progress notes as (days from today, author, note)). An item with a light has no title
+# of its own and its commitments without a project are linked to that month.
+CABINET_MEETINGS = [
+    (
+        63,
+        "Ing. Roberto Funes (asesor de obras)",
+        "",
+        [
+            (
+                "",
+                (PROJECTS, 4),
+                "Se repasaron las obras demoradas por falta de materiales.",
+                True,
+                [
+                    (
+                        "Reprogramar los hitos atrasados de obra pública",
+                        None,
+                        EDITOR,
+                        -40,
+                        "done",
+                        -42,
+                        [(-42, EDITOR, "Cronograma nuevo cargado en el tablero.")],
+                    )
+                ],
+            ),
+            (
+                "Avance de la pavimentación",
+                None,
+                "Falta el certificado de la segunda etapa.",
+                True,
+                [
+                    (
+                        "Certificar la segunda etapa de la pavimentación",
+                        "Pavimentación de la calle San Martín",
+                        ADMIN,
+                        -30,
+                        "open",
+                        None,
+                        [
+                            (-34, ADMIN, "El contratista pidió una prórroga."),
+                            (-9, ADMIN, "Inspección hecha; falta la firma del certificado."),
+                        ],
+                    )
+                ],
+            ),
+            (
+                "Ejecución presupuestaria",
+                None,
+                "",
+                True,
+                [
+                    (
+                        "Presentar la ejecución presupuestaria del trimestre",
+                        None,
+                        VIEWER,
+                        -45,
+                        "done",
+                        -38,
+                        [],
+                    )
+                ],
+            ),
+        ],
+    ),
+    (
+        35,
+        "",
+        "Próxima reunión en cuatro semanas.",
+        [
+            (
+                "",
+                (PROCEDURES, 2),
+                "Quedan trámites presenciales que podrían hacerse en línea.",
+                True,
+                [
+                    (
+                        "Habilitar en línea la renovación de licencias de conducir",
+                        None,
+                        EDITOR,
+                        -10,
+                        "open",
+                        None,
+                        [(-12, EDITOR, "Proveedor contratado, en pruebas.")],
+                    )
+                ],
+            ),
+            (
+                "Red de cloacas barrio Norte",
+                None,
+                "Los vecinos pidieron una fecha cierta.",
+                True,
+                [
+                    (
+                        "Informar a los vecinos la fecha de inicio de la obra",
+                        "Extensión de la red de cloacas barrio Norte",
+                        ADMIN,
+                        -14,
+                        "done",
+                        -15,
+                        [(-15, ADMIN, "Reunión con la vecinal.")],
+                    ),
+                    (
+                        "Pedir presupuesto para ampliar el ramal",
+                        "Extensión de la red de cloacas barrio Norte",
+                        EDITOR,
+                        -8,
+                        "dropped",
+                        -11,
+                        [(-11, ADMIN, "El ramal no se amplía este año.")],
+                    ),
+                ],
+            ),
+        ],
+    ),
+    (
+        7,
+        "",
+        "",
+        [
+            (
+                "",
+                (ECONOMIC, 0),
+                "Cayó la cantidad de asistencias a emprendedores.",
+                True,
+                [
+                    (
+                        "Convocar a la mesa de emprendedores",
+                        None,
+                        VIEWER,
+                        14,
+                        "open",
+                        None,
+                        [],
+                    )
+                ],
+            ),
+            (
+                "Recambio de luminarias",
+                None,
+                "",
+                True,
+                [
+                    (
+                        "Definir el orden de los barrios para el recambio",
+                        "Recambio a luminarias LED",
+                        EDITOR,
+                        5,
+                        "open",
+                        None,
+                        [],
+                    )
+                ],
+            ),
+            ("Cronograma de fin de año", None, "", False, []),
+        ],
     ),
 ]
 
@@ -1321,6 +1499,114 @@ def _seed_noetinger_procedures(municipality_id, today: date) -> None:
         _add_lights(db, municipality_id, PROCEDURES, today)
 
 
+def _seed_noetinger_cabinet(municipality_id, today: date) -> None:
+    """Three closed meetings, with commitments on projects and red lights, carried over from
+    one to the next while they were open; and the dashboard's own lights."""
+    # Minutes name what is linked, which the dashboards installed know how to do.
+    from gobernar360.main import register_dashboards
+
+    register_dashboards()
+    with tenant_session(municipality_id) as db:
+        people = {
+            user.email: user
+            for user in db.scalars(select(User).where(User.email.in_([ADMIN, EDITOR, VIEWER])))
+        }
+        membership = db.scalar(
+            select(Membership).where(
+                Membership.user_id == people[ADMIN].id,
+                Membership.municipality_id == municipality_id,
+            )
+        )
+        ctx = RequestContext(people[ADMIN], municipality_id, membership, db)
+        projects = dict(db.execute(select(Project.name, Project.id)).all())
+
+        def add(entity, on: date, author: uuid.UUID):
+            entity.municipality_id = municipality_id
+            entity.created_by = entity.updated_by = author
+            entity.created_at = entity.updated_at = datetime.combine(on, time(13, 30), UTC)
+            db.add(entity)
+            db.flush()
+            return entity
+
+        def light(months_ago: int, dashboard: str) -> Subject:
+            index = today.year * 12 + today.month - 1 - months_ago
+            return Subject(dashboard, "month", month_ref(index // 12, index % 12 + 1))
+
+        def finish(before: date | None) -> None:
+            """Apply what came of the commitments up to a date, as its meeting found it."""
+            for commitment, state, finished in pending[:]:
+                if before is not None and finished >= before:
+                    continue
+                commitment.state = state
+                commitment.completed_on = finished if state == "done" else None
+                add(
+                    ProgressEntry(
+                        commitment_id=commitment.id,
+                        changes={"state": ["open", state]}
+                        | (
+                            {"completed_on": [None, finished.isoformat()]}
+                            if state == "done"
+                            else {}
+                        ),
+                    ),
+                    finished,
+                    commitment.owner_id,
+                )
+                pending.remove((commitment, state, finished))
+
+        pending: list[tuple[Commitment, str, date]] = []
+        admin_id = people[ADMIN].id
+        for days_ago, guests, notes, agenda_rows in CABINET_MEETINGS:
+            held = today - timedelta(days=days_ago)
+            finish(held)
+            still_open = list(
+                db.scalars(select(Commitment).where(Commitment.state == "open")).unique()
+            )
+            meeting = add(Meeting(date=held, guests=guests, notes=notes), held, admin_id)
+            for user in people.values():
+                add(Attendee(meeting_id=meeting.id, user_id=user.id), held, admin_id)
+            for commitment in still_open:
+                add(Carryover(commitment_id=commitment.id, meeting_id=meeting.id), held, admin_id)
+            for position, (title, lit, item_notes, discussed, rows) in enumerate(agenda_rows):
+                item = AgendaItem(
+                    meeting_id=meeting.id,
+                    position=position,
+                    source="light" if lit else "manual",
+                    title=title,
+                    notes=item_notes,
+                    discussed=discussed,
+                )
+                item.subject = light(lit[1], lit[0]) if lit else None
+                add(item, held, admin_id)
+                for description, project, owner, due, state, finished, progress in rows:
+                    commitment = Commitment(
+                        item_id=item.id,
+                        description=description,
+                        owner_id=people[owner].id,
+                        due_date=today + timedelta(days=due),
+                    )
+                    # An older demo database may no longer have the project.
+                    commitment.subject = (
+                        Subject(PROJECTS, "project", str(projects[project]))
+                        if project in projects
+                        else item.subject
+                    )
+                    add(commitment, held, admin_id)
+                    if finished is not None:
+                        pending.append((commitment, state, today + timedelta(days=finished)))
+                    for when, author, note in progress:
+                        add(
+                            ProgressEntry(commitment_id=commitment.id, note=note),
+                            today + timedelta(days=when),
+                            people[author].id,
+                        )
+            meeting.minutes = minutes.snapshot(ctx, meeting, held)
+            meeting.closed_at = datetime.combine(held, time(15, 0), UTC)
+            db.flush()
+        finish(None)
+        _add_lights(db, municipality_id, CABINET, today)
+
+
 def _seed_newer_dashboards(today: date) -> bool:
     added = [
         _seed_newer_dashboard(ENVIRONMENT, _seed_noetinger_environment, today),
@@ -1329,6 +1615,8 @@ def _seed_newer_dashboards(today: date) -> bool:
         _seed_newer_dashboard(SOCIAL, _seed_noetinger_social, today),
         _seed_noetinger_status(today),
         _seed_newer_dashboard(PROCEDURES, _seed_noetinger_procedures, today),
+        # Last: its commitments point at projects and at the lights of the rest.
+        _seed_newer_dashboard(CABINET, _seed_noetinger_cabinet, today),
     ]
     return any(added)
 

@@ -4,8 +4,8 @@ Workspace of management dashboards for local governments (municipalities and
 communes). Each dashboard is an independent module, enabled per municipality
 and granted per user. Today it ships the platform base (municipalities, users,
 per-dashboard access, people registry, monthly status lights, accounts by email with
-notifications and single sign-on), the Projects, Environment, Economic, Social and
-Procedures dashboards, and a general overview.
+notifications and single sign-on), the Projects, Environment, Economic, Social,
+Procedures and Cabinet dashboards, and a general overview.
 
 - Platform and Projects: design `docs/superpowers/specs/2026-11-18-gobernar360-platform-design.md`,
   plan `docs/superpowers/plans/2026-11-18-platform-base-and-projects-dashboard.md`
@@ -23,6 +23,9 @@ Procedures dashboards, and a general overview.
 - Accounts by email, notifications and single sign-on: design
   `docs/superpowers/specs/2026-11-22-email-accounts-and-notifications-design.md`,
   task `docs/tasks/01-email-accounts-and-notifications.md`
+- Cabinet meetings, commitments and linkable subjects: design
+  `docs/superpowers/specs/2026-11-24-cabinet-commitments-design.md`,
+  task `docs/tasks/04-cabinet-commitments.md`
 - Functional reference: `tableros-de-gestion-portal-ril.md`
 
 ## Quick start
@@ -64,8 +67,8 @@ deletes everything first).
 |---|---|
 | `operador@gobernar360.test` | Platform operator (super-admin): creates and configures municipalities |
 | `admin@noetinger.test` | Administrator of Noetinger: manages its users and every dashboard |
-| `carga@noetinger.test` | Projects, environment, economic and social dashboards, data entry |
-| `lectura@noetinger.test` | Projects, environment, economic and social dashboards, read only |
+| `carga@noetinger.test` | Every dashboard of Noetinger, data entry |
+| `lectura@noetinger.test` | Every dashboard of Noetinger, read only |
 | `sinacceso@noetinger.test` | Member of Noetinger with no dashboard access |
 | `admin@comuna-demo.test` | Administrator of a second municipality (Comuna Demo) |
 
@@ -198,6 +201,35 @@ for, and who already holds that data.
   Access is per dashboard, not per area: the area is a field of the procedure.
 - A procedure's link only accepts `http(s)` addresses, because the screen renders it as a link.
 
+### Cabinet dashboard
+
+What was agreed about what the other dashboards show: meetings, the commitments taken in
+them, who owes each one and by when.
+
+- A municipality has one open meeting at a time, never dated before the last one. Closing it
+  copies its minutes, which no later change reaches, and nothing of it can be edited again.
+- The proposed agenda has the dashboards whose latest light is yellow or red (and those whose
+  month that just ended closed in red, even if the current one is already green), commitments
+  overdue or due before the meeting, and what the previous one left undiscussed. It only
+  considers lights of dashboards the person preparing it can open, and says how many it left out.
+- Preparing a meeting carries over every open commitment, whatever its due date. How many times
+  one was postponed is how many meetings it was carried to.
+- "Overdue" is computed from the date, never stored. The share delivered on time counts overdue
+  commitments against it.
+- Editors record and change; whoever owes a commitment may add progress notes even as a viewer.
+
+### Linkable subjects
+
+How one module points at another without importing it (`platform/subjects.py`):
+
+- Every dashboard's months can be linked. A dashboard also declares which of its records can,
+  how to search and name them and who may see them, with `DashboardModule.linkable`
+  (Projects: `dashboards/projects/subjects.py`).
+- Links are checked on write against the municipality and the person's access. Whoever cannot
+  see what is linked reads that something of that kind is, and nothing else.
+- A module that keeps commitments gives `DashboardModule.get_commitments`; status strips and
+  record pages (`<SubjectCommitments>`) show them to whoever can open both dashboards.
+
 ### Status lights
 
 Each dashboard has a monthly traffic light (green, yellow or red) that its administrators
@@ -207,7 +239,7 @@ indicators. A month may be left without one, and months that have not started ca
 - The light lives in the platform (`platform/status.py`, `platform/status_router.py`,
   table `dashboard_statuses`), so a new dashboard gets it without code of its own.
 - `<StatusStrip dashboardKey year />` at the top of a dashboard's summary shows the twelve
-  months and lets administrators change them.
+  months, lets administrators change them and lists the open commitments about each one.
 - The general overview shows, per dashboard, its icon on the color of the latest month that
   has a light and the lights set in the five months before it.
 - A light is never shown by color alone: every state has its own mark and its name.
@@ -226,6 +258,7 @@ file. `dashboards/tableHeaders.test.ts` fails when a dashboard table uses a plai
    its tables in the migration, add the package to both contracts in `backend/.importlinter`,
    and add its name under `dashboards.<key>` in `backend/src/gobernar360/locales/es-AR.json`.
    To email its administrators about events, give the module `alert_kinds` and `get_alerts`.
+   To let commitments point at its records, give it `linkable`.
    Helpers shared by dashboards live in `platform` (`tenant_crud`, `api_types`, `csv_export`).
 2. Frontend: create `src/dashboards/<key>/` with a default-exported routes component and add an
    entry (with its icon) to `src/dashboards/registry.ts`; put its texts in

@@ -1,8 +1,21 @@
-import { ActionIcon, Alert, Group, Menu, Paper, Stack, Text, UnstyledButton } from '@mantine/core'
+import {
+  ActionIcon,
+  Alert,
+  Badge,
+  Group,
+  Menu,
+  Paper,
+  Stack,
+  Text,
+  UnstyledButton,
+} from '@mantine/core'
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
 import { useAuth } from '../authContext'
+import { useMonthCommitments } from '../commitments/api'
+import { MonthCommitments } from '../commitments/MonthCommitments'
+import type { SubjectCommitment } from '../commitments/types'
 import { errorMessage } from '../errorMessage'
 import { hasLevel } from '../access'
 import { currentYear } from '../years'
@@ -20,7 +33,7 @@ function hasStarted(year: number, month: number): boolean {
 
 /**
  * The light of each month of a year for one dashboard. Its administrators set
- * them here; everyone else only sees them.
+ * them here; everyone else only sees them. Below, what was agreed about each month.
  */
 export function StatusStrip(props: {
   dashboardKey: string
@@ -34,7 +47,14 @@ export function StatusStrip(props: {
   const change = useSetStatus(props.dashboardKey)
   const canSet = hasLevel(me, props.dashboardKey, 'admin')
   const colors = new Map(status.data?.map((entry) => [entry.month, entry.color]))
-  const error = change.error ?? (status.isError ? errorMessage(status.error) : null)
+  const commitments = useMonthCommitments(props.dashboardKey, props.year)
+  const byMonth = new Map<number, SubjectCommitment[]>()
+  for (const commitment of commitments.data ?? []) {
+    const number = Number(commitment.ref.split('-')[1])
+    byMonth.set(number, [...(byMonth.get(number) ?? []), commitment])
+  }
+  const failed = status.error ?? commitments.error
+  const error = change.error ?? (failed ? errorMessage(failed) : null)
 
   const month = (number: number) => {
     const color: StatusColor | null = colors.get(number) ?? null
@@ -131,12 +151,24 @@ export function StatusStrip(props: {
         </Group>
         <Group gap="md" role="list">
           {MONTHS.map((number) => (
-            <div key={number} role="listitem">
+            <div key={number} role="listitem" style={{ position: 'relative' }}>
               {month(number)}
+              {byMonth.has(number) && (
+                // How many are listed below, at a glance.
+                <Badge
+                  circle
+                  size="sm"
+                  aria-hidden
+                  style={{ position: 'absolute', top: -6, right: -8, pointerEvents: 'none' }}
+                >
+                  {byMonth.get(number)?.length}
+                </Badge>
+              )}
             </div>
           ))}
         </Group>
         {error && <Alert color="red">{error}</Alert>}
+        {byMonth.size > 0 && <MonthCommitments byMonth={byMonth} colors={colors} />}
       </Stack>
     </Paper>
   )

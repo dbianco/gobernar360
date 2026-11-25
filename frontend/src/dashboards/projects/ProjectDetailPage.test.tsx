@@ -178,3 +178,23 @@ it('saves the edited project and closes the form, which Escape also closes', asy
   await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
   expect(saved[0].body).toMatchObject({ objective_id: null })
 })
+
+it('shows the commitments taken about the project', async () => {
+  const requests = mockApi('get', '/subjects/projects/project/pr-1/commitments', [
+    {
+      id: 'co-1',
+      ref: 'pr-1',
+      description: 'Certificar la obra',
+      owner: 'Ana Gómez',
+      due_date: '2026-11-30',
+      overdue: false,
+      times_postponed: 0,
+      path: '/d/cabinet/commitments/co-1',
+    },
+  ])
+  renderDetail(makeProject({ id: 'pr-1' }))
+
+  const section = await screen.findByRole('region', { name: t('commitments.title') })
+  expect(within(section).getByRole('link', { name: 'Certificar la obra' })).toBeInTheDocument()
+  expect(requests).toHaveLength(1)
+})

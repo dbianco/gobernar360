@@ -1,0 +1,713 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`leads an editor to the meetings when there is nothing yet > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+Todavía no hay compromisos
+Ir a reuniones"
+`;
+
+exports[`leads an editor to the meetings when there is nothing yet > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+[Cargando…]"
+`;
+
+exports[`moves the status strip between years > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2025
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+3 reuniones cerradas; la última, el 17/11/2026.
+Vencidos
+2
+Pendientes
+3
+Cumplidos
+3
+Descartados
+1
+Cumplidos en término
+40 %
+De los cumplidos y los vencidos.
+Por responsable
+Buscar
+(Responsable)
+[Por responsable]
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplir los compromisos.
+Vencidos
+[Qué significa Vencidos]
+Pendientes cuya fecha ya pasó.
+Pendientes
+[Qué significa Pendientes]
+Pendientes que todavía están en fecha.
+Cumplidos
+[Qué significa Cumplidos]
+Los que se marcaron como cumplidos.
+Descartados
+[Qué significa Descartados]
+Los que se decidió no hacer.
+Cumplidos en término
+[Qué significa Cumplidos en término]
+Cumplidos hasta la fecha comprometida, sobre el total de cumplidos y vencidos.
+Leo Paz
+2
+1
+1
+0
+25 %
+Ana Gómez
+0
+2
+2
+1
+—
+Los más postergados
+[Los más postergados]
+Compromiso
+[Qué significa Compromiso]
+Lo que se acordó. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Para el
+[Qué significa Para el]
+Fecha comprometida. Pasado ese día, un compromiso pendiente figura como vencido.
+Estado
+[Qué significa Estado]
+Cómo está y cuántas veces llegó sin cumplir a una reunión posterior.
+Vinculado a
+[Qué significa Vinculado a]
+De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.
+Reunión
+[Qué significa Reunión]
+Reunión en la que se tomó.
+Certificar la obra
+Leo Paz
+20/11/2026
+Vencido
+Postergado 2 veces
+Plaza central
+20/10/2026"
+`;
+
+exports[`moves the status strip between years > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+[Cargando…]"
+`;
+
+exports[`says when it cannot be loaded > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says when it cannot be loaded > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+[Cargando…]"
+`;
+
+exports[`says when nothing was postponed > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+3 reuniones cerradas; la última, el 17/11/2026.
+Vencidos
+2
+Pendientes
+3
+Cumplidos
+3
+Descartados
+1
+Cumplidos en término
+40 %
+De los cumplidos y los vencidos.
+Por responsable
+Buscar
+(Responsable)
+[Por responsable]
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplir los compromisos.
+Vencidos
+[Qué significa Vencidos]
+Pendientes cuya fecha ya pasó.
+Pendientes
+[Qué significa Pendientes]
+Pendientes que todavía están en fecha.
+Cumplidos
+[Qué significa Cumplidos]
+Los que se marcaron como cumplidos.
+Descartados
+[Qué significa Descartados]
+Los que se decidió no hacer.
+Cumplidos en término
+[Qué significa Cumplidos en término]
+Cumplidos hasta la fecha comprometida, sobre el total de cumplidos y vencidos.
+Leo Paz
+2
+1
+1
+0
+25 %
+Ana Gómez
+0
+2
+2
+1
+—
+Los más postergados
+Ningún compromiso pendiente fue postergado."
+`;
+
+exports[`says when nothing was postponed > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+[Cargando…]"
+`;
+
+exports[`searches the owners > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+3 reuniones cerradas; la última, el 17/11/2026.
+Vencidos
+2
+Pendientes
+3
+Cumplidos
+3
+Descartados
+1
+Cumplidos en término
+40 %
+De los cumplidos y los vencidos.
+Por responsable
+Buscar
+(Responsable)
+[Borrar la búsqueda]
+Nada coincide con la búsqueda.
+Los más postergados
+[Los más postergados]
+Compromiso
+[Qué significa Compromiso]
+Lo que se acordó. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Para el
+[Qué significa Para el]
+Fecha comprometida. Pasado ese día, un compromiso pendiente figura como vencido.
+Estado
+[Qué significa Estado]
+Cómo está y cuántas veces llegó sin cumplir a una reunión posterior.
+Vinculado a
+[Qué significa Vinculado a]
+De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.
+Reunión
+[Qué significa Reunión]
+Reunión en la que se tomó.
+Certificar la obra
+Leo Paz
+20/11/2026
+Vencido
+Postergado 2 veces
+Plaza central
+20/10/2026"
+`;
+
+exports[`searches the owners > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+[Cargando…]"
+`;
+
+exports[`shows commitments by state and owner, the share on time and the most postponed > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+3 reuniones cerradas; la última, el 17/11/2026.
+Vencidos
+2
+Pendientes
+3
+Cumplidos
+3
+Descartados
+1
+Cumplidos en término
+40 %
+De los cumplidos y los vencidos.
+Por responsable
+Buscar
+(Responsable)
+[Por responsable]
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplir los compromisos.
+Vencidos
+[Qué significa Vencidos]
+Pendientes cuya fecha ya pasó.
+Pendientes
+[Qué significa Pendientes]
+Pendientes que todavía están en fecha.
+Cumplidos
+[Qué significa Cumplidos]
+Los que se marcaron como cumplidos.
+Descartados
+[Qué significa Descartados]
+Los que se decidió no hacer.
+Cumplidos en término
+[Qué significa Cumplidos en término]
+Cumplidos hasta la fecha comprometida, sobre el total de cumplidos y vencidos.
+Leo Paz
+2
+1
+1
+0
+25 %
+Ana Gómez
+0
+2
+2
+1
+—
+Los más postergados
+[Los más postergados]
+Compromiso
+[Qué significa Compromiso]
+Lo que se acordó. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Para el
+[Qué significa Para el]
+Fecha comprometida. Pasado ese día, un compromiso pendiente figura como vencido.
+Estado
+[Qué significa Estado]
+Cómo está y cuántas veces llegó sin cumplir a una reunión posterior.
+Vinculado a
+[Qué significa Vinculado a]
+De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.
+Reunión
+[Qué significa Reunión]
+Reunión en la que se tomó.
+Certificar la obra
+Leo Paz
+20/11/2026
+Vencido
+Postergado 2 veces
+Plaza central
+20/10/2026"
+`;
+
+exports[`shows commitments by state and owner, the share on time and the most postponed > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+[Cargando…]"
+`;
+
+exports[`tells a viewer who loads them > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+Todavía no hay compromisos
+Los carga quien prepara las reuniones."
+`;
+
+exports[`tells a viewer who loads them > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar compromisos (CSV)
+[Cargando…]"
+`;

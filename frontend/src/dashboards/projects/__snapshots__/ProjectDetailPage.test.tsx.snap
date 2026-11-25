@@ -363,3 +363,51 @@ Agregar hito"
 `;
 
 exports[`shows its milestones > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`shows the commitments taken about the project > screen at the end 1`] = `
+"Volver a proyectos
+Pavimentación
+En implementación
+Prioridad
+A
+Editar
+Eliminar
+Avance
+:
+0 %
+Sin descripción.
+Eje
+Ciudad inclusiva
+Objetivo
+—
+Dependencia
+Obras Públicas
+Responsable
+—
+Programa
+—
+Año
+2024
+Fecha de inicio
+—
+Fecha de fin
+—
+Presupuesto planificado
+$ 0
+Presupuesto ejecutado
+$ 0
+Objetivos de Desarrollo Sostenible
+—
+Hitos
+Este proyecto todavía no tiene hitos.
+[Hito]
+(Hito)
+[Fecha comprometida]
+Agregar hito
+[Compromisos pendientes]
+Compromisos pendientes
+Certificar la obra
+Ana Gómez, para el 30/11/2026"
+`;
+
+exports[`shows the commitments taken about the project > screen at the start 1`] = `"[Cargando…]"`;

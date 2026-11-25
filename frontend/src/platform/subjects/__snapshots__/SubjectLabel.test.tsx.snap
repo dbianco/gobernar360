@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`has a text for kinds it does not know and for months > screen at the end 1`] = `"Un estado mensual de un tablero al que no tenés acceso"`;
+
+exports[`has a text for kinds it does not know and for months > screen at the start 1`] = `"Un registro de un tablero al que no tenés acceso"`;
+
+exports[`names a record and leads to it > screen at the end 1`] = `"Plaza central"`;
+
+exports[`names a record and leads to it > screen at the start 1`] = `"Plaza central"`;
+
+exports[`says a project the reader cannot open is linked, and nothing about it > screen at the end 1`] = `"Un proyecto al que no tenés acceso"`;
+
+exports[`says a project the reader cannot open is linked, and nothing about it > screen at the start 1`] = `"Un proyecto al que no tenés acceso"`;
+
+exports[`says the state of a month besides showing its color > screen at the end 1`] = `
+"Ambiental, octubre de 2026
+(Crítico)"
+`;
+
+exports[`says the state of a month besides showing its color > screen at the start 1`] = `
+"Ambiental, octubre de 2026
+(Crítico)"
+`;
+
+exports[`says when what was linked no longer exists > screen at the end 1`] = `"Un registro que ya no existe"`;
+
+exports[`says when what was linked no longer exists > screen at the start 1`] = `"Un proyecto que ya no existe"`;
+
+exports[`shows only the state next to a title that already names the month > screen at the start 1`] = `"Crítico"`;

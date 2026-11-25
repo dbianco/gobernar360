@@ -2,6 +2,7 @@ import {
   IconBuildingStore,
   IconBulb,
   IconFileText,
+  IconGavel,
   IconHeartHandshake,
   IconLeaf,
   type Icon,
@@ -57,6 +58,13 @@ export const dashboards: DashboardEntry[] = [
     icon: IconFileText,
     basePath: '/d/procedures',
     routes: lazy(() => import('./procedures/routes')),
+  },
+  {
+    key: 'cabinet',
+    labelKey: 'cabinet.title',
+    icon: IconGavel,
+    basePath: '/d/cabinet',
+    routes: lazy(() => import('./cabinet/routes')),
   },
 ]
 

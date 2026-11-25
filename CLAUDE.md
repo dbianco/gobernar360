@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-gobernar360 is a multi-tenant workspace of management dashboards for Argentine local governments. A FastAPI + SQLAlchemy + PostgreSQL backend (`backend/`, managed with uv, Python 3.12) and a React 19 + Mantine + TanStack Query web app (`frontend/`, Vite, npm). Each dashboard (projects, environment, economic, social, procedures) is an independent module, enabled per municipality by the platform operator and granted per user.
+gobernar360 is a multi-tenant workspace of management dashboards for Argentine local governments. A FastAPI + SQLAlchemy + PostgreSQL backend (`backend/`, managed with uv, Python 3.12) and a React 19 + Mantine + TanStack Query web app (`frontend/`, Vite, npm). Each dashboard (projects, environment, economic, social, procedures, cabinet) is an independent module, enabled per municipality by the platform operator and granted per user.
 
-`README.md` documents demo accounts, roles, and per-dashboard domain rules. Each feature has a design and a plan under `docs/superpowers/specs/` and `docs/superpowers/plans/`; `tableros-de-gestion-portal-ril.md` is the functional reference (Spanish). `docs/tasks/NN-*.md` are briefs for larger pieces of work (01, email and invitations, is built; the rest are not: indicator targets, complaints, bulk import, geography, deployment...), each with a task description, how completion is judged, and notes; read the relevant one before starting such a task.
+`README.md` documents demo accounts, roles, and per-dashboard domain rules. Each feature has a design and a plan under `docs/superpowers/specs/` and `docs/superpowers/plans/`; `tableros-de-gestion-portal-ril.md` is the functional reference (Spanish). `docs/tasks/NN-*.md` are briefs for larger pieces of work (01, email and invitations, and 04, cabinet commitments, are built; the rest are not: indicator targets, complaints, bulk import, geography, deployment...), each with a task description, how completion is judged, and notes; read the relevant one before starting such a task.
 
 ## Commands
 
@@ -64,7 +64,7 @@ Dashboards may import `core`, `platform` and `dashboards/registry.py`, never eac
 
 ### Dashboard module contract
 
-Each backend dashboard package exposes `module = DashboardModule(key, router, get_summary)` (`dashboards/registry.py`). `main.register_dashboards()` registers the modules (the CLI calls it too) and `create_app` mounts each router at `/api/dashboards/<key>`. `get_summary` feeds the general overview; optional `alert_kinds` and `get_alerts(db, today) -> list[Alert]` feed email notifications (projects raises `milestone_overdue` in `dashboards/projects/alerts.py`). `platform` reaches dashboards only through the registry.
+Each backend dashboard package exposes `module = DashboardModule(key, router, get_summary)` (`dashboards/registry.py`). `main.register_dashboards()` registers the modules (the CLI calls it too) and `create_app` mounts each router at `/api/dashboards/<key>`. `get_summary` feeds the general overview; optional `alert_kinds` and `get_alerts(db, today) -> list[Alert]` feed email notifications (projects raises `milestone_overdue` in `dashboards/projects/alerts.py`); optional `linkable` declares records other modules may point at, and `get_commitments` gives the open commitments a module keeps about them (see Linkable subjects). `platform` reaches dashboards only through the registry.
 
 Inside a dashboard package the convention is: `access.py` (the `KEY` plus `Viewer`/`Editor`/`Admin` annotated dependencies), `models.py`, `schemas.py`, one `*_router.py` per resource, `summary.py`, `export.py` (CSV).
 
@@ -86,6 +86,15 @@ All municipalities share one database, separated by PostgreSQL RLS, not by query
 Sessions are an opaque token in the `g360_session` cookie (hashed in the `sessions` table), which also holds the active municipality. Levels are `VIEWER < EDITOR < ADMIN` per dashboard; a municipality admin is `ADMIN` on every enabled dashboard; the platform operator sees configuration only and never reaches dashboard routes. Routes declare the level by their context parameter type (`ctx: Editor`).
 
 Unsafe methods under `/api` are rejected without the header `X-Requested-With: gobernar360` (CSRF protection). The frontend `api()` client and the pytest `client` fixture both send it.
+
+### Linkable subjects
+
+One module points at another's months or records only through `platform/subjects.py`. A subject is `(dashboard_key, kind, ref)`: kind `month` exists for every dashboard (`ref` is `2026-10`); other kinds are declared in `DashboardModule.linkable` (`LinkableRecord(kind, search, describe, min_level)`; projects: `dashboards/projects/subjects.py`). A table that links uses `SubjectMixin` plus `subject_check()`.
+
+- **On write** pass the request's `SubjectIn` through `subjects.resolve()`: there is no foreign key behind a link. Missing and not-visible get the same answer on purpose.
+- **On read** use `subjects.present()`; never store or return a linked record's name by other means. `describe()` ignores who is asking and is only for copies that are `redact()`ed later (meeting minutes). Agenda items about a light store no title for the same reason.
+- **Reverse view:** `/api/subjects/...` collects `get_commitments` from every module the member can open. `StatusStrip` and `<SubjectCommitments subject>` show it; a new record page only has to render the latter.
+- `tests/platform/test_subjects.py` exercises the contract with a dashboard that exists only in the test.
 
 ### API conventions
 
@@ -123,7 +132,7 @@ Alembic revisions are numbered sequentially (`0009_procedures.py`). After autoge
 
 - Backend tests hit the real `gobernar360_test` database: `conftest.py` sets the database env vars before importing the app, migrates once per session and empties every table after each test (with `DELETE`, faster than `TRUNCATE` for a few rows). It also swaps in a cheap argon2 hasher and builds the app once per session (`app` fixture; `client` clears `dependency_overrides` after each test). With `GOBERNAR360_TEST_DATABASES=N` each test process takes its own `gobernar360_test_{k}` (advisory lock), re-chosen after a fork; mutmut needs it, ordinary runs do not. Data is built with `tests/factories.py` and `tests/<dashboard>/factories.py`, which write through the owner connection; assertions go through the HTTP `client`. New tenant resources get a cross-municipality isolation test.
 - Emails are asserted from the outbox table (`emails_to`, `link_token`, `accept_invitation` in `tests/factories.py`; `body` is the plain text, `body_html` the HTML); `make_user(password=None)` is an invited account; `configure(municipality, notification_emails, sso)` sets Configuración. `tests/fake_smtp.py` is a real SMTP server for transport tests; settings are changed per test with `monkeypatch.setattr(get_settings(), ...)`.
-- Frontend component tests render with `renderApp` (`src/test/render.tsx`) or the dashboard's `testRender.tsx`, and mock HTTP with `mockApi` / `mockApiError` (`src/test/server.ts`, msw). Unhandled requests are errors; default handlers answer every dashboard's `GET .../status` with `[]` (so summary pages render their `StatusStrip`), `GET /auth/sso` and `GET /overview`. Use the `t()` helper exported by `src/test/render.tsx` instead of hard-coding Spanish copy.
+- Frontend component tests render with `renderApp` (`src/test/render.tsx`) or the dashboard's `testRender.tsx`, and mock HTTP with `mockApi` / `mockApiError` (`src/test/server.ts`, msw). Unhandled requests are errors; default handlers answer every dashboard's `GET .../status` and `GET /subjects/.../commitments` with `[]` (so summary and record pages render their `StatusStrip` and commitments), `GET /auth/sso` and `GET /overview`. Use the `t()` helper exported by `src/test/render.tsx` instead of hard-coding Spanish copy.
 - Every component test ends with a snapshot of the screen it leaves (`src/test/setup.ts`): once no request is in flight and no spinner shows, `screenText()` (`src/test/screen.ts`: the text, accessible names and placeholders, one per line; select options and the status strip left out) is compared with `__snapshots__/<file>.snap`. After an intended change of copy or layout, review the diff and run `npx vitest --run -u`. Tests run on a fixed date (2026-11-23, only `Date` is faked) so screens that show the current year do not change with the calendar; a test that needs another date sets it with `vi.useFakeTimers({ toFake: ['Date'], now })`.
 - Playwright specs sign in as the demo accounts from `seed.py` and select by the Spanish UI text.
 - **Coverage and mutation testing** (both held at or above their targets: 95 % coverage of statements, branches, functions and lines; 80 % of mutants killed). Assert what a caller sees, exactly: the whole error envelope (`{"code", "message"}`), the email text, the order of a list, the log message an operator would read (`caplog`; `migrations/env.py` keeps the app's loggers on). Test boundaries (the last valid year, 300 vs 301 characters) and ties in orderings. On the frontend, cover the error alert, the empty state, the Escape/cancel path and the failed save of every form and list.
@@ -139,6 +148,7 @@ Alembic revisions are numbered sequentially (`0009_procedures.py`). After autoge
 
 - **People registry**: one `people` table per municipality in `platform/people.py`, with no routes of its own. A dashboard keeps its own data in a link table (`economic_people`, `social_people`) and only lists people it incorporated; the rest of the registry is reachable only by exact document number. Removing a person from the last dashboard that uses them deletes the registry row.
 - **Social reserved text**: an intervention's `description` is returned only to editors and above (`dashboards/social/access.py`, `reads_reserved_text`). Every response containing interventions must be built by `interventions_router.present`; the CSV export omits the column for viewers.
+- **Cabinet:** one open meeting per municipality (partial unique index). Every write to a meeting goes through `meetings_router._open_meeting`, which locks it and refuses closed ones; minutes are a copy made on closing (`minutes.snapshot`). The postponed count is the number of `cabinet_carryovers` rows, never a counter. `overdue` is derived (`rules.effective_state`).
 - **Procedures** is an inventory, not case tracking; only procedures marked active count in summaries and reports, and a procedure's link accepts only `http(s)` URLs because the UI renders it as a link.
 
 ## Configuration

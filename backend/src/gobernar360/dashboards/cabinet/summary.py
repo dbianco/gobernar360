@@ -1,0 +1,151 @@
+"""How the municipality is delivering on what its cabinet agreed."""
+
+from collections import Counter
+from datetime import date
+
+from fastapi import APIRouter
+from pydantic import BaseModel
+from sqlalchemy import select
+
+from gobernar360.dashboards.cabinet.access import Viewer
+from gobernar360.dashboards.cabinet.models import Commitment, Meeting
+from gobernar360.dashboards.cabinet.present import present_commitments
+from gobernar360.dashboards.cabinet.rules import (
+    DONE,
+    EFFECTIVE_STATES,
+    OPEN,
+    OVERDUE,
+    CommitmentState,
+    on_time_share,
+)
+from gobernar360.dashboards.cabinet.schemas import CommitmentOut, UserRef
+from gobernar360.dashboards.registry import SubjectCommitment, SubjectsQuery, SummaryIndicator
+from gobernar360.platform.access import RequestContext
+from gobernar360.platform.clock import Today
+
+router = APIRouter()
+
+MOST_POSTPONED = 10
+
+
+class OwnerRow(BaseModel):
+    owner: UserRef
+    by_state: dict[str, int]
+    on_time_share: float | None
+
+
+class SummaryOut(BaseModel):
+    total: int
+    by_state: dict[str, int]
+    on_time_share: float | None
+    # Whoever owes the most overdue first.
+    by_owner: list[OwnerRow]
+    # Still open, the most postponed first.
+    most_postponed: list[CommitmentOut]
+    closed_meetings: int
+    last_meeting: date | None
+
+
+def _states(commitments: list[CommitmentOut]) -> dict[str, int]:
+    counts = Counter(c.state for c in commitments)
+    return {state: counts[state] for state in EFFECTIVE_STATES}
+
+
+def _on_time(commitments: list[CommitmentOut], today: date) -> float | None:
+    return on_time_share(
+        (
+            CommitmentState(OPEN if c.state == OVERDUE else c.state, c.due_date, c.completed_on)
+            for c in commitments
+        ),
+        today,
+    )
+
+
+def _by_owner(commitments: list[CommitmentOut], today: date) -> list[OwnerRow]:
+    grouped: dict[object, list[CommitmentOut]] = {}
+    for commitment in commitments:
+        grouped.setdefault(commitment.owner.id, []).append(commitment)
+    rows = [
+        OwnerRow(
+            owner=group[0].owner, by_state=_states(group), on_time_share=_on_time(group, today)
+        )
+        for group in grouped.values()
+    ]
+    return sorted(
+        rows,
+        key=lambda row: (
+            -row.by_state[OVERDUE],
+            -row.by_state[OPEN],
+            row.owner.full_name,
+            str(row.owner.id),
+        ),
+    )
+
+
+def _all(ctx: RequestContext, today: date) -> list[CommitmentOut]:
+    rows = ctx.db.scalars(
+        select(Commitment).order_by(Commitment.due_date, Commitment.created_at, Commitment.id)
+    ).unique()
+    return present_commitments(ctx, list(rows), today)
+
+
+@router.get("/summary")
+def get_dashboard_summary(ctx: Viewer, today: Today) -> SummaryOut:
+    commitments = _all(ctx, today)
+    postponed = [c for c in commitments if c.state in (OPEN, OVERDUE) and c.times_postponed]
+    closed = ctx.db.scalars(
+        select(Meeting.date).where(Meeting.closed_at.is_not(None)).order_by(Meeting.date.desc())
+    ).all()
+    return SummaryOut(
+        total=len(commitments),
+        by_state=_states(commitments),
+        on_time_share=_on_time(commitments, today),
+        by_owner=_by_owner(commitments, today),
+        # Stable sort: among equals, the one due first.
+        most_postponed=sorted(postponed, key=lambda c: -c.times_postponed)[:MOST_POSTPONED],
+        closed_meetings=len(closed),
+        last_meeting=closed[0] if closed else None,
+    )
+
+
+def get_summary(ctx: RequestContext, today: date) -> list[SummaryIndicator]:
+    """Indicators for the general overview."""
+    commitments = _all(ctx, today)
+    if not commitments:
+        return []
+    states = _states(commitments)
+    return [
+        SummaryIndicator("cabinet.pending", states[OPEN] + states[OVERDUE]),
+        SummaryIndicator("cabinet.overdue", states[OVERDUE]),
+        SummaryIndicator("cabinet.done", states[DONE]),
+        SummaryIndicator("cabinet.on_time_ratio", _on_time(commitments, today), "ratio"),
+    ]
+
+
+def get_commitments(
+    ctx: RequestContext, today: date, query: SubjectsQuery
+) -> list[SubjectCommitment]:
+    """Open commitments about some subjects, for whoever shows them (see the registry)."""
+    rows = ctx.db.scalars(
+        select(Commitment).where(
+            Commitment.state == OPEN,
+            Commitment.subject_dashboard == query.dashboard_key,
+            Commitment.subject_kind == query.kind,
+            Commitment.subject_ref.in_(query.refs),
+        )
+    ).unique()
+    rows = list(rows)
+    shown = {c.id: c for c in present_commitments(ctx, rows, today)}
+    return [
+        SubjectCommitment(
+            id=row.id,
+            ref=row.subject_ref,
+            description=row.description,
+            owner=row.owner.full_name,
+            due_date=row.due_date,
+            overdue=shown[row.id].state == OVERDUE,
+            times_postponed=shown[row.id].times_postponed,
+            path=f"/d/cabinet/commitments/{row.id}",
+        )
+        for row in rows
+    ]
