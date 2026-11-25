@@ -181,7 +181,9 @@ def set_state(
     """Mark it done or dropped, or open it again."""
     commitment = commitments.load(ctx, commitment_id, lock=True)
     rights = commitments.rights(ctx, commitment)
-    commitments.require(rights.finish if payload.state == "done" else rights.manage)
+    # Whoever only owes it may say it is done, but not undo someone's decision to drop it.
+    says_done = payload.state == "done" and commitment.state != "dropped"
+    commitments.require(rights.finish if says_done else rights.manage)
     commitments.set_state(ctx, commitment, today, payload.state, payload.completed_on, payload.note)
     return _detail(ctx, commitment, today)
 

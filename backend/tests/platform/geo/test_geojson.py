@@ -50,6 +50,9 @@ def test_the_edges_of_the_world_are_accepted(coordinates):
         [-180.0001, 0],
         [0, 90.0001],
         [0, -90.0001],
+        # Too big for a float: refused, not an error of the server.
+        [10**400, 0],
+        [0, -(10**400)],
         [float("nan"), 0],
         [0, float("inf")],
         ["-62", "-32"],

@@ -145,7 +145,7 @@ test('commitments appear on the project and beside the red month they are about'
   await expect(openCommitments(page)).toContainText('Leo Lectura')
 
   await sidebar(page).getByRole('link', { name: 'Ambiental' }).click()
-  await page.getByLabel('Año').selectOption(String(lastMonth.getFullYear()))
+  await page.getByRole('combobox', { name: 'Año' }).selectOption(String(lastMonth.getFullYear()))
   const month = openCommitments(page).getByRole('group', { name: `${MONTH}: Crítico` })
   await expect(month).toContainText(ABOUT_LIGHT)
   await month.getByRole('link', { name: ABOUT_LIGHT }).click()
@@ -223,7 +223,7 @@ test('an editor marks it done and it leaves the month and the pending ones', asy
   await expect(history).toContainText('Balanza nueva instalada.')
   await expect(history).toContainText('Estado: Pendiente → Cumplido')
   await sidebar(page).getByRole('link', { name: 'Ambiental' }).click()
-  await page.getByLabel('Año').selectOption(String(lastMonth.getFullYear()))
+  await page.getByRole('combobox', { name: 'Año' }).selectOption(String(lastMonth.getFullYear()))
   await expect(page.getByRole('region', { name: 'Estado mensual' })).toBeVisible()
   await expect(page.getByText(ABOUT_LIGHT)).toHaveCount(0)
   await openCabinet(page)

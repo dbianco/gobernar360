@@ -394,6 +394,21 @@ def test_the_creator_corrects_drops_and_reopens_but_does_not_say_it_is_done(clie
     assert set_state(client, given, "open").json()["state"] == "open"
 
 
+def test_whoever_owes_a_dropped_one_cannot_bring_it_back_by_saying_it_is_done(client, people):
+    as_(client, "ana")
+    given = give(client, people["leo"])
+    set_state(client, given, "dropped")
+
+    as_(client, "leo")
+    assert error(set_state(client, given, "done")) == FORBIDDEN
+
+    as_(client, "ana")
+    assert get(client, given).json()["state"] == "dropped"
+    assert set_state(client, given, "open").json()["state"] == "open"
+    as_(client, "leo")
+    assert set_state(client, given, "done").json()["state"] == "done"
+
+
 def test_those_attached_only_read_it(client, people):
     as_(client, "ana")
     given = give(client, people["leo"], follower_ids=[str(people["zoe"].id)])

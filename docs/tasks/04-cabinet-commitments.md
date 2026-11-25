@@ -1,4 +1,4 @@
-# Task 04: Internal management — cabinet meetings and commitments
+# Task 04: Internal management — cabinet meetings and commitments - DONE
 
 ## Task description
 

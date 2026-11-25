@@ -19,7 +19,11 @@ def _position(value: Any) -> list[float] | None:
         return None
     if any(isinstance(n, bool) or not isinstance(n, int | float) for n in value):
         return None
-    longitude, latitude = float(value[0]), float(value[1])
+    try:
+        longitude, latitude = float(value[0]), float(value[1])
+    except OverflowError:
+        # An integer too big for a float.
+        return None
     # Also false for NaN and infinities.
     if not (-180 <= longitude <= 180 and -90 <= latitude <= 90):
         return None
