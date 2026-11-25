@@ -4,7 +4,7 @@ import { expect, it, vi } from 'vitest'
 
 import { makeMe } from '../test/fixtures'
 import { renderApp, t } from '../test/render'
-import { mockApi } from '../test/server'
+import { mockApi, mockApiError } from '../test/server'
 import { UsersAdminPage } from './UsersAdminPage'
 
 function member(index: number) {
@@ -198,4 +198,20 @@ it('describes a problem it has no words for in general terms', async () => {
 
   const rows = await within(dialog).findAllByRole('row')
   expect(rows[1]).toHaveTextContent(`2${t('users.import.errors.generic')}`)
+})
+
+it('says the file has errors even when the server does not say which', async () => {
+  mockApiError('post', '/admin/users/import', 422, 'invalid_csv')
+  renderUsers(3)
+  const { user, dialog } = await openImport()
+
+  // Nothing to send until a file is chosen.
+  expect(within(dialog).getByRole('button', { name: t('users.import.submit') })).toBeDisabled()
+  await chooseFile(dialog, new File(['x'], 'u.csv', { type: 'text/csv' }), user)
+  await user.click(within(dialog).getByRole('button', { name: t('users.import.submit') }))
+
+  await waitFor(() =>
+    expect(within(dialog).getByRole('button', { name: t('users.import.submit') })).toBeEnabled(),
+  )
+  expect(within(dialog).queryByRole('row')).toBeNull()
 })

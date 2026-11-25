@@ -97,6 +97,30 @@ def future_month() -> ApiError:
     return ApiError(422, "future_month", "A month that has not started cannot be given a status.")
 
 
+def meeting_closed() -> ApiError:
+    return ApiError(409, "meeting_closed", "The meeting is closed: its minutes are frozen.")
+
+
+def meeting_not_closed() -> ApiError:
+    return ApiError(409, "meeting_not_closed", "The meeting has no minutes until it is closed.")
+
+
+def meeting_already_open() -> ApiError:
+    return ApiError(409, "meeting_already_open", "Close the open meeting before preparing another.")
+
+
+def meeting_before_last() -> ApiError:
+    return ApiError(422, "meeting_before_last", "A meeting cannot be dated before the last one.")
+
+
+def agenda_changed() -> ApiError:
+    return ApiError(409, "agenda_changed", "The proposed agenda changed. Load it again.")
+
+
+def commitment_finished() -> ApiError:
+    return ApiError(409, "commitment_finished", "The commitment is no longer open.")
+
+
 def invalid_token() -> ApiError:
     return ApiError(410, "invalid_token", "The link is not valid: it expired or was already used.")
 

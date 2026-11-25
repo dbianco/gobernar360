@@ -336,3 +336,17 @@ def test_every_economic_table_enforces_tenant_isolation():
         "economic_tools",
     ]
     assert all(row[1] and row[2] and row[3] for row in rows)
+
+
+def test_a_tool_keeps_its_subcategory_unless_its_category_changes(client):
+    municipality = economic_member("admin")
+    login(client, EMAIL)
+    credit, training = (make_tool_category(municipality, n) for n in ("Crédito", "Formación"))
+    micro = make_tool_subcategory(municipality, credit, "Micro")
+    tool = make_tool(municipality, credit, subcategory_id=micro.id)
+    url = f"{BASE}/tools/{tool.id}"
+
+    same = client.patch(url, json={"category_id": str(credit.id)}).json()
+    assert same["subcategory"]["id"] == str(micro.id)
+    moved = client.patch(url, json={"category_id": str(training.id)}).json()
+    assert (moved["category"]["id"], moved["subcategory"]) == (str(training.id), None)

@@ -2,6 +2,7 @@ import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it, vi } from 'vitest'
 
+import { choosePerson } from '../../test/person'
 import { t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
 import { ProjectForm } from './ProjectForm'
@@ -142,7 +143,12 @@ it('sends every field of a new project', async () => {
   await fillRequired(user)
   await user.type(screen.getByRole('textbox', { name: label('description') }), 'Red cloacal.')
   await select('objective', 'Más iluminación')
-  await select('owner', 'María Pérez')
+  await choosePerson(
+    user,
+    screen.getByRole('combobox', { name: label('owner') }),
+    'perez',
+    'María Pérez',
+  )
   await select('program', 'Plan de bacheo')
   await select('priority', 'A+')
   await select('year', '2025')
@@ -193,8 +199,9 @@ it('clears optional fields, and the objective when the axis changes', async () =
   await catalogsLoaded()
 
   await user.selectOptions(screen.getByRole('combobox', { name: label('axis') }), 'Ciudad segura')
-  await user.selectOptions(
-    screen.getByRole('combobox', { name: label('owner') }),
+  await user.click(screen.getByRole('button', { name: t('app.person.clear') }))
+  expect(screen.getByRole('combobox', { name: label('owner') })).toHaveAttribute(
+    'placeholder',
     label('unassigned'),
   )
   await user.selectOptions(

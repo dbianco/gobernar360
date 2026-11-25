@@ -5,7 +5,7 @@ communes). Each dashboard is an independent module, enabled per municipality
 and granted per user. Today it ships the platform base (municipalities, users,
 per-dashboard access, people registry, monthly status lights, accounts by email with
 notifications and single sign-on), the Projects, Environment, Economic, Social,
-Procedures and Complaints dashboards, and a general overview.
+Procedures, Complaints and Cabinet dashboards, and a general overview.
 
 - Platform and Projects: design `docs/superpowers/specs/2026-11-18-gobernar360-platform-design.md`,
   plan `docs/superpowers/plans/2026-11-18-platform-base-and-projects-dashboard.md`
@@ -30,6 +30,11 @@ Procedures and Complaints dashboards, and a general overview.
 - Complaints: design `docs/superpowers/specs/2026-11-23-complaints-dashboard-design.md`,
   plan `docs/superpowers/plans/2026-11-23-complaints-dashboard.md`, task
   `docs/tasks/03-complaints-dashboard.md`
+- Cabinet meetings, commitments and linkable subjects: design
+  `docs/superpowers/specs/2026-11-24-cabinet-commitments-design.md`,
+  task `docs/tasks/04-cabinet-commitments.md`
+- Commitments for everyone and notifications: design
+  `docs/superpowers/specs/2026-11-24-commitments-and-notices-design.md`
 - Functional reference: `tableros-de-gestion-portal-ril.md`
 
 ## Quick start
@@ -80,8 +85,8 @@ database is reachable by others.
 |---|---|
 | `operador@gobernar360.test` | Platform operator (super-admin): creates and configures municipalities |
 | `admin@noetinger.test` | Administrator of Noetinger: manages its users and every dashboard |
-| `carga@noetinger.test` | Projects, environment, economic and social dashboards, data entry |
-| `lectura@noetinger.test` | Projects, environment, economic and social dashboards, read only |
+| `carga@noetinger.test` | Every dashboard of Noetinger, data entry |
+| `lectura@noetinger.test` | Every dashboard of Noetinger, read only |
 | `sinacceso@noetinger.test` | Member of Noetinger with no dashboard access |
 | `admin@comuna-demo.test` | Administrator of a second municipality (Comuna Demo) |
 
@@ -163,15 +168,15 @@ npm run e2e              # browser tests; starts its own API and web server on p
                          # and the sign-on provider of `docker compose up -d`
 ```
 
-Coverage and mutation testing (the targets are 95 % coverage and 80 % of mutants killed,
-in both halves):
+Coverage and mutation testing (the targets are 95 % coverage, of every file and not only in
+total, and 80 % of mutants killed, in both halves):
 
 ```bash
 cd backend
 uv run pytest --cov --cov-report=term-missing
 uv run python tests/make_test_databases.py 5        # once: a test database per mutmut worker
-GOBERNAR360_TEST_DATABASES=5 uv run mutmut run --max-children 4
-uv run mutmut results                               # what survived; `mutmut show <name>` for the diff
+GOBERNAR360_TEST_DATABASES=5 uv run python -m tests.run_mutmut run --max-children 4
+uv run python -m tests.run_mutmut results           # what survived; `show <name>` for the diff
 
 cd ../frontend
 npm run test:coverage    # report in coverage/
@@ -179,8 +184,9 @@ npm run test:mutation    # Stryker; report in reports/mutation/index.html
 ```
 
 Mutation testing takes hours on a laptop. Both tools keep their results, so later runs
-only test again what changed (`mutmut run <names>` re-checks given mutants; Stryker runs
-incrementally).
+only test again what changed (`tests.run_mutmut run <names>` re-checks given mutants; Stryker
+runs incrementally). `tests/run_mutmut.py` is mutmut with one addition: alone, mutmut skips every
+decorated function, which here means all the API routes, commands and validators.
 
 ## How it is organised
 
@@ -261,6 +267,54 @@ it took measured in business days.
 - Levels: viewers read and download; editors register complaints and act on them; dashboard
   admins manage areas, zones, types and the calendar.
 
+### Cabinet dashboard
+
+What was agreed about what the other dashboards show: meetings, the commitments taken in
+them, who owes each one and by when.
+
+- A municipality has one open meeting at a time, never dated before the last one. Closing it
+  copies its minutes, which no later change reaches, and nothing of it can be edited again.
+- The proposed agenda has the dashboards whose latest light is yellow or red (and those whose
+  month that just ended closed in red, even if the current one is already green), commitments
+  overdue or due before the meeting, and what the previous one left undiscussed. It only
+  considers lights of dashboards the person preparing it can open, and says how many it left out.
+- Preparing a meeting carries over every open commitment, whatever its due date. How many times
+  one was postponed is how many meetings it was carried to.
+- "Overdue" is computed from the date, never stored. The share delivered on time counts overdue
+  commitments against it.
+- Editors record and change; whoever owes a commitment says it is done and may move its date or
+  pass it on, with or without access to this dashboard.
+
+### Commitments and notifications
+
+Every member of a municipality has *Compromisos* in the menu, whatever their dashboards.
+
+- Anyone gives a commitment to anyone, or to themselves, and attaches people to be told when it
+  is done. Those of a cabinet meeting and the informal ones are listed together: the ones you
+  owe, gave or follow.
+- An informal one is seen only by whoever gave it, whoever owes it and those attached, not by
+  administrators or the cabinet. One of a meeting is seen by the cabinet's members too.
+- Whoever owes it says it is done and changes its date or its owner. Whoever gave an informal
+  one corrects, drops or reopens it. Those attached only read it.
+- Two icons beside the user's name count what they owe and what is new; hovering previews them
+  and clicking opens *Notificaciones*, with the status and target date of each. Delivered ones
+  stay there until they are read. Nothing is emailed.
+- Informal ones do not count in the cabinet's figures, agenda or postponements. They show beside
+  a project or a month only to those who may see them.
+
+### Linkable subjects
+
+How one module points at another without importing it (`platform/subjects.py`):
+
+- Every dashboard's months can be linked. A dashboard also declares which of its records can,
+  how to search and name them and who may see them, with `DashboardModule.linkable`
+  (Projects: `dashboards/projects/subjects.py`).
+- Links are checked on write against the municipality and the person's access. Whoever cannot
+  see what is linked reads that something of that kind is, and nothing else.
+- Status strips and record pages (`<SubjectCommitments>`) show the open commitments about them
+  to whoever may see both. A dashboard that records commitments tells where each was taken with
+  `DashboardModule.get_commitment_origins`.
+
 ### Status lights
 
 Each dashboard has a monthly traffic light (green, yellow or red) that its administrators
@@ -270,7 +324,7 @@ indicators. A month may be left without one, and months that have not started ca
 - The light lives in the platform (`platform/status.py`, `platform/status_router.py`,
   table `dashboard_statuses`), so a new dashboard gets it without code of its own.
 - `<StatusStrip dashboardKey year />` at the top of a dashboard's summary shows the twelve
-  months and lets administrators change them.
+  months, lets administrators change them and lists the open commitments about each one.
 - The general overview shows, per dashboard, its icon on the color of the latest month that
   has a light and the lights set in the five months before it.
 - A light is never shown by color alone: every state has its own mark and its name.
@@ -355,6 +409,7 @@ file. `dashboards/tableHeaders.test.ts` fails when a dashboard table uses a plai
    the package to both contracts in `backend/.importlinter`, and add its name under
    `dashboards.<key>` in `backend/src/gobernar360/locales/es-AR.json`.
    To email its administrators about events, give the module `alert_kinds` and `get_alerts`.
+   To let commitments point at its records, give it `linkable`.
    Helpers shared by dashboards live in `platform` (`tenant_crud`, `api_types`, `csv_export`).
 2. Frontend: create `src/dashboards/<key>/` with a default-exported routes component and add an
    entry (with its icon) to `src/dashboards/registry.ts`; put its texts, and its indicators'

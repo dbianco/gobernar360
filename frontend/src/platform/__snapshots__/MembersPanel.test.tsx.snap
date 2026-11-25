@@ -501,6 +501,70 @@ Buscar
 [Cargando…]"
 `;
 
+exports[`says the file has errors even when the server does not say which > screen at the end 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Usuario 1
+u1@noetinger.test
+[Administrador: Usuario 1]
+[Proyectos: Usuario 1]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Usuario 1]
+Quitar
+Usuario 2
+u2@noetinger.test
+[Administrador: Usuario 2]
+[Proyectos: Usuario 2]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 2]
+[Quitar a Usuario 2]
+Quitar
+Usuario 3
+u3@noetinger.test
+[Administrador: Usuario 3]
+[Proyectos: Usuario 3]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Usuario 3]
+[Quitar a Usuario 3]
+Quitar
+Importar usuarios desde un archivo CSV
+Agregá o actualizá muchos usuarios a la vez con una planilla guardada como CSV.
+Columnas: email, nombre, administrador (sí o no) y una por cada tablero habilitado, con el nombre del tablero.
+En cada tablero: Lectura, Carga o Administración; vacío es sin acceso.
+Si un email aparece más de una vez, en este archivo o en uno anterior, vale lo de la última fila: esa persona queda con esos permisos.
+Si el archivo no tiene la columna de un tablero, el acceso a ese tablero de quienes ya son usuarios no cambia.
+A quien todavía no era usuario del municipio le enviamos un email para que pueda ingresar.
+Descargar un ejemplo
+Archivo CSV
+u.csv
+Cancelar
+Importar"
+`;
+
+exports[`says the file has errors even when the server does not say which > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
 exports[`says when the file cannot be read, without calling the server > screen at the end 1`] = `
 "Usuarios del municipio
 Importar CSV

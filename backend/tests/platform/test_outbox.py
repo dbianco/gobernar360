@@ -265,3 +265,56 @@ def test_an_html_email_also_carries_its_plain_text_version():
     rich = message.get_body(preferencelist=("html",))
     assert plain.get_content() == "Hola, Ana.\n"
     assert rich.get_content() == "<p>Hola, <b>Ana</b>.</p>\n"
+
+
+def test_the_oldest_email_goes_first(client):
+    for name in ("uno", "dos", "tres", "cuatro"):
+        _queue(f"{name}@noetinger.test")
+    transport = FakeTransport()
+
+    outbox.deliver(transport, SENDER)
+
+    assert [message["To"].split("@")[0] for message in transport.sent] == [
+        "uno",
+        "dos",
+        "tres",
+        "cuatro",
+    ]
+
+
+def test_every_email_refused_for_good_is_counted():
+    for name in ("uno", "dos", "tres"):
+        _queue(f"{name}@noetinger.test")
+
+    report = outbox.deliver(FakeTransport(outbox.PermanentFailure("no such person")), SENDER)
+
+    assert (report.sent, report.failed) == (0, 3)
+
+
+@pytest.mark.parametrize(
+    ("sender", "domain"),
+    [
+        ("gobernar360 <no-reply@muni.test>", "muni.test"),
+        ('"a@b" <x@y.test>', "y.test"),
+        ("nobody", "nobody"),
+        ("nobody <>", "gobernar360"),
+    ],
+)
+def test_the_identifier_of_an_email_is_of_the_sender_s_domain(sender, domain):
+    _queue()
+    [row] = _rows()
+
+    assert outbox.build_message(row, sender)["Message-ID"] == f"<{row.id}@{domain}>"
+
+
+def test_those_that_failed_are_due_at_once_when_queued_again():
+    _queue()
+    outbox.deliver(FakeTransport(outbox.PermanentFailure("no such person")), SENDER)
+    with admin_session() as session, session.begin():
+        for row in session.scalars(select(EmailOutbox)):
+            row.next_attempt_at = datetime.now(UTC) + timedelta(days=1)
+
+    assert outbox.requeue_failed() == 1
+
+    transport = FakeTransport()
+    assert outbox.deliver(transport, SENDER, due_only=True).sent == 1

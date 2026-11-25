@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from gobernar360.core.config import get_settings
 from gobernar360.core.errors import error_response, install_error_handlers
 from gobernar360.dashboards import (
+    cabinet,
     complaints,
     economic,
     environment,
@@ -17,6 +18,8 @@ from gobernar360.dashboards import (
 from gobernar360.platform import (
     admin_router,
     auth_router,
+    commitments_router,
+    directory,
     indicators_router,
     notifications_router,
     operator_router,
@@ -27,6 +30,7 @@ from gobernar360.platform import (
     settings_router,
     sso_router,
     status_router,
+    subjects_router,
 )
 
 CSRF_HEADER = "x-requested-with"
@@ -43,6 +47,7 @@ def register_dashboards() -> None:
         social.module,
         procedures.module,
         complaints.module,
+        cabinet.module,
     ):
         registry.register(module)
 
@@ -96,6 +101,9 @@ def create_app() -> FastAPI:
     api.include_router(publication_router.router)
     # Reads only the published copies, as a role that can read nothing else.
     api.include_router(public_router.router)
+    api.include_router(subjects_router.router)
+    api.include_router(directory.router)
+    api.include_router(commitments_router.router)
     for module in registry.all_modules():
         api.include_router(module.router, prefix=f"/dashboards/{module.key}", tags=[module.key])
     app.include_router(api)

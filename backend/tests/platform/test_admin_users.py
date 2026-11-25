@@ -1,7 +1,10 @@
 import pytest
+from sqlalchemy import select
 
+from gobernar360.platform.models import AuditLog
 from tests.factories import (
     accept_invitation,
+    admin_session,
     emails_to,
     link_token,
     login,
@@ -300,3 +303,97 @@ def test_member_grants_of_a_disabled_dashboard_are_hidden_and_do_not_block_edits
             "demo": "editor",
             "projects": "editor",
         }
+
+
+def test_a_deactivated_account_is_added_and_not_written_to(client):
+    municipality = make_municipality("Noetinger")
+    make_membership(make_user("admin@noetinger.test"), municipality, admin=True)
+    make_user("ida@noetinger.test", password=None, active=False)
+    login(client, "admin@noetinger.test")
+
+    response = client.post(
+        "/api/admin/users", json={"email": "ida@noetinger.test", "full_name": "Ida"}
+    )
+
+    assert response.status_code == 201
+    assert emails_to("ida@noetinger.test") == []
+
+
+def test_the_last_administrator_is_counted_in_their_own_municipality(client):
+    noetinger, saira = make_municipality("Noetinger"), make_municipality("Saira")
+    own = make_membership(make_user("admin@noetinger.test"), noetinger, admin=True)
+    # Administrators elsewhere do not make up for it.
+    for name in ("uno", "dos"):
+        make_membership(make_user(f"{name}@saira.test"), saira, admin=True)
+    login(client, "admin@noetinger.test")
+    url = f"/api/admin/users/{own.id}"
+    refusal = {
+        "code": "conflict",
+        "message": "The municipality must keep at least one administrator.",
+    }
+
+    for response in (client.patch(url, json={"is_admin": False}), client.delete(url)):
+        assert response.status_code == 409
+        assert response.json()["error"] == refusal
+    rows = "email,nombre,administrador\nadmin@noetinger.test,Admin,no\n"
+    imported = client.post("/api/admin/users/import", json={"csv": rows})
+    assert imported.status_code == 409
+    assert imported.json()["error"] == refusal
+
+
+def test_members_are_listed_by_name_whatever_its_capitals_then_by_email(admin_client):
+    for full_name, email in (
+        ("Zoe", "a@noetinger.test"),
+        ("ana", "d@noetinger.test"),
+        ("Bruno", "c@noetinger.test"),
+        ("Ana", "e@noetinger.test"),
+        ("ana", "b@noetinger.test"),
+    ):
+        admin_client.post("/api/admin/users", json=_new_user(full_name=full_name, email=email))
+
+    users = admin_client.get("/api/admin/users", params={"q": "@noetinger"}).json()["items"]
+    emails = [item["user"]["email"][0] for item in users if item["user"]["email"][1] == "@"]
+
+    assert emails == ["b", "d", "e", "c", "a"]
+
+
+def test_members_are_searched_by_name_and_by_email(admin_client):
+    admin_client.post("/api/admin/users", json=_new_user())
+
+    def found(q: str) -> list[str]:
+        items = admin_client.get("/api/admin/users", params={"q": q}).json()["items"]
+        return [item["user"]["full_name"] for item in items]
+
+    assert found("carga") == ["Carla Carga"]
+    assert found("carla@") == ["Carla Carga"]
+    assert found("nadie") == []
+
+
+def test_what_changed_in_a_member_s_access_is_in_the_audit_log(admin_client):
+    membership_id = admin_client.post("/api/admin/users", json=_new_user()).json()["membership_id"]
+    url = f"/api/admin/users/{membership_id}"
+
+    admin_client.patch(url, json={"is_admin": True})
+    admin_client.patch(url, json={"grants": {"demo": "viewer"}})
+    admin_client.delete(url)
+
+    with admin_session() as session:
+        entries = session.scalars(
+            select(AuditLog)
+            .where(AuditLog.entity_type == "memberships")
+            .order_by(AuditLog.created_at)
+        ).all()
+    assert [(entry.action, entry.changes) for entry in entries] == [
+        (
+            "create",
+            {
+                "email": "carla@noetinger.test",
+                "is_admin": False,
+                "grants": {"demo": "editor"},
+            },
+        ),
+        ("update", {"is_admin": True}),
+        ("update", {"grants": {"demo": "viewer"}}),
+        ("delete", {"email": "carla@noetinger.test"}),
+    ]
+    assert {str(entry.entity_id) for entry in entries} == {membership_id}

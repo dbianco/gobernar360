@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import { useAuth } from '../../platform/authContext'
+import { SubjectCommitments } from '../../platform/commitments/SubjectCommitments'
 import { errorMessage } from '../../platform/errorMessage'
 import { formatDate, formatMoney, formatPercent } from '../../platform/format'
 import { hasLevel } from '../../platform/access'
@@ -132,6 +133,10 @@ export function ProjectDetailPage() {
           </Paper>
 
           <MilestonesPanel project={data} canEdit={canEdit} />
+
+          <SubjectCommitments
+            subject={{ dashboard_key: 'projects', kind: 'project', ref: data.id }}
+          />
 
           <Modal
             opened={editing}

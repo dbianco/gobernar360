@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`lists what was agreed, who owes it, by when and how late it is > screen at the end 1`] = `
+"[Compromisos pendientes]
+Compromisos pendientes
+Certificar la obra
+Ana Gómez, para el 30/11/2026
+Vencido
+Postergado 2 veces
+Pedir presupuesto
+Ana Gómez, para el 30/11/2026
+Postergado 1 vez"
+`;
+
+exports[`says when they cannot be loaded > screen at the end 1`] = `"Ocurrió un error. Intentá de nuevo."`;

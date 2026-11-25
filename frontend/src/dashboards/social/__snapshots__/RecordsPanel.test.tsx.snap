@@ -257,6 +257,8 @@ No hay tipos de intervención para elegir. Los carga el administrador del tabler
 Tipo
 Elegí un tipo
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Realizada por
 Descripción
 Texto reservado: lo lee solo el equipo con permiso de carga.
@@ -327,6 +329,8 @@ Ocurrió un error. Intentá de nuevo.
 Tipo
 Elegí un tipo
 Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
 Realizada por
 Descripción
 Texto reservado: lo lee solo el equipo con permiso de carga.

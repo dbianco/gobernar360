@@ -1,6 +1,7 @@
 import {
   ActionIcon,
   Alert,
+  Badge,
   Group,
   Menu,
   Paper,
@@ -13,6 +14,9 @@ import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
 import { useAuth } from '../authContext'
+import { useMonthCommitments } from '../commitments/api'
+import { MonthCommitments } from '../commitments/MonthCommitments'
+import type { SubjectCommitment } from '../commitments/types'
 import { errorMessage } from '../errorMessage'
 import { hasLevel } from '../access'
 import { useYearValues } from '../indicators/api'
@@ -33,7 +37,7 @@ function hasStarted(year: number, month: number): boolean {
 /**
  * The light of each month of a year for one dashboard, with the month's headline
  * indicators under it. Its administrators set the lights here; everyone else only
- * sees them.
+ * sees them. Below, what was agreed about each month.
  */
 export function StatusStrip(props: {
   dashboardKey: string
@@ -53,7 +57,14 @@ export function StatusStrip(props: {
   )
   const canSet = hasLevel(me, props.dashboardKey, 'admin')
   const colors = new Map(status.data?.map((entry) => [entry.month, entry.color]))
-  const error = change.error ?? (status.isError ? errorMessage(status.error) : null)
+  const commitments = useMonthCommitments(props.dashboardKey, props.year)
+  const agreed = new Map<number, SubjectCommitment[]>()
+  for (const commitment of commitments.data ?? []) {
+    const number = Number(commitment.ref.split('-')[1])
+    agreed.set(number, [...(agreed.get(number) ?? []), commitment])
+  }
+  const failed = status.error ?? commitments.error
+  const error = change.error ?? (failed ? errorMessage(failed) : null)
 
   const month = (number: number) => {
     const color: StatusColor | null = colors.get(number) ?? null
@@ -166,7 +177,27 @@ export function StatusStrip(props: {
                 )}
                 {MONTHS.map((number) => (
                   <Table.Th key={number} ta="center" fw={400}>
-                    <Group justify="center">{month(number)}</Group>
+                    <Group justify="center">
+                      <div style={{ position: 'relative' }}>
+                        {month(number)}
+                        {agreed.has(number) && (
+                          // How many are listed below, at a glance.
+                          <Badge
+                            circle
+                            size="sm"
+                            aria-hidden
+                            style={{
+                              position: 'absolute',
+                              top: -6,
+                              right: -8,
+                              pointerEvents: 'none',
+                            }}
+                          >
+                            {agreed.get(number)?.length}
+                          </Badge>
+                        )}
+                      </div>
+                    </Group>
                   </Table.Th>
                 ))}
               </Table.Tr>
@@ -199,6 +230,7 @@ export function StatusStrip(props: {
           </Table>
         </Table.ScrollContainer>
         {error && <Alert color="red">{error}</Alert>}
+        {agreed.size > 0 && <MonthCommitments byMonth={agreed} colors={colors} />}
       </Stack>
     </Paper>
   )

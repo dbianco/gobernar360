@@ -2,6 +2,7 @@ import { Button, Checkbox, Group, Stack, Table, Text, TextInput, Title } from '@
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { DateField } from '../../platform/DateField'
 import { formatDate } from '../../platform/format'
 import { HelpTh } from '../../platform/HelpTh'
 import { send, useAction } from './api'
@@ -101,14 +102,7 @@ export function CalendarPanel({ calendar }: { calendar: Calendar }) {
         )}
         <form onSubmit={(event) => void addHoliday(event)}>
           <Group align="flex-end">
-            <TextInput
-              label={label('holidayDate')}
-              type="date"
-              required
-              withAsterisk={false}
-              value={day}
-              onChange={(event) => setDay(event.currentTarget.value)}
-            />
+            <DateField label={label('holidayDate')} required value={day} onChange={setDay} />
             <TextInput
               label={label('holidayName')}
               required

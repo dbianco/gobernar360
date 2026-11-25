@@ -4,6 +4,7 @@ from datetime import date
 
 import pytest
 
+from gobernar360.platform.clock import get_today
 from tests.economic.factories import (
     BASE,
     EMAIL,
@@ -157,3 +158,55 @@ def test_exports_require_access(client, name):
     login(client, EMAIL)
 
     assert client.get(f"{BASE}/export/{name}.csv").status_code == 403
+
+
+def test_people_csv_has_every_detail_by_last_and_first_name(client):
+    municipality = _viewer(client)
+    for first, last in (("Zoe", "Gómez"), ("Ana", "Pérez"), ("Bea", "Gómez")):
+        make_economic_person(
+            municipality,
+            first,
+            last,
+            phone=f"tel {first}",
+            email=f"{first}@example.test",
+            address=f"calle {first}",
+        )
+
+    header, *rows = _rows(client.get(f"{BASE}/export/people.csv"))
+
+    columns = [header.index(c) for c in ("last_name", "first_name", "phone", "email", "address")]
+    assert [[row[c] for c in columns] for row in rows] == [
+        ["Gómez", "Bea", "tel Bea", "Bea@example.test", "calle Bea"],
+        ["Gómez", "Zoe", "tel Zoe", "Zoe@example.test", "calle Zoe"],
+        ["Pérez", "Ana", "tel Ana", "Ana@example.test", "calle Ana"],
+    ]
+    blank = [header.index(c) for c in ("dni", "birth_date")]
+    assert [[row[c] for c in blank] for row in rows] == [["", ""]] * 3
+
+
+def test_actors_csv_tells_no_employees_from_not_known(client):
+    municipality = _viewer(client)
+    make_actor(municipality, "Uno", employee_count=0)
+    make_actor(municipality, "Otro")
+
+    header, *rows = _rows(client.get(f"{BASE}/export/actors.csv"))
+
+    column = header.index("employees")
+    assert {row[0]: row[column] for row in rows} == {"Uno": "0", "Otro": ""}
+
+
+def test_assignments_csv_is_of_the_year_asked_or_the_current_one_by_date(client):
+    client.app.dependency_overrides[get_today] = lambda: date(2026, 6, 15)
+    municipality = _viewer(client)
+    tool, person = make_tool(municipality), make_economic_person(municipality)
+    for on in (date(2026, 5, 2), date(2025, 1, 1), date(2026, 1, 3), date(2026, 3, 9)):
+        make_assignment(municipality, tool, person=person, on=on)
+
+    def dates(**params):
+        header, *rows = _rows(client.get(f"{BASE}/export/assignments.csv", params=params))
+        document = header.index("document")
+        assert {row[document] for row in rows} == {""}
+        return [row[header.index("date")] for row in rows]
+
+    assert dates() == ["2026-01-03", "2026-03-09", "2026-05-02"]
+    assert dates(year=2025) == ["2025-01-01"]

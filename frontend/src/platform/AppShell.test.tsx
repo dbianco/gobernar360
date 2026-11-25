@@ -3,6 +3,8 @@ import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
 import App from '../App'
+import { AppShell } from './AppShell'
+import { MunicipalitySwitcher } from './MunicipalitySwitcher'
 import { makeMe, NOETINGER, SAIRA } from '../test/fixtures'
 import { renderApp, t } from '../test/render'
 import { mockApi, mockApiError } from '../test/server'
@@ -17,8 +19,12 @@ it('lists only the dashboards granted to the user', async () => {
 
   expect(nav.getByRole('link', { name: t('nav.overview') })).toBeInTheDocument()
   expect(nav.getByRole('link', { name: t('projects.title') })).toBeInTheDocument()
-  // Only the overview and the one dashboard this build knows about.
-  expect(nav.getAllByRole('link')).toHaveLength(2)
+  expect(nav.getByRole('link', { name: t('commitments.section') })).toHaveAttribute(
+    'href',
+    '/commitments',
+  )
+  // Only the overview, the commitments and the one dashboard this build knows about.
+  expect(nav.getAllByRole('link')).toHaveLength(3)
 })
 
 it('does not list dashboards the user has no access to', async () => {
@@ -135,8 +141,8 @@ it('gives every navigation link an icon', async () => {
 
   const links = (await navigation()).getAllByRole('link')
 
-  // Overview, four dashboards, users, settings, reports, public page and platform.
-  expect(links).toHaveLength(10)
+  // Overview, commitments, four dashboards, users, settings, reports, public page and platform.
+  expect(links).toHaveLength(11)
   for (const link of links) expect(link.querySelector('svg')).not.toBeNull()
 })
 
@@ -207,4 +213,44 @@ it('opens the users of the municipality at /admin', async () => {
     'aria-selected',
     'true',
   )
+})
+
+it('shows what one owes and follows beside the name, and their pages', async () => {
+  mockApi('get', '/commitments', { items: [], total: 0 })
+  mockApi('get', '/notifications', { mine: [], others: [] })
+  renderApp(<App />, { me: makeMe() })
+  const user = userEvent.setup()
+
+  await user.click(
+    await screen.findByRole('link', { name: t('notices.newsLabel', { count: 0 }) }),
+  )
+  expect(await screen.findByRole('heading', { name: t('notices.title') })).toBeInTheDocument()
+  await user.click((await navigation()).getByRole('link', { name: t('commitments.section') }))
+  expect(
+    await screen.findByRole('heading', { name: t('commitments.section') }),
+  ).toBeInTheDocument()
+})
+
+it('has no notices without a municipality to have them in', async () => {
+  renderApp(<App />, { me: makeMe({ municipalities: [], active: null }) })
+
+  expect(await screen.findByText(t('municipality.noneTitle'))).toBeInTheDocument()
+  expect(screen.queryByRole('link', { name: t('notices.newsLabel', { count: 0 }) })).toBeNull()
+  expect(screen.queryByRole('link', { name: t('commitments.section') })).toBeNull()
+})
+
+it('shows nothing of the frame to whoever is signed out', async () => {
+  renderApp(
+    <>
+      <AppShell />
+      <MunicipalitySwitcher />
+      <p>signed out</p>
+    </>,
+    { me: null },
+  )
+
+  expect(await screen.findByText('signed out')).toBeInTheDocument()
+  expect(screen.queryByRole('navigation')).toBeNull()
+  expect(screen.queryByRole('button', { name: t('app.logout') })).toBeNull()
+  expect(screen.queryByRole('combobox')).toBeNull()
 })

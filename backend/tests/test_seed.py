@@ -1,15 +1,26 @@
 import io
 import json
-from datetime import date
+import random
+from datetime import date, datetime
 from pathlib import Path
 
 import pypdf
+import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import delete, func, select
 
+from gobernar360 import seed_complaints
 from gobernar360.core.db import platform_session, tenant_session
 from gobernar360.dashboards import registry
+from gobernar360.dashboards.cabinet.models import (
+    AgendaItem,
+    Attendee,
+    Carryover,
+    Meeting,
+    Taken,
+)
 from gobernar360.dashboards.complaints import models as complaints
+from gobernar360.dashboards.complaints.clock import Calendar
 from gobernar360.dashboards.economic.models import (
     Actor,
     ActorPerson,
@@ -40,6 +51,8 @@ from gobernar360.dashboards.social.models import (
     SocialPerson,
 )
 from gobernar360.platform.access import system_context
+from gobernar360.platform.clock import LOCAL_TIMEZONE
+from gobernar360.platform.commitment_models import Commitment, CommitmentEntry
 from gobernar360.platform.indicators import month_of, shift
 from gobernar360.platform.models import (
     DashboardGrant,
@@ -55,7 +68,7 @@ from gobernar360.platform.models import (
     PublishedDashboard,
     User,
 )
-from gobernar360.seed import DEMO_PASSWORD, seed_demo
+from gobernar360.seed import DEMO_PASSWORD, INFORMAL_COMMITMENTS, seed_demo
 from tests.factories import admin_session, login, make_user
 
 
@@ -100,6 +113,7 @@ def test_seeded_accounts_can_sign_in_with_their_roles(client):
     operator = login(client, "operador@gobernar360.test", DEMO_PASSWORD).json()
 
     assert editor["dashboards"] == [
+        {"key": "cabinet", "level": "editor"},
         {"key": "economic", "level": "editor"},
         {"key": "environment", "level": "editor"},
         {"key": "procedures", "level": "editor"},
@@ -375,6 +389,7 @@ def test_seeded_noetinger_has_lights_in_every_dashboard(client):
         "economic",
         "social",
         "procedures",
+        "cabinet",
     }
     assert all(len(section["status"]) == 6 for section in overview)
     colors = {light["color"] for section in overview for light in section["status"]}
@@ -748,3 +763,170 @@ def test_seed_demo_adds_the_complaints_to_an_older_demo_database_once():
         # Complainants already in the registry are reused, not loaded twice.
         assert _count(db, Person) == people_before
         assert _count(db, complaints.Complaint) >= 300
+
+
+CABINET_API = "/api/dashboards/cabinet"
+
+
+def test_seeded_cabinet_has_closed_meetings_with_linked_commitments(client):
+    seed_demo()
+    login(client, "lectura@noetinger.test", DEMO_PASSWORD)
+
+    meetings = client.get(f"{CABINET_API}/meetings").json()
+    commitments = client.get(f"{CABINET_API}/commitments").json()["items"]
+    summary = client.get(f"{CABINET_API}/summary").json()
+
+    assert meetings["total"] == 3 and all(m["closed"] for m in meetings["items"])
+    linked = [c["subject"] for c in commitments if c["subject"]]
+    assert {s["kind"] for s in linked} == {"project", "month"}
+    assert {s["color"] for s in linked if s["kind"] == "month"} == {"red"}
+    assert all(s["access"] == "visible" for s in linked)
+    assert all(count > 0 for count in summary["by_state"].values())
+    assert [c["times_postponed"] for c in summary["most_postponed"]] == [2, 1]
+    assert 0 < summary["on_time_share"] < 1
+
+
+def test_seeded_minutes_tell_what_was_true_at_each_meeting(client):
+    seed_demo()
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+    latest, middle, first = client.get(f"{CABINET_API}/meetings").json()["items"]
+
+    def minutes(meeting):
+        return client.get(f"{CABINET_API}/meetings/{meeting['id']}/minutes.html").text
+
+    assert "venían de reuniones anteriores" not in minutes(first)
+    assert "vencido" not in minutes(first)
+    assert "postergado una vez" in minutes(middle)
+    # Delivered before the second meeting, so it never reached it.
+    assert "ejecución presupuestaria del trimestre" not in minutes(middle)
+    assert "postergado 2 veces" in minutes(latest)
+
+
+def test_seeded_noetinger_can_prepare_its_next_meeting(client):
+    seed_demo()
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+
+    today = date.today().isoformat()
+    answer = client.get(f"{CABINET_API}/agenda-proposal", params={"date": today}).json()
+
+    sources = [(p["source"], p["carried"]) for p in answer["proposals"]]
+    assert sources == [
+        ("light", False),
+        ("light", False),
+        ("light", False),
+        ("commitment", False),
+        ("commitment", False),
+        ("manual", True),
+    ]
+    assert answer["to_carry_over"] == 4
+
+
+def test_seeded_cabinet_stays_inside_noetinger(client):
+    seed_demo()
+    login(client, "admin@comuna-demo.test", DEMO_PASSWORD)
+
+    assert client.get(f"{CABINET_API}/meetings").json() == {"items": [], "total": 0}
+    assert client.get(f"{CABINET_API}/commitments").json() == {"items": [], "total": 0}
+
+
+# Children first, as the rest of the tables a reset would empty.
+CABINET_MODELS = (CommitmentEntry, Carryover, Taken, Attendee, AgendaItem, Commitment, Meeting)
+
+
+def _forget_cabinet() -> None:
+    """Leave the database as seeded before the cabinet dashboard existed."""
+    with admin_session() as session, session.begin():
+        for model in CABINET_MODELS:
+            session.execute(delete(model))
+        for model in (DashboardGrant, MunicipalityDashboard, DashboardStatus):
+            session.execute(delete(model).where(model.dashboard_key == "cabinet"))
+
+
+def test_seed_demo_adds_the_cabinet_dashboard_to_an_older_demo_database():
+    seed_demo()
+    _forget_cabinet()
+
+    assert (seed_demo(), seed_demo()) == (True, False)
+
+    with admin_session() as session:
+        assert (_count(session, Meeting), _count(session, Taken)) == (3, 8)
+
+
+def test_seed_demo_adds_the_cabinet_to_a_demo_database_that_lost_its_projects():
+    seed_demo()
+    _forget_cabinet()
+    with admin_session() as session, session.begin():
+        for project in session.scalars(select(Project)).unique():
+            project.name = f"{project.name} (renombrado)"
+
+    assert seed_demo() is True
+
+    with admin_session() as session:
+        assert _count(session, Taken) == 8
+
+
+def test_seeded_people_have_commitments_outside_meetings_and_news_about_them(client):
+    seed_demo()
+    seen = {}
+    for name in ("admin", "carga", "lectura", "sinacceso"):
+        login(client, f"{name}@noetinger.test", DEMO_PASSWORD)
+        rows = client.get("/api/notifications").json()
+        seen[name] = [
+            (row["description"], row["state"], [news["kind"] for news in row["news"]])
+            for row in rows["mine"] + rows["others"]
+            if row["description"] in {row[0] for row in INFORMAL_COMMITMENTS}
+        ]
+
+    note, suppliers, photos, hall = (row[0] for row in INFORMAL_COMMITMENTS)
+    assert seen == {
+        "admin": [(hall, "done", ["done"]), (note, "open", []), (photos, "open", [])],
+        "carga": [
+            (suppliers, "overdue", []),
+            (note, "open", ["assigned"]),
+            (hall, "done", ["done"]),
+            (photos, "open", []),
+        ],
+        "lectura": [(photos, "open", ["assigned"]), (note, "open", [])],
+        "sinacceso": [],
+    }
+
+
+def test_seed_demo_adds_informal_commitments_to_an_older_demo_database_once():
+    seed_demo()
+    with admin_session() as session, session.begin():
+        session.execute(delete(Commitment).where(Commitment.source.is_(None)))
+
+    assert (seed_demo(), seed_demo()) == (True, False)
+
+    with admin_session() as session:
+        assert _count(session, Commitment) == 8 + len(INFORMAL_COMMITMENTS)
+
+
+def test_seed_demo_survives_a_demo_database_that_lost_the_people_who_give_commitments():
+    seed_demo()
+    with admin_session() as session, session.begin():
+        session.execute(delete(Commitment).where(Commitment.source.is_(None)))
+        reader = session.scalar(select(User).where(User.email == "lectura@noetinger.test"))
+        reader.email = "otra@noetinger.test"
+
+    assert seed_demo() is False
+
+
+@pytest.mark.parametrize("day", range(1, 29))
+@pytest.mark.parametrize("hour", [0, 9, 20])
+def test_the_demo_always_has_a_complaint_nobody_has_looked_at_yet(day, hour):
+    # The simulation depends on the moment it runs: on some days every case had moved on.
+    now = datetime(2026, 11, day, hour, 30, tzinfo=LOCAL_TIMEZONE)
+    start = date(2025, 12, 1)
+
+    plans = seed_complaints.plan_complaints(
+        Calendar(holidays=frozenset()),
+        start,
+        now,
+        seed_complaints.TARGET_COMPLAINTS,
+        random.Random(seed_complaints.SEED),
+    )
+
+    untouched = [plan for plan in plans if not [step for step in plan.steps if step[0] <= now]]
+    assert untouched
+    assert all(plan.received <= now for plan in plans)

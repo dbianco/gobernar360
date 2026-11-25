@@ -1,0 +1,126 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`leads an editor to the meeting that is still open, instead of preparing another > screen at the end 1`] = `
+"Buscar
+(Temas, compromisos o notas)
+Continuar la reunión del 23/11/2026
+Fecha
+[Qué significa Fecha]
+Día de la reunión. Al hacer clic se abre.
+Estado
+[Qué significa Estado]
+Una reunión cerrada ya no se edita y tiene su acta para descargar.
+Temas
+[Qué significa Temas]
+Cantidad de temas del temario.
+Compromisos
+[Qué significa Compromisos]
+Compromisos que se tomaron en la reunión.
+23/11/2026
+Abierta
+4
+2"
+`;
+
+exports[`leads an editor to the meeting that is still open, instead of preparing another > screen at the start 1`] = `
+"Buscar
+(Temas, compromisos o notas)
+[Cargando…]"
+`;
+
+exports[`lets an editor prepare the next one when the last is closed > screen at the end 1`] = `
+"Buscar
+(Temas, compromisos o notas)
+Preparar reunión
+Fecha
+[Qué significa Fecha]
+Día de la reunión. Al hacer clic se abre.
+Estado
+[Qué significa Estado]
+Una reunión cerrada ya no se edita y tiene su acta para descargar.
+Temas
+[Qué significa Temas]
+Cantidad de temas del temario.
+Compromisos
+[Qué significa Compromisos]
+Compromisos que se tomaron en la reunión.
+20/10/2026
+Cerrada
+3
+1"
+`;
+
+exports[`lets an editor prepare the next one when the last is closed > screen at the start 1`] = `
+"Buscar
+(Temas, compromisos o notas)
+[Cargando…]"
+`;
+
+exports[`lists meetings with their state and what came out of them > screen at the end 1`] = `
+"Buscar
+(Temas, compromisos o notas)
+Fecha
+[Qué significa Fecha]
+Día de la reunión. Al hacer clic se abre.
+Estado
+[Qué significa Estado]
+Una reunión cerrada ya no se edita y tiene su acta para descargar.
+Temas
+[Qué significa Temas]
+Cantidad de temas del temario.
+Compromisos
+[Qué significa Compromisos]
+Compromisos que se tomaron en la reunión.
+23/11/2026
+Abierta
+4
+2
+20/10/2026
+Cerrada
+3
+1"
+`;
+
+exports[`lists meetings with their state and what came out of them > screen at the start 1`] = `
+"Buscar
+(Temas, compromisos o notas)
+[Cargando…]"
+`;
+
+exports[`says when there are none > screen at the end 1`] = `
+"Buscar
+(Temas, compromisos o notas)
+Preparar reunión
+Todavía no hay reuniones."
+`;
+
+exports[`says when there are none > screen at the start 1`] = `
+"Buscar
+(Temas, compromisos o notas)
+[Cargando…]"
+`;
+
+exports[`says when they cannot be loaded > screen at the end 1`] = `
+"Buscar
+(Temas, compromisos o notas)
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says when they cannot be loaded > screen at the start 1`] = `
+"Buscar
+(Temas, compromisos o notas)
+[Cargando…]"
+`;
+
+exports[`searches on the server, from the first page > screen at the end 1`] = `
+"Buscar
+(Temas, compromisos o notas)
+[Borrar la búsqueda]
+Nada coincide con la búsqueda."
+`;
+
+exports[`searches on the server, from the first page > screen at the start 1`] = `
+"Buscar
+(Temas, compromisos o notas)
+[Cargando…]"
+`;

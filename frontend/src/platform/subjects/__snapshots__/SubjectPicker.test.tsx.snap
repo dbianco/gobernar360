@@ -1,0 +1,126 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`forgets the record when another kind is chosen > screen at the end 1`] = `
+"Vinculado a
+Sin vínculo
+Proyectos: estado mensual
+Proyectos: proyecto
+demo: registro
+Cuál
+(Escribí para buscar)
+Proyectos, octubre de 2026 (Crítico)"
+`;
+
+exports[`forgets the record when another kind is chosen > screen at the start 1`] = `
+"Vinculado a
+Sin vínculo
+Cuál
+(Escribí para buscar)
+Plaza central"
+`;
+
+exports[`keeps what is linked as an option though a search does not find it > screen at the end 1`] = `
+"Vinculado a
+Sin vínculo
+Proyectos: estado mensual
+Proyectos: proyecto
+demo: registro
+Cuál
+(Escribí para buscar)
+Obra vieja
+Plaza central
+Bacheo"
+`;
+
+exports[`keeps what is linked as an option though a search does not find it > screen at the start 1`] = `
+"Vinculado a
+Sin vínculo
+Cuál
+(Escribí para buscar)
+Obra vieja"
+`;
+
+exports[`offers every kind the API lists, also those of dashboards it does not know > screen at the end 1`] = `
+"Vinculado a
+Sin vínculo
+Proyectos: estado mensual
+Proyectos: proyecto
+demo: registro"
+`;
+
+exports[`offers every kind the API lists, also those of dashboards it does not know > screen at the start 1`] = `
+"Vinculado a
+Sin vínculo"
+`;
+
+exports[`offers months with their state > screen at the end 1`] = `
+"Vinculado a
+Sin vínculo
+Proyectos: estado mensual
+Proyectos: proyecto
+demo: registro
+Cuál
+(Escribí para buscar)
+Proyectos, octubre de 2026 (Crítico)"
+`;
+
+exports[`offers months with their state > screen at the start 1`] = `
+"Vinculado a
+Sin vínculo"
+`;
+
+exports[`says when the kinds or the records cannot be loaded > screen at the end 1`] = `
+"Ocurrió un error. Intentá de nuevo.
+Vinculado a
+Sin vínculo"
+`;
+
+exports[`says when the kinds or the records cannot be loaded > screen at the start 1`] = `
+"Vinculado a
+Sin vínculo"
+`;
+
+exports[`searches the records on the server and gives the one chosen > screen at the end 1`] = `
+"Vinculado a
+Sin vínculo
+Proyectos: estado mensual
+Proyectos: proyecto
+demo: registro
+Cuál
+(Escribí para buscar)
+Bacheo"
+`;
+
+exports[`searches the records on the server and gives the one chosen > screen at the start 1`] = `
+"Vinculado a
+Sin vínculo"
+`;
+
+exports[`starts empty when what was linked cannot be read > screen at the end 1`] = `
+"Vinculado a
+Sin vínculo
+Proyectos: estado mensual
+Proyectos: proyecto
+demo: registro"
+`;
+
+exports[`starts empty when what was linked cannot be read > screen at the start 1`] = `
+"Vinculado a
+Sin vínculo"
+`;
+
+exports[`starts from what was linked and lets it go > screen at the end 1`] = `
+"Vinculado a
+Sin vínculo
+Proyectos: estado mensual
+Proyectos: proyecto
+demo: registro"
+`;
+
+exports[`starts from what was linked and lets it go > screen at the start 1`] = `
+"Vinculado a
+Sin vínculo
+Cuál
+(Escribí para buscar)
+Bacheo"
+`;

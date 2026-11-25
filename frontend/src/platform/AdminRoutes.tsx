@@ -21,7 +21,7 @@ export function AdminRoutes() {
 
   return (
     <Stack>
-      <Tabs value={section} onChange={(value) => navigate(`/admin/${value ?? 'users'}`)}>
+      <Tabs value={section} onChange={(value) => navigate(`/admin/${value}`)}>
         <Tabs.List>
           {SECTIONS.map((key) => (
             <Tabs.Tab key={key} value={key}>

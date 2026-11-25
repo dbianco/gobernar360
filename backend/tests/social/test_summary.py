@@ -184,3 +184,39 @@ def test_overview_of_an_empty_social_dashboard_has_no_indicators(client):
     assert client.get("/api/overview").json() == [
         {"dashboard_key": "social", "indicators": [], "status": []}
     ]
+
+
+def test_reports_put_the_largest_first_and_ties_by_name(client):
+    client.app.dependency_overrides[get_today] = lambda: date(2026, 6, 15)
+    municipality = social_member("viewer")
+    login(client, EMAIL)
+    people = {
+        name: [make_social_person(municipality, neighborhood=name) for _ in range(count)]
+        for name, count in (("Oeste", 1), ("Sur", 3), ("Centro", 1), ("Norte", 2))
+    }
+    for category, count in (("Salud", 1), ("Abrigo", 1), ("Vivienda", 3), ("Alimentos", 2)):
+        benefit = make_benefit(
+            municipality, make_benefit_category(municipality, category), category
+        )
+        for index in range(count):
+            neighborhood = ("Sur", "Norte", "Oeste")[index]
+            make_delivery(municipality, benefit, people[neighborhood][0])
+
+    report = client.get(f"{BASE}/reports").json()
+
+    def pairs(key):
+        return [(row["name"], row["count"]) for row in report[key]]
+
+    assert pairs("deliveries_by_category") == [
+        ("Vivienda", 3),
+        ("Alimentos", 2),
+        ("Abrigo", 1),
+        ("Salud", 1),
+    ]
+    assert pairs("people_by_neighborhood") == [
+        ("Sur", 3),
+        ("Norte", 2),
+        ("Centro", 1),
+        ("Oeste", 1),
+    ]
+    assert pairs("deliveries_by_neighborhood") == [("Sur", 4), ("Norte", 2), ("Oeste", 1)]

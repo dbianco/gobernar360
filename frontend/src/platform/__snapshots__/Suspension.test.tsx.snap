@@ -49,9 +49,12 @@ exports[`checking again after the operator resumes it brings the member back > s
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 [Cerrar sesión]
 Resumen general
+Compromisos
 Proyectos
 Resumen general
 No tenés tableros habilitados
@@ -114,9 +117,12 @@ exports[`opens the procedures and complaints dashboards from the app > screen at
 "[Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 [Cerrar sesión]
 Resumen general
+Compromisos
 Reclamos
 Reclamos
 Resumen

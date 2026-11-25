@@ -92,7 +92,7 @@ it('lets an editor correct the date and the note of an assignment', async () => 
   expect(form.getByLabelText(label('tool'))).toBeDisabled()
   expect(form.getByLabelText(label('tool'))).toHaveValue('Microcrédito productivo')
   expect(form.getByRole('textbox', { name: label('note') })).toHaveValue('Primera cuota')
-  fireEvent.change(form.getByLabelText(label('date')), { target: { value: '2026-03-12' } })
+  fireEvent.change(form.getByLabelText(label('date')), { target: { value: '12/03/2026' } })
   await user.click(form.getByRole('button', { name: t('app.save') }))
 
   await waitFor(() => expect(requests).toHaveLength(1))
@@ -161,4 +161,19 @@ it('shows an error when the assignments cannot be loaded', async () => {
   renderEconomic(<AssignmentsPage />)
 
   expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+})
+
+it('shows and corrects an assignment whose recipient is no longer there', async () => {
+  mockApi('get', `${BASE}/assignments`, page([makeAssignment({ actor: null, person: null })]))
+  const patches = mockApi('patch', `${BASE}/assignments/:id`, makeAssignment())
+  renderEconomic(<AssignmentsPage />)
+  const user = userEvent.setup()
+
+  const rows = (await screen.findAllByRole('row')).slice(1)
+  expect(rows).toHaveLength(1)
+  await user.click(within(rows[0]).getAllByRole('button')[0])
+  const form = within(await screen.findByRole('dialog', { name: label('editTitle') }))
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(patches).toHaveLength(1))
 })

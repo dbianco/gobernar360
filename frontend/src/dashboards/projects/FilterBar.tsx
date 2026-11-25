@@ -2,6 +2,7 @@ import { Alert, Group, NativeSelect } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 
 import { errorMessage } from '../../platform/errorMessage'
+import { PersonSelect } from '../../platform/PersonSelect'
 import { useAxes, useDepartments, useOwners } from './api'
 import { termYears, useTerm } from './termContext'
 import { EFFECTIVE_STATUSES, PRIORITIES, type ProjectFilters } from './types'
@@ -48,11 +49,13 @@ export function FilterBar(props: {
       )}
       {select('axis_id', t('projects.filters.axis'), named(axes.data))}
       {select('department_id', t('projects.filters.department'), named(departments.data))}
-      {select(
-        'owner_id',
-        t('projects.filters.owner'),
-        (owners.data ?? []).map((owner) => ({ value: owner.id, label: owner.full_name })),
-      )}
+      <PersonSelect
+        label={t('projects.filters.owner')}
+        placeholder={t('app.all')}
+        value={props.filters.owner_id ?? ''}
+        onChange={(id) => props.onChange({ ...props.filters, owner_id: id || undefined })}
+        people={owners.data ?? []}
+      />
       {select(
         'priority',
         t('projects.filters.priority'),

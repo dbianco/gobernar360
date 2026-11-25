@@ -385,3 +385,88 @@ def test_overdue_milestones_are_listed_by_date_then_project_then_name(client):
         "• Cloacas",
         "• Plaza",
     ]
+
+
+def test_turning_a_kind_on_or_off_is_one_s_own_and_only_of_that_kind(client):
+    municipality = _municipality()
+    make_membership(make_user("otra@noetinger.test"), municipality)
+    kinds = ("milestone_overdue", "status_light_missing")
+    login(client, "otra@noetinger.test")
+    for kind in kinds:
+        client.put(f"/api/auth/notifications/{kind}", json={"enabled": False})
+    client.cookies.clear()
+    login(client, "admin@noetinger.test")
+    for kind in kinds:
+        client.put(f"/api/auth/notifications/{kind}", json={"enabled": False})
+
+    client.put("/api/auth/notifications/milestone_overdue", json={"enabled": True})
+
+    def settings():
+        return {s["kind"]: s["enabled"] for s in client.get("/api/auth/notifications").json()}
+
+    assert settings() == {"milestone_overdue": True, "status_light_missing": False}
+    client.cookies.clear()
+    login(client, "otra@noetinger.test")
+    assert settings() == {"milestone_overdue": False, "status_light_missing": False}
+
+
+def test_a_kind_that_does_not_exist_is_not_found(client):
+    _municipality()
+    login(client, "admin@noetinger.test")
+
+    response = client.put("/api/auth/notifications/lottery", json={"enabled": False})
+
+    assert response.status_code == 404
+    assert response.json()["error"] == {
+        "code": "not_found",
+        "message": "Unknown kind of notification.",
+    }
+
+
+def test_a_light_of_the_same_month_another_year_does_not_count(client):
+    noetinger = _municipality()
+    with admin_session() as session, session.begin():
+        session.add(
+            DashboardStatus(
+                municipality_id=noetinger.id,
+                dashboard_key="projects",
+                year=TODAY.year - 1,
+                month=10,
+                color="green",
+            )
+        )
+
+    notifications.notify(TODAY)
+
+    [email] = emails_to("admin@noetinger.test")
+    assert email.subject == "Falta el estado mensual de octubre en Noetinger"
+
+
+def test_milestones_already_reached_raise_nothing_even_if_late(client):
+    noetinger = _municipality()
+    _light(noetinger)
+    past = TODAY - timedelta(days=20)
+    _project(noetinger, (past, TODAY), (past, past))
+
+    notifications.notify(TODAY)
+
+    assert emails_to("admin@noetinger.test") == []
+
+
+def test_a_deactivated_administrator_does_not_stop_the_others_from_hearing(client):
+    noetinger = _municipality()
+    for name, active in (("baja", False), ("zoe", True), ("baja2", False), ("beto", True)):
+        make_membership(
+            make_user(f"{name}@noetinger.test", active=active), noetinger, admin=True, enable=[]
+        )
+    _light(noetinger)
+    _project(noetinger, _overdue())
+
+    notifications.notify(TODAY)
+
+    heard = [
+        name
+        for name in ("admin", "zoe", "beto", "baja", "baja2")
+        if emails_to(f"{name}@noetinger.test")
+    ]
+    assert heard == ["admin", "zoe", "beto"]

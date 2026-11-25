@@ -3,6 +3,7 @@ from datetime import date
 from sqlalchemy import select
 
 from gobernar360.core.db import tenant_session
+from gobernar360.dashboards.social.models import Intervention
 from gobernar360.platform.models import AuditLog
 from tests.factories import login, make_membership, make_municipality, make_user
 from tests.social.factories import (
@@ -277,3 +278,37 @@ def test_interventions_are_searched_by_person_or_type_but_never_by_reserved_text
     assert types("llamado") == ["Llamado"]
     # The reserved text cannot be probed through the search.
     assert types("violencia") == []
+
+
+def test_the_audit_trail_keeps_the_changes_that_are_not_reserved_as_they_are(client):
+    municipality = _editor(client)
+    intervention = make_intervention(
+        municipality, make_intervention_type(municipality), make_social_person(municipality)
+    )
+
+    client.patch(f"{BASE}/interventions/{intervention.id}", json={"performed_by": "Equipo"})
+
+    with tenant_session(municipality.id) as db:
+        [entry] = db.scalars(select(AuditLog))
+    assert entry.changes == {"performed_by": "Equipo"}
+
+
+def test_correcting_an_intervention_keeps_who_recorded_it(client):
+    municipality = _editor(client)
+    body = {
+        "intervention_type_id": str(make_intervention_type(municipality).id),
+        "person_id": str(make_social_person(municipality).id),
+        "date": "2026-03-10",
+    }
+    made = client.post(f"{BASE}/interventions", json=body).json()
+    other = make_user("beto@noetinger.test")
+    make_membership(other, municipality, grants={"social": "editor"}, enable=[])
+    client.cookies.clear()
+    login(client, "beto@noetinger.test")
+
+    client.patch(f"{BASE}/interventions/{made['id']}", json={"performed_by": "Beto"})
+
+    with tenant_session(municipality.id) as db:
+        row = db.scalars(select(Intervention)).unique().one()
+    assert row.updated_by == other.id
+    assert row.created_by not in (None, other.id)

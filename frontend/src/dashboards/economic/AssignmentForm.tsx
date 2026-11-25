@@ -2,6 +2,7 @@ import { Alert, Button, Group, NativeSelect, Stack, Text, Textarea, TextInput } 
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { DateField } from '../../platform/DateField'
 import { errorMessage } from '../../platform/errorMessage'
 import { send, useAction, useTools } from './api'
 import { todayIso } from '../../platform/format'
@@ -70,14 +71,7 @@ export function AssignmentForm(props: {
             ]}
           />
         )}
-        <TextInput
-          label={label('date')}
-          type="date"
-          required
-          withAsterisk={false}
-          value={date}
-          onChange={(event) => setDate(event.currentTarget.value)}
-        />
+        <DateField label={label('date')} required value={date} onChange={setDate} />
         <Textarea
           label={label('note')}
           rows={2}

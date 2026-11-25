@@ -7,6 +7,7 @@ from sqlalchemy import func, select, text
 
 from gobernar360.core.db import get_admin_engine, tenant_session
 from gobernar360.core.errors import ApiError
+from gobernar360.dashboards.social.models import SocialPerson
 from gobernar360.platform import people
 from gobernar360.platform.access import RequestContext
 from gobernar360.platform.models import AuditLog, Person
@@ -121,6 +122,16 @@ def test_changes_are_audited():
             ("update", "people"),
             ("delete", "people"),
         ]
+        assert entries[0].changes == {
+            "first_name": "Juana",
+            "last_name": "Pérez",
+            "dni": "12345678",
+            "birth_date": None,
+            "phone": "",
+            "email": "",
+            "address": "",
+            "neighborhood": "",
+        }
         assert entries[1].changes == {"phone": "555"}
         assert entries[0].user_id == ctx.user.id
         assert ctx.db.get(Person, person.id) is None
@@ -139,3 +150,31 @@ def test_people_table_enforces_tenant_isolation():
         ).one()
 
     assert tuple(row) == (True, True, True)
+
+
+def test_a_text_of_a_person_is_trimmed_and_has_a_limit():
+    data = PersonIn(first_name=" Ana ", last_name="Paz", phone=" 11 ", address=" x ")
+    assert (data.first_name, data.phone, data.address) == ("Ana", "11", "x")
+    assert PersonIn(first_name="Ana", last_name="Paz", phone="1" * 50).phone == "1" * 50
+    for field, limit in (("phone", 50), ("email", 200), ("address", 200), ("neighborhood", 100)):
+        with pytest.raises(ValidationError):
+            PersonIn(first_name="Ana", last_name="Paz", **{field: "x" * (limit + 1)})
+
+
+def test_a_document_that_is_not_one_says_what_it_must_be():
+    for dni in ("12345", "1234567890", "abc"):
+        with pytest.raises(ValidationError, match="must have 6 to 9 digits"):
+            PersonIn(first_name="Ana", last_name="Paz", dni=dni)
+
+
+def test_a_person_some_dashboard_still_uses_is_not_released():
+    municipality = make_municipality()
+    with context(municipality) as ctx:
+        person = people.create_person(ctx, _person())
+        ctx.db.add(SocialPerson(municipality_id=municipality.id, person_id=person.id))
+        ctx.db.flush()
+
+        assert people.release_person(ctx, person) is False
+
+        assert ctx.db.get(Person, person.id) is not None
+        assert ctx.db.scalars(select(AuditLog.action)).all() == ["create"]

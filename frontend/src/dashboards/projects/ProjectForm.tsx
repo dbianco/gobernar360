@@ -13,7 +13,9 @@ import {
 import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { DateField } from '../../platform/DateField'
 import { errorMessage } from '../../platform/errorMessage'
+import { PersonSelect } from '../../platform/PersonSelect'
 import {
   send,
   useAction,
@@ -144,14 +146,12 @@ export function ProjectForm(props: {
             onChange={(event) => set('department_id', event.currentTarget.value)}
             data={[choose, ...named(departments.data)]}
           />
-          <NativeSelect
+          <PersonSelect
             label={label('owner')}
+            placeholder={label('unassigned')}
             value={values.owner_id ?? ''}
-            onChange={(event) => set('owner_id', event.currentTarget.value || null)}
-            data={[
-              unassigned,
-              ...(owners.data ?? []).map((o) => ({ value: o.id, label: o.full_name })),
-            ]}
+            onChange={(id) => set('owner_id', id || null)}
+            people={owners.data ?? []}
           />
           <NativeSelect
             label={label('program')}
@@ -180,18 +180,16 @@ export function ProjectForm(props: {
               label: t(`projects.status.${status}`),
             }))}
           />
-          <TextInput
+          <DateField
             label={label('startDate')}
-            type="date"
             value={values.start_date ?? ''}
-            onChange={(event) => set('start_date', event.currentTarget.value || null)}
+            onChange={(date) => set('start_date', date || null)}
           />
-          <TextInput
+          <DateField
             label={label('endDate')}
-            type="date"
-            min={values.start_date ?? undefined}
+            min={values.start_date}
             value={values.end_date ?? ''}
-            onChange={(event) => set('end_date', event.currentTarget.value || null)}
+            onChange={(date) => set('end_date', date || null)}
           />
           <TextInput
             label={label('plannedBudget')}

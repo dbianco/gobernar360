@@ -22,7 +22,7 @@ test('an administrator imports users from a CSV file and pages through them', as
   const exampleRows = (await example.text()).replace('\ufeff', '').trim().split(/\r?\n/)
   // "Reclamos" is there too once another spec has enabled it for this municipality.
   expect(exampleRows[0].replace(',Reclamos', '')).toBe(
-    'email,nombre,administrador,Económico,Ambiental,Trámites,Proyectos,Social',
+    'email,nombre,administrador,Gabinete,Económico,Ambiental,Trámites,Proyectos,Social',
   )
   expect(exampleRows).toHaveLength(3)
   await expect(dialog.getByRole('link', { name: 'Descargar un ejemplo' })).toBeVisible()

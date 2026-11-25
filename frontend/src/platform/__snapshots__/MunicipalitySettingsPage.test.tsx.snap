@@ -5,9 +5,12 @@ exports[`keeps the configuration of a municipality away from non-operators > scr
 [Abrir menú]
 gobernar360
 Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
 Ana Gómez
 [Cerrar sesión]
 Resumen general
+Compromisos
 Usuarios
 Configuración
 Informes
@@ -98,6 +101,22 @@ El municipio no existe."
 `;
 
 exports[`says so when the municipality does not exist > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`says when the municipality cannot be loaded > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+← Volver al municipio
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says when the municipality cannot be loaded > screen at the start 1`] = `
 "[autosize measurement]
 [Cargando…]"
 `;

@@ -73,7 +73,7 @@ it('sets the working weekdays and adds a holiday', async () => {
   expect(save).toBeDisabled()
   await user.click(screen.getByRole('checkbox', { name: 'Sábado' }))
   await user.click(save)
-  await user.type(screen.getByLabelText(label('holidayDate')), '2026-07-09')
+  await user.type(screen.getByRole('textbox', { name: label('holidayDate') }), '09/07/2026')
   await user.type(screen.getByRole('textbox', { name: label('holidayName') }), 'Independencia')
   await user.click(screen.getByRole('button', { name: label('addHoliday') }))
 
@@ -183,7 +183,7 @@ it('shows why a type, the weekdays or a holiday could not be saved', async () =>
   expect(await dialog.findByText(t('errors.validation_error'))).toBeInTheDocument()
   await user.keyboard('{Escape}')
 
-  await user.type(screen.getByLabelText(label('holidayDate')), '2026-07-09')
+  await user.type(screen.getByRole('textbox', { name: label('holidayDate') }), '09/07/2026')
   await user.type(screen.getByRole('textbox', { name: label('holidayName') }), 'Independencia')
   await user.click(screen.getByRole('button', { name: label('addHoliday') }))
   expect(await screen.findByText(t('errors.conflict'))).toBeInTheDocument()

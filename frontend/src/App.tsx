@@ -1,7 +1,7 @@
 import { Center, Loader } from '@mantine/core'
 import { lazy, type ReactNode, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useParams } from 'react-router-dom'
 
 import { OverviewPage } from './dashboards/overview/OverviewPage'
 import { dashboards } from './dashboards/registry'
@@ -9,6 +9,9 @@ import { AccountPage } from './platform/AccountPage'
 import { AdminRoutes } from './platform/AdminRoutes'
 import { AppShell } from './platform/AppShell'
 import { useAuth } from './platform/authContext'
+import { CommitmentPage } from './platform/commitments/CommitmentPage'
+import { CommitmentsPage } from './platform/commitments/CommitmentsPage'
+import { NotificationsPage } from './platform/commitments/NotificationsPage'
 import { ForgotPasswordPage } from './platform/ForgotPasswordPage'
 import { LoginPage } from './platform/LoginPage'
 import { MunicipalityPage } from './platform/MunicipalityPage'
@@ -46,6 +49,11 @@ function Only({ when, children }: { when: (me: Me) => boolean; children: ReactNo
   return <>{children}</>
 }
 
+function MovedCommitment() {
+  const { id } = useParams()
+  return <Navigate to={`/commitments/${id}`} replace />
+}
+
 export default function App() {
   const { isLoading } = useAuth()
   if (isLoading) return <PageLoader />
@@ -61,6 +69,12 @@ export default function App() {
       <Route element={<SignedIn />}>
         <Route index element={<OverviewPage />} />
         <Route path="account" element={<AccountPage />} />
+        <Route path="commitments" element={<CommitmentsPage />} />
+        <Route path="commitments/:id" element={<CommitmentPage />} />
+        <Route path="notifications" element={<NotificationsPage />} />
+        {/* Where they were while commitments belonged to the cabinet. */}
+        <Route path="d/cabinet/mine" element={<Navigate to="/commitments" replace />} />
+        <Route path="d/cabinet/commitments/:id" element={<MovedCommitment />} />
         <Route
           path="admin/*"
           element={

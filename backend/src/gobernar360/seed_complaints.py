@@ -320,6 +320,9 @@ def plan_complaints(
         zone = rng.choice(ZONES[:5])
         plans.append(sim.plan(name, target, 0.7, area, zone, _address(rng, zone), received))
     plans.sort(key=lambda plan: plan.received)
+    # The newest one has just come in, whatever the moment the demo is loaded: nobody has
+    # looked at it yet, so the demo always shows a complaint in every state.
+    plans[-1].steps.clear()
     return plans
 
 

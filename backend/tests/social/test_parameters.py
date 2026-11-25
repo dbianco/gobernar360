@@ -231,3 +231,17 @@ def test_a_household_has_at_most_one_head():
 
     with pytest.raises(IntegrityError):
         make_social_person(municipality, "Luis", household=household, relationship="head")
+
+
+def test_a_benefit_changes_category_or_only_its_name(client):
+    municipality = social_member("admin")
+    login(client, EMAIL)
+    food = make_benefit_category(municipality, "Alimentos")
+    home = make_benefit_category(municipality, "Hábitat")
+    benefit = make_benefit(municipality, food, "Chapas")
+    url = f"{BASE}/benefits/{benefit.id}"
+
+    renamed = client.patch(url, json={"name": "Chapas de zinc"}).json()
+    assert (renamed["name"], renamed["category"]["name"]) == ("Chapas de zinc", "Alimentos")
+    moved = client.patch(url, json={"category_id": str(home.id)}).json()
+    assert (moved["name"], moved["category"]["name"]) == ("Chapas de zinc", "Hábitat")

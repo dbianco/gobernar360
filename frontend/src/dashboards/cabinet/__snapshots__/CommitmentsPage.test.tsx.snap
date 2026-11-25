@@ -1,0 +1,216 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`filters on the server, and the download takes the same filters > screen at the end 1`] = `
+"Buscar
+(Compromiso o responsable)
+[Borrar la búsqueda]
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+Responsable
+(Todos los responsables)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Descargar CSV
+[Compromisos]
+Compromiso
+[Qué significa Compromiso]
+Lo que se acordó. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Para el
+[Qué significa Para el]
+Fecha comprometida. Pasado ese día, un compromiso pendiente figura como vencido.
+Estado
+[Qué significa Estado]
+Cómo está y cuántas veces llegó sin cumplir a una reunión posterior.
+Vinculado a
+[Qué significa Vinculado a]
+De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.
+Reunión
+[Qué significa Reunión]
+Reunión en la que se tomó.
+Certificar la obra
+Leo Paz
+20/11/2026
+Vencido
+Postergado 2 veces
+Plaza central
+20/10/2026
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–10 de 30
+Anterior
+Siguiente"
+`;
+
+exports[`filters on the server, and the download takes the same filters > screen at the start 1`] = `
+"Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+Responsable
+(Todos los responsables)
+Nada coincide con la búsqueda.
+Descargar CSV
+[Cargando…]"
+`;
+
+exports[`lists what is pending: what, who, when, how and about what > screen at the end 1`] = `
+"Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+Responsable
+(Todos los responsables)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Descargar CSV
+[Compromisos]
+Compromiso
+[Qué significa Compromiso]
+Lo que se acordó. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Para el
+[Qué significa Para el]
+Fecha comprometida. Pasado ese día, un compromiso pendiente figura como vencido.
+Estado
+[Qué significa Estado]
+Cómo está y cuántas veces llegó sin cumplir a una reunión posterior.
+Vinculado a
+[Qué significa Vinculado a]
+De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.
+Reunión
+[Qué significa Reunión]
+Reunión en la que se tomó.
+Certificar la obra
+Leo Paz
+20/11/2026
+Vencido
+Postergado 2 veces
+Plaza central
+20/10/2026
+Señalizar
+Leo Paz
+20/11/2026
+Pendiente
+Un proyecto al que no tenés acceso
+20/10/2026
+Suelto
+Leo Paz
+20/11/2026
+Vencido
+Postergado 2 veces
+—
+20/10/2026"
+`;
+
+exports[`lists what is pending: what, who, when, how and about what > screen at the start 1`] = `
+"Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+Responsable
+(Todos los responsables)
+Nada coincide con la búsqueda.
+Descargar CSV
+[Cargando…]"
+`;
+
+exports[`says when none match > screen at the end 1`] = `
+"Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+Responsable
+(Todos los responsables)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Descargar CSV
+Ningún compromiso coincide."
+`;
+
+exports[`says when none match > screen at the start 1`] = `
+"Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+Responsable
+(Todos los responsables)
+Nada coincide con la búsqueda.
+Descargar CSV
+[Cargando…]"
+`;
+
+exports[`says when they cannot be loaded > screen at the end 1`] = `
+"Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+Responsable
+(Todos los responsables)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Descargar CSV
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says when they cannot be loaded > screen at the start 1`] = `
+"Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+Responsable
+(Todos los responsables)
+Nada coincide con la búsqueda.
+Descargar CSV
+[Cargando…]"
+`;

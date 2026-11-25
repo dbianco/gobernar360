@@ -1,0 +1,100 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`counts what one owes and the news, and each leads to its list > screen at the end 1`] = `
+"2
+[Compromisos a mi cargo: 2 pendientes (vencidos: 1)]
+2
+[Notificaciones: 2 novedades]"
+`;
+
+exports[`counts what one owes and the news, and each leads to its list > screen at the start 1`] = `
+"[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]"
+`;
+
+exports[`looks again for news without reloading > screen at the end 1`] = `
+"[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]"
+`;
+
+exports[`looks again for news without reloading > screen at the start 1`] = `
+"[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]"
+`;
+
+exports[`previews five and says how many more there are > screen at the end 1`] = `
+"99+
+[Compromisos a mi cargo: 120 pendientes]
+Compromisos a mi cargo
+Tarea 0
+Pendiente
+30/11/2026
+Tarea 1
+Pendiente
+30/11/2026
+Tarea 2
+Pendiente
+30/11/2026
+Tarea 3
+Pendiente
+30/11/2026
+Tarea 4
+Pendiente
+30/11/2026
+y 115 más
+Ver la lista completa
+99+
+[Notificaciones: 120 novedades]"
+`;
+
+exports[`previews five and says how many more there are > screen at the start 1`] = `
+"[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]"
+`;
+
+exports[`says when there is nothing > screen at the end 1`] = `
+"[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Notificaciones
+No hay novedades.
+Ver la lista completa"
+`;
+
+exports[`says when there is nothing > screen at the start 1`] = `
+"[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]"
+`;
+
+exports[`shows the news on hover, of one's own and of others' > screen at the end 1`] = `
+"2
+[Compromisos a mi cargo: 2 pendientes (vencidos: 1)]
+2
+[Notificaciones: 2 novedades]
+Notificaciones
+Certificar la obra
+Zoe Ruiz te lo asignó
+Enviar la nota
+Leo Paz lo cumplió
+Ver la lista completa"
+`;
+
+exports[`shows the news on hover, of one's own and of others' > screen at the start 1`] = `
+"[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]"
+`;
+
+exports[`shows what one owes on hover > screen at the end 1`] = `
+"1
+[Compromisos a mi cargo: 1 pendiente]
+Compromisos a mi cargo
+Certificar la obra
+Pendiente
+30/11/2026
+Ver la lista completa
+[Notificaciones: 0 novedades]"
+`;
+
+exports[`shows what one owes on hover > screen at the start 1`] = `
+"[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]"
+`;

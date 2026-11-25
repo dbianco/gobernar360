@@ -91,7 +91,7 @@ it('assigns a tool, offering only the tools meant for people', async () => {
   ])
   expect([...tool.options].map((option) => option.text)).not.toContain(FAIR.name)
   await user.selectOptions(tool, WORKSHOP.id)
-  fireEvent.change(form.getByLabelText(assignment('date')), { target: { value: '2026-05-06' } })
+  fireEvent.change(form.getByLabelText(assignment('date')), { target: { value: '06/05/2026' } })
   await user.click(form.getByRole('button', { name: t('app.save') }))
 
   await waitFor(() => expect(requests).toHaveLength(1))

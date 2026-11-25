@@ -1,0 +1,519 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`gives oneself one, with nobody attached and about nothing > screen at the end 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+No tenés compromisos que coincidan."
+`;
+
+exports[`gives oneself one, with nobody attached and about nothing > screen at the start 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[Cargando…]"
+`;
+
+exports[`gives somebody a commitment and attaches others to be told when it is done > screen at the end 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+No tenés compromisos que coincidan."
+`;
+
+exports[`gives somebody a commitment and attaches others to be told when it is done > screen at the start 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[Cargando…]"
+`;
+
+exports[`is not sent without saying who > screen at the end 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+No tenés compromisos que coincidan."
+`;
+
+exports[`is not sent without saying who > screen at the start 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[Cargando…]"
+`;
+
+exports[`keeps the form open and says why it failed, and closes it with Escape > screen at the end 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+No tenés compromisos que coincidan."
+`;
+
+exports[`keeps the form open and says why it failed, and closes it with Escape > screen at the start 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[Cargando…]"
+`;
+
+exports[`lists what one owes: until when, how it is, about what and where it comes from > screen at the end 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[A mi cargo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Vinculado a
+[Qué significa Vinculado a]
+De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.
+Origen
+[Qué significa Origen]
+La reunión en la que se tomó, o informal si alguien lo asignó fuera de una reunión.
+Certificar la obra
+20/11/2026
+Vencido
+Postergado 2 veces
+Plaza central
+Reunión del 20/10/2026
+Enviar la nota
+01/12/2026
+Pendiente
+—
+Informal
+De otros
+20/11/2026
+Vencido
+Postergado 2 veces
+Un proyecto al que no tenés acceso
+Gabinete
+De lejos
+20/11/2026
+Vencido
+Postergado 2 veces
+Plaza central
+archive"
+`;
+
+exports[`lists what one owes: until when, how it is, about what and where it comes from > screen at the start 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[Cargando…]"
+`;
+
+exports[`moves between those one owes, gave and follows, each with who owes it > screen at the end 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[A mi cargo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Vinculado a
+[Qué significa Vinculado a]
+De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.
+Origen
+[Qué significa Origen]
+La reunión en la que se tomó, o informal si alguien lo asignó fuera de una reunión.
+Enviar la nota
+01/12/2026
+Pendiente
+—
+Informal"
+`;
+
+exports[`moves between those one owes, gave and follows, each with who owes it > screen at the start 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[Cargando…]"
+`;
+
+exports[`opens on the list asked for, or on one's own > screen at the end 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+No tenés compromisos que coincidan."
+`;
+
+exports[`opens on the list asked for, or on one's own > screen at the start 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[Cargando…]"
+`;
+
+exports[`says when the list cannot be loaded > screen at the end 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says when the list cannot be loaded > screen at the start 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[Cargando…]"
+`;
+
+exports[`says when the list of following is empty > screen at the end 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+No seguís compromisos que coincidan."
+`;
+
+exports[`says when the list of following is empty > screen at the start 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[Cargando…]"
+`;
+
+exports[`says when the list of given is empty > screen at the end 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+No asignaste compromisos que coincidan."
+`;
+
+exports[`says when the list of given is empty > screen at the start 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[Cargando…]"
+`;
+
+exports[`says when the list of mine is empty > screen at the end 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+No tenés compromisos que coincidan."
+`;
+
+exports[`says when the list of mine is empty > screen at the start 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[Cargando…]"
+`;
+
+exports[`searches and filters on the server, from the first page > screen at the end 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+[Borrar la búsqueda]
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[A mi cargo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Vinculado a
+[Qué significa Vinculado a]
+De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.
+Origen
+[Qué significa Origen]
+La reunión en la que se tomó, o informal si alguien lo asignó fuera de una reunión.
+Enviar la nota
+01/12/2026
+Pendiente
+—
+Informal
+[Cantidad por página]
+10 por página
+20 por página
+50 por página
+1–10 de 30
+Anterior
+Siguiente"
+`;
+
+exports[`searches and filters on the server, from the first page > screen at the start 1`] = `
+"Compromisos
+Nuevo compromiso
+A mi cargo
+Los que asigné
+Los que sigo
+Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+[Cargando…]"
+`;

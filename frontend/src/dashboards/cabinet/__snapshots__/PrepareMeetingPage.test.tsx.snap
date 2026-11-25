@@ -1,0 +1,603 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds items with the button and not without a title > screen at the end 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+Feria
+Tema propio
+[Subir Feria]
+[Bajar Feria]
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;
+
+exports[`adds items with the button and not without a title > screen at the start 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Nada coincide con la búsqueda.
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+[Cargando…]
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;
+
+exports[`asks for a date before proposing or creating anything > screen at the end 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+Ambiental, octubre de 2026
+Estado de tablero
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Crítico
+Certificar la obra
+Compromiso
+[Subir Certificar la obra]
+[Bajar Certificar la obra]
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+·
+[Ver compromiso: Certificar la obra]
+Ver compromiso
+Plaza central
+Cronograma
+Tema propio
+Quedó de la reunión anterior
+[Subir Cronograma]
+[Bajar Cronograma]
+Tema propio
+Agregar
+Al crear la reunión, 2 compromisos pendientes se arrastran y cuentan como postergados una vez más.
+Cancelar
+Crear reunión"
+`;
+
+exports[`asks for a date before proposing or creating anything > screen at the start 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Nada coincide con la búsqueda.
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+[Cargando…]
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;
+
+exports[`creates the meeting with what was accepted, in the order chosen > screen at the end 1`] = `"the meeting"`;
+
+exports[`creates the meeting with what was accepted, in the order chosen > screen at the start 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Nada coincide con la búsqueda.
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+[Cargando…]
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;
+
+exports[`does not take a date before the last meeting > screen at the end 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+La fecha no puede ser anterior al 20/10/2026.
+Participantes
+(Escribí nombres)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+Ambiental, octubre de 2026
+Estado de tablero
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Crítico
+Certificar la obra
+Compromiso
+[Subir Certificar la obra]
+[Bajar Certificar la obra]
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+·
+[Ver compromiso: Certificar la obra]
+Ver compromiso
+Plaza central
+Cronograma
+Tema propio
+Quedó de la reunión anterior
+[Subir Cronograma]
+[Bajar Cronograma]
+Tema propio
+Agregar
+Al crear la reunión, 2 compromisos pendientes se arrastran y cuentan como postergados una vez más.
+Cancelar
+Crear reunión"
+`;
+
+exports[`does not take a date before the last meeting > screen at the start 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Nada coincide con la búsqueda.
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+[Cargando…]
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;
+
+exports[`leads to the open meeting instead, when there is one > screen at the end 1`] = `
+"Ya hay una reunión abierta. Cerrala antes de preparar la siguiente.
+Continuar la reunión del 23/11/2026"
+`;
+
+exports[`leads to the open meeting instead, when there is one > screen at the start 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Nada coincide con la búsqueda.
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+[Cargando…]
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;
+
+exports[`loads the proposal again when it changed meanwhile > screen at the end 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+Ambiental, octubre de 2026
+Estado de tablero
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Crítico
+Certificar la obra
+Compromiso
+[Subir Certificar la obra]
+[Bajar Certificar la obra]
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+·
+[Ver compromiso: Certificar la obra]
+Ver compromiso
+Plaza central
+Cronograma
+Tema propio
+Quedó de la reunión anterior
+[Subir Cronograma]
+[Bajar Cronograma]
+Tema propio
+Agregar
+Al crear la reunión, 2 compromisos pendientes se arrastran y cuentan como postergados una vez más.
+Lo que se propone para el temario cambió. Revisalo y volvé a intentar.
+Cancelar
+Crear reunión"
+`;
+
+exports[`loads the proposal again when it changed meanwhile > screen at the start 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Nada coincide con la búsqueda.
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+[Cargando…]
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;
+
+exports[`proposes again for another date and keeps the decisions taken > screen at the end 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+Ambiental, octubre de 2026
+Estado de tablero
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Crítico
+Certificar la obra
+Compromiso
+[Subir Certificar la obra]
+[Bajar Certificar la obra]
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+·
+[Ver compromiso: Certificar la obra]
+Ver compromiso
+Plaza central
+Cronograma
+Tema propio
+Quedó de la reunión anterior
+[Subir Cronograma]
+[Bajar Cronograma]
+Social
+Estado de tablero
+[Subir Social]
+[Bajar Social]
+Crítico
+Tema propio
+Agregar
+Al crear la reunión, 2 compromisos pendientes se arrastran y cuentan como postergados una vez más.
+Cancelar
+Crear reunión"
+`;
+
+exports[`proposes again for another date and keeps the decisions taken > screen at the start 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Nada coincide con la búsqueda.
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+[Cargando…]
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;
+
+exports[`proposes the agenda for today, saying where each item comes from > screen at the end 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+Ambiental, octubre de 2026
+Estado de tablero
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Crítico
+Certificar la obra
+Compromiso
+[Subir Certificar la obra]
+[Bajar Certificar la obra]
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+·
+[Ver compromiso: Certificar la obra]
+Ver compromiso
+Plaza central
+Cronograma
+Tema propio
+Quedó de la reunión anterior
+[Subir Cronograma]
+[Bajar Cronograma]
+Tema propio
+Agregar
+Al crear la reunión, 2 compromisos pendientes se arrastran y cuentan como postergados una vez más.
+Cancelar
+Crear reunión"
+`;
+
+exports[`proposes the agenda for today, saying where each item comes from > screen at the start 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Nada coincide con la búsqueda.
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+[Cargando…]
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;
+
+exports[`says how many dashboards it did not look at > screen at the end 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+Ambiental, octubre de 2026
+Estado de tablero
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Crítico
+Certificar la obra
+Compromiso
+[Subir Certificar la obra]
+[Bajar Certificar la obra]
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+·
+[Ver compromiso: Certificar la obra]
+Ver compromiso
+Plaza central
+Cronograma
+Tema propio
+Quedó de la reunión anterior
+[Subir Cronograma]
+[Bajar Cronograma]
+No se miró el estado de 3 tableros a los que no tenés acceso.
+Tema propio
+Agregar
+Al crear la reunión, 2 compromisos pendientes se arrastran y cuentan como postergados una vez más.
+Cancelar
+Crear reunión"
+`;
+
+exports[`says how many dashboards it did not look at > screen at the start 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Nada coincide con la búsqueda.
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+[Cargando…]
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;
+
+exports[`says when the proposal or the members cannot be loaded > screen at the end 1`] = `
+"Volver a reuniones
+Preparar reunión
+Ocurrió un error. Intentá de nuevo.
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Nada coincide con la búsqueda.
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+Ocurrió un error. Intentá de nuevo.
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;
+
+exports[`says when the proposal or the members cannot be loaded > screen at the start 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Nada coincide con la búsqueda.
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+[Cargando…]
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;
+
+exports[`takes back what was dropped > screen at the end 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+Ambiental, octubre de 2026
+Estado de tablero
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Crítico
+Certificar la obra
+Compromiso
+[Subir Certificar la obra]
+[Bajar Certificar la obra]
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+·
+[Ver compromiso: Certificar la obra]
+Ver compromiso
+Plaza central
+Cronograma
+Tema propio
+Quedó de la reunión anterior
+[Subir Cronograma]
+[Bajar Cronograma]
+Tema propio
+Agregar
+Al crear la reunión, 2 compromisos pendientes se arrastran y cuentan como postergados una vez más.
+Cancelar
+Crear reunión"
+`;
+
+exports[`takes back what was dropped > screen at the start 1`] = `
+"Volver a reuniones
+Preparar reunión
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Participantes
+(Escribí nombres)
+Nada coincide con la búsqueda.
+Invitados
+Personas sin usuario que también participan.
+[Temario propuesto]
+Temario propuesto
+Destildá lo que no se va a tratar, cambiá el orden o agregá temas propios.
+[Cargando…]
+Tema propio
+Agregar
+Cancelar
+Crear reunión"
+`;

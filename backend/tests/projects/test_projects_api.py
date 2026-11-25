@@ -509,3 +509,24 @@ def test_indicators_are_listed_by_axis_objective_and_name_and_filtered(client, p
     ]
     assert names(objective_id=str(housing.id)) == ["Lotes con servicios", "Viviendas entregadas"]
     assert len(names()) == 5
+
+
+def test_an_indicator_moves_to_another_objective_of_the_municipality(client):
+    municipality = projects_member("editor")
+    login(client, "ana@noetinger.test")
+    axis = make_axis(municipality, make_term(municipality))
+    first, second = (make_objective(municipality, axis, name) for name in ("Uno", "Dos"))
+    indicator = make_indicator(municipality, first)
+    url = f"/api/dashboards/projects/indicators/{indicator.id}"
+
+    moved = client.patch(url, json={"objective_id": str(second.id)}).json()
+
+    assert moved["objective"] == {"id": str(second.id), "name": "Dos"}
+    other = make_municipality("Saira")
+    theirs = make_objective(other, make_axis(other, make_term(other)))
+    refused = client.patch(url, json={"objective_id": str(theirs.id)})
+    assert refused.status_code == 422
+    assert refused.json()["error"] == {
+        "code": "invalid_reference",
+        "message": "objective_id does not reference an existing record.",
+    }

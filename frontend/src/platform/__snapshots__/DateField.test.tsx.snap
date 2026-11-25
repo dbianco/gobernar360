@@ -1,0 +1,439 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`accepts 01/11/2026 or says what is wrong with it > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`accepts 01/11/2026 or says what is wrong with it > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`accepts 01/12/2026 or says what is wrong with it > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+La fecha no puede ser posterior al 30/11/2026.
+clear
+set
+send"
+`;
+
+exports[`accepts 01/12/2026 or says what is wrong with it > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`accepts 30/11/2026 or says what is wrong with it > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`accepts 30/11/2026 or says what is wrong with it > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`accepts 31/10/2026 or says what is wrong with it > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+La fecha no puede ser anterior al 01/11/2026.
+clear
+set
+send"
+`;
+
+exports[`accepts 31/10/2026 or says what is wrong with it > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`closes with Escape without closing the window it is in > screen at the end 1`] = `"open"`;
+
+exports[`closes with Escape without closing the window it is in > screen at the start 1`] = `"open"`;
+
+exports[`does not offer days out of its limits, and starts where there are some > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+[Mes anterior]
+[Elegir mes]
+marzo 2027
+[Mes siguiente]
+lu
+ma
+mi
+ju
+vi
+sá
+do
+[1 marzo 2027]
+1
+[2 marzo 2027]
+2
+[3 marzo 2027]
+3
+[4 marzo 2027]
+4
+[5 marzo 2027]
+5
+[6 marzo 2027]
+6
+[7 marzo 2027]
+7
+[8 marzo 2027]
+8
+[9 marzo 2027]
+9
+[10 marzo 2027]
+10
+[11 marzo 2027]
+11
+[12 marzo 2027]
+12
+[13 marzo 2027]
+13
+[14 marzo 2027]
+14
+[15 marzo 2027]
+15
+[16 marzo 2027]
+16
+[17 marzo 2027]
+17
+[18 marzo 2027]
+18
+[19 marzo 2027]
+19
+[20 marzo 2027]
+20
+[21 marzo 2027]
+21
+[22 marzo 2027]
+22
+[23 marzo 2027]
+23
+[24 marzo 2027]
+24
+[25 marzo 2027]
+25
+[26 marzo 2027]
+26
+[27 marzo 2027]
+27
+[28 marzo 2027]
+28
+[29 marzo 2027]
+29
+[30 marzo 2027]
+30
+[31 marzo 2027]
+31
+[1 abril 2027]
+1
+[2 abril 2027]
+2
+[3 abril 2027]
+3
+[4 abril 2027]
+4
+clear
+set
+send"
+`;
+
+exports[`does not offer days out of its limits, and starts where there are some > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`follows its value when it is changed from outside > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`follows its value when it is changed from outside > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`has no date while what is written is not one, and says so on leaving > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`has no date while what is written is not one, and says so on leaving > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`is not sent with half a date, or without one when it is required > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`is not sent with half a date, or without one when it is required > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`keeps the date when its day is picked again > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`keeps the date when its day is picked again > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`may be left empty when it is not required > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`may be left empty when it is not required > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`opens on today when there is no date, and closes with its button > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`opens on today when there is no date, and closes with its button > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`picks a day in a calendar in Spanish and gives the focus back > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`picks a day in a calendar in Spanish and gives the focus back > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`shows the date as day, month and year > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`shows the date as day, month and year > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`stays open while other keys move through the calendar > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+[Mes anterior]
+[Elegir mes]
+diciembre 2026
+[Mes siguiente]
+lu
+ma
+mi
+ju
+vi
+sá
+do
+[30 noviembre 2026]
+30
+[1 diciembre 2026]
+1
+[2 diciembre 2026]
+2
+[3 diciembre 2026]
+3
+[4 diciembre 2026]
+4
+[5 diciembre 2026]
+5
+[6 diciembre 2026]
+6
+[7 diciembre 2026]
+7
+[8 diciembre 2026]
+8
+[9 diciembre 2026]
+9
+[10 diciembre 2026]
+10
+[11 diciembre 2026]
+11
+[12 diciembre 2026]
+12
+[13 diciembre 2026]
+13
+[14 diciembre 2026]
+14
+[15 diciembre 2026]
+15
+[16 diciembre 2026]
+16
+[17 diciembre 2026]
+17
+[18 diciembre 2026]
+18
+[19 diciembre 2026]
+19
+[20 diciembre 2026]
+20
+[21 diciembre 2026]
+21
+[22 diciembre 2026]
+22
+[23 diciembre 2026]
+23
+[24 diciembre 2026]
+24
+[25 diciembre 2026]
+25
+[26 diciembre 2026]
+26
+[27 diciembre 2026]
+27
+[28 diciembre 2026]
+28
+[29 diciembre 2026]
+29
+[30 diciembre 2026]
+30
+[31 diciembre 2026]
+31
+[1 enero 2027]
+1
+[2 enero 2027]
+2
+[3 enero 2027]
+3
+clear
+set
+send"
+`;
+
+exports[`stays open while other keys move through the calendar > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`takes what is typed once it is a whole date, and writes it in full on leaving > screen at the end 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;
+
+exports[`takes what is typed once it is a whole date, and writes it in full on leaving > screen at the start 1`] = `
+"Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+clear
+set
+send"
+`;

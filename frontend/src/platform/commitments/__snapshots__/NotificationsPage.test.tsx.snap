@@ -1,0 +1,460 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`goes to the list asked for, or to the top > screen at the end 1`] = `
+"Notificaciones
+Marcar todo como leído
+[Compromisos a mi cargo]
+Compromisos a mi cargo
+Los que tenés pendientes.
+Buscar
+(Compromiso o responsable)
+[Compromisos a mi cargo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Novedad
+[Qué significa Novedad]
+Lo que pasó desde la última vez que lo viste.
+Señalizar
+Vencido
+10/11/2026
+Certificar la obra
+Pendiente
+30/11/2026
+Zoe Ruiz te lo asignó
+[Marcar como leída: Certificar la obra]
+Marcar como leída
+[Compromisos de otros que sigo]
+Compromisos de otros que sigo
+Los que asignaste o en los que te agregaron. Los cumplidos quedan hasta que los marques como leídos.
+Buscar
+(Compromiso o responsable)
+[Compromisos de otros que sigo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Novedad
+[Qué significa Novedad]
+Lo que pasó desde la última vez que lo viste.
+Enviar la nota
+Leo Paz
+Cumplido
+30/11/2026
+Leo Paz lo cumplió
+[Marcar como leída: Enviar la nota]
+Marcar como leída
+Pedir fotos
+Leo Paz
+Pendiente
+30/11/2026"
+`;
+
+exports[`goes to the list asked for, or to the top > screen at the start 1`] = `
+"Notificaciones
+[Cargando…]"
+`;
+
+exports[`lists one's open commitments and those of others one follows, with state, date and link > screen at the end 1`] = `
+"Notificaciones
+Marcar todo como leído
+[Compromisos a mi cargo]
+Compromisos a mi cargo
+Los que tenés pendientes.
+Buscar
+(Compromiso o responsable)
+[Compromisos a mi cargo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Novedad
+[Qué significa Novedad]
+Lo que pasó desde la última vez que lo viste.
+Señalizar
+Vencido
+10/11/2026
+Certificar la obra
+Pendiente
+30/11/2026
+Zoe Ruiz te lo asignó
+[Marcar como leída: Certificar la obra]
+Marcar como leída
+[Compromisos de otros que sigo]
+Compromisos de otros que sigo
+Los que asignaste o en los que te agregaron. Los cumplidos quedan hasta que los marques como leídos.
+Buscar
+(Compromiso o responsable)
+[Compromisos de otros que sigo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Novedad
+[Qué significa Novedad]
+Lo que pasó desde la última vez que lo viste.
+Enviar la nota
+Leo Paz
+Cumplido
+30/11/2026
+Leo Paz lo cumplió
+[Marcar como leída: Enviar la nota]
+Marcar como leída
+Pedir fotos
+Leo Paz
+Pendiente
+30/11/2026"
+`;
+
+exports[`lists one's open commitments and those of others one follows, with state, date and link > screen at the start 1`] = `
+"Notificaciones
+[Cargando…]"
+`;
+
+exports[`marks everything as read > screen at the end 1`] = `
+"Notificaciones
+Marcar todo como leído
+[Compromisos a mi cargo]
+Compromisos a mi cargo
+Los que tenés pendientes.
+Buscar
+(Compromiso o responsable)
+[Compromisos a mi cargo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Novedad
+[Qué significa Novedad]
+Lo que pasó desde la última vez que lo viste.
+Señalizar
+Vencido
+10/11/2026
+Certificar la obra
+Pendiente
+30/11/2026
+Zoe Ruiz te lo asignó
+[Marcar como leída: Certificar la obra]
+Marcar como leída
+[Compromisos de otros que sigo]
+Compromisos de otros que sigo
+Los que asignaste o en los que te agregaron. Los cumplidos quedan hasta que los marques como leídos.
+Buscar
+(Compromiso o responsable)
+[Compromisos de otros que sigo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Novedad
+[Qué significa Novedad]
+Lo que pasó desde la última vez que lo viste.
+Enviar la nota
+Leo Paz
+Cumplido
+30/11/2026
+Leo Paz lo cumplió
+[Marcar como leída: Enviar la nota]
+Marcar como leída
+Pedir fotos
+Leo Paz
+Pendiente
+30/11/2026"
+`;
+
+exports[`marks everything as read > screen at the start 1`] = `
+"Notificaciones
+[Cargando…]"
+`;
+
+exports[`marks one as read, and the list shows what is left > screen at the end 1`] = `
+"Notificaciones
+[Compromisos a mi cargo]
+Compromisos a mi cargo
+Los que tenés pendientes.
+No tenés compromisos pendientes.
+[Compromisos de otros que sigo]
+Compromisos de otros que sigo
+Los que asignaste o en los que te agregaron. Los cumplidos quedan hasta que los marques como leídos.
+No seguís compromisos pendientes de otras personas."
+`;
+
+exports[`marks one as read, and the list shows what is left > screen at the start 1`] = `
+"Notificaciones
+[Cargando…]"
+`;
+
+exports[`says somebody did it when their account is gone > screen at the end 1`] = `
+"Notificaciones
+Marcar todo como leído
+[Compromisos a mi cargo]
+Compromisos a mi cargo
+Los que tenés pendientes.
+No tenés compromisos pendientes.
+[Compromisos de otros que sigo]
+Compromisos de otros que sigo
+Los que asignaste o en los que te agregaron. Los cumplidos quedan hasta que los marques como leídos.
+Buscar
+(Compromiso o responsable)
+[Compromisos de otros que sigo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Novedad
+[Qué significa Novedad]
+Lo que pasó desde la última vez que lo viste.
+Certificar la obra
+Ana Gómez
+Pendiente
+30/11/2026
+Alguien sin cuenta lo cumplió
+[Marcar como leída: Certificar la obra]
+Marcar como leída"
+`;
+
+exports[`says somebody did it when their account is gone > screen at the start 1`] = `
+"Notificaciones
+[Cargando…]"
+`;
+
+exports[`says when it cannot be loaded > screen at the end 1`] = `
+"Notificaciones
+Ocurrió un error. Intentá de nuevo."
+`;
+
+exports[`says when it cannot be loaded > screen at the start 1`] = `
+"Notificaciones
+[Cargando…]"
+`;
+
+exports[`says why it could not be marked > screen at the end 1`] = `
+"Notificaciones
+Marcar todo como leído
+Ocurrió un error. Intentá de nuevo.
+[Compromisos a mi cargo]
+Compromisos a mi cargo
+Los que tenés pendientes.
+Buscar
+(Compromiso o responsable)
+[Compromisos a mi cargo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Novedad
+[Qué significa Novedad]
+Lo que pasó desde la última vez que lo viste.
+Señalizar
+Vencido
+10/11/2026
+Certificar la obra
+Pendiente
+30/11/2026
+Zoe Ruiz te lo asignó
+[Marcar como leída: Certificar la obra]
+Marcar como leída
+[Compromisos de otros que sigo]
+Compromisos de otros que sigo
+Los que asignaste o en los que te agregaron. Los cumplidos quedan hasta que los marques como leídos.
+Buscar
+(Compromiso o responsable)
+[Compromisos de otros que sigo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Novedad
+[Qué significa Novedad]
+Lo que pasó desde la última vez que lo viste.
+Enviar la nota
+Leo Paz
+Cumplido
+30/11/2026
+Leo Paz lo cumplió
+[Marcar como leída: Enviar la nota]
+Marcar como leída
+Pedir fotos
+Leo Paz
+Pendiente
+30/11/2026"
+`;
+
+exports[`says why it could not be marked > screen at the start 1`] = `
+"Notificaciones
+[Cargando…]"
+`;
+
+exports[`searches each list by what and who > screen at the end 1`] = `
+"Notificaciones
+Marcar todo como leído
+[Compromisos a mi cargo]
+Compromisos a mi cargo
+Los que tenés pendientes.
+Buscar
+(Compromiso o responsable)
+[Compromisos a mi cargo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Novedad
+[Qué significa Novedad]
+Lo que pasó desde la última vez que lo viste.
+Señalizar
+Vencido
+10/11/2026
+Certificar la obra
+Pendiente
+30/11/2026
+Zoe Ruiz te lo asignó
+[Marcar como leída: Certificar la obra]
+Marcar como leída
+[Compromisos de otros que sigo]
+Compromisos de otros que sigo
+Los que asignaste o en los que te agregaron. Los cumplidos quedan hasta que los marques como leídos.
+Buscar
+(Compromiso o responsable)
+[Borrar la búsqueda]
+Nada coincide con la búsqueda."
+`;
+
+exports[`searches each list by what and who > screen at the start 1`] = `
+"Notificaciones
+[Cargando…]"
+`;
+
+exports[`starts at the top when no list was asked for > screen at the end 1`] = `
+"Notificaciones
+Marcar todo como leído
+[Compromisos a mi cargo]
+Compromisos a mi cargo
+Los que tenés pendientes.
+Buscar
+(Compromiso o responsable)
+[Compromisos a mi cargo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Novedad
+[Qué significa Novedad]
+Lo que pasó desde la última vez que lo viste.
+Señalizar
+Vencido
+10/11/2026
+Certificar la obra
+Pendiente
+30/11/2026
+Zoe Ruiz te lo asignó
+[Marcar como leída: Certificar la obra]
+Marcar como leída
+[Compromisos de otros que sigo]
+Compromisos de otros que sigo
+Los que asignaste o en los que te agregaron. Los cumplidos quedan hasta que los marques como leídos.
+Buscar
+(Compromiso o responsable)
+[Compromisos de otros que sigo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Novedad
+[Qué significa Novedad]
+Lo que pasó desde la última vez que lo viste.
+Enviar la nota
+Leo Paz
+Cumplido
+30/11/2026
+Leo Paz lo cumplió
+[Marcar como leída: Enviar la nota]
+Marcar como leída
+Pedir fotos
+Leo Paz
+Pendiente
+30/11/2026"
+`;
+
+exports[`starts at the top when no list was asked for > screen at the start 1`] = `
+"Notificaciones
+[Cargando…]"
+`;

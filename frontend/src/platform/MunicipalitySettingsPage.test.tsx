@@ -5,7 +5,7 @@ import { expect, it } from 'vitest'
 import App from '../App'
 import { makeMe, NOETINGER } from '../test/fixtures'
 import { renderApp, t } from '../test/render'
-import { mockApi } from '../test/server'
+import { mockApi, mockApiError } from '../test/server'
 import type { EmailTemplate, MunicipalitySettings } from './settings/types'
 
 const OPERATOR = makeMe({ isOperator: true, municipalities: [] })
@@ -91,4 +91,13 @@ it('keeps the configuration of a municipality away from non-operators', async ()
   renderPage({ me: makeMe({ isAdmin: true }) })
 
   expect(await screen.findByRole('heading', { name: t('overview.title') })).toBeInTheDocument()
+})
+
+it('says when the municipality cannot be loaded', async () => {
+  renderPage()
+  mockApiError('get', '/platform/municipalities', 500, 'boom')
+
+  expect(await screen.findByText(t('errors.generic'))).toBeInTheDocument()
+  expect(screen.queryByText(t('platform.notFound'))).toBeNull()
+  expect(screen.getByRole('link', { name: t('platform.backToMunicipality') })).toBeInTheDocument()
 })

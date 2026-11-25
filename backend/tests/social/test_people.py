@@ -294,3 +294,16 @@ def test_people_of_another_municipality_are_not_reachable(client):
     )
     assert created.status_code == 201
     assert _count(municipality, Person) == 1
+
+
+def test_a_change_with_nothing_in_it_leaves_the_person_as_they_were(client):
+    municipality = social_member("editor")
+    login(client, EMAIL)
+    person = make_social_person(municipality, phone="111")
+    url = f"{BASE}/people/{person.id}"
+    before = client.get(url).json()
+
+    assert client.patch(url, json={}).json() == before
+    assert client.patch(url, json={"person": {}}).json() == before
+    changed = client.patch(url, json={"person": {"phone": "222"}}).json()
+    assert changed["person"]["phone"] == "222"

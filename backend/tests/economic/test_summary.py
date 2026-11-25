@@ -1,5 +1,6 @@
 from datetime import date
 
+from gobernar360.dashboards.economic.models import EMPLOYMENT_STATUSES
 from gobernar360.platform.clock import get_today
 from tests.economic.factories import (
     BASE,
@@ -199,3 +200,36 @@ def test_ties_are_listed_by_name(client):
     assert summary["person_tools"] == []
     assert [row["name"] for row in reports["actors_by_type"]] == ["Comercio", "Industria"]
     assert [row["name"] for row in reports["actors_by_sector"]] == ["Alimentos", "Servicios"]
+
+
+def test_reports_put_the_largest_first_and_ties_in_their_own_order(client):
+    client.app.dependency_overrides[get_today] = lambda: date(2026, 6, 15)
+    municipality = economic_member("viewer")
+    login(client, EMAIL)
+    for name, count in (("Servicios", 1), ("Comercio", 1), ("Industria", 2)):
+        kind = make_actor_type(municipality, name)
+        for _ in range(count):
+            actor = make_actor(municipality, actor_type_id=kind.id)
+    for name, count in (("Formación", 1), ("Crédito", 1), ("Ferias", 2)):
+        tool = make_tool(municipality, make_tool_category(municipality, name), name)
+        for _ in range(count):
+            make_assignment(municipality, tool, actor=actor)
+    for status, count in (("unemployed", 2), ("employed", 2), ("unknown", 3)):
+        for _ in range(count):
+            make_economic_person(municipality, employment_status=status)
+
+    report = client.get(f"{BASE}/reports").json()
+    summary = client.get(f"{BASE}/summary").json()
+
+    def pairs(key, name="name"):
+        return [(row[name], row["count"]) for row in report[key]]
+
+    assert pairs("actors_by_type") == [("Industria", 2), ("Comercio", 1), ("Servicios", 1)]
+    assert pairs("assignments_by_category") == [("Ferias", 2), ("Crédito", 1), ("Formación", 1)]
+    statuses = pairs("people_by_employment_status", "status")
+    assert statuses[0] == ("unknown", 3)
+    # A tie keeps the order of the list people choose from, not the alphabet's.
+    order = [status for status, _ in statuses[1:]]
+    assert order == sorted(order, key=EMPLOYMENT_STATUSES.index)
+    tools = [(row["tool"], row["count"]) for row in summary["actor_tools"]]
+    assert tools == [("Ferias", 2), ("Crédito", 1), ("Formación", 1)]

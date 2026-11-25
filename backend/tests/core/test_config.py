@@ -1,6 +1,6 @@
 """Settings that build what people receive."""
 
-from gobernar360.core.config import get_settings
+from gobernar360.core.config import Settings, get_settings
 
 
 def test_links_to_the_web_app_have_a_single_slash():
@@ -18,3 +18,9 @@ def test_single_sign_on_needs_an_issuer_and_a_client():
     assert configured(oidc_issuer="https://idp.test", oidc_client_id="app")
     assert not configured(oidc_issuer="", oidc_client_id="app")
     assert not configured(oidc_issuer="https://idp.test", oidc_client_id="")
+
+
+def test_links_have_one_slash_between_the_address_and_the_path():
+    for address in ("https://app.test", "https://app.test/", "https://app.testX"):
+        link = Settings(app_url=address).app_link("/login")
+        assert link == address.rstrip("/") + "/login"

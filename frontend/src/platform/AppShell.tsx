@@ -12,6 +12,7 @@ import {
 import { useDisclosure } from '@mantine/hooks'
 import {
   IconBuildingCommunity,
+  IconChecklist,
   IconFileReport,
   IconLayoutDashboard,
   IconSettings,
@@ -25,6 +26,7 @@ import { Link, Navigate, Outlet, useLocation } from 'react-router-dom'
 
 import { dashboards } from '../dashboards/registry'
 import { useAuth } from './authContext'
+import { HeaderNotices } from './commitments/HeaderNotices'
 import {
   MunicipalityChooser,
   MunicipalitySwitcher,
@@ -82,7 +84,7 @@ export function AppShell() {
     >
       <Shell.Header>
         <Group h="100%" px="md" justify="space-between" wrap="nowrap">
-          <Group gap="sm" wrap="nowrap">
+          <Group gap="sm" wrap="nowrap" miw={0}>
             <Burger
               opened={menuOpen}
               onClick={menu.toggle}
@@ -90,15 +92,30 @@ export function AppShell() {
               size="sm"
               aria-label={t('nav.openMenu')}
             />
-            <Title order={4}>{t('app.name')}</Title>
+            {/* On a phone the room goes to what is useful. */}
+            <Title order={4} visibleFrom="sm">
+              {t('app.name')}
+            </Title>
             {me.memberships.length > 1 && membership ? (
               <MunicipalitySwitcher />
             ) : (
-              membership && <Text c="dimmed">{membership.municipality.name}</Text>
+              membership && (
+                <Text c="dimmed" truncate>
+                  {membership.municipality.name}
+                </Text>
+              )
             )}
           </Group>
-          <Group gap="sm" wrap="nowrap">
-            <Anchor component={Link} to="/account" size="sm" title={t('account.link')}>
+          <Group gap="sm" wrap="nowrap" style={{ flexShrink: 0 }}>
+            {membership && <HeaderNotices />}
+            <Anchor
+              component={Link}
+              to="/account"
+              size="sm"
+              title={t('account.link')}
+              truncate
+              maw={{ base: 72, sm: 260 }}
+            >
               {me.user.full_name}
             </Anchor>
             <Tooltip
@@ -122,6 +139,7 @@ export function AppShell() {
 
       <Shell.Navbar p="xs">
         {membership && link('/', t('nav.overview'), IconLayoutDashboard)}
+        {membership && link('/commitments', t('commitments.section'), IconChecklist)}
         {membership && visibleDashboards.map((d) => link(d.basePath, t(d.labelKey), d.icon))}
         {membership?.is_admin && link('/admin/users', t('nav.users'), IconUsers)}
         {membership?.is_admin && link('/admin/settings', t('nav.settings'), IconSettings)}

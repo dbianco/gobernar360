@@ -324,3 +324,17 @@ def test_search_ignores_accents(client):
     assert _names(client.get(f"{BASE}/people", params={"q": "perez"})) == ["Pérez, Juana"]
     assert _names(client.get(f"{BASE}/people", params={"q": "PÉREZ"})) == ["Pérez, Juana"]
     assert _names(client.get(f"{BASE}/people", params={"q": "raúl gómez"})) == ["Gomez, Raul"]
+
+
+def test_only_what_was_sent_of_a_person_changes(client):
+    municipality = economic_member("editor")
+    login(client, EMAIL)
+    person = make_economic_person(municipality, occupation="Herrera", phone="111")
+    url = f"{BASE}/people/{person.id}"
+
+    common = client.patch(url, json={"person": {"phone": "222"}}).json()
+    assert (common["person"]["phone"], common["occupation"]) == ("222", "Herrera")
+    own = client.patch(url, json={"occupation": "Soldadora"}).json()
+    assert (own["person"]["phone"], own["occupation"]) == ("222", "Soldadora")
+    assert client.patch(url, json={}).json() == own
+    assert client.patch(url, json={"person": {}}).json() == own

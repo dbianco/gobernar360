@@ -1,3 +1,4 @@
+import pytest
 from sqlalchemy import select
 
 from gobernar360.core.db import tenant_session
@@ -5,7 +6,11 @@ from gobernar360.platform.models import AuditLog
 from tests.factories import login, make_municipality
 from tests.projects.factories import (
     make_axis,
+    make_budget,
     make_department,
+    make_objective,
+    make_owner,
+    make_program,
     make_project,
     make_term,
     projects_member,
@@ -208,3 +213,158 @@ def test_term_cannot_be_shortened_past_its_projects_or_budgets(client):
     assert (cut_end.status_code, cut_start.status_code) == (409, 409)
     assert cut_end.json()["error"]["code"] == "in_use"
     assert extend.status_code == 200
+
+
+PARAMETERS = [
+    ("departments", {"name": "Obras"}, {"name": "Obras Públicas"}),
+    ("programs", {"name": "Bacheo"}, {"name": "Plan de bacheo"}),
+    ("owners", {"full_name": "María"}, {"full_name": "María Pérez"}),
+]
+
+
+@pytest.mark.parametrize(("path", "body", "changed"), PARAMETERS)
+def test_each_parameter_is_created_renamed_listed_by_name_and_removed(client, path, body, changed):
+    _admin(client)
+    [field] = body
+    created = client.post(f"{BASE}/{path}", json=body)
+    client.post(f"{BASE}/{path}", json={field: "Archivo"})
+    url = f"{BASE}/{path}/{created.json()['id']}"
+
+    renamed = client.patch(url, json=changed)
+
+    assert (created.status_code, renamed.status_code) == (201, 200)
+    assert renamed.json() == {"id": created.json()["id"]} | changed
+    names = [item[field] for item in client.get(f"{BASE}/{path}").json()]
+    assert names == ["Archivo", changed[field]]
+    assert client.delete(url).status_code == 204
+    assert [item[field] for item in client.get(f"{BASE}/{path}").json()] == ["Archivo"]
+    assert client.delete(url).status_code == 404
+    assert client.patch(url, json=changed).status_code == 404
+
+
+def test_axes_and_objectives_are_renamed_and_removed(client):
+    municipality = _admin(client)
+    term = make_term(municipality)
+    axis = make_axis(municipality, term, "Ciudad")
+    objective = make_objective(municipality, axis, "Luz")
+
+    renamed = client.patch(f"{BASE}/axes/{axis.id}", json={"name": "Ciudad segura"})
+    changed = client.patch(f"{BASE}/objectives/{objective.id}", json={"name": "Más luz"})
+
+    assert renamed.json() == {
+        "id": str(axis.id),
+        "term_id": str(term.id),
+        "name": "Ciudad segura",
+    }
+    assert (changed.status_code, changed.json()["name"]) == (200, "Más luz")
+    # An axis is not removed from under its objectives.
+    assert client.delete(f"{BASE}/axes/{axis.id}").status_code == 409
+    assert client.delete(f"{BASE}/objectives/{objective.id}").status_code == 204
+    assert client.delete(f"{BASE}/axes/{axis.id}").status_code == 204
+    assert client.get(f"{BASE}/axes").json() == client.get(f"{BASE}/objectives").json() == []
+
+
+def test_axes_and_objectives_are_listed_by_name_for_a_term_an_axis_or_all(client):
+    municipality = _admin(client)
+    old, new = make_term(municipality, "Vieja", 2019, 2022), make_term(municipality)
+    axes = {name: make_axis(municipality, term, name) for name, term in (("B", old), ("A", new))}
+    for name, axis in (("Tres", "A"), ("Dos", "B"), ("Uno", "A")):
+        make_objective(municipality, axes[axis], name)
+
+    def names(path, **params):
+        return [item["name"] for item in client.get(f"{BASE}/{path}", params=params).json()]
+
+    assert names("axes") == ["A", "B"]
+    assert names("axes", term_id=str(old.id)) == ["B"]
+    assert names("objectives") == ["Dos", "Tres", "Uno"]
+    assert names("objectives", axis_id=str(axes["A"].id)) == ["Tres", "Uno"]
+    assert names("objectives", term_id=str(old.id)) == ["Dos"]
+
+
+def test_only_dashboard_admins_rename_or_remove_parameters(client):
+    municipality = projects_member("editor")
+    term = make_term(municipality)
+    axis = make_axis(municipality, term)
+    paths = [
+        f"axes/{axis.id}",
+        f"objectives/{make_objective(municipality, axis).id}",
+        f"departments/{make_department(municipality).id}",
+        f"programs/{make_program(municipality).id}",
+        f"owners/{make_owner(municipality).id}",
+    ]
+    login(client, "ana@noetinger.test")
+
+    for path in paths:
+        body = {"full_name": "x"} if path.startswith("owners") else {"name": "x"}
+        assert client.patch(f"{BASE}/{path}", json=body).status_code == 403, path
+        assert client.delete(f"{BASE}/{path}").status_code == 403, path
+
+
+def test_a_term_of_one_year_is_fine_and_one_that_ends_before_it_starts_is_not(client):
+    municipality = _admin(client)
+    term = make_term(municipality, start_year=2024, end_year=2026)
+    url = f"{BASE}/terms/{term.id}"
+
+    assert client.patch(url, json={"end_year": 2024}).json()["end_year"] == 2024
+    refused = client.patch(url, json={"end_year": 2023})
+    assert refused.status_code == 422
+    assert refused.json()["error"] == {
+        "code": "validation_error",
+        "message": "end_year must not be before start_year.",
+    }
+    assert _term(client, start_year=2030, end_year=2030).status_code == 201
+    created = _term(client, start_year=2030, end_year=2029)
+    assert created.status_code == 422
+    [detail] = created.json()["error"]["details"]
+    assert detail["message"].endswith("end_year must not be before start_year")
+
+
+def test_a_term_keeps_the_years_its_own_projects_and_budgets_are_in(client):
+    municipality = _admin(client)
+    term = make_term(municipality, start_year=2023, end_year=2027)
+    other = make_term(municipality, "Otra", 2019, 2030)
+    for owner, year in ((term, 2025), (other, 2019), (other, 2030)):
+        make_project(
+            municipality,
+            owner,
+            make_axis(municipality, owner),
+            make_department(municipality),
+            year=year,
+        )
+        make_budget(municipality, owner, year, 100)
+        make_budget(municipality, owner, year + 1 if year < 2030 else 2029, 100)
+    url = f"{BASE}/terms/{term.id}"
+
+    # 2025 has a project and 2026 a budget; those of the other term are not its concern.
+    for years in ({"end_year": 2025}, {"start_year": 2026}):
+        refused = client.patch(url, json=years)
+        assert refused.status_code == 409
+        assert refused.json()["error"] == {
+            "code": "in_use",
+            "message": "The term has projects or budgets in the years being removed.",
+        }
+    assert client.patch(url, json={"start_year": 2025, "end_year": 2026}).status_code == 200
+
+
+def test_a_budget_is_for_a_year_of_its_term_ends_included(client):
+    municipality = _admin(client)
+    term = make_term(municipality, start_year=2023, end_year=2027)
+    other = make_term(municipality, "Otra", 2023, 2027)
+    make_budget(municipality, other, 2027, 50)
+    url = f"{BASE}/terms/{term.id}/budgets"
+
+    for year in (2027, 2023, 2025):
+        body = {"year": year, "total_amount": "100.00"}
+        assert client.put(url, json=body).status_code == 200
+    for year in (2022, 2028):
+        refused = client.put(url, json={"year": year, "total_amount": "1"})
+        assert refused.status_code == 422
+        assert refused.json()["error"] == {
+            "code": "validation_error",
+            "message": "year must be within the term.",
+        }
+    listed = [(b["year"], b["total_amount"]) for b in client.get(url).json()]
+    assert listed == [(2023, "100.00"), (2025, "100.00"), (2027, "100.00")]
+    # Another term's budget of the same year is another budget.
+    theirs = client.get(f"{BASE}/terms/{other.id}/budgets").json()
+    assert [(b["year"], b["total_amount"]) for b in theirs] == [(2027, "50.00")]

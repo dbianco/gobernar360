@@ -3,6 +3,7 @@ import { type FormEvent, type ReactNode, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import { DateField } from '../DateField'
 import { errorMessage } from '../errorMessage'
 import type { Lookup, Person, PersonBody } from './types'
 
@@ -148,11 +149,10 @@ export function RegistryPersonForm(props: {
               onChange={changeDni}
               onBlur={() => void checkDni()}
             />
-            <TextInput
+            <DateField
               label={label('birthDate')}
-              type="date"
               value={common.birth_date}
-              onChange={set('birth_date')}
+              onChange={(birth_date) => setCommon((current) => ({ ...current, birth_date }))}
             />
             {text('first_name', 'firstName', 100, true)}
             {text('last_name', 'lastName', 100, true)}

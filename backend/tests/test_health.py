@@ -1,10 +1,22 @@
+import pytest
 from fastapi.testclient import TestClient
 
 from gobernar360.main import create_app
 
 
-def test_health_endpoint_reports_ok():
-    response = TestClient(create_app()).get("/api/health")
+@pytest.fixture
+def app():
+    """Built in each test, so mutmut knows that these are the tests of `create_app`."""
+    return create_app()
+
+
+@pytest.fixture
+def client(app):
+    return TestClient(app, headers={"X-Requested-With": "gobernar360"})
+
+
+def test_health_endpoint_reports_ok(app):
+    response = TestClient(app).get("/api/health")
 
     assert response.status_code == 200
     assert response.json() == {"status": "ok"}

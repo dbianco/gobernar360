@@ -34,6 +34,312 @@ exports[`does not link to scripts > screen at the start 1`] = `
 sitio"
 `;
 
+exports[`drops a link to {{}} > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to {{}} > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to {{a b}} > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to {{a b}} > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to {{link}}x > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to {{link}}x > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to ftp://noetinger.gob.ar > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to ftp://noetinger.gob.ar > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to javascript:alert(1) > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to javascript:alert(1) > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to javascript:void("https://x.test") > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to javascript:void("https://x.test") > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to noetinger.gob.ar > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to noetinger.gob.ar > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to tel:3472555 > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to tel:3472555 > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to x{{link}} > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
+exports[`drops a link to x{{link}} > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio web"
+`;
+
 exports[`edits an existing link, and removes it when the address is emptied > screen at the end 1`] = `
 "[Formato del texto]
 [Negrita]
@@ -351,6 +657,48 @@ exports[`formats the selection with underline and marks the button as active > s
 hola mundo"
 `;
 
+exports[`has two sizes of headings and no code > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+uno
+dos
+tres
+x
+y"
+`;
+
+exports[`has two sizes of headings and no code > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+uno
+dos
+tres
+x
+y"
+`;
+
 exports[`inserts text where the cursor is, for the variable buttons > screen at the end 1`] = `
 "[Formato del texto]
 [Negrita]
@@ -383,6 +731,210 @@ exports[`inserts text where the cursor is, for the variable buttons > screen at 
 [Rehacer]
 [Texto]
 Hola mundo"
+`;
+
+exports[`keeps a link to {{ account_link }} > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`keeps a link to {{ account_link }} > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`keeps a link to {{link}} > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`keeps a link to {{link}} > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`keeps a link to HTTPS://NOETINGER.GOB.AR > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`keeps a link to HTTPS://NOETINGER.GOB.AR > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`keeps a link to http://noetinger.gob.ar > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`keeps a link to http://noetinger.gob.ar > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`keeps a link to https://noetinger.gob.ar > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`keeps a link to https://noetinger.gob.ar > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`keeps a link to mailto:mesa@noetinger.gob.ar > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`keeps a link to mailto:mesa@noetinger.gob.ar > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
 `;
 
 exports[`links the selection to the suggested placeholder > screen at the end 1`] = `
@@ -437,6 +989,40 @@ sitio"
 `;
 
 exports[`links to an address typed and confirmed with Enter > screen at the start 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`links to an address without the spaces around it > screen at the end 1`] = `
+"[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+sitio"
+`;
+
+exports[`links to an address without the spaces around it > screen at the start 1`] = `
 "[Formato del texto]
 [Negrita]
 [Cursiva]
