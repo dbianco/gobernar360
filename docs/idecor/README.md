@@ -24,7 +24,10 @@ Quirks learned by GeoMiner (they are real):
   fixtures, not data to import.
 - With `urn:ogc:def:crs:EPSG::4326` in the BBOX the axis order is **latitude, longitude**:
   `BBOX=<min_lat>,<min_lon>,<max_lat>,<max_lon>,urn:ogc:def:crs:EPSG::4326`.
-- Send a `User-Agent`. Unauthenticated, no key needed.
+- Send a `User-Agent`. Unauthenticated, no key, number or registration needed. Checked again on
+  2026-11-26: the main WFS `GetCapabilities` answers 200 with no credentials. The services' web page
+  (https://www.mapascordoba.gob.ar/#/geoservicios) is rendered by JavaScript, so no written terms of
+  use could be read from it; if it publishes any, record them under *Licence*.
 
 Request that worked (Noetinger's box is `-32.3794,-62.3407,-32.3392,-62.2839`):
 
@@ -68,7 +71,9 @@ names are not uniform; search `layers-wfs.tsv` by town.
   Outside the layer's coverage the server answers **400 with an XML exception**: draw nothing.
 - Response headers: `Access-Control-Allow-Origin: *`, but `Cache-Control: no-cache, no-store,
   must-revalidate`: every view downloads the tiles again. Do not point heavy traffic at it without
-  asking; a municipality may prefer us to cache.
+  asking; a municipality may prefer us to cache. **Decided on 2026-11-26: for now these maps will
+  see little use, so tiles are fetched straight from CONAE with no cache of ours; revisit it if
+  traffic grows or CONAE objects.**
 - Capabilities of all layers: `https://geotematico01.conae.gov.ar/geoserver/gwc/service/wmts?REQUEST=GetCapabilities`
   (16 MB). Other localities have layers named `Localidades:Cordoba_<Town>_<year>`.
 
