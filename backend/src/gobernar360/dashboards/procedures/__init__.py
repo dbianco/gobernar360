@@ -7,6 +7,7 @@ from gobernar360.dashboards.procedures import (
     catalog_router,
     export,
     procedures_router,
+    report,
     summary,
 )
 from gobernar360.dashboards.procedures.access import KEY
@@ -24,4 +25,5 @@ module = DashboardModule(
     router=router,
     get_summary=summary.get_summary,
     indicators=summary.INDICATORS,
+    report_tables=report.report_tables,
 )

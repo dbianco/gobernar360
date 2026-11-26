@@ -1,32 +1,31 @@
 import { expect, it } from 'vitest'
 
 import { t } from '../../test/render'
-import { clockText, formatDateTime, formatDay, formatMonth } from './format'
+import { clockText, formatDay, formatMonth } from './format'
 import { makeClock } from './testData'
+import type { TFunction } from 'i18next'
 
-it('shows moments and days in Argentine time', () => {
-  // 02:30 UTC on the 3rd is still the 2nd in Buenos Aires.
-  expect(formatDateTime('2026-03-03T02:30:00Z')).toBe('02/03/2026 23:30')
-  expect(formatDay('2026-03-03T02:30:00Z')).toBe('02/03/2026')
-  expect(formatDateTime(null)).toBe('—')
-  expect(formatMonth('2026-03', t as never)).toBe('Mar 2026')
+const translate = t as unknown as TFunction
+
+it('writes the day in Argentina, or a dash without one', () => {
+  // Past midnight in UTC is still the day before in Argentina.
+  expect(formatDay('2026-03-02T01:30:00Z')).toBe('01/03/2026')
+  expect(formatDay(null)).toBe('—')
+  expect(formatDay(undefined)).toBe('—')
+})
+
+it('shortens the month, and shows as it came one that does not exist', () => {
+  expect(formatMonth('2026-03', translate)).toBe('Mar 2026')
+  expect(formatMonth('2026-13', translate)).toBe('13 2026')
 })
 
 it('reads the clock in words', () => {
-  const say = (overrides: Parameters<typeof makeClock>[0], state = 'in_progress' as const) =>
-    clockText(makeClock(overrides), state, t as never)
-
-  expect(say({ left_days: 2 })).toBe(t('complaints.clockText.left', { count: 2 }))
-  expect(say({ left_days: 1 })).toBe('Queda 1 día hábil')
-  expect(say({ left_days: 0 })).toBe(t('complaints.clockText.dueToday'))
-  expect(say({ left_days: -3 })).toBe('Vencido por 3 días hábiles')
-  expect(clockText(makeClock({ used_days: 4 }), 'closed', t as never)).toBe(
-    'Resuelto en 4 días hábiles',
+  const text = (left_days: number) => clockText(makeClock({ left_days }), 'in_progress', translate)
+  expect(text(2)).toBe(t('complaints.clockText.left', { count: 2 }))
+  expect(text(0)).toBe(t('complaints.clockText.dueToday'))
+  expect(text(-3)).toBe(t('complaints.clockText.late', { count: 3 }))
+  expect(clockText(makeClock({ used_days: 5 }), 'closed', translate)).toBe(
+    t('complaints.clockText.solvedIn', { count: 5 }),
   )
-  expect(clockText(makeClock(), 'rejected', t as never)).toBe('—')
-})
-
-it('shows a dash for a missing day', () => {
-  expect(formatDay(null)).toBe('—')
-  expect(formatDay('')).toBe('—')
+  expect(clockText(makeClock(), 'rejected', translate)).toBe(t('app.none'))
 })

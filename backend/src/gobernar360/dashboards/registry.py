@@ -146,6 +146,9 @@ class DashboardModule:
     alert_kinds: tuple[str, ...] = ()
     # Current alerts, given a session scoped to one municipality and today's date.
     get_alerts: Callable[[Session, date], list[Alert]] | None = None
+    # Kinds of notice to residents the dashboard asks for (`platform.resident_notices`). Each
+    # needs its text, `email.templates.notice.<kind>`.
+    notice_kinds: tuple[str, ...] = ()
     # Every indicator get_summary may return. The platform keeps their monthly history
     # and targets without knowing the dashboard.
     indicators: tuple[IndicatorDefinition, ...] = ()

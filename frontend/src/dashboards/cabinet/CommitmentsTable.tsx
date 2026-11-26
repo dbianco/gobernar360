@@ -1,8 +1,9 @@
-import { Anchor, Group, Table } from '@mantine/core'
+import { Anchor, Group, Table, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { PATH } from '../../platform/commitments/api'
+import { OwnerLeftBadge } from '../../platform/commitments/OwnerLeftBadge'
 import { PostponedBadge } from '../../platform/commitments/PostponedBadge'
 import { StateBadge } from '../../platform/commitments/StateBadge'
 import { formatDate } from '../../platform/format'
@@ -41,11 +42,19 @@ export function CommitmentsTable(props: {
                 </Anchor>
               </Table.Td>
               <Table.Td>{commitment.owner.full_name}</Table.Td>
-              <Table.Td>{formatDate(commitment.due_date)}</Table.Td>
+              <Table.Td>
+                {formatDate(commitment.due_date)}
+                {commitment.agreed_due_date !== commitment.due_date && (
+                  <Text size="xs" c="dimmed">
+                    {t('commitments.agreedFor', { date: formatDate(commitment.agreed_due_date) })}
+                  </Text>
+                )}
+              </Table.Td>
               <Table.Td>
                 <Group gap={4}>
                   <StateBadge state={commitment.state} />
                   <PostponedBadge times={commitment.times_postponed} />
+                  <OwnerLeftBadge commitment={commitment} />
                 </Group>
               </Table.Td>
               <Table.Td>

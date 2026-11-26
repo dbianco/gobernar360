@@ -27,7 +27,7 @@ Mapas y zonas
 Mapas y zonas
 Cambios guardados.
 Fondo de los mapas
-El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
 Humanitario
 CyclOSM (bicicletas)
@@ -41,7 +41,7 @@ Topográfico (Tracestrack)
 MapTiler
 Ciclovías y relieve, de Thunderforest.
 Clave de Thunderforest
-La da Thunderforest al registrarse; los planes gratuitos tienen límites de uso. No es secreta: los navegadores la envían con cada parte del mapa, así que conviene limitarla en el sitio del proveedor a la dirección de esta aplicación.
+La da Thunderforest al registrarse; los planes gratuitos tienen límites de uso. No es secreta: el navegador de cada persona del municipio la recibe y la envía con cada parte del mapa. Por eso hay que restringirla, en el sitio del proveedor, al dominio de esta aplicación.
 [Vista previa del mapa]
 [Acercar]
 +
@@ -55,7 +55,15 @@ OpenStreetMap
 contributors
 Cantidad mínima para mostrar una zona
 En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
-Guardar mapas y zonas"
+Guardar mapas y zonas
+Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
 `;
 
 exports[`asks for the key of the provider, and tries the map with it > screen at the start 1`] = `"[Cargando…]"`;
@@ -86,7 +94,7 @@ Acceso
 Mapas y zonas
 Mapas y zonas
 Fondo de los mapas
-El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
 Humanitario
 CyclOSM (bicicletas)
@@ -100,11 +108,19 @@ Topográfico (Tracestrack)
 MapTiler
 Un mapa de calles claro y actual, de MapTiler.
 Clave de MapTiler
-La da MapTiler al registrarse; los planes gratuitos tienen límites de uso. No es secreta: los navegadores la envían con cada parte del mapa, así que conviene limitarla en el sitio del proveedor a la dirección de esta aplicación.
+La da MapTiler al registrarse; los planes gratuitos tienen límites de uso. No es secreta: el navegador de cada persona del municipio la recibe y la envía con cada parte del mapa. Por eso hay que restringirla, en el sitio del proveedor, al dominio de esta aplicación.
 Escribí la clave para ver cómo queda.
 Cantidad mínima para mostrar una zona
 En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
-Guardar mapas y zonas"
+Guardar mapas y zonas
+Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
 `;
 
 exports[`keeps a key for other maps of its provider, and no other > screen at the start 1`] = `"[Cargando…]"`;
@@ -113,7 +129,7 @@ exports[`lets the operator choose without seeing anything of the municipality > 
 "Mapas y zonas
 Cambios guardados.
 Fondo de los mapas
-El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
 Humanitario
 CyclOSM (bicicletas)
@@ -145,7 +161,7 @@ Guardar mapas y zonas"
 exports[`lets the operator choose without seeing anything of the municipality > screen at the start 1`] = `
 "Mapas y zonas
 Fondo de los mapas
-El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
 Humanitario
 CyclOSM (bicicletas)
@@ -200,7 +216,7 @@ Acceso
 Mapas y zonas
 Mapas y zonas
 Fondo de los mapas
-El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
 Humanitario
 CyclOSM (bicicletas)
@@ -226,10 +242,84 @@ OpenStreetMap
 contributors
 Cantidad mínima para mostrar una zona
 En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
-Guardar mapas y zonas"
+Guardar mapas y zonas
+Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
 `;
 
 exports[`offers every background of the list, with and without key > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`offers the satellite image where there is one, and says whose servers it uses > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Compromisos
+Usuarios
+Zonas
+Configuración
+Informes
+Página pública
+Usuarios
+Zonas
+Configuración
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Mapas y zonas
+Cambios guardados.
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Satélite (CONAE)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+La localidad en color verdadero, de cerca; más allá no hay imagen. Las imágenes se piden a un servidor de la agencia espacial nacional (CONAE) cada vez que alguien abre el mapa: un uso intenso conviene acordarlo antes con ellos.
+[Vista previa del mapa]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+Imagen: CONAE – Pleiades Neo 2023
+La imagen satelital cubre solo la localidad: donde no hay imagen, las zonas y los registros se muestran igual.
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas
+Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
+`;
+
+exports[`offers the satellite image where there is one, and says whose servers it uses > screen at the start 1`] = `"[Cargando…]"`;
 
 exports[`says when the background being tried does not load > screen at the end 1`] = `
 "[Abrir menú]
@@ -257,7 +347,7 @@ Acceso
 Mapas y zonas
 Mapas y zonas
 Fondo de los mapas
-El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
 Humanitario
 CyclOSM (bicicletas)
@@ -284,7 +374,15 @@ contributors
 No se pudo cargar el fondo del mapa. Las zonas y los registros se muestran igual.
 Cantidad mínima para mostrar una zona
 En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
-Guardar mapas y zonas"
+Guardar mapas y zonas
+Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
 `;
 
 exports[`says when the background being tried does not load > screen at the start 1`] = `"[Cargando…]"`;
@@ -316,7 +414,7 @@ Mapas y zonas
 Mapas y zonas
 Ese mapa necesita una clave de su proveedor.
 Fondo de los mapas
-El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
 Humanitario
 CyclOSM (bicicletas)
@@ -342,7 +440,15 @@ OpenStreetMap
 contributors
 Cantidad mínima para mostrar una zona
 En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
-Guardar mapas y zonas"
+Guardar mapas y zonas
+Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
 `;
 
 exports[`says why it was not saved > screen at the start 1`] = `"[Cargando…]"`;
@@ -374,7 +480,7 @@ Mapas y zonas
 Mapas y zonas
 Cambios guardados.
 Fondo de los mapas
-El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
 Humanitario
 CyclOSM (bicicletas)
@@ -400,7 +506,15 @@ OpenStreetMap
 contributors
 Cantidad mínima para mostrar una zona
 En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
-Guardar mapas y zonas"
+Guardar mapas y zonas
+Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
 `;
 
 exports[`sends no key with a background that needs none > screen at the start 1`] = `"[Cargando…]"`;
@@ -432,7 +546,7 @@ Mapas y zonas
 Mapas y zonas
 Cambios guardados.
 Fondo de los mapas
-El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
 Humanitario
 CyclOSM (bicicletas)
@@ -458,7 +572,15 @@ OpenStreetMap
 contributors
 Cantidad mínima para mostrar una zona
 En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
-Guardar mapas y zonas"
+Guardar mapas y zonas
+Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
 `;
 
 exports[`sets from how many a zone is shown, within its limits > screen at the start 1`] = `"[Cargando…]"`;
@@ -489,7 +611,7 @@ Acceso
 Mapas y zonas
 Mapas y zonas
 Fondo de los mapas
-El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
 Humanitario
 CyclOSM (bicicletas)
@@ -516,7 +638,15 @@ OpenStreetMap
 contributors
 Cantidad mínima para mostrar una zona
 En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
-Guardar mapas y zonas"
+Guardar mapas y zonas
+Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
 `;
 
 exports[`shows how the map looks before saving it, and saves it > screen at the start 1`] = `"[Cargando…]"`;

@@ -1,18 +1,22 @@
 import 'leaflet/dist/leaflet.css'
 
-import { Stack, Text } from '@mantine/core'
+import { Stack, Switch, Text } from '@mantine/core'
 import L from 'leaflet'
 import { type ReactNode, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import type { Bounds } from './geometry'
 import classes from './GeoMap.module.css'
-import { useMapBackground } from './api'
+import { useMapBackground, useReferenceLayers, type View } from './api'
 import { toLatLngBounds } from './latLng'
+import { ViewWatcher } from './layers'
 import { MapContext } from './mapContext'
-import type { ChosenBackground } from './types'
+import { ReferenceLayer } from './ReferenceLayer'
+import type { ChosenBackground, ReferenceLayerInfo } from './types'
 
 const MAX_ZOOM = 19
+/** Covers one town: further out, and around it, there are no images and nothing is wrong. */
+const SATELLITE = 'satellite'
 const NO_BACKGROUND = { background: null, api_key: null }
 // All of Argentina, for a municipality that has drawn nothing yet.
 const WHOLE_COUNTRY: Bounds = [-73.6, -55.1, -53.6, -21.8]
@@ -54,6 +58,28 @@ function BackgroundLayer(props: {
   return null
 }
 
+/** The public facilities in the visible area, for those who ask to see them. */
+function Facilities({ map, layers }: { map: L.Map; layers: ReferenceLayerInfo[] }) {
+  const { t } = useTranslation()
+  const [view, setView] = useState<View | null>(null)
+  const credit = t('geo.reference.credit')
+
+  useEffect(() => {
+    map.attributionControl.addAttribution(credit)
+    return () => {
+      map.attributionControl.removeAttribution(credit)
+    }
+  }, [map, credit])
+
+  return (
+    <>
+      <ViewWatcher onChange={setView} />
+      {view &&
+        layers.map(({ layer }) => <ReferenceLayer key={layer} layer={layer} bbox={view.bbox} />)}
+    </>
+  )
+}
+
 /**
  * A map people can move and zoom; its layers are its children. Without the background
  * (offline, or its server down) everything else is still drawn.
@@ -76,6 +102,13 @@ export function GeoMap(props: {
   const container = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<L.Map | null>(null)
   const [loaded, setLoaded] = useState(true)
+  const [facilities, setFacilities] = useState(false)
+  // Whoever only tries a background may not be a member, as the platform operator.
+  const trying = props.background !== undefined
+  const imported = useReferenceLayers(!trying).data
+  const layers = trying || imported === undefined ? [] : imported
+  const chosen = useMapBackground(!trying).data
+  const background = (props.background ?? chosen)?.background
   // Read once, when the map is created.
   const start = useRef({ bounds: props.bounds ?? WHOLE_COUNTRY, drawing: props.drawing, t })
 
@@ -121,12 +154,26 @@ export function GeoMap(props: {
       >
         <div ref={container} className={classes.map} role="region" aria-label={props.label} />
         {props.card && <div className={classes.card}>{props.card}</div>}
-        {map && <MapContext.Provider value={map}>{props.children}</MapContext.Provider>}
+        {map && (
+          <MapContext.Provider value={map}>
+            {props.children}
+            {facilities && <Facilities map={map} layers={layers} />}
+          </MapContext.Provider>
+        )}
       </div>
       {!loaded && (
         <Text size="xs" c="dimmed" role="status">
-          {t('geo.map.noBackground')}
+          {t(background?.key === SATELLITE ? 'geo.map.noSatellite' : 'geo.map.noBackground')}
         </Text>
+      )}
+      {layers.length > 0 && (
+        <Switch
+          size="xs"
+          label={t('geo.reference.show')}
+          description={t('geo.reference.hint')}
+          checked={facilities}
+          onChange={(event) => setFacilities(event.currentTarget.checked)}
+        />
       )}
     </Stack>
   )

@@ -9,7 +9,7 @@ import { mockApi, mockApiError } from '../../test/server'
 import { ComplaintDetailPage } from './ComplaintDetailPage'
 import { LAMP, LIGHTS, makeClock, makeDetail, NORTH, POTHOLE, TIMELINE, WORKS } from './testData'
 import { BASE, renderComplaints } from './testRender'
-import type { ComplaintDetail, TimelineEvent } from './types'
+import type { ComplaintDetail, ResidentNotice, TimelineEvent } from './types'
 
 const detail = (key: string, options = {}) => t(`complaints.detail.${key}`, options)
 const move = (key: string) => t(`complaints.moves.${key}`)
@@ -76,6 +76,121 @@ it('moves the complaint with a note', async () => {
   await waitFor(() => expect(moves).toHaveLength(1))
   expect(moves[0].body).toEqual({ to_state: 'waiting', note: 'Pedimos la altura' })
   await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+})
+
+const message = () => t('complaints.actions.messageToResident')
+
+it('writes the resident a message apart from the internal note', async () => {
+  const moves = mockApi('post', `${URL}/transitions`, makeDetail(), 201)
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: move('resolved') }))
+  const dialog = within(await screen.findByRole('dialog'))
+  const field = dialog.getByRole('textbox', { name: message() })
+  expect(field).not.toBeRequired()
+  expect(dialog.getByText(t('complaints.actions.messageHint'))).toBeInTheDocument()
+  expect(
+    dialog.getByText(t('complaints.actions.messageLeft', { count: 500 })),
+  ).toBeInTheDocument()
+  await user.type(dialog.getByRole('textbox', { name: t('complaints.actions.note') }), 'Interna')
+  await user.type(field, 'Ya funciona')
+  expect(
+    dialog.getByText(t('complaints.actions.messageLeft', { count: 489 })),
+  ).toBeInTheDocument()
+  await user.click(dialog.getByRole('button', { name: move('resolved') }))
+
+  await waitFor(() => expect(moves).toHaveLength(1))
+  expect(moves[0].body).toEqual({
+    to_state: 'resolved',
+    note: 'Interna',
+    message_to_resident: 'Ya funciona',
+  })
+})
+
+it('offers the message when rejecting too', async () => {
+  renderDetail()
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: move('rejected') }))
+
+  expect(
+    within(await screen.findByRole('dialog')).getByRole('textbox', { name: message() }),
+  ).toBeInTheDocument()
+})
+
+it('offers no message when there is nobody to read it', async () => {
+  const moves = mockApi('post', `${URL}/transitions`, makeDetail(), 201)
+  renderDetail(makeDetail({ person: null }))
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: move('resolved') }))
+  const dialog = within(await screen.findByRole('dialog'))
+  expect(dialog.queryByRole('textbox', { name: message() })).toBeNull()
+  await user.click(dialog.getByRole('button', { name: move('resolved') }))
+
+  await waitFor(() => expect(moves[0]?.body).toEqual({ to_state: 'resolved', note: '' }))
+})
+
+const notice = (key: string) => t(`complaints.notices.${key}`)
+const makeNotice = (overrides: Partial<ResidentNotice> = {}): ResidentNotice => ({
+  id: 'no-1',
+  kind: 'complaint_resolved',
+  channel: 'cidi',
+  state: 'handed_over',
+  created_at: '2026-03-04T12:00:00Z',
+  handed_over_at: '2026-03-04T15:30:00Z',
+  ...overrides,
+})
+const panel = async () => within(await screen.findByRole('region', { name: notice('title') }))
+
+it('says what the resident was told, without claiming anything else', async () => {
+  renderDetail(makeDetail({ notices: [makeNotice()] }))
+
+  const shown = await panel()
+  expect(shown.getByText('Entregado a CiDi')).toBeInTheDocument()
+  expect(shown.getByText(notice('kinds.complaint_resolved'))).toBeInTheDocument()
+  expect(shown.getByText('04/03/2026 12:30')).toBeInTheDocument()
+  expect(shown.getByText(notice('cidiHelp'))).toBeInTheDocument()
+})
+
+it.each([
+  ['Enviado por correo', makeNotice({ channel: 'email' })],
+  ['En cola', makeNotice({ state: 'queued', handed_over_at: null })],
+  ['Falló', makeNotice({ state: 'failed', handed_over_at: null })],
+  ['Sin medio para avisar', makeNotice({ state: 'no_channel', handed_over_at: null })],
+])('says "%s" in words', async (words, told) => {
+  renderDetail(makeDetail({ notices: [told] }))
+
+  const shown = await panel()
+  expect(shown.getByText(words)).toBeInTheDocument()
+  expect(shown.queryByText(notice('cidiHelp'))).toBeNull()
+  expect(shown.queryAllByText(notice('noChannelHelp'))).toHaveLength(
+    told.state === 'no_channel' ? 1 : 0,
+  )
+  expect(
+    shown.getByText(told.handed_over_at ? '04/03/2026 12:30' : '04/03/2026 09:00'),
+  ).toBeInTheDocument()
+})
+
+it('says when the resident was told nothing yet', async () => {
+  renderDetail()
+
+  expect((await panel()).getByText(notice('none'))).toBeInTheDocument()
+})
+
+it('shows the notices to nobody who does not get them, nor of an anonymous complaint', async () => {
+  renderDetail(makeDetail({ notices: null }), 'viewer')
+  await screen.findByRole('region', { name: detail('timeline') })
+
+  expect(screen.queryByRole('region', { name: notice('title') })).toBeNull()
+})
+
+it('has nobody to tell about an anonymous complaint', async () => {
+  renderDetail(makeDetail({ person: null }))
+  await screen.findByRole('region', { name: detail('timeline') })
+
+  expect(screen.queryByRole('region', { name: notice('title') })).toBeNull()
 })
 
 it('asks why before rejecting', async () => {
@@ -317,4 +432,19 @@ it('writes a step whose area or type no longer has a name', async () => {
 
   expect(history.getByText(/^Reasignado de/)).toBeInTheDocument()
   expect(history.getByText(/^Tipo cambiado de/)).toBeInTheDocument()
+})
+
+it('opens its forms even when what they offer cannot be loaded', async () => {
+  renderDetail()
+  for (const list of ['areas', 'types', 'zones']) mockApiError('get', `${BASE}/${list}`, 500, 'boom')
+  const user = userEvent.setup()
+
+  await user.click(await screen.findByRole('button', { name: t('complaints.actions.reassign') }))
+  expect(
+    within(await screen.findByRole('dialog')).getByLabelText(t('complaints.actions.newArea')),
+  ).toBeInTheDocument()
+  await user.keyboard('{Escape}')
+  await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
+  await user.click(screen.getByRole('button', { name: t('complaints.actions.edit') }))
+  expect(await screen.findByRole('dialog')).toBeInTheDocument()
 })

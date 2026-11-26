@@ -1,4 +1,4 @@
-# Task 19: Notices to residents, through CiDi when they have it
+# Task 19: Notices to residents, through CiDi when they have it - PARTIAL (phase A done; live adapter waits for the CiDi technical spec)
 
 Priority: **high** (chosen by the product owner on 2026-11-25).
 Read first: `docs/cidi/README.md`, `docs/cidi/reference.md` (sections 4, 5, 7) and
@@ -103,7 +103,8 @@ The centre of the work is not the screen but the guarantees:
      by the operator, audited, in the `emails` tab, section "Avisos a vecinos", with a sentence
      that explains the adhesion is done by the municipality with the Province and where the form is
      (`docs/cidi/adhesion-request.md`). A CiDi channel can be chosen only when the adhesion state
-     is `approved` and the connection is complete; otherwise the screen says what is missing. The
+     is `approved` and the connection is complete (for now: system name, publication URL and
+     contact; C6 in `todo.md`); otherwise the screen says what is missing. The
      installation-wide `GOBERNAR360_CIDI_MODE` still decides whether CiDi is reachable at all (the
      API exposes `cidi_available`).
 7. **Texts** (templates in Configuración like the others, keys `notice.complaint_resolved` and

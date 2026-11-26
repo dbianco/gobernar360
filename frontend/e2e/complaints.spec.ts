@@ -103,7 +103,7 @@ test('a complaint for a resident found by document lands in its area queue', asy
   await form.getByLabel('Zona').selectOption({ label: 'Centro' })
   await form.getByRole('textbox', { name: 'Dirección' }).fill(ADDRESS)
   await form.getByText('Vecino con DNI').click()
-  await form.getByRole('textbox', { name: 'DNI del vecino' }).fill('33.123.456')
+  await form.getByRole('textbox', { name: 'DNI o CUIL del vecino' }).fill('33.123.456')
   await form.getByRole('button', { name: 'Buscar en el padrón' }).click()
   await expect(
     form.getByText('Se registra a nombre de Fernández, Lucía (DNI 33.123.456).'),

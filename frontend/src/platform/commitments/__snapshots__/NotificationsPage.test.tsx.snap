@@ -276,6 +276,48 @@ exports[`says when it cannot be loaded > screen at the start 1`] = `
 [Cargando…]"
 `;
 
+exports[`says when whoever owes one they gave is no longer a member > screen at the end 1`] = `
+"Notificaciones
+Marcar todo como leído
+[Compromisos a mi cargo]
+Compromisos a mi cargo
+Los que tenés pendientes.
+No tenés compromisos pendientes.
+[Compromisos de otros que sigo]
+Compromisos de otros que sigo
+Los que asignaste o en los que te agregaron. Los cumplidos quedan hasta que los marques como leídos.
+Buscar
+(Compromiso o responsable)
+[Compromisos de otros que sigo]
+Compromiso
+[Qué significa Compromiso]
+Lo que hay que hacer. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Estado
+[Qué significa Estado]
+Pendiente, vencido, cumplido o descartado.
+Fecha comprometida
+[Qué significa Fecha comprometida]
+Día comprometido. Pasado ese día, si no se cumplió, figura como vencido.
+Novedad
+[Qué significa Novedad]
+Lo que pasó desde la última vez que lo viste.
+Certificar la obra
+Ana Gómez
+Pendiente
+30/11/2026
+Quien lo tenía a cargo ya no está en el municipio
+[Marcar como leída: Certificar la obra]
+Marcar como leída"
+`;
+
+exports[`says when whoever owes one they gave is no longer a member > screen at the start 1`] = `
+"Notificaciones
+[Cargando…]"
+`;
+
 exports[`says why it could not be marked > screen at the end 1`] = `
 "Notificaciones
 Marcar todo como leído

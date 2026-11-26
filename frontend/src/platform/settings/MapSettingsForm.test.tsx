@@ -10,7 +10,7 @@ import { mockApi, mockApiError } from '../../test/server'
 import { MapSettingsForm } from './MapSettingsForm'
 import { SettingsScopeContext } from './scope'
 import { CENTRO } from '../geo/testData'
-import { BACKGROUNDS, MAP_SETTINGS } from './testData'
+import { BACKGROUNDS, MAP_SETTINGS, SATELLITE } from './testData'
 import type { MapSettings, MunicipalitySettings } from './types'
 
 const label = (key: string, options = {}) => t(`settings.map.${key}`, options)
@@ -58,8 +58,32 @@ it('offers every background of the list, with and without key', async () => {
   expect(offered('withKey')).toEqual(BACKGROUNDS.filter((b) => b.provider).map((b) => name(b.key)))
   // Each with a name and a description of its own, not the key of a missing text.
   const texts = locale.settings.map.backgrounds
-  expect(Object.keys(texts).sort()).toEqual(BACKGROUNDS.map((b) => b.key).sort())
-  expect(new Set(Object.values(texts).map((text) => text.name)).size).toBe(BACKGROUNDS.length)
+  const all = [...BACKGROUNDS, SATELLITE]
+  expect(Object.keys(texts).sort()).toEqual(all.map((b) => b.key).sort())
+  expect(new Set(Object.values(texts).map((text) => text.name)).size).toBe(all.length)
+})
+
+it('offers the satellite image where there is one, and says whose servers it uses', async () => {
+  const { user, saved } = renderForm({ map_backgrounds: [...BACKGROUNDS, SATELLITE] })
+
+  await user.selectOptions(await select(), name('satellite'))
+
+  expect(screen.getByText(label('backgrounds.satellite.description'))).toBeInTheDocument()
+  const frame = await screen.findByRole('region', { name: label('preview') })
+  await waitFor(async () => expect(await tile()).toContain('satellite.test'))
+  expect(within(frame).getByText(/Pleiades Neo 2023/)).toBeInTheDocument()
+  // Around the town there is no image, which is not a failure.
+  fireEvent.error(frame.querySelector('img.leaflet-tile')!)
+  expect(await screen.findByText(t('geo.map.noSatellite'))).toBeInTheDocument()
+  expect(screen.queryByText(t('geo.map.noBackground'))).toBeNull()
+  await user.click(save())
+  await waitFor(() =>
+    expect(saved[0]?.body).toEqual({
+      small_zone_threshold: 5,
+      map_background: 'satellite',
+      map_api_key: null,
+    }),
+  )
 })
 
 it('shows how the map looks before saving it, and saves it', async () => {
@@ -172,6 +196,7 @@ it('says when the background being tried does not load', async () => {
 it('lets the operator choose without seeing anything of the municipality', async () => {
   const zones = mockApi('get', '/zones', [])
   const own = mockApi('get', '/map-background', {})
+  const facilities = mockApi('get', '/geo/reference-layers', [])
   const saved = mockApi('put', '/platform/municipalities/m-1/settings/map', SETTINGS as never)
   const scope = {
     base: '/platform/municipalities/m-1',
@@ -190,5 +215,5 @@ it('lets the operator choose without seeing anything of the municipality', async
   await user.click(save())
 
   await waitFor(() => expect(saved).toHaveLength(1))
-  expect([zones.length, own.length]).toEqual([0, 0])
+  expect([zones.length, own.length, facilities.length]).toEqual([0, 0, 0])
 })

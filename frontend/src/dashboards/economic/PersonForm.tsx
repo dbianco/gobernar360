@@ -18,7 +18,7 @@ export function PersonForm(props: { person?: EconomicPerson; onDone: () => void 
   return (
     <RegistryPersonForm
       person={editing?.person}
-      lookup={(dni) => get<Lookup>('/people/lookup', { dni })}
+      lookup={(document) => get<Lookup>('/people/lookup', document)}
       existingPath={(id) => `${BASE_PATH}/people/${id}`}
       save={(person) => {
         const body = { person, employment_status: status, occupation }

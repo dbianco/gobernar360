@@ -3,17 +3,21 @@
 import logging
 import re
 import time
+from pathlib import Path
 from typing import Annotated
 
 import typer
 from sqlalchemy import select
 
 from gobernar360.core.config import get_settings
-from gobernar360.core.db import platform_session
+from gobernar360.core.db import platform_session, tenant_session
 from gobernar360.core.security import hash_password, normalize_email
-from gobernar360.platform import outbox
-from gobernar360.platform.clock import get_today
+from gobernar360.platform import cidi, notice_delivery, outbox
+from gobernar360.platform.access import system_context
+from gobernar360.platform.cidi import CidiNotConfigured
+from gobernar360.platform.clock import get_now, get_today
 from gobernar360.platform.models import User
+from gobernar360.platform.notice_delivery import NoticeReport
 from gobernar360.platform.schemas import MIN_PASSWORD_LENGTH
 
 app = typer.Typer(no_args_is_help=True, help="gobernar360 administration commands.")
@@ -109,6 +113,70 @@ def send_email(
         typer.echo("Stopped.")
 
 
+def _hand_over(due_only: bool) -> NoticeReport | None:
+    """Deliver what is queued for CiDi, saying how it went when there was anything."""
+    try:
+        report = notice_delivery.deliver(due_only=due_only)
+    except CidiNotConfigured as error:
+        typer.echo(f"Nothing was sent. {error}", err=True)
+        raise typer.Exit(code=1) from error
+    if report is not None and (not due_only or report.attempted or report.unreadable):
+        typer.echo(
+            f"Handed over: {report.handed_over}. Will be retried: {report.retrying}. "
+            f"Failed: {report.failed} ({report.emailed} emailed instead)."
+        )
+        if report.unreadable:
+            typer.echo(
+                f"{report.unreadable} municipalities have a connection that cannot be "
+                "decrypted: check GOBERNAR360_SECRETS_KEY.",
+                err=True,
+            )
+    return report
+
+
+@app.command()
+def send_notices(
+    watch: Annotated[
+        bool, typer.Option("--watch", help="Keep running and deliver new notices as they come.")
+    ] = False,
+    interval: Annotated[float, typer.Option(help="Seconds between checks with --watch.")] = 30,
+) -> None:
+    """Hand the notices waiting for CiDi over to it.
+
+    Once: tries everything pending now, including notices waiting for a retry. With
+    --watch: keeps running, and retries with growing delays. Notices by email go out with
+    send-email.
+    """
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
+    report = _hand_over(due_only=watch)
+    if report is None:
+        typer.echo("CiDi is off (GOBERNAR360_CIDI_MODE): nothing is sent through it.")
+        return
+    if not watch:
+        if report.retrying or report.failed or report.unreadable:
+            raise typer.Exit(1)
+        return
+    typer.echo(f"Delivering notices every {interval:g} s. Ctrl+C stops.")
+    try:
+        while True:
+            time.sleep(interval)
+            _hand_over(due_only=True)
+    except KeyboardInterrupt:
+        typer.echo("Stopped.")
+
+
+@app.command()
+def cidi_fake_inbox() -> None:
+    """Show what was handed over to the fake CiDi (GOBERNAR360_CIDI_MODE=fake)."""
+    inbox = cidi.fake_inbox()
+    messages = inbox.messages()
+    if not messages:
+        typer.echo(f"There is nothing in {inbox.path}.")
+    for message in messages:
+        typer.echo(f"To {message['recipient_cuil']}: {message['subject']}")
+        typer.echo(message["body"])
+
+
 @app.command()
 def notify(
     send: Annotated[bool, typer.Option(help="Also deliver the queued emails right away.")] = True,
@@ -201,3 +269,83 @@ def assign_zones() -> None:
     for municipality_id, name in municipalities:
         changed = reassign(municipality_id)
         typer.echo(f"{name}: {changed.added} assignments added, {changed.removed} removed.")
+
+
+@app.command()
+def import_idecor(
+    slug: Annotated[str, typer.Argument(help="The municipality, e.g. noetinger.")],
+    radius: Annotated[
+        bool, typer.Option("--radius", help='Create or move the zone "Radio urbano".')
+    ] = False,
+    layers: Annotated[
+        str, typer.Option(help="Facilities to bring in, by commas: health,schools.")
+    ] = "",
+    from_dir: Annotated[
+        Path | None,
+        typer.Option(
+            help="Read saved answers from this directory instead of the service, as "
+            "docs/idecor/samples has them.",
+            exists=True,
+            file_okay=False,
+        ),
+    ] = None,
+) -> None:
+    """Bring in a municipality's official geography from IDECOR (Province of Córdoba).
+
+    Safe to repeat: what did not change is left as it is. Any failure leaves everything as
+    it was.
+    """
+    from gobernar360.platform.geo import idecor
+    from gobernar360.platform.geo.reference_import import LAYERS, import_official
+    from gobernar360.platform.models import Municipality
+
+    wanted = list(dict.fromkeys(part.strip() for part in layers.split(",") if part.strip()))
+    unknown = [layer for layer in wanted if layer not in LAYERS]
+    if unknown:
+        raise typer.BadParameter(
+            f"Unknown: {', '.join(unknown)}. There are: {', '.join(LAYERS)}.",
+            param_hint="--layers",
+        )
+    if not radius and not wanted:
+        raise typer.BadParameter("Nothing to import: use --radius, --layers or both.")
+    with platform_session() as db:
+        municipality = db.scalar(select(Municipality).where(Municipality.slug == slug))
+    if municipality is None:
+        raise typer.BadParameter(f"There is no municipality {slug}.", param_hint="SLUG")
+    source = idecor.Directory(from_dir, slug) if from_dir else idecor.Wfs()
+    try:
+        with tenant_session(municipality.id) as db:
+            report = import_official(
+                system_context(db, municipality.id),
+                source,
+                radius=radius,
+                layers=wanted,
+                now=get_now(),
+            )
+    except idecor.IdecorError as error:
+        typer.echo(f"Nothing was changed. {error}", err=True)
+        raise typer.Exit(code=1) from error
+
+    sources = [*([report.radius] if report.radius else []), *report.layers]
+    if report.radius:
+        found = report.radius
+        law = f" ({found.law})" if found.law else ""
+        typer.echo(f"Radio urbano: 1 zone {found.change}, {found.area_ha:.1f} ha{law}.")
+        for overlap in found.overlaps:
+            typer.echo(
+                f"  Warning: {overlap.zone.name} and {overlap.other.name} share "
+                f"{overlap.area_m2 / 10_000:.2f} ha."
+            )
+    for layer in report.layers:
+        typer.echo(
+            f"{layer.layer}: {layer.read} features read; {layer.created} created, "
+            f"{layer.moved} moved or changed, {layer.unchanged} unchanged, "
+            f"{layer.removed} removed; {layer.skipped} skipped, "
+            f"{layer.outside} outside the radius."
+        )
+    typer.echo("Source: IDECOR, Infraestructura de Datos Espaciales de la Provincia de Córdoba.")
+    for item in sources:
+        typer.echo(f"  {item.source}")
+        if item.srid == idecor.DEGREES_SRID:
+            typer.echo("  Warning: in degrees, which IDECOR rounds to about 10 m.")
+    typer.echo(f"Read on {get_today():%Y-%m-%d}.")

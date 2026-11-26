@@ -144,3 +144,54 @@ it('says the page does not exist for an unknown or unpublished address', async (
     await screen.findByRole('heading', { name: t('public.notFoundTitle') }),
   ).toBeInTheDocument()
 })
+
+it('says when a target is met', async () => {
+  mockApi('get', '/public/noetinger', {
+    ...SITE,
+    indicators: [{ ...RATIO, value: 0.6, on_track: true }],
+  })
+  renderPublic()
+
+  expect(await screen.findByText(t('indicators.onTrack'))).toBeInTheDocument()
+  expect(screen.queryByText(t('indicators.offTrack'))).not.toBeInTheDocument()
+})
+
+it('shows by its published name a dashboard this version does not have', async () => {
+  const lights = SITE.dashboards[0].lights
+  mockApi('get', '/public/noetinger', {
+    ...SITE,
+    dashboards: [{ key: 'retired', name: 'Tablero retirado', lights }],
+  })
+  renderPublic()
+
+  expect(await screen.findByRole('group', { name: 'Tablero retirado' })).toHaveTextContent(
+    t('status.states.yellow'),
+  )
+})
+
+it('says so while no report has been published, and shows no empty section', async () => {
+  mockApi('get', '/public/noetinger', {
+    ...SITE,
+    small_count_threshold: 1,
+    dashboards: [],
+    indicators: [],
+    reports: [],
+  })
+  renderPublic()
+
+  expect(await screen.findByText(t('public.noReports'))).toBeInTheDocument()
+  expect(screen.queryByRole('region', { name: t('public.lights') })).not.toBeInTheDocument()
+  expect(screen.queryByRole('region', { name: t('public.indicators') })).not.toBeInTheDocument()
+  // Nothing is hidden, so there is nothing to explain.
+  expect(screen.queryByText(t('public.note', { count: 1, last: 0 }))).not.toBeInTheDocument()
+})
+
+it('says why the page cannot be shown when it fails', async () => {
+  mockApiError('get', '/public/noetinger', 403, 'forbidden')
+  renderPublic()
+
+  expect(await screen.findByText(t('errors.forbidden'))).toBeInTheDocument()
+  expect(
+    screen.queryByRole('heading', { name: t('public.notFoundTitle') }),
+  ).not.toBeInTheDocument()
+})

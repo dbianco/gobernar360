@@ -40,7 +40,11 @@ class CommitmentOut(BaseModel):
     owner: UserRef
     # Who gave an informal one. None when it has a source.
     creator: UserRef | None
+    # Whether the owner is no longer a member of the municipality.
+    owner_left: bool
     due_date: dt.date
+    # The date it was given for; `due_date` is the one it has now.
+    agreed_due_date: dt.date
     state: EffectiveState
     completed_on: dt.date | None
     times_postponed: int
@@ -112,7 +116,7 @@ class StateIn(BaseModel):
 
 
 class NewsOut(BaseModel):
-    kind: Literal["assigned", "done"]
+    kind: Literal["assigned", "done", "owner_left"]
     # None when the account of whoever did it no longer exists.
     actor: str | None
     at: dt.datetime
@@ -134,6 +138,25 @@ class NotificationsOut(BaseModel):
     mine: list[NotificationRow]
     # Other people's they gave or are attached to: open, or delivered and not read about.
     others: list[NotificationRow]
+
+
+class LeftCommitment(BaseModel):
+    id: uuid.UUID
+    description: str
+    owner: UserRef
+    due_date: dt.date
+    # The dashboard that recorded it. None for informal ones.
+    source: str | None
+    # Whether whoever asks may give it to somebody else.
+    can_reassign: bool
+
+
+class LeftCommitmentsOut(BaseModel):
+    """What people who are no longer members still owe."""
+
+    commitments: list[LeftCommitment]
+    # Others that whoever asks may not see. Who gave them was told.
+    hidden: int
 
 
 class ReadIn(BaseModel):

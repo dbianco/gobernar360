@@ -43,6 +43,20 @@ it('shows the procedure and what it asks for, with the source of each requiremen
   expect(debt.getByText(t('app.yes'))).toBeInTheDocument()
 })
 
+it('says the level it signs in with and whether it can be done from home', async () => {
+  renderDetail(makeDetail({ channel: 'online', cidi_level: 3, fully_digital: true }))
+
+  expect(await screen.findByText(t('procedures.cidiLevels.3'))).toBeInTheDocument()
+  expect(screen.getByText(t('procedures.digital'))).toBeInTheDocument()
+})
+
+it('says when nobody signs in with CiDi', async () => {
+  renderDetail()
+
+  expect(await screen.findByText(t('procedures.cidiLevels.none'))).toBeInTheDocument()
+  expect(screen.queryByText(t('procedures.digital'))).toBeNull()
+})
+
 it('marks a procedure that is no longer offered', async () => {
   renderDetail(makeDetail({ is_active: false }))
 

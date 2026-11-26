@@ -27,6 +27,8 @@ TRANSITIONS: dict[str, tuple[str, ...]] = {
 OPEN_STATES = (RECEIVED, ASSIGNED, IN_PROGRESS, WAITING, REOPENED)
 # Solved, for every resolution figure.
 SOLVED_STATES = (RESOLVED, CLOSED)
+# Moves the resident is told about, and the kind of notice of each.
+NOTICE_KINDS = {RESOLVED: "complaint_resolved", REJECTED: "complaint_rejected"}
 # Moves that must say why.
 NOTE_REQUIRED = (REJECTED, REOPENED)
 

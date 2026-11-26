@@ -18,3 +18,5 @@ htmlcov/
 reports/mutation/
 .stryker-tmp/
 .import_linter_cache/
+# What the fake CiDi is sent
+cidi-fake-inbox.jsonl

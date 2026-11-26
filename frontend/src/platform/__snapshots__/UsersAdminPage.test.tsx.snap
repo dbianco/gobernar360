@@ -469,6 +469,60 @@ Buscar
 [Cargando…]"
 `;
 
+exports[`says how many commitments whoever is removed left, seen or not > screen at the end 1`] = `
+"Compromisos sin responsable
+Quienes los tenían a cargo ya no son usuarios del municipio. Elegí quién los toma: le llega el aviso.
+[Compromisos sin responsable]
+Certificar la obra
+·
+Carla Carga, para el 20/11/2026
+Nuevo responsable de: Certificar la obra
+(Escribí un nombre)
+Nada coincide con la búsqueda.
+[Reasignar: Certificar la obra]
+Reasignar
+Hay 1 más que no podés ver: quien lo asignó ya fue avisado y es quien puede reasignarlo.
+Usuarios del municipio
+Importar CSV
+Agregar usuario
+Carla Carga ya no es usuario del municipio y dejó 2 compromisos sin cumplir.
+Buscar
+(Nombre o email)
+Nombre y apellido
+Administrador del municipio
+Proyectos
+Ana Gómez
+ana@noetinger.test
+[Administrador: Ana Gómez]
+[Proyectos: Ana Gómez]
+Sin acceso
+Lectura
+Carga
+Administración
+[Quitar a Ana Gómez]
+Quitar
+Carla Carga
+carla@noetinger.test
+[Administrador: Carla Carga]
+[Proyectos: Carla Carga]
+Sin acceso
+Lectura
+Carga
+Administración
+[Reenviar invitación a Carla Carga]
+[Quitar a Carla Carga]
+Quitar"
+`;
+
+exports[`says how many commitments whoever is removed left, seen or not > screen at the start 1`] = `
+"Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[Cargando…]"
+`;
+
 exports[`says when the search finds nobody, and why the users cannot be loaded > screen at the end 1`] = `
 "Usuarios del municipio
 Importar CSV

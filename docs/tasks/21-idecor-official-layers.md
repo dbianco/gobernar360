@@ -1,4 +1,4 @@
-# Task 21: Official provincial geography: urban radius, equipment and satellite imagery
+# Task 21: Official provincial geography: urban radius, equipment and satellite imagery - DONE
 
 Priority: **high** (chosen by the product owner on 2026-11-25).
 Read first: `docs/idecor/README.md` (verified endpoints, quirks and the layers of Noetinger),

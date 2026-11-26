@@ -10,7 +10,11 @@ import {
   type Named,
   NOTE_REQUIRED,
   type State,
+  TOLD_TO_RESIDENT,
 } from './types'
+
+// The same limit the API has.
+const MAX_MESSAGE = 500
 
 function ActionForm(props: {
   path: string
@@ -62,15 +66,38 @@ function NoteField(props: { required: boolean; value: string; onChange: (value: 
   )
 }
 
+/** The only free text that reaches the resident. */
+function MessageField(props: { value: string; onChange: (value: string) => void }) {
+  const { t } = useTranslation()
+  const left = MAX_MESSAGE - props.value.length
+  return (
+    <div>
+      <Textarea
+        label={t('complaints.actions.messageToResident')}
+        description={t('complaints.actions.messageHint')}
+        rows={3}
+        maxLength={MAX_MESSAGE}
+        value={props.value}
+        onChange={(event) => props.onChange(event.currentTarget.value)}
+      />
+      <Text size="xs" c="dimmed" ta="right">
+        {t('complaints.actions.messageLeft', { count: left })}
+      </Text>
+    </div>
+  )
+}
+
 /** Move the complaint to the next state, with a note. */
 export function MoveForm(props: { complaint: ComplaintDetail; to: State; onDone: () => void }) {
   const { t } = useTranslation()
   const [note, setNote] = useState('')
+  const [message, setMessage] = useState('')
   const { complaint, to } = props
+  const told = complaint.person !== null && TOLD_TO_RESIDENT.includes(to)
   return (
     <ActionForm
       path={`/complaints/${complaint.id}/transitions`}
-      body={() => ({ to_state: to, note })}
+      body={() => ({ to_state: to, note, ...(told ? { message_to_resident: message } : {}) })}
       onDone={props.onDone}
       submitLabel={t(`complaints.moves.${moveLabelKey(complaint.state, to)}`)}
     >
@@ -82,6 +109,7 @@ export function MoveForm(props: { complaint: ComplaintDetail; to: State; onDone:
       </Text>
       {to === 'waiting' && <Text size="sm">{t('complaints.actions.waitingHint')}</Text>}
       <NoteField required={NOTE_REQUIRED.includes(to)} value={note} onChange={setNote} />
+      {told && <MessageField value={message} onChange={setMessage} />}
     </ActionForm>
   )
 }

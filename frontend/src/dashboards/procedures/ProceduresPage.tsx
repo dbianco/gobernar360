@@ -22,9 +22,10 @@ import { HelpTh } from '../../platform/HelpTh'
 import { Pager } from '../../platform/Pager'
 import { hasLevel } from '../../platform/access'
 import { BASE_PATH, KEY, useAreas, useProcedures } from './api'
+import { DigitalBadge } from './DigitalBadge'
 import { costText } from './format'
 import { ProcedureForm } from './ProcedureForm'
-import { CHANNELS } from './types'
+import { CHANNELS, CIDI_LEVELS } from './types'
 import { fitPage, usePaging } from '../../platform/paging'
 import { SearchInput } from '../../platform/SearchInput'
 
@@ -32,7 +33,13 @@ import { SearchInput } from '../../platform/SearchInput'
 export function ProceduresPage() {
   const { t } = useTranslation()
   const { me } = useAuth()
-  const [filters, setFilters] = useState({ q: '', area_id: '', channel: '', active: '' })
+  const [filters, setFilters] = useState({
+    q: '',
+    area_id: '',
+    channel: '',
+    cidi_level: '',
+    active: '',
+  })
   const paging = usePaging('procedures.procedures')
   const { limit, offset, setOffset } = paging
   const [creating, setCreating] = useState(false)
@@ -77,6 +84,19 @@ export function ProceduresPage() {
             ]}
           />
           <NativeSelect
+            label={label('cidi')}
+            value={filters.cidi_level}
+            onChange={filter('cidi_level')}
+            data={[
+              { value: '', label: label('allCidi') },
+              ...CIDI_LEVELS.map((level) => ({
+                value: String(level),
+                label: t(`procedures.cidiLevels.${level}`),
+              })),
+              { value: 'none', label: t('procedures.cidiLevels.none') },
+            ]}
+          />
+          <NativeSelect
             label={label('state')}
             value={filters.active}
             onChange={filter('active')}
@@ -96,13 +116,14 @@ export function ProceduresPage() {
       {procedures.isError && <Alert color="red">{errorMessage(procedures.error)}</Alert>}
       {procedures.data?.total === 0 && hasAreas && <Text c="dimmed">{label('empty')}</Text>}
       {procedures.data && procedures.data.items.length > 0 && (
-        <Table.ScrollContainer minWidth={760}>
+        <Table.ScrollContainer minWidth={860}>
           <Table highlightOnHover>
             <Table.Thead>
               <Table.Tr>
                 <HelpTh help={help('name')}>{label('name')}</HelpTh>
                 <HelpTh help={help('area')}>{label('area')}</HelpTh>
                 <HelpTh help={help('channel')}>{label('channel')}</HelpTh>
+                <HelpTh help={help('cidi')}>{label('cidi')}</HelpTh>
                 <HelpTh help={help('cost')}>{label('cost')}</HelpTh>
                 <HelpTh help={help('days')}>{label('days')}</HelpTh>
                 <HelpTh help={help('volume')} ta="right">
@@ -122,14 +143,20 @@ export function ProceduresPage() {
                         {procedure.name}
                       </Anchor>
                       {!procedure.is_active && (
-                        <Badge variant="light" color="gray">
+                        <Badge variant="light" color="gray" miw="max-content">
                           {label('inactive')}
                         </Badge>
                       )}
+                      {procedure.fully_digital && <DigitalBadge />}
                     </Group>
                   </Table.Td>
                   <Table.Td>{procedure.area.name}</Table.Td>
                   <Table.Td>{t(`procedures.channels.${procedure.channel}`)}</Table.Td>
+                  <Table.Td>
+                    {procedure.cidi_level === null
+                      ? t('app.none')
+                      : t(`procedures.cidiLevels.${procedure.cidi_level}`)}
+                  </Table.Td>
                   <Table.Td>{costText(procedure, label('free'))}</Table.Td>
                   <Table.Td>
                     {procedure.duration_days === null

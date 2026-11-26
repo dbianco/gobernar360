@@ -55,6 +55,17 @@ it('lists one\'s open commitments and those of others one follows, with state, d
   )
 })
 
+it('says when whoever owes one they gave is no longer a member', async () => {
+  renderPage({
+    mine: [],
+    others: [
+      makeRow({ news: [{ kind: 'owner_left', actor: 'Ana', at: '2026-11-23T12:00:00Z' }] }),
+    ],
+  })
+
+  expect((await section('others')).getByText(label('kinds.owner_left'))).toBeInTheDocument()
+})
+
 it('marks one as read, and the list shows what is left', async () => {
   const { user } = renderPage()
   const posts = mockApi('post', '/notifications/read', null, 204)

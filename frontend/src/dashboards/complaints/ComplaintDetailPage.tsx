@@ -24,6 +24,7 @@ import { ClockBadge, StateBadge } from './Badges'
 import { CommentForm, EditForm, MoveForm, ReassignForm } from './ComplaintActions'
 import { clockText, formatDateTime } from './format'
 import { moveLabelKey } from './moves'
+import { NoticesPanel } from './NoticesPanel'
 import { Timeline } from './Timeline'
 import { type ComplaintDetail, OPEN_STATES, type State } from './types'
 
@@ -150,6 +151,7 @@ export function ComplaintDetailPage() {
       </SimpleGrid>
       {data.description && <Field label={label('description')}>{data.description}</Field>}
       <ClockPanel complaint={data} />
+      {data.notices !== null && data.person !== null && <NoticesPanel notices={data.notices} />}
       <Stack gap="xs" component="section" aria-label={label('timeline')}>
         <Title order={4}>{label('timeline')}</Title>
         <Timeline events={data.timeline} />

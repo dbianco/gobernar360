@@ -1,4 +1,4 @@
-import { screen, waitFor, within } from '@testing-library/react'
+import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
@@ -123,4 +123,36 @@ it('shows the error when a target is refused', async () => {
   await user.type(input('projects.delayed'), '0{Enter}')
 
   expect(await screen.findByText(t('errors.forbidden'))).toBeInTheDocument()
+})
+
+it('shows a ratio already set as a percentage', async () => {
+  mockApi('get', URL, [{ ...TARGETS[1], target: 0.655 }])
+  renderTargets()
+
+  await screen.findByRole('table')
+  expect(input('projects.budget_executed_ratio')).toHaveValue(65.5)
+  expect(save('projects.budget_executed_ratio')).toBeDisabled()
+})
+
+it('saves only once something changed', async () => {
+  mockApi('get', URL, TARGETS)
+  const puts = mockApi('put', `${URL}/${YEAR}/projects.delayed`, null, 204)
+  renderTargets()
+
+  await screen.findByRole('table')
+  const form = input('projects.delayed').closest('form') as HTMLFormElement
+  fireEvent.submit(form)
+  fireEvent.change(input('projects.delayed'), { target: { value: '3' } })
+  fireEvent.submit(form)
+
+  await waitFor(() => expect(puts).not.toHaveLength(0))
+  expect(puts.map((put) => put.body)).toEqual([{ value: 3 }])
+})
+
+it('says why the targets could not be read', async () => {
+  mockApiError('get', URL, 403, 'forbidden')
+  renderTargets()
+
+  expect(await screen.findByText(t('errors.forbidden'))).toBeInTheDocument()
+  expect(screen.queryByRole('table')).not.toBeInTheDocument()
 })

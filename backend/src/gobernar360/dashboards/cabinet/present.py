@@ -46,6 +46,7 @@ def present_commitments(
     postponed = times_postponed(ctx, ids)
     seen = subjects.present(ctx, [c.subject for c in commitments])
     followers = platform_commitments.followers_of(ctx, ids)
+    former = platform_commitments.left(ctx, [c.owner_id for c in commitments])
     where = {
         commitment_id: (item_id, meeting_ref(meeting))
         for commitment_id, item_id, meeting in ctx.db.execute(
@@ -60,7 +61,9 @@ def present_commitments(
             id=commitment.id,
             description=commitment.description,
             owner=UserRef.model_validate(commitment.owner),
+            owner_left=commitment.owner_id in former,
             due_date=commitment.due_date,
+            agreed_due_date=commitment.agreed_due_date,
             state=effective_state(commitment.state, commitment.due_date, today),
             completed_on=commitment.completed_on,
             times_postponed=postponed.get(commitment.id, 0),

@@ -76,6 +76,81 @@ Cerrar un mes congela su informe: semáforos, indicadores con su variación y me
 [Cargando…]"
 `;
 
+exports[`dismisses what it says after closing a month > screen at the end 1`] = `
+"Informes mensuales
+Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.
+Mes
+Estado
+Cerrado el
+Publicado
+Octubre 2026
+Abierto
+—
+[Cerrar Octubre 2026]
+Cerrar el mes
+Septiembre 2026
+Abierto
+—
+[Cerrar Septiembre 2026]
+Cerrar el mes
+Agosto 2026
+Abierto
+—
+[Cerrar Agosto 2026]
+Cerrar el mes
+Julio 2026
+Abierto
+—
+[Cerrar Julio 2026]
+Cerrar el mes
+Junio 2026
+Abierto
+—
+[Cerrar Junio 2026]
+Cerrar el mes
+Mayo 2026
+Abierto
+—
+[Cerrar Mayo 2026]
+Cerrar el mes
+Abril 2026
+Abierto
+—
+[Cerrar Abril 2026]
+Cerrar el mes
+Marzo 2026
+Abierto
+—
+[Cerrar Marzo 2026]
+Cerrar el mes
+Febrero 2026
+Abierto
+—
+[Cerrar Febrero 2026]
+Cerrar el mes
+Enero 2026
+Abierto
+—
+[Cerrar Enero 2026]
+Cerrar el mes
+Diciembre 2025
+Abierto
+—
+[Cerrar Diciembre 2025]
+Cerrar el mes
+Noviembre 2025
+Abierto
+—
+[Cerrar Noviembre 2025]
+Cerrar el mes"
+`;
+
+exports[`dismisses what it says after closing a month > screen at the start 1`] = `
+"Informes mensuales
+Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.
+[Cargando…]"
+`;
+
 exports[`explains why a report naming a person cannot be published > screen at the end 1`] = `
 "Informes mensuales
 Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.
@@ -246,6 +321,81 @@ Cerrar y congelar"
 `;
 
 exports[`keeps the dialog open and says why when closing fails > screen at the start 1`] = `
+"Informes mensuales
+Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.
+[Cargando…]"
+`;
+
+exports[`leaves a month open when the dialog is cancelled > screen at the end 1`] = `
+"Informes mensuales
+Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.
+Mes
+Estado
+Cerrado el
+Publicado
+Octubre 2026
+Abierto
+—
+[Cerrar Octubre 2026]
+Cerrar el mes
+Septiembre 2026
+Abierto
+—
+[Cerrar Septiembre 2026]
+Cerrar el mes
+Agosto 2026
+Abierto
+—
+[Cerrar Agosto 2026]
+Cerrar el mes
+Julio 2026
+Abierto
+—
+[Cerrar Julio 2026]
+Cerrar el mes
+Junio 2026
+Abierto
+—
+[Cerrar Junio 2026]
+Cerrar el mes
+Mayo 2026
+Abierto
+—
+[Cerrar Mayo 2026]
+Cerrar el mes
+Abril 2026
+Abierto
+—
+[Cerrar Abril 2026]
+Cerrar el mes
+Marzo 2026
+Abierto
+—
+[Cerrar Marzo 2026]
+Cerrar el mes
+Febrero 2026
+Abierto
+—
+[Cerrar Febrero 2026]
+Cerrar el mes
+Enero 2026
+Abierto
+—
+[Cerrar Enero 2026]
+Cerrar el mes
+Diciembre 2025
+Abierto
+—
+[Cerrar Diciembre 2025]
+Cerrar el mes
+Noviembre 2025
+Abierto
+—
+[Cerrar Noviembre 2025]
+Cerrar el mes"
+`;
+
+exports[`leaves a month open when the dialog is cancelled > screen at the start 1`] = `
 "Informes mensuales
 Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.
 [Cargando…]"
@@ -503,6 +653,95 @@ Cerrar el mes"
 `;
 
 exports[`reopens a month after asking > screen at the start 1`] = `
+"Informes mensuales
+Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.
+[Cargando…]"
+`;
+
+exports[`says why the preview of a month cannot be read > screen at the end 1`] = `
+"Informes mensuales
+Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.
+Mes
+Estado
+Cerrado el
+Publicado
+Octubre 2026
+Abierto
+—
+[Cerrar Octubre 2026]
+Cerrar el mes
+Septiembre 2026
+Abierto
+—
+[Cerrar Septiembre 2026]
+Cerrar el mes
+Agosto 2026
+Abierto
+—
+[Cerrar Agosto 2026]
+Cerrar el mes
+Julio 2026
+Abierto
+—
+[Cerrar Julio 2026]
+Cerrar el mes
+Junio 2026
+Abierto
+—
+[Cerrar Junio 2026]
+Cerrar el mes
+Mayo 2026
+Abierto
+—
+[Cerrar Mayo 2026]
+Cerrar el mes
+Abril 2026
+Abierto
+—
+[Cerrar Abril 2026]
+Cerrar el mes
+Marzo 2026
+Abierto
+—
+[Cerrar Marzo 2026]
+Cerrar el mes
+Febrero 2026
+Abierto
+—
+[Cerrar Febrero 2026]
+Cerrar el mes
+Enero 2026
+Abierto
+—
+[Cerrar Enero 2026]
+Cerrar el mes
+Diciembre 2025
+Abierto
+—
+[Cerrar Diciembre 2025]
+Cerrar el mes
+Noviembre 2025
+Abierto
+—
+[Cerrar Noviembre 2025]
+Cerrar el mes
+Cerrar Octubre 2026
+No tenés permiso para realizar esta acción."
+`;
+
+exports[`says why the preview of a month cannot be read > screen at the start 1`] = `
+"Informes mensuales
+Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.
+[Cargando…]"
+`;
+
+exports[`says why the reports cannot be listed > screen at the end 1`] = `
+"Informes mensuales
+Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.
+No tenés permiso para realizar esta acción."
+`;
+
+exports[`says why the reports cannot be listed > screen at the start 1`] = `
 "Informes mensuales
 Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.
 [Cargando…]"

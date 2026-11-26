@@ -29,6 +29,7 @@ def test_procedures_download_lists_every_procedure(client):
         audience="people",
         channel="both",
         url="https://noetinger.example/l",
+        cidi_level=2,
         is_free=False,
         cost=1500,
         duration_days=7,
@@ -52,6 +53,7 @@ def test_procedures_download_lists_every_procedure(client):
             "annual_volume",
             "active",
             "requirements",
+            "cidi_level",
         ],
         # Text that a spreadsheet would run as a formula is neutralised.
         [
@@ -66,8 +68,9 @@ def test_procedures_download_lists_every_procedure(client):
             "300",
             "yes",
             "1",
+            "2",
         ],
-        ["Zonificación", "Rentas", "both", "in_person", "", "yes", "", "", "", "no", "0"],
+        ["Zonificación", "Rentas", "both", "in_person", "", "yes", "", "", "", "no", "0", ""],
     ]
     assert (
         'filename="procedures.csv"'

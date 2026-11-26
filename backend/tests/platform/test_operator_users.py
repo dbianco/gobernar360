@@ -132,7 +132,8 @@ def test_operator_removes_a_user(operator_client, noetinger):
 
     response = operator_client.delete(f"{_users_url(noetinger)}/{carla['membership_id']}")
 
-    assert response.status_code == 204
+    assert response.status_code == 200
+    assert response.json() == {"commitments": [], "hidden": 0}
     emails = [
         m["user"]["email"] for m in operator_client.get(_users_url(noetinger)).json()["items"]
     ]

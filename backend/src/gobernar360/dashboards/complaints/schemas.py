@@ -9,6 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field, StringConstraints, model_vali
 from gobernar360.dashboards.complaints.models import MAX_TARGET_DAYS
 from gobernar360.platform.api_types import Name, OrmModel, PatchModel
 from gobernar360.platform.people import PersonIn, PersonOut
+from gobernar360.platform.resident_notices import MAX_MESSAGE
 
 State = Literal[
     "received", "assigned", "in_progress", "waiting", "resolved", "closed", "rejected", "reopened"
@@ -17,6 +18,7 @@ ClockStatus = Literal["on_time", "at_risk", "overdue"]
 Address = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=200)]
 Description = Annotated[str, StringConstraints(strip_whitespace=True, max_length=5000)]
 Note = Annotated[str, StringConstraints(strip_whitespace=True, max_length=2000)]
+MessageToResident = Annotated[str, StringConstraints(strip_whitespace=True, max_length=MAX_MESSAGE)]
 TargetDays = Annotated[int, Field(ge=1, le=MAX_TARGET_DAYS)]
 Weekday = Annotated[int, Field(ge=1, le=7)]
 
@@ -117,7 +119,10 @@ class TransitionIn(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     to_state: State
+    # For the timeline, which only members see.
     note: Note = ""
+    # The only free text that reaches the resident, when the move is one they are told about.
+    message_to_resident: MessageToResident = ""
 
 
 class AssignmentIn(BaseModel):
@@ -190,12 +195,25 @@ class ResidentOut(OrmModel):
     phone: str
 
 
+class NoticeOut(OrmModel):
+    """That the resident was told something, and how that went. Never what it said."""
+
+    id: uuid.UUID
+    kind: str
+    channel: str
+    state: str
+    created_at: datetime
+    handed_over_at: datetime | None
+
+
 class ComplaintDetail(ComplaintOut):
     description: str
     person: ResidentOut | None
     # States this complaint may move to next.
     moves: list[State]
     timeline: list[EventOut]
+    # Null for viewers.
+    notices: list[NoticeOut] | None
 
 
 class LookupOut(BaseModel):

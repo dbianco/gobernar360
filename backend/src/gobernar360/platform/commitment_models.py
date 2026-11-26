@@ -25,8 +25,9 @@ from gobernar360.platform.subjects import SubjectMixin, subject_check
 
 # "overdue" is never stored: it is an open commitment past its due date.
 STORED_STATES = ("open", "done", "dropped")
-# What a person is told about: it was given to them, or one they follow was delivered.
-NOTICE_KINDS = ("assigned", "done")
+# What a person is told about: it was given to them, one they follow was delivered, or
+# whoever owes one they gave is no longer a member.
+NOTICE_KINDS = ("assigned", "done", "owner_left")
 
 
 # The column helpers below run once, while the models are imported, where mutation testing
@@ -38,6 +39,10 @@ def _fk(target: str, ondelete: str = "RESTRICT") -> Mapped[uuid.UUID]:  # pragma
 
 def _in(column: str, values: tuple[str, ...]) -> str:  # pragma: no mutate block
     return f"{column} IN ({', '.join(repr(value) for value in values)})"
+
+
+def _as_due(context: Any) -> dt.date:  # pragma: no mutate block
+    return context.get_current_parameters()["due_date"]
 
 
 class Commitment(SubjectMixin, TenantMixin, AuditMixin, Base):
@@ -67,6 +72,9 @@ class Commitment(SubjectMixin, TenantMixin, AuditMixin, Base):
     description: Mapped[str] = mapped_column(String(500), nullable=False)
     owner_id: Mapped[uuid.UUID] = _fk("users.id")
     due_date: Mapped[dt.date] = mapped_column(Date, nullable=False)
+    # The date it was given for. Moving `due_date` does not move it: whoever owes something
+    # does not improve how they deliver by asking for more time.
+    agreed_due_date: Mapped[dt.date] = mapped_column(Date, nullable=False, default=_as_due)
     state: Mapped[str] = mapped_column(
         String(20), nullable=False, default="open", server_default="open"
     )

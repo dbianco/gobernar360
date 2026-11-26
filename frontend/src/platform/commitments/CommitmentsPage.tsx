@@ -26,6 +26,7 @@ import { SubjectLabel } from '../subjects/SubjectLabel'
 import { PATH, send, useCommitments } from './api'
 import { CommitmentForm } from './CommitmentForm'
 import { Origin } from './Origin'
+import { OwnerLeftBadge } from './OwnerLeftBadge'
 import { PostponedBadge } from './PostponedBadge'
 import { StateBadge } from './StateBadge'
 import { type Relation, RELATIONS, STATES } from './types'
@@ -96,6 +97,7 @@ function CommitmentsList({ relation }: { relation: Relation }) {
                     <Group gap={4}>
                       <StateBadge state={commitment.state} />
                       <PostponedBadge times={commitment.times_postponed} />
+                      <OwnerLeftBadge commitment={commitment} />
                     </Group>
                   </Table.Td>
                   <Table.Td>

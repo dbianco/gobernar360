@@ -1,0 +1,589 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`changes how far the adhesion is > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Cambios guardados.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`changes how far the adhesion is > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`chooses how residents are told, once the adhesion is complete > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+[Claves de la conexión]
+api_key
+Cargado el 02/08/2026 09:00
+[Quitar la clave api_key]
+Quitar
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`chooses how residents are told, once the adhesion is complete > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`clears the date of the adhesion > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Cambios guardados.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+[Claves de la conexión]
+api_key
+Cargado el 02/08/2026 09:00
+[Quitar la clave api_key]
+Quitar
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`clears the date of the adhesion > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`does not save CiDi without what it needs > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+[Claves de la conexión]
+api_key
+Cargado el 02/08/2026 09:00
+[Quitar la clave api_key]
+Quitar
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`does not save CiDi without what it needs > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`is the same for the operator, of the municipality in the address > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Cambios guardados.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+[Claves de la conexión]
+api_key
+Cargado el 02/08/2026 09:00
+[Quitar la clave api_key]
+Quitar
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`is the same for the operator, of the municipality in the address > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`keeps what was typed and says why it was not saved > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Esta instalación no puede guardar claves: quien opera la plataforma tiene que configurar GOBERNAR360_SECRETS_KEY.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+[Claves de la conexión]
+api_key
+Cargado el 02/08/2026 09:00
+[Quitar la clave api_key]
+Quitar
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`keeps what was typed and says why it was not saved > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`offers the request to the Province to print > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+[Claves de la conexión]
+api_key
+Cargado el 02/08/2026 09:00
+[Quitar la clave api_key]
+Quitar
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`offers the request to the Province to print > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`removes a secret when saving, and not before > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Cambios guardados.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`removes a secret when saving, and not before > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`saves a secret and never shows it again > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Cambios guardados.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+[Claves de la conexión]
+token
+Cargado el 23/11/2026 09:00
+[Quitar la clave token]
+Quitar
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`saves a secret and never shows it again > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says neither when it does > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+[Claves de la conexión]
+api_key
+Cargado el 02/08/2026 09:00
+[Quitar la clave api_key]
+Quitar
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`says neither when it does > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says what is missing before CiDi can be chosen, and offers it when nothing is > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`says what is missing before CiDi can be chosen, and offers it when nothing is > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says what is not a name for a secret, and which already have their field > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+[Claves de la conexión]
+api_key
+Cargado el 02/08/2026 09:00
+[Quitar la clave api_key]
+Quitar
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`says what is not a name for a secret, and which already have their field > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says what is not an address > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Tiene que empezar con http:// o https://.
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+[Claves de la conexión]
+api_key
+Cargado el 02/08/2026 09:00
+[Quitar la clave api_key]
+Quitar
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`says what is not an address > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says when the installation reaches no CiDi and keeps no secrets > screen at the end 1`] = `
+"Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+CiDi no está conectado en esta instalación. Hasta que lo esté, los avisos salen por correo si el medio elegido lo permite.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Esta instalación no puede guardar claves todavía: quien opera la plataforma tiene que configurarlo.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos"
+`;
+
+exports[`says when the installation reaches no CiDi and keeps no secrets > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says why it cannot be read > screen at the end 1`] = `"No tenés permiso para realizar esta acción."`;
+
+exports[`says why it cannot be read > screen at the start 1`] = `"[Cargando…]"`;

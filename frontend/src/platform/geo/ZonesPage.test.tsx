@@ -143,6 +143,14 @@ it('does not save what is not coordinates', async () => {
   expect(await screen.findByRole('heading', { name: label('title') })).toBeInTheDocument()
 })
 
+it('says where an official boundary comes from, and only of those', async () => {
+  renderPage([makeZone({ name: 'Radio urbano', source: 'Ley 10796/2022' }), NORTE])
+
+  const cell = await screen.findByRole('cell', { name: /^Radio urbano/ })
+  expect(cell).toHaveTextContent(label('official', { source: 'Ley 10796/2022' }))
+  expect(screen.getByRole('cell', { name: 'Norte' })).toBeInTheDocument()
+})
+
 it('says why a boundary was refused and keeps the drawing', async () => {
   const { user } = renderPage()
   mockApiError('post', '/admin/zones', 422, 'zone_self_intersects')
@@ -168,7 +176,7 @@ it('renames a zone without touching its boundary', async () => {
   await user.click(save())
 
   expect(await screen.findByText(label('saved', { name: 'Microcentro' }))).toBeInTheDocument()
-  expect(saved[0].body).toEqual({ name: 'Microcentro' })
+  expect(saved[0].body).toEqual({ name: 'Microcentro', base_version: 1 })
 })
 
 it('moves a boundary from the version it was opened with', async () => {
@@ -208,17 +216,24 @@ it('leaves boundaries with holes to files, but renames them', async () => {
   await user.type(name(), ' viejo')
   await user.click(save())
 
-  await waitFor(() => expect(saved[0]?.body).toEqual({ name: 'Centro viejo' }))
+  await waitFor(() => expect(saved[0]?.body).toEqual({ name: 'Centro viejo', base_version: 1 }))
 })
 
 it('shows every boundary a zone has had', async () => {
   const { user } = renderPage()
   mockApi('get', '/admin/zones/z-1/versions', [
-    { version: 2, valid_from: '2026-01-05T12:00:00Z', valid_to: null, boundary: CENTRO.boundary },
+    {
+      version: 2,
+      valid_from: '2026-01-05T12:00:00Z',
+      valid_to: null,
+      source: '',
+      boundary: CENTRO.boundary,
+    },
     {
       version: 1,
       valid_from: '2024-01-01T12:00:00Z',
       valid_to: '2026-01-05T12:00:00Z',
+      source: 'Ley 10796/2022',
       boundary: NORTE.boundary,
     },
   ] as never)
@@ -232,7 +247,7 @@ it('shows every boundary a zone has had', async () => {
     label('current'),
   ])
   expect(within(rows[2]).getAllByRole('cell').slice(0, 3).map((c) => c.textContent)).toEqual([
-    '1',
+    `1${label('official', { source: 'Ley 10796/2022' })}`,
     '01/01/2024',
     '05/01/2026',
   ])

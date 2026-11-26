@@ -61,6 +61,29 @@ def dni_exists() -> ApiError:
     return ApiError(409, "dni_exists", "Another person already has this document number.")
 
 
+def cuil_exists() -> ApiError:
+    return ApiError(409, "cuil_exists", "Another person already has this CUIL.")
+
+
+def cuil_dni_mismatch() -> ApiError:
+    return ApiError(422, "cuil_dni_mismatch", "The CUIL does not match the document number.")
+
+
+def cidi_not_ready(missing: list[str]) -> ApiError:
+    return ApiError(
+        422,
+        "cidi_not_ready",
+        "CiDi can be chosen once the adhesion is approved and the connection is complete.",
+        details=[{"field": name, "message": "missing"} for name in missing],
+    )
+
+
+def secrets_key_missing() -> ApiError:
+    return ApiError(
+        409, "secrets_key_missing", "This installation has no key to keep secrets with."
+    )
+
+
 def household_has_head() -> ApiError:
     return ApiError(409, "household_has_head", "This household already has a head.")
 
@@ -168,6 +191,14 @@ def invalid_location(message: str) -> ApiError:
     return ApiError(422, "invalid_location", message)
 
 
+def cidi_level_in_person() -> ApiError:
+    return ApiError(
+        422,
+        "cidi_level_in_person",
+        "A procedure done only in person has no CiDi level.",
+    )
+
+
 def map_api_key_required() -> ApiError:
     return ApiError(422, "map_api_key_required", "This map needs a key from its provider.")
 
@@ -203,6 +234,12 @@ def zone_changed() -> ApiError:
 def zone_file_invalid(details: list[dict]) -> ApiError:
     return ApiError(
         422, "zone_file_invalid", "The file was not imported: some zones have problems.", details
+    )
+
+
+def zone_file_too_large(limit: int) -> ApiError:
+    return ApiError(
+        413, "zone_file_too_large", f"The file is larger than {limit // (1024 * 1024)} MB."
     )
 
 

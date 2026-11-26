@@ -259,10 +259,10 @@ def names_a_person(ctx: RequestContext, text: str) -> bool:
     if not text.strip():
         return False
     words = f" {_normalized(text)} "
-    for first_name, last_name, dni in ctx.db.execute(
-        select(Person.first_name, Person.last_name, Person.dni)
+    for first_name, last_name, dni, cuil in ctx.db.execute(
+        select(Person.first_name, Person.last_name, Person.dni, Person.cuil)
     ):
-        if dni and _has_document(text, dni):
+        if any(document and _has_document(text, document) for document in (dni, cuil)):
             return True
         last = _normalized(last_name)
         for first in _normalized(first_name).split():

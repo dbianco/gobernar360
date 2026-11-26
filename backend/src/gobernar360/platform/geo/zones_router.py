@@ -4,11 +4,17 @@ import uuid
 from datetime import date, datetime
 from typing import Annotated, Any
 
-from fastapi import APIRouter, Depends
-from pydantic import BaseModel, ConfigDict
+from fastapi import APIRouter, Depends, Request
+from fastapi.exceptions import RequestValidationError
+from pydantic import BaseModel, ConfigDict, ValidationError
 from sqlalchemy import func, select
 
-from gobernar360.core.errors import ApiError, not_found, zone_file_invalid
+from gobernar360.core.errors import (
+    ApiError,
+    not_found,
+    zone_file_invalid,
+    zone_file_too_large,
+)
 from gobernar360.platform.access import Context, RequestContext, require_municipality_admin
 from gobernar360.platform.api_types import Name, OrmModel, PatchModel
 from gobernar360.platform.clock import Today
@@ -17,6 +23,8 @@ from gobernar360.platform.geo.geojson import boundary_geometry
 from gobernar360.platform.geo.models import Zone, ZoneVersion
 
 MAX_IMPORTED_ZONES = 300
+# A whole city with detailed outlines takes a tenth of this.
+MAX_IMPORT_BYTES = 10 * 1024 * 1024
 # Properties of a GeoJSON feature that may hold the zone's name.
 NAME_PROPERTIES = ("name", "nombre")
 
@@ -31,6 +39,8 @@ class ZoneOut(BaseModel):
     version: int
     # When this boundary took effect.
     valid_from: datetime
+    # Where an official boundary comes from, e.g. the law that approves it.
+    source: str
     boundary: dict[str, Any]
 
 
@@ -55,6 +65,7 @@ class VersionOut(OrmModel):
     version: int
     valid_from: datetime
     valid_to: datetime | None
+    source: str
     boundary: dict[str, Any]
 
 
@@ -71,8 +82,9 @@ class ZonePatch(PatchModel):
 
     name: Name | None = None
     boundary: dict[str, Any] | None = None
-    # The version the boundary was edited from.
-    base_version: int | None = None
+    # The version the person was looking at: changing the zone on top of somebody else's
+    # new boundary would undo it unseen.
+    base_version: int
 
 
 class ImportIn(BaseModel):
@@ -92,7 +104,12 @@ class ImportOut(BaseModel):
 def _listed(ctx: RequestContext, *conditions: Any) -> list[ZoneOut]:
     rows = ctx.db.execute(
         select(
-            Zone.id, Zone.name, ZoneVersion.version, ZoneVersion.valid_from, ZoneVersion.boundary
+            Zone.id,
+            Zone.name,
+            ZoneVersion.version,
+            ZoneVersion.valid_from,
+            ZoneVersion.source,
+            ZoneVersion.boundary,
         )
         .join(ZoneVersion, ZoneVersion.zone_id == Zone.id)
         .where(*conditions)
@@ -127,8 +144,38 @@ def list_overlaps(ctx: AdminContext) -> list[OverlapOut]:
     return _overlaps(ctx)
 
 
-@router.post("/admin/zones/import")
-def import_zones(payload: ImportIn, ctx: AdminContext) -> ImportOut:
+async def read_import(request: Request, ctx: AdminContext) -> ImportIn:
+    """The body of an import, read only as far as the largest one accepted.
+
+    FastAPI would read and parse all of it before any check of ours: that is why the body
+    is not a parameter of the route. Declaring the context here has whoever may not import
+    refused before a single byte is read.
+    """
+    body = bytearray()
+    async for chunk in request.stream():
+        body += chunk
+        if len(body) > MAX_IMPORT_BYTES:
+            raise zone_file_too_large(MAX_IMPORT_BYTES)
+    try:
+        return ImportIn.model_validate_json(bytes(body))
+    except ValidationError as error:
+        raise RequestValidationError(
+            [{**problem, "loc": ("body", *problem["loc"])} for problem in error.errors()]
+        ) from error
+
+
+@router.post(
+    "/admin/zones/import",
+    openapi_extra={
+        "requestBody": {
+            "required": True,
+            "content": {"application/json": {"schema": ImportIn.model_json_schema()}},
+        }
+    },
+)
+def import_zones(
+    ctx: AdminContext, payload: Annotated[ImportIn, Depends(read_import)]
+) -> ImportOut:
     """Create or move the zones of a GeoJSON file. Zones are matched by name; nothing is
     changed if any of them has a problem."""
     wanted = _read_features(ctx, payload.geojson)
@@ -210,8 +257,9 @@ def _feature_name(feature: Any) -> str | None:
 def update_zone(zone_id: uuid.UUID, payload: ZonePatch, ctx: AdminContext) -> ZoneSaved:
     """Rename the zone or move its boundary from now on. Past periods keep the old one."""
     zone = zones.find(ctx.db, zone_id, for_update=True)
+    zones.check_base(ctx.db, zone, payload.base_version)
     if payload.boundary is not None:
-        zones.move(ctx, zone, boundary_geometry(payload.boundary), payload.base_version)
+        zones.move(ctx, zone, boundary_geometry(payload.boundary))
     if payload.name is not None and payload.name != zone.name:
         zones.rename(ctx, zone, payload.name)
     return _saved(ctx, zone)

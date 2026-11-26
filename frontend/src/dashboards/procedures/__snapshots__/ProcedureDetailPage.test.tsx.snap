@@ -11,6 +11,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -50,6 +52,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -114,6 +118,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -174,6 +180,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -232,6 +240,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -283,6 +293,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -344,6 +356,12 @@ Canal
 Presencial
 En línea
 Presencial y en línea
+Ingreso con CiDi
+El nivel mínimo de la cuenta con la que se ingresa. Solo para trámites en línea.
+No usa CiDi o no se sabe
+Nivel 1 – Confirmado: cuenta con correo confirmado
+Nivel 2 – Verificado: identidad verificada (DNI, selfie o Clave Fiscal)
+Nivel 3 – Autenticado: firma digital
 Es gratuito
 Costo en pesos
 Plazo estimado en días
@@ -365,6 +383,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -410,6 +430,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -470,6 +492,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -530,6 +554,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -590,6 +616,12 @@ Canal
 Presencial
 En línea
 Presencial y en línea
+Ingreso con CiDi
+El nivel mínimo de la cuenta con la que se ingresa. Solo para trámites en línea.
+No usa CiDi o no se sabe
+Nivel 1 – Confirmado: cuenta con correo confirmado
+Nivel 2 – Verificado: identidad verificada (DNI, selfie o Clave Fiscal)
+Nivel 3 – Autenticado: firma digital
 Es gratuito
 Costo en pesos
 Plazo estimado en días
@@ -612,6 +644,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -672,6 +706,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -686,6 +722,131 @@ Este trámite todavía no tiene requisitos cargados."
 `;
 
 exports[`says so when the procedure asks for nothing yet > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says the level it signs in with and whether it can be done from home > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+100 % digital
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+En línea
+Ingreso con CiDi
+Nivel 3 – Autenticado
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+[Cambiar requisito: DNI]
+Editar
+[Quitar requisito: DNI]
+Quitar
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—
+[Cambiar requisito: Libre deuda municipal]
+Editar
+[Quitar requisito: Libre deuda municipal]
+Quitar"
+`;
+
+exports[`says the level it signs in with and whether it can be done from home > screen at the start 1`] = `"[Cargando…]"`;
+
+exports[`says when nobody signs in with CiDi > screen at the end 1`] = `
+"Volver a trámites
+Habilitación comercial
+Editar
+Eliminar trámite
+Área responsable
+Rentas
+Dirigido a
+Organizaciones
+Canal
+Presencial
+Ingreso con CiDi
+Sin CiDi
+Costo
+$ 25.000
+Plazo estimado
+20 días
+Cantidad estimada por año
+180
+Descripción
+Para abrir un local.
+Requisitos que se piden
+Agregar requisito
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato. Es con quien convendría conectarse para dejar de pedirlo.
+Obligatorio
+[Qué significa Obligatorio]
+Si hay que presentarlo siempre o solo en algunos casos.
+Cómo se pide
+[Qué significa Cómo se pide]
+Si hoy se presenta en papel o se acepta en formato digital.
+Nota
+[Qué significa Nota]
+Aclaración sobre cómo se pide en este trámite.
+DNI
+RENAPER
+Nacional
+Opcional
+Digital
+Copia.
+[Cambiar requisito: DNI]
+Editar
+[Quitar requisito: DNI]
+Quitar
+Libre deuda municipal
+Rentas municipal
+Municipal
+Sí
+En papel
+—
+[Cambiar requisito: Libre deuda municipal]
+Editar
+[Quitar requisito: Libre deuda municipal]
+Quitar"
+`;
+
+exports[`says when nobody signs in with CiDi > screen at the start 1`] = `"[Cargando…]"`;
 
 exports[`shows an error when the procedure cannot be loaded > screen at the end 1`] = `"No se encontró el registro."`;
 
@@ -702,6 +863,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial y en línea
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -765,6 +928,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado
@@ -825,6 +990,8 @@ Dirigido a
 Organizaciones
 Canal
 Presencial
+Ingreso con CiDi
+Sin CiDi
 Costo
 $ 25.000
 Plazo estimado

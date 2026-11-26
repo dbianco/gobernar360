@@ -13,7 +13,7 @@ from sqlalchemy import Select, select
 
 from gobernar360.core.errors import commitment_finished, not_found
 from gobernar360.dashboards.cabinet.access import Editor, Viewer
-from gobernar360.dashboards.cabinet.meetings_router import open_item
+from gobernar360.dashboards.cabinet.meetings_router import is_being_agreed, open_item
 from gobernar360.dashboards.cabinet.models import Taken
 from gobernar360.dashboards.cabinet.present import present_commitment, present_commitments
 from gobernar360.dashboards.cabinet.schemas import CommitmentOut
@@ -68,7 +68,11 @@ def list_commitments(
 def update_commitment(
     commitment_id: uuid.UUID, payload: CommitmentPatch, ctx: Editor, today: Today
 ) -> CommitmentOut:
-    """Correct what was agreed while its meeting is open; the rest, while it is open itself."""
+    """Correct what was agreed while its meeting is open; the rest, while it is open itself.
+
+    A date changed while the meeting is open is what was agreed. Later it is a new date, and
+    the figures keep the one agreed.
+    """
     commitment, taken = _load(ctx, commitment_id)
     fields = payload.model_dump(exclude_unset=True)
     text = {name: fields.pop(name) for name in ("description", "subject") if name in fields}
@@ -80,7 +84,8 @@ def update_commitment(
         if "subject" in text:
             text["subject"] = payload.subject and subjects.resolve(ctx, payload.subject, today)
         update_entity(ctx, commitment, text)
-    commitments.reschedule(ctx, commitment, **fields)
+    agreed = "due_date" in fields and is_being_agreed(ctx, taken.item_id)
+    commitments.reschedule(ctx, commitment, **fields, agreed=agreed)
     ctx.db.refresh(commitment)
     return present_commitment(ctx, commitment, today)
 

@@ -3,7 +3,7 @@
 from fastapi import APIRouter, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from gobernar360.core.config import get_settings
+from gobernar360.core.config import Settings, get_settings
 from gobernar360.core.errors import error_response, install_error_handlers
 from gobernar360.dashboards import (
     cabinet,
@@ -36,6 +36,7 @@ from gobernar360.platform.geo import (
     background_router,
     profile_router,
     records_router,
+    reference_router,
     zones_router,
 )
 
@@ -58,8 +59,24 @@ def register_dashboards() -> None:
         registry.register(module)
 
 
+def check_production(settings: Settings) -> None:
+    """Refuse to serve people with what is only for development: passwords that are in the
+    repository, or a CiDi that tells employees notices were handed over and hands over none."""
+    if not settings.is_production:
+        return
+    if settings.cidi_mode == "fake":
+        raise RuntimeError("GOBERNAR360_CIDI_MODE is fake: residents would be told nothing.")
+    known = settings.known_passwords()
+    if known:
+        raise RuntimeError(
+            f"{' and '.join(known)} still use the password of the development database. Change "
+            "it (ALTER ROLE ... PASSWORD ...) before serving anybody."
+        )
+
+
 def create_app() -> FastAPI:
     settings = get_settings()
+    check_production(settings)
     app = FastAPI(title="gobernar360", docs_url="/api/docs", openapi_url="/api/openapi.json")
     install_error_handlers(app)
 
@@ -114,6 +131,7 @@ def create_app() -> FastAPI:
     api.include_router(background_router.router)
     api.include_router(profile_router.router)
     api.include_router(records_router.router)
+    api.include_router(reference_router.router)
     for module in registry.all_modules():
         api.include_router(module.router, prefix=f"/dashboards/{module.key}", tags=[module.key])
     app.include_router(api)

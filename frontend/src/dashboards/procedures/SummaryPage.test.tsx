@@ -32,6 +32,32 @@ it('shows the headline numbers', async () => {
   expect(await card('sources')).toHaveTextContent('11')
 })
 
+it('shows how much can be done from home and with CiDi', async () => {
+  renderSummary()
+
+  const section = within(await screen.findByRole('region', { name: label('digitalization') }))
+  const value = (key: string) => section.getByText(label(key)).closest('[data-indicator]')
+  expect(value('cidi')).toHaveTextContent('3')
+  expect(value('cidiRatio')).toHaveTextContent('60 %')
+  expect(value('digital')).toHaveTextContent('2')
+  expect(value('digital')).toHaveTextContent(t('procedures.digitalRule'))
+  expect(value('digitalRatio')).toHaveTextContent('16,7 %')
+  const rows = within(section.getByRole('table', { name: label('byCidiLevel') })).getAllByRole('row')
+  expect(rows.slice(1).map((row) => row.textContent)).toEqual([
+    `${t('procedures.cidiLevels.1')}1`,
+    `${t('procedures.cidiLevels.2')}2`,
+    `${t('procedures.cidiLevels.3')}0`,
+    `${t('procedures.cidiLevels.none')}9`,
+  ])
+})
+
+it('shows no share of nothing', async () => {
+  renderSummary(makeSummary({ online: 0, cidi: 0, cidi_ratio: null }))
+
+  const section = within(await screen.findByRole('region', { name: label('digitalization') }))
+  expect(section.getByText(label('cidiRatio')).closest('[data-indicator]')).toHaveTextContent('—')
+})
+
 it('breaks procedures down by area and by channel', async () => {
   renderSummary()
   const user = userEvent.setup()

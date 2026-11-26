@@ -94,6 +94,7 @@ it('registers a new person after looking the document up', async () => {
       first_name: 'Elena',
       last_name: 'Paz',
       dni: '30111222',
+      cuil: null,
       birth_date: null,
       phone: '',
       email: '',
@@ -234,4 +235,117 @@ it('keeps the form and says why the person could not be registered', async () =>
 
   expect(await form.findByText(t('errors.dni_exists'))).toBeInTheDocument()
   expect(screen.getByRole('dialog')).toBeInTheDocument()
+})
+
+const cuilField = (form: Awaited<ReturnType<typeof openForm>>['form']) =>
+  form.getByRole('textbox', { name: t('people.cuil') })
+
+it('saves the CUIL in digits, however it is typed', async () => {
+  mockApi('get', `${BASE}/people/lookup`, { person: null, registered_id: null })
+  const requests = mockApi('post', `${BASE}/people`, makePerson(), 201)
+  const { user, form } = await openForm()
+
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '12345678')
+  await user.type(cuilField(form), '20-12345678-6')
+  await user.type(form.getByRole('textbox', { name: t('people.firstName') }), 'Elena')
+  await user.type(form.getByRole('textbox', { name: t('people.lastName') }), 'Paz')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() =>
+    expect(requests[0]?.body).toMatchObject({ person: { dni: '12345678', cuil: '20123456786' } }),
+  )
+})
+
+it('refuses a CUIL that is not one, or of another document, without calling the server', async () => {
+  const lookups = mockApi('get', `${BASE}/people/lookup`, { person: null, registered_id: null })
+  const requests = mockApi('post', `${BASE}/people`, makePerson(), 201)
+  const { user, form } = await openForm()
+  await user.type(form.getByRole('textbox', { name: t('people.firstName') }), 'Elena')
+  await user.type(form.getByRole('textbox', { name: t('people.lastName') }), 'Paz')
+
+  await user.type(cuilField(form), '20-12345678-7')
+  await user.tab()
+  expect(await form.findByText(t('people.cuilInvalid'))).toBeInTheDocument()
+  await user.clear(cuilField(form))
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '30111222')
+  await user.type(cuilField(form), '20-12345678-6')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('people.cuilMismatch'))).toBeInTheDocument()
+  expect(requests).toHaveLength(0)
+  expect(lookups.every(({ url }) => !url.searchParams.has('cuil'))).toBe(true)
+})
+
+it('looks somebody without a document up by CUIL, and shows what the registry has', async () => {
+  const lookups = mockApi('get', `${BASE}/people/lookup`, {
+    person: makeRegistryPerson({ dni: '12345678', cuil: '20123456786' }),
+    registered_id: null,
+  })
+  const requests = mockApi('post', `${BASE}/people`, makePerson(), 201)
+  const { user, form } = await openForm()
+
+  await user.type(cuilField(form), '20-12345678-6')
+  await user.tab()
+
+  expect(
+    await form.findByText(t('people.inRegistry', { name: 'Pérez, Juana' })),
+  ).toBeInTheDocument()
+  expect(lookups[0].url.searchParams.get('cuil')).toBe('20123456786')
+  expect(form.getByRole('textbox', { name: t('people.dni') })).toHaveValue('12345678')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+  await waitFor(() =>
+    expect(requests[0]?.body).toMatchObject({ person: { dni: '12345678', cuil: '20123456786' } }),
+  )
+  // What it answered was enough.
+  expect(lookups).toHaveLength(1)
+})
+
+it('does not leave the registry data of one CUIL under another', async () => {
+  mockApi('get', `${BASE}/people/lookup`, {
+    person: makeRegistryPerson({ dni: null, cuil: '20123456786' }),
+    registered_id: null,
+  })
+  const { user, form } = await openForm()
+  await user.type(cuilField(form), '20123456786')
+  await user.tab()
+  const name = form.getByRole('textbox', { name: t('people.firstName') })
+  await waitFor(() => expect(name).toHaveValue('Juana'))
+
+  await user.type(cuilField(form), '{Backspace}')
+
+  expect(name).toHaveValue('')
+})
+
+it('keeps the CUIL that was typed when the registry has none', async () => {
+  mockApi('get', `${BASE}/people/lookup`, ({ url }) => ({
+    person: url.searchParams.has('dni')
+      ? (makeRegistryPerson({ dni: '12345678', cuil: null }) as never)
+      : null,
+    registered_id: null,
+  }))
+  const requests = mockApi('post', `${BASE}/people`, makePerson(), 201)
+  const { user, form } = await openForm()
+  await user.type(cuilField(form), '20-12345678-6')
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '12345678')
+  await user.tab()
+  await form.findByText(t('people.inRegistry', { name: 'Pérez, Juana' }))
+
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() =>
+    expect(requests[0]?.body).toMatchObject({ person: { dni: '12345678', cuil: '20123456786' } }),
+  )
+})
+
+it('says that somebody else has the CUIL', async () => {
+  mockApi('get', `${BASE}/people/lookup`, { person: null, registered_id: null })
+  mockApiError('post', `${BASE}/people`, 409, 'cuil_exists')
+  const { user, form } = await openForm()
+  await user.type(form.getByRole('textbox', { name: t('people.firstName') }), 'Elena')
+  await user.type(form.getByRole('textbox', { name: t('people.lastName') }), 'Paz')
+  await user.type(form.getByRole('textbox', { name: t('people.dni') }), '12345678')
+  await user.type(cuilField(form), '20123456786')
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  expect(await form.findByText(t('errors.cuil_exists'))).toBeInTheDocument()
 })

@@ -26,6 +26,7 @@ PROCEDURE_COLUMNS = (
     "annual_volume",
     "active",
     "requirements",
+    "cidi_level",
 )
 LINK_COLUMNS = (
     "procedure",
@@ -72,6 +73,7 @@ def export_procedures(ctx: Viewer) -> Response:
             _blank(procedure.annual_volume),
             _yes_no(procedure.is_active),
             requirements,
+            _blank(procedure.cidi_level),
         )
         for procedure, requirements in found
     )

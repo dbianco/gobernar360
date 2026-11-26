@@ -39,6 +39,15 @@ dashboard needs no change in the platform.
 
 **A line crosses a zone when the part inside it has length.** So a street along the border of
 two neighbourhoods is in both, and one that merely ends at a border is not in the next zone.
+A point exactly on a shared border is in both zones too (F11): it counts in each and once in
+the total, as anything in several zones.
+
+**A past day counts the records there were then** (F10, `created_at`): the boundaries were
+already those of that day. A record loaded later, however old what it describes, is not in it.
+
+**Whoever gets only counts sees the past a month at a time** (F8): `as_of` is moved to the end
+of its month, or to today while that month lasts. Two days in a row would tell what was
+loaded in between, and so a count hidden for being small.
 
 **Overlaps are reported, not refused.** Districts contain neighbourhoods. A record in several
 zones counts in each and once in the total. Shared ground under 10 m² is taken for drawing.

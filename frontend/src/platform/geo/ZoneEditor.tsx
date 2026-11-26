@@ -69,7 +69,8 @@ export function ZoneEditor(props: {
       const saved = zone
         ? await updateZone(zone.id, {
             name: name.trim(),
-            ...(original !== null && moved ? { boundary, base_version: zone.version } : {}),
+            base_version: zone.version,
+            ...(original !== null && moved ? { boundary } : {}),
           })
         : await createZone(name.trim(), boundary)
       await refresh()

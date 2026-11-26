@@ -1,6 +1,7 @@
 """Figures per zone of a dashboard's located records."""
 
 import uuid
+from calendar import monthrange
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import date
@@ -112,6 +113,17 @@ def _groups(
     return groups
 
 
+def _whole_month(as_of: date | None, today: date) -> date | None:
+    """The last day of the month of `as_of`, or None (today) while that month lasts.
+
+    Two figures a day apart would tell what was loaded in between, and so a count hidden
+    for being small: whoever gets only counts sees the past a month at a time.
+    """
+    if as_of is None or (as_of.year, as_of.month) >= (today.year, today.month):
+        return None
+    return as_of.replace(day=monthrange(as_of.year, as_of.month)[1])
+
+
 def by_zone(
     ctx: RequestContext,
     record: LocatedRecord,
@@ -122,13 +134,18 @@ def by_zone(
 ) -> Breakdown:
     """The record's metrics for every zone in force on `as_of` (today when None).
 
-    A record in several zones (a street, or ground two zones share) counts in each.
+    A record in several zones (a street, or ground two zones share) counts in each; one on
+    the border between two is in both. Records loaded after a past `as_of` do not count.
     """
-    day = zones.boundaries_day(ctx.db, as_of, today)
     individual = sees_individual(record, level)
+    if not individual:
+        as_of = _whole_month(as_of, today)
+    day = zones.boundaries_day(ctx.db, as_of, today)
     # Whoever gets only counts cannot narrow them: two searches that differ in one record
     # would tell where it is, however large both counts are.
     conditions = record.conditions(ctx, today, filters) if individual else []
+    if as_of is not None and as_of < today:
+        conditions = [*conditions, record.model.created_at < zones.end_of(as_of)]
     aggregates = [metric.aggregate(today, filters) for metric in record.metrics]
     columns = [
         aggregate.label(metric.key)

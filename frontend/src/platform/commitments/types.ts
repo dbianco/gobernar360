@@ -38,7 +38,11 @@ export interface Commitment {
   owner: UserRef
   /** Who gave an informal one. Null for those of a dashboard. */
   creator: UserRef | null
+  /** Whether the owner is no longer a member of the municipality. */
+  owner_left: boolean
   due_date: string
+  /** The date it was given for; `due_date` is the one it has now. */
+  agreed_due_date: string
   state: State
   completed_on: string | null
   times_postponed: number
@@ -71,7 +75,7 @@ export type Relation = (typeof RELATIONS)[number]
 
 /** Something a person was told and has not read. */
 export interface News {
-  kind: 'assigned' | 'done'
+  kind: 'assigned' | 'done' | 'owner_left'
   actor: string | null
   at: string
 }
@@ -84,6 +88,23 @@ export interface NotificationRow {
   state: State
   completed_on: string | null
   news: News[]
+}
+
+/** Something somebody who is no longer a member still owes. */
+export interface LeftCommitment {
+  id: string
+  description: string
+  owner: UserRef
+  due_date: string
+  source: string | null
+  /** Whether whoever is signed in may give it to somebody else. */
+  can_reassign: boolean
+}
+
+export interface LeftCommitments {
+  commitments: LeftCommitment[]
+  /** Others they may not see. Who gave them was told. */
+  hidden: number
 }
 
 export interface Notifications {

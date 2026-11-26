@@ -34,6 +34,8 @@ export interface ZoneRef {
 export interface Zone extends ZoneRef {
   version: number
   valid_from: string
+  /** Where an official boundary comes from, e.g. the law that approves it; empty for the rest. */
+  source: string
   boundary: Boundary
 }
 
@@ -41,6 +43,7 @@ export interface ZoneVersion {
   version: number
   valid_from: string
   valid_to: string | null
+  source: string
   boundary: Boundary
 }
 
@@ -148,6 +151,28 @@ export interface MapBackground {
 export interface ChosenBackground {
   background: MapBackground
   api_key: string | null
+}
+
+export type ReferenceLayerKey = 'health' | 'schools'
+
+/** A layer of public facilities the municipality has imported. */
+export interface ReferenceLayerInfo {
+  layer: ReferenceLayerKey
+  features: number
+  imported_at: string
+}
+
+/** A public facility, from an official source. */
+export interface ReferenceFeature {
+  id: string
+  name: string
+  properties: Partial<Record<'type' | 'level' | 'sector' | 'address', string>>
+  geometry: PointGeometry
+}
+
+export interface ReferenceFeatures {
+  features: ReferenceFeature[]
+  truncated: boolean
 }
 
 /** A kind of record with a place, as its dashboard declares it in `dashboards/registry.ts`. */

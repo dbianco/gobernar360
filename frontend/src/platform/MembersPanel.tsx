@@ -22,6 +22,7 @@ import { useTranslation } from 'react-i18next'
 import { api } from '../api/client'
 import { dashboardLabelKey } from '../dashboards/registry'
 import { useAuth } from './authContext'
+import type { LeftCommitments } from './commitments/types'
 import { useConfirm } from './confirmContext'
 import { errorMessage } from './errorMessage'
 import { ImportUsersForm } from './ImportUsersForm'
@@ -113,8 +114,8 @@ export function MembersPanel(props: {
     queryKey: [...scope, 'dashboards'],
     queryFn: () => api<string[]>(`${base}/dashboards`),
   })
-  // Changing access also changes what the current user may see.
-  const action = useAction([scope[0], 'me'])
+  // Changing access also changes what the current user may see, and who can be chosen.
+  const action = useAction([scope[0], 'me', 'directory'])
   const levelOptions = useLevelOptions()
   const [adding, setAdding] = useState(false)
   const [importing, setImporting] = useState(false)
@@ -148,7 +149,12 @@ export function MembersPanel(props: {
       danger: true,
     })
     if (!confirmed) return
-    await action.run(() => api(`${base}/users/${member.membership_id}`, { method: 'DELETE' }))
+    const left = await action.run(() =>
+      api<LeftCommitments>(`${base}/users/${member.membership_id}`, { method: 'DELETE' }),
+    )
+    const count = left ? left.commitments.length + left.hidden : 0
+    // Nobody would know otherwise that they were left without anyone to fulfil them.
+    if (count > 0) setNotice(t('users.removedWithCommitments', { name: member.user.full_name, count }))
   }
 
   return (

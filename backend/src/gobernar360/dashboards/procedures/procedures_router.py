@@ -3,13 +3,14 @@ Reading needs viewer access; loading data needs editor access."""
 
 import uuid
 from collections.abc import Sequence
-from typing import Any
+from typing import Any, Literal
 
 from fastapi import APIRouter
 from sqlalchemy import func, select
 
-from gobernar360.core.errors import conflict, not_found, validation_error
+from gobernar360.core.errors import cidi_level_in_person, conflict, not_found, validation_error
 from gobernar360.dashboards.procedures.access import Editor, Viewer
+from gobernar360.dashboards.procedures.digital import FULLY_DIGITAL
 from gobernar360.dashboards.procedures.models import (
     Area,
     Procedure,
@@ -38,9 +39,12 @@ from gobernar360.platform.tenant_crud import (
 
 router = APIRouter()
 
+IN_PERSON = "in_person"
+
 
 def _present(ctx: RequestContext, procedures: Sequence[Procedure]) -> list[dict[str, Any]]:
-    """Procedures as response data, each with how many requirements it asks for."""
+    """Procedures as response data, each with how many requirements it asks for and whether
+    it can be done entirely from home."""
     counts = dict(
         ctx.db.execute(
             select(ProcedureRequirement.procedure_id, func.count())
@@ -48,10 +52,19 @@ def _present(ctx: RequestContext, procedures: Sequence[Procedure]) -> list[dict[
             .group_by(ProcedureRequirement.procedure_id)
         ).all()
     )
-    fields = [name for name in ProcedureOut.model_fields if name != "requirement_count"]
+    digital = set(
+        ctx.db.scalars(
+            select(Procedure.id).where(Procedure.id.in_([p.id for p in procedures]), FULLY_DIGITAL)
+        )
+    )
+    worked_out = {"requirement_count", "fully_digital"}
+    fields = [name for name in ProcedureOut.model_fields if name not in worked_out]
     return [
         {name: getattr(procedure, name) for name in fields}
-        | {"requirement_count": counts.get(procedure.id, 0)}
+        | {
+            "requirement_count": counts.get(procedure.id, 0),
+            "fully_digital": procedure.id in digital,
+        }
         for procedure in procedures
     ]
 
@@ -68,6 +81,7 @@ def list_procedures(
     q: SearchText = None,
     area_id: uuid.UUID | None = None,
     channel: Channel | None = None,
+    cidi_level: Literal["1", "2", "3", "none"] | None = None,
     active: bool | None = None,
 ) -> Page[ProcedureOut]:
     query = select(Procedure).order_by(func.unaccent(func.lower(Procedure.name)), Procedure.id)
@@ -77,15 +91,25 @@ def list_procedures(
         query = query.where(Procedure.area_id == area_id)
     if channel is not None:
         query = query.where(Procedure.channel == channel)
+    if cidi_level == "none":
+        query = query.where(Procedure.cidi_level.is_(None))
+    elif cidi_level is not None:
+        query = query.where(Procedure.cidi_level == int(cidi_level))
     if active is not None:
         query = query.where(Procedure.is_active.is_(active))
     page = page_of(ctx, query, paging)
     return {"items": _present(ctx, page["items"]), "total": page["total"]}
 
 
+def _check_cidi(channel: str, cidi_level: int | None) -> None:
+    if channel == IN_PERSON and cidi_level is not None:
+        raise cidi_level_in_person()
+
+
 @router.post("/procedures", status_code=201)
 def create_procedure(payload: ProcedureIn, ctx: Editor) -> ProcedureOut:
     resolve(ctx, Area, payload.area_id, "area_id")
+    _check_cidi(payload.channel, payload.cidi_level)
     procedure = create_entity(ctx, Procedure(**payload.model_dump()), payload.model_dump())
     return _present_one(ctx, procedure)
 
@@ -108,6 +132,11 @@ def update_procedure(procedure_id: uuid.UUID, payload: ProcedurePatch, ctx: Edit
     changes = payload.model_dump(exclude_unset=True)
     if "area_id" in changes:
         resolve(ctx, Area, changes["area_id"], "area_id")
+    channel = changes.get("channel", procedure.channel)
+    if channel == IN_PERSON and "cidi_level" not in changes:
+        # Nobody signs in to a procedure that stops being online.
+        changes["cidi_level"] = None
+    _check_cidi(channel, changes.get("cidi_level"))
     is_free = changes.get("is_free", procedure.is_free)
     if is_free and "cost" not in changes:
         # The price of a procedure that becomes free no longer applies.

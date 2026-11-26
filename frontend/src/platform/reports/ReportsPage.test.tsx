@@ -185,3 +185,58 @@ it('explains why a report naming a person cannot be published', async () => {
 
   expect(await screen.findByText(t('errors.personal_data'))).toBeInTheDocument()
 })
+
+it('dismisses what it says after closing a month', async () => {
+  renderReports([])
+  mockApi('get', '/reports/preview/2026/10', PREVIEW)
+  mockApi('post', '/reports/2026/10/close', report(10), 201)
+  const user = userEvent.setup()
+
+  await user.click(
+    await screen.findByRole('button', { name: t('reports.closeNamed', { month: monthName(10) }) }),
+  )
+  await user.click(await screen.findByRole('button', { name: t('reports.confirmClose') }))
+  const closed = t('reports.closed', { month: monthName(10) })
+  const notice = (await screen.findByText(closed)).closest('[role="alert"]') as HTMLElement
+  await user.click(within(notice).getByRole('button'))
+
+  await waitFor(() => expect(screen.queryByText(closed)).not.toBeInTheDocument())
+})
+
+it('leaves a month open when the dialog is cancelled', async () => {
+  renderReports([])
+  mockApi('get', '/reports/preview/2026/10', PREVIEW)
+  const closes = mockApi('post', '/reports/2026/10/close', report(10), 201)
+  const user = userEvent.setup()
+
+  await user.click(
+    await screen.findByRole('button', { name: t('reports.closeNamed', { month: monthName(10) }) }),
+  )
+  await user.click(await screen.findByRole('button', { name: t('app.cancel') }))
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+  expect(closes).toHaveLength(0)
+})
+
+it('says why the preview of a month cannot be read', async () => {
+  renderReports([])
+  mockApiError('get', '/reports/preview/2026/10', 403, 'forbidden')
+
+  await userEvent.click(
+    await screen.findByRole('button', { name: t('reports.closeNamed', { month: monthName(10) }) }),
+  )
+
+  const dialog = await screen.findByRole('dialog')
+  expect(await within(dialog).findByText(t('errors.forbidden'))).toBeInTheDocument()
+  expect(
+    within(dialog).queryByRole('button', { name: t('reports.confirmClose') }),
+  ).not.toBeInTheDocument()
+})
+
+it('says why the reports cannot be listed', async () => {
+  mockApiError('get', '/reports', 403, 'forbidden')
+  renderApp(<ReportsPage />, { me: makeMe({ isAdmin: true }) })
+
+  expect(await screen.findByText(t('errors.forbidden'))).toBeInTheDocument()
+  expect(screen.queryByRole('table')).not.toBeInTheDocument()
+})

@@ -110,7 +110,7 @@ Everything below is **our** interface, not CiDi's. A real adapter maps it to wha
 documents specify. The fake used in tests and in local demos implements exactly this.
 
 ```python
-# platform/cidi/ports.py  (to be created by task 19)
+# platform/cidi/ports.py
 @dataclass(frozen=True)
 class Communication:
     recipient_cuil: str          # 11 digits, no separators; the CiDi user name

@@ -37,6 +37,11 @@ Procedures, Complaints and Cabinet dashboards, and a general overview.
   `docs/superpowers/specs/2026-11-24-commitments-and-notices-design.md`
 - Geographic layer: design `docs/superpowers/specs/2026-11-24-geographic-layer-design.md`,
   task `docs/tasks/07-geographic-layer.md`
+- Notices to residents and CiDi: task `docs/tasks/19-cidi-resident-notices.md`; what is known
+  about CiDi, `docs/cidi/README.md`
+- Digitalization of procedures: task `docs/tasks/20-procedures-digitalization.md`
+- Official provincial geography: task `docs/tasks/21-idecor-official-layers.md`; the services,
+  `docs/idecor/README.md`
 - Functional reference: `tableros-de-gestion-portal-ril.md`
 
 ## Quick start
@@ -55,6 +60,8 @@ uv run uvicorn gobernar360.main:create_app --factory --reload --port 8000
 
 # in another terminal, from backend/: delivers emails as they are queued
 uv run gobernar360 send-email --watch
+# and in another, notices to residents through CiDi (the fake one: `cidi-fake-inbox` shows them)
+uv run gobernar360 send-notices --watch
 
 cd ../frontend
 npm install
@@ -130,7 +137,8 @@ name and phone without being asked for one, and gets a password only through the
 - A **municipality administrator** manages a subset of that for their own municipality:
   its users and their permissions, its zones (*Zonas*, in the menu) and its configuration
   (*Configuración*, in the menu), in tabs by kind: *Correos* (who receives notification
-  emails, and the text of every email it sends), *Acceso* (whether members may use single
+  emails, how residents are told about their complaints and the connection to CiDi, and the text
+  of every email it sends), *Acceso* (whether members may use single
   sign-on) and *Mapas y zonas* (the background of its maps, and how small a count per zone
   viewers see). They cannot rename it, enable dashboards or change passwords.
 
@@ -209,7 +217,8 @@ by the dashboards that work with residents. It has no screen or routes of its ow
   `social_people`) and
   points every other table at that link, so it only lists and opens people it incorporated.
 - The rest of the registry is reachable only by exact document number, to reuse a person
-  another dashboard already loaded instead of duplicating them.
+  another dashboard already loaded instead of duplicating them, or by exact CUIL. A CUIL
+  must have the right last digit and, with a document, have it inside.
 - Removing a person from the last dashboard that uses them deletes them from the registry.
 - The web form with the document lookup is shared too:
   `frontend/src/platform/people/RegistryPersonForm.tsx`.
@@ -234,7 +243,15 @@ dashboard can give its records a location.
 - **Zones** are drawn on a map or uploaded as GeoJSON (*Zonas*, for administrators). A
   boundary that is not closed or crosses itself is refused; overlapping zones are saved and
   reported. Moving a boundary adds a version from that moment on: the figures of a past year
-  use the boundaries in force when it ended (before the first zone was drawn, today's).
+  use the boundaries in force when it ended (before the first zone was drawn, today's) and leave
+  out the records loaded since. A point exactly on a border shared by two zones counts in both.
+- **Official geography.** `uv run gobernar360 import-idecor noetinger --radius --layers health,schools`
+  brings in, from the Province's IDECOR, the urban radius as the zone "Radio urbano" (with the law
+  that approves it) and the health centres and schools inside it, which every member can see on
+  any map with the switch *Equipamiento*. Safe to repeat; a failure changes nothing; with
+  `--from-dir docs/idecor/samples` it needs no internet. The operator says where the municipality
+  is (its IDECOR key and its CONAE satellite layer) in its *Configuración*, tab *Mapas y zonas*;
+  with a layer, *Satélite (CONAE)* is one more background.
 - **Located records**: projects (a point, or a line for works along a street), social
   households and economic actors. The location is set by clicking on the map or typing
   coordinates; nothing is sent to a geocoding service and the address stays as text.
@@ -248,7 +265,8 @@ dashboard can give its records a location.
 - **Sensitive places.** Where a household lives, and its zone, are for editors and above.
   Viewers get counts per zone: those under the municipality's minimum (*Configuración*,
   tab *Mapas y zonas*; 5 by default, from 2 to 100) are hidden, and so are the others needed to keep them from being worked out by subtracting;
-  and a viewer cannot narrow the counts with a search. CSV files follow the same rule.
+  a viewer cannot narrow the counts with a search, and sees the past a month at a time, so that
+  two days in a row do not tell what was loaded in between. CSV files follow the same rules.
 - **Isolation.** Zones, versions and assignments are tenant tables under row-level security,
   and the triggers also filter by municipality themselves. There are no spatial indexes on
   purpose: row-level security keeps the API role from using them (PostGIS operators are not
@@ -277,6 +295,10 @@ for, and who already holds that data.
   procedures: requirements asked, distinct procedures and their estimated yearly volume,
   each procedure counted once. Municipal sources come first.
 - Only procedures marked as active count in the summary, the report and the overview.
+- **Digitalization.** An online procedure may say the least CiDi level people sign in with (1
+  Confirmado, 2 Verificado, 3 Autenticado). One is *100 % digital*, always worked out, when it is
+  active, can be done online, has an address and asks for nothing mandatory on paper. Four
+  indicators, the table by level and the monthly report follow from that.
 - Editors load procedures and requirements; areas and sources are for dashboard admins.
   Access is per dashboard, not per area: the area is a field of the procedure.
 - A procedure's link only accepts `http(s)` addresses, because the screen renders it as a link.
@@ -302,7 +324,8 @@ it took measured in business days.
 - **Queues.** A type routes new complaints to its area; editors reassign. Each area's queue is
   ordered by business days left.
 - **Residents.** A complaint points at a person of the shared registry, found by exact document
-  number (or added to it), or is anonymous.
+  number or CUIL (or added to it), or is anonymous. Resolving or rejecting one tells its resident
+  (see *Notices to residents*).
 - **Analysis.** Period figures are about the complaints *received* in the period, so the median
   of `resolution_business_days` per type in the cases CSV equals the summary's median for that
   type (percentiles interpolate like a spreadsheet's PERCENTILE.INC). Backlog figures are as of
@@ -324,7 +347,8 @@ them, who owes each one and by when.
 - Preparing a meeting carries over every open commitment, whatever its due date. How many times
   one was postponed is how many meetings it was carried to.
 - "Overdue" is computed from the date, never stored. The share delivered on time counts overdue
-  commitments against it.
+  commitments against it. The figures go by the date agreed in the meeting: moving it later is
+  kept in the history and does not change them. Each list shows both dates.
 - Editors record and change; whoever owes a commitment says it is done and may move its date or
   pass it on, with or without access to this dashboard.
 
@@ -335,6 +359,9 @@ Every member of a municipality has *Compromisos* in the menu, whatever their das
 - Anyone gives a commitment to anyone, or to themselves, and attaches people to be told when it
   is done. Those of a cabinet meeting and the informal ones are listed together: the ones you
   owe, gave or follow.
+- When somebody is removed from the municipality, the administrator gets the open ones they owed
+  and may see (*Usuarios*) to give them to somebody else, and how many more there are; whoever
+  gave an informal one is told. Until then they say that their owner left.
 - An informal one is seen only by whoever gave it, whoever owes it and those attached, not by
   administrators or the cabinet. One of a meeting is seen by the cabinet's members too.
 - Whoever owes it says it is done and changes its date or its owner. Whoever gave an informal
@@ -462,6 +489,29 @@ file. `dashboards/tableHeaders.test.ts` fails when a dashboard table uses a plai
    use `<HelpTh>` for table headers.
 3. The operator enables it per municipality; administrators grant it per user.
 
+### Notices to residents
+
+What a resident is told about what they asked for (`platform/resident_notices.py`); today, that
+their complaint was resolved or rejected.
+
+- **Channel.** Each municipality chooses it in *Configuración*, tab *Correos*, section *Avisos a
+  vecinos*: only email (the default), CiDi and otherwise email, or only CiDi. CiDi is the
+  provincial account; its user name is the person's CUIL. Whoever has neither an account nor an
+  address is shown as such to the editors, so they know that nobody was told.
+- **Adhesion.** Each municipality adheres to CiDi by itself. The same section prints the request,
+  keeps how far it is and the connection data. Secrets are write-only and stored encrypted with
+  `GOBERNAR360_SECRETS_KEY`. CiDi can be chosen once the adhesion is approved and the data complete.
+- **What it says.** The municipality's template with the complaint's number and type, plus the
+  message the employee writes *for the resident*. The internal note and the history never leave.
+  The text is frozen when queued.
+- **Delivery.** Emails go to the outbox. `uv run gobernar360 send-notices` (`--watch` to keep
+  running) hands the rest over to CiDi, retrying up to 20 times; somebody CiDi does not know is
+  emailed the same text when the municipality wants that. Each event is told once.
+- **No legal claims.** The only wording is "Entregado a CiDi".
+- `GOBERNAR360_CIDI_MODE`: `off` (the default), `fake` (messages go to a file that
+  `uv run gobernar360 cidi-fake-inbox` shows) or `live`, which sends nothing until the Province
+  gives its technical specification (`docs/cidi/questions-for-province.md`).
+
 ### Email, notifications and single sign-on
 
 - **Outbox.** Every email is written to the `email_outbox` table in the same transaction
@@ -501,7 +551,11 @@ file. `dashboards/tableHeaders.test.ts` fails when a dashboard table uses a plai
 Configuration is read from `GOBERNAR360_*` environment variables or `backend/.env`; see
 `backend/src/gobernar360/core/config.py` and `backend/.env.example`. In production set at
 least `GOBERNAR360_APP_URL`, the `SMTP_*` settings and `GOBERNAR360_EMAIL_FROM`, and
-`GOBERNAR360_COOKIE_SECURE=true` when serving over HTTPS.
+`GOBERNAR360_COOKIE_SECURE=true` when serving over HTTPS, and your own passwords: in production
+(secure cookies, or `GOBERNAR360_ENVIRONMENT=production`) the API does not start while
+`GOBERNAR360_DATABASE_URL` or `GOBERNAR360_PUBLIC_DATABASE_URL` have the development ones, nor with
+the fake CiDi. Municipalities
+can save secrets once `GOBERNAR360_SECRETS_KEY` is set.
 
 The mail server is only configuration: any provider that accepts SMTP works. For Twilio
 SendGrid, for example:

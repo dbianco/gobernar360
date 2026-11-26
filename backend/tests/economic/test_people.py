@@ -62,6 +62,7 @@ def test_editor_registers_a_new_person(client):
             "last_name": "Pérez",
             "full_name": "Pérez, Juana",
             "dni": "12345678",
+            "cuil": None,
             "birth_date": "1990-05-01",
             "phone": "3472 555111",
             "email": "juana@example.test",
@@ -338,3 +339,21 @@ def test_only_what_was_sent_of_a_person_changes(client):
     assert (own["person"]["phone"], own["occupation"]) == ("222", "Soldadora")
     assert client.patch(url, json={}).json() == own
     assert client.patch(url, json={"person": {}}).json() == own
+
+
+def test_a_person_is_found_by_cuil_and_not_loaded_twice(client):
+    _editor(client)
+    body = {"person": {"first_name": "Juana", "last_name": "Pérez", "cuil": "20-12345678-6"}}
+
+    created = client.post(f"{BASE}/people", json=body)
+    again = client.post(f"{BASE}/people", json=body)
+
+    assert (created.status_code, created.json()["person"]["cuil"]) == (201, "20123456786")
+    assert (again.status_code, again.json()["error"]["code"]) == (409, "already_registered")
+    found = client.get(f"{BASE}/people/lookup", params={"cuil": "20123456786"}).json()
+    assert found["registered_id"] == created.json()["id"]
+    path = f"{BASE}/people/{created.json()['id']}"
+    wrong = client.patch(path, json={"person": {"dni": "11111111"}})
+    assert (wrong.status_code, wrong.json()["error"]["code"]) == (422, "cuil_dni_mismatch")
+    cleared = client.patch(path, json={"person": {"cuil": None, "dni": "11111111"}})
+    assert cleared.json()["person"]["cuil"] is None

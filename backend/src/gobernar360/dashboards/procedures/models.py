@@ -23,6 +23,9 @@ from gobernar360.core.db import AuditMixin, Base, TenantMixin, uuid_pk
 SOURCE_LEVELS = ("municipal", "provincial", "national", "other")
 AUDIENCES = ("people", "organizations", "both")
 CHANNELS = ("in_person", "online", "both")
+# Levels of the provincial account, CiDi: Confirmado, Verificado and Autenticado
+# (docs/cidi/reference.md, section 2).
+CIDI_LEVELS = (1, 2, 3)
 # How a requirement is asked for today.
 FORMATS = ("paper", "digital")
 
@@ -102,6 +105,8 @@ class Procedure(TenantMixin, AuditMixin, Base):
         CheckConstraint("cost IS NULL OR (cost >= 0 AND NOT is_free)", name="cost_valid"),
         CheckConstraint("duration_days >= 0", name="duration_days_not_negative"),
         CheckConstraint("annual_volume >= 0", name="annual_volume_not_negative"),
+        CheckConstraint("cidi_level BETWEEN 1 AND 3", name="cidi_level_valid"),
+        CheckConstraint("cidi_level IS NULL OR channel <> 'in_person'", name="cidi_only_online"),
     )
 
     id: Mapped[uuid.UUID] = uuid_pk()
@@ -112,6 +117,8 @@ class Procedure(TenantMixin, AuditMixin, Base):
     channel: Mapped[str] = mapped_column(String(20), nullable=False)
     # Where it is done online, when it can be.
     url: Mapped[str] = mapped_column(String(500), nullable=False, default="", server_default="")
+    # The least level of CiDi people sign in with. None: they do not, or it is not known.
+    cidi_level: Mapped[int | None] = mapped_column(Integer, nullable=True)
     is_free: Mapped[bool] = mapped_column(Boolean, nullable=False)
     cost: Mapped[Decimal | None] = mapped_column(Numeric(12, 2), nullable=True)
     # Estimated days to resolve it, and estimated times it is done in a year.

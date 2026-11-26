@@ -7,7 +7,9 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../api/client'
 import { errorMessage } from '../errorMessage'
 import { EmailTemplatesPanel } from './EmailTemplatesPanel'
+import { GeographyForm } from './GeographyForm'
 import { MapSettingsForm } from './MapSettingsForm'
+import { NoticesForm } from './NoticesForm'
 import { RecipientsForm } from './RecipientsForm'
 import { useSettingsScope } from './scope'
 import { SsoForm } from './SsoForm'
@@ -41,16 +43,31 @@ function TabContent({ tab, settings }: { tab: Tab; settings: MunicipalitySetting
           </Section>
         )}
         <Section>
+          <NoticesForm />
+        </Section>
+        <Section>
           <EmailTemplatesPanel />
         </Section>
       </>
     )
   }
   if (!settings) return null
+  if (tab === 'access') {
+    return (
+      <Section>
+        <SsoForm settings={settings} />
+      </Section>
+    )
+  }
   return (
-    <Section>
-      {tab === 'access' ? <SsoForm settings={settings} /> : <MapSettingsForm settings={settings} />}
-    </Section>
+    <>
+      <Section>
+        <MapSettingsForm settings={settings} />
+      </Section>
+      <Section>
+        <GeographyForm settings={settings} />
+      </Section>
+    </>
   )
 }
 

@@ -22,7 +22,7 @@ from sqlalchemy.orm import Session
 
 from gobernar360.core.errors import ApiError, not_found
 from gobernar360.platform.models import EmailTemplate
-from gobernar360.platform.notification_kinds import all_kinds
+from gobernar360.platform.notification_kinds import all_kinds, notice_kinds
 from gobernar360.platform.outbox import enqueue
 from gobernar360.platform.texts import PLACEHOLDER, raw
 
@@ -69,7 +69,14 @@ _ACCOUNT_SPECS = (
     Spec(MEMBERSHIP_ADDED, ("name", "inviter", "municipality", "link"), ()),
     Spec(PASSWORD_RESET, ("name", "link", "expires"), ("link",)),
 )
+# Notices to residents (`resident_notices`); CiDi gets their plain-text version.
+_NOTICE_VARIABLES = ("name", "municipality", "code", "type", "message")
+_NOTICE_REQUIRED = ("name", "municipality", "code")
 _NOTIFICATION_VARIABLES = ("municipality", "month", "items", "account_link")
+
+
+def notice_key(kind: str) -> str:
+    return f"notice.{kind}"
 
 
 def specs() -> list[Spec]:
@@ -77,7 +84,10 @@ def specs() -> list[Spec]:
     notifications = [
         Spec(kind, _NOTIFICATION_VARIABLES, ("items",), notification=True) for kind in all_kinds()
     ]
-    return [*_ACCOUNT_SPECS, *notifications]
+    notices = [
+        Spec(notice_key(kind), _NOTICE_VARIABLES, _NOTICE_REQUIRED) for kind in notice_kinds()
+    ]
+    return [*_ACCOUNT_SPECS, *notifications, *notices]
 
 
 def get_spec(key: str) -> Spec:
@@ -251,8 +261,24 @@ def send(
     db: Session, to: str, municipality_id: uuid.UUID | None, key: str, **params: object
 ) -> None:
     """Queue the email `key` in the municipality's version, in the caller's transaction."""
-    rendered = render(load(db, municipality_id, key), params)
+    send_rendered(db, to, render(load(db, municipality_id, key), params))
+
+
+def send_rendered(db: Session, to: str, rendered: Rendered) -> None:
+    """Queue an email whose text is already made, in the caller's transaction."""
     enqueue(db, to, rendered.subject, rendered.text, rendered.html)
+
+
+def plain(subject: str, text: str) -> Rendered:
+    """A plain text as an email that looks like the rest."""
+    paragraphs = html_lib.escape(text.strip()).split("\n\n")
+    body = "".join(f"<p>{paragraph.replace(chr(10), '<br>')}</p>" for paragraph in paragraphs)
+    return Rendered(subject=subject, html=document(body), text=text)
+
+
+def one_line(subject: str) -> str:
+    """A subject as the outbox keeps it."""
+    return " ".join(subject.split())[:300]
 
 
 def items_list(key: str, items: list[dict[str, str]]) -> Html:

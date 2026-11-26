@@ -59,6 +59,34 @@ En línea
 2
 Presencial y en línea
 3
+[Digitalización]
+Digitalización
+Con ingreso por CiDi
+3
+Parte de los en línea con CiDi
+60 %
+Sobre los trámites con canal en línea
+100 % digitales
+2
+Se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
+Parte 100 % digital
+16,7 %
+Sobre todos los trámites vigentes
+[Trámites por nivel de CiDi]
+Nivel de CiDi
+[Qué significa Nivel de CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) que pide el trámite.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes de ese nivel.
+Nivel 1 – Confirmado
+1
+Nivel 2 – Verificado
+2
+Nivel 3 – Autenticado
+0
+Sin CiDi
+9
 Requisitos más pedidos
 [Requisitos más pedidos]
 Requisito
@@ -236,6 +264,34 @@ Trámites por área
 Ver como tabla
 Trámites por canal
 Ver como tabla
+[Digitalización]
+Digitalización
+Con ingreso por CiDi
+3
+Parte de los en línea con CiDi
+60 %
+Sobre los trámites con canal en línea
+100 % digitales
+2
+Se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
+Parte 100 % digital
+16,7 %
+Sobre todos los trámites vigentes
+[Trámites por nivel de CiDi]
+Nivel de CiDi
+[Qué significa Nivel de CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) que pide el trámite.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes de ese nivel.
+Nivel 1 – Confirmado
+1
+Nivel 2 – Verificado
+2
+Nivel 3 – Autenticado
+0
+Sin CiDi
+9
 Requisitos más pedidos
 [Requisitos más pedidos]
 Requisito
@@ -340,6 +396,34 @@ Trámites por área
 Ver como tabla
 Trámites por canal
 Ver como tabla
+[Digitalización]
+Digitalización
+Con ingreso por CiDi
+3
+Parte de los en línea con CiDi
+60 %
+Sobre los trámites con canal en línea
+100 % digitales
+2
+Se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
+Parte 100 % digital
+16,7 %
+Sobre todos los trámites vigentes
+[Trámites por nivel de CiDi]
+Nivel de CiDi
+[Qué significa Nivel de CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) que pide el trámite.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes de ese nivel.
+Nivel 1 – Confirmado
+1
+Nivel 2 – Verificado
+2
+Nivel 3 – Autenticado
+0
+Sin CiDi
+9
 Requisitos más pedidos
 [Requisitos más pedidos]
 Requisito
@@ -444,6 +528,34 @@ Trámites por área
 Ver como tabla
 Trámites por canal
 Ver como tabla
+[Digitalización]
+Digitalización
+Con ingreso por CiDi
+3
+Parte de los en línea con CiDi
+60 %
+Sobre los trámites con canal en línea
+100 % digitales
+2
+Se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
+Parte 100 % digital
+16,7 %
+Sobre todos los trámites vigentes
+[Trámites por nivel de CiDi]
+Nivel de CiDi
+[Qué significa Nivel de CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) que pide el trámite.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes de ese nivel.
+Nivel 1 – Confirmado
+1
+Nivel 2 – Verificado
+2
+Nivel 3 – Autenticado
+0
+Sin CiDi
+9
 Requisitos más pedidos
 Ningún trámite vigente tiene requisitos cargados."
 `;
@@ -604,6 +716,34 @@ Trámites por área
 Ver como tabla
 Trámites por canal
 Ver como tabla
+[Digitalización]
+Digitalización
+Con ingreso por CiDi
+3
+Parte de los en línea con CiDi
+60 %
+Sobre los trámites con canal en línea
+100 % digitales
+2
+Se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
+Parte 100 % digital
+16,7 %
+Sobre todos los trámites vigentes
+[Trámites por nivel de CiDi]
+Nivel de CiDi
+[Qué significa Nivel de CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) que pide el trámite.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes de ese nivel.
+Nivel 1 – Confirmado
+1
+Nivel 2 – Verificado
+2
+Nivel 3 – Autenticado
+0
+Sin CiDi
+9
 Requisitos más pedidos
 [Requisitos más pedidos]
 Requisito
@@ -624,6 +764,270 @@ Lo aporta el solicitante
 `;
 
 exports[`shows dashes when no procedure is offered but the catalog has data > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+[Cargando…]"
+`;
+
+exports[`shows how much can be done from home and with CiDi > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+Trámites vigentes
+12
+Con canal en línea
+5
+41,7 % de los vigentes
+Requisitos por trámite
+3,4
+Promedio entre los vigentes
+Requisitos cargados
+16
+Fuentes cargadas
+11
+Trámites por área
+Ver como tabla
+Trámites por canal
+Ver como tabla
+[Digitalización]
+Digitalización
+Con ingreso por CiDi
+3
+Parte de los en línea con CiDi
+60 %
+Sobre los trámites con canal en línea
+100 % digitales
+2
+Se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
+Parte 100 % digital
+16,7 %
+Sobre todos los trámites vigentes
+[Trámites por nivel de CiDi]
+Nivel de CiDi
+[Qué significa Nivel de CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) que pide el trámite.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes de ese nivel.
+Nivel 1 – Confirmado
+1
+Nivel 2 – Verificado
+2
+Nivel 3 – Autenticado
+0
+Sin CiDi
+9
+Requisitos más pedidos
+[Requisitos más pedidos]
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes que lo piden.
+DNI
+RENAPER
+9
+Formulario de solicitud
+Lo aporta el solicitante
+5"
+`;
+
+exports[`shows how much can be done from home and with CiDi > screen at the start 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+[Cargando…]"
+`;
+
+exports[`shows no share of nothing > screen at the end 1`] = `
+"[Estado mensual]
+Estado mensual 2026
+[Año anterior]
+[Año siguiente]
+El color lo asigna quien administra el tablero.
+[Estado e indicadores de cada mes de 2026]
+[Enero: Sin estado]
+Ene
+[Febrero: Sin estado]
+Feb
+[Marzo: Sin estado]
+Mar
+[Abril: Sin estado]
+Abr
+[Mayo: Sin estado]
+May
+[Junio: Sin estado]
+Jun
+[Julio: Sin estado]
+Jul
+[Agosto: Sin estado]
+Ago
+[Septiembre: Sin estado]
+Sep
+[Octubre: Sin estado]
+Oct
+[Noviembre: Sin estado]
+Nov
+[Diciembre: Sin estado]
+Dic
+Descargar trámites
+Descargar requisitos por trámite
+Trámites vigentes
+12
+Con canal en línea
+0
+0 % de los vigentes
+Requisitos por trámite
+3,4
+Promedio entre los vigentes
+Requisitos cargados
+16
+Fuentes cargadas
+11
+Trámites por área
+Ver como tabla
+Trámites por canal
+Ver como tabla
+[Digitalización]
+Digitalización
+Con ingreso por CiDi
+0
+Parte de los en línea con CiDi
+—
+Sobre los trámites con canal en línea
+100 % digitales
+2
+Se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
+Parte 100 % digital
+16,7 %
+Sobre todos los trámites vigentes
+[Trámites por nivel de CiDi]
+Nivel de CiDi
+[Qué significa Nivel de CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) que pide el trámite.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes de ese nivel.
+Nivel 1 – Confirmado
+1
+Nivel 2 – Verificado
+2
+Nivel 3 – Autenticado
+0
+Sin CiDi
+9
+Requisitos más pedidos
+[Requisitos más pedidos]
+Requisito
+[Qué significa Requisito]
+Documento o dato que se pide.
+Fuente
+[Qué significa Fuente]
+Quién emite o guarda ese dato.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes que lo piden.
+DNI
+RENAPER
+9
+Formulario de solicitud
+Lo aporta el solicitante
+5"
+`;
+
+exports[`shows no share of nothing > screen at the start 1`] = `
 "[Estado mensual]
 Estado mensual 2026
 [Año anterior]
@@ -708,6 +1112,34 @@ Trámites por área
 Ver como tabla
 Trámites por canal
 Ver como tabla
+[Digitalización]
+Digitalización
+Con ingreso por CiDi
+3
+Parte de los en línea con CiDi
+60 %
+Sobre los trámites con canal en línea
+100 % digitales
+2
+Se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
+Parte 100 % digital
+16,7 %
+Sobre todos los trámites vigentes
+[Trámites por nivel de CiDi]
+Nivel de CiDi
+[Qué significa Nivel de CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) que pide el trámite.
+Trámites
+[Qué significa Trámites]
+Trámites vigentes de ese nivel.
+Nivel 1 – Confirmado
+1
+Nivel 2 – Verificado
+2
+Nivel 3 – Autenticado
+0
+Sin CiDi
+9
 Requisitos más pedidos
 [Requisitos más pedidos]
 Requisito

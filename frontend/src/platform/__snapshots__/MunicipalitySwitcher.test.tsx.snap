@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`lists the municipalities one can choose and names the suspended ones > screen at the end 1`] = `
+"Elegí el municipio con el que querés trabajar
+Saira está suspendido: no se puede trabajar en él hasta que el operador de la plataforma lo reanude.
+Noetinger"
+`;
+
+exports[`lists the municipalities one can choose and names the suspended ones > screen at the start 1`] = `"Elegí el municipio con el que querés trabajar"`;
+
+exports[`offers nothing to somebody who is not signed in > screen at the end 1`] = `
+"known
+Elegí el municipio con el que querés trabajar
+Tus municipios están suspendidos:
+El operador de la plataforma lo suspendió. Sus datos se conservan, pero nadie puede trabajar en él hasta que lo reanude.
+Volver a intentar"
+`;
+
+exports[`offers nothing to somebody who is not signed in > screen at the start 1`] = `
+"Elegí el municipio con el que querés trabajar
+Tus municipios están suspendidos:
+El operador de la plataforma lo suspendió. Sus datos se conservan, pero nadie puede trabajar en él hasta que lo reanude.
+Volver a intentar"
+`;
+
+exports[`shows the municipality one works in > screen at the end 1`] = `
+"[Municipio]
+[Municipio]
+Noetinger
+Saira"
+`;

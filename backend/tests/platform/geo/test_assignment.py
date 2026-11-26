@@ -97,7 +97,7 @@ def test_a_point_is_reassigned_when_the_boundary_moves(client):
     stays = make_actor_at(municipality, "Queda", point(0.8, 0.8))
     joins = make_actor_at(municipality, "Entra", point(1.2, 1.2))
 
-    client.patch(f"{ZONES}/{zone.id}", json={"boundary": square(0.5, 0.5)})
+    client.patch(f"{ZONES}/{zone.id}", json={"boundary": square(0.5, 0.5), "base_version": 1})
 
     assert [zone_names(actor) for actor in (left, stays, joins)] == [[], ["Centro"], ["Centro"]]
     # What the boundary before had is still known.
@@ -291,7 +291,7 @@ def test_records_are_never_assigned_to_another_municipalitys_zones(client):
     # Built as the owner, who bypasses row-level security: the triggers isolate by themselves.
     assert (zone_names(actor), zone_names(theirs)) == (["Centro"], ["Ajena"])
     # And so does every change made through the API.
-    client.patch(f"{ZONES}/{mine.id}", json={"boundary": square(0, 0, 2)})
+    client.patch(f"{ZONES}/{mine.id}", json={"boundary": square(0, 0, 2), "base_version": 1})
     _move(client, ACTORS, actor, point(0.6, 0.6))
     assert (zone_names(actor), zone_names(theirs)) == (["Centro"], ["Ajena"])
 

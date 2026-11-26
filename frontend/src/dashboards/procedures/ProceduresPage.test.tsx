@@ -102,12 +102,85 @@ it('lets an editor create a paid procedure', async () => {
     audience: 'both',
     channel: 'both',
     url: 'https://muni.example/obra',
+    cidi_level: null,
     is_free: false,
     cost: 40000,
     duration_days: 30,
     annual_volume: null,
     is_active: true,
   })
+})
+
+it('says the level each procedure signs in with, and which can be done from home', async () => {
+  mockApi(
+    'get',
+    `${BASE}/procedures`,
+    page([
+      makeProcedure({ channel: 'online', cidi_level: 2, fully_digital: true }),
+      makeProcedure({ id: 'pr-2', name: 'Poda' }),
+    ]),
+  )
+  renderProcedures(<ProceduresPage />)
+
+  const shop = within(await screen.findByRole('row', { name: /Habilitación comercial/ }))
+  expect(shop.getByText(t('procedures.cidiLevels.2'))).toBeInTheDocument()
+  expect(shop.getByTitle(t('procedures.digitalRule'))).toHaveTextContent(t('procedures.digital'))
+  const pruning = within(screen.getByRole('row', { name: /Poda/ }))
+  expect(pruning.queryByText(t('procedures.digital'))).toBeNull()
+  expect(pruning.getAllByRole('cell')[3]).toHaveTextContent(t('app.none'))
+})
+
+it('narrows the list to a level, or to those without one', async () => {
+  const requests = mockApi('get', `${BASE}/procedures`, page([makeProcedure()]))
+  renderProcedures(<ProceduresPage />)
+  const user = userEvent.setup()
+  await screen.findByRole('row', { name: /Habilitación/ })
+  const level = screen.getByRole('combobox', { name: label('cidi') })
+
+  await user.selectOptions(level, t('procedures.cidiLevels.3'))
+  await waitFor(() => expect(last(requests).url.searchParams.get('cidi_level')).toBe('3'))
+  await user.selectOptions(level, t('procedures.cidiLevels.none'))
+  await waitFor(() => expect(last(requests).url.searchParams.get('cidi_level')).toBe('none'))
+})
+
+it('saves the level people sign in with', async () => {
+  mockApi('get', `${BASE}/procedures`, page([]))
+  const requests = mockApi('post', `${BASE}/procedures`, makeProcedure(), 201)
+  renderProcedures(<ProceduresPage />)
+  const user = userEvent.setup()
+  await user.click(await screen.findByRole('button', { name: label('create') }))
+  const form = within(await screen.findByRole('dialog'))
+  const level = form.getByRole('combobox', { name: field('cidi') })
+  expect(within(level).getAllByRole('option').map((option) => option.textContent)).toEqual([
+    t('procedures.cidiOptions.none'),
+    t('procedures.cidiOptions.1'),
+    t('procedures.cidiOptions.2'),
+    t('procedures.cidiOptions.3'),
+  ])
+
+  await user.type(form.getByRole('textbox', { name: field('name') }), 'Permiso')
+  await user.selectOptions(form.getByLabelText(field('channel')), 'online')
+  await user.selectOptions(level, t('procedures.cidiOptions.2'))
+  await user.click(form.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(requests[0]?.body).toMatchObject({ channel: 'online', cidi_level: 2 }))
+})
+
+it('refuses a level for what is only done in person', async () => {
+  mockApi('get', `${BASE}/procedures`, page([]))
+  renderProcedures(<ProceduresPage />)
+  const user = userEvent.setup()
+  await user.click(await screen.findByRole('button', { name: label('create') }))
+  const form = within(await screen.findByRole('dialog'))
+  const save = form.getByRole('button', { name: t('app.save') })
+  const level = form.getByRole('combobox', { name: field('cidi') })
+
+  await user.selectOptions(level, t('procedures.cidiOptions.1'))
+  expect(form.getByText(t('errors.cidi_level_in_person'))).toBeInTheDocument()
+  expect(save).toBeDisabled()
+  await user.selectOptions(form.getByLabelText(field('channel')), 'both')
+  expect(form.queryByText(t('errors.cidi_level_in_person'))).toBeNull()
+  expect(save).toBeEnabled()
 })
 
 it('does not ask for a link when the procedure is only in person', async () => {

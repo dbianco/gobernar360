@@ -934,6 +934,72 @@ Volver a reuniones
 [Cargando…]"
 `;
 
+exports[`shows the date agreed of what was moved, and that its owner left > screen at the end 1`] = `
+"[autosize measurement]
+Volver a reuniones
+Reunión del 23/11/2026
+Abierta
+Editar datos
+Descartar reunión
+Cerrar reunión
+Participantes
+Ana Gómez, Leo Paz
+Invitados
+Ing. Funes
+[Compromisos arrastrados]
+Compromisos arrastrados
+Venían de reuniones anteriores y seguían pendientes cuando se preparó esta.
+Certificar la obra
+Vencido
+Postergado 2 veces
+El responsable ya no está
+Leo Paz, para el 15/12/2026
+(se acordó para el 20/11/2026)
+Plaza central
+Señalizar
+Vencido
+Postergado 2 veces
+Leo Paz, para el 20/11/2026
+Plaza central
+[Temario]
+Temario
+Agregar tema
+[Feria del libro]
+1. Feria del libro
+[Subir Feria del libro]
+[Bajar Feria del libro]
+Notas
+[Notas de Feria del libro]
+[Tratado: Feria del libro]
+Tratado
+[Agregar compromiso en Feria del libro]
+Agregar compromiso
+[Editar tema: Feria del libro]
+Editar
+[Quitar tema: Feria del libro]
+Quitar
+[Ambiental, octubre de 2026]
+2. Ambiental, octubre de 2026
+Crítico
+[Subir Ambiental, octubre de 2026]
+[Bajar Ambiental, octubre de 2026]
+Notas
+[Notas de Ambiental, octubre de 2026]
+[Tratado: Ambiental, octubre de 2026]
+Tratado
+[Agregar compromiso en Ambiental, octubre de 2026]
+Agregar compromiso
+[Quitar tema: Ambiental, octubre de 2026]
+Quitar
+Notas generales"
+`;
+
+exports[`shows the date agreed of what was moved, and that its owner left > screen at the start 1`] = `
+"[autosize measurement]
+Volver a reuniones
+[Cargando…]"
+`;
+
 exports[`shows who came, what was carried over and the agenda > screen at the end 1`] = `
 "Volver a reuniones
 Reunión del 23/11/2026

@@ -1,3 +1,5 @@
+import path from 'node:path'
+
 import { defineConfig } from '@playwright/test'
 
 // End-to-end tests run their own API and web server against a dedicated database,
@@ -18,6 +20,10 @@ export const backendEnv = {
   GOBERNAR360_OIDC_ISSUER: 'http://localhost:5556',
   GOBERNAR360_OIDC_CLIENT_ID: 'gobernar360',
   GOBERNAR360_OIDC_CLIENT_SECRET: 'gobernar360-dev-secret',
+  // Notices to residents go to a file instead of CiDi. The key is of these tests alone.
+  GOBERNAR360_CIDI_MODE: 'fake',
+  GOBERNAR360_CIDI_FAKE_INBOX: path.resolve(import.meta.dirname, 'test-results/cidi-inbox.jsonl'),
+  GOBERNAR360_SECRETS_KEY: 'ZTJlLW9ubHkta2V5LWUyZS1vbmx5LWtleS1lMmUtMDE=',
   GOBERNAR360_PUBLIC_DATABASE_URL: `postgresql+psycopg://gobernar360_public:gobernar360_public@${DATABASE}`,
 }
 

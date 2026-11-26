@@ -1,0 +1,100 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`offers no area while the municipality has none > screen at the end 1`] = `
+"Nombre
+Área
+A qué bandeja van los reclamos nuevos de este tipo.
+Plazo objetivo en días hábiles
+Entre 1 y 365. Un plazo nuevo vale para los reclamos que entren desde ahora.
+Vigente: se ofrece para reclamos nuevos
+Cancelar
+Guardar"
+`;
+
+exports[`offers no area while the municipality has none > screen at the start 1`] = `
+"Nombre
+Área
+A qué bandeja van los reclamos nuevos de este tipo.
+Plazo objetivo en días hábiles
+Entre 1 y 365. Un plazo nuevo vale para los reclamos que entren desde ahora.
+Vigente: se ofrece para reclamos nuevos
+Cancelar
+Guardar"
+`;
+
+exports[`saves the changes of a type and closes > screen at the end 1`] = `
+"Nombre
+Área
+A qué bandeja van los reclamos nuevos de este tipo.
+Alumbrado Público
+Obras Públicas
+Plazo objetivo en días hábiles
+Entre 1 y 365. Un plazo nuevo vale para los reclamos que entren desde ahora.
+Vigente: se ofrece para reclamos nuevos
+Cancelar
+Guardar"
+`;
+
+exports[`saves the changes of a type and closes > screen at the start 1`] = `
+"Nombre
+Área
+A qué bandeja van los reclamos nuevos de este tipo.
+Alumbrado Público
+Obras Públicas
+Plazo objetivo en días hábiles
+Entre 1 y 365. Un plazo nuevo vale para los reclamos que entren desde ahora.
+Vigente: se ofrece para reclamos nuevos
+Cancelar
+Guardar"
+`;
+
+exports[`starts from the first area and nothing else for a new type > screen at the end 1`] = `
+"Nombre
+Área
+A qué bandeja van los reclamos nuevos de este tipo.
+Obras Públicas
+Alumbrado Público
+Plazo objetivo en días hábiles
+Entre 1 y 365. Un plazo nuevo vale para los reclamos que entren desde ahora.
+Vigente: se ofrece para reclamos nuevos
+Cancelar
+Guardar"
+`;
+
+exports[`starts from the first area and nothing else for a new type > screen at the start 1`] = `
+"Nombre
+Área
+A qué bandeja van los reclamos nuevos de este tipo.
+Obras Públicas
+Alumbrado Público
+Plazo objetivo en días hábiles
+Entre 1 y 365. Un plazo nuevo vale para los reclamos que entren desde ahora.
+Vigente: se ofrece para reclamos nuevos
+Cancelar
+Guardar"
+`;
+
+exports[`stays open and says why when it is refused > screen at the end 1`] = `
+"No tenés permiso para realizar esta acción.
+Nombre
+Área
+A qué bandeja van los reclamos nuevos de este tipo.
+Alumbrado Público
+Plazo objetivo en días hábiles
+Entre 1 y 365. Un plazo nuevo vale para los reclamos que entren desde ahora.
+Vigente: se ofrece para reclamos nuevos
+Cancelar
+Guardar"
+`;
+
+exports[`stays open and says why when it is refused > screen at the start 1`] = `
+"Nombre
+Área
+A qué bandeja van los reclamos nuevos de este tipo.
+Alumbrado Público
+Plazo objetivo en días hábiles
+Entre 1 y 365. Un plazo nuevo vale para los reclamos que entren desde ahora.
+Vigente: se ofrece para reclamos nuevos
+Cancelar
+Guardar"
+`;

@@ -12,6 +12,9 @@ import type {
   PolygonGeometry,
   RecordLocation,
   RecordRef,
+  ReferenceFeatures,
+  ReferenceLayerInfo,
+  ReferenceLayerKey,
   Boundary,
   Zone,
   ZoneImport,
@@ -37,6 +40,28 @@ export function useMapBackground(enabled = true) {
     // Changes only when somebody saves it: the maps of a screen need not each ask.
     staleTime: Infinity,
     enabled,
+  })
+}
+
+/** The layers of public facilities that have something to show. */
+export function useReferenceLayers(enabled = true) {
+  return useQuery({
+    queryKey: ['reference-layers'],
+    queryFn: () => api<ReferenceLayerInfo[]>('/geo/reference-layers'),
+    // They change only when somebody imports them.
+    staleTime: Infinity,
+    enabled,
+  })
+}
+
+export function useReferenceFeatures(layer: ReferenceLayerKey, bbox: string) {
+  return useQuery({
+    queryKey: ['reference-layers', layer, bbox],
+    queryFn: ({ signal }) =>
+      api<ReferenceFeatures>(`/geo/reference-layers/${layer}`, { query: { bbox }, signal }),
+    staleTime: Infinity,
+    // What was on the map stays while the next area loads.
+    placeholderData: keepPreviousData,
   })
 }
 
@@ -130,7 +155,7 @@ export const createZone = (name: string, boundary: PolygonGeometry) =>
 
 export const updateZone = (
   zoneId: string,
-  changes: { name?: string; boundary?: PolygonGeometry | Boundary; base_version?: number },
+  changes: { name?: string; boundary?: PolygonGeometry | Boundary; base_version: number },
 ) => api<ZoneSaved>(`/admin/zones/${zoneId}`, { method: 'PATCH', body: changes })
 
 export const retireZone = (zoneId: string) => api(`/admin/zones/${zoneId}`, { method: 'DELETE' })

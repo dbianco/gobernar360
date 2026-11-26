@@ -102,6 +102,7 @@ it('edits the registry data of the person', async () => {
       first_name: 'Juana',
       last_name: 'Pérez',
       dni: '12345678',
+      cuil: null,
       birth_date: '1990-05-01',
       phone: '3472 555111',
       email: '',

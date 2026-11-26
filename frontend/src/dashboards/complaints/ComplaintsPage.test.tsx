@@ -172,6 +172,90 @@ it('adds a resident the registry does not have', async () => {
   expect(created[0].body).not.toHaveProperty('person_id')
 })
 
+it('files the complaint to a resident found by CUIL', async () => {
+  const lookups = mockApi('get', `${BASE}/people/lookup`, {
+    person: { ...makeDetail().person, dni: null, cuil: '20123456786' },
+    registered_id: null,
+  })
+  const created = mockApi('post', `${BASE}/complaints`, makeDetail(), 201)
+  renderList()
+  const { user, dialog } = await openForm()
+
+  await user.type(dialog.getByRole('textbox', { name: form('address') }), 'San Martín 450')
+  await user.click(dialog.getByRole('radio', { name: form('identified') }))
+  await user.type(dialog.getByRole('textbox', { name: form('dni') }), '20-12345678-6')
+  await user.click(dialog.getByRole('button', { name: form('lookup') }))
+
+  expect(
+    await dialog.findByText(form('foundByCuil', { name: 'Fernández, Lucía', cuil: '20-12345678-6' })),
+  ).toBeInTheDocument()
+  const asked = lookups[0].url.searchParams
+  expect([asked.get('cuil'), asked.get('dni')]).toEqual(['20123456786', null])
+  await user.click(dialog.getByRole('button', { name: t('app.save') }))
+  await waitFor(() => expect(created[0]?.body).toMatchObject({ person_id: 'pe-1' }))
+})
+
+it('adds a resident known only by their CUIL', async () => {
+  mockApi('get', `${BASE}/people/lookup`, { person: null, registered_id: null })
+  const created = mockApi('post', `${BASE}/complaints`, makeDetail(), 201)
+  renderList()
+  const { user, dialog } = await openForm()
+
+  await user.type(dialog.getByRole('textbox', { name: form('address') }), 'Moreno 1120')
+  await user.click(dialog.getByRole('radio', { name: form('identified') }))
+  await user.type(dialog.getByRole('textbox', { name: form('dni') }), '20123456786')
+  await user.click(dialog.getByRole('button', { name: form('lookup') }))
+  expect(await dialog.findByText(form('notFound'))).toBeInTheDocument()
+  // It is already there.
+  expect(dialog.queryByRole('textbox', { name: t('people.cuil') })).toBeNull()
+  await user.type(dialog.getByRole('textbox', { name: t('people.firstName') }), 'Juan')
+  await user.type(dialog.getByRole('textbox', { name: t('people.lastName') }), 'Paz')
+  await user.click(dialog.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(created).toHaveLength(1))
+  expect(created[0].body).toMatchObject({
+    new_person: {
+      first_name: 'Juan',
+      last_name: 'Paz',
+      cuil: '20123456786',
+      phone: '',
+      email: '',
+    },
+  })
+  expect((created[0].body as { new_person: object }).new_person).not.toHaveProperty('dni')
+})
+
+it('takes the CUIL of a new resident, of their own document', async () => {
+  mockApi('get', `${BASE}/people/lookup`, { person: null, registered_id: null })
+  const created = mockApi('post', `${BASE}/complaints`, makeDetail(), 201)
+  renderList()
+  const { user, dialog } = await openForm()
+
+  await user.type(dialog.getByRole('textbox', { name: form('address') }), 'Moreno 1120')
+  await user.click(dialog.getByRole('radio', { name: form('identified') }))
+  await user.type(dialog.getByRole('textbox', { name: form('dni') }), '12345678')
+  await user.click(dialog.getByRole('button', { name: form('lookup') }))
+  const cuil = await dialog.findByRole('textbox', { name: t('people.cuil') })
+  await user.type(cuil, '20-1234567')
+  expect(dialog.getByText(t('people.cuilInvalid'))).toBeInTheDocument()
+  await user.clear(cuil)
+  await user.type(cuil, '27111111117')
+  expect(dialog.getByText(t('people.cuilMismatch'))).toBeInTheDocument()
+  await user.type(dialog.getByRole('textbox', { name: t('people.firstName') }), 'Juan')
+  await user.type(dialog.getByRole('textbox', { name: t('people.lastName') }), 'Paz')
+  await user.click(dialog.getByRole('button', { name: t('app.save') }))
+  expect(created).toHaveLength(0)
+  await user.clear(cuil)
+  await user.type(cuil, '20-12345678-6')
+  expect(dialog.queryByText(t('people.cuilMismatch'))).toBeNull()
+  await user.click(dialog.getByRole('button', { name: t('app.save') }))
+
+  await waitFor(() => expect(created).toHaveLength(1))
+  expect(created[0].body).toMatchObject({
+    new_person: { dni: '12345678', cuil: '20123456786' },
+  })
+})
+
 it('does not look up a document that cannot be one', async () => {
   renderList()
   const { user, dialog } = await openForm()
@@ -179,8 +263,12 @@ it('does not look up a document that cannot be one', async () => {
   await user.click(dialog.getByRole('radio', { name: form('identified') }))
   await user.type(dialog.getByRole('textbox', { name: form('dni') }), '12')
 
-  expect(dialog.getByText(t('people.dniInvalid'))).toBeInTheDocument()
+  expect(dialog.getByText(form('dniInvalid'))).toBeInTheDocument()
   expect(dialog.getByRole('button', { name: form('lookup') })).toBeDisabled()
+  // Nor is it saved, although the rest is there.
+  await user.type(dialog.getByRole('textbox', { name: form('address') }), 'Moreno 1120')
+  await user.click(dialog.getByRole('button', { name: t('app.save') }))
+  expect(screen.getByRole('dialog')).toBeInTheDocument()
 })
 
 it('shows why the registry could not be asked, and why saving failed', async () => {
@@ -250,4 +338,34 @@ it('pages through a long list and filters by type and area', async () => {
     expect(query?.get('area_id')).toBe('ar-2')
     expect(query?.get('offset')).toBe('0')
   })
+})
+
+it('closes the form without registering anything', async () => {
+  const created = mockApi('post', `${BASE}/complaints`, makeDetail(), 201)
+  renderList()
+  const { user } = await openForm()
+
+  await user.keyboard('{Escape}')
+
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
+  expect(created).toHaveLength(0)
+})
+
+it('says so when there are no complaints', async () => {
+  renderList('viewer', [])
+
+  expect(await screen.findByText(label('empty'))).toBeInTheDocument()
+  expect(screen.queryByRole('table')).not.toBeInTheDocument()
+})
+
+it('shows no clock for a rejected complaint', async () => {
+  renderList('viewer', [
+    makeComplaint({ state: 'rejected', clock: makeClock({ status: null }) }),
+  ])
+
+  const row = within(await screen.findByRole('row', { name: /101/ }))
+  expect(row.getByText(t('complaints.states.rejected'))).toBeInTheDocument()
+  for (const status of ['on_time', 'at_risk', 'overdue']) {
+    expect(row.queryByText(t(`complaints.statuses.${status}`))).not.toBeInTheDocument()
+  }
 })

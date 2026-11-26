@@ -53,6 +53,8 @@ export function makeProcedure(overrides: Partial<Procedure> = {}): Procedure {
     audience: 'organizations',
     channel: 'in_person',
     url: '',
+    cidi_level: null,
+    fully_digital: false,
     is_free: false,
     cost: '25000.00',
     duration_days: 20,
@@ -84,6 +86,10 @@ export function makeSummary(overrides: Partial<Summary> = {}): Summary {
   return {
     procedures: 12,
     online: 5,
+    cidi: 3,
+    cidi_ratio: 0.6,
+    digital: 2,
+    digital_ratio: 0.1667,
     average_requirements: 3.4,
     requirements: 16,
     sources: 11,
@@ -95,6 +101,12 @@ export function makeSummary(overrides: Partial<Summary> = {}): Summary {
       { channel: 'in_person', count: 7 },
       { channel: 'online', count: 2 },
       { channel: 'both', count: 3 },
+    ],
+    by_cidi_level: [
+      { level: 1, count: 1 },
+      { level: 2, count: 2 },
+      { level: 3, count: 0 },
+      { level: null, count: 9 },
     ],
     top_requirements: [
       { name: 'DNI', source: 'RENAPER', count: 9 },

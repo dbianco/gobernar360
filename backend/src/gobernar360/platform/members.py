@@ -24,9 +24,11 @@ from sqlalchemy import func, select
 
 from gobernar360.core.errors import conflict, not_found, validation_error
 from gobernar360.dashboards import registry
-from gobernar360.platform import accounts, members_csv
+from gobernar360.platform import accounts, commitments, members_csv
 from gobernar360.platform.access import RequestContext, enabled_dashboard_keys
 from gobernar360.platform.audit import record_change
+from gobernar360.platform.commitment_schemas import LeftCommitmentsOut
+from gobernar360.platform.commitments_router import left_out
 from gobernar360.platform.csv_export import csv_response
 from gobernar360.platform.listing import Page, PagingParams, SearchText, every_word, page_of
 from gobernar360.platform.models import DashboardGrant, Membership, Municipality, User
@@ -159,6 +161,7 @@ def _add_member(
     record_change(
         ctx, "create", membership, {"email": user.email, "is_admin": is_admin, "grants": grants}
     )
+    commitments.forget_owner_left(ctx, user.id)
     _invite(ctx, user)
     return membership
 
@@ -297,12 +300,16 @@ def build_router(context: Callable[..., RequestContext]) -> APIRouter:
         record_change(ctx, "update", membership, payload.model_dump(exclude_none=True))
         return _out(ctx, membership)
 
-    @router.delete("/users/{membership_id}", status_code=204)
-    def remove_member(membership_id: uuid.UUID, ctx: MemberContext) -> None:
+    @router.delete("/users/{membership_id}")
+    def remove_member(membership_id: uuid.UUID, ctx: MemberContext) -> LeftCommitmentsOut:
+        """Take somebody out of the municipality. The answer is what they still owed."""
         membership = get_membership(ctx, membership_id)
         _ensure_not_last_admin(ctx, membership)
+        user_id = membership.user_id
         record_change(ctx, "delete", membership, {"email": membership.user.email})
         ctx.db.delete(membership)
         ctx.db.flush()
+        commitments.tell_owner_left(ctx, user_id)
+        return left_out(ctx, commitments.left_behind(ctx, user_id))
 
     return router

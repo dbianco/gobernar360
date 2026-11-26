@@ -18,8 +18,8 @@ reunión, y sumar a quienes quieran enterarse cuando se cumple.
 ## Lo que quedaba sin decir
 
 Se resolvió por lo más acotado y **el usuario lo confirmó**: quién ve los informales, qué puede
-quien los asignó, que no haya correo, que el cumplimiento en término use la fecha vigente y
-quién sigue viendo un compromiso que pasó a otro.
+quien los asignó, que no haya correo, que el cumplimiento en término use la fecha vigente (lo
+reemplazó F1 de la revisión del 2026-11-25: usa la fecha acordada) y quién sigue viendo un compromiso que pasó a otro.
 
 - **Informales:** los ven solo quien los asignó, el responsable y los agregados. Ni los
   administradores ni Gabinete; para los demás no existen (404).
@@ -30,8 +30,11 @@ quién sigue viendo un compromiso que pasó a otro.
 - **Agregados:** leen; no cambian nada. Los elige quien puede cambiar la fecha.
 - **Pasarlo a otro** deja de mostrarlo a quien lo pasó, salvo que lo haya creado, que lo vea
   por Gabinete o que quede agregado.
-- **Cumplidos en término** (Gabinete) usa la fecha vigente, aunque la haya movido el
-  responsable. El historial conserva cada cambio.
+- **Cumplidos en término** (Gabinete) usa la fecha acordada en la reunión, aunque el
+  responsable la haya movido después. El historial conserva cada cambio.
+- **Si el responsable deja el municipio** (F2), quien lo quita recibe la lista de lo que debía
+  y puede ver (lo de reuniones) y cuántos más hay. A quien asignó uno informal se le avisa y es
+  quien lo reasigna: los administradores siguen sin verlos.
 - **Avisos:** «te lo asignó» al responsable; «lo cumplió» a los agregados y a quien asignó uno
   informal. A nadie de lo que hizo él mismo. Reabrir, descartar o reasignar retira los avisos
   no leídos que dejaron de ser ciertos. **No se manda correo.**

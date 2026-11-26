@@ -1,0 +1,106 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`clears them > screen at the end 1`] = `
+"Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Sus administradores los ven y no los pueden cambiar.
+Cambios guardados.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+Guardar fuentes oficiales"
+`;
+
+exports[`clears them > screen at the start 1`] = `
+"Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Sus administradores los ven y no los pueden cambiar.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+Guardar fuentes oficiales"
+`;
+
+exports[`lets the operator say where the municipality is > screen at the end 1`] = `
+"Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Sus administradores los ven y no los pueden cambiar.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+Guardar fuentes oficiales"
+`;
+
+exports[`lets the operator say where the municipality is > screen at the start 1`] = `
+"Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Sus administradores los ven y no los pueden cambiar.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+Guardar fuentes oficiales"
+`;
+
+exports[`says what is not a key or a layer before sending it > screen at the end 1`] = `
+"Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Sus administradores los ven y no los pueden cambiar.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+Solo puede tener letras, números, dos puntos, guiones y guiones bajos.
+Guardar fuentes oficiales"
+`;
+
+exports[`says what is not a key or a layer before sending it > screen at the start 1`] = `
+"Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Sus administradores los ven y no los pueden cambiar.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+Guardar fuentes oficiales"
+`;
+
+exports[`says why they were not saved > screen at the end 1`] = `
+"Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Sus administradores los ven y no los pueden cambiar.
+No tenés permiso para realizar esta acción.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+Guardar fuentes oficiales"
+`;
+
+exports[`says why they were not saved > screen at the start 1`] = `
+"Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Sus administradores los ven y no los pueden cambiar.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+Guardar fuentes oficiales"
+`;
+
+exports[`shows them to the administrator, who cannot change them > screen at the end 1`] = `
+"Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
+`;
+
+exports[`shows them to the administrator, who cannot change them > screen at the start 1`] = `
+"Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
+`;

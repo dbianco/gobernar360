@@ -156,7 +156,7 @@ def test_moving_a_boundary_does_not_rewrite_the_figures_of_the_past(client):
     make_actor_at(municipality, "Viejo", point(0.5, 0.5))
     make_actor_at(municipality, "Nuevo", point(1.5, 0.5))
     make_actor_at(municipality, "Otro nuevo", point(1.6, 0.5))
-    client.patch(f"/api/admin/zones/{zone.id}", json={"boundary": square(1, 0)})
+    client.patch(f"/api/admin/zones/{zone.id}", json={"boundary": square(1, 0), "base_version": 1})
     moved = datetime(2026, 3, 1, 3, tzinfo=UTC)  # midnight in Argentina
     _set_period(zone, 1, datetime(2024, 1, 1, tzinfo=UTC), moved)
     _set_period(zone, 2, moved, None)
@@ -217,7 +217,45 @@ def test_without_zones_everything_is_outside(client):
 
 
 def test_a_day_ends_at_midnight_in_argentina():
-    assert zones._end_of(date(2025, 12, 31)) == datetime(2026, 1, 1, 3, tzinfo=UTC)
+    assert zones.end_of(date(2025, 12, 31)) == datetime(2026, 1, 1, 3, tzinfo=UTC)
+
+
+def test_what_was_loaded_after_a_past_day_is_not_in_its_figures(client):
+    municipality = signed_in_admin(client)
+    food, metal = make_sector(municipality, "Alimentos"), make_sector(municipality, "Metal")
+    make_zone(municipality, "Centro", square(0, 0))
+    # Midnight in Argentina: the end of April and the start of May.
+    edge = datetime(2026, 5, 1, 3, tzinfo=UTC)
+    before, after = edge - timedelta(seconds=1), edge
+
+    def load(name, x, sector, created_at):
+        location = None if x is None else point(x, 0.5)
+        make_actor_at(municipality, name, location, sector_id=sector.id, created_at=created_at)
+
+    for name, x in (("Centro", 0.1), ("Afuera", 7), ("Sin lugar", None)):
+        load(f"{name} viejo", x, food, before)
+        load(f"{name} nuevo", x, metal, after)
+
+    def figures(as_of):
+        body = _breakdown(client, **({"as_of": as_of} if as_of else {}))
+        cells = [body["zones"][0], body["outside"], body["unlocated"], body["total"]]
+        groups = [group["name"] for group in body["zones"][0]["groups"]]
+        return [cell["values"]["actors"] for cell in cells], groups
+
+    assert figures("2026-04-30") == ([1, 1, 1, 3], ["Alimentos"])
+    assert figures("2026-05-01") == ([2, 2, 2, 6], ["Alimentos", "Metal"])
+    assert figures(None) == figures("2026-06-15") == figures("2026-05-01")
+
+
+def test_today_counts_what_was_loaded_today(client):
+    municipality = signed_in_admin(client)
+    make_zone(municipality, "Centro", square(0, 0))
+    # The test's today is long before the moment it runs.
+    make_actor_at(municipality, "Nuevo", point(0.5, 0.5), created_at=datetime.now(UTC))
+
+    assert _by_name(_breakdown(client)) == {"Centro": {"actors": 1}}
+    assert _by_name(_breakdown(client, as_of="2026-06-15")) == {"Centro": {"actors": 1}}
+    assert _by_name(_breakdown(client, as_of="2026-06-14")) == {"Centro": {"actors": 0}}
 
 
 # CSV
@@ -370,7 +408,7 @@ def test_every_figure_of_a_past_day_uses_the_boundaries_of_that_day(client):
     make_actor_at(municipality, "Viejo", point(0.5, 0.5), sector_id=food.id)
     for name in ("Nuevo", "Otro"):
         make_actor_at(municipality, name, point(1.5, 0.5), sector_id=metal.id)
-    client.patch(f"/api/admin/zones/{zone.id}", json={"boundary": square(1, 0)})
+    client.patch(f"/api/admin/zones/{zone.id}", json={"boundary": square(1, 0), "base_version": 1})
     moved = datetime(2026, 3, 1, tzinfo=UTC)
     _set_period(zone, 1, datetime(2024, 1, 1, tzinfo=UTC), moved)
     _set_period(zone, 2, moved, None)

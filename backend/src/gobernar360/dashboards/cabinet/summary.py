@@ -29,8 +29,9 @@ router = APIRouter()
 
 MOST_POSTPONED = 10
 
-# Commitments are judged as they stand today (state, due date), and their history does not
-# say how they stood at the end of a past month, so none of these can be rebuilt.
+# Commitments are judged by the date agreed in their meeting, which moving them does not
+# change, and as they stand today: their history does not say how they stood at the end of a
+# past month, so none of these can be rebuilt.
 INDICATORS = (
     IndicatorDefinition(
         "cabinet.pending", higher_is_better=False, name="Compromisos pendientes", aggregate=True
@@ -63,19 +64,20 @@ class SummaryOut(BaseModel):
     last_meeting: date | None
 
 
-def _states(commitments: list[CommitmentOut]) -> dict[str, int]:
-    counts = Counter(c.state for c in commitments)
+def _judged(commitment: CommitmentOut) -> CommitmentState:
+    """The commitment by the date agreed, not by the one it was moved to."""
+    stored = OPEN if commitment.state == OVERDUE else commitment.state
+    return CommitmentState(stored, commitment.agreed_due_date, commitment.completed_on)
+
+
+def _states(commitments: list[CommitmentOut], today: date) -> dict[str, int]:
+    judged = [_judged(c) for c in commitments]
+    counts = Counter(effective_state(c.state, c.due_date, today) for c in judged)
     return {state: counts[state] for state in EFFECTIVE_STATES}
 
 
 def _on_time(commitments: list[CommitmentOut], today: date) -> float | None:
-    return on_time_share(
-        (
-            CommitmentState(OPEN if c.state == OVERDUE else c.state, c.due_date, c.completed_on)
-            for c in commitments
-        ),
-        today,
-    )
+    return on_time_share((_judged(c) for c in commitments), today)
 
 
 def _by_owner(commitments: list[CommitmentOut], today: date) -> list[OwnerRow]:
@@ -84,7 +86,9 @@ def _by_owner(commitments: list[CommitmentOut], today: date) -> list[OwnerRow]:
         grouped.setdefault(commitment.owner.id, []).append(commitment)
     rows = [
         OwnerRow(
-            owner=group[0].owner, by_state=_states(group), on_time_share=_on_time(group, today)
+            owner=group[0].owner,
+            by_state=_states(group, today),
+            on_time_share=_on_time(group, today),
         )
         for group in grouped.values()
     ]
@@ -115,7 +119,7 @@ def get_dashboard_summary(ctx: Viewer, today: Today) -> SummaryOut:
     ).all()
     return SummaryOut(
         total=len(commitments),
-        by_state=_states(commitments),
+        by_state=_states(commitments, today),
         on_time_share=_on_time(commitments, today),
         by_owner=_by_owner(commitments, today),
         # Stable sort: among equals, the one due first.
@@ -132,7 +136,7 @@ def get_summary(ctx: RequestContext, today: date) -> list[SummaryIndicator]:
     member to judge by (`system_context`).
     """
     rows = ctx.db.execute(
-        select(Commitment.state, Commitment.due_date, Commitment.completed_on).join(
+        select(Commitment.state, Commitment.agreed_due_date, Commitment.completed_on).join(
             Taken, Taken.commitment_id == Commitment.id
         )
     ).all()

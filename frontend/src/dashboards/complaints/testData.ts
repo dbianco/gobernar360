@@ -118,6 +118,7 @@ export function makeDetail(overrides: Partial<ComplaintDetail> = {}): ComplaintD
     },
     moves: ['waiting', 'resolved', 'rejected'],
     timeline: TIMELINE,
+    notices: [],
     ...overrides,
   }
 }

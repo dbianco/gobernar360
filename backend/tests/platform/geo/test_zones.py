@@ -1,11 +1,13 @@
 """Zones: what is accepted, reported and kept of their past."""
 
+import json
 from datetime import datetime
 
 import pytest
 from sqlalchemy import select, text
 from sqlalchemy.exc import IntegrityError
 
+from gobernar360.platform.geo import zones_router
 from gobernar360.platform.geo.models import Zone, ZoneVersion
 from gobernar360.platform.models import AuditLog
 from tests.factories import admin_session, login, make_membership, make_municipality, make_user
@@ -77,7 +79,7 @@ def test_zones_need_a_session_and_managing_them_needs_an_administrator(client):
         _create(client),
         client.get(f"{ZONES}/overlaps"),
         client.post(f"{ZONES}/import", json={"geojson": {}}),
-        client.patch(f"{ZONES}/{zone.id}", json={"name": "x"}),
+        client.patch(f"{ZONES}/{zone.id}", json={"name": "x", "base_version": 1}),
         client.delete(f"{ZONES}/{zone.id}"),
         client.get(f"{ZONES}/{zone.id}/versions"),
     ]
@@ -141,9 +143,12 @@ def test_two_zones_in_use_cannot_share_a_name(client):
 
     taken = (409, "zone_name_exists", "Another zone already has this name.")
     assert _error(_create(client, "CENTRO", square(9, 9))) == taken
-    assert _error(client.patch(f"{ZONES}/{other['id']}", json={"name": "centro"})) == taken
+    assert (
+        _error(client.patch(f"{ZONES}/{other['id']}", json={"name": "centro", "base_version": 1}))
+        == taken
+    )
     # Its own name, written otherwise, is not somebody else's.
-    renamed = client.patch(f"{ZONES}/{zone['id']}", json={"name": "CENTRO"})
+    renamed = client.patch(f"{ZONES}/{zone['id']}", json={"name": "CENTRO", "base_version": 1})
     assert renamed.json()["zone"]["name"] == "CENTRO"
 
 
@@ -226,7 +231,9 @@ def test_renaming_or_saving_the_same_boundary_adds_no_version(client):
     corners = ring(0, 0)[:-1]
     same = {"type": "Polygon", "coordinates": [[*corners[2:], *corners[:2], corners[2]]]}
 
-    client.patch(f"{ZONES}/{zone['id']}", json={"name": "Microcentro", "boundary": same})
+    client.patch(
+        f"{ZONES}/{zone['id']}", json={"name": "Microcentro", "boundary": same, "base_version": 1}
+    )
 
     [version] = client.get(f"{ZONES}/{zone['id']}/versions").json()
     assert version["version"] == 1
@@ -254,7 +261,9 @@ def test_an_invalid_new_boundary_leaves_the_zone_as_it_was(client):
     signed_in_admin(client)
     zone = _created(client)
 
-    response = client.patch(f"{ZONES}/{zone['id']}", json={"name": "Otro", "boundary": BOWTIE})
+    response = client.patch(
+        f"{ZONES}/{zone['id']}", json={"name": "Otro", "boundary": BOWTIE, "base_version": 1}
+    )
 
     assert _error(response)[:2] == (422, "zone_self_intersects")
     assert client.get("/api/zones").json() == [zone]
@@ -271,7 +280,7 @@ def test_a_retired_zone_leaves_its_name_free_and_its_versions_readable(client):
     [version] = client.get(f"{path}/versions").json()
     assert version["valid_to"] is not None
     assert client.delete(path).status_code == 404
-    assert client.patch(path, json={"name": "x"}).status_code == 404
+    assert client.patch(path, json={"name": "x", "base_version": 1}).status_code == 404
     assert _created(client, "Centro")["version"] == 1
     missing = f"{ZONES}/00000000-0000-0000-0000-000000000000/versions"
     assert client.get(missing).status_code == 404
@@ -284,15 +293,24 @@ def test_zone_requests_are_checked(client):
 
     assert _error(_create(client, "  "))[:2] == (422, "validation_error")
     assert _error(client.post(ZONES, json={"name": "x"}))[:2] == (422, "validation_error")
-    assert _error(client.patch(path, json={"name": None}))[:2] == (422, "validation_error")
-    assert _error(client.patch(path, json={"boundary": None}))[:2] == (422, "validation_error")
-    assert _error(client.patch(path, json={"other": 1}))[:2] == (422, "validation_error")
+    assert _error(client.patch(path, json={"name": None, "base_version": 1}))[:2] == (
+        422,
+        "validation_error",
+    )
+    assert _error(client.patch(path, json={"boundary": None, "base_version": 1}))[:2] == (
+        422,
+        "validation_error",
+    )
+    assert _error(client.patch(path, json={"other": 1, "base_version": 1}))[:2] == (
+        422,
+        "validation_error",
+    )
 
 
 def test_changes_to_zones_are_audited(client):
     signed_in_admin(client)
     zone = _created(client)
-    client.patch(f"{ZONES}/{zone['id']}", json={"boundary": square(3, 3)})
+    client.patch(f"{ZONES}/{zone['id']}", json={"boundary": square(3, 3), "base_version": 1})
 
     with admin_session() as session:
         entries = session.execute(
@@ -416,7 +434,7 @@ def test_two_municipalities_with_overlapping_zones_never_see_each_other(client):
     assert client.get(f"{ZONES}/overlaps").json() == []
     assert [z["id"] for z in client.get("/api/zones").json()] == [created.json()["zone"]["id"]]
     path = f"{ZONES}/{theirs.id}"
-    assert client.patch(path, json={"boundary": square(9, 9)}).status_code == 404
+    assert client.patch(path, json={"boundary": square(9, 9), "base_version": 1}).status_code == 404
     assert client.delete(path).status_code == 404
     assert client.get(f"{path}/versions").status_code == 404
     imported = _import(client, _feature("Centro", square(0.5, 0.5)))
@@ -433,8 +451,8 @@ def test_the_audit_trail_says_what_was_done_to_a_zone(client):
     municipality = signed_in_admin(client)
     zone = _created(client, "Centro")
     path = f"{ZONES}/{zone['id']}"
-    client.patch(path, json={"name": "Casco"})
-    client.patch(path, json={"boundary": square(3, 3)})
+    client.patch(path, json={"name": "Casco", "base_version": 1})
+    client.patch(path, json={"boundary": square(3, 3), "base_version": 1})
     client.delete(path)
 
     with admin_session() as session:
@@ -464,7 +482,7 @@ def test_saving_a_zone_reports_only_its_own_overlaps(client):
 
     apart = _create(client, "C", square(10, 10)).json()
     moved = client.patch(
-        f"{ZONES}/{apart['zone']['id']}", json={"boundary": square(0.9, 0.5)}
+        f"{ZONES}/{apart['zone']['id']}", json={"boundary": square(0.9, 0.5), "base_version": 1}
     ).json()
 
     assert apart["overlaps"] == []
@@ -502,3 +520,131 @@ def test_coordinates_are_kept_to_the_centimetre(client):
     zone = _created(client, "Exacta", exact)
 
     assert zone["boundary"]["coordinates"][0][0][0] == [-62.1234568, -32.1234568]
+
+
+# What an edit must say it was based on
+
+
+def test_a_change_that_does_not_say_its_base_is_refused(client):
+    signed_in_admin(client)
+    zone = _created(client)
+    path = f"{ZONES}/{zone['id']}"
+
+    for changes in ({"boundary": square(3, 3)}, {"name": "Otra"}):
+        refused = client.patch(path, json=changes)
+        assert refused.status_code == 422
+        assert refused.json()["error"] == {
+            "code": "validation_error",
+            "message": "The request is not valid.",
+            "details": [{"field": "base_version", "message": "Field required"}],
+        }
+        assert client.patch(path, json=changes | {"base_version": None}).status_code == 422
+
+    assert client.get("/api/zones").json() == [zone]
+
+
+@pytest.mark.parametrize("base", [0, 1, 3])
+def test_renaming_from_another_version_is_refused_too(client, base):
+    signed_in_admin(client)
+    zone = _created(client)
+    path = f"{ZONES}/{zone['id']}"
+    client.patch(path, json={"boundary": square(3, 3), "base_version": 1})
+
+    late = client.patch(path, json={"name": "Otra", "base_version": base})
+
+    assert _error(late)[:2] == (409, "zone_changed")
+    assert client.patch(path, json={"name": "Otra", "base_version": 2}).status_code == 200
+
+
+def test_a_boundary_people_draw_has_no_source(client):
+    signed_in_admin(client)
+    zone = _created(client)
+
+    client.patch(f"{ZONES}/{zone['id']}", json={"boundary": square(3, 3), "base_version": 1})
+
+    assert zone["source"] == ""
+    versions = client.get(f"{ZONES}/{zone['id']}/versions").json()
+    assert [version["source"] for version in versions] == ["", ""]
+
+
+def test_moving_an_official_boundary_by_hand_leaves_its_source_in_the_past(client):
+    municipality = signed_in_admin(client)
+    zone = make_zone(municipality)
+    with admin_session() as session, session.begin():
+        session.scalars(select(ZoneVersion)).one().source = "Ley 10796/2022"
+    assert client.get("/api/zones").json()[0]["source"] == "Ley 10796/2022"
+
+    client.patch(f"{ZONES}/{zone.id}", json={"boundary": square(3, 3), "base_version": 1})
+
+    assert client.get("/api/zones").json()[0]["source"] == ""
+    versions = client.get(f"{ZONES}/{zone.id}/versions").json()
+    assert [version["source"] for version in versions] == ["", "Ley 10796/2022"]
+
+
+# How large a file may be
+
+
+def _raw_import(client, body, **headers):
+    return client.post(
+        f"{ZONES}/import", content=body, headers={"Content-Type": "application/json"} | headers
+    )
+
+
+def _padded(size: int) -> bytes:
+    body = json.dumps(
+        {"geojson": {"type": "FeatureCollection", "features": [_feature("Centro", square(0, 0))]}}
+    ).encode()
+    return body + b" " * (size - len(body))
+
+
+def test_a_file_over_the_limit_is_refused_before_it_is_read(client):
+    signed_in_admin(client)
+
+    refused = _raw_import(client, _padded(zones_router.MAX_IMPORT_BYTES + 1))
+
+    assert _error(refused) == (413, "zone_file_too_large", "The file is larger than 10 MB.")
+    assert client.get("/api/zones").json() == []
+
+
+def test_the_limit_counts_what_arrives_and_not_what_was_announced(client, monkeypatch):
+    signed_in_admin(client)
+    monkeypatch.setattr(zones_router, "MAX_IMPORT_BYTES", 1024 * 1024)
+    sent = []
+
+    def chunks():
+        for _ in range(100):
+            sent.append(1)
+            yield b" " * 100_000
+
+    assert _raw_import(client, chunks()).status_code == 413
+
+
+def test_the_largest_file_accepted_is_imported(client):
+    signed_in_admin(client)
+
+    response = _raw_import(client, _padded(zones_router.MAX_IMPORT_BYTES))
+
+    assert (response.status_code, response.json()["created"]) == (200, 1)
+
+
+@pytest.mark.parametrize(
+    ("body", "field"),
+    [(b"{", ""), (b"[]", ""), (b"{}", "geojson"), (b'{"geojson": {}, "x": 1}', "x")],
+)
+def test_a_body_that_is_not_an_import_is_explained_as_any_other(client, body, field):
+    signed_in_admin(client)
+
+    refused = _raw_import(client, body)
+
+    assert _error(refused)[:2] == (422, "validation_error")
+    assert [problem["field"] for problem in refused.json()["error"]["details"]] == [field]
+
+
+def test_whoever_may_not_import_is_refused_whatever_they_send(client):
+    municipality = make_municipality()
+    make_membership(make_user("leo@noetinger.test"), municipality)
+    too_large = _padded(zones_router.MAX_IMPORT_BYTES + 1)
+    assert _raw_import(client, too_large).status_code == 401
+    login(client, "leo@noetinger.test")
+
+    assert _error(_raw_import(client, too_large))[:2] == (403, "forbidden")

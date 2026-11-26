@@ -85,7 +85,14 @@ function VersionsModal(props: { zone: Zone; onClose: () => void }) {
             <Table.Tbody>
               {versions.data.map((version) => (
                 <Table.Tr key={version.version}>
-                  <Table.Td>{version.version}</Table.Td>
+                  <Table.Td>
+                    {version.version}
+                    {version.source && (
+                      <Text size="xs" c="dimmed">
+                        {label('official', { source: version.source })}
+                      </Text>
+                    )}
+                  </Table.Td>
                   <Table.Td>{dayOf(version.valid_from)}</Table.Td>
                   <Table.Td>
                     {version.valid_to ? dayOf(version.valid_to) : label('current')}
@@ -246,7 +253,14 @@ export function ZonesPage() {
                 <Table.Tbody>
                   {table.rows.map((zone) => (
                     <Table.Tr key={zone.id}>
-                      <Table.Td>{zone.name}</Table.Td>
+                      <Table.Td>
+                        {zone.name}
+                        {zone.source && (
+                          <Text size="xs" c="dimmed">
+                            {label('official', { source: zone.source })}
+                          </Text>
+                        )}
+                      </Table.Td>
                       <Table.Td>{zone.version}</Table.Td>
                       <Table.Td>{dayOf(zone.valid_from)}</Table.Td>
                       <Table.Td>
