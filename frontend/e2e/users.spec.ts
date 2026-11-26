@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import { login, sidebar } from './helpers.ts'
+import { login, openUsers } from './helpers.ts'
 
 // The users of a municipality: page by page, and imported from a CSV file.
 
@@ -13,7 +13,7 @@ test('an administrator imports users from a CSV file and pages through them', as
   const run = Date.now()
   const email = (n: number) => `csv-${run}-${n}@noetinger.test`
   await login(page, 'admin@noetinger.test')
-  await sidebar(page).getByRole('link', { name: 'Usuarios' }).click()
+  await openUsers(page)
 
   await page.getByRole('button', { name: 'Importar CSV' }).click()
   const dialog = page.getByRole('dialog')
@@ -64,7 +64,7 @@ test('an administrator imports users from a CSV file and pages through them', as
 
 test('a file with mistakes changes nothing and says where they are', async ({ page }) => {
   await login(page, 'admin@noetinger.test')
-  await sidebar(page).getByRole('link', { name: 'Usuarios' }).click()
+  await openUsers(page)
   await page.getByRole('button', { name: 'Importar CSV' }).click()
   const dialog = page.getByRole('dialog')
 
@@ -92,7 +92,7 @@ test('an administrator searches users and removes one after confirming in a moda
   page,
 }) => {
   await login(page, 'admin@noetinger.test')
-  await sidebar(page).getByRole('link', { name: 'Usuarios' }).click()
+  await openUsers(page)
   // A browser popup would fail the test: removing asks in a modal window.
   page.on('dialog', (dialog) => {
     throw new Error(`Unexpected browser dialog: ${dialog.message()}`)

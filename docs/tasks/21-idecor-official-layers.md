@@ -104,7 +104,7 @@ By hand (this part needs internet), as the operator `operador@gobernar360.test` 
 `admin@noetinger.test`:
 
 1. `uv run gobernar360 import-idecor noetinger --radius --layers health,schools`: the output says one
-   zone created and the numbers of features read. Open Zonas: "Radio urbano" appears with its law; the
+   zone created and the numbers of features read. Open Configuración > Mapas y zonas: "Radio urbano" appears with its law; the
    overlap with "Casco urbano" is reported as a warning, not an error.
 2. Run it again: "unchanged".
 3. Open the Projects map: "Equipamiento" shows the Hospital Municipal de Noetinger and the schools

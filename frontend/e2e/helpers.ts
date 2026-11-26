@@ -22,6 +22,18 @@ export async function logout(page: Page) {
 
 export const sidebar = (page: Page) => page.getByRole('navigation')
 
+/** The users of the municipality: a tab of Configuración. */
+export async function openUsers(page: Page) {
+  await sidebar(page).getByRole('link', { name: 'Configuración' }).click()
+  await page.getByRole('tab', { name: 'Usuarios' }).click()
+}
+
+/** The zones of the municipality, below the kind of map: a tab of Configuración. */
+export async function openZones(page: Page) {
+  await sidebar(page).getByRole('link', { name: 'Configuración' }).click()
+  await page.getByRole('tab', { name: 'Mapas y zonas' }).click()
+}
+
 /** The number shown in a headline card, found by its label. */
 export async function statValue(page: Page, label: string): Promise<number> {
   const card = page.locator('[data-indicator]').filter({ hasText: label }).first()

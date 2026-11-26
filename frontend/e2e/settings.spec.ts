@@ -1,21 +1,12 @@
 import { expect, test } from '@playwright/test'
 
-import {
-  backendCommand,
-  configureNoetinger,
-  emailsTo,
-  login,
-  logout,
-  sidebar,
-  theEmailTo,
-} from './helpers.ts'
+import { backendCommand, configureNoetinger, emailsTo, login, logout, sidebar, theEmailTo } from './helpers.ts'
 
 // Configuración: each municipality's recipients, single sign-on and email texts.
 
 async function openSettings(page: import('@playwright/test').Page) {
   await login(page, 'admin@noetinger.test')
-  await sidebar(page).getByRole('link', { name: 'Usuarios' }).click()
-  await page.getByRole('tab', { name: 'Configuración' }).click()
+  await sidebar(page).getByRole('link', { name: 'Configuración' }).click()
   await expect(page.getByRole('heading', { name: 'Configuración', level: 2 })).toBeVisible()
 }
 
@@ -47,7 +38,7 @@ test('the next invitation uses the text the administrator wrote', async ({ page,
   expect(invitation.html).toContain('<a href="http://localhost:5174/set-password#')
 
   // Other tests expect the default text.
-  await page.getByRole('tab', { name: 'Configuración' }).click()
+  await page.getByRole('tab', { name: 'Correos' }).click()
   await page.getByRole('button', { name: 'Volver al texto por defecto' }).click()
   // Asked in a modal window, not the browser's popup.
   const question = page.getByRole('dialog', { name: 'Volver al texto por defecto' })

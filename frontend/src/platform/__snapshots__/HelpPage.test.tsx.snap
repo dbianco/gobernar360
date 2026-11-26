@@ -1,0 +1,332 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`adds the platform for the operator > screen at the end 1`] = `
+"Ayuda
+Cómo usar gobernar360. Elegí un tema para leerlo; lo que ves acá depende de lo que puedas hacer en tu municipio.
+Primeros pasos
+Ingresás con tu email y tu contraseña. Si todavía no tenés contraseña, pedí que te inviten: te llega un enlace por email para elegirla. Si la olvidaste, usá "Olvidé mi contraseña" en la pantalla de ingreso.
+Si trabajás en más de un municipio, elegí el activo arriba, junto al nombre de la plataforma. Cada municipio es independiente: nunca ves datos de otro.
+El menú de la izquierda muestra solo lo que podés usar. Si falta un tablero que necesitás, pedile acceso a quien administra tu municipio.
+Tu nombre, arriba a la derecha, abre "Mi cuenta": ahí cambiás tu teléfono, tu contraseña y qué avisos por email querés recibir.
+Qué puedo hacer en cada tablero
+Cada persona tiene un nivel por tablero: "Lectura" para ver, "Carga" para agregar y editar datos, y "Administración" para además configurar los parámetros del tablero (catálogos, metas).
+Quien administra el municipio puede hacer todo en todos los tableros habilitados y además maneja los usuarios y la configuración.
+Algunos datos son reservados. Por ejemplo, en Social el texto de una intervención lo ven solo quienes cargan o administran, y las ubicaciones de los hogares solo las ven quienes cargan o administran; el resto ve cantidades por zona, y las cantidades muy chicas se ocultan para no identificar a nadie.
+Resumen general
+Es la pantalla de inicio. Junta los indicadores principales de cada tablero que podés ver, con su evolución mes a mes y la meta si tiene una.
+El semáforo de cada tablero dice cómo viene el mes. Si el mes está sin estado, quien administra el tablero tiene que cargarlo.
+Los tableros
+Proyectos: proyectos con sus hitos, presupuesto, indicadores estratégicos y alertas por hitos vencidos.
+Ambiental: seguimiento de energía, residuos y otros datos ambientales, que se cargan por período.
+Económico: actores económicos, personas y las asignaciones que reciben.
+Social: personas, grupos familiares, prestaciones e intervenciones, con reserva de datos sensibles.
+Trámites: inventario de trámites del municipio, sus requisitos, su costo y su duración, y cuáles se pueden hacer por internet y con CiDi. No sigue expedientes: describe los trámites.
+Reclamos: cada reclamo con su estado, su historia y el reloj de atención. Los estados cambian solo con las acciones de la pantalla del reclamo. Cuando uno se resuelve o se rechaza, el vecino recibe un aviso.
+Gabinete: reuniones de gabinete con su temario, sus actas y los compromisos que salen de ellas.
+En cada tabla, pasá el cursor por el signo de pregunta del encabezado para saber qué significa esa columna.
+Compromisos
+Cualquier persona le puede encargar un compromiso a otra, con o sin reunión. "Compromisos" en el menú muestra los tuyos y los que diste.
+Cada compromiso tiene una fecha acordada, un responsable y un historial. El responsable puede pedir una fecha nueva, pero la fecha acordada en la reunión es la que cuenta para medir el cumplimiento.
+Un compromiso puede apuntar a un proyecto, a un mes de un tablero o a otro registro. Desde ese registro se ven los compromisos pendientes que lo mencionan.
+La campana de arriba avisa cuando te asignan un compromiso o cuando alguien lo termina.
+Mapas y zonas
+Los registros con ubicación (proyectos, reclamos, hogares y otros) aparecen en un mapa dentro de su tablero. Para ubicar uno, usá el panel de ubicación de su pantalla.
+Las zonas (barrios, sectores) permiten ver cifras por zona. Si una zona cambia de límites se guarda una versión nueva, así los períodos pasados conservan sus límites. Un punto exactamente sobre el borde entre dos zonas cuenta en las dos.
+En el mapa, el interruptor "Equipamiento" muestra hospitales, centros de salud y escuelas oficiales, si el municipio los importó.
+El tipo de mapa de fondo lo elige quien administra, en Configuración > Mapas y zonas.
+Avisos y correos
+Los avisos dentro de la plataforma aparecen en la campana. Además se mandan correos: hitos vencidos, tableros sin el estado del mes y compromisos.
+En "Mi cuenta" podés apagar cada tipo de aviso por email.
+Plataforma
+Para el operador de la plataforma
+El operador crea municipios, habilita los tableros de cada uno, suspende o reanuda un municipio y configura sus fuentes oficiales de geografía. No ve los datos de los tableros."
+`;
+
+exports[`adds the platform for the operator > screen at the start 1`] = `
+"Ayuda
+Cómo usar gobernar360. Elegí un tema para leerlo; lo que ves acá depende de lo que puedas hacer en tu municipio.
+Primeros pasos
+Ingresás con tu email y tu contraseña. Si todavía no tenés contraseña, pedí que te inviten: te llega un enlace por email para elegirla. Si la olvidaste, usá "Olvidé mi contraseña" en la pantalla de ingreso.
+Si trabajás en más de un municipio, elegí el activo arriba, junto al nombre de la plataforma. Cada municipio es independiente: nunca ves datos de otro.
+El menú de la izquierda muestra solo lo que podés usar. Si falta un tablero que necesitás, pedile acceso a quien administra tu municipio.
+Tu nombre, arriba a la derecha, abre "Mi cuenta": ahí cambiás tu teléfono, tu contraseña y qué avisos por email querés recibir.
+Qué puedo hacer en cada tablero
+Cada persona tiene un nivel por tablero: "Lectura" para ver, "Carga" para agregar y editar datos, y "Administración" para además configurar los parámetros del tablero (catálogos, metas).
+Quien administra el municipio puede hacer todo en todos los tableros habilitados y además maneja los usuarios y la configuración.
+Algunos datos son reservados. Por ejemplo, en Social el texto de una intervención lo ven solo quienes cargan o administran, y las ubicaciones de los hogares solo las ven quienes cargan o administran; el resto ve cantidades por zona, y las cantidades muy chicas se ocultan para no identificar a nadie.
+Resumen general
+Es la pantalla de inicio. Junta los indicadores principales de cada tablero que podés ver, con su evolución mes a mes y la meta si tiene una.
+El semáforo de cada tablero dice cómo viene el mes. Si el mes está sin estado, quien administra el tablero tiene que cargarlo.
+Los tableros
+Proyectos: proyectos con sus hitos, presupuesto, indicadores estratégicos y alertas por hitos vencidos.
+Ambiental: seguimiento de energía, residuos y otros datos ambientales, que se cargan por período.
+Económico: actores económicos, personas y las asignaciones que reciben.
+Social: personas, grupos familiares, prestaciones e intervenciones, con reserva de datos sensibles.
+Trámites: inventario de trámites del municipio, sus requisitos, su costo y su duración, y cuáles se pueden hacer por internet y con CiDi. No sigue expedientes: describe los trámites.
+Reclamos: cada reclamo con su estado, su historia y el reloj de atención. Los estados cambian solo con las acciones de la pantalla del reclamo. Cuando uno se resuelve o se rechaza, el vecino recibe un aviso.
+Gabinete: reuniones de gabinete con su temario, sus actas y los compromisos que salen de ellas.
+En cada tabla, pasá el cursor por el signo de pregunta del encabezado para saber qué significa esa columna.
+Compromisos
+Cualquier persona le puede encargar un compromiso a otra, con o sin reunión. "Compromisos" en el menú muestra los tuyos y los que diste.
+Cada compromiso tiene una fecha acordada, un responsable y un historial. El responsable puede pedir una fecha nueva, pero la fecha acordada en la reunión es la que cuenta para medir el cumplimiento.
+Un compromiso puede apuntar a un proyecto, a un mes de un tablero o a otro registro. Desde ese registro se ven los compromisos pendientes que lo mencionan.
+La campana de arriba avisa cuando te asignan un compromiso o cuando alguien lo termina.
+Mapas y zonas
+Los registros con ubicación (proyectos, reclamos, hogares y otros) aparecen en un mapa dentro de su tablero. Para ubicar uno, usá el panel de ubicación de su pantalla.
+Las zonas (barrios, sectores) permiten ver cifras por zona. Si una zona cambia de límites se guarda una versión nueva, así los períodos pasados conservan sus límites. Un punto exactamente sobre el borde entre dos zonas cuenta en las dos.
+En el mapa, el interruptor "Equipamiento" muestra hospitales, centros de salud y escuelas oficiales, si el municipio los importó.
+El tipo de mapa de fondo lo elige quien administra, en Configuración > Mapas y zonas.
+Avisos y correos
+Los avisos dentro de la plataforma aparecen en la campana. Además se mandan correos: hitos vencidos, tableros sin el estado del mes y compromisos.
+En "Mi cuenta" podés apagar cada tipo de aviso por email."
+`;
+
+exports[`adds what only the administrators of a municipality do > screen at the end 1`] = `
+"Ayuda
+Cómo usar gobernar360. Elegí un tema para leerlo; lo que ves acá depende de lo que puedas hacer en tu municipio.
+Primeros pasos
+Ingresás con tu email y tu contraseña. Si todavía no tenés contraseña, pedí que te inviten: te llega un enlace por email para elegirla. Si la olvidaste, usá "Olvidé mi contraseña" en la pantalla de ingreso.
+Si trabajás en más de un municipio, elegí el activo arriba, junto al nombre de la plataforma. Cada municipio es independiente: nunca ves datos de otro.
+El menú de la izquierda muestra solo lo que podés usar. Si falta un tablero que necesitás, pedile acceso a quien administra tu municipio.
+Tu nombre, arriba a la derecha, abre "Mi cuenta": ahí cambiás tu teléfono, tu contraseña y qué avisos por email querés recibir.
+Qué puedo hacer en cada tablero
+Cada persona tiene un nivel por tablero: "Lectura" para ver, "Carga" para agregar y editar datos, y "Administración" para además configurar los parámetros del tablero (catálogos, metas).
+Quien administra el municipio puede hacer todo en todos los tableros habilitados y además maneja los usuarios y la configuración.
+Algunos datos son reservados. Por ejemplo, en Social el texto de una intervención lo ven solo quienes cargan o administran, y las ubicaciones de los hogares solo las ven quienes cargan o administran; el resto ve cantidades por zona, y las cantidades muy chicas se ocultan para no identificar a nadie.
+Resumen general
+Es la pantalla de inicio. Junta los indicadores principales de cada tablero que podés ver, con su evolución mes a mes y la meta si tiene una.
+El semáforo de cada tablero dice cómo viene el mes. Si el mes está sin estado, quien administra el tablero tiene que cargarlo.
+Los tableros
+Proyectos: proyectos con sus hitos, presupuesto, indicadores estratégicos y alertas por hitos vencidos.
+Ambiental: seguimiento de energía, residuos y otros datos ambientales, que se cargan por período.
+Económico: actores económicos, personas y las asignaciones que reciben.
+Social: personas, grupos familiares, prestaciones e intervenciones, con reserva de datos sensibles.
+Trámites: inventario de trámites del municipio, sus requisitos, su costo y su duración, y cuáles se pueden hacer por internet y con CiDi. No sigue expedientes: describe los trámites.
+Reclamos: cada reclamo con su estado, su historia y el reloj de atención. Los estados cambian solo con las acciones de la pantalla del reclamo. Cuando uno se resuelve o se rechaza, el vecino recibe un aviso.
+Gabinete: reuniones de gabinete con su temario, sus actas y los compromisos que salen de ellas.
+En cada tabla, pasá el cursor por el signo de pregunta del encabezado para saber qué significa esa columna.
+Compromisos
+Cualquier persona le puede encargar un compromiso a otra, con o sin reunión. "Compromisos" en el menú muestra los tuyos y los que diste.
+Cada compromiso tiene una fecha acordada, un responsable y un historial. El responsable puede pedir una fecha nueva, pero la fecha acordada en la reunión es la que cuenta para medir el cumplimiento.
+Un compromiso puede apuntar a un proyecto, a un mes de un tablero o a otro registro. Desde ese registro se ven los compromisos pendientes que lo mencionan.
+La campana de arriba avisa cuando te asignan un compromiso o cuando alguien lo termina.
+Mapas y zonas
+Los registros con ubicación (proyectos, reclamos, hogares y otros) aparecen en un mapa dentro de su tablero. Para ubicar uno, usá el panel de ubicación de su pantalla.
+Las zonas (barrios, sectores) permiten ver cifras por zona. Si una zona cambia de límites se guarda una versión nueva, así los períodos pasados conservan sus límites. Un punto exactamente sobre el borde entre dos zonas cuenta en las dos.
+En el mapa, el interruptor "Equipamiento" muestra hospitales, centros de salud y escuelas oficiales, si el municipio los importó.
+El tipo de mapa de fondo lo elige quien administra, en Configuración > Mapas y zonas.
+Avisos y correos
+Los avisos dentro de la plataforma aparecen en la campana. Además se mandan correos: hitos vencidos, tableros sin el estado del mes y compromisos.
+En "Mi cuenta" podés apagar cada tipo de aviso por email.
+Configuración
+Para administradores del municipio
+Está en el menú. Tiene cuatro pestañas:
+Correos: a quién llegan los avisos, los textos de los correos que manda la plataforma y los avisos a vecinos. Los textos se pueden editar; las palabras entre llaves dobles las completa la plataforma.
+Acceso: si el municipio permite ingresar con el ingreso único con un proveedor de identidad. Solo entran cuentas que ya existen.
+Usuarios: agregar personas, darles un nivel por tablero, hacer administrador a alguien, reenviar una invitación o quitar a alguien. También se puede cargar una lista desde un archivo CSV: se revisan todas las filas antes de aplicar ninguna, y tiene que quedar al menos un administrador. Al quitar a una persona se te muestran los compromisos que deja, para reasignarlos.
+Mapas y zonas: arriba, el tipo de mapa de fondo y el umbral de cantidades chicas que se ocultan; abajo, las zonas: dibujarlas, importarlas desde un archivo GeoJSON, editarlas (queda una versión nueva) y ver su historia.
+Informes y página pública
+Para administradores del municipio
+Informes: al terminar un mes se cierra su informe, que queda congelado. Si hay que corregirlo, se reabre y se crea una versión nueva como borrador.
+Página pública: el municipio elige qué tableros e indicadores muestra al público. Solo se publica lo que se marca, sin datos de personas y con las cantidades chicas ocultas.
+Avisos a vecinos
+Para administradores del municipio
+Cuando un reclamo se resuelve o se rechaza, el vecino recibe un aviso. Por defecto es un correo, si tiene email en el registro de personas.
+Si el municipio adhirió a CiDi y su conexión está completa, el aviso se entrega a CiDi. La plataforma solo dice "Entregado a CiDi" y cuándo; no afirma que tenga efecto legal.
+Cada aviso tiene un texto editable en Configuración > Correos."
+`;
+
+exports[`adds what only the administrators of a municipality do > screen at the start 1`] = `
+"Ayuda
+Cómo usar gobernar360. Elegí un tema para leerlo; lo que ves acá depende de lo que puedas hacer en tu municipio.
+Primeros pasos
+Ingresás con tu email y tu contraseña. Si todavía no tenés contraseña, pedí que te inviten: te llega un enlace por email para elegirla. Si la olvidaste, usá "Olvidé mi contraseña" en la pantalla de ingreso.
+Si trabajás en más de un municipio, elegí el activo arriba, junto al nombre de la plataforma. Cada municipio es independiente: nunca ves datos de otro.
+El menú de la izquierda muestra solo lo que podés usar. Si falta un tablero que necesitás, pedile acceso a quien administra tu municipio.
+Tu nombre, arriba a la derecha, abre "Mi cuenta": ahí cambiás tu teléfono, tu contraseña y qué avisos por email querés recibir.
+Qué puedo hacer en cada tablero
+Cada persona tiene un nivel por tablero: "Lectura" para ver, "Carga" para agregar y editar datos, y "Administración" para además configurar los parámetros del tablero (catálogos, metas).
+Quien administra el municipio puede hacer todo en todos los tableros habilitados y además maneja los usuarios y la configuración.
+Algunos datos son reservados. Por ejemplo, en Social el texto de una intervención lo ven solo quienes cargan o administran, y las ubicaciones de los hogares solo las ven quienes cargan o administran; el resto ve cantidades por zona, y las cantidades muy chicas se ocultan para no identificar a nadie.
+Resumen general
+Es la pantalla de inicio. Junta los indicadores principales de cada tablero que podés ver, con su evolución mes a mes y la meta si tiene una.
+El semáforo de cada tablero dice cómo viene el mes. Si el mes está sin estado, quien administra el tablero tiene que cargarlo.
+Los tableros
+Proyectos: proyectos con sus hitos, presupuesto, indicadores estratégicos y alertas por hitos vencidos.
+Ambiental: seguimiento de energía, residuos y otros datos ambientales, que se cargan por período.
+Económico: actores económicos, personas y las asignaciones que reciben.
+Social: personas, grupos familiares, prestaciones e intervenciones, con reserva de datos sensibles.
+Trámites: inventario de trámites del municipio, sus requisitos, su costo y su duración, y cuáles se pueden hacer por internet y con CiDi. No sigue expedientes: describe los trámites.
+Reclamos: cada reclamo con su estado, su historia y el reloj de atención. Los estados cambian solo con las acciones de la pantalla del reclamo. Cuando uno se resuelve o se rechaza, el vecino recibe un aviso.
+Gabinete: reuniones de gabinete con su temario, sus actas y los compromisos que salen de ellas.
+En cada tabla, pasá el cursor por el signo de pregunta del encabezado para saber qué significa esa columna.
+Compromisos
+Cualquier persona le puede encargar un compromiso a otra, con o sin reunión. "Compromisos" en el menú muestra los tuyos y los que diste.
+Cada compromiso tiene una fecha acordada, un responsable y un historial. El responsable puede pedir una fecha nueva, pero la fecha acordada en la reunión es la que cuenta para medir el cumplimiento.
+Un compromiso puede apuntar a un proyecto, a un mes de un tablero o a otro registro. Desde ese registro se ven los compromisos pendientes que lo mencionan.
+La campana de arriba avisa cuando te asignan un compromiso o cuando alguien lo termina.
+Mapas y zonas
+Los registros con ubicación (proyectos, reclamos, hogares y otros) aparecen en un mapa dentro de su tablero. Para ubicar uno, usá el panel de ubicación de su pantalla.
+Las zonas (barrios, sectores) permiten ver cifras por zona. Si una zona cambia de límites se guarda una versión nueva, así los períodos pasados conservan sus límites. Un punto exactamente sobre el borde entre dos zonas cuenta en las dos.
+En el mapa, el interruptor "Equipamiento" muestra hospitales, centros de salud y escuelas oficiales, si el municipio los importó.
+El tipo de mapa de fondo lo elige quien administra, en Configuración > Mapas y zonas.
+Avisos y correos
+Los avisos dentro de la plataforma aparecen en la campana. Además se mandan correos: hitos vencidos, tableros sin el estado del mes y compromisos.
+En "Mi cuenta" podés apagar cada tipo de aviso por email."
+`;
+
+exports[`explains the basics to any member, and only that > screen at the end 1`] = `
+"Ayuda
+Cómo usar gobernar360. Elegí un tema para leerlo; lo que ves acá depende de lo que puedas hacer en tu municipio.
+Primeros pasos
+Ingresás con tu email y tu contraseña. Si todavía no tenés contraseña, pedí que te inviten: te llega un enlace por email para elegirla. Si la olvidaste, usá "Olvidé mi contraseña" en la pantalla de ingreso.
+Si trabajás en más de un municipio, elegí el activo arriba, junto al nombre de la plataforma. Cada municipio es independiente: nunca ves datos de otro.
+El menú de la izquierda muestra solo lo que podés usar. Si falta un tablero que necesitás, pedile acceso a quien administra tu municipio.
+Tu nombre, arriba a la derecha, abre "Mi cuenta": ahí cambiás tu teléfono, tu contraseña y qué avisos por email querés recibir.
+Qué puedo hacer en cada tablero
+Cada persona tiene un nivel por tablero: "Lectura" para ver, "Carga" para agregar y editar datos, y "Administración" para además configurar los parámetros del tablero (catálogos, metas).
+Quien administra el municipio puede hacer todo en todos los tableros habilitados y además maneja los usuarios y la configuración.
+Algunos datos son reservados. Por ejemplo, en Social el texto de una intervención lo ven solo quienes cargan o administran, y las ubicaciones de los hogares solo las ven quienes cargan o administran; el resto ve cantidades por zona, y las cantidades muy chicas se ocultan para no identificar a nadie.
+Resumen general
+Es la pantalla de inicio. Junta los indicadores principales de cada tablero que podés ver, con su evolución mes a mes y la meta si tiene una.
+El semáforo de cada tablero dice cómo viene el mes. Si el mes está sin estado, quien administra el tablero tiene que cargarlo.
+Los tableros
+Proyectos: proyectos con sus hitos, presupuesto, indicadores estratégicos y alertas por hitos vencidos.
+Ambiental: seguimiento de energía, residuos y otros datos ambientales, que se cargan por período.
+Económico: actores económicos, personas y las asignaciones que reciben.
+Social: personas, grupos familiares, prestaciones e intervenciones, con reserva de datos sensibles.
+Trámites: inventario de trámites del municipio, sus requisitos, su costo y su duración, y cuáles se pueden hacer por internet y con CiDi. No sigue expedientes: describe los trámites.
+Reclamos: cada reclamo con su estado, su historia y el reloj de atención. Los estados cambian solo con las acciones de la pantalla del reclamo. Cuando uno se resuelve o se rechaza, el vecino recibe un aviso.
+Gabinete: reuniones de gabinete con su temario, sus actas y los compromisos que salen de ellas.
+En cada tabla, pasá el cursor por el signo de pregunta del encabezado para saber qué significa esa columna.
+Compromisos
+Cualquier persona le puede encargar un compromiso a otra, con o sin reunión. "Compromisos" en el menú muestra los tuyos y los que diste.
+Cada compromiso tiene una fecha acordada, un responsable y un historial. El responsable puede pedir una fecha nueva, pero la fecha acordada en la reunión es la que cuenta para medir el cumplimiento.
+Un compromiso puede apuntar a un proyecto, a un mes de un tablero o a otro registro. Desde ese registro se ven los compromisos pendientes que lo mencionan.
+La campana de arriba avisa cuando te asignan un compromiso o cuando alguien lo termina.
+Mapas y zonas
+Los registros con ubicación (proyectos, reclamos, hogares y otros) aparecen en un mapa dentro de su tablero. Para ubicar uno, usá el panel de ubicación de su pantalla.
+Las zonas (barrios, sectores) permiten ver cifras por zona. Si una zona cambia de límites se guarda una versión nueva, así los períodos pasados conservan sus límites. Un punto exactamente sobre el borde entre dos zonas cuenta en las dos.
+En el mapa, el interruptor "Equipamiento" muestra hospitales, centros de salud y escuelas oficiales, si el municipio los importó.
+El tipo de mapa de fondo lo elige quien administra, en Configuración > Mapas y zonas.
+Avisos y correos
+Los avisos dentro de la plataforma aparecen en la campana. Además se mandan correos: hitos vencidos, tableros sin el estado del mes y compromisos.
+En "Mi cuenta" podés apagar cada tipo de aviso por email."
+`;
+
+exports[`explains the basics to any member, and only that > screen at the start 1`] = `
+"Ayuda
+Cómo usar gobernar360. Elegí un tema para leerlo; lo que ves acá depende de lo que puedas hacer en tu municipio.
+Primeros pasos
+Ingresás con tu email y tu contraseña. Si todavía no tenés contraseña, pedí que te inviten: te llega un enlace por email para elegirla. Si la olvidaste, usá "Olvidé mi contraseña" en la pantalla de ingreso.
+Si trabajás en más de un municipio, elegí el activo arriba, junto al nombre de la plataforma. Cada municipio es independiente: nunca ves datos de otro.
+El menú de la izquierda muestra solo lo que podés usar. Si falta un tablero que necesitás, pedile acceso a quien administra tu municipio.
+Tu nombre, arriba a la derecha, abre "Mi cuenta": ahí cambiás tu teléfono, tu contraseña y qué avisos por email querés recibir.
+Qué puedo hacer en cada tablero
+Cada persona tiene un nivel por tablero: "Lectura" para ver, "Carga" para agregar y editar datos, y "Administración" para además configurar los parámetros del tablero (catálogos, metas).
+Quien administra el municipio puede hacer todo en todos los tableros habilitados y además maneja los usuarios y la configuración.
+Algunos datos son reservados. Por ejemplo, en Social el texto de una intervención lo ven solo quienes cargan o administran, y las ubicaciones de los hogares solo las ven quienes cargan o administran; el resto ve cantidades por zona, y las cantidades muy chicas se ocultan para no identificar a nadie.
+Resumen general
+Es la pantalla de inicio. Junta los indicadores principales de cada tablero que podés ver, con su evolución mes a mes y la meta si tiene una.
+El semáforo de cada tablero dice cómo viene el mes. Si el mes está sin estado, quien administra el tablero tiene que cargarlo.
+Los tableros
+Proyectos: proyectos con sus hitos, presupuesto, indicadores estratégicos y alertas por hitos vencidos.
+Ambiental: seguimiento de energía, residuos y otros datos ambientales, que se cargan por período.
+Económico: actores económicos, personas y las asignaciones que reciben.
+Social: personas, grupos familiares, prestaciones e intervenciones, con reserva de datos sensibles.
+Trámites: inventario de trámites del municipio, sus requisitos, su costo y su duración, y cuáles se pueden hacer por internet y con CiDi. No sigue expedientes: describe los trámites.
+Reclamos: cada reclamo con su estado, su historia y el reloj de atención. Los estados cambian solo con las acciones de la pantalla del reclamo. Cuando uno se resuelve o se rechaza, el vecino recibe un aviso.
+Gabinete: reuniones de gabinete con su temario, sus actas y los compromisos que salen de ellas.
+En cada tabla, pasá el cursor por el signo de pregunta del encabezado para saber qué significa esa columna.
+Compromisos
+Cualquier persona le puede encargar un compromiso a otra, con o sin reunión. "Compromisos" en el menú muestra los tuyos y los que diste.
+Cada compromiso tiene una fecha acordada, un responsable y un historial. El responsable puede pedir una fecha nueva, pero la fecha acordada en la reunión es la que cuenta para medir el cumplimiento.
+Un compromiso puede apuntar a un proyecto, a un mes de un tablero o a otro registro. Desde ese registro se ven los compromisos pendientes que lo mencionan.
+La campana de arriba avisa cuando te asignan un compromiso o cuando alguien lo termina.
+Mapas y zonas
+Los registros con ubicación (proyectos, reclamos, hogares y otros) aparecen en un mapa dentro de su tablero. Para ubicar uno, usá el panel de ubicación de su pantalla.
+Las zonas (barrios, sectores) permiten ver cifras por zona. Si una zona cambia de límites se guarda una versión nueva, así los períodos pasados conservan sus límites. Un punto exactamente sobre el borde entre dos zonas cuenta en las dos.
+En el mapa, el interruptor "Equipamiento" muestra hospitales, centros de salud y escuelas oficiales, si el municipio los importó.
+El tipo de mapa de fondo lo elige quien administra, en Configuración > Mapas y zonas.
+Avisos y correos
+Los avisos dentro de la plataforma aparecen en la campana. Además se mandan correos: hitos vencidos, tableros sin el estado del mes y compromisos.
+En "Mi cuenta" podés apagar cada tipo de aviso por email."
+`;
+
+exports[`opens a topic when it is clicked > screen at the end 1`] = `
+"Ayuda
+Cómo usar gobernar360. Elegí un tema para leerlo; lo que ves acá depende de lo que puedas hacer en tu municipio.
+Primeros pasos
+Ingresás con tu email y tu contraseña. Si todavía no tenés contraseña, pedí que te inviten: te llega un enlace por email para elegirla. Si la olvidaste, usá "Olvidé mi contraseña" en la pantalla de ingreso.
+Si trabajás en más de un municipio, elegí el activo arriba, junto al nombre de la plataforma. Cada municipio es independiente: nunca ves datos de otro.
+El menú de la izquierda muestra solo lo que podés usar. Si falta un tablero que necesitás, pedile acceso a quien administra tu municipio.
+Tu nombre, arriba a la derecha, abre "Mi cuenta": ahí cambiás tu teléfono, tu contraseña y qué avisos por email querés recibir.
+Qué puedo hacer en cada tablero
+Cada persona tiene un nivel por tablero: "Lectura" para ver, "Carga" para agregar y editar datos, y "Administración" para además configurar los parámetros del tablero (catálogos, metas).
+Quien administra el municipio puede hacer todo en todos los tableros habilitados y además maneja los usuarios y la configuración.
+Algunos datos son reservados. Por ejemplo, en Social el texto de una intervención lo ven solo quienes cargan o administran, y las ubicaciones de los hogares solo las ven quienes cargan o administran; el resto ve cantidades por zona, y las cantidades muy chicas se ocultan para no identificar a nadie.
+Resumen general
+Es la pantalla de inicio. Junta los indicadores principales de cada tablero que podés ver, con su evolución mes a mes y la meta si tiene una.
+El semáforo de cada tablero dice cómo viene el mes. Si el mes está sin estado, quien administra el tablero tiene que cargarlo.
+Los tableros
+Proyectos: proyectos con sus hitos, presupuesto, indicadores estratégicos y alertas por hitos vencidos.
+Ambiental: seguimiento de energía, residuos y otros datos ambientales, que se cargan por período.
+Económico: actores económicos, personas y las asignaciones que reciben.
+Social: personas, grupos familiares, prestaciones e intervenciones, con reserva de datos sensibles.
+Trámites: inventario de trámites del municipio, sus requisitos, su costo y su duración, y cuáles se pueden hacer por internet y con CiDi. No sigue expedientes: describe los trámites.
+Reclamos: cada reclamo con su estado, su historia y el reloj de atención. Los estados cambian solo con las acciones de la pantalla del reclamo. Cuando uno se resuelve o se rechaza, el vecino recibe un aviso.
+Gabinete: reuniones de gabinete con su temario, sus actas y los compromisos que salen de ellas.
+En cada tabla, pasá el cursor por el signo de pregunta del encabezado para saber qué significa esa columna.
+Compromisos
+Cualquier persona le puede encargar un compromiso a otra, con o sin reunión. "Compromisos" en el menú muestra los tuyos y los que diste.
+Cada compromiso tiene una fecha acordada, un responsable y un historial. El responsable puede pedir una fecha nueva, pero la fecha acordada en la reunión es la que cuenta para medir el cumplimiento.
+Un compromiso puede apuntar a un proyecto, a un mes de un tablero o a otro registro. Desde ese registro se ven los compromisos pendientes que lo mencionan.
+La campana de arriba avisa cuando te asignan un compromiso o cuando alguien lo termina.
+Mapas y zonas
+Los registros con ubicación (proyectos, reclamos, hogares y otros) aparecen en un mapa dentro de su tablero. Para ubicar uno, usá el panel de ubicación de su pantalla.
+Las zonas (barrios, sectores) permiten ver cifras por zona. Si una zona cambia de límites se guarda una versión nueva, así los períodos pasados conservan sus límites. Un punto exactamente sobre el borde entre dos zonas cuenta en las dos.
+En el mapa, el interruptor "Equipamiento" muestra hospitales, centros de salud y escuelas oficiales, si el municipio los importó.
+El tipo de mapa de fondo lo elige quien administra, en Configuración > Mapas y zonas.
+Avisos y correos
+Los avisos dentro de la plataforma aparecen en la campana. Además se mandan correos: hitos vencidos, tableros sin el estado del mes y compromisos.
+En "Mi cuenta" podés apagar cada tipo de aviso por email."
+`;
+
+exports[`opens a topic when it is clicked > screen at the start 1`] = `
+"Ayuda
+Cómo usar gobernar360. Elegí un tema para leerlo; lo que ves acá depende de lo que puedas hacer en tu municipio.
+Primeros pasos
+Ingresás con tu email y tu contraseña. Si todavía no tenés contraseña, pedí que te inviten: te llega un enlace por email para elegirla. Si la olvidaste, usá "Olvidé mi contraseña" en la pantalla de ingreso.
+Si trabajás en más de un municipio, elegí el activo arriba, junto al nombre de la plataforma. Cada municipio es independiente: nunca ves datos de otro.
+El menú de la izquierda muestra solo lo que podés usar. Si falta un tablero que necesitás, pedile acceso a quien administra tu municipio.
+Tu nombre, arriba a la derecha, abre "Mi cuenta": ahí cambiás tu teléfono, tu contraseña y qué avisos por email querés recibir.
+Qué puedo hacer en cada tablero
+Cada persona tiene un nivel por tablero: "Lectura" para ver, "Carga" para agregar y editar datos, y "Administración" para además configurar los parámetros del tablero (catálogos, metas).
+Quien administra el municipio puede hacer todo en todos los tableros habilitados y además maneja los usuarios y la configuración.
+Algunos datos son reservados. Por ejemplo, en Social el texto de una intervención lo ven solo quienes cargan o administran, y las ubicaciones de los hogares solo las ven quienes cargan o administran; el resto ve cantidades por zona, y las cantidades muy chicas se ocultan para no identificar a nadie.
+Resumen general
+Es la pantalla de inicio. Junta los indicadores principales de cada tablero que podés ver, con su evolución mes a mes y la meta si tiene una.
+El semáforo de cada tablero dice cómo viene el mes. Si el mes está sin estado, quien administra el tablero tiene que cargarlo.
+Los tableros
+Proyectos: proyectos con sus hitos, presupuesto, indicadores estratégicos y alertas por hitos vencidos.
+Ambiental: seguimiento de energía, residuos y otros datos ambientales, que se cargan por período.
+Económico: actores económicos, personas y las asignaciones que reciben.
+Social: personas, grupos familiares, prestaciones e intervenciones, con reserva de datos sensibles.
+Trámites: inventario de trámites del municipio, sus requisitos, su costo y su duración, y cuáles se pueden hacer por internet y con CiDi. No sigue expedientes: describe los trámites.
+Reclamos: cada reclamo con su estado, su historia y el reloj de atención. Los estados cambian solo con las acciones de la pantalla del reclamo. Cuando uno se resuelve o se rechaza, el vecino recibe un aviso.
+Gabinete: reuniones de gabinete con su temario, sus actas y los compromisos que salen de ellas.
+En cada tabla, pasá el cursor por el signo de pregunta del encabezado para saber qué significa esa columna.
+Compromisos
+Cualquier persona le puede encargar un compromiso a otra, con o sin reunión. "Compromisos" en el menú muestra los tuyos y los que diste.
+Cada compromiso tiene una fecha acordada, un responsable y un historial. El responsable puede pedir una fecha nueva, pero la fecha acordada en la reunión es la que cuenta para medir el cumplimiento.
+Un compromiso puede apuntar a un proyecto, a un mes de un tablero o a otro registro. Desde ese registro se ven los compromisos pendientes que lo mencionan.
+La campana de arriba avisa cuando te asignan un compromiso o cuando alguien lo termina.
+Mapas y zonas
+Los registros con ubicación (proyectos, reclamos, hogares y otros) aparecen en un mapa dentro de su tablero. Para ubicar uno, usá el panel de ubicación de su pantalla.
+Las zonas (barrios, sectores) permiten ver cifras por zona. Si una zona cambia de límites se guarda una versión nueva, así los períodos pasados conservan sus límites. Un punto exactamente sobre el borde entre dos zonas cuenta en las dos.
+En el mapa, el interruptor "Equipamiento" muestra hospitales, centros de salud y escuelas oficiales, si el municipio los importó.
+El tipo de mapa de fondo lo elige quien administra, en Configuración > Mapas y zonas.
+Avisos y correos
+Los avisos dentro de la plataforma aparecen en la campana. Además se mandan correos: hitos vencidos, tableros sin el estado del mes y compromisos.
+En "Mi cuenta" podés apagar cada tipo de aviso por email."
+`;

@@ -46,7 +46,7 @@ const renderAccess = (settings = SETTINGS) => renderSettings(settings, undefined
 const tab = (key: string) => screen.getByRole('tab', { name: t(`settings.tabs.${key}`) })
 const heading = (key: string) => screen.queryByRole('heading', { name: t(`settings.${key}.title`) })
 
-it('is a tab next to the users of the municipality', async () => {
+it('has the users of the municipality in a tab', async () => {
   mockApi('get', '/overview', [])
   mockApi('get', '/admin/users', { items: [], total: 0 })
   mockApi('get', '/admin/dashboards', [])
@@ -54,7 +54,7 @@ it('is a tab next to the users of the municipality', async () => {
   const user = userEvent.setup()
 
   expect(await screen.findByRole('heading', { name: t('settings.title') })).toBeInTheDocument()
-  await user.click(screen.getByRole('tab', { name: t('admin.tabs.users') }))
+  await user.click(screen.getByRole('tab', { name: t('settings.tabs.users') }))
 
   expect(await screen.findByRole('heading', { name: t('users.title') })).toBeInTheDocument()
 })
@@ -458,6 +458,7 @@ it('orders what can be configured in tabs, each with its own address', async () 
   expect(tabs.getAllByRole('tab').map((one) => one.textContent)).toEqual([
     t('settings.tabs.emails'),
     t('settings.tabs.access'),
+    t('settings.tabs.users'),
     t('settings.tabs.maps'),
   ])
   expect(tab('emails')).toHaveAttribute('aria-selected', 'true')
@@ -474,6 +475,8 @@ it('orders what can be configured in tabs, each with its own address', async () 
   await user.click(tab('maps'))
   expect(heading('map')).toBeVisible()
   expect(heading('sso')).toBeNull()
+  // The zones are drawn below the kind of map.
+  expect(await screen.findByRole('heading', { name: t('geo.zones.title') })).toBeVisible()
   await waitFor(() => expect(zones).toHaveLength(1))
 })
 
@@ -493,7 +496,7 @@ it.each([
   expect(
     await screen.findByRole('heading', { name: t(`settings.${shown}.title`) }),
   ).toBeVisible()
-  expect(screen.getAllByRole('tab', { selected: true })).toHaveLength(2)
+  expect(screen.getAllByRole('tab', { selected: true })).toHaveLength(1)
 })
 
 it('keeps what was being typed in a tab while another is looked at', async () => {

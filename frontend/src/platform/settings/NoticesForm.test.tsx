@@ -263,6 +263,7 @@ it('is the same for the operator, of the municipality in the address', async () 
     base: '/platform/municipalities/m-1',
     path: '/platform/municipalities/m-1/settings',
     key: ['platform', 'm-1'],
+    own: false,
   }
   renderApp(
     <SettingsScopeContext.Provider value={scope}>

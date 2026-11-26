@@ -5,6 +5,7 @@ exports[`a member working when the municipality is suspended sees it at the next
 gobernar360
 Ana Gómez
 [Cerrar sesión]
+Ayuda
 Noetinger está suspendido
 El operador de la plataforma lo suspendió. Sus datos se conservan, pero nadie puede trabajar en él hasta que lo reanude.
 Volver a intentar"
@@ -18,6 +19,7 @@ gobernar360
 Ana Gómez
 [Cerrar sesión]
 Plataforma
+Ayuda
 ← Municipios
 Noetinger
 Configuración
@@ -56,6 +58,7 @@ Ana Gómez
 Resumen general
 Compromisos
 Proyectos
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -69,6 +72,7 @@ gobernar360
 Ana Gómez
 [Cerrar sesión]
 Plataforma
+Ayuda
 Municipios de la plataforma
 Buscar
 (Nombre o identificador)
@@ -106,6 +110,7 @@ exports[`offers only the municipalities that are not suspended > screen at the e
 gobernar360
 Ana Gómez
 [Cerrar sesión]
+Ayuda
 Elegí el municipio con el que querés trabajar
 Noetinger está suspendido: no se puede trabajar en él hasta que el operador de la plataforma lo reanude.
 Saira"
@@ -124,6 +129,7 @@ Ana Gómez
 Resumen general
 Compromisos
 Reclamos
+Ayuda
 Reclamos
 Resumen
 Reclamos
@@ -181,6 +187,7 @@ gobernar360
 Ana Gómez
 [Cerrar sesión]
 Plataforma
+Ayuda
 ← Municipios
 Noetinger
 Suspendido
@@ -218,6 +225,7 @@ gobernar360
 Ana Gómez
 [Cerrar sesión]
 Plataforma
+Ayuda
 ← Municipios
 Noetinger
 Suspendido
@@ -254,6 +262,7 @@ gobernar360
 Ana Gómez
 [Cerrar sesión]
 Plataforma
+Ayuda
 ← Municipios
 Noetinger
 Configuración

@@ -10,21 +10,18 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
-Mapas y zonas
+Tipo de mapa
 Cambios guardados.
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
@@ -63,7 +60,12 @@ Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipa
 (Sin cargar)
 Capa de la CONAE
 Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
-(Sin cargar)"
+(Sin cargar)
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Todavía no hay zonas. Dibujá la primera o importá un archivo GeoJSON."
 `;
 
 exports[`asks for the key of the provider, and tries the map with it > screen at the start 1`] = `"[Cargando…]"`;
@@ -78,21 +80,18 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
-Mapas y zonas
+Tipo de mapa
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
@@ -120,13 +119,18 @@ Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipa
 (Sin cargar)
 Capa de la CONAE
 Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
-(Sin cargar)"
+(Sin cargar)
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Todavía no hay zonas. Dibujá la primera o importá un archivo GeoJSON."
 `;
 
 exports[`keeps a key for other maps of its provider, and no other > screen at the start 1`] = `"[Cargando…]"`;
 
 exports[`lets the operator choose without seeing anything of the municipality > screen at the end 1`] = `
-"Mapas y zonas
+"Tipo de mapa
 Cambios guardados.
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
@@ -159,7 +163,7 @@ Guardar mapas y zonas"
 `;
 
 exports[`lets the operator choose without seeing anything of the municipality > screen at the start 1`] = `
-"Mapas y zonas
+"Tipo de mapa
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
@@ -200,21 +204,18 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
-Mapas y zonas
+Tipo de mapa
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
@@ -250,7 +251,12 @@ Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipa
 (Sin cargar)
 Capa de la CONAE
 Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
-(Sin cargar)"
+(Sin cargar)
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Todavía no hay zonas. Dibujá la primera o importá un archivo GeoJSON."
 `;
 
 exports[`offers every background of the list, with and without key > screen at the start 1`] = `"[Cargando…]"`;
@@ -265,21 +271,18 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
-Mapas y zonas
+Tipo de mapa
 Cambios guardados.
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
@@ -316,7 +319,12 @@ Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipa
 (Sin cargar)
 Capa de la CONAE
 Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
-(Sin cargar)"
+(Sin cargar)
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Todavía no hay zonas. Dibujá la primera o importá un archivo GeoJSON."
 `;
 
 exports[`offers the satellite image where there is one, and says whose servers it uses > screen at the start 1`] = `"[Cargando…]"`;
@@ -331,21 +339,18 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
-Mapas y zonas
+Tipo de mapa
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
@@ -382,7 +387,12 @@ Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipa
 (Sin cargar)
 Capa de la CONAE
 Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
-(Sin cargar)"
+(Sin cargar)
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Todavía no hay zonas. Dibujá la primera o importá un archivo GeoJSON."
 `;
 
 exports[`says when the background being tried does not load > screen at the start 1`] = `"[Cargando…]"`;
@@ -397,21 +407,18 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
-Mapas y zonas
+Tipo de mapa
 Ese mapa necesita una clave de su proveedor.
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
@@ -448,7 +455,12 @@ Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipa
 (Sin cargar)
 Capa de la CONAE
 Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
-(Sin cargar)"
+(Sin cargar)
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Todavía no hay zonas. Dibujá la primera o importá un archivo GeoJSON."
 `;
 
 exports[`says why it was not saved > screen at the start 1`] = `"[Cargando…]"`;
@@ -463,21 +475,18 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
-Mapas y zonas
+Tipo de mapa
 Cambios guardados.
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
@@ -514,7 +523,12 @@ Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipa
 (Sin cargar)
 Capa de la CONAE
 Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
-(Sin cargar)"
+(Sin cargar)
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Todavía no hay zonas. Dibujá la primera o importá un archivo GeoJSON."
 `;
 
 exports[`sends no key with a background that needs none > screen at the start 1`] = `"[Cargando…]"`;
@@ -529,21 +543,18 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
-Mapas y zonas
+Tipo de mapa
 Cambios guardados.
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
@@ -580,7 +591,12 @@ Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipa
 (Sin cargar)
 Capa de la CONAE
 Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
-(Sin cargar)"
+(Sin cargar)
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Todavía no hay zonas. Dibujá la primera o importá un archivo GeoJSON."
 `;
 
 exports[`sets from how many a zone is shown, within its limits > screen at the start 1`] = `"[Cargando…]"`;
@@ -595,21 +611,18 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
-Mapas y zonas
+Tipo de mapa
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
@@ -646,7 +659,44 @@ Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipa
 (Sin cargar)
 Capa de la CONAE
 Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
-(Sin cargar)"
+(Sin cargar)
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Centro
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Centro
+1
+10/03/2025
+[Editar Centro]
+Editar
+[Historial de Centro]
+Historial
+[Dar de baja Centro]
+Dar de baja"
 `;
 
 exports[`shows how the map looks before saving it, and saves it > screen at the start 1`] = `"[Cargando…]"`;

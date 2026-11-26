@@ -1,6 +1,6 @@
 import { expect, type Page, test } from '@playwright/test'
 
-import { login, logout, sidebar } from './helpers.ts'
+import { login, logout, openUsers, sidebar } from './helpers.ts'
 
 const API = '/api/dashboards/complaints'
 const ADDRESS = 'Belgrano 999'
@@ -197,7 +197,7 @@ test('the summary median by type matches the cases download', async ({ page }) =
 
 test('once granted, the viewer reads complaints but cannot change them', async ({ page }) => {
   await login(page, 'admin@noetinger.test')
-  await sidebar(page).getByRole('link', { name: 'Usuarios' }).click()
+  await openUsers(page)
   const access = page.getByRole('combobox', { name: 'Reclamos: Leo Lectura' })
   await access.selectOption({ label: 'Lectura' })
   await expect(access).toHaveValue('viewer')

@@ -107,3 +107,18 @@ it('says when the municipality cannot be loaded', async () => {
   expect(screen.queryByText(t('platform.notFound'))).toBeNull()
   expect(screen.getByRole('link', { name: t('platform.backToMunicipality') })).toBeInTheDocument()
 })
+
+it('leaves the users and the zones to the municipality, which has its own screen for them', async () => {
+  renderPage()
+
+  const tabs = await screen.findAllByRole('tab')
+
+  expect(tabs.map((one) => one.textContent)).toEqual([
+    t('settings.tabs.emails'),
+    t('settings.tabs.access'),
+    t('settings.tabs.maps'),
+  ])
+  await userEvent.setup().click(screen.getByRole('tab', { name: t('settings.tabs.maps') }))
+  expect(await screen.findByRole('heading', { name: t('settings.map.title') })).toBeVisible()
+  expect(screen.queryByRole('heading', { name: t('geo.zones.title') })).toBeNull()
+})

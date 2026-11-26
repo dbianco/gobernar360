@@ -5,6 +5,7 @@ import { Navigate, Route, Routes, useParams } from 'react-router-dom'
 
 import { OverviewPage } from './dashboards/overview/OverviewPage'
 import { dashboards } from './dashboards/registry'
+import { HelpPage } from './platform/HelpPage'
 import { AccountPage } from './platform/AccountPage'
 import { AdminRoutes } from './platform/AdminRoutes'
 import { AppShell } from './platform/AppShell'
@@ -69,6 +70,7 @@ export default function App() {
       <Route element={<SignedIn />}>
         <Route index element={<OverviewPage />} />
         <Route path="account" element={<AccountPage />} />
+        <Route path="help" element={<HelpPage />} />
         <Route path="commitments" element={<CommitmentsPage />} />
         <Route path="commitments/:id" element={<CommitmentPage />} />
         <Route path="notifications" element={<NotificationsPage />} />

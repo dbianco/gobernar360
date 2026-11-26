@@ -13,6 +13,7 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -30,6 +31,7 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
+Ayuda
 No tenés acceso a este tablero
 Pedile al administrador de tu municipio que te habilite."
 `;
@@ -49,6 +51,7 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -66,6 +69,7 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -78,6 +82,7 @@ exports[`explains the situation to a user without any municipality > screen at t
 gobernar360
 Ana Gómez
 [Cerrar sesión]
+Ayuda
 Todavía no pertenecés a ningún municipio
 Pedile al administrador de tu municipio que te agregue como usuario."
 `;
@@ -98,12 +103,11 @@ Proyectos
 Ambiental
 Económico
 Social
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
 Plataforma
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -111,11 +115,14 @@ Pedile al administrador de tu municipio que te dé acceso a un tablero."
 
 exports[`gives every navigation link an icon > screen at the start 1`] = `"[Cargando…]"`;
 
+exports[`has a help link for everyone, which opens the guide > screen at the start 1`] = `"[Cargando…]"`;
+
 exports[`has no notices without a municipality to have them in > screen at the end 1`] = `
 "[Abrir menú]
 gobernar360
 Ana Gómez
 [Cerrar sesión]
+Ayuda
 Todavía no pertenecés a ningún municipio
 Pedile al administrador de tu municipio que te agregue como usuario."
 `;
@@ -132,6 +139,7 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -150,6 +158,7 @@ Ana Gómez
 Resumen general
 Compromisos
 Proyectos
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -168,6 +177,7 @@ Ana Gómez
 Resumen general
 Compromisos
 Proyectos
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -185,11 +195,10 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
+Ayuda
 Página pública
 Una página que cualquiera puede ver sin ingresar. Se publica solo lo que elegís acá: el tablero (con sus semáforos) y, dentro de él, cada indicador. Los informes se publican desde Informes.
 [La página]
@@ -220,11 +229,10 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
+Ayuda
 Informes mensuales
 Cerrar un mes congela su informe: semáforos, indicadores con su variación y meta, hitos y un comentario por tablero. Lo que cambie después en los datos no lo modifica. Para corregirlo hay que reabrirlo, y eso genera una versión nueva.
 Mes
@@ -295,32 +303,7 @@ Cerrar el mes"
 
 exports[`opens /admin/reports for a municipality administrator > screen at the start 1`] = `"[Cargando…]"`;
 
-exports[`opens the users of the municipality at /admin > screen at the end 1`] = `
-"[Abrir menú]
-gobernar360
-Noetinger
-[Compromisos a mi cargo: 0 pendientes]
-[Notificaciones: 0 novedades]
-Ana Gómez
-[Cerrar sesión]
-Resumen general
-Compromisos
-Usuarios
-Zonas
-Configuración
-Informes
-Página pública
-Usuarios
-Zonas
-Configuración
-Usuarios del municipio
-Importar CSV
-Agregar usuario
-Buscar
-(Nombre o email)"
-`;
-
-exports[`opens the users of the municipality at /admin > screen at the start 1`] = `"[Cargando…]"`;
+exports[`opens the configuration at /admin, and the old addresses of users and zones in it > screen at the start 1`] = `"[Cargando…]"`;
 
 exports[`returns to the login page when the session has expired > screen at the end 1`] = `
 "Ingresar a gobernar360
@@ -344,6 +327,7 @@ Ana Gómez
 Resumen general
 Compromisos
 Proyectos
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -362,6 +346,7 @@ Ana Gómez
 Resumen general
 Compromisos
 Proyectos
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -372,6 +357,27 @@ exports[`sends a member who is not an administrator from /admin/reports to the o
 exports[`shows nothing of the frame to whoever is signed out > screen at the end 1`] = `"signed out"`;
 
 exports[`shows nothing of the frame to whoever is signed out > screen at the start 1`] = `"signed out"`;
+
+exports[`shows the configuration link to municipality admins, with the users and zones inside it > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Compromisos
+Configuración
+Informes
+Página pública
+Ayuda
+Resumen general
+No tenés tableros habilitados
+Pedile al administrador de tu municipio que te dé acceso a un tablero."
+`;
+
+exports[`shows the configuration link to municipality admins, with the users and zones inside it > screen at the start 1`] = `"[Cargando…]"`;
 
 exports[`shows the municipality switcher only with several memberships > screen at the end 1`] = `
 "[Abrir menú]
@@ -386,34 +392,13 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
 `;
 
 exports[`shows the municipality switcher only with several memberships > screen at the start 1`] = `"[Cargando…]"`;
-
-exports[`shows the users and configuration links to municipality admins > screen at the end 1`] = `
-"[Abrir menú]
-gobernar360
-Noetinger
-[Compromisos a mi cargo: 0 pendientes]
-[Notificaciones: 0 novedades]
-Ana Gómez
-[Cerrar sesión]
-Resumen general
-Compromisos
-Usuarios
-Zonas
-Configuración
-Informes
-Página pública
-Resumen general
-No tenés tableros habilitados
-Pedile al administrador de tu municipio que te dé acceso a un tablero."
-`;
-
-exports[`shows the users and configuration links to municipality admins > screen at the start 1`] = `"[Cargando…]"`;
 
 exports[`shows what one owes and follows beside the name, and their pages > screen at the end 1`] = `
 "[Abrir menú]
@@ -425,6 +410,7 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
+Ayuda
 Compromisos
 Nuevo compromiso
 A mi cargo
@@ -455,6 +441,7 @@ Cerrar sesión
 [Cerrar sesión]
 Resumen general
 Compromisos
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."

@@ -177,6 +177,7 @@ it('redirects non-admin members away', async () => {
 it('is reachable for municipality admins', async () => {
   mockApi('get', '/admin/users', { items: [ADMIN], total: 1 })
   mockApi('get', '/admin/dashboards', ['projects'])
+  mockApi('get', '/admin/settings', {} as never)
   renderApp(<App />, { me: makeMe({ isAdmin: true }), route: '/admin/users' })
 
   expect(await screen.findByRole('heading', { name: t('users.title') })).toBeInTheDocument()

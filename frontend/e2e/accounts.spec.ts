@@ -1,14 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import {
-  configureNoetinger,
-  emailsTo,
-  login,
-  logout,
-  passwordLink,
-  sidebar,
-  theEmailTo,
-} from './helpers.ts'
+import { configureNoetinger, emailsTo, login, logout, openUsers, passwordLink, sidebar, theEmailTo } from './helpers.ts'
 
 // Email goes through the real outbox, `gobernar360 send-email` and the mail catcher.
 
@@ -21,7 +13,7 @@ test('an administrator invites someone, who chooses a password from the email an
   const since = new Date()
   const email = `invitada-${Date.now()}@noetinger.test`
   await login(page, 'admin@noetinger.test')
-  await sidebar(page).getByRole('link', { name: 'Usuarios' }).click()
+  await openUsers(page)
 
   await page.getByRole('button', { name: 'Agregar usuario' }).click()
   const form = page.getByRole('dialog')

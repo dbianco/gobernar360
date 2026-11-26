@@ -7,6 +7,7 @@ import { answerConfirm } from '../../test/confirm'
 import { makeMe } from '../../test/fixtures'
 import { renderApp, t } from '../../test/render'
 import { mockApi, mockApiError } from '../../test/server'
+import { MAP_SETTINGS } from '../settings/testData'
 import { boundary, CENTRO, drag, makeZone, mapFrame, NORTE, square } from './testData'
 import type { Position, Zone } from './types'
 import { ZonesPage } from './ZonesPage'
@@ -411,18 +412,21 @@ it('says when the file as a whole is not right, or the import fails', async () =
   await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
 })
 
-it('is reached from the menu by administrators only', async () => {
+it('is reached from Configuración by administrators only', async () => {
+  mockApi('get', '/admin/settings', { notification_emails: [], sso_enabled: false, sso_available: false, ...MAP_SETTINGS } as never)
+  mockApi('get', '/admin/email-templates', [])
   mockApi('get', '/zones', [CENTRO])
   mockApi('get', '/admin/zones/overlaps', [])
   const { unmount } = renderApp(<App />, { me: makeMe({ isAdmin: true }) })
   const user = userEvent.setup()
-  await user.click(await screen.findByRole('link', { name: t('nav.zones') }))
+  await user.click(await screen.findByRole('link', { name: t('nav.settings') }))
+  await user.click(await screen.findByRole('tab', { name: t('settings.tabs.maps') }))
   expect(await screen.findByRole('row', { name: /^Centro/ })).toBeInTheDocument()
   unmount()
 
   renderApp(<App />, { me: makeMe({ isAdmin: false }), route: '/admin/zones' })
   expect(await screen.findByRole('heading', { name: t('overview.title') })).toBeInTheDocument()
-  expect(screen.queryByRole('link', { name: t('nav.zones') })).toBeNull()
+  expect(screen.queryByRole('link', { name: t('nav.settings') })).toBeNull()
 })
 
 it('says when the file cannot even be read', async () => {

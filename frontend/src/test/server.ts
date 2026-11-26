@@ -73,6 +73,7 @@ export const server = setupServer(
   http.get('*/api/map-background', () => HttpResponse.json(STANDARD_MAP)),
   http.get('*/api/geo/reference-layers', () => HttpResponse.json([])),
   http.get('*/api/zones', () => HttpResponse.json([])),
+  http.get('*/api/admin/zones/overlaps', () => HttpResponse.json([])),
   http.get('*/api/dashboards/:key/geo/:record/zones', () => HttpResponse.json(NO_BREAKDOWN)),
   http.get('*/api/dashboards/:key/geo/:record/unzoned', () =>
     HttpResponse.json({ items: [], total: 0 }),

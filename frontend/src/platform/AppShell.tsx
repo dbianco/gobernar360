@@ -15,10 +15,9 @@ import {
   IconChecklist,
   IconFileReport,
   IconLayoutDashboard,
-  IconMap2,
+  IconHelp,
   IconSettings,
   IconLogout,
-  IconUsers,
   IconWorld,
   type Icon,
 } from '@tabler/icons-react'
@@ -142,13 +141,12 @@ export function AppShell() {
         {membership && link('/', t('nav.overview'), IconLayoutDashboard)}
         {membership && link('/commitments', t('commitments.section'), IconChecklist)}
         {membership && visibleDashboards.map((d) => link(d.basePath, t(d.labelKey), d.icon))}
-        {membership?.is_admin && link('/admin/users', t('nav.users'), IconUsers)}
-        {membership?.is_admin && link('/admin/zones', t('nav.zones'), IconMap2)}
         {membership?.is_admin && link('/admin/settings', t('nav.settings'), IconSettings)}
         {membership?.is_admin && link('/admin/reports', t('nav.reports'), IconFileReport)}
         {membership?.is_admin &&
           link('/admin/publication', t('nav.publication'), IconWorld)}
         {isOperator && link('/platform', t('nav.platform'), IconBuildingCommunity)}
+        {link('/help', t('nav.help'), IconHelp)}
       </Shell.Navbar>
 
       <Shell.Main>{content}</Shell.Main>

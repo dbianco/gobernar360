@@ -11,19 +11,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -120,19 +117,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Inicio de sesión único
 La plataforma no tiene un proveedor de identidad configurado. Pedíselo a quien opera la plataforma.
@@ -156,19 +150,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -264,19 +255,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -361,6 +349,118 @@ exports[`goes back to the default text after confirming > screen at the start 1`
 [Cargando…]"
 `;
 
+exports[`has the users of the municipality in a tab > screen at the end 1`] = `
+"[Abrir menú]
+gobernar360
+Noetinger
+[Compromisos a mi cargo: 0 pendientes]
+[Notificaciones: 0 novedades]
+Ana Gómez
+[Cerrar sesión]
+Resumen general
+Compromisos
+Configuración
+Informes
+Página pública
+Ayuda
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Usuarios
+Mapas y zonas
+Avisos por email
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Acceso nuevo (invitación)
+Recuperar contraseña
+Le llega a quien agregás como usuario cuando todavía no tiene cuenta: trae el enlace para elegir su contraseña.
+Texto por defecto
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Quién dio el acceso]
+Quién dio el acceso
+[Insertar la variable Municipio]
+Municipio
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+Hola, {{name}}:
+elegí tu contraseña
+Enviarme una prueba
+Guardar texto
+Usuarios del municipio
+Importar CSV
+Agregar usuario
+Buscar
+(Nombre o email)
+[autosize measurement]"
+`;
+
+exports[`has the users of the municipality in a tab > screen at the start 1`] = `"[Cargando…]"`;
+
 exports[`inserts a variable in the body by default, and saves it > screen at the end 1`] = `
 "[autosize measurement]
 [Abrir menú]
@@ -372,19 +472,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -485,19 +582,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -588,34 +682,6 @@ exports[`inserts a variable in the subject and saves the text > screen at the st
 [Cargando…]"
 `;
 
-exports[`is a tab next to the users of the municipality > screen at the end 1`] = `
-"[Abrir menú]
-gobernar360
-Noetinger
-[Compromisos a mi cargo: 0 pendientes]
-[Notificaciones: 0 novedades]
-Ana Gómez
-[Cerrar sesión]
-Resumen general
-Compromisos
-Usuarios
-Zonas
-Configuración
-Informes
-Página pública
-Usuarios
-Zonas
-Configuración
-Usuarios del municipio
-Importar CSV
-Agregar usuario
-Buscar
-(Nombre o email)
-[autosize measurement]"
-`;
-
-exports[`is a tab next to the users of the municipality > screen at the start 1`] = `"[Cargando…]"`;
-
 exports[`is not reachable for members who are not administrators > screen at the end 1`] = `
 "[autosize measurement]
 [Abrir menú]
@@ -627,6 +693,7 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
@@ -648,19 +715,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -756,19 +820,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -852,7 +913,7 @@ Hola, {{name}}:
 elegí tu contraseña
 Enviarme una prueba
 Guardar texto
-Mapas y zonas
+Tipo de mapa
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
@@ -888,7 +949,12 @@ Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipa
 (Sin cargar)
 Capa de la CONAE
 Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
-(Sin cargar)"
+(Sin cargar)
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Todavía no hay zonas. Dibujá la primera o importá un archivo GeoJSON."
 `;
 
 exports[`keeps what was being typed in a tab while another is looked at > screen at the start 1`] = `
@@ -907,19 +973,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -1020,19 +1083,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Estas direcciones no son válidas: uno, dos
@@ -1134,19 +1194,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -1249,19 +1306,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -1360,19 +1414,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -1473,19 +1524,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -1585,19 +1633,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -1697,19 +1742,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Inicio de sesión único
 Permitir ingresar con inicio de sesión único
@@ -1732,19 +1774,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -1844,21 +1883,18 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
-Mapas y zonas
+Tipo de mapa
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
@@ -1894,7 +1930,12 @@ Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipa
 (Sin cargar)
 Capa de la CONAE
 Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
-(Sin cargar)"
+(Sin cargar)
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Todavía no hay zonas. Dibujá la primera o importá un archivo GeoJSON."
 `;
 
 exports[`opens the tab of the address "/maps" > screen at the start 1`] = `
@@ -1913,19 +1954,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -2025,19 +2063,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -2137,19 +2172,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -2235,7 +2267,7 @@ Guardar texto
 Inicio de sesión único
 Permitir ingresar con inicio de sesión único
 Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
-Mapas y zonas
+Tipo de mapa
 Fondo de los mapas
 El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
@@ -2271,7 +2303,12 @@ Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipa
 (Sin cargar)
 Capa de la CONAE
 Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
-(Sin cargar)"
+(Sin cargar)
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+Todavía no hay zonas. Dibujá la primera o importá un archivo GeoJSON."
 `;
 
 exports[`orders what can be configured in tabs, each with its own address > screen at the start 1`] = `
@@ -2290,19 +2327,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Estas direcciones no son válidas: no-es-un-email
@@ -2404,19 +2438,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Cambios guardados.
@@ -2518,20 +2549,17 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 Ocurrió un error. Intentá de nuevo.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas"
 `;
 
@@ -2551,19 +2579,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -2666,19 +2691,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Inicio de sesión único
 Ocurrió un error. Intentá de nuevo.
@@ -2702,19 +2724,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Ocurrió un error. Intentá de nuevo.
@@ -2816,20 +2835,17 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 Ocurrió un error. Intentá de nuevo.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos a vecinos
 Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
@@ -2923,19 +2939,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -3037,19 +3050,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -3112,19 +3122,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -3225,19 +3232,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -3334,19 +3338,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -3448,19 +3449,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Destinatarios de los avisos
@@ -3562,19 +3560,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Estas direcciones no son válidas: @noetinger.test
@@ -3676,19 +3671,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Cambios guardados.
@@ -3790,19 +3782,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Estas direcciones no son válidas: ana
@@ -3904,19 +3893,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Cambios guardados.
@@ -4018,19 +4004,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Estas direcciones no son válidas: ana@.test
@@ -4132,19 +4115,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Estas direcciones no son válidas: ana@@noetinger.test
@@ -4246,19 +4226,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Estas direcciones no son válidas: ana@noetinger
@@ -4360,19 +4337,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Estas direcciones no son válidas: ana@noetinger.
@@ -4474,19 +4448,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Cambios guardados.
@@ -4588,19 +4559,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Avisos por email
 Estas direcciones no son válidas: ana@noetinger@x.test
@@ -4702,19 +4670,16 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
-Usuarios
-Zonas
-Configuración
+Ayuda
 Configuración
 Lo que elijas acá vale para todo el municipio.
 [Configuración]
 Correos
 Acceso
+Usuarios
 Mapas y zonas
 Inicio de sesión único
 Permitir ingresar con inicio de sesión único

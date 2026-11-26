@@ -19,6 +19,7 @@ export default function MunicipalitySettingsPage() {
       base: `/platform/municipalities/${id}`,
       path: `/platform/municipalities/${id}/settings`,
       key: ['platform', 'municipalities', id],
+      own: false,
     }),
     [id],
   )

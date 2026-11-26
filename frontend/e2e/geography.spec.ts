@@ -1,6 +1,6 @@
 import { expect, type Page, type Request, test } from '@playwright/test'
 
-import { login, logout, sidebar } from './helpers.ts'
+import { login, logout, openZones, sidebar } from './helpers.ts'
 
 const API = '/api/dashboards'
 // A street of the demo that crosses Centro and Norte.
@@ -98,7 +98,7 @@ test('points cluster and separate, and panning loads only the visible area', asy
 
 test('a new zone takes the projects inside it, which is in the summary', async ({ page }) => {
   await login(page, 'admin@noetinger.test')
-  await sidebar(page).getByRole('link', { name: 'Zonas' }).click()
+  await openZones(page)
   await page.getByRole('button', { name: 'Dibujar zona' }).click()
   await page.getByRole('textbox', { name: 'Nombre' }).fill('Casco E2E')
   const frame = map(page, 'Mapa para dibujar la zona')
@@ -110,7 +110,7 @@ test('a new zone takes the projects inside it, which is in the summary', async (
   for (const [dx, dy] of [[-30, -30], [30, -30], [30, 30], [-30, 30]]) {
     await frame.click({ position: { x: x + dx, y: y + dy } })
   }
-  await page.getByRole('button', { name: 'Guardar' }).click()
+  await page.getByRole('button', { name: 'Guardar', exact: true }).click()
 
   await expect(page.getByText('Zona Casco E2E guardada.')).toBeVisible()
   // It lies inside another zone, which is reported and not forbidden.
@@ -123,7 +123,7 @@ test('a new zone takes the projects inside it, which is in the summary', async (
   await page.getByRole('searchbox', { name: 'Buscar' }).fill('plaza')
   await expect(page.getByRole('row', { name: new RegExp(PLAZA) })).toContainText('Casco E2E, Centro')
 
-  await sidebar(page).getByRole('link', { name: 'Zonas' }).click()
+  await openZones(page)
   await page.getByRole('button', { name: 'Dar de baja Casco E2E' }).click()
   await page.getByRole('dialog').getByRole('button', { name: 'Dar de baja' }).click()
   await expect(page.getByText('Zona Casco E2E dada de baja.')).toBeVisible()
@@ -132,13 +132,13 @@ test('a new zone takes the projects inside it, which is in the summary', async (
 
 test('a boundary that crosses itself is explained and not saved', async ({ page }) => {
   await login(page, 'admin@noetinger.test')
-  await sidebar(page).getByRole('link', { name: 'Zonas' }).click()
+  await openZones(page)
   await page.getByRole('button', { name: 'Dibujar zona' }).click()
   await page.getByRole('textbox', { name: 'Nombre' }).fill('Moño E2E')
   await page
     .getByRole('textbox', { name: 'Esquinas' })
     .fill('-32.40, -62.40\n-32.39, -62.39\n-32.39, -62.40\n-32.40, -62.39')
-  await page.getByRole('button', { name: 'Guardar' }).click()
+  await page.getByRole('button', { name: 'Guardar', exact: true }).click()
 
   await expect(page.getByText('se cruza consigo mismo', { exact: false })).toBeVisible()
   await page.getByRole('button', { name: 'Cancelar' }).click()
@@ -154,7 +154,7 @@ test('zones are imported from a GeoJSON file', async ({ page }) => {
     ],
   }
   await login(page, 'admin@noetinger.test')
-  await sidebar(page).getByRole('link', { name: 'Zonas' }).click()
+  await openZones(page)
   await page.getByRole('button', { name: 'Importar GeoJSON' }).click()
   const dialog = page.getByRole('dialog')
   await dialog.locator('input[type="file"]').setInputFiles({
@@ -290,7 +290,7 @@ test('figures of a past year keep the boundaries of that year', async ({ page })
 
 test('the second municipality sees no zone and no place of the first', async ({ page }) => {
   await login(page, 'admin@comuna-demo.test')
-  await sidebar(page).getByRole('link', { name: 'Zonas' }).click()
+  await openZones(page)
   await expect(page.getByText('Todavía no hay zonas.', { exact: false })).toBeVisible()
   expect(await (await page.request.get('/api/zones')).json()).toEqual([])
 

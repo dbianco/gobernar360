@@ -185,7 +185,7 @@ it("keeps each municipality's configuration, and each part of it, apart", () => 
     <>
       <Reader />
       <SettingsScopeContext.Provider
-        value={{ base: '/x/1', path: '/p/1', key: ['platform', 'municipalities', '1'] }}
+        value={{ base: '/x/1', path: '/p/1', key: ['platform', 'municipalities', '1'], own: false }}
       >
         <Reader />
       </SettingsScopeContext.Provider>
@@ -195,6 +195,7 @@ it("keeps each municipality's configuration, and each part of it, apart", () => 
   expect(scopes).toEqual([
     {
       base: '/admin',
+      own: true,
       path: '/admin/settings',
       settingsKey: ['admin', 'settings'],
       templatesKey: ['admin', 'email-templates'],
@@ -202,6 +203,7 @@ it("keeps each municipality's configuration, and each part of it, apart", () => 
     },
     {
       base: '/x/1',
+      own: false,
       path: '/p/1',
       settingsKey: ['platform', 'municipalities', '1', 'settings'],
       templatesKey: ['platform', 'municipalities', '1', 'email-templates'],

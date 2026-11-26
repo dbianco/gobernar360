@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import { login, logout, PASSWORD, passwordLink, sidebar, theEmailTo } from './helpers.ts'
+import { login, logout, openUsers, PASSWORD, passwordLink, sidebar, theEmailTo } from './helpers.ts'
 
 test('operator creates a municipality, configures it and its administrator signs in', async ({
   page,
@@ -102,7 +102,7 @@ test('member without grants does not see the projects dashboard', async ({ page 
 
 test('admin grants a user read access and the dashboard appears for them', async ({ page }) => {
   await login(page, 'admin@noetinger.test')
-  await sidebar(page).getByRole('link', { name: 'Usuarios' }).click()
+  await openUsers(page)
   await page
     .getByRole('combobox', { name: 'Proyectos: Sofía Sin Acceso' })
     .selectOption({ label: 'Lectura' })

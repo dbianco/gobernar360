@@ -11,17 +11,151 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
-Usuarios
-Zonas
 Configuración
 Informes
 Página pública
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
 `;
 
 exports[`keeps the configuration of a municipality away from non-operators > screen at the start 1`] = `
+"[autosize measurement]
+[Cargando…]"
+`;
+
+exports[`leaves the users and the zones to the municipality, which has its own screen for them > screen at the end 1`] = `
+"[autosize measurement]
+[Abrir menú]
+gobernar360
+Ana Gómez
+[Cerrar sesión]
+Plataforma
+Ayuda
+← Volver al municipio
+Noetinger
+Configuración
+Lo que elijas acá vale para todo el municipio.
+[Configuración]
+Correos
+Acceso
+Mapas y zonas
+Avisos por email
+Destinatarios de los avisos
+Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos vencidos y tableros sin el estado del mes anterior. Si la dejás vacía, cada aviso le llega a quien administra su tablero.
+(intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
+jefa@noetinger.test
+Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
+Textos de los correos
+Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
+Correo
+Recuperar contraseña
+Le llega a quien pide una contraseña nueva desde la pantalla de ingreso. Se usa este texto si la cuenta pertenece solo a este municipio; si no, el texto por defecto.
+Texto propio del municipio
+Asunto
+*
+Variables
+Tocá una para agregarla donde está el cursor, en el asunto o en el texto.
+[Insertar la variable Nombre de la persona]
+Nombre de la persona
+[Insertar la variable Enlace]
+Enlace
+*
+[Insertar la variable Vencimiento del enlace]
+Vencimiento del enlace
+* Obligatoria: el correo no funciona sin ella.
+Texto
+[Formato del texto]
+[Negrita]
+[Cursiva]
+[Subrayado]
+[Tachado]
+[Título]
+[Lista con viñetas]
+[Lista numerada]
+[Enlace]
+[Quitar enlace]
+[Deshacer]
+[Rehacer]
+[Texto]
+{{link}}
+Enviarme una prueba
+Volver al texto por defecto
+Guardar texto
+Tipo de mapa
+Fondo de los mapas
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
+Estándar
+Humanitario
+CyclOSM (bicicletas)
+Estilo alemán
+Estilo francés
+Topográfico (OpenTopoMap)
+Transporte público (ÖPNVKarte)
+Mapa ciclista (Thunderforest)
+Mapa de transporte (Thunderforest)
+Topográfico (Tracestrack)
+MapTiler
+El mapa de openstreetmap.org. Sus servidores son para un uso moderado.
+[Vista previa del mapa]
+[Acercar]
++
+[Alejar]
+−
+500 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Cantidad mínima para mostrar una zona
+En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
+Guardar mapas y zonas
+Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Sus administradores los ven y no los pueden cambiar.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+Guardar fuentes oficiales"
+`;
+
+exports[`leaves the users and the zones to the municipality, which has its own screen for them > screen at the start 1`] = `
 "[autosize measurement]
 [Cargando…]"
 `;
@@ -33,6 +167,7 @@ gobernar360
 Ana Gómez
 [Cerrar sesión]
 Plataforma
+Ayuda
 ← Volver al municipio
 Noetinger
 Configuración
@@ -135,6 +270,7 @@ gobernar360
 Ana Gómez
 [Cerrar sesión]
 Plataforma
+Ayuda
 ← Volver al municipio
 El municipio no existe."
 `;
@@ -151,6 +287,7 @@ gobernar360
 Ana Gómez
 [Cerrar sesión]
 Plataforma
+Ayuda
 ← Volver al municipio
 Ocurrió un error. Intentá de nuevo."
 `;
@@ -166,6 +303,7 @@ gobernar360
 Ana Gómez
 [Cerrar sesión]
 Plataforma
+Ayuda
 ← Volver al municipio
 Noetinger
 Configuración

@@ -215,7 +215,7 @@ Dibujar zona
 [Cargando…]"
 `;
 
-exports[`is reached from the menu by administrators only > screen at the end 1`] = `
+exports[`is reached from Configuración by administrators only > screen at the end 1`] = `
 "[autosize measurement]
 [Abrir menú]
 gobernar360
@@ -226,12 +226,13 @@ Ana Gómez
 [Cerrar sesión]
 Resumen general
 Compromisos
+Ayuda
 Resumen general
 No tenés tableros habilitados
 Pedile al administrador de tu municipio que te dé acceso a un tablero."
 `;
 
-exports[`is reached from the menu by administrators only > screen at the start 1`] = `
+exports[`is reached from Configuración by administrators only > screen at the start 1`] = `
 "[autosize measurement]
 [Cargando…]"
 `;

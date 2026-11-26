@@ -1,6 +1,6 @@
 import { expect, type Page, test } from '@playwright/test'
 
-import { login, logout, sidebar } from './helpers.ts'
+import { login, logout, openUsers, sidebar } from './helpers.ts'
 
 const headline = (page: Page) => page.getByRole('region', { name: 'Indicadores clave' })
 const headlineCard = (page: Page, label: string) =>
@@ -13,7 +13,7 @@ async function openProjects(page: Page) {
 }
 
 async function setSofiasSocialAccess(page: Page, level: 'Lectura' | 'Sin acceso') {
-  await sidebar(page).getByRole('link', { name: 'Usuarios' }).click()
+  await openUsers(page)
   const access = page.getByRole('combobox', { name: 'Social: Sofía Sin Acceso' })
   await access.selectOption({ label: level })
   await expect(access).toHaveValue(level === 'Lectura' ? 'viewer' : '')

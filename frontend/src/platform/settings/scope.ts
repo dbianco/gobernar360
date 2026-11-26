@@ -12,12 +12,18 @@ export interface SettingsScope {
   path: string
   /** Prefix of the query keys, so two municipalities never share cached data. */
   key: string[]
+  /**
+   * Whether this is the signed-in administrator's own municipality. Its users and zones
+   * are managed from the same screen; the operator reaches them from the municipality page.
+   */
+  own: boolean
 }
 
 export const OWN_MUNICIPALITY: SettingsScope = {
   base: '/admin',
   path: '/admin/settings',
   key: ['admin'],
+  own: true,
 }
 
 export const SettingsScopeContext = createContext<SettingsScope>(OWN_MUNICIPALITY)
@@ -26,6 +32,7 @@ export function useSettingsScope() {
   const scope = useContext(SettingsScopeContext)
   return {
     base: scope.base,
+    own: scope.own,
     path: scope.path,
     settingsKey: [...scope.key, 'settings'],
     templatesKey: [...scope.key, 'email-templates'],

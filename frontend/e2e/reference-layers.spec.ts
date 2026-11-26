@@ -2,7 +2,7 @@ import path from 'node:path'
 
 import { expect, type Page, test } from '@playwright/test'
 
-import { backendCommand, login, logout, sidebar } from './helpers.ts'
+import { backendCommand, login, logout, openZones, sidebar } from './helpers.ts'
 
 const SAMPLES = path.resolve(import.meta.dirname, '../../docs/idecor/samples')
 const HOSPITAL = 'Salud: HOSPITAL MUNICIPAL DE NOETINGER'
@@ -85,7 +85,7 @@ test('the satellite image is chosen, and without it the map stays usable', async
 test('the official urban radius becomes a zone with the law that approves it', async ({ page }) => {
   importOfficial('--radius')
   await login(page, 'admin@noetinger.test')
-  await sidebar(page).getByRole('link', { name: 'Zonas' }).click()
+  await openZones(page)
 
   await expect(page.getByRole('cell', { name: /^Radio urbano/ })).toContainText(
     'Límite oficial: Expte 0423-031865-2008 - Ley 10796/2022',

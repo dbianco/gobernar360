@@ -103,7 +103,7 @@ The local sign-on provider knows the same demo emails with the same password, pl
 `sinacceso@noetinger.test` with an email it has not verified and
 `desconocida@example.test`, who has no gobernar360 account; gobernar360 lets neither in.
 Single sign-on is off for every municipality until its administrator turns it on in
-*Configuración*, in the menu or as a tab of *Usuarios* (for the demo: sign in as
+*Configuración*, in the menu, tab *Acceso* (for the demo: sign in as
 `admin@noetinger.test`).
 The demo loads several hundred made-up complaints for Noetinger but leaves the Complaints
 ("Reclamos") dashboard disabled there: the operator enables it from the municipality's page, and
@@ -135,8 +135,8 @@ name and phone without being asked for one, and gets a password only through the
   recorded in the municipality's audit log. The operator sees configuration only, never
   dashboard data, unless added as a user of that municipality.
 - A **municipality administrator** manages a subset of that for their own municipality:
-  its users and their permissions, its zones (*Zonas*, in the menu) and its configuration
-  (*Configuración*, in the menu), in tabs by kind: *Correos* (who receives notification
+  its users and their permissions, its zones and its configuration, all in
+  *Configuración* (in the menu), in tabs by kind: *Usuarios*, *Mapas y zonas* (the kind of map and, below it, the zones) and *Correos* (who receives notification
   emails, how residents are told about their complaints and the connection to CiDi, and the text
   of every email it sends), *Acceso* (whether members may use single
   sign-on) and *Mapas y zonas* (the background of its maps, and how small a count per zone
@@ -240,7 +240,7 @@ API role can only see rows of the municipality set for the current transaction.
 Place is part of the platform (`platform/geo`): a municipality draws its zones, and any
 dashboard can give its records a location.
 
-- **Zones** are drawn on a map or uploaded as GeoJSON (*Zonas*, for administrators). A
+- **Zones** are drawn on a map or uploaded as GeoJSON (*Configuración*, tab *Mapas y zonas*, for administrators). A
   boundary that is not closed or crosses itself is refused; overlapping zones are saved and
   reported. Moving a boundary adds a version from that moment on: the figures of a past year
   use the boundaries in force when it ended (before the first zone was drawn, today's) and leave
@@ -258,7 +258,7 @@ dashboard can give its records a location.
 - **Zone assignment** is done by database triggers, for every version of every zone, when a
   location or a boundary changes. A line belongs to every zone it crosses; a record where
   two zones overlap is in both and counts once in totals. What has no zone is listed for
-  review in each map and in *Zonas*. `uv run gobernar360 assign-zones` works everything out
+  review in each map and in the zones list. `uv run gobernar360 assign-zones` works everything out
   again, e.g. after restoring a backup with the triggers off.
 - **Maps** ask only for what is inside the visible area, with the filters of the list, and
   the API groups close records, so the answer stays small however many there are.
@@ -360,7 +360,7 @@ Every member of a municipality has *Compromisos* in the menu, whatever their das
   is done. Those of a cabinet meeting and the informal ones are listed together: the ones you
   owe, gave or follow.
 - When somebody is removed from the municipality, the administrator gets the open ones they owed
-  and may see (*Usuarios*) to give them to somebody else, and how many more there are; whoever
+  and may see (*Configuración*, tab *Usuarios*) to give them to somebody else, and how many more there are; whoever
   gave an informal one is told. Until then they say that their owner left.
 - An informal one is seen only by whoever gave it, whoever owes it and those attached, not by
   administrators or the cabinet. One of a meeting is seen by the cabinet's members too.

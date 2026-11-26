@@ -23,8 +23,8 @@ it('lists only the dashboards granted to the user', async () => {
     'href',
     '/commitments',
   )
-  // Only the overview, the commitments and the one dashboard this build knows about.
-  expect(nav.getAllByRole('link')).toHaveLength(3)
+  // Only the overview, the commitments, the one dashboard this build knows about, and help.
+  expect(nav.getAllByRole('link')).toHaveLength(4)
 })
 
 it('does not list dashboards the user has no access to', async () => {
@@ -42,18 +42,19 @@ it('hides the users link from non-admin members', async () => {
 
   const nav = await navigation()
 
-  expect(nav.queryByRole('link', { name: t('nav.users') })).not.toBeInTheDocument()
+  expect(nav.queryByRole('link', { name: t('nav.settings') })).not.toBeInTheDocument()
   expect(nav.queryByRole('link', { name: t('nav.settings') })).not.toBeInTheDocument()
   expect(nav.queryByRole('link', { name: t('nav.platform') })).not.toBeInTheDocument()
 })
 
-it('shows the users and configuration links to municipality admins', async () => {
+it('shows the configuration link to municipality admins, with the users and zones inside it', async () => {
   mockApi('get', '/overview', [])
   renderApp(<App />, { me: makeMe({ isAdmin: true }) })
 
   const nav = await navigation()
 
-  expect(nav.getByRole('link', { name: t('nav.users') })).toHaveAttribute('href', '/admin/users')
+  expect(nav.queryByRole('link', { name: 'Usuarios' })).toBeNull()
+  expect(nav.queryByRole('link', { name: 'Zonas' })).toBeNull()
   expect(nav.getByRole('link', { name: t('nav.settings') })).toHaveAttribute(
     'href',
     '/admin/settings',
@@ -141,9 +142,8 @@ it('gives every navigation link an icon', async () => {
 
   const links = (await navigation()).getAllByRole('link')
 
-  // Overview, commitments, four dashboards, users, settings, zones, reports, public page
-  // and platform.
-  expect(links).toHaveLength(12)
+  // Overview, commitments, four dashboards, settings, reports, public page, platform and help.
+  expect(links).toHaveLength(11)
   for (const link of links) expect(link.querySelector('svg')).not.toBeNull()
 })
 
@@ -205,15 +205,38 @@ it('changes the municipality from the switcher', async () => {
   expect(requests[0].body).toEqual({ municipality_id: SAIRA.id })
 })
 
-it('opens the users of the municipality at /admin', async () => {
+it('opens the configuration at /admin, and the old addresses of users and zones in it', async () => {
+  mockApi('get', '/admin/settings', {} as never)
+  mockApi('get', '/admin/email-templates', [])
   mockApi('get', '/admin/users', { items: [], total: 0 })
   mockApi('get', '/admin/dashboards', [])
-  renderApp(<App />, { me: makeMe({ isAdmin: true }), route: '/admin' })
+  const home = renderApp(<App />, { me: makeMe({ isAdmin: true }), route: '/admin' })
 
-  expect(await screen.findByRole('tab', { name: t('admin.tabs.users') })).toHaveAttribute(
+  expect(await screen.findByRole('tab', { name: t('settings.tabs.emails') })).toHaveAttribute(
     'aria-selected',
     'true',
   )
+  home.unmount()
+
+  const users = renderApp(<App />, { me: makeMe({ isAdmin: true }), route: '/admin/users' })
+  expect(await screen.findByRole('tab', { name: t('settings.tabs.users') })).toHaveAttribute(
+    'aria-selected',
+    'true',
+  )
+  users.unmount()
+
+  renderApp(<App />, { me: makeMe({ isAdmin: true }), route: '/admin/zones' })
+  expect(await screen.findByRole('tab', { name: t('settings.tabs.maps') })).toHaveAttribute(
+    'aria-selected',
+    'true',
+  )
+})
+
+it('has a help link for everyone, which opens the guide', async () => {
+  const { unmount } = renderApp(<App />, { me: makeMe(), route: '/help' })
+  expect(await screen.findByRole('heading', { name: t('guide.title') })).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: t('nav.help') })).toHaveAttribute('href', '/help')
+  unmount()
 })
 
 it('shows what one owes and follows beside the name, and their pages', async () => {
