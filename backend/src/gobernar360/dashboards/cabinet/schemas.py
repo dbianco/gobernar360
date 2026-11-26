@@ -25,7 +25,11 @@ class CommitmentOut(BaseModel):
     id: uuid.UUID
     description: str
     owner: UserRef
+    # Whether the owner is no longer a member of the municipality.
+    owner_left: bool
     due_date: dt.date
+    # The date agreed in the meeting, which the figures are judged by.
+    agreed_due_date: dt.date
     state: EffectiveState
     completed_on: dt.date | None
     times_postponed: int

@@ -6,6 +6,7 @@ CiDi (`docs/tasks/19-*.md`, `20-*.md` and the proposals 22 to 24 in `docs/tasks/
 | File | What it is |
 |---|---|
 | `reference.md` | **Start here.** What CiDi is, what it offers a municipality, what is and is **not** known. English digest with the exact Spanish terms. |
+| `adhesion-request.md` | The form a municipality fills in, signs and files to adhere, asking only for "Mis Comunicaciones". The app prints it with the municipality's name. |
 | `questions-for-province.md` | What we still have to ask the Province (the technical integration spec is not public). A person sends it; the agent must not guess its answers. |
 | `source/documentos_cidi_2023_12_19.pdf` and `.txt` | Official "Documentos técnicos y condiciones de uso de la Plataforma de Servicios Ciudadano Digital", version of 7 December 2023, as downloaded from `https://cidi.cba.gov.ar/portal-publico/assets/files/documentos_cidi_2023_12_19.pdf`. Four annexes: procedures, terms and privacy, forms (including the system adhesion form), security policies. The `.txt` is the text extracted from the PDF (readable by an agent). |
 | `source/decreto_1280_2014_normativa.pdf` and `.txt` | Decreto 1280 of 18 November 2014 that created the platform (articles 1 to 12), from `https://cidi.cba.gov.ar/portal-publico/assets/files/normativa_ciudadanodigital.pdf`. The extracted text also carries the annexes of that decree, older than the 2023 ones. |

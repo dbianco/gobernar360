@@ -31,6 +31,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -142,6 +176,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -216,6 +284,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -290,6 +392,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -369,6 +505,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -498,6 +668,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -572,6 +776,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test, otra@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -616,7 +854,7 @@ Enviarme una prueba
 Guardar texto
 Mapas y zonas
 Fondo de los mapas
-El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
 Humanitario
 CyclOSM (bicicletas)
@@ -642,7 +880,15 @@ OpenStreetMap
 contributors
 Cantidad mínima para mostrar una zona
 En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
-Guardar mapas y zonas"
+Guardar mapas y zonas
+Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
 `;
 
 exports[`keeps what was being typed in a tab while another is looked at > screen at the start 1`] = `
@@ -681,6 +927,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -761,6 +1041,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 uno, dos tres@x.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -840,6 +1154,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -921,6 +1269,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -998,6 +1380,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1077,6 +1493,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1155,6 +1605,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1268,6 +1752,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1342,7 +1860,7 @@ Acceso
 Mapas y zonas
 Mapas y zonas
 Fondo de los mapas
-El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
 Humanitario
 CyclOSM (bicicletas)
@@ -1368,7 +1886,15 @@ OpenStreetMap
 contributors
 Cantidad mínima para mostrar una zona
 En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
-Guardar mapas y zonas"
+Guardar mapas y zonas
+Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
 `;
 
 exports[`opens the tab of the address "/maps" > screen at the start 1`] = `
@@ -1407,6 +1933,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1485,6 +2045,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1563,6 +2157,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1609,7 +2237,7 @@ Permitir ingresar con inicio de sesión único
 Los usuarios del municipio pueden ingresar con la cuenta del proveedor de identidad de la plataforma, si su email coincide y el proveedor lo verificó. Esa sesión solo da acceso a los municipios que lo permiten.
 Mapas y zonas
 Fondo de los mapas
-El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.
+El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.
 Estándar
 Humanitario
 CyclOSM (bicicletas)
@@ -1635,7 +2263,15 @@ OpenStreetMap
 contributors
 Cantidad mínima para mostrar una zona
 En los datos sensibles (grupos familiares de Social), quienes solo tienen lectura no ven las cantidades por zona menores a esta, ni las que permitirían deducirlas. De 2 a 100: con un número más bajo se protege menos a las familias.
-Guardar mapas y zonas"
+Guardar mapas y zonas
+Fuentes oficiales
+Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.
+Clave en IDECOR
+Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.
+(Sin cargar)
+Capa de la CONAE
+Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.
+(Sin cargar)"
 `;
 
 exports[`orders what can be configured in tabs, each with its own address > screen at the start 1`] = `
@@ -1675,6 +2311,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test, no-es-un-email
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1755,6 +2425,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test, prensa@example.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1867,6 +2571,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -1985,6 +2723,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -2059,6 +2831,40 @@ Ocurrió un error. Intentá de nuevo.
 Correos
 Acceso
 Mapas y zonas
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -2137,6 +2943,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -2217,6 +3057,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Ocurrió un error. Intentá de nuevo."
@@ -2258,6 +3132,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -2337,6 +3245,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -2412,6 +3354,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -2492,6 +3468,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -2573,6 +3583,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 uno@noetinger.test; @noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -2653,6 +3697,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -2733,6 +3811,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 uno@noetinger.test; ana
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -2813,6 +3925,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -2893,6 +4039,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 uno@noetinger.test; ana@.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -2973,6 +4153,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 uno@noetinger.test; ana@@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -3053,6 +4267,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 uno@noetinger.test; ana@noetinger
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -3133,6 +4381,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 uno@noetinger.test; ana@noetinger.
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -3213,6 +4495,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 jefa@noetinger.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo
@@ -3293,6 +4609,40 @@ Direcciones separadas por comas. Reciben todos los avisos del municipio: hitos v
 (intendencia@municipio.gob.ar, prensa@municipio.gob.ar)
 uno@noetinger.test; ana@noetinger@x.test
 Guardar destinatarios
+Avisos a vecinos
+Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.
+Medio para avisar a los vecinos
+«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.
+Solo correo
+CiDi y, si no, correo
+Solo CiDi
+Para poder elegir CiDi falta: que la adhesión esté aprobada, el nombre del sistema, la dirección de publicación, el contacto.
+Ordenanza que respalda el uso de CiDi
+Opcional, por ejemplo Ordenanza 12.985. Es solo información.
+Conexión con CiDi
+La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.
+Ver e imprimir la solicitud de adhesión
+Estado de la adhesión
+Sin pedir
+Pedida
+Aprobada
+Fecha
+(dd/mm/aaaa)
+[Abrir calendario]
+Número de expediente
+Nombre del sistema
+Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.
+Dirección de publicación
+Contacto
+Quién responde por la conexión en el municipio.
+Claves de la conexión
+Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.
+Ninguna clave cargada.
+Nombre de la clave nueva
+En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.
+Valor de la clave nueva
+[Toggle password visibility]
+Guardar avisos a vecinos
 Textos de los correos
 Cada correo que envía el municipio usa el texto por defecto hasta que guardes uno propio. Las variables se reemplazan al enviar: por ejemplo, {{name}} por el nombre de la persona.
 Correo

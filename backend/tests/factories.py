@@ -1,6 +1,7 @@
 """Builders for test data. They write through the owner connection, which bypasses RLS."""
 
 import re
+from pathlib import Path
 
 from fastapi.testclient import TestClient
 from sqlalchemy import select
@@ -19,6 +20,10 @@ from gobernar360.platform.models import (
 )
 
 DEFAULT_PASSWORD = "secret-pass-1"
+# The repository, found by what it holds: mutation testing runs the tests from a copy inside.
+REPOSITORY = next(
+    folder for folder in Path(__file__).resolve().parents if (folder / "docs/cidi").is_dir()
+)
 
 
 def admin_session() -> Session:

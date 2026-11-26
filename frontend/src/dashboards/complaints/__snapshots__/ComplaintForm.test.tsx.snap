@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`starts with nothing chosen while the municipality has no active type or zone > screen at the end 1`] = `
+"Tipo de reclamo
+Zona
+Dirección
+Dónde está el problema.
+Descripción
+Quién reclama
+[Quién reclama]
+Anónimo
+Vecino con DNI
+Cancelar
+Guardar"
+`;
+
+exports[`starts with nothing chosen while the municipality has no active type or zone > screen at the start 1`] = `
+"Tipo de reclamo
+Zona
+Dirección
+Dónde está el problema.
+Descripción
+Quién reclama
+[Quién reclama]
+Anónimo
+Vecino con DNI
+Cancelar
+Guardar"
+`;

@@ -119,3 +119,67 @@ test('the other municipality has the dashboard and none of this data', async ({ 
   await page.getByRole('tab', { name: 'Requisitos' }).click()
   await expect(page.getByText('Todavía no hay requisitos cargados.')).toBeVisible()
 })
+
+test('a level on a procedure and a requirement on paper change the summary', async ({ page }) => {
+  const figures = async () => {
+    await page.getByRole('tab', { name: 'Resumen' }).click()
+    const section = page.getByRole('region', { name: 'Digitalización' })
+    const number = async (label: string) => {
+      const card = section.locator('[data-indicator]').filter({ hasText: label }).first()
+      return Number((await card.locator('p').nth(1).innerText()).replace(/\D/g, ''))
+    }
+    await expect(section).toBeVisible()
+    return { cidi: await number('Con ingreso por CiDi'), digital: await number('100 % digitales') }
+  }
+  const open = async (name: string) => {
+    await page.getByRole('tab', { name: 'Trámites' }).click()
+    await page.getByRole('searchbox', { name: 'Buscar' }).fill(name)
+    await page.getByRole('link', { name, exact: true }).click()
+    await expect(page.getByRole('heading', { name })).toBeVisible()
+  }
+  const numbering = 'Certificado de numeración domiciliaria'
+  await login(page, 'admin@noetinger.test')
+  await openDashboard(page)
+  const before = await figures()
+
+  // In person only: the form refuses.
+  await open('Permiso de obra')
+  await page.getByRole('button', { name: 'Editar', exact: true }).click()
+  const form = page.getByRole('dialog')
+  await form.getByLabel('Ingreso con CiDi').selectOption('2')
+  await expect(form.getByText('no tiene ingreso con CiDi', { exact: false })).toBeVisible()
+  await expect(form.getByRole('button', { name: 'Guardar' })).toBeDisabled()
+  await form.getByRole('button', { name: 'Cancelar' }).click()
+
+  await open(numbering)
+  await expect(page.getByText('100 % digital', { exact: true })).toBeVisible()
+  await page.getByRole('button', { name: 'Editar', exact: true }).click()
+  await form.getByLabel('Ingreso con CiDi').selectOption('2')
+  await form.getByRole('button', { name: 'Guardar' }).click()
+  await expect(page.getByText('Nivel 2 – Verificado', { exact: true })).toBeVisible()
+  // The summary shows the old figures while it refetches: wait for the new ones.
+  await expect.poll(figures).toEqual({ cidi: before.cidi + 1, digital: before.digital })
+  await expect(
+    page.getByRole('table', { name: 'Trámites por nivel de CiDi' }).getByRole('row', { name: /^Nivel 2/ }),
+  ).toBeVisible()
+
+  // What has to be brought on paper cannot be done from home, unless it is optional.
+  await open(numbering)
+  await page.getByRole('button', { name: 'Agregar requisito' }).click()
+  await form.getByLabel('Requisito').selectOption({ label: 'Foto carnet' })
+  await form.getByRole('button', { name: 'Guardar' }).click()
+  await expect(page.getByRole('row', { name: /Foto carnet/ })).toBeVisible()
+  await expect(page.getByText('100 % digital', { exact: true })).toHaveCount(0)
+  await expect.poll(figures).toEqual({ cidi: before.cidi + 1, digital: before.digital - 1 })
+  await open(numbering)
+  await page.getByRole('button', { name: 'Cambiar requisito: Foto carnet' }).click()
+  await form.getByRole('checkbox').uncheck()
+  await form.getByRole('button', { name: 'Guardar' }).click()
+  await expect(page.getByText('100 % digital', { exact: true })).toBeVisible()
+  await expect.poll(async () => (await figures()).digital).toBe(before.digital)
+
+  const csv = await page.request.get('/api/dashboards/procedures/export/procedures.csv')
+  const [header, ...rows] = (await csv.text()).trim().split(/\r?\n/)
+  expect(header.endsWith('cidi_level')).toBe(true)
+  expect(rows.find((row) => row.startsWith(numbering))).toMatch(/,2$/)
+})

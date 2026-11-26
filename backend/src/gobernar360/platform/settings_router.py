@@ -1,7 +1,8 @@
 """Configuración: what a municipality's administrators set for it.
 
 Who receives notification emails, whether members may sign in with single sign-on, what
-its maps show, and the municipality's own version of each email. The same routes serve the
+its maps show, how residents are told things, and the municipality's own version of each
+email. The same routes serve the
 municipality's administrators and the platform operator, as the member routes do (see
 members).
 """
@@ -9,17 +10,19 @@ members).
 import html
 from collections.abc import Callable
 from datetime import UTC, datetime, timedelta
-from typing import Annotated
+from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 from sqlalchemy import select
 
 from gobernar360.core.config import get_settings
 from gobernar360.core.errors import invalid_reference, map_api_key_required
-from gobernar360.platform import email_templates, municipality_settings
+from gobernar360.platform import email_templates, municipality_settings, notice_settings
 from gobernar360.platform.access import RequestContext, require_municipality_admin
 from gobernar360.platform.audit import record_change
+from gobernar360.platform.cidi import adhesion
 from gobernar360.platform.clock import Today
 from gobernar360.platform.email_templates import Html, Spec
 from gobernar360.platform.geo import backgrounds
@@ -32,6 +35,7 @@ from gobernar360.platform.models import (
     Municipality,
     MunicipalitySettings,
 )
+from gobernar360.platform.notice_settings import NoticeSettingsIn, NoticeSettingsOut
 from gobernar360.platform.notifications import previous_month
 from gobernar360.platform.outbox import enqueue
 from gobernar360.platform.schemas import Email
@@ -50,6 +54,9 @@ class SettingsOut(BaseModel):
     map_api_key: str | None
     # What can be chosen.
     map_backgrounds: list[BackgroundOut]
+    # Where the municipality is in the official services. Only the operator changes them.
+    idecor_key: str | None
+    conae_layer: str | None
 
 
 class MapSettingsIn(BaseModel):
@@ -68,15 +75,18 @@ class SettingsIn(BaseModel):
     sso_enabled: bool = False
 
 
-def _out(row: MunicipalitySettings | None) -> SettingsOut:
+def settings_out(row: MunicipalitySettings | None) -> SettingsOut:
+    conae_layer = row.conae_layer if row else None
     return SettingsOut(
         notification_emails=list(row.notification_emails) if row else [],
         sso_enabled=bool(row and row.sso_enabled),
         sso_available=get_settings().sso_enabled,
         small_zone_threshold=(row.small_zone_threshold if row else DEFAULT_SMALL_ZONE_THRESHOLD),
-        map_background=backgrounds.in_use(row.map_background if row else backgrounds.DEFAULT).key,
+        map_background=municipality_settings.background_in_use(row).key,
         map_api_key=row.map_api_key if row else None,
-        map_backgrounds=[BackgroundOut.model_validate(b) for b in backgrounds.BACKGROUNDS],
+        map_backgrounds=[BackgroundOut.model_validate(b) for b in backgrounds.offered(conae_layer)],
+        idecor_key=row.idecor_key if row else None,
+        conae_layer=conae_layer,
     )
 
 
@@ -106,13 +116,24 @@ def _template_out(spec: Spec, template: email_templates.Template) -> TemplateOut
     )
 
 
-def _own_row(ctx: RequestContext) -> MunicipalitySettings:
+def own_row(ctx: RequestContext) -> MunicipalitySettings:
     """The municipality's configuration, created the first time something is set."""
     row = municipality_settings.find(ctx.db, ctx.municipality_id)
     if row is None:
         row = MunicipalitySettings(municipality_id=ctx.municipality_id)
         ctx.db.add(row)
     return row
+
+
+def save_settings(
+    ctx: RequestContext, row: MunicipalitySettings, changes: dict[str, Any]
+) -> SettingsOut:
+    """Save what was set on the row, leaving `changes` in the audit trail."""
+    row.updated_at = datetime.now(UTC)
+    row.updated_by = ctx.user.id
+    ctx.db.flush()
+    record_change(ctx, "update", row, changes)
+    return settings_out(row)
 
 
 def _stored(ctx: RequestContext, key: str) -> EmailTemplate | None:
@@ -136,6 +157,9 @@ def _sample(ctx: RequestContext, spec: Spec, today) -> dict[str, object]:
         "month": month_name(previous_month(today)[1]),
         "items": Html(f"<ul><li>{item}</li></ul>"),
         "account_link": settings.app_link("/account"),
+        "code": text("email.test.code"),
+        "type": text("email.test.type"),
+        "message": text("email.test.message"),
     }
     return {name: values[name] for name in spec.variables}
 
@@ -148,44 +172,35 @@ def build_router(context: Callable[..., RequestContext]) -> APIRouter:
 
     @router.get("/settings")
     def read_settings(ctx: SettingsContext) -> SettingsOut:
-        return _out(municipality_settings.find(ctx.db, ctx.municipality_id))
+        return settings_out(municipality_settings.find(ctx.db, ctx.municipality_id))
 
     @router.put("/settings")
     def update_settings(payload: SettingsIn, ctx: SettingsContext) -> SettingsOut:
-        row = _own_row(ctx)
+        row = own_row(ctx)
         # Already normalised by `Email`; repeated addresses would get every email twice.
         row.notification_emails = list(dict.fromkeys(payload.notification_emails))
         row.sso_enabled = payload.sso_enabled
-        row.updated_at = datetime.now(UTC)
-        row.updated_by = ctx.user.id
-        ctx.db.flush()
-        record_change(
+        return save_settings(
             ctx,
-            "update",
             row,
             {"notification_emails": row.notification_emails, "sso_enabled": row.sso_enabled},
         )
-        return _out(row)
 
     @router.put("/settings/map")
     def update_map_settings(payload: MapSettingsIn, ctx: SettingsContext) -> SettingsOut:
         """The background of the maps, and which counts per zone are too small to show."""
-        chosen = backgrounds.find(payload.map_background)
+        row = own_row(ctx)
+        chosen = backgrounds.find(payload.map_background, row.conae_layer)
         if chosen is None:
             raise invalid_reference("map_background is not one of the backgrounds offered.")
         if chosen.provider is not None and payload.map_api_key is None:
             raise map_api_key_required()
-        row = _own_row(ctx)
         row.small_zone_threshold = payload.small_zone_threshold
         row.map_background = chosen.key
         # A key nobody uses is not kept.
         row.map_api_key = payload.map_api_key if chosen.provider is not None else None
-        row.updated_at = datetime.now(UTC)
-        row.updated_by = ctx.user.id
-        ctx.db.flush()
-        record_change(
+        return save_settings(
             ctx,
-            "update",
             row,
             {
                 "small_zone_threshold": row.small_zone_threshold,
@@ -193,7 +208,33 @@ def build_router(context: Callable[..., RequestContext]) -> APIRouter:
                 "map_api_key_set": row.map_api_key is not None,
             },
         )
-        return _out(row)
+
+    @router.get("/settings/notices")
+    def read_notice_settings(ctx: SettingsContext) -> NoticeSettingsOut:
+        return notice_settings.read(ctx)
+
+    @router.put("/settings/notices")
+    def update_notice_settings(
+        payload: NoticeSettingsIn, ctx: SettingsContext
+    ) -> NoticeSettingsOut:
+        """How residents are told things, and the municipality's connection to CiDi."""
+        row = own_row(ctx)
+        notice_settings.save(ctx, row, payload)
+        save_settings(
+            ctx,
+            row,
+            {
+                "resident_notice_channel": row.resident_notice_channel,
+                "cidi_ordinance": row.cidi_ordinance,
+            },
+        )
+        return notice_settings.read(ctx)
+
+    @router.get("/settings/notices/adhesion-request")
+    def read_adhesion_request(ctx: SettingsContext) -> HTMLResponse:
+        """The request the municipality files with the Province, to print and sign."""
+        municipality = ctx.db.get(Municipality, ctx.municipality_id)
+        return HTMLResponse(adhesion.request_page(municipality.name))
 
     @router.get("/email-templates")
     def list_templates(ctx: SettingsContext) -> list[TemplateOut]:

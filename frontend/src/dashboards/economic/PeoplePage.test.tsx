@@ -70,6 +70,7 @@ it('registers a new person', async () => {
       first_name: 'Elena',
       last_name: 'Paz',
       dni: '30111222',
+      cuil: null,
       birth_date: null,
       phone: '',
       email: '',

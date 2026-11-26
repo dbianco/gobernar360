@@ -77,23 +77,102 @@ def test_it_counts_by_state_and_owner_and_the_share_on_time(client):
     }
 
 
-def test_the_share_on_time_goes_by_the_date_it_has_now_also_if_its_owner_moved_it(client):
-    """Decided on purpose: a date moved is a date agreed. Its history tells it was moved."""
+def _indicators(municipality) -> dict:
+    with tenant_session(municipality.id) as db:
+        ctx = system_context(db, municipality.id)
+        return {i.key: i.value for i in cabinet_summary.get_summary(ctx, TODAY)}
+
+
+def _move(client, commitment, due_date: str, url: str = "/api") -> dict:
+    response = client.patch(f"{url}/commitments/{commitment['id']}", json={"due_date": due_date})
+    assert response.status_code == 200, response.text
+    return response.json()
+
+
+def test_moving_the_date_does_not_change_the_figures_and_its_history_tells_it(client):
     municipality, _ = cabinet_member(client)
     leo = make_user("leo@noetinger.test")
     make_membership(leo, municipality)
-    item = prepare(client, date(2026, 2, 1))["items"][0]
-    late = commit(client, item, leo, date(2026, 2, 20))
-    assert client.get(f"{URL}/summary").json()["on_time_share"] == 0.0
+    late, *_ = held(client, leo, date(2026, 2, 20), date(2026, 4, 1))
+    before = client.get(f"{URL}/summary").json(), _indicators(municipality)
+    assert before[1] == {
+        "cabinet.pending": 2,
+        "cabinet.overdue": 1,
+        "cabinet.done": 0,
+        "cabinet.on_time_ratio": 0.0,
+    }
+
     as_member(client, "leo@noetinger.test")
-    moved = client.patch(f"/api/commitments/{late['id']}", json={"due_date": "2026-03-15"})
-    assert moved.status_code == 200, moved.text
-    set_state(client, late, "done", completed_on="2026-03-10")
+    moved = _move(client, late, "2026-03-15")
     as_member(client)
 
-    assert client.get(f"{URL}/summary").json()["on_time_share"] == 1.0
+    # What it is due by now, apart from what was agreed.
+    assert (moved["due_date"], moved["agreed_due_date"], moved["state"]) == (
+        "2026-03-15",
+        "2026-02-20",
+        "open",
+    )
+    assert (client.get(f"{URL}/summary").json(), _indicators(municipality)) == before
     history = client.get(f"/api/commitments/{late['id']}").json()["history"]
     assert history[-1]["changes"] == {"due_date": ["2026-02-20", "2026-03-15"]}
+    assert history[-1]["author"] == "Leo"
+
+    # Delivered by the new date and not by the one agreed.
+    set_state(client, late, "done", completed_on="2026-03-10")
+    after = client.get(f"{URL}/summary").json()
+    assert (after["on_time_share"], after["by_owner"][0]["on_time_share"]) == (0.0, 0.0)
+    assert after["by_state"] == {"overdue": 0, "open": 1, "done": 1, "dropped": 0}
+    assert _indicators(municipality)["cabinet.on_time_ratio"] == 0.0
+
+
+def test_neither_does_moving_it_closer(client):
+    municipality, ana = cabinet_member(client)
+    [commitment] = held(client, ana, date(2026, 3, 20))
+
+    moved = _move(client, commitment, "2026-03-01", URL)
+
+    assert (moved["state"], moved["agreed_due_date"]) == ("overdue", "2026-03-20")
+    assert _indicators(municipality)["cabinet.overdue"] == 0
+    summary = client.get(f"{URL}/summary").json()
+    assert summary["by_state"] == {"overdue": 0, "open": 1, "done": 0, "dropped": 0}
+    # The list shows how it stands with the date it has.
+    [listed] = client.get(f"{URL}/commitments").json()["items"]
+    assert (listed["state"], listed["due_date"]) == ("overdue", "2026-03-01")
+
+
+def test_the_day_agreed_is_on_time_and_the_next_one_is_not(client):
+    municipality, ana = cabinet_member(client)
+    exact, late = held(client, ana, date(2026, 2, 20), date(2026, 2, 20))
+    for commitment in (exact, late):
+        _move(client, commitment, "2026-03-30", URL)
+    set_state(client, exact, "done", completed_on="2026-02-20")
+    set_state(client, late, "done", completed_on="2026-02-21")
+
+    assert client.get(f"{URL}/summary").json()["on_time_share"] == 0.5
+    assert _indicators(municipality)["cabinet.on_time_ratio"] == 0.5
+
+
+def test_a_date_corrected_while_the_meeting_is_open_is_the_one_agreed(client):
+    municipality, ana = cabinet_member(client)
+    meeting = prepare(client, date(2026, 2, 1))
+    commitment = commit(client, meeting["items"][0], ana, date(2026, 2, 20))
+
+    during = _move(client, commitment, "2026-02-25", URL)
+    close(client, meeting)
+    after = _move(client, commitment, "2026-03-30", URL)
+
+    assert (during["due_date"], during["agreed_due_date"]) == ("2026-02-25", "2026-02-25")
+    assert (after["due_date"], after["agreed_due_date"]) == ("2026-03-30", "2026-02-25")
+
+
+def test_its_owner_agrees_on_nothing_even_while_the_meeting_is_open(client):
+    municipality, _ = cabinet_member(client)
+    leo = make_user("leo@noetinger.test")
+    make_membership(leo, municipality)
+    commitment = commit(client, prepare(client)["items"][0], leo, date(2026, 3, 20))
+    as_member(client, "leo@noetinger.test")
+
+    assert _move(client, commitment, "2026-04-01")["agreed_due_date"] == "2026-03-20"
 
 
 def test_owners_are_ordered_by_what_they_owe_then_by_name(client):

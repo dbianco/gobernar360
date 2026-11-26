@@ -1,4 +1,4 @@
-# Task 20: Digitalization of procedures: how many can be done online, and with CiDi
+# Task 20: Digitalization of procedures: how many can be done online, and with CiDi - DONE
 
 Priority: **high** (chosen by the product owner on 2026-11-25).
 Read first: `docs/cidi/reference.md` §2 (the three levels) and §6. This task needs **no CiDi

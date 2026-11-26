@@ -105,12 +105,13 @@ export function passwordLink(email: Email): string {
   return match![0]
 }
 
-/** Run a gobernar360 command against the browser-test database. */
-export function backendCommand(...args: string[]) {
-  execFileSync('uv', ['run', 'gobernar360', ...args], {
+/** Run a gobernar360 command against the browser-test database; what it says. */
+export function backendCommand(...args: string[]): string {
+  return execFileSync('uv', ['run', 'gobernar360', ...args], {
     cwd: path.resolve(import.meta.dirname, '../../backend'),
     env: { ...process.env, ...backendEnv },
     stdio: 'pipe',
+    encoding: 'utf-8',
   })
 }
 

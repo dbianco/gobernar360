@@ -73,6 +73,7 @@ export function makeRegistryPerson(overrides: Partial<Person> = {}): Person {
     first_name: 'Juana',
     last_name: 'Pérez',
     dni: '12345678',
+    cuil: null,
     birth_date: '1990-05-01',
     phone: '3472 555222',
     email: '',

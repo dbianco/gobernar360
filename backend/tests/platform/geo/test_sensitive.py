@@ -4,7 +4,7 @@ import csv
 import dataclasses
 import io
 import json
-from datetime import date
+from datetime import UTC, date, datetime
 
 import pytest
 from sqlalchemy import func
@@ -359,3 +359,63 @@ def test_amounts_next_to_a_hidden_count_are_hidden_wherever_they_come(
             "Sur": "60.00",
         }
         assert _counts(client) == {"Norte": None, "Oeste": None, "Sur": 6}
+
+
+# Two days compared
+
+
+def _on(client, day) -> tuple:
+    body = client.get(f"{HOUSEHOLDS}/zones", params={"as_of": day}).json()
+    return body["boundaries_as_of"], body["zones"], body["outside"], body["total"]
+
+
+def test_a_viewer_cannot_tell_what_was_loaded_between_two_days(client, municipality):
+    make_zone(municipality, "Sur", square(0, 0))
+    make_zone(municipality, "Norte", square(2, 0))
+    # On the 11th there were five and then six: the zone of the sixth would be told by the
+    # figures of the day before.
+    loaded = [10, 10, 10, 10, 10, 11]
+    for index, day in enumerate(loaded):
+        make_household(
+            municipality,
+            f"Sur {index}",
+            location=point(0.1 + index / 100, 0.5),
+            created_at=datetime(2026, 4, day, 12, tzinfo=UTC),
+        )
+    _sign_in(client)
+
+    assert _on(client, "2026-04-10") == _on(client, "2026-04-11") == _on(client, "2026-04-30")
+    assert _on(client, "2026-04-10")[0] == "2026-04-30"
+    [north, south] = _on(client, "2026-04-10")[1]
+    assert (north["values"]["households"], south["values"]["households"]) == (None, 6)
+    assert _on(client, "2026-03-31")[0] == "2026-03-31"
+    assert _on(client, "2026-03-01")[0] == "2026-03-31"
+    # A month that is not over has no figures but today's.
+    assert _on(client, "2026-06-01") == _on(client, "2026-06-14") == _on(client, "2026-06-15")
+    assert _on(client, "2026-06-01")[0] is None
+    assert _on(client, "2025-06-14")[0] == "2025-06-30"
+    assert _on(client, "2024-02-01")[0] == "2024-02-29"
+    assert _on(client, "2027-01-01")[0] is None
+
+    _sign_in(client, "carla")
+    assert _on(client, "2026-04-10")[0] == "2026-04-10"
+    assert _on(client, "2026-04-10")[3]["values"]["households"] == 5
+    assert _on(client, "2026-04-11")[3]["values"]["households"] == 6
+    assert _on(client, "2026-06-14")[0] == "2026-06-14"
+
+
+def test_the_file_hides_the_days_too(client, municipality):
+    make_zone(municipality, "Sur", square(0, 0))
+    make_household(
+        municipality,
+        "Sur",
+        location=point(0.5, 0.5),
+        created_at=datetime(2026, 4, 20, 12, tzinfo=UTC),
+    )
+    _sign_in(client)
+
+    def total(day):
+        text = client.get(f"{HOUSEHOLDS}/zones.csv", params={"as_of": day}).text
+        return text.splitlines()[-1]
+
+    assert total("2026-04-01") == total("2026-04-30") == "(total),1,0"

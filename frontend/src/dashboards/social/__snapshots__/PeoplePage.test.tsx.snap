@@ -41,6 +41,37 @@ Barrio
 [Cargando…]"
 `;
 
+exports[`does not leave the registry data of one CUIL under another > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan.
+Nueva persona
+DNI
+Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
+CUIL
+Opcional, con o sin guiones. Es el usuario de la cuenta de CiDi.
+Fecha de nacimiento
+(dd/mm/aaaa)
+[Abrir calendario]
+Nombre
+Apellido
+Teléfono
+Email
+Domicilio
+Barrio
+Cancelar
+Guardar"
+`;
+
+exports[`does not leave the registry data of one CUIL under another > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
 exports[`ignores what the registry says about a document that was changed meanwhile > screen at the end 1`] = `
 "Buscar
 (Nombre, apellido o DNI)
@@ -50,6 +81,8 @@ No hay personas que coincidan.
 Nueva persona
 DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
+CUIL
+Opcional, con o sin guiones. Es el usuario de la cuenta de CiDi.
 Fecha de nacimiento
 (dd/mm/aaaa)
 [Abrir calendario]
@@ -70,6 +103,21 @@ Barrio
 [Cargando…]"
 `;
 
+exports[`keeps the CUIL that was typed when the registry has none > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan."
+`;
+
+exports[`keeps the CUIL that was typed when the registry has none > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
 exports[`keeps the form and says why the person could not be registered > screen at the end 1`] = `
 "Buscar
 (Nombre, apellido o DNI)
@@ -80,6 +128,8 @@ Nueva persona
 Ya hay otra persona con ese DNI en el padrón del municipio.
 DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
+CUIL
+Opcional, con o sin guiones. Es el usuario de la cuenta de CiDi.
 Fecha de nacimiento
 (dd/mm/aaaa)
 [Abrir calendario]
@@ -139,6 +189,21 @@ Barrio
 [Cargando…]"
 `;
 
+exports[`looks somebody without a document up by CUIL, and shows what the registry has > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan."
+`;
+
+exports[`looks somebody without a document up by CUIL, and shows what the registry has > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
 exports[`offers the data of a person another dashboard already loaded > screen at the end 1`] = `
 "Buscar
 (Nombre, apellido o DNI)
@@ -165,6 +230,8 @@ Pérez, Juana ya está registrada en este tablero.
 Abrir su ficha
 DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
+CUIL
+Opcional, con o sin guiones. Es el usuario de la cuenta de CiDi.
 Fecha de nacimiento
 (dd/mm/aaaa)
 [Abrir calendario]
@@ -179,6 +246,38 @@ Guardar"
 `;
 
 exports[`points to the existing record when the person is already in the dashboard > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
+exports[`refuses a CUIL that is not one, or of another document, without calling the server > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan.
+Nueva persona
+DNI
+Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
+CUIL
+Opcional, con o sin guiones. Es el usuario de la cuenta de CiDi.
+El CUIL no corresponde a ese DNI.
+Fecha de nacimiento
+(dd/mm/aaaa)
+[Abrir calendario]
+Nombre
+Apellido
+Teléfono
+Email
+Domicilio
+Barrio
+Cancelar
+Guardar"
+`;
+
+exports[`refuses a CUIL that is not one, or of another document, without calling the server > screen at the start 1`] = `
 "Buscar
 (Nombre, apellido o DNI)
 Barrio
@@ -215,6 +314,21 @@ Barrio
 [Cargando…]"
 `;
 
+exports[`saves the CUIL in digits, however it is typed > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan."
+`;
+
+exports[`saves the CUIL in digits, however it is typed > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
 exports[`says so when nobody matches > screen at the end 1`] = `
 "Buscar
 (Nombre, apellido o DNI)
@@ -224,6 +338,38 @@ No hay personas que coincidan."
 `;
 
 exports[`says so when nobody matches > screen at the start 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+[Cargando…]"
+`;
+
+exports[`says that somebody else has the CUIL > screen at the end 1`] = `
+"Buscar
+(Nombre, apellido o DNI)
+Barrio
+Cargar nueva persona
+No hay personas que coincidan.
+Nueva persona
+Otra persona ya tiene ese CUIL.
+DNI
+Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
+CUIL
+Opcional, con o sin guiones. Es el usuario de la cuenta de CiDi.
+Fecha de nacimiento
+(dd/mm/aaaa)
+[Abrir calendario]
+Nombre
+Apellido
+Teléfono
+Email
+Domicilio
+Barrio
+Cancelar
+Guardar"
+`;
+
+exports[`says that somebody else has the CUIL > screen at the start 1`] = `
 "Buscar
 (Nombre, apellido o DNI)
 Barrio
@@ -240,6 +386,8 @@ Nueva persona
 Ocurrió un error. Intentá de nuevo.
 DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
+CUIL
+Opcional, con o sin guiones. Es el usuario de la cuenta de CiDi.
 Fecha de nacimiento
 (dd/mm/aaaa)
 [Abrir calendario]

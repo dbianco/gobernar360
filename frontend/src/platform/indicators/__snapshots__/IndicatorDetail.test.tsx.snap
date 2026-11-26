@@ -1,0 +1,408 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`compares today with the month before, a year ago and the target > screen at the end 1`] = `
+"Presupuesto ejecutado
+Presupuesto ejecutado sobre el presupuesto planificado de los proyectos de la gestión más reciente.
+[Qué significa Presupuesto ejecutado]
+Hoy
+40 %
+Cierre del mes anterior
+38 %
+Variación: +2 p.p.
+Mismo mes del año pasado
+45 %
+Variación: −5 p.p.
+Meta 2026
+50 %
+Fuera de meta
+Más alto es mejor
+Últimos 12 meses
+Ver como tabla
+[Meta legend icon]
+Meta
+[Valor legend icon]
+Valor
+Jul 25
+Ago 25
+Sep 25
+Oct 25
+Nov 25
+Dic 25
+Ene 26
+Feb 26
+Mar 26
+Abr 26
+May 26
+Jun 26
+0 %
+15 %
+30 %
+45 %
+60 %
+0 %"
+`;
+
+exports[`compares today with the month before, a year ago and the target > screen at the start 1`] = `
+"Presupuesto ejecutado
+[Qué significa Presupuesto ejecutado]
+Hoy
+40 %
+Cierre del mes anterior
+38 %
+Variación: +2 p.p.
+Mismo mes del año pasado
+45 %
+Variación: −5 p.p.
+Meta 2026
+50 %
+Fuera de meta
+Más alto es mejor
+Últimos 12 meses
+Ver como tabla
+[Meta legend icon]
+Meta
+[Valor legend icon]
+Valor
+Jul 25
+Ago 25
+Sep 25
+Oct 25
+Nov 25
+Dic 25
+Ene 26
+Feb 26
+Mar 26
+Abr 26
+May 26
+Jun 26
+0 %
+15 %
+30 %
+45 %
+60 %
+0 %"
+`;
+
+exports[`draws no target line for an indicator without one > screen at the end 1`] = `
+"10 %
+Presupuesto ejecutado
+Presupuesto ejecutado sobre el presupuesto planificado de los proyectos de la gestión más reciente.
+[Qué significa Presupuesto ejecutado]
+Hoy
+40 %
+Cierre del mes anterior
+38 %
+Variación: +2 p.p.
+Mismo mes del año pasado
+45 %
+Variación: −5 p.p.
+Meta 2026
+—
+Más alto es mejor
+Últimos 12 meses
+Ver como tabla
+[Valor legend icon]
+Valor
+Jul 25
+Ago 25
+Sep 25
+Oct 25
+Nov 25
+Dic 25
+Ene 26
+Feb 26
+Mar 26
+Abr 26
+May 26
+Jun 26
+0 %
+10 %
+20 %
+30 %
+40 %"
+`;
+
+exports[`draws no target line for an indicator without one > screen at the start 1`] = `
+"10 %
+Presupuesto ejecutado
+[Qué significa Presupuesto ejecutado]
+Hoy
+40 %
+Cierre del mes anterior
+38 %
+Variación: +2 p.p.
+Mismo mes del año pasado
+45 %
+Variación: −5 p.p.
+Meta 2026
+—
+Más alto es mejor
+Últimos 12 meses
+Ver como tabla
+[Valor legend icon]
+Valor
+Jul 25
+Ago 25
+Sep 25
+Oct 25
+Nov 25
+Dic 25
+Ene 26
+Feb 26
+Mar 26
+Abr 26
+May 26
+Jun 26
+0 %
+10 %
+20 %
+30 %
+40 %"
+`;
+
+exports[`draws the months with their values in the unit of the indicator > screen at the end 1`] = `
+"0
+Presupuesto ejecutado
+Presupuesto ejecutado sobre el presupuesto planificado de los proyectos de la gestión más reciente.
+[Qué significa Presupuesto ejecutado]
+Hoy
+40 %
+Cierre del mes anterior
+38 %
+Variación: +2 p.p.
+Mismo mes del año pasado
+45 %
+Variación: −5 p.p.
+Meta 2026
+50 %
+Fuera de meta
+Más alto es mejor
+Últimos 12 meses
+Ver como tabla
+Junio 2026
+Meta
+:
+50 %
+Valor
+:
+40 %
+[Meta legend icon]
+Meta
+[Valor legend icon]
+Valor
+Jul 25
+Ago 25
+Sep 25
+Oct 25
+Nov 25
+Dic 25
+Ene 26
+Feb 26
+Mar 26
+Abr 26
+May 26
+Jun 26
+0 %
+15 %
+30 %
+45 %
+60 %"
+`;
+
+exports[`draws the months with their values in the unit of the indicator > screen at the start 1`] = `
+"0
+Presupuesto ejecutado
+[Qué significa Presupuesto ejecutado]
+Hoy
+40 %
+Cierre del mes anterior
+38 %
+Variación: +2 p.p.
+Mismo mes del año pasado
+45 %
+Variación: −5 p.p.
+Meta 2026
+50 %
+Fuera de meta
+Más alto es mejor
+Últimos 12 meses
+Ver como tabla
+[Meta legend icon]
+Meta
+[Valor legend icon]
+Valor
+Jul 25
+Ago 25
+Sep 25
+Oct 25
+Nov 25
+Dic 25
+Ene 26
+Feb 26
+Mar 26
+Abr 26
+May 26
+Jun 26
+0 %
+15 %
+30 %
+45 %
+60 %"
+`;
+
+exports[`leaves out the comparisons there is nothing for > screen at the end 1`] = `
+"0
+Presupuesto ejecutado
+Prestaciones sociales entregadas en lo que va del año, divididas por los proyectos activos de la gestión más reciente. Combina los tableros Social y Proyectos.
+[Qué significa Presupuesto ejecutado]
+Hoy
+2,5
+Cierre del mes anterior
+—
+Mismo mes del año pasado
+—
+Meta 2026
+—
+Ninguno de los dos sentidos es mejor en sí mismo.
+Los meses vacíos no tienen datos cargados.
+Últimos 12 meses
+Ver como tabla
+[Valor legend icon]
+Valor
+Jul 25
+Ago 25
+Sep 25
+Oct 25
+Nov 25
+Dic 25
+Ene 26
+Feb 26
+Mar 26
+Abr 26
+May 26
+Jun 26
+0
+0,65
+1,3
+1,95
+2,6"
+`;
+
+exports[`leaves out the comparisons there is nothing for > screen at the start 1`] = `
+"0
+Presupuesto ejecutado
+[Qué significa Presupuesto ejecutado]
+Hoy
+2,5
+Cierre del mes anterior
+—
+Mismo mes del año pasado
+—
+Meta 2026
+—
+Ninguno de los dos sentidos es mejor en sí mismo.
+Los meses vacíos no tienen datos cargados.
+Últimos 12 meses
+Ver como tabla
+[Valor legend icon]
+Valor
+Jul 25
+Ago 25
+Sep 25
+Oct 25
+Nov 25
+Dic 25
+Ene 26
+Feb 26
+Mar 26
+Abr 26
+May 26
+Jun 26
+0
+0,65
+1,3
+1,95
+2,6"
+`;
+
+exports[`says when the target is met, and closes > screen at the end 1`] = `
+"0
+Presupuesto ejecutado
+[Qué significa Presupuesto ejecutado]
+Hoy
+40 %
+Cierre del mes anterior
+38 %
+Variación: +2 p.p.
+Mismo mes del año pasado
+45 %
+Variación: −5 p.p.
+Meta 2026
+30 %
+En meta
+Más alto es mejor
+Últimos 12 meses
+Ver como tabla
+[Meta legend icon]
+Meta
+[Valor legend icon]
+Valor
+Jul 25
+Ago 25
+Sep 25
+Oct 25
+Nov 25
+Dic 25
+Ene 26
+Feb 26
+Mar 26
+Abr 26
+May 26
+Jun 26
+0 %
+15 %
+30 %
+45 %
+60 %"
+`;
+
+exports[`says when the target is met, and closes > screen at the start 1`] = `
+"0
+Presupuesto ejecutado
+[Qué significa Presupuesto ejecutado]
+Hoy
+40 %
+Cierre del mes anterior
+38 %
+Variación: +2 p.p.
+Mismo mes del año pasado
+45 %
+Variación: −5 p.p.
+Meta 2026
+30 %
+En meta
+Más alto es mejor
+Últimos 12 meses
+Ver como tabla
+[Meta legend icon]
+Meta
+[Valor legend icon]
+Valor
+Jul 25
+Ago 25
+Sep 25
+Oct 25
+Nov 25
+Dic 25
+Ene 26
+Feb 26
+Mar 26
+Abr 26
+May 26
+Jun 26
+0 %
+15 %
+30 %
+45 %
+60 %"
+`;

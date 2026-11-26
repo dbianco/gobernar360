@@ -52,6 +52,10 @@ def test_summary_counts_only_active_procedures(client):
     assert response.json() == {
         "procedures": 4,
         "online": 2,
+        "cidi": 0,
+        "cidi_ratio": 0.0,
+        "digital": 0,
+        "digital_ratio": 0.0,
         "average_requirements": 2.0,
         "requirements": 6,
         "sources": 4,
@@ -60,6 +64,12 @@ def test_summary_counts_only_active_procedures(client):
             {"channel": "in_person", "count": 2},
             {"channel": "online", "count": 1},
             {"channel": "both", "count": 1},
+        ],
+        "by_cidi_level": [
+            {"level": 1, "count": 0},
+            {"level": 2, "count": 0},
+            {"level": 3, "count": 0},
+            {"level": None, "count": 4},
         ],
         "top_requirements": [
             {"name": "DNI", "source": None, "count": 3},
@@ -77,6 +87,10 @@ def test_summary_of_an_empty_dashboard(client):
     assert client.get(f"{BASE}/summary").json() == {
         "procedures": 0,
         "online": 0,
+        "cidi": 0,
+        "cidi_ratio": None,
+        "digital": 0,
+        "digital_ratio": None,
         "average_requirements": None,
         "requirements": 0,
         "sources": 0,
@@ -86,6 +100,7 @@ def test_summary_of_an_empty_dashboard(client):
             {"channel": "online", "count": 0},
             {"channel": "both", "count": 0},
         ],
+        "by_cidi_level": [{"level": level, "count": 0} for level in (1, 2, 3, None)],
         "top_requirements": [],
     }
 
@@ -163,6 +178,10 @@ def test_overview_shows_the_procedures_indicators(client):
                 {"key": "procedures.active", "value": 4, "unit": None},
                 {"key": "procedures.online", "value": 2, "unit": None},
                 {"key": "procedures.online_ratio", "value": 0.5, "unit": "ratio"},
+                {"key": "procedures.cidi", "value": 0, "unit": None},
+                {"key": "procedures.cidi_ratio", "value": 0.0, "unit": "ratio"},
+                {"key": "procedures.digital", "value": 0, "unit": None},
+                {"key": "procedures.digital_ratio", "value": 0.0, "unit": "ratio"},
                 {"key": "procedures.requirements", "value": 6, "unit": None},
                 {"key": "procedures.sources", "value": 4, "unit": None},
             ],
@@ -239,6 +258,10 @@ def test_a_dashboard_with_only_a_catalog_shows_its_indicators(client, requiremen
         {"key": "procedures.active", "value": 0, "unit": None},
         {"key": "procedures.online", "value": 0, "unit": None},
         {"key": "procedures.online_ratio", "value": None, "unit": "ratio"},
+        {"key": "procedures.cidi", "value": 0, "unit": None},
+        {"key": "procedures.cidi_ratio", "value": None, "unit": "ratio"},
+        {"key": "procedures.digital", "value": 0, "unit": None},
+        {"key": "procedures.digital_ratio", "value": None, "unit": "ratio"},
         {"key": "procedures.requirements", "value": requirements, "unit": None},
         {"key": "procedures.sources", "value": sources, "unit": None},
     ]

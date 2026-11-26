@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { PATH } from '../../platform/commitments/api'
+import { OwnerLeftBadge } from '../../platform/commitments/OwnerLeftBadge'
 import { PostponedBadge } from '../../platform/commitments/PostponedBadge'
 import { StateBadge } from '../../platform/commitments/StateBadge'
 import { formatDate } from '../../platform/format'
@@ -31,12 +32,15 @@ export function CommitmentLine(props: {
           )}
           <StateBadge state={commitment.state} />
           <PostponedBadge times={commitment.times_postponed} />
+          <OwnerLeftBadge commitment={commitment} />
         </Group>
         <Text size="sm" c="dimmed">
           {t('commitments.owed', {
             owner: commitment.owner.full_name,
             date: formatDate(commitment.due_date),
           })}
+          {commitment.agreed_due_date !== commitment.due_date &&
+            ` ${t('commitments.agreedFor', { date: formatDate(commitment.agreed_due_date) })}`}
           {props.hideName && (
             <>
               {' · '}

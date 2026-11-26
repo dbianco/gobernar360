@@ -26,9 +26,18 @@ export const BACKGROUNDS: MapBackground[] = [
   }),
 ]
 
+/** Offered only where the operator said which layer is the municipality's. */
+export const SATELLITE = background({
+  key: 'satellite',
+  url: tiles('satellite'),
+  attribution: 'Imagen: CONAE – Pleiades Neo 2023',
+})
+
 export const MAP_SETTINGS = {
   small_zone_threshold: 5,
   map_background: 'standard',
   map_api_key: null,
   map_backgrounds: BACKGROUNDS,
+  idecor_key: null,
+  conae_layer: null,
 }

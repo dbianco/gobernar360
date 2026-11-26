@@ -81,7 +81,16 @@ tratar de la reunión anterior. Lo que ya aparece por sí mismo no se repite com
   y la fecha también después, y quedan en el historial, que solo crece.
 - Carga cambia el estado. Quien lo debe puede agregar notas aunque solo lea el tablero.
 - **Cumplidos en término:** sobre los cumplidos y los vencidos. Los vencidos cuentan en
-  contra: dejarlos afuera premiaría no cumplir. Se mide con la fecha vigente.
+  contra: dejarlos afuera premiaría no cumplir. Se mide con la **fecha acordada** en la
+  reunión (`agreed_due_date`), igual que los vencidos de las cifras: mover la fecha queda en
+  el historial y no las cambia. Lo que corrige quien edita Gabinete mientras la reunión está
+  abierta es todavía lo acordado. (F1 de la revisión del 2026-11-25, confirmado por el usuario; antes se medía con la
+  fecha vigente.) Las listas y el acta siguen diciendo cómo está cada uno con su fecha actual.
+- **Responsable que deja el municipio:** el compromiso sigue abierto y dice «El responsable ya
+  no está» hasta que se reasigna (F2).
+- **La cuenta de postergaciones llega a quien lo debe**, aunque no acceda a Gabinete (F9): es un
+  dato de su propio compromiso, no dice qué reuniones hubo ni qué se trató, y sin él se
+  enteraría de una demora solo quien la mide.
 - El responsable es cualquier miembro activo; el formulario avisa si no accede al tablero.
 
 ## Queda a criterio de quien construye

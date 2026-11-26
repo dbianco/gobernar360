@@ -93,8 +93,8 @@ def system_context(db: Session, municipality_id: uuid.UUID) -> RequestContext:
     """A context for work done outside a request, such as taking monthly snapshots.
 
     `db` must already be scoped to the municipality (`core.db.tenant_session`). There is no
-    user, so it can only be handed to code that reads, like a dashboard's `get_summary`,
-    never to the audited writes of `tenant_crud`.
+    user: what a command writes through `tenant_crud` is audited as a change of the system,
+    and code that asks who is signed in must not be given it.
     """
     return RequestContext(user=None, municipality_id=municipality_id, membership=None, db=db)
 

@@ -1,0 +1,256 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`asks again when the map moves > screen at the end 1`] = `
+"[Mapa]
+[Salud: Hospital <b>Municipal</b>]
++
+[Acercar]
++
+[Alejar]
+−
+10 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors, Equipamiento: IDECOR
+Equipamiento
+Centros de salud y escuelas, de los datos oficiales de la Provincia."
+`;
+
+exports[`asks again when the map moves > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`does not offer them while a background is only being tried > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`does not offer them while a background is only being tried > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`gives one mark to the schools of a building, and tells them apart > screen at the end 1`] = `
+"[Mapa]
+[Escuela: Escuela Alem, Escuela nocturna]
+E
+Escuela Alem
+Nivel: Primario
+Escuela nocturna
+Nivel: Adultos
+Fuente: IDECOR
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors, Equipamiento: IDECOR
+Equipamiento
+Centros de salud y escuelas, de los datos oficiales de la Provincia."
+`;
+
+exports[`gives one mark to the schools of a building, and tells them apart > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`keeps the map when it cannot know what was imported > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`keeps the map when it cannot know what was imported > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`keeps the map when the facilities cannot be read > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors, Equipamiento: IDECOR
+Equipamiento
+Centros de salud y escuelas, de los datos oficiales de la Provincia."
+`;
+
+exports[`keeps the map when the facilities cannot be read > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`offers nothing where nothing was imported > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors"
+`;
+
+exports[`offers nothing where nothing was imported > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`says it with the keyboard too > screen at the end 1`] = `
+"[Mapa]
+[Salud: Hospital <b>Municipal</b>]
++
+Hospital <b>Municipal</b>
+Tipo: Con internación
+Gestión: MUNICIPAL
+Dirección: San Martín 100
+Fuente: IDECOR
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors, Equipamiento: IDECOR
+Equipamiento
+Centros de salud y escuelas, de los datos oficiales de la Provincia."
+`;
+
+exports[`says it with the keyboard too > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`says what a facility is when it is pressed, as its source wrote it > screen at the end 1`] = `
+"[Mapa]
+[Salud: Hospital <b>Municipal</b>]
++
+Hospital <b>Municipal</b>
+Tipo: Con internación
+Gestión: MUNICIPAL
+Dirección: San Martín 100
+Fuente: IDECOR
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors, Equipamiento: IDECOR
+Equipamiento
+Centros de salud y escuelas, de los datos oficiales de la Provincia."
+`;
+
+exports[`says what a facility is when it is pressed, as its source wrote it > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;
+
+exports[`shows the facilities of the visible area when asked to, and not before > screen at the end 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Equipamiento
+Centros de salud y escuelas, de los datos oficiales de la Provincia."
+`;
+
+exports[`shows the facilities of the visible area when asked to, and not before > screen at the start 1`] = `
+"[Mapa]
+[Acercar]
++
+[Alejar]
+−
+20 km
+Leaflet"
+`;

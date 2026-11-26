@@ -198,12 +198,14 @@ it("keeps each municipality's configuration, and each part of it, apart", () => 
       path: '/admin/settings',
       settingsKey: ['admin', 'settings'],
       templatesKey: ['admin', 'email-templates'],
+      noticesKey: ['admin', 'settings-notices'],
     },
     {
       base: '/x/1',
       path: '/p/1',
       settingsKey: ['platform', 'municipalities', '1', 'settings'],
       templatesKey: ['platform', 'municipalities', '1', 'email-templates'],
+      noticesKey: ['platform', 'municipalities', '1', 'settings-notices'],
     },
   ])
   expect(OWN_MUNICIPALITY.key).toEqual(['admin'])

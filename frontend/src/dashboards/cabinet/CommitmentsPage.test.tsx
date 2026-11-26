@@ -51,6 +51,27 @@ it('lists what is pending: what, who, when, how and about what', async () => {
   expect([params.get('state'), params.get('limit')]).toEqual(['pending', '10'])
 })
 
+it('shows the date agreed when it was moved, and that the owner left', async () => {
+  mockApi(
+    'get',
+    `${BASE}/commitments`,
+    page([
+      makeCommitment({ due_date: '2026-12-15', owner_left: true }),
+      makeCommitment({ id: 'co-2', description: 'Señalizar' }),
+    ]),
+  )
+  renderCabinet(<CommitmentsPage />, { level: 'viewer' })
+
+  const agreed = t('commitments.agreedFor', { date: '20/11/2026' })
+  const moved = within(await screen.findByRole('row', { name: /Certificar/ }))
+  expect(moved.getByText('15/12/2026')).toBeInTheDocument()
+  expect(moved.getByText(agreed)).toBeInTheDocument()
+  expect(moved.getByText(t('commitments.ownerLeft'))).toBeInTheDocument()
+  const same = within(screen.getByRole('row', { name: /Señalizar/ }))
+  expect(same.queryByText(agreed)).toBeNull()
+  expect(same.queryByText(t('commitments.ownerLeft'))).toBeNull()
+})
+
 it('filters on the server, and the download takes the same filters', async () => {
   const requests = mockApi('get', `${BASE}/commitments`, page([makeCommitment()], 30))
   renderCabinet(<CommitmentsPage />)

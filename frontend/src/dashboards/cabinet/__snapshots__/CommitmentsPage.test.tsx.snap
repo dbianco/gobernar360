@@ -214,3 +214,73 @@ Nada coincide con la búsqueda.
 Descargar CSV
 [Cargando…]"
 `;
+
+exports[`shows the date agreed when it was moved, and that the owner left > screen at the end 1`] = `
+"Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+Responsable
+(Todos los responsables)
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+Descargar CSV
+[Compromisos]
+Compromiso
+[Qué significa Compromiso]
+Lo que se acordó. Al hacer clic se abre con su historial.
+Responsable
+[Qué significa Responsable]
+Quién tiene que cumplirlo.
+Para el
+[Qué significa Para el]
+Fecha comprometida. Pasado ese día, un compromiso pendiente figura como vencido.
+Estado
+[Qué significa Estado]
+Cómo está y cuántas veces llegó sin cumplir a una reunión posterior.
+Vinculado a
+[Qué significa Vinculado a]
+De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.
+Reunión
+[Qué significa Reunión]
+Reunión en la que se tomó.
+Certificar la obra
+Leo Paz
+15/12/2026
+(se acordó para el 20/11/2026)
+Vencido
+Postergado 2 veces
+El responsable ya no está
+Plaza central
+20/10/2026
+Señalizar
+Leo Paz
+20/11/2026
+Vencido
+Postergado 2 veces
+Plaza central
+20/10/2026"
+`;
+
+exports[`shows the date agreed when it was moved, and that the owner left > screen at the start 1`] = `
+"Buscar
+(Compromiso o responsable)
+Estado
+Pendientes y vencidos
+Vencido
+Pendiente
+Cumplido
+Descartado
+Todos los estados
+Responsable
+(Todos los responsables)
+Nada coincide con la búsqueda.
+Descargar CSV
+[Cargando…]"
+`;

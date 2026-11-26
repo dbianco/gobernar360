@@ -82,6 +82,8 @@ def make_zone(
 
 
 def make_actor_at(municipality: Municipality, name: str, location: dict | None, **fields) -> Actor:
+    # Loaded long ago unless told otherwise: figures of a past day leave out what was not.
+    fields.setdefault("created_at", datetime(2020, 1, 1, tzinfo=UTC))
     actor = Actor(municipality_id=municipality.id, name=name, location=location, **fields)
     with admin_session() as session, session.begin():
         session.add(actor)

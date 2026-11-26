@@ -10,8 +10,10 @@ from fastapi import APIRouter
 from sqlalchemy import func, select
 
 from gobernar360.dashboards.procedures.access import Viewer
+from gobernar360.dashboards.procedures.digital import FULLY_DIGITAL, ONLINE_CHANNELS
 from gobernar360.dashboards.procedures.models import (
     CHANNELS,
+    CIDI_LEVELS,
     SOURCE_LEVELS,
     Area,
     Procedure,
@@ -21,6 +23,7 @@ from gobernar360.dashboards.procedures.models import (
 )
 from gobernar360.dashboards.procedures.schemas import (
     ChannelCount,
+    CidiLevelCount,
     NameCount,
     OpportunitiesOut,
     Reach,
@@ -34,7 +37,6 @@ from gobernar360.platform.access import RequestContext
 router = APIRouter()
 
 TOP_REQUIREMENTS = 10
-ONLINE_CHANNELS = ("online", "both")
 ACTIVE = Procedure.is_active.is_(True)
 
 # The inventory is kept as it stands today, with no record of when a procedure went
@@ -45,6 +47,20 @@ INDICATORS = (
     IndicatorDefinition(
         "procedures.online_ratio", "ratio", name="Trámites con canal en línea", aggregate=True
     ),
+    IndicatorDefinition("procedures.cidi", name="Trámites con ingreso por CiDi", aggregate=True),
+    IndicatorDefinition(
+        "procedures.cidi_ratio",
+        "ratio",
+        name="Proporción de trámites en línea que usan CiDi",
+        aggregate=True,
+    ),
+    IndicatorDefinition("procedures.digital", name="Trámites 100 % digitales", aggregate=True),
+    IndicatorDefinition(
+        "procedures.digital_ratio",
+        "ratio",
+        name="Proporción de trámites 100 % digitales",
+        aggregate=True,
+    ),
     # Every requirement is something a person has to bring or the municipality to fetch.
     IndicatorDefinition(
         "procedures.requirements",
@@ -54,6 +70,23 @@ INDICATORS = (
     ),
     IndicatorDefinition("procedures.sources", name="Fuentes cargadas", aggregate=True),
 )
+
+
+def by_cidi_level(ctx: RequestContext) -> list[CidiLevelCount]:
+    """Active procedures per level, the lowest first, and those without one at the end."""
+    counts = dict(
+        ctx.db.execute(
+            select(Procedure.cidi_level, func.count()).where(ACTIVE).group_by(Procedure.cidi_level)
+        ).all()
+    )
+    return [
+        CidiLevelCount(level=level, count=counts.get(level, 0)) for level in (*CIDI_LEVELS, None)
+    ]
+
+
+def _ratio(part: int, whole: int) -> float | None:
+    """None over nothing: there is no share to speak of."""
+    return part / whole if whole else None
 
 
 def summary_of(ctx: RequestContext) -> SummaryOut:
@@ -86,9 +119,18 @@ def summary_of(ctx: RequestContext) -> SummaryOut:
         .order_by(asked.c.times.desc(), Requirement.name, Requirement.id)
         .limit(TOP_REQUIREMENTS)
     )
+    online = sum(by_channel.get(channel, 0) for channel in ONLINE_CHANNELS)
+    levels = by_cidi_level(ctx)
+    # Only what is done online can have a level, so these are among those.
+    cidi = sum(row.count for row in levels if row.level is not None)
+    digital = ctx.db.scalar(select(func.count()).select_from(Procedure).where(FULLY_DIGITAL))
     return SummaryOut(
         procedures=procedures,
-        online=sum(by_channel.get(channel, 0) for channel in ONLINE_CHANNELS),
+        online=online,
+        cidi=cidi,
+        cidi_ratio=_ratio(cidi, online),
+        digital=digital,
+        digital_ratio=_ratio(digital, procedures),
         average_requirements=round(links / procedures, 1) if procedures else None,
         requirements=ctx.db.scalar(select(func.count()).select_from(Requirement)),
         sources=ctx.db.scalar(select(func.count()).select_from(Source)),
@@ -96,6 +138,7 @@ def summary_of(ctx: RequestContext) -> SummaryOut:
         by_channel=[
             ChannelCount(channel=channel, count=by_channel.get(channel, 0)) for channel in CHANNELS
         ],
+        by_cidi_level=levels,
         top_requirements=[
             RequirementCount(name=name, source=source, count=count) for name, source, count in top
         ],
@@ -160,11 +203,16 @@ def get_summary(ctx: RequestContext, today: date) -> list[SummaryIndicator]:
     summary = summary_of(ctx)
     if not (summary.procedures or summary.requirements or summary.sources):
         return []
-    online_ratio = summary.online / summary.procedures if summary.procedures else None
     return [
         SummaryIndicator("procedures.active", summary.procedures),
         SummaryIndicator("procedures.online", summary.online),
-        SummaryIndicator("procedures.online_ratio", online_ratio, "ratio"),
+        SummaryIndicator(
+            "procedures.online_ratio", _ratio(summary.online, summary.procedures), "ratio"
+        ),
+        SummaryIndicator("procedures.cidi", summary.cidi),
+        SummaryIndicator("procedures.cidi_ratio", summary.cidi_ratio, "ratio"),
+        SummaryIndicator("procedures.digital", summary.digital),
+        SummaryIndicator("procedures.digital_ratio", summary.digital_ratio, "ratio"),
         SummaryIndicator("procedures.requirements", summary.requirements),
         SummaryIndicator("procedures.sources", summary.sources),
     ]

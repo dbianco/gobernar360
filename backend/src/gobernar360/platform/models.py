@@ -186,13 +186,19 @@ class Person(TenantMixin, AuditMixin, Base):
     """
 
     __tablename__ = "people"
-    __table_args__ = (UniqueConstraint("municipality_id", "dni"),)
+    __table_args__ = (
+        UniqueConstraint("municipality_id", "dni"),
+        UniqueConstraint("municipality_id", "cuil"),
+        CheckConstraint("cuil ~ '^[0-9]{11}$'", name="cuil_digits"),
+    )
 
     id: Mapped[uuid.UUID] = uuid_pk()
     first_name: Mapped[str] = mapped_column(String(100), nullable=False)
     last_name: Mapped[str] = mapped_column(String(100), nullable=False)
     # Digits only. People without a known document have none.
     dni: Mapped[str | None] = mapped_column(String(20), nullable=True)
+    # Their tax number, 11 digits: the user name of their CiDi account, if they have one.
+    cuil: Mapped[str | None] = mapped_column(String(11), nullable=True)
     birth_date: Mapped[date | None] = mapped_column(Date, nullable=True)
     phone: Mapped[str] = _text(50)
     email: Mapped[str] = _text(200)
@@ -327,6 +333,11 @@ MIN_SMALL_ZONE_THRESHOLD = 2
 MAX_SMALL_ZONE_THRESHOLD = 100
 
 
+# By what residents are told about what they asked for.
+EMAIL_ONLY, CIDI_THEN_EMAIL, CIDI_ONLY = "email", "cidi_then_email", "cidi"
+RESIDENT_NOTICE_CHANNELS = (EMAIL_ONLY, CIDI_THEN_EMAIL, CIDI_ONLY)
+
+
 class MunicipalitySettings(Base):
     """What a municipality's administrators configure for it.
 
@@ -340,6 +351,10 @@ class MunicipalitySettings(Base):
             f"small_zone_threshold BETWEEN {MIN_SMALL_ZONE_THRESHOLD} "
             f"AND {MAX_SMALL_ZONE_THRESHOLD}",
             name="small_zone_threshold_range",
+        ),
+        CheckConstraint(
+            _in("resident_notice_channel", RESIDENT_NOTICE_CHANNELS),
+            name="resident_notice_channel_valid",
         ),
     )
 
@@ -366,6 +381,17 @@ class MunicipalitySettings(Base):
         String(30), nullable=False, default="standard", server_default="standard"
     )
     map_api_key: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    # The municipality in the official geographic services: its key in IDECOR's layers and
+    # its satellite image in CONAE's. Only the platform operator sets them.
+    idecor_key: Mapped[str | None] = mapped_column(String(6), nullable=True)
+    conae_layer: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    resident_notice_channel: Mapped[str] = mapped_column(
+        String(20), nullable=False, default=EMAIL_ONLY, server_default=EMAIL_ONLY
+    )
+    # What the municipality says covers its use of CiDi. Shown as information, nothing else.
+    cidi_ordinance: Mapped[str] = mapped_column(
+        String(200), nullable=False, default="", server_default=""
+    )
     updated_at: Mapped[datetime] = created_at_column()
     updated_by: Mapped[uuid.UUID | None] = mapped_column(
         Uuid, ForeignKey("users.id", ondelete="SET NULL"), nullable=True

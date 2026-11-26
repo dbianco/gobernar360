@@ -24,7 +24,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -92,7 +92,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -171,7 +171,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -261,7 +261,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -320,7 +320,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -396,7 +396,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -465,7 +465,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -579,7 +579,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -654,7 +654,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -729,7 +729,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -806,7 +806,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -876,7 +876,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -944,7 +944,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -1052,7 +1052,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -1120,7 +1120,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -1206,6 +1206,75 @@ Dibujar zona
 [Cargando…]"
 `;
 
+exports[`says where an official boundary comes from, and only of those > screen at the end 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Mapa de las zonas del municipio]
+Radio urbano
+Norte
+[Acercar]
++
+[Alejar]
+−
+50 km
+Leaflet
+|
+©
+OpenStreetMap
+contributors
+Buscar
+(Buscar por nombre)
+[Zonas]
+Nombre
+[Qué significa Nombre]
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
+Versión
+[Qué significa Versión]
+Cuántas veces se definió el límite de la zona.
+Vigente desde
+[Qué significa Vigente desde]
+Día desde el que rige este límite.
+Radio urbano
+Límite oficial: Ley 10796/2022
+1
+10/03/2025
+[Editar Radio urbano]
+Editar
+[Historial de Radio urbano]
+Historial
+[Dar de baja Radio urbano]
+Dar de baja
+Norte
+1
+10/03/2025
+[Editar Norte]
+Editar
+[Historial de Norte]
+Historial
+[Dar de baja Norte]
+Dar de baja
+[Actores económicos sin zona]
+Actores económicos sin zona
+[Qué revisar]
+Fuera de las zonas
+Sin ubicación
+Buscar
+(Buscar por nombre)
+Todo lo ubicado está dentro de alguna zona."
+`;
+
+exports[`says where an official boundary comes from, and only of those > screen at the start 1`] = `
+"[autosize measurement]
+Zonas
+Los barrios o distritos del municipio. Cada registro ubicado en el mapa queda en la zona que le corresponde.
+Importar GeoJSON
+Dibujar zona
+[Cargando…]"
+`;
+
 exports[`says why a boundary was refused and keeps the drawing > screen at the end 1`] = `
 "[autosize measurement]
 [Nueva zona]
@@ -1278,7 +1347,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -1346,7 +1415,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.
@@ -1476,7 +1545,7 @@ Buscar
 [Zonas]
 Nombre
 [Qué significa Nombre]
-Nombre del barrio o distrito.
+Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.
 Versión
 [Qué significa Versión]
 Cuántas veces se definió el límite de la zona.

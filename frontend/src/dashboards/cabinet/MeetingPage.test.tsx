@@ -80,6 +80,25 @@ it('shows who came, what was carried over and the agenda', async () => {
   ).toHaveAttribute('href', '/commitments/co-5')
 })
 
+it('shows the date agreed of what was moved, and that its owner left', async () => {
+  renderMeeting(
+    makeMeeting({
+      carried_over: [
+        makeCommitment({ due_date: '2026-12-15', owner_left: true }),
+        makeCommitment({ id: 'co-2', description: 'Señalizar' }),
+      ],
+    }),
+  )
+
+  await heading()
+  const carried = within(await section(label('carriedOver')))
+  const owed = t('commitments.owed', { owner: 'Leo Paz', date: '15/12/2026' })
+  const agreed = t('commitments.agreedFor', { date: '20/11/2026' })
+  expect(carried.getByText(`${owed} ${agreed}`)).toBeInTheDocument()
+  expect(carried.getAllByText(t('commitments.ownerLeft'))).toHaveLength(1)
+  expect(carried.getAllByText(new RegExp('se acordó'))).toHaveLength(1)
+})
+
 it('saves notes when leaving them, only if they changed', async () => {
   const user = renderMeeting()
   const items = mockApi('patch', `${BASE}/items/it-1`, makeMeeting())

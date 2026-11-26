@@ -2,12 +2,22 @@
 
 from functools import lru_cache
 from typing import Literal
+from urllib.parse import unquote, urlsplit
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+def _has_known_password(database_url: str) -> bool:
+    """db/init and the migrations give each role its own name as its password."""
+    parts = urlsplit(database_url)
+    return parts.password is not None and unquote(parts.password) == parts.username
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="GOBERNAR360_", env_file=".env", extra="ignore")
+
+    # "production" makes the API refuse to start with what is only safe in development.
+    environment: Literal["development", "production"] = "development"
 
     # The API connects as a role that owns no tables, so row-level security applies to it.
     database_url: str = (
@@ -53,6 +63,28 @@ class Settings(BaseSettings):
     oidc_client_id: str = ""
     oidc_client_secret: str = ""
     oidc_scopes: str = "openid email profile"
+
+    # CiDi, the provincial account (platform/cidi): whether notices to residents can go out
+    # through it. "fake" writes them to a file instead; "live" waits for the Province.
+    cidi_mode: Literal["off", "fake", "live"] = "off"
+    cidi_fake_inbox: str = "./cidi-fake-inbox.jsonl"
+
+    # Fernet key that encrypts the secrets municipalities save. Without it none is accepted.
+    secrets_key: str = ""
+
+    @property
+    def is_production(self) -> bool:
+        """Secure cookies are only on behind HTTPS, which is where people work."""
+        return self.environment == "production" or self.cookie_secure
+
+    def known_passwords(self) -> list[str]:
+        """Database settings the API connects with that still have the password the
+        repository gives their role, which anybody can read."""
+        return [
+            f"GOBERNAR360_{name.upper()}"
+            for name in ("database_url", "public_database_url")
+            if _has_known_password(getattr(self, name))
+        ]
 
     @property
     def sso_enabled(self) -> bool:

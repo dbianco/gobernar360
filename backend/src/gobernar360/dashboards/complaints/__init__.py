@@ -10,6 +10,7 @@ from gobernar360.dashboards.complaints import (
     summary,
 )
 from gobernar360.dashboards.complaints.access import KEY
+from gobernar360.dashboards.complaints.lifecycle import NOTICE_KINDS
 from gobernar360.dashboards.registry import DashboardModule
 
 router = APIRouter()
@@ -24,4 +25,5 @@ module = DashboardModule(
     router=router,
     get_summary=summary.get_summary,
     indicators=summary.INDICATORS,
+    notice_kinds=tuple(NOTICE_KINDS.values()),
 )

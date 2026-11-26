@@ -26,6 +26,21 @@ const NO_BREAKDOWN = {
   threshold: null,
 }
 
+export const NO_NOTICE_SETTINGS = {
+  resident_notice_channel: 'email',
+  cidi_ordinance: '',
+  adhesion_state: 'not_requested',
+  adhesion_date: null,
+  adhesion_file: '',
+  system_name: '',
+  publication_url: '',
+  contact: '',
+  secrets: [],
+  missing: ['adhesion', 'system_name', 'publication_url', 'contact'],
+  cidi_available: true,
+  secrets_available: true,
+}
+
 // Answers that many screens need; tests that care about them mock them themselves.
 export const server = setupServer(
   // Every dashboard summary shows its status strip.
@@ -36,6 +51,9 @@ export const server = setupServer(
   // The header asks what one owes and follows; pages offer the people of the municipality.
   http.get('*/api/notifications', () => HttpResponse.json({ mine: [], others: [] })),
   http.get('*/api/members', () => HttpResponse.json([])),
+  http.get('*/api/admin/left-commitments', () =>
+    HttpResponse.json({ commitments: [], hidden: 0 }),
+  ),
   // The sign-in page asks whether to offer single sign-on.
   http.get('*/api/auth/sso', () => HttpResponse.json({ enabled: false })),
   // Several flows end on the home page.
@@ -53,6 +71,7 @@ export const server = setupServer(
   // Summaries, detail screens and the home page show the geographic layer: no zones, no
   // locations.
   http.get('*/api/map-background', () => HttpResponse.json(STANDARD_MAP)),
+  http.get('*/api/geo/reference-layers', () => HttpResponse.json([])),
   http.get('*/api/zones', () => HttpResponse.json([])),
   http.get('*/api/dashboards/:key/geo/:record/zones', () => HttpResponse.json(NO_BREAKDOWN)),
   http.get('*/api/dashboards/:key/geo/:record/unzoned', () =>
@@ -61,6 +80,8 @@ export const server = setupServer(
   http.get('*/api/dashboards/:key/geo/:record/:id/location', () =>
     HttpResponse.json({ location: null, kinds: ['Point'], zones: [] }),
   ),
+  // The first tab of Configuración says how residents are told things.
+  http.get('*/settings/notices', () => HttpResponse.json(NO_NOTICE_SETTINGS)),
 )
 
 type Method = 'get' | 'post' | 'put' | 'patch' | 'delete'

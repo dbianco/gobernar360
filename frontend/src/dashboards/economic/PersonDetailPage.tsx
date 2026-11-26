@@ -24,6 +24,7 @@ import { BASE_PATH, send, useAction, usePerson } from './api'
 import { AssignmentsPanel } from './AssignmentsPanel'
 import { Field } from '../../platform/Field'
 import { formatDni } from '../../platform/format'
+import { formatCuil } from '../../platform/people/documents'
 import { PersonForm } from './PersonForm'
 import { useConfirm } from '../../platform/confirmContext'
 
@@ -79,6 +80,7 @@ export function PersonDetailPage() {
           <Paper withBorder p="md">
             <SimpleGrid cols={{ base: 1, xs: 2, md: 3 }}>
               <Field label={t('people.dni')}>{formatDni(data.person.dni)}</Field>
+              <Field label={t('people.cuil')}>{formatCuil(data.person.cuil)}</Field>
               <Field label={t('people.birthDate')}>{formatDate(data.person.birth_date)}</Field>
               <Field label={t('people.phone')}>{data.person.phone}</Field>
               <Field label={t('people.email')}>{data.person.email}</Field>

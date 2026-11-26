@@ -5,6 +5,7 @@ from gobernar360.dashboards.economic.models import EconomicPerson
 from gobernar360.dashboards.social.models import SocialPerson
 from gobernar360.platform.models import AuditLog, Person
 from tests.factories import admin_session, login, make_municipality
+from tests.platform.notices import make_resident
 from tests.social.factories import (
     BASE,
     EMAIL,
@@ -69,6 +70,7 @@ def test_editor_registers_a_new_person(client):
             "last_name": "Pérez",
             "full_name": "Pérez, Juana",
             "dni": "12345678",
+            "cuil": None,
             "birth_date": "1990-05-01",
             "phone": "3472 555111",
             "email": "",
@@ -307,3 +309,29 @@ def test_a_change_with_nothing_in_it_leaves_the_person_as_they_were(client):
     assert client.patch(url, json={"person": {}}).json() == before
     changed = client.patch(url, json={"person": {"phone": "222"}}).json()
     assert changed["person"]["phone"] == "222"
+
+
+def test_a_person_of_the_registry_is_incorporated_by_their_cuil(client):
+    municipality = _editor(client)
+    person = make_resident(municipality, "20123456786", first="Juana", last="Pérez")
+
+    created = client.post(
+        f"{BASE}/people",
+        json={
+            "person": {
+                "first_name": "Juana",
+                "last_name": "Pérez",
+                "dni": "12345678",
+                "cuil": "20-12345678-6",
+            }
+        },
+    )
+
+    assert created.status_code == 201, created.text
+    # The same person, who now has a document too.
+    assert (created.json()["person"]["id"], created.json()["person"]["dni"]) == (
+        str(person.id),
+        "12345678",
+    )
+    found = client.get(f"{BASE}/people/lookup", params={"cuil": "20123456786"}).json()
+    assert found["registered_id"] == created.json()["id"]

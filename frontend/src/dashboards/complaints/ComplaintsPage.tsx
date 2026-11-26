@@ -49,8 +49,9 @@ export function ComplaintsPage() {
     { value: '', label: label(all) },
     ...(items ?? []).map((item) => ({ value: item.id, label: item.name })),
   ]
-  const canCreate =
-    (types.data ?? []).some((type) => type.is_active) && (zones.data?.length ?? 0) > 0
+  const knownTypes = types.data ?? []
+  const knownZones = zones.data ?? []
+  const canCreate = knownTypes.some((type) => type.is_active) && knownZones.length > 0
 
   return (
     <Stack>
@@ -128,8 +129,8 @@ export function ComplaintsPage() {
       >
         {creating && (
           <ComplaintForm
-            types={types.data ?? []}
-            zones={zones.data ?? []}
+            types={knownTypes}
+            zones={knownZones}
             onDone={(created) => {
               setCreating(false)
               if (created) navigate(`${BASE_PATH}/complaints/${created.id}`)

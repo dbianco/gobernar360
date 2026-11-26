@@ -23,6 +23,7 @@ import { formatNumber } from '../../platform/format'
 import { HelpTh } from '../../platform/HelpTh'
 import { hasLevel } from '../../platform/access'
 import { BASE_PATH, KEY, send, useAction, useAreas, useProcedure, useRequirements } from './api'
+import { DigitalBadge } from './DigitalBadge'
 import { costText } from './format'
 import { ProcedureForm } from './ProcedureForm'
 import { RequirementLinkForm } from './RequirementLinkForm'
@@ -78,6 +79,7 @@ export function ProcedureDetailPage() {
               {t('procedures.list.inactive')}
             </Badge>
           )}
+          {data.fully_digital && <DigitalBadge />}
         </Group>
         {canEdit && (
           <Group gap="xs">
@@ -95,6 +97,9 @@ export function ProcedureDetailPage() {
         <Field label={label('area')}>{data.area.name}</Field>
         <Field label={label('audience')}>{t(`procedures.audiences.${data.audience}`)}</Field>
         <Field label={label('channel')}>{t(`procedures.channels.${data.channel}`)}</Field>
+        <Field label={label('cidi')}>
+          {t(`procedures.cidiLevels.${data.cidi_level ?? 'none'}`)}
+        </Field>
         <Field label={label('cost')}>{costText(data, t('procedures.list.free'))}</Field>
         <Field label={label('days')}>
           {data.duration_days === null

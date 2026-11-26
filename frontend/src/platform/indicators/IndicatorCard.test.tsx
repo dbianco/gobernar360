@@ -1,4 +1,4 @@
-import { screen, within } from '@testing-library/react'
+import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect, it } from 'vitest'
 
@@ -208,4 +208,41 @@ it('says that its chart icon shows the last twelve months', async () => {
 
   expect(await screen.findByRole('tooltip')).toHaveTextContent(t('indicators.openHint'))
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+})
+
+it('says when the value is exactly at the target and did not change', () => {
+  const card = renderCard(
+    delayed({ target: 6, deviation: 0, on_track: true, change_previous_month: 0 }),
+  )
+
+  expect(card.getByText(t('indicators.atTarget', { target: '6' }))).toBeInTheDocument()
+  expect(card.getByText(t('indicators.vsPreviousMonth', { change: '0' }))).toHaveAttribute(
+    'data-trend',
+    'same',
+  )
+})
+
+it('shows the target alone while there is no value to compare', () => {
+  const card = renderCard(delayed({ value: null, target: 4 }))
+
+  expect(card.getByText(t('indicators.targetOf', { target: '4' }))).toBeInTheDocument()
+  expect(card.queryByText(t('indicators.onTrack'))).not.toBeInTheDocument()
+  expect(card.queryByText(t('indicators.offTrack'))).not.toBeInTheDocument()
+})
+
+it('opens from anywhere on the card and closes again', async () => {
+  const card = renderCard()
+
+  await userEvent.click(card.getByText('6'))
+  const dialog = await screen.findByRole('dialog', { name: DELAYED })
+  await userEvent.keyboard('{Escape}')
+
+  await waitFor(() => expect(dialog).not.toBeInTheDocument())
+})
+
+it('has no info icon for an indicator nobody described', () => {
+  const card = renderCard(delayed({ key: 'projects.not_described' }))
+
+  expect(card.queryByRole('button', { name: about(DELAYED) })).not.toBeInTheDocument()
+  expect(card.getByRole('button', { name: t('indicators.open', { name: DELAYED }) })).toBeVisible()
 })

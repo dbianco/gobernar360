@@ -10,7 +10,7 @@ export function PersonForm(props: { person?: SocialPerson; onDone: () => void })
   return (
     <RegistryPersonForm
       person={editing?.person}
-      lookup={(dni) => get<Lookup>('/people/lookup', { dni })}
+      lookup={(document) => get<Lookup>('/people/lookup', document)}
       existingPath={(id) => `${BASE_PATH}/people/${id}`}
       save={(person) =>
         editing

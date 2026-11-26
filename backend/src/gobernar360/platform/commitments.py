@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from typing import Any
 
-from sqlalchemy import ColumnElement, Select, and_, case, delete, or_, select, update
+from sqlalchemy import ColumnElement, Select, and_, case, delete, func, or_, select, update
 
 from gobernar360.core.errors import (
     commitment_finished,
@@ -41,11 +41,12 @@ from gobernar360.platform.commitment_models import (
 )
 from gobernar360.platform.commitment_rules import DONE, OPEN, OVERDUE
 from gobernar360.platform.listing import every_word
-from gobernar360.platform.models import User
+from gobernar360.platform.models import Membership, User
 from gobernar360.platform.subjects import SubjectIn
 from gobernar360.platform.tenant_crud import create_entity, delete_entity, update_entity
 
 ASSIGNED = "assigned"
+OWNER_LEFT = "owner_left"
 
 
 @dataclass(frozen=True)
@@ -312,8 +313,13 @@ def reschedule(
     owner_id: uuid.UUID | None = None,
     due_date: date | None = None,
     follower_ids: Sequence[uuid.UUID] | None = None,
+    agreed: bool = False,
 ) -> None:
-    """Change who owes it, by when and who is attached, and keep it in its history."""
+    """Change who owes it, by when and who is attached, and keep it in its history.
+
+    `agreed` says the new date is part of agreeing on it, e.g. its meeting is still open;
+    otherwise the date agreed stays.
+    """
     if commitment.state != OPEN:
         raise commitment_finished()
     changes: dict[str, Any] = {}
@@ -325,6 +331,8 @@ def reschedule(
         recorded["owner"] = [previous.full_name, owner.full_name]
     if due_date is not None and due_date != commitment.due_date:
         changes["due_date"] = due_date
+        if agreed:
+            changes["agreed_due_date"] = due_date
         recorded["due_date"] = [commitment.due_date.isoformat(), due_date.isoformat()]
     if follower_ids is not None:
         set_followers(ctx, commitment, follower_ids)
@@ -334,6 +342,7 @@ def reschedule(
     record(ctx, commitment, changes=recorded)
     if "owner_id" in changes:
         _forget_unread(ctx, commitment, ASSIGNED, previous.id)
+        _forget_unread(ctx, commitment, OWNER_LEFT)
         _tell(ctx, commitment, ASSIGNED, [changes["owner_id"]])
 
 
@@ -369,11 +378,81 @@ def set_state(
     if before == OPEN:
         # Nothing left to do for whoever had not yet seen it was theirs.
         _forget_unread(ctx, commitment, ASSIGNED)
+        _forget_unread(ctx, commitment, OWNER_LEFT)
     if state == DONE:
         waiting = [user.id for user in followers_of(ctx, [commitment.id]).get(commitment.id, [])]
         if commitment.source is None and commitment.created_by is not None:
             waiting.append(commitment.created_by)
         _tell(ctx, commitment, DONE, waiting)
+
+
+# Owners who left
+
+
+def _member_ids(ctx: RequestContext) -> Select[Any]:
+    # Memberships are a platform table, without row-level security: filtered here.
+    return select(Membership.user_id).where(Membership.municipality_id == ctx.municipality_id)
+
+
+def left(ctx: RequestContext, user_ids: Iterable[uuid.UUID]) -> set[uuid.UUID]:
+    """Those of the people who are no longer members of the municipality."""
+    wanted = set(user_ids)
+    return wanted - set(ctx.db.scalars(_member_ids(ctx).where(Membership.user_id.in_(wanted))))
+
+
+@dataclass(frozen=True)
+class LeftBehind:
+    """Open commitments whose owner is no longer a member."""
+
+    # Those whoever asks may see, soonest due first.
+    seen: list[Commitment]
+    # How many more there are: who gave them was told, and only they may see them.
+    hidden: int
+
+
+def left_behind(ctx: RequestContext, owner_id: uuid.UUID | None = None) -> LeftBehind:
+    """What those who left still owe, or only one of them."""
+    conditions = [Commitment.state == OPEN, Commitment.owner_id.not_in(_member_ids(ctx))]
+    if owner_id is not None:
+        conditions.append(Commitment.owner_id == owner_id)
+    total = ctx.db.scalar(select(func.count()).select_from(Commitment).where(*conditions))
+    if ctx.membership is None:
+        # The platform operator, who sees nothing of what the municipality works on.
+        return LeftBehind([], total)
+    query = (
+        select(Commitment)
+        .where(*conditions, visible(ctx))
+        .order_by(Commitment.due_date, Commitment.description, Commitment.id)
+    )
+    seen = list(ctx.db.scalars(query).unique())
+    return LeftBehind(seen, total - len(seen))
+
+
+def tell_owner_left(ctx: RequestContext, user_id: uuid.UUID) -> None:
+    """Tell whoever gave something to a person who just left, so they give it to another."""
+    given = ctx.db.scalars(
+        select(Commitment).where(
+            Commitment.state == OPEN,
+            Commitment.owner_id == user_id,
+            Commitment.source.is_(None),
+            # Not whoever left before, nor the person themselves.
+            Commitment.created_by.in_(_member_ids(ctx)),
+        )
+    ).unique()
+    for commitment in given:
+        _tell(ctx, commitment, OWNER_LEFT, [commitment.created_by])
+
+
+def forget_owner_left(ctx: RequestContext, user_id: uuid.UUID) -> None:
+    """The person is back: take it back from those who have not read it."""
+    owed = select(Commitment.id).where(Commitment.owner_id == user_id)
+    ctx.db.execute(
+        delete(CommitmentNotice).where(
+            CommitmentNotice.commitment_id.in_(owed),
+            CommitmentNotice.kind == OWNER_LEFT,
+            CommitmentNotice.read_at.is_(None),
+        )
+    )
 
 
 def require(allowed: bool) -> None:

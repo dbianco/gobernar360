@@ -1,10 +1,16 @@
 """Records who created and changed tenant data."""
 
+import uuid
 from datetime import UTC, datetime
 from typing import Any
 
 from gobernar360.platform.access import RequestContext
 from gobernar360.platform.models import AuditLog
+
+
+def _author(ctx: RequestContext) -> uuid.UUID | None:
+    """Who is changing the data; None for a command (`access.system_context`)."""
+    return ctx.user.id if ctx.user else None
 
 
 def record_change(
@@ -14,7 +20,7 @@ def record_change(
     ctx.db.add(
         AuditLog(
             municipality_id=ctx.municipality_id,
-            user_id=ctx.user.id,
+            user_id=_author(ctx),
             action=action,
             entity_type=entity.__tablename__,
             entity_id=str(entity.id),
@@ -25,6 +31,6 @@ def record_change(
 
 def apply_audit_fields(ctx: RequestContext, entity: Any, creating: bool) -> None:
     if creating:
-        entity.created_by = ctx.user.id
-    entity.updated_by = ctx.user.id
+        entity.created_by = _author(ctx)
+    entity.updated_by = _author(ctx)
     entity.updated_at = datetime.now(UTC)

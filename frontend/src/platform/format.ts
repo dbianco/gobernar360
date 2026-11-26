@@ -1,5 +1,5 @@
 const LOCALE = 'es-AR'
-const EMPTY = '—'
+export const EMPTY = '—'
 
 export function formatNumber(value: number | null | undefined, maximumFractionDigits = 1): string {
   if (value === null || value === undefined) return EMPTY

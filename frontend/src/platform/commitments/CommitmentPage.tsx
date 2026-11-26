@@ -29,6 +29,7 @@ import {
 import { CommitmentForm } from './CommitmentForm'
 import { CommitmentHistory } from './CommitmentHistory'
 import { Origin } from './Origin'
+import { OwnerLeftBadge } from './OwnerLeftBadge'
 import { PostponedBadge } from './PostponedBadge'
 import { StateBadge } from './StateBadge'
 import { StateForm } from './StateForm'
@@ -120,6 +121,7 @@ export function CommitmentPage() {
           <Group gap="xs">
             <StateBadge state={data.state} />
             <PostponedBadge times={data.times_postponed} />
+            <OwnerLeftBadge commitment={data} />
           </Group>
         </Stack>
         <Group gap="xs">
@@ -153,6 +155,9 @@ export function CommitmentPage() {
       <SimpleGrid cols={{ base: 1, xs: 2, md: 4 }}>
         <Field label={label('owner')}>{data.owner.full_name}</Field>
         <Field label={label('dueDate')}>{formatDate(data.due_date)}</Field>
+        {data.agreed_due_date !== data.due_date && (
+          <Field label={label('agreedDate')}>{formatDate(data.agreed_due_date)}</Field>
+        )}
         {data.completed_on && (
           <Field label={label('completedOn')}>{formatDate(data.completed_on)}</Field>
         )}

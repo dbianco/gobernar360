@@ -95,6 +95,34 @@ it('asks in a modal before removing a user, and removes them when accepted', asy
   await waitFor(() => expect(requests).toHaveLength(1))
 })
 
+it('says how many commitments whoever is removed left, seen or not', async () => {
+  const commitment = {
+    id: 'co-1',
+    description: 'Certificar la obra',
+    owner: { id: 'u-2', full_name: 'Carla Carga' },
+    due_date: '2026-11-20',
+    source: 'cabinet',
+    can_reassign: true,
+  }
+  mockApi('delete', '/admin/users/ms-2', { commitments: [commitment], hidden: 1 })
+  renderUsers()
+  const user = userEvent.setup()
+  const remove = await screen.findByRole('button', {
+    name: t('users.removeNamed', { name: 'Carla Carga' }),
+  })
+  expect(screen.queryByText(t('commitments.left.title'))).toBeNull()
+  mockApi('get', '/admin/left-commitments', { commitments: [commitment], hidden: 1 })
+
+  await user.click(remove)
+  await answerConfirm(user, true, t('users.removeTitle'))
+
+  expect(
+    await screen.findByText(t('users.removedWithCommitments', { name: 'Carla Carga', count: 2 })),
+  ).toBeInTheDocument()
+  // And offers to give them to somebody.
+  expect(await screen.findByText(t('commitments.left.title'))).toBeInTheDocument()
+})
+
 it('shows the conflict message when removing the last admin', async () => {
   mockApiError('delete', '/admin/users/ms-1', 409, 'conflict')
   renderUsers()

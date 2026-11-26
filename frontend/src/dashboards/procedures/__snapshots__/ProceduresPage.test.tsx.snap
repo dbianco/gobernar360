@@ -10,6 +10,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -28,6 +34,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -47,6 +59,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -67,6 +85,12 @@ Canal
 Presencial
 En línea
 Presencial y en línea
+Ingreso con CiDi
+El nivel mínimo de la cuenta con la que se ingresa. Solo para trámites en línea.
+No usa CiDi o no se sabe
+Nivel 1 – Confirmado: cuenta con correo confirmado
+Nivel 2 – Verificado: identidad verificada (DNI, selfie o Clave Fiscal)
+Nivel 3 – Autenticado: firma digital
 Es gratuito
 Plazo estimado en días
 Cantidad estimada por año
@@ -85,6 +109,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -104,6 +134,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -122,6 +158,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -141,19 +183,28 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
 Dados de baja
 Trámite
 [Qué significa Trámite]
-Nombre del trámite. Al hacer clic se abre su ficha.
+Nombre del trámite. Al hacer clic se abre su ficha. «100 % digital»: se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
 Área
 [Qué significa Área]
 Área del municipio responsable del trámite.
 Canal
 [Qué significa Canal]
 Cómo se hace: en una oficina, por internet o de las dos formas.
+CiDi
+[Qué significa CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) con la que se ingresa para hacerlo en línea.
 Costo
 [Qué significa Costo]
 Lo que paga el solicitante, o si es gratuito.
@@ -169,6 +220,7 @@ Cantidad de requisitos que se piden.
 Habilitación comercial
 Rentas
 Presencial
+—
 $ 25.000
 20 días
 180
@@ -185,6 +237,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -204,6 +262,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -222,6 +286,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -241,6 +311,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -259,6 +335,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -278,6 +360,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -285,13 +373,16 @@ Dados de baja
 Agregar trámite
 Trámite
 [Qué significa Trámite]
-Nombre del trámite. Al hacer clic se abre su ficha.
+Nombre del trámite. Al hacer clic se abre su ficha. «100 % digital»: se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
 Área
 [Qué significa Área]
 Área del municipio responsable del trámite.
 Canal
 [Qué significa Canal]
 Cómo se hace: en una oficina, por internet o de las dos formas.
+CiDi
+[Qué significa CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) con la que se ingresa para hacerlo en línea.
 Costo
 [Qué significa Costo]
 Lo que paga el solicitante, o si es gratuito.
@@ -307,6 +398,7 @@ Cantidad de requisitos que se piden.
 Habilitación comercial
 Rentas
 Presencial
+—
 $ 25.000
 20 días
 180
@@ -315,6 +407,7 @@ Libre deuda
 Dado de baja
 Rentas
 En línea
+—
 Gratuito
 —
 —
@@ -331,6 +424,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -350,6 +449,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -357,13 +462,16 @@ Dados de baja
 Agregar trámite
 Trámite
 [Qué significa Trámite]
-Nombre del trámite. Al hacer clic se abre su ficha.
+Nombre del trámite. Al hacer clic se abre su ficha. «100 % digital»: se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
 Área
 [Qué significa Área]
 Área del municipio responsable del trámite.
 Canal
 [Qué significa Canal]
 Cómo se hace: en una oficina, por internet o de las dos formas.
+CiDi
+[Qué significa CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) con la que se ingresa para hacerlo en línea.
 Costo
 [Qué significa Costo]
 Lo que paga el solicitante, o si es gratuito.
@@ -379,6 +487,7 @@ Cantidad de requisitos que se piden.
 Habilitación comercial
 Rentas
 Presencial
+—
 $ 25.000
 20 días
 180
@@ -402,6 +511,218 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;
+
+exports[`narrows the list to a level, or to those without one > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Obras Privadas
+Rentas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Agregar trámite
+Trámite
+[Qué significa Trámite]
+Nombre del trámite. Al hacer clic se abre su ficha. «100 % digital»: se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
+Área
+[Qué significa Área]
+Área del municipio responsable del trámite.
+Canal
+[Qué significa Canal]
+Cómo se hace: en una oficina, por internet o de las dos formas.
+CiDi
+[Qué significa CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) con la que se ingresa para hacerlo en línea.
+Costo
+[Qué significa Costo]
+Lo que paga el solicitante, o si es gratuito.
+Plazo
+[Qué significa Plazo]
+Días estimados desde que se inicia hasta que se resuelve.
+Por año
+[Qué significa Por año]
+Cuántas veces se hace el trámite en un año, estimado.
+Requisitos
+[Qué significa Requisitos]
+Cantidad de requisitos que se piden.
+Habilitación comercial
+Rentas
+Presencial
+—
+$ 25.000
+20 días
+180
+2"
+`;
+
+exports[`narrows the list to a level, or to those without one > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;
+
+exports[`refuses a level for what is only done in person > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Obras Privadas
+Rentas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Agregar trámite
+No hay trámites que coincidan.
+Nuevo trámite
+Nombre
+Descripción
+Área responsable
+Obras Privadas
+Rentas
+Dirigido a
+Personas y organizaciones
+Personas
+Organizaciones
+Canal
+Presencial
+En línea
+Presencial y en línea
+Ingreso con CiDi
+El nivel mínimo de la cuenta con la que se ingresa. Solo para trámites en línea.
+No usa CiDi o no se sabe
+Nivel 1 – Confirmado: cuenta con correo confirmado
+Nivel 2 – Verificado: identidad verificada (DNI, selfie o Clave Fiscal)
+Nivel 3 – Autenticado: firma digital
+Enlace para hacerlo en línea
+Dirección completa, empezando con https://
+Es gratuito
+Plazo estimado en días
+Cantidad estimada por año
+Vigente
+Cancelar
+Guardar"
+`;
+
+exports[`refuses a level for what is only done in person > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;
+
+exports[`saves the level people sign in with > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Obras Privadas
+Rentas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Agregar trámite
+No hay trámites que coincidan."
+`;
+
+exports[`saves the level people sign in with > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -421,6 +742,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -439,6 +766,101 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
+Vigencia
+Todos
+Vigentes
+Dados de baja
+[Cargando…]"
+`;
+
+exports[`says the level each procedure signs in with, and which can be done from home > screen at the end 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Obras Privadas
+Rentas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
+Vigencia
+Todos
+Vigentes
+Dados de baja
+Agregar trámite
+Trámite
+[Qué significa Trámite]
+Nombre del trámite. Al hacer clic se abre su ficha. «100 % digital»: se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
+Área
+[Qué significa Área]
+Área del municipio responsable del trámite.
+Canal
+[Qué significa Canal]
+Cómo se hace: en una oficina, por internet o de las dos formas.
+CiDi
+[Qué significa CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) con la que se ingresa para hacerlo en línea.
+Costo
+[Qué significa Costo]
+Lo que paga el solicitante, o si es gratuito.
+Plazo
+[Qué significa Plazo]
+Días estimados desde que se inicia hasta que se resuelve.
+Por año
+[Qué significa Por año]
+Cuántas veces se hace el trámite en un año, estimado.
+Requisitos
+[Qué significa Requisitos]
+Cantidad de requisitos que se piden.
+Habilitación comercial
+100 % digital
+Rentas
+En línea
+Nivel 2 – Verificado
+$ 25.000
+20 días
+180
+2
+Poda
+Rentas
+Presencial
+—
+$ 25.000
+20 días
+180
+2"
+`;
+
+exports[`says the level each procedure signs in with, and which can be done from home > screen at the start 1`] = `
+"Buscar
+(Nombre del trámite)
+Área
+Todas las áreas
+Canal
+Todos los canales
+Presencial
+En línea
+Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -459,6 +881,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes
@@ -466,13 +894,16 @@ Dados de baja
 Agregar trámite
 Trámite
 [Qué significa Trámite]
-Nombre del trámite. Al hacer clic se abre su ficha.
+Nombre del trámite. Al hacer clic se abre su ficha. «100 % digital»: se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.
 Área
 [Qué significa Área]
 Área del municipio responsable del trámite.
 Canal
 [Qué significa Canal]
 Cómo se hace: en una oficina, por internet o de las dos formas.
+CiDi
+[Qué significa CiDi]
+Nivel mínimo de la cuenta provincial (CiDi) con la que se ingresa para hacerlo en línea.
 Costo
 [Qué significa Costo]
 Lo que paga el solicitante, o si es gratuito.
@@ -488,6 +919,7 @@ Cantidad de requisitos que se piden.
 Habilitación comercial
 Rentas
 Presencial
+—
 $ 25.000
 20 días
 180
@@ -504,6 +936,12 @@ Todos los canales
 Presencial
 En línea
 Presencial y en línea
+CiDi
+Todos los niveles
+Nivel 1 – Confirmado
+Nivel 2 – Verificado
+Nivel 3 – Autenticado
+Sin CiDi
 Vigencia
 Todos
 Vigentes

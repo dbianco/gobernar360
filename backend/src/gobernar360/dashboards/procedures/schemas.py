@@ -85,6 +85,7 @@ Url = Annotated[
 Cost = Annotated[Decimal, Field(ge=0, max_digits=12, decimal_places=2)]
 DurationDays = Annotated[int, Field(ge=0, le=3650)]
 AnnualVolume = Annotated[int, Field(ge=0, le=100_000_000)]
+CidiLevel = Annotated[int, Field(ge=1, le=3, strict=True)]
 
 
 class ProcedureIn(BaseModel):
@@ -97,6 +98,7 @@ class ProcedureIn(BaseModel):
     channel: Channel = "in_person"
     # Only web addresses: the screen shows it as a link.
     url: Url = ""
+    cidi_level: CidiLevel | None = None
     is_free: bool = True
     cost: Cost | None = None
     duration_days: DurationDays | None = None
@@ -112,7 +114,9 @@ class ProcedureIn(BaseModel):
 
 class ProcedurePatch(PatchModel):
     model_config = ConfigDict(extra="forbid")
-    nullable: ClassVar[frozenset[str]] = frozenset({"cost", "duration_days", "annual_volume"})
+    nullable: ClassVar[frozenset[str]] = frozenset(
+        {"cidi_level", "cost", "duration_days", "annual_volume"}
+    )
 
     name: Name | None = None
     description: LongText | None = None
@@ -120,6 +124,7 @@ class ProcedurePatch(PatchModel):
     audience: Audience | None = None
     channel: Channel | None = None
     url: Url | None = None
+    cidi_level: CidiLevel | None = None
     is_free: bool | None = None
     cost: Cost | None = None
     duration_days: DurationDays | None = None
@@ -135,6 +140,9 @@ class ProcedureOut(OrmModel):
     audience: str
     channel: str
     url: str
+    cidi_level: int | None
+    # Whether it can be done entirely from home (`digital.FULLY_DIGITAL`).
+    fully_digital: bool
     is_free: bool
     cost: Decimal | None
     duration_days: int | None
@@ -182,6 +190,12 @@ class ChannelCount(BaseModel):
     count: int
 
 
+class CidiLevelCount(BaseModel):
+    # None: people do not sign in with CiDi, or it is not known.
+    level: int | None
+    count: int
+
+
 class RequirementCount(BaseModel):
     name: str
     # Name of its source; None when the person brings it themselves.
@@ -195,11 +209,18 @@ class SummaryOut(BaseModel):
     procedures: int
     # Those that can be done online, fully or as one of two channels.
     online: int
+    # Those people sign in to with CiDi, and their share of the online ones.
+    cidi: int
+    cidi_ratio: float | None
+    # Those that can be done entirely from home, and their share of them all.
+    digital: int
+    digital_ratio: float | None
     average_requirements: float | None
     requirements: int
     sources: int
     by_area: list[NameCount]
     by_channel: list[ChannelCount]
+    by_cidi_level: list[CidiLevelCount]
     top_requirements: list[RequirementCount]
 
 

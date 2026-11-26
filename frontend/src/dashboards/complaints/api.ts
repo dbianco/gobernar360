@@ -1,7 +1,7 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 
 import { api, type Query } from '../../api/client'
-import type { Lookup } from '../../platform/people/types'
+import type { DocumentQuery, Lookup } from '../../platform/people/types'
 import { useAction as usePlatformAction } from '../../platform/useAction'
 import type {
   Calendar,
@@ -51,8 +51,8 @@ export const useQueue = (areaId: string) =>
   })
 export const useSummary = (query: Query) => useGet<Summary>('summary', '/summary', query)
 
-export const lookupPerson = (dni: string) =>
-  api<Lookup>(`${BASE}/people/lookup`, { query: { dni } })
+export const lookupPerson = (document: DocumentQuery) =>
+  api<Lookup>(`${BASE}/people/lookup`, { query: document })
 
 /** Changes refresh every complaints query and the general overview. */
 export const useAction = () => usePlatformAction([KEY, 'overview'])

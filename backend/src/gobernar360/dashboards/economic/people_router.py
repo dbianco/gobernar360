@@ -1,18 +1,16 @@
 """People of the municipality's registry incorporated into the economic dashboard.
 
 The dashboard lists and opens only the people it incorporated. The rest of the
-registry is reachable in one way: looking a person up by exact document number
-before adding them, so the same person is not loaded twice.
+registry is reachable in one way: looking a person up by exact document number or
+CUIL before adding them, so the same person is not loaded twice.
 """
 
 import uuid
-from typing import Annotated
 
-from fastapi import APIRouter, Query
-from pydantic import TypeAdapter, ValidationError
+from fastapi import APIRouter
 from sqlalchemy import or_, select
 
-from gobernar360.core.errors import already_registered, validation_error
+from gobernar360.core.errors import already_registered
 from gobernar360.dashboards.economic.access import Editor, Viewer
 from gobernar360.dashboards.economic.models import Actor, ActorPerson, EconomicPerson
 from gobernar360.dashboards.economic.schemas import (
@@ -30,8 +28,6 @@ from gobernar360.platform.models import Person
 from gobernar360.platform.tenant_crud import create_entity, delete_entity, get_or_404, update_entity
 
 router = APIRouter()
-
-_dni = TypeAdapter(people.Dni)
 
 
 def _registered(ctx: RequestContext, person: Person) -> EconomicPerson | None:
@@ -63,20 +59,18 @@ def list_people(
 
 
 @router.get("/people/lookup")
-def lookup_person(ctx: Editor, dni: Annotated[str, Query(max_length=30)]) -> LookupOut:
-    """Whether the registry already has a person with this document."""
-    try:
-        normalised = _dni.validate_python(dni)
-    except ValidationError as error:
-        raise validation_error("dni must have 6 to 9 digits.") from error
-    person = people.find_by_dni(ctx, normalised)
+def lookup_person(
+    ctx: Editor, dni: people.DocumentQuery = None, cuil: people.DocumentQuery = None
+) -> LookupOut:
+    """Whether the registry already has a person with this document or this CUIL."""
+    person = people.look_up(ctx, dni, cuil)
     registered = _registered(ctx, person) if person else None
     return LookupOut(person=person, registered_id=registered.id if registered else None)
 
 
 @router.post("/people", status_code=201)
 def create_person(payload: EconomicPersonIn, ctx: Editor) -> EconomicPersonOut:
-    existing = people.find_by_dni(ctx, payload.person.dni) if payload.person.dni else None
+    existing = people.find_same(ctx, payload.person)
     if existing is None:
         person = people.create_person(ctx, payload.person)
     elif _registered(ctx, existing):

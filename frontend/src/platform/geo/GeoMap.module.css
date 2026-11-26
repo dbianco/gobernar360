@@ -90,3 +90,46 @@
   height: 14px;
   width: 22px;
 }
+
+.reference {
+  align-items: center;
+  background: #fff;
+  border: 2px solid #2b8a3e;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 45%);
+  box-sizing: border-box;
+  color: #2b8a3e;
+  display: flex;
+  font-size: 13px;
+  font-weight: 700;
+  justify-content: center;
+}
+
+.health {
+  border-color: #c92a2a;
+  color: #c92a2a;
+}
+
+.schools {
+  border-color: #1864ab;
+  color: #1864ab;
+}
+
+.reference:focus-visible {
+  outline: 3px solid #212529;
+  outline-offset: 2px;
+}
+
+.popup strong {
+  display: block;
+}
+
+.popup strong:not(:first-child) {
+  margin-top: 8px;
+}
+
+.popup small {
+  color: #495057;
+  display: block;
+  margin-top: 6px;
+}

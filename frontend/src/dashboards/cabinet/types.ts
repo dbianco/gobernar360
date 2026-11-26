@@ -14,7 +14,11 @@ export interface Commitment {
   id: string
   description: string
   owner: UserRef
+  /** Whether the owner is no longer a member of the municipality. */
+  owner_left: boolean
   due_date: string
+  /** The date agreed in the meeting, which the figures are judged by. */
+  agreed_due_date: string
   state: State
   completed_on: string | null
   times_postponed: number

@@ -354,6 +354,164 @@ exports[`leaves for the lists when it was given to somebody else > screen at the
 [Cargando…]"
 `;
 
+exports[`marks what is done when its owner left (true) > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Cumplido
+Postergado 2 veces
+Reabrir
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`marks what is done when its owner left (true) > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`marks what is dropped when its owner left (true) > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Descartado
+Postergado 2 veces
+Reabrir
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`marks what is dropped when its owner left (true) > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`marks what is open when its owner left (false) > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Pendiente
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`marks what is open when its owner left (false) > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`marks what is open when its owner left (true) > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Pendiente
+Postergado 2 veces
+El responsable ya no está
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`marks what is open when its owner left (true) > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`marks what is overdue when its owner left (true) > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+El responsable ya no está
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`marks what is overdue when its owner left (true) > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
 exports[`names only the dashboard of a meeting to whoever cannot open it > screen at the end 1`] = `
 "Volver a compromisos
 Certificar la obra
@@ -445,6 +603,38 @@ Todavía no hay notas ni cambios."
 `;
 
 exports[`reads the news of one's own by being opened > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`says it once while it is the same > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`says it once while it is the same > screen at the start 1`] = `
 "Volver a compromisos
 [Cargando…]"
 `;
@@ -577,6 +767,40 @@ Todavía no hay notas ni cambios."
 `;
 
 exports[`says why its state could not be changed, and cancels > screen at the start 1`] = `
+"Volver a compromisos
+[Cargando…]"
+`;
+
+exports[`shows the date agreed apart from the one it has now > screen at the end 1`] = `
+"Volver a compromisos
+Certificar la obra
+Vencido
+Postergado 2 veces
+Marcar cumplido
+Editar
+Descartar
+Responsable
+Leo Paz
+Fecha comprometida
+15/12/2026
+Fecha acordada
+20/11/2026
+Se avisa a
+—
+Origen
+:
+Reunión del 20/10/2026
+Vinculado a
+:
+Plaza central
+[Avance e historial]
+Avance e historial
+Nota de avance
+Agregar nota
+Todavía no hay notas ni cambios."
+`;
+
+exports[`shows the date agreed apart from the one it has now > screen at the start 1`] = `
 "Volver a compromisos
 [Cargando…]"
 `;

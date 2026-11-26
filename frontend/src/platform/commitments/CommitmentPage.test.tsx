@@ -49,6 +49,33 @@ const button = (name: string) => screen.findByRole('button', { name })
 const dialog = async () => within(await screen.findByRole('dialog'))
 const value = (key: string) => screen.getByText(label(key)).nextElementSibling?.textContent
 
+it('shows the date agreed apart from the one it has now', async () => {
+  renderCommitment(makeDetail({ due_date: '2026-12-15', agreed_due_date: '2026-11-20' }))
+
+  expect(await screen.findByText(label('agreedDate'))).toBeInTheDocument()
+  expect([value('dueDate'), value('agreedDate')]).toEqual(['15/12/2026', '20/11/2026'])
+})
+
+it('says it once while it is the same', async () => {
+  renderCommitment()
+  await screen.findByText(label('dueDate'))
+
+  expect(screen.queryByText(label('agreedDate'))).toBeNull()
+})
+
+it.each([
+  ['overdue', true, 1],
+  ['open', true, 1],
+  ['done', true, 0],
+  ['dropped', true, 0],
+  ['open', false, 0],
+] as const)('marks what is %s when its owner left (%s)', async (state, ownerLeft, times) => {
+  renderCommitment(makeDetail({ state, owner_left: ownerLeft }))
+  await screen.findByText(label('dueDate'))
+
+  expect(screen.queryAllByText(t('commitments.ownerLeft'))).toHaveLength(times)
+})
+
 it('shows what was agreed and everything that happened to it', async () => {
   renderCommitment(
     makeDetail({

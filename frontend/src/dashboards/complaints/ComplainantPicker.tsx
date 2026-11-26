@@ -2,16 +2,18 @@ import { Alert, Button, Group, SegmentedControl, SimpleGrid, Stack, TextInput } 
 import { useTranslation } from 'react-i18next'
 
 import { formatDni } from '../../platform/format'
-import { type Complainant, currentLookup, type NewPerson, validDni } from './complainant'
+import { documentQuery, formatCuil } from '../../platform/people/documents'
+import type { DocumentQuery } from '../../platform/people/types'
+import { type Complainant, cuilProblem, currentLookup, type NewPerson } from './complainant'
 
 /**
  * Who complains: anonymous, or a resident found in the municipality's registry by their
- * exact document number. Someone not found is added to the registry with the complaint.
+ * exact DNI or CUIL. Someone not found is added to the registry with the complaint.
  */
 export function ComplainantPicker(props: {
   value: Complainant
   onChange: (value: Complainant) => void
-  onLookup: () => void
+  onLookup: (query: DocumentQuery) => void
   looking: boolean
   error: string | null
 }) {
@@ -21,7 +23,8 @@ export function ComplainantPicker(props: {
   const known = currentLookup(value)
   const setPerson = (field: keyof NewPerson) => (event: { currentTarget: { value: string } }) =>
     onChange({ ...value, newPerson: { ...value.newPerson, [field]: event.currentTarget.value } })
-  const dniInvalid = value.dni !== '' && !validDni(value.dni)
+  const query = documentQuery(value.document)
+  const problem = cuilProblem(value)
 
   return (
     <Stack gap="xs">
@@ -41,18 +44,18 @@ export function ComplainantPicker(props: {
               label={label('dni')}
               description={label('dniHint')}
               inputMode="numeric"
-              maxLength={12}
+              maxLength={15}
               required
               withAsterisk={false}
-              error={dniInvalid ? t('people.dniInvalid') : undefined}
-              value={value.dni}
-              onChange={(event) => onChange({ ...value, dni: event.currentTarget.value })}
+              error={value.document !== '' && query === null ? label('dniInvalid') : undefined}
+              value={value.document}
+              onChange={(event) => onChange({ ...value, document: event.currentTarget.value })}
             />
             <Button
               variant="default"
               loading={props.looking}
-              disabled={!validDni(value.dni)}
-              onClick={props.onLookup}
+              disabled={query === null}
+              onClick={query === null ? undefined : () => props.onLookup(query)}
             >
               {label('lookup')}
             </Button>
@@ -60,10 +63,15 @@ export function ComplainantPicker(props: {
           {props.error && <Alert color="red">{props.error}</Alert>}
           {known?.person && (
             <Alert color="blue">
-              {label('found', {
-                name: known.person.full_name,
-                dni: formatDni(known.person.dni),
-              })}
+              {known.person.dni
+                ? label('found', {
+                    name: known.person.full_name,
+                    dni: formatDni(known.person.dni),
+                  })
+                : label('foundByCuil', {
+                    name: known.person.full_name,
+                    cuil: formatCuil(known.person.cuil),
+                  })}
             </Alert>
           )}
           {known && !known.person && (
@@ -86,6 +94,17 @@ export function ComplainantPicker(props: {
                   value={value.newPerson.last_name}
                   onChange={setPerson('last_name')}
                 />
+                {query?.dni && (
+                  <TextInput
+                    label={t('people.cuil')}
+                    description={t('people.cuilHint')}
+                    inputMode="numeric"
+                    maxLength={15}
+                    error={problem ? t(`people.${problem}`) : undefined}
+                    value={value.newPerson.cuil}
+                    onChange={setPerson('cuil')}
+                  />
+                )}
                 <TextInput
                   label={t('people.phone')}
                   maxLength={50}

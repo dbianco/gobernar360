@@ -37,7 +37,7 @@ class Overlap:
     area_m2: float
 
 
-def _area_m2(geometry: Any) -> ColumnElement[float]:
+def area_m2(geometry: Any) -> ColumnElement[float]:
     return func.ST_Area(func.geography(geometry))
 
 
@@ -49,7 +49,7 @@ def check_valid(db: Session, boundary: dict[str, Any]) -> None:
     ).one()
     if not valid:
         raise zone_self_intersects(reason)
-    if db.scalar(select(_area_m2(geometry))) < MIN_ZONE_M2:
+    if db.scalar(select(area_m2(geometry))) < MIN_ZONE_M2:
         raise invalid_boundary("The zone encloses almost no area.")
 
 
@@ -57,7 +57,7 @@ def is_current() -> ColumnElement[bool]:
     return ZoneVersion.valid_to.is_(None)
 
 
-def _end_of(day: date) -> datetime:
+def end_of(day: date) -> datetime:
     return datetime.combine(day + timedelta(days=1), time.min, LOCAL_TIMEZONE)
 
 
@@ -70,14 +70,14 @@ def boundaries_day(db: Session, as_of: date | None, today: date) -> date | None:
     if as_of is None or as_of >= today:
         return None
     first = db.scalar(select(func.min(ZoneVersion.valid_from)))
-    return as_of if first is not None and first < _end_of(as_of) else None
+    return as_of if first is not None and first < end_of(as_of) else None
 
 
 def in_force(day: date | None) -> ColumnElement[bool]:
     """Zone versions in force at the end of `day`, or today when it is None."""
     if day is None:
         return is_current()
-    moment = _end_of(day)
+    moment = end_of(day)
     return (ZoneVersion.valid_from < moment) & (
         ZoneVersion.valid_to.is_(None) | (ZoneVersion.valid_to >= moment)
     )
@@ -97,10 +97,18 @@ def current_version(db: Session, zone: Zone) -> ZoneVersion:
 
 
 def _add_version(
-    ctx: RequestContext, zone: Zone, boundary: dict[str, Any], number: int, moment: datetime
+    ctx: RequestContext,
+    zone: Zone,
+    boundary: dict[str, Any],
+    number: int,
+    moment: datetime,
+    source: str,
 ) -> ZoneVersion:
-    version = ZoneVersion(zone_id=zone.id, version=number, boundary=boundary, valid_from=moment)
-    return create_entity(ctx, version, {"zone_id": zone.id, "version": number})
+    version = ZoneVersion(
+        zone_id=zone.id, version=number, boundary=boundary, valid_from=moment, source=source
+    )
+    changes = {"zone_id": zone.id, "version": number}
+    return create_entity(ctx, version, changes | ({"source": source} if source else {}))
 
 
 def _moment(db: Session) -> datetime:
@@ -109,14 +117,14 @@ def _moment(db: Session) -> datetime:
     return db.scalar(select(func.clock_timestamp()))
 
 
-def create(ctx: RequestContext, name: str, boundary: dict[str, Any]) -> Zone:
+def create(ctx: RequestContext, name: str, boundary: dict[str, Any], source: str = "") -> Zone:
     check_valid(ctx.db, boundary)
     try:
         with ctx.db.begin_nested():
             zone = create_entity(ctx, Zone(name=name), {"name": name})
     except IntegrityError as error:
         raise zone_name_exists() from error
-    _add_version(ctx, zone, boundary, 1, _moment(ctx.db))
+    _add_version(ctx, zone, boundary, 1, _moment(ctx.db), source)
     return zone
 
 
@@ -128,18 +136,20 @@ def rename(ctx: RequestContext, zone: Zone, name: str) -> None:
         raise zone_name_exists() from error
 
 
-def move(
-    ctx: RequestContext, zone: Zone, boundary: dict[str, Any], base_version: int | None = None
-) -> bool:
+def check_base(db: Session, zone: Zone, base_version: int) -> None:
+    """Refuse to change a zone somebody else moved since the person looked at it."""
+    if base_version != current_version(db, zone).version:
+        raise zone_changed()
+
+
+def move(ctx: RequestContext, zone: Zone, boundary: dict[str, Any], source: str = "") -> bool:
     """Give the zone a new boundary from now on. False when it already had that one.
 
-    `zone` must be locked (`find(..., for_update=True)`). `base_version` is the version the
-    person was looking at: moving on top of somebody else's change would undo it unseen.
+    `zone` must be locked (`find(..., for_update=True)`). `source` says where an official
+    boundary comes from; one that people draw has none.
     """
     check_valid(ctx.db, boundary)
     current = current_version(ctx.db, zone)
-    if base_version is not None and base_version != current.version:
-        raise zone_changed()
     same = select(func.ST_Equals(ZoneVersion.boundary, type_coerce(boundary, Geometry()))).where(
         ZoneVersion.id == current.id
     )
@@ -147,7 +157,7 @@ def move(
         return False
     moment = _moment(ctx.db)
     update_entity(ctx, current, {"valid_to": moment})
-    _add_version(ctx, zone, boundary, current.version + 1, moment)
+    _add_version(ctx, zone, boundary, current.version + 1, moment, source)
     return True
 
 
@@ -168,7 +178,7 @@ def overlaps(db: Session, zone_ids: list[uuid.UUID] | None = None) -> list[Overl
     shared_ground = func.ST_CollectionExtract(
         func.ST_Intersection(ZoneVersion.boundary, other.boundary), POLYGONS
     )
-    area = _area_m2(shared_ground)
+    area = area_m2(shared_ground)
     query = (
         select(ZoneVersion, other, area)
         .join(other, ZoneVersion.zone_id < other.zone_id)

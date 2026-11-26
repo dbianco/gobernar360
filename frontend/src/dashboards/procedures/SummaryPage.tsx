@@ -100,6 +100,47 @@ export function SummaryPage() {
               valueLabel={label('countLabel')}
             />
           </SimpleGrid>
+          <Paper withBorder p="md" component="section" aria-label={label('digitalization')}>
+            <Title order={4} mb="xs">
+              {label('digitalization')}
+            </Title>
+            <SimpleGrid cols={{ base: 1, xs: 2, md: 4 }}>
+              <StatCard label={label('cidi')} value={formatNumber(data.cidi)} />
+              <StatCard
+                label={label('cidiRatio')}
+                value={formatRatio(data.cidi_ratio)}
+                hint={label('cidiRatioHint')}
+              />
+              <StatCard
+                label={label('digital')}
+                value={formatNumber(data.digital)}
+                hint={t('procedures.digitalRule')}
+              />
+              <StatCard
+                label={label('digitalRatio')}
+                value={formatRatio(data.digital_ratio)}
+                hint={label('digitalRatioHint')}
+              />
+            </SimpleGrid>
+            <Table aria-label={label('byCidiLevel')} mt="md" maw={420}>
+              <Table.Thead>
+                <Table.Tr>
+                  <HelpTh help={help('cidiLevel')}>{label('cidiLevel')}</HelpTh>
+                  <HelpTh help={help('cidiCount')} ta="right">
+                    {label('count')}
+                  </HelpTh>
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                {data.by_cidi_level.map(({ level, count }) => (
+                  <Table.Tr key={level ?? 'none'}>
+                    <Table.Td>{t(`procedures.cidiLevels.${level ?? 'none'}`)}</Table.Td>
+                    <Table.Td ta="right">{count}</Table.Td>
+                  </Table.Tr>
+                ))}
+              </Table.Tbody>
+            </Table>
+          </Paper>
           <Paper withBorder p="md" component="section">
             <Title order={4} mb="xs">
               {label('topRequirements')}

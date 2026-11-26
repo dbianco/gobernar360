@@ -117,6 +117,16 @@
       "milestone_overdue": {
         "subject": "Hitos vencidos en {{municipality}}",
         "html": "<p>Hola:</p><p>Estos hitos de proyectos de {{municipality}} pasaron su fecha sin completarse:</p>{{items}}<p>Quien administra {{municipality}} en gobernar360 elige quiénes reciben estos avisos. Si tenés cuenta, podés dejar de recibirlos desde <a href=\"{{account_link}}\">Mi cuenta</a>.</p><p>—<br>gobernar360<br>Este mensaje se envió automáticamente; no hace falta responderlo.</p>"
+      },
+      "notice": {
+        "complaint_resolved": {
+          "subject": "Tu reclamo {{code}} fue resuelto",
+          "html": "<p>Hola, {{name}}:</p><p>{{municipality}} resolvió tu reclamo <strong>{{code}}</strong> ({{type}}).</p><p>{{message}}</p><p>—<br>{{municipality}}<br>Este mensaje se envió automáticamente; no hace falta responderlo.</p>"
+        },
+        "complaint_rejected": {
+          "subject": "Novedades de tu reclamo {{code}}",
+          "html": "<p>Hola, {{name}}:</p><p>{{municipality}} revisó tu reclamo <strong>{{code}}</strong> ({{type}}) y no le va a dar curso.</p><p>{{message}}</p><p>—<br>{{municipality}}<br>Este mensaje se envió automáticamente; no hace falta responderlo.</p>"
+        }
       }
     },
     "items": {
@@ -125,7 +135,10 @@
     },
     "test": {
       "subjectPrefix": "[Prueba] ",
-      "item": "Un aviso de ejemplo"
+      "item": "Un aviso de ejemplo",
+      "code": "1234",
+      "type": "Alumbrado público",
+      "message": "Este es el mensaje que escribe quien atendió el reclamo."
     }
   }
 }

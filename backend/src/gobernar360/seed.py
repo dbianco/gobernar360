@@ -8,9 +8,10 @@ from collections.abc import Callable
 from datetime import UTC, date, datetime, time, timedelta
 from decimal import Decimal
 
-from sqlalchemy import select, text
+from sqlalchemy import select, text, update
 from sqlalchemy.orm import Session
 
+from gobernar360.core.config import get_settings
 from gobernar360.core.db import Base, get_admin_engine, platform_session, tenant_session
 from gobernar360.core.security import hash_password
 from gobernar360.dashboards import registry
@@ -65,8 +66,9 @@ from gobernar360.dashboards.social.models import (
     InterventionType,
     SocialPerson,
 )
-from gobernar360.platform import publication, reports
+from gobernar360.platform import municipality_settings, publication, reports
 from gobernar360.platform.access import RequestContext, enabled_dashboard_keys, system_context
+from gobernar360.platform.cidi import connection as cidi_connection
 from gobernar360.platform.clock import LOCAL_TIMEZONE
 from gobernar360.platform.commitment_models import (
     Commitment,
@@ -77,6 +79,7 @@ from gobernar360.platform.commitment_models import (
 from gobernar360.platform.geo.models import Zone, ZoneVersion
 from gobernar360.platform.indicators import Number, month_of, months_between, shift
 from gobernar360.platform.models import (
+    CIDI_THEN_EMAIL,
     DashboardGrant,
     DashboardStatus,
     IndicatorSnapshot,
@@ -85,10 +88,17 @@ from gobernar360.platform.models import (
     MonthlyReport,
     Municipality,
     MunicipalityDashboard,
+    MunicipalitySettings,
     Person,
     PublicSettings,
     PublishedDashboard,
     User,
+)
+from gobernar360.platform.people import cuil_check_digit
+from gobernar360.platform.resident_notice_models import (
+    APPROVED,
+    CidiConnection,
+    CidiConnectionValue,
 )
 from gobernar360.platform.snapshots import snapshot_municipality
 from gobernar360.platform.subjects import Subject, month_ref
@@ -158,6 +168,7 @@ PROCEDURE_SOURCES = [
     ("RENAPER", "national", None),
     ("ANSES", "national", None),
     ("Colegio de Arquitectos", "other", None),
+    ("CiDi – Centro de Documentación Digital", "provincial", None),
 ]
 # name: (source, description)
 PROCEDURE_REQUIREMENTS = {
@@ -177,7 +188,20 @@ PROCEDURE_REQUIREMENTS = {
     "Foto carnet": (None, ""),
     "Certificado de domicilio": (None, ""),
     "Contrato de alquiler": (None, "Cuando el local no es propio."),
+    # What the province already holds of whoever has an account.
+    "Copia del DNI": (
+        "CiDi – Centro de Documentación Digital",
+        "Está en la cuenta de CiDi del solicitante.",
+    ),
 }
+# The least CiDi level each procedure asks to sign in with; the rest ask for none.
+PROCEDURE_CIDI_LEVELS = {
+    "Renovación de habilitación comercial": 2,
+    "Renovación de licencia de conducir": 2,
+    "Certificado de libre deuda": 1,
+}
+# Procedures with two channels that ask for nothing on paper.
+PROCEDURES_WITHOUT_PAPER = {"Plan de pago de tasas"}
 # name, area, audience, channel, cost (None = free), days, yearly volume, active, requirements
 PROCEDURE_ROWS = [
     (
@@ -325,7 +349,7 @@ PROCEDURE_ROWS = [
         3,
         230,
         True,
-        ("Nomenclatura catastral", "DNI"),
+        ("Nomenclatura catastral", "DNI", "Copia del DNI"),
     ),
     (
         "Carnet de manipulación de alimentos",
@@ -1600,6 +1624,7 @@ def _seed_noetinger_procedures(municipality_id, today: date) -> None:
         }
         for name, area, audience, channel, cost, days, volume, active, asked in PROCEDURE_ROWS:
             online = channel != "in_person"
+            paper = channel != "online" and name not in PROCEDURES_WITHOUT_PAPER
             procedure = add(
                 Procedure(
                     name=name,
@@ -1607,6 +1632,7 @@ def _seed_noetinger_procedures(municipality_id, today: date) -> None:
                     audience=audience,
                     channel=channel,
                     url="https://noetinger.example/tramites" if online else "",
+                    cidi_level=PROCEDURE_CIDI_LEVELS.get(name),
                     is_free=cost is None,
                     cost=cost,
                     duration_days=days,
@@ -1620,7 +1646,7 @@ def _seed_noetinger_procedures(municipality_id, today: date) -> None:
                         procedure_id=procedure.id,
                         requirement_id=requirements[requirement].id,
                         mandatory=requirement != "Contrato de alquiler",
-                        format="digital" if channel == "online" else "paper",
+                        format="paper" if paper else "digital",
                     )
                 )
         _add_lights(db, municipality_id, PROCEDURES, today)
@@ -2005,6 +2031,91 @@ def _seed_noetinger_geography(today: date) -> bool:
             _locate(db, Actor, name, _point(location))
         for name, location in HOUSEHOLD_LOCATIONS.items():
             _locate(db, Household, name, _point(location))
+        # As if loaded when the zones were: figures of past years only count what there was.
+        for model in (Project, Actor, Household):
+            db.execute(update(model).values(created_at=last_year))
+    return True
+
+
+# Noetinger in IDECOR's layers and its satellite image (docs/idecor/README.md).
+IDECOR_KEY = "360124"
+CONAE_LAYER = "Localidades:Cordoba_Noetinger_2023"
+
+
+def _seed_noetinger_official_sources() -> bool:
+    """Where Noetinger is in the official services, as the operator would set it.
+
+    Returns False when it is already set.
+    """
+    with platform_session() as db:
+        noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+        row = municipality_settings.find(db, noetinger_id)
+        if row is None:
+            row = MunicipalitySettings(municipality_id=noetinger_id)
+            db.add(row)
+        if row.idecor_key is not None:
+            return False
+        row.idecor_key, row.conae_layer = IDECOR_KEY, CONAE_LAYER
+    return True
+
+
+# Residents of the demo who would have a CiDi account, by document number.
+DEMO_CUIL_DNIS = ("33123456", "36987654")
+DEMO_ORDINANCE = "Ordenanza 12/2026"
+
+
+def _made_up_cuil(dni: str) -> str:
+    """A CUIL of nobody, with the digit that makes it valid."""
+    for kind in ("20", "27", "23", "24"):
+        first_ten = kind + dni.zfill(8)
+        digit = cuil_check_digit(first_ten)
+        if digit is not None:
+            return f"{first_ten}{digit}"
+    raise ValueError(f"No kind of CUIL suits {dni}.")
+
+
+def _seed_resident_notices(today: date) -> bool:
+    """The CUIL of two residents of Noetinger, and the commune telling its own by CiDi.
+
+    Returns False when the commune already chose how, so that it is done once.
+    """
+    with platform_session() as db:
+        noetinger_id = db.scalar(select(Municipality.id).where(Municipality.slug == "noetinger"))
+        commune_id = db.scalar(select(Municipality.id).where(Municipality.slug == "comuna-demo"))
+        # An older demo database may no longer have the second municipality.
+        if commune_id is None:
+            return False
+        row = municipality_settings.find(db, commune_id)
+        if row is None:
+            row = MunicipalitySettings(municipality_id=commune_id)
+            db.add(row)
+        if row.cidi_ordinance:
+            return False
+        row.resident_notice_channel, row.cidi_ordinance = CIDI_THEN_EMAIL, DEMO_ORDINANCE
+    with tenant_session(commune_id) as db:
+        db.add(
+            CidiConnection(
+                municipality_id=commune_id,
+                adhesion_state=APPROVED,
+                adhesion_date=today - timedelta(days=90),
+                adhesion_file="0423-000000/2026",
+            )
+        )
+        for name, value in (
+            (cidi_connection.SYSTEM_NAME, "gobernar360 – Comuna Demo"),
+            (cidi_connection.PUBLICATION_URL, get_settings().app_url),
+            (cidi_connection.CONTACT, "sistemas@comuna-demo.test"),
+        ):
+            db.add(
+                CidiConnectionValue(
+                    municipality_id=commune_id, name=name, value=value, set_at=datetime.now(UTC)
+                )
+            )
+    with tenant_session(noetinger_id) as db:
+        for dni in DEMO_CUIL_DNIS:
+            person = db.scalar(select(Person).where(Person.dni == dni, Person.cuil.is_(None)))
+            if person is not None:
+                person.cuil = _made_up_cuil(dni)
     return True
 
 
@@ -2051,6 +2162,9 @@ def _seed_newer_dashboards(today: date) -> bool:
         _seed_complaints(today),
         # After the dashboards whose records it locates, and before their history is taken.
         _seed_noetinger_geography(today),
+        _seed_noetinger_official_sources(),
+        # After the complaints, whose residents it is about.
+        _seed_resident_notices(today),
         # After the dashboards: its commitments point at projects and at the lights of the rest.
         _seed_newer_dashboard(CABINET, _seed_noetinger_cabinet, today),
         _seed_noetinger_commitments(today),

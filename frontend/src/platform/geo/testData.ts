@@ -45,6 +45,7 @@ export function makeZone(overrides: Partial<Zone> = {}): Zone {
     version: 1,
     // Noon, so that it is the same day in every time zone tests may run in.
     valid_from: '2025-03-10T12:00:00Z',
+    source: '',
     boundary: boundary(square(-62, -32)),
     ...overrides,
   }

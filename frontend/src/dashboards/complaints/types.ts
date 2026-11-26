@@ -12,6 +12,8 @@ export const STATES = [
 export type State = (typeof STATES)[number]
 /** States someone still has to act on. */
 export const OPEN_STATES: State[] = ['received', 'assigned', 'in_progress', 'waiting', 'reopened']
+/** Moves the resident is told about. */
+export const TOLD_TO_RESIDENT: State[] = ['resolved', 'rejected']
 /** Moves that must say why. */
 export const NOTE_REQUIRED: State[] = ['rejected', 'reopened']
 
@@ -89,6 +91,17 @@ export interface TimelineEvent {
   user: { id: string; full_name: string } | null
 }
 
+/** That the resident was told something, and how that went; never what it said. */
+export interface ResidentNotice {
+  id: string
+  kind: string
+  channel: 'cidi' | 'email'
+  state: 'queued' | 'handed_over' | 'failed' | 'no_channel'
+  /** ISO date-times. */
+  created_at: string
+  handed_over_at: string | null
+}
+
 export interface ComplaintDetail extends Omit<Complaint, 'person'> {
   description: string
   /** Who made the complaint and how to reach them; the registry holds the rest. */
@@ -96,6 +109,8 @@ export interface ComplaintDetail extends Omit<Complaint, 'person'> {
   /** States this complaint may move to next. */
   moves: State[]
   timeline: TimelineEvent[]
+  /** What the resident was told. Null for viewers. */
+  notices: ResidentNotice[] | null
 }
 
 export interface Queue {

@@ -88,7 +88,20 @@ imports. No licence text was found in the services' capabilities documents (`Fee
 `AccessConstraints` say `NONE`), so the source of the claim is the owner's statement, not a
 document in this repository; record the document here when it is found.
 
+## How the app uses it
+
+`uv run gobernar360 import-idecor <slug> --radius --layers health,schools` (task 21) reads the
+radius by its `key` and the facilities by the box of the radius, in EPSG:22174, and stores the
+zone "Radio urbano" and the facilities inside it. `--from-dir docs/idecor/samples` reads saved
+answers instead: `<slug>_<layer>_epsg22174.json` or, failing that, `<slug>_<layer>.geojson`.
+Of each facility only the name and these are kept: type (`categoria`, or `tipo`), address
+(`domicilio`), sector (`dependencia`) of health centres; level (`nivel`), address (`est_domicilio`)
+and sector (`est_sector`) of schools.
+
 ## Pending (a person must answer)
+
+- The highest zoom the CONAE layer of Noetinger answers at. 17 was verified; the background
+  allows 19 (0.30 m) and was built without internet.
 
 - Whether CONAE agrees to a municipality's maps loading its tiles on every view (no cache headers).
 - Whether IDECOR has a stable, documented address for the neighbourhood layers of other towns, and

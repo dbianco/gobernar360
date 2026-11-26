@@ -5,10 +5,9 @@ Every change is stamped with the server's time: a step cannot be dated back.
 """
 
 import uuid
-from typing import Annotated, Any, Literal
+from typing import Any, Literal
 
-from fastapi import APIRouter, Query
-from pydantic import TypeAdapter, ValidationError
+from fastapi import APIRouter
 from sqlalchemy import or_, select
 
 from gobernar360.core.errors import (
@@ -17,7 +16,7 @@ from gobernar360.core.errors import (
     not_found,
     validation_error,
 )
-from gobernar360.dashboards.complaints.access import Editor, Viewer
+from gobernar360.dashboards.complaints.access import KEY, Editor, Viewer
 from gobernar360.dashboards.complaints.cases import (
     add_event,
     load_calendar,
@@ -34,6 +33,7 @@ from gobernar360.dashboards.complaints.lifecycle import (
     COMMENT,
     CREATED,
     NOTE_REQUIRED,
+    NOTICE_KINDS,
     OPEN_STATES,
     REASSIGNED,
     RECEIVED,
@@ -63,16 +63,16 @@ from gobernar360.dashboards.complaints.schemas import (
     State,
     TransitionIn,
 )
-from gobernar360.platform import people
-from gobernar360.platform.access import RequestContext
+from gobernar360.platform import people, resident_notices
+from gobernar360.platform.access import AccessLevel, RequestContext, effective_level
 from gobernar360.platform.clock import Now, Today
 from gobernar360.platform.listing import Page, PagingParams, SearchText, contains, page_of
 from gobernar360.platform.models import Person
+from gobernar360.platform.subjects import Subject
 from gobernar360.platform.tenant_crud import create_entity, get_or_404, resolve, update_entity
 
 router = APIRouter()
 
-_dni = TypeAdapter(people.Dni)
 # Digits of the largest complaint number the column holds.
 MAX_NUMBER_DIGITS = 9
 NEWEST_FIRST = (Complaint.received_at.desc(), Complaint.number.desc())
@@ -91,7 +91,17 @@ def _detail(ctx: RequestContext, complaint: Complaint, today) -> dict[str, Any]:
         "description": complaint.description,
         "moves": list(allowed_moves(complaint.state)),
         "timeline": timeline,
+        # What residents were told is for those who handle the case.
+        "notices": (
+            resident_notices.about(ctx.db, notice_subject(complaint))
+            if effective_level(ctx.db, ctx.membership, KEY) >= AccessLevel.EDITOR
+            else None
+        ),
     }
+
+
+def notice_subject(complaint: Complaint) -> Subject:
+    return Subject(KEY, "complaint", str(complaint.id))
 
 
 def _require_open(complaint: Complaint) -> None:
@@ -230,8 +240,11 @@ def move_complaint(
         raise invalid_transition(f"A complaint in state {from_state} cannot move to {to_state}.")
     if to_state in NOTE_REQUIRED and not payload.note:
         raise validation_error(f"Moving a complaint to {to_state} needs a note saying why.")
+    tells = to_state in NOTICE_KINDS
+    if payload.message_to_resident and (not tells or complaint.person is None):
+        raise validation_error("There is nobody to send that message to.")
     update_entity(ctx, complaint, {"state": to_state})
-    add_event(
+    event = add_event(
         ctx,
         complaint,
         TRANSITION,
@@ -240,6 +253,18 @@ def move_complaint(
         to_state=to_state,
         note=payload.note,
     )
+    if tells and complaint.person is not None:
+        # The note is the employees': only the message written for the resident goes along.
+        resident_notices.queue(
+            ctx,
+            complaint.person,
+            NOTICE_KINDS[to_state],
+            f"complaint:{complaint.id}:{to_state}:{event.id}",
+            notice_subject(complaint),
+            payload.message_to_resident,
+            code=complaint.number,
+            type=complaint.type.name,
+        )
     return _detail(ctx, complaint, local_date(now))
 
 
@@ -320,10 +345,8 @@ def get_queue(area_id: uuid.UUID, ctx: Viewer, today: Today) -> list[ComplaintOu
 
 
 @router.get("/people/lookup")
-def lookup_person(ctx: Editor, dni: Annotated[str, Query(max_length=30)]) -> LookupOut:
-    """Whether the municipality's registry has a person with exactly this document."""
-    try:
-        normalised = _dni.validate_python(dni)
-    except ValidationError as error:
-        raise validation_error("dni must have 6 to 9 digits.") from error
-    return LookupOut(person=people.find_by_dni(ctx, normalised))
+def lookup_person(
+    ctx: Editor, dni: people.DocumentQuery = None, cuil: people.DocumentQuery = None
+) -> LookupOut:
+    """Whether the municipality's registry has a person with exactly this document or CUIL."""
+    return LookupOut(person=people.look_up(ctx, dni, cuil))

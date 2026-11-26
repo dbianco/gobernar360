@@ -78,6 +78,18 @@ def open_item(ctx: RequestContext, item_id: uuid.UUID) -> AgendaItem:
     return item
 
 
+def is_being_agreed(ctx: RequestContext, item_id: uuid.UUID) -> bool:
+    """Whether the meeting of an agenda item is still open. Locked, so that it does not close
+    in between."""
+    closed_at = ctx.db.execute(
+        select(Meeting.closed_at)
+        .join(AgendaItem, AgendaItem.meeting_id == Meeting.id)
+        .where(AgendaItem.id == item_id)
+        .with_for_update(of=Meeting)
+    ).scalar_one()
+    return closed_at is None
+
+
 def _check_date(ctx: RequestContext, meeting_date: date) -> None:
     last = agenda.last_closed_meeting(ctx)
     if last is not None and meeting_date < last.date:

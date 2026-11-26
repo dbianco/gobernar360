@@ -4,13 +4,13 @@ told about them. Who may do what is decided in `platform.commitments`."""
 import datetime as dt
 import uuid
 from dataclasses import asdict
-from typing import Literal
+from typing import Annotated, Literal
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from sqlalchemy import select
 
 from gobernar360.platform import commitments, subjects
-from gobernar360.platform.access import Context, RequestContext
+from gobernar360.platform.access import Context, RequestContext, require_municipality_admin
 from gobernar360.platform.clock import Today
 from gobernar360.platform.commitment_models import Commitment, CommitmentEntry
 from gobernar360.platform.commitment_rules import OPEN, effective_state
@@ -20,6 +20,8 @@ from gobernar360.platform.commitment_schemas import (
     CommitmentOut,
     CommitmentPatch,
     HistoryEntry,
+    LeftCommitment,
+    LeftCommitmentsOut,
     NewsOut,
     NoteIn,
     NotificationRow,
@@ -44,6 +46,7 @@ def present(ctx: RequestContext, rows: list[Commitment], today: dt.date) -> list
     origins = commitments.origins(ctx, rows)
     followers = commitments.followers_of(ctx, ids)
     rights = commitments.rights_on(ctx, rows)
+    former = commitments.left(ctx, [row.owner_id for row in rows])
     creators = {
         user.id: user
         for user in ctx.db.scalars(
@@ -66,7 +69,9 @@ def present(ctx: RequestContext, rows: list[Commitment], today: dt.date) -> list
             description=row.description,
             owner=UserRef.model_validate(row.owner),
             creator=creator(row),
+            owner_left=row.owner_id in former,
             due_date=row.due_date,
+            agreed_due_date=row.agreed_due_date,
             state=effective_state(row.state, row.due_date, today),
             completed_on=row.completed_on,
             times_postponed=origins[row.id].times_postponed if row.id in origins else 0,
@@ -186,6 +191,32 @@ def set_state(
     commitments.require(rights.finish if says_done else rights.manage)
     commitments.set_state(ctx, commitment, today, payload.state, payload.completed_on, payload.note)
     return _detail(ctx, commitment, today)
+
+
+def left_out(ctx: RequestContext, found: commitments.LeftBehind) -> LeftCommitmentsOut:
+    rights = commitments.rights_on(ctx, found.seen) if found.seen else {}
+    return LeftCommitmentsOut(
+        commitments=[
+            LeftCommitment(
+                id=row.id,
+                description=row.description,
+                owner=UserRef.model_validate(row.owner),
+                due_date=row.due_date,
+                source=row.source,
+                can_reassign=rights[row.id].reschedule,
+            )
+            for row in found.seen
+        ],
+        hidden=found.hidden,
+    )
+
+
+@router.get("/admin/left-commitments")
+def list_left_commitments(
+    ctx: Annotated[RequestContext, Depends(require_municipality_admin)],
+) -> LeftCommitmentsOut:
+    """Open commitments of people who are no longer members, to give them to somebody."""
+    return left_out(ctx, commitments.left_behind(ctx))
 
 
 @router.get("/notifications")

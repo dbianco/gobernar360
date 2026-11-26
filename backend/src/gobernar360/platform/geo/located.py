@@ -15,6 +15,8 @@ LINE = "LineString"
 class LocatedMixin:
     """A tenant record with a place on the map. Its migration must call enable_location().
 
+    Its model also uses AuditMixin: figures of a past day leave out what was loaded after.
+
     `location_kinds` lists the GeoJSON geometry types the record accepts. The location is
     loaded only when asked for: lists do not carry it.
     """

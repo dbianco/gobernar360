@@ -220,7 +220,10 @@ def test_admin_cannot_edit_membership_of_another_municipality(admin_client):
 def test_admin_removes_a_member_but_not_the_user_account(admin_client, client):
     membership_id = admin_client.post("/api/admin/users", json=_new_user()).json()["membership_id"]
 
-    assert admin_client.delete(f"/api/admin/users/{membership_id}").status_code == 204
+    removed = admin_client.delete(f"/api/admin/users/{membership_id}")
+
+    assert removed.status_code == 200
+    assert removed.json() == {"commitments": [], "hidden": 0}
 
     assert len(admin_client.get("/api/admin/users").json()["items"]) == 1
     client.post("/api/auth/logout")

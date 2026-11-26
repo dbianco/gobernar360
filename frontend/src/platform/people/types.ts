@@ -5,6 +5,8 @@ export interface Person {
   last_name: string
   full_name: string
   dni: string | null
+  /** Their tax number, 11 digits: the user name of their CiDi account, if they have one. */
+  cuil: string | null
   birth_date: string | null
   phone: string
   email: string
@@ -12,7 +14,10 @@ export interface Person {
   neighborhood: string
 }
 
-/** What the registry answers about a document number. */
+/** Somebody is looked up in the registry by exact document, or by exact CUIL. */
+export type DocumentQuery = { dni: string; cuil?: undefined } | { cuil: string; dni?: undefined }
+
+/** What the registry answers about a document. */
 export interface Lookup {
   person: Person | null
   /** The asking dashboard's id for the person, when it already incorporated them. */

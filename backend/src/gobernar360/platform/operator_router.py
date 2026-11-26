@@ -24,6 +24,7 @@ from gobernar360.platform.audit import record_change
 from gobernar360.platform.clock import Today
 from gobernar360.platform.models import Municipality, MunicipalityDashboard, User
 from gobernar360.platform.schemas import MunicipalityOut, Password
+from gobernar360.platform.settings_router import SettingsOut
 
 router = APIRouter(prefix="/platform", tags=["platform"], dependencies=[Depends(require_operator)])
 
@@ -69,6 +70,15 @@ class MunicipalityPatch(BaseModel):
         None
     )
     kind: MunicipalityKind = None
+
+
+class GeographyIn(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    # Six digits, as in IDECOR's layers, e.g. 360124.
+    idecor_key: Annotated[str, StringConstraints(pattern=r"^[0-9]{6}$")] | None
+    # Name of a CONAE layer. Only what is safe in an address: it becomes part of one.
+    conae_layer: Annotated[str, StringConstraints(pattern=r"^[A-Za-z0-9:_-]{1,100}$")] | None
 
 
 class PasswordIn(BaseModel):
@@ -193,6 +203,15 @@ router.include_router(
     settings_router.build_router(get_operator_context),
     prefix="/municipalities/{municipality_id}",
 )
+
+
+@router.put("/municipalities/{municipality_id}/settings/geography")
+def set_geography(payload: GeographyIn, ctx: OperatorContext) -> SettingsOut:
+    """Where the municipality is in the official services. Its own administrators see it and
+    cannot change it: somebody else's key would bring in somebody else's town."""
+    row = settings_router.own_row(ctx)
+    row.idecor_key, row.conae_layer = payload.idecor_key, payload.conae_layer
+    return settings_router.save_settings(ctx, row, payload.model_dump())
 
 
 @router.put("/municipalities/{municipality_id}/users/{membership_id}/password", status_code=204)

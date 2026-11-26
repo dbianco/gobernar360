@@ -166,6 +166,8 @@ Nueva persona
 Domínguez, Mirta ya está en el padrón del municipio. Revisá sus datos y guardá para incorporarla a este tablero.
 DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
+CUIL
+Opcional, con o sin guiones. Es el usuario de la cuenta de CiDi.
 Fecha de nacimiento
 (dd/mm/aaaa)
 [Abrir calendario]
@@ -222,6 +224,8 @@ Pérez, Juana ya está registrada en este tablero.
 Abrir su ficha
 DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
+CUIL
+Opcional, con o sin guiones. Es el usuario de la cuenta de CiDi.
 Fecha de nacimiento
 (dd/mm/aaaa)
 [Abrir calendario]
@@ -308,6 +312,8 @@ Nueva persona
 DNI
 Opcional. Si la persona ya está en el padrón del municipio, se usan sus datos.
 El DNI tiene que tener entre 6 y 9 dígitos.
+CUIL
+Opcional, con o sin guiones. Es el usuario de la cuenta de CiDi.
 Fecha de nacimiento
 (dd/mm/aaaa)
 [Abrir calendario]

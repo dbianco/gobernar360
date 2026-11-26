@@ -150,6 +150,26 @@ exports[`explains what the indicator measures when its info icon is hovered > sc
 Sin meta para este año"
 `;
 
+exports[`has no info icon for an indicator nobody described > screen at the end 1`] = `
+"Proyectos retrasados
+[Ver la evolución de Proyectos retrasados]
+6
++1 respecto del mes anterior
+−2 respecto de un año atrás
+[Proyectos retrasados en los últimos 12 meses]
+Sin meta para este año"
+`;
+
+exports[`has no info icon for an indicator nobody described > screen at the start 1`] = `
+"Proyectos retrasados
+[Ver la evolución de Proyectos retrasados]
+6
++1 respecto del mes anterior
+−2 respecto de un año atrás
+[Proyectos retrasados en los últimos 12 meses]
+Sin meta para este año"
+`;
+
 exports[`keeps its two icons together, alike, at the top of the card > screen at the end 1`] = `
 "Proyectos retrasados
 [Qué significa Proyectos retrasados]
@@ -162,6 +182,28 @@ Sin meta para este año"
 `;
 
 exports[`keeps its two icons together, alike, at the top of the card > screen at the start 1`] = `
+"Proyectos retrasados
+[Qué significa Proyectos retrasados]
+[Ver la evolución de Proyectos retrasados]
+6
++1 respecto del mes anterior
+−2 respecto de un año atrás
+[Proyectos retrasados en los últimos 12 meses]
+Sin meta para este año"
+`;
+
+exports[`opens from anywhere on the card and closes again > screen at the end 1`] = `
+"Proyectos retrasados
+[Qué significa Proyectos retrasados]
+[Ver la evolución de Proyectos retrasados]
+6
++1 respecto del mes anterior
+−2 respecto de un año atrás
+[Proyectos retrasados en los últimos 12 meses]
+Sin meta para este año"
+`;
+
+exports[`opens from anywhere on the card and closes again > screen at the start 1`] = `
 "Proyectos retrasados
 [Qué significa Proyectos retrasados]
 [Ver la evolución de Proyectos retrasados]
@@ -346,6 +388,30 @@ Fuera de meta
 2 por encima de la meta de 4"
 `;
 
+exports[`says when the value is exactly at the target and did not change > screen at the end 1`] = `
+"Proyectos retrasados
+[Qué significa Proyectos retrasados]
+[Ver la evolución de Proyectos retrasados]
+6
+0 respecto del mes anterior
+−2 respecto de un año atrás
+[Proyectos retrasados en los últimos 12 meses]
+En meta
+Justo en la meta de 6"
+`;
+
+exports[`says when the value is exactly at the target and did not change > screen at the start 1`] = `
+"Proyectos retrasados
+[Qué significa Proyectos retrasados]
+[Ver la evolución de Proyectos retrasados]
+6
+0 respecto del mes anterior
+−2 respecto de un año atrás
+[Proyectos retrasados en los últimos 12 meses]
+En meta
+Justo en la meta de 6"
+`;
+
 exports[`shows ratio changes and gaps in percentage points > screen at the end 1`] = `
 "Presupuesto ejecutado
 [Qué significa Presupuesto ejecutado]
@@ -368,6 +434,28 @@ Sin dato de un año atrás
 [Presupuesto ejecutado en los últimos 12 meses]
 Fuera de meta
 10 p.p. por debajo de la meta de 50 %"
+`;
+
+exports[`shows the target alone while there is no value to compare > screen at the end 1`] = `
+"Proyectos retrasados
+[Qué significa Proyectos retrasados]
+[Ver la evolución de Proyectos retrasados]
+—
++1 respecto del mes anterior
+−2 respecto de un año atrás
+[Proyectos retrasados en los últimos 12 meses]
+Meta: 4"
+`;
+
+exports[`shows the target alone while there is no value to compare > screen at the start 1`] = `
+"Proyectos retrasados
+[Qué significa Proyectos retrasados]
+[Ver la evolución de Proyectos retrasados]
+—
++1 respecto del mes anterior
+−2 respecto de un año atrás
+[Proyectos retrasados en los últimos 12 meses]
+Meta: 4"
 `;
 
 exports[`shows the value and how it changed, judged by the direction of the indicator > screen at the end 1`] = `

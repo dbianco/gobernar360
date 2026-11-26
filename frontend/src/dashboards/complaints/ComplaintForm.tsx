@@ -3,13 +3,16 @@ import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { errorMessage } from '../../platform/errorMessage'
+import { documentQuery } from '../../platform/people/documents'
+import type { DocumentQuery } from '../../platform/people/types'
 import { lookupPerson, send, useAction } from './api'
 import {
   type Complainant,
+  cuilProblem,
   currentLookup,
+  documentKey,
   EMPTY_COMPLAINANT,
-  normaliseDni,
-  validDni,
+  newPersonOf,
 } from './complainant'
 import { ComplainantPicker } from './ComplainantPicker'
 import type { ComplaintDetail, ComplaintType, Named } from './types'
@@ -33,13 +36,13 @@ export function ComplaintForm(props: {
   const label = (key: string, options = {}) => t(`complaints.form.${key}`, options)
   const type = offered.find((item) => item.id === typeId)
 
-  async function lookup(): Promise<void> {
-    const dni = normaliseDni(complainant.dni)
+  async function lookup(query: DocumentQuery): Promise<void> {
+    const document = documentKey(query)
     setLooking(true)
     setLookupError(null)
     try {
-      const result = await lookupPerson(dni)
-      setComplainant((current) => ({ ...current, lookup: { dni, result } }))
+      const result = await lookupPerson(query)
+      setComplainant((current) => ({ ...current, lookup: { document, result } }))
     } catch (error) {
       setLookupError(errorMessage(error))
     } finally {
@@ -52,20 +55,20 @@ export function ComplaintForm(props: {
     const known = currentLookup(complainant)
     if (!known) return null
     if (known.person) return { person_id: known.person.id }
-    return {
-      new_person: { ...complainant.newPerson, dni: normaliseDni(complainant.dni) },
-    }
+    return { new_person: newPersonOf(complainant) }
   }
 
   async function submit(event: FormEvent) {
     event.preventDefault()
-    if (!complainant.anonymous && !validDni(complainant.dni)) return
+    const query = documentQuery(complainant.document)
+    if (!complainant.anonymous && query === null) return
     const who = resident()
     if (who === null) {
       // Show who the registry has before saving, so the complaint is not filed to a stranger.
-      await lookup()
+      await lookup(query as DocumentQuery)
       return
     }
+    if ('new_person' in who && cuilProblem(complainant) !== null) return
     const body = { type_id: typeId, zone_id: zoneId, address, description, ...who }
     const created = await action.run(() => send<ComplaintDetail>('POST', '/complaints', body))
     if (created) props.onDone(created)
@@ -115,7 +118,7 @@ export function ComplaintForm(props: {
           <ComplainantPicker
             value={complainant}
             onChange={setComplainant}
-            onLookup={() => void lookup()}
+            onLookup={(query) => void lookup(query)}
             looking={looking}
             error={lookupError}
           />

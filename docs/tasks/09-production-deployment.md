@@ -78,5 +78,12 @@ Pass: every command is green and the five manual checks behave as described.
   storage is tested against a local container.
 - The database image is currently pinned to `linux/amd64`; this task should make the
   stack run natively on both amd64 and arm64.
+- Hardening checklist, what the content security policy must let the browser fetch for the maps
+  (`platform/geo/backgrounds.py`), and nothing else: the OpenStreetMap tile hosts and the others
+  listed there, and `geotematico01.conae.gov.ar` (satellite images, task 21). Without them the
+  maps go blank in production only.
+- The API already refuses to start in production (`GOBERNAR360_ENVIRONMENT=production` or secure
+  cookies) while `GOBERNAR360_DATABASE_URL` or `GOBERNAR360_PUBLIC_DATABASE_URL` have the password
+  of the development database. The stack has to set `GOBERNAR360_SECRETS_KEY` too (task 19).
 - Out of scope: Kubernetes manifests, multi-node high availability, managed-cloud
   templates.

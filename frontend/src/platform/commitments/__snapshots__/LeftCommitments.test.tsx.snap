@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`lists those it may only read about, and how many more there are > screen at the end 1`] = `
+"Compromisos sin responsable
+Quienes los tenían a cargo ya no son usuarios del municipio. Elegí quién los toma: le llega el aviso.
+[Compromisos sin responsable]
+Certificar la obra
+·
+Leo Paz, para el 20/11/2026
+Hay 2 más que no podés ver: quienes los asignaron ya fueron avisados y son quienes pueden reasignarlos."
+`;
+
+exports[`says how many there are when it may see none > screen at the end 1`] = `
+"Compromisos sin responsable
+Quienes los tenían a cargo ya no son usuarios del municipio. Elegí quién los toma: le llega el aviso.
+Hay 1 más que no podés ver: quien lo asignó ya fue avisado y es quien puede reasignarlo."
+`;
+
+exports[`says why it cannot be known > screen at the end 1`] = `"No tenés permiso para realizar esta acción."`;
+
+exports[`says why it could not be given > screen at the end 1`] = `
+"Compromisos sin responsable
+Quienes los tenían a cargo ya no son usuarios del municipio. Elegí quién los toma: le llega el aviso.
+[Compromisos sin responsable]
+Certificar la obra
+·
+Leo Paz, para el 20/11/2026
+Alguno de los datos seleccionados ya no existe.
+Nuevo responsable de: Certificar la obra
+(Escribí un nombre)
+[Quitar la persona]
+Ana Gómez
+Leo Paz
+Zoe Ruiz
+[Reasignar: Certificar la obra]
+Reasignar"
+`;

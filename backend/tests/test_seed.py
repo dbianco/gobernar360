@@ -2,7 +2,6 @@ import io
 import json
 import random
 from datetime import date, datetime
-from pathlib import Path
 
 import pypdf
 import pytest
@@ -63,14 +62,17 @@ from gobernar360.platform.models import (
     MonthlyReport,
     Municipality,
     MunicipalityDashboard,
+    MunicipalitySettings,
     Person,
     PublicSettings,
     PublicSite,
     PublishedDashboard,
     User,
 )
+from gobernar360.platform.people import cuil_check_digit
+from gobernar360.platform.resident_notice_models import CidiConnection, CidiConnectionValue
 from gobernar360.seed import DEMO_PASSWORD, INFORMAL_COMMITMENTS, seed_demo
-from tests.factories import admin_session, login, make_user
+from tests.factories import REPOSITORY, admin_session, login, make_user
 
 
 def _count(session, model) -> int:
@@ -437,6 +439,13 @@ def test_seeded_procedures_inventory_shows_opportunities(client):
     assert opportunities["without_source"]["procedures"] > 0
     inactive = client.get(f"{PROCEDURES_API}/procedures", params={"active": "false"}).json()
     assert inactive["total"] >= 1
+    # A mix for the digitalization figures: some sign in with CiDi, some need paper.
+    assert 0 < summary["cidi"] < summary["online"]
+    assert 0 < summary["digital"] < summary["online"]
+    counts = {row["level"]: row["count"] for row in summary["by_cidi_level"]}
+    assert counts[1] and counts[2] and counts[None]
+    held = [row for row in opportunities["sources"] if row["source"]["name"].startswith("CiDi")]
+    assert [row["source"]["level"] for row in held] == ["provincial"]
 
 
 def test_seeded_procedures_stay_inside_noetinger(client):
@@ -647,9 +656,7 @@ def _pdf_text(data: bytes) -> str:
 
 def test_catalogue_names_match_the_web_apps_texts():
     seed_demo()
-    locale = json.loads(
-        (Path(__file__).resolve().parents[2] / "frontend/src/locales/es-AR.json").read_text()
-    )
+    locale = json.loads((REPOSITORY / "frontend/src/locales/es-AR.json").read_text())
     for module in registry.all_modules():
         assert module.name == locale[module.key]["title"], module.key
         for definition in module.indicators:
@@ -999,3 +1006,86 @@ def test_seeded_zones_stay_inside_noetinger(client):
             f"/api/dashboards/{path}/features", params={"bbox": "-180,-90,180,90", "zoom": 3}
         ).json()
         assert found["total"] == 0
+
+
+# Official sources and notices to residents
+
+
+def test_the_demo_says_where_noetinger_is_and_only_noetinger(client):
+    seed_demo()
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+    noetinger = client.get("/api/admin/settings").json()
+    client.post("/api/auth/logout")
+    login(client, "admin@comuna-demo.test", DEMO_PASSWORD)
+    commune = client.get("/api/admin/settings").json()
+
+    assert (noetinger["idecor_key"], noetinger["conae_layer"]) == (
+        "360124",
+        "Localidades:Cordoba_Noetinger_2023",
+    )
+    assert (commune["idecor_key"], commune["conae_layer"]) == (None, None)
+
+
+def test_the_demo_counts_its_records_in_past_years_too(client):
+    """They were loaded with the zones, not on the day the demo is."""
+    seed_demo()
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+    last_year = date.today().year - 1
+
+    for record in ("projects/geo/projects", "economic/geo/actors", "social/geo/households"):
+        url = f"/api/dashboards/{record}/zones"
+        past = client.get(url, params={"as_of": f"{last_year}-12-31"}).json()
+        first = past["metrics"][0]["key"]
+        assert past["boundaries_as_of"] == f"{last_year}-12-31"
+        assert int(past["total"]["values"][first]) > 0, record
+
+
+def test_the_commune_tells_its_residents_through_cidi_and_noetinger_does_not(client):
+    seed_demo()
+    login(client, "admin@comuna-demo.test", DEMO_PASSWORD)
+    commune = client.get("/api/admin/settings/notices").json()
+    client.post("/api/auth/logout")
+    login(client, "admin@noetinger.test", DEMO_PASSWORD)
+    noetinger = client.get("/api/admin/settings/notices").json()
+
+    assert (commune["resident_notice_channel"], commune["missing"]) == ("cidi_then_email", [])
+    assert commune["adhesion_state"] == "approved"
+    # No secret: there is no key to encrypt one with.
+    assert commune["secrets"] == []
+    assert noetinger["resident_notice_channel"] == "email"
+
+
+def test_two_residents_of_noetinger_have_a_made_up_cuil():
+    seed_demo()
+    with admin_session() as session:
+        found = session.scalars(select(Person).where(Person.cuil.is_not(None))).all()
+        municipalities = {person.municipality_id for person in found}
+
+    assert len(found) == 2 and len(municipalities) == 1
+    for person in found:
+        assert cuil_check_digit(person.cuil[:10]) == int(person.cuil[10])
+        assert person.cuil[2:10] == person.dni.zfill(8)
+
+
+def test_what_the_demo_adds_to_older_databases_is_added_once():
+    seed_demo()
+    with admin_session() as session, session.begin():
+        session.execute(delete(CidiConnectionValue))
+        session.execute(delete(CidiConnection))
+        session.execute(delete(MunicipalitySettings))
+        session.execute(update(Person).values(cuil=None))
+
+    assert (seed_demo(), seed_demo()) == (True, False)
+    with admin_session() as session:
+        assert len(session.scalars(select(Person).where(Person.cuil.is_not(None))).all()) == 2
+        assert _count(session, CidiConnectionValue) == 3
+
+
+def test_a_demo_without_its_second_municipality_has_no_notices_to_set_up():
+    seed_demo()
+    with admin_session() as session, session.begin():
+        commune = session.scalar(select(Municipality).where(Municipality.slug == "comuna-demo"))
+        commune.slug = "otra"
+        session.execute(update(Person).values(cuil=None))
+
+    assert seed_demo() is False

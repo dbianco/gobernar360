@@ -6,7 +6,7 @@ import pytest
 from gobernar360.core.errors import ApiError
 from gobernar360.platform import email_templates as templates
 from gobernar360.platform.email_templates import Html, Spec, Template
-from gobernar360.platform.notification_kinds import all_kinds
+from gobernar360.platform.notification_kinds import all_kinds, notice_kinds
 
 INVITATION = templates.get_spec(templates.INVITATION)
 NOTIFICATION = Spec("status_light_missing", ("municipality", "items"), ("items",), True)
@@ -25,7 +25,7 @@ def _error(error: ApiError) -> tuple:
 # What kinds of email there are
 
 
-def test_the_account_emails_come_first_then_one_per_notification_kind():
+def test_the_account_emails_come_first_then_one_per_kind_of_notification_and_notice(client):
     specs = templates.specs()
 
     assert [spec.key for spec in specs] == [
@@ -33,13 +33,18 @@ def test_the_account_emails_come_first_then_one_per_notification_kind():
         "membership_added",
         "password_reset",
         *all_kinds(),
+        *(f"notice.{kind}" for kind in notice_kinds()),
     ]
+    notifications = 3 + len(all_kinds())
+    for spec in specs[notifications:]:
+        assert spec.variables == ("name", "municipality", "code", "type", "message")
+        assert (spec.required, spec.notification) == (("name", "municipality", "code"), False)
     assert specs[0] == Spec(
         "invitation", ("name", "inviter", "municipality", "link", "expires"), ("link",)
     )
     assert specs[1] == Spec("membership_added", ("name", "inviter", "municipality", "link"), ())
     assert specs[2] == Spec("password_reset", ("name", "link", "expires"), ("link",))
-    for spec in specs[3:]:
+    for spec in specs[3:notifications]:
         assert spec.variables == ("municipality", "month", "items", "account_link")
         assert (spec.required, spec.notification) == (("items",), True)
 

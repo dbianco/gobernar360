@@ -29,5 +29,6 @@ export function useSettingsScope() {
     path: scope.path,
     settingsKey: [...scope.key, 'settings'],
     templatesKey: [...scope.key, 'email-templates'],
+    noticesKey: [...scope.key, 'settings-notices'],
   }
 }

@@ -54,6 +54,8 @@ def test_settings_start_empty_with_single_sign_on_off(admin_client):
         "map_background": "standard",
         "map_api_key": None,
         "map_backgrounds": MAP_BACKGROUNDS,
+        "idecor_key": None,
+        "conae_layer": None,
     }
 
 
@@ -130,6 +132,8 @@ def test_every_kind_of_email_is_listed_with_its_variables(admin_client):
         "password_reset",
         "status_light_missing",
         "milestone_overdue",
+        "notice.complaint_resolved",
+        "notice.complaint_rejected",
     ]
     assert templates["invitation"]["variables"] == [
         "name",
@@ -379,6 +383,8 @@ def test_the_operator_reads_and_changes_the_configuration_of_a_municipality(
         "map_background": "standard",
         "map_api_key": None,
         "map_backgrounds": MAP_BACKGROUNDS,
+        "idecor_key": None,
+        "conae_layer": None,
     }
     theirs = {t["key"]: t for t in operator_client.get(f"{url}/email-templates").json()}
     assert theirs["invitation"]["subject"] == INVITATION["subject"]

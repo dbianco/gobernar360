@@ -13,7 +13,7 @@ import { type FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { send, useAction } from './api'
-import { AUDIENCES, CHANNELS, type Named, type Procedure } from './types'
+import { AUDIENCES, CHANNELS, CIDI_LEVELS, type Named, type Procedure } from './types'
 
 const WHOLE_NUMBER = '[0-9]*'
 const AMOUNT = '[0-9]+([.,][0-9]{1,2})?'
@@ -33,6 +33,7 @@ export function ProcedureForm(props: { areas: Named[]; procedure?: Procedure; on
   const [audience, setAudience] = useState(editing?.audience ?? 'both')
   const [channel, setChannel] = useState<string>(editing?.channel ?? 'in_person')
   const [url, setUrl] = useState(editing?.url ?? '')
+  const [cidiLevel, setCidiLevel] = useState(textOf(editing?.cidi_level))
   const [isFree, setIsFree] = useState(editing?.is_free ?? true)
   const [cost, setCost] = useState(textOf(editing?.cost))
   const [days, setDays] = useState(textOf(editing?.duration_days))
@@ -40,6 +41,8 @@ export function ProcedureForm(props: { areas: Named[]; procedure?: Procedure; on
   const [isActive, setIsActive] = useState(editing?.is_active ?? true)
   const label = (key: string) => t(`procedures.form.${key}`)
   const hasOnlineChannel = channel !== 'in_person'
+  // Nobody signs in to what is only done in person.
+  const cidiError = !hasOnlineChannel && cidiLevel !== ''
 
   async function submit(event: FormEvent) {
     event.preventDefault()
@@ -51,6 +54,7 @@ export function ProcedureForm(props: { areas: Named[]; procedure?: Procedure; on
       channel,
       // A link only makes sense for something that can be done online.
       url: hasOnlineChannel ? url.trim() : '',
+      cidi_level: numberOrNull(cidiLevel),
       is_free: isFree,
       cost: isFree ? null : numberOrNull(cost),
       duration_days: numberOrNull(days),
@@ -100,6 +104,20 @@ export function ProcedureForm(props: { areas: Named[]; procedure?: Procedure; on
             value={channel}
             onChange={(event) => setChannel(event.currentTarget.value)}
             data={CHANNELS.map((value) => ({ value, label: t(`procedures.channels.${value}`) }))}
+          />
+          <NativeSelect
+            label={label('cidi')}
+            description={label('cidiHint')}
+            value={cidiLevel}
+            onChange={(event) => setCidiLevel(event.currentTarget.value)}
+            error={cidiError && t('errors.cidi_level_in_person')}
+            data={[
+              { value: '', label: t('procedures.cidiOptions.none') },
+              ...CIDI_LEVELS.map((level) => ({
+                value: String(level),
+                label: t(`procedures.cidiOptions.${level}`),
+              })),
+            ]}
           />
         </SimpleGrid>
         {hasOnlineChannel && (
@@ -155,7 +173,7 @@ export function ProcedureForm(props: { areas: Named[]; procedure?: Procedure; on
           <Button variant="default" onClick={props.onDone}>
             {t('app.cancel')}
           </Button>
-          <Button type="submit" loading={action.pending}>
+          <Button type="submit" loading={action.pending} disabled={cidiError}>
             {t('app.save')}
           </Button>
         </Group>

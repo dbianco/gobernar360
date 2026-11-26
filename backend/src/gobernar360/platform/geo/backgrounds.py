@@ -1,11 +1,16 @@
-"""Map backgrounds a municipality can choose from: OpenStreetMap's list.
+"""Map backgrounds a municipality can choose from: OpenStreetMap's list, and the satellite
+image of its town when there is one.
 
 The raster layers openstreetmap.org offers, plus the other worldwide ones its community
 runs. All draw OpenStreetMap's open data. Layers served only as vector tiles (Shortbread)
 are not here, because the maps draw images; nor are the ones that cover a single country.
+
+The satellite image is CONAE's, one layer per town (docs/idecor/README.md): it is offered
+only where the platform operator said which layer is the municipality's.
 """
 
-from dataclasses import dataclass
+import re
+from dataclasses import dataclass, replace
 
 OSM = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 _THUNDERFOREST = f'&copy; <a href="https://www.thunderforest.com/">Thunderforest</a>, {OSM}'
@@ -15,7 +20,8 @@ _FRANCE = '<a href="https://openstreetmap.fr/">OpenStreetMap France</a>'
 @dataclass(frozen=True)
 class Background:
     key: str
-    # Leaflet template. {apiKey} is the municipality's own key for the provider.
+    # Leaflet template. {apiKey} is the municipality's own key for the provider, filled in by
+    # the browser; {layer} its satellite layer, filled in here.
     url: str
     # Shown as HTML on every map, as the licence of the data asks.
     attribution: str
@@ -100,13 +106,39 @@ BACKGROUNDS = (
     ),
 )
 
-_by_key = {background.key: background for background in BACKGROUNDS}
+SATELLITE = Background(
+    "satellite",
+    # The row goes before the column. Outside the town the server answers 400 and nothing
+    # is drawn.
+    "https://geotematico01.conae.gov.ar/geoserver/gwc/service/wmts/rest/{layer}/raster/"
+    "EPSG:900913/EPSG:900913:{z}/{y}/{x}?format=image/png",
+    "Imagen: CONAE – Pleiades Neo",
+    # Images of 0.30 m. Only zoom 17 was checked against the server (docs/idecor/README.md).
+    19,
+)
+
+# The year the layer's name ends with, e.g. Localidades:Cordoba_Noetinger_2023.
+_LAYER_YEAR = re.compile(r"_(\d{4})$")
 
 
-def find(key: str) -> Background | None:
-    return _by_key.get(key)
+def _satellite(conae_layer: str) -> Background:
+    year = _LAYER_YEAR.search(conae_layer)
+    return replace(
+        SATELLITE,
+        url=SATELLITE.url.replace("{layer}", conae_layer),
+        attribution=f"{SATELLITE.attribution} {year[1]}" if year else SATELLITE.attribution,
+    )
 
 
-def in_use(key: str) -> Background:
-    """The background saved, or the default if it was since taken off the list."""
-    return _by_key.get(key, _by_key[DEFAULT])
+def offered(conae_layer: str | None) -> tuple[Background, ...]:
+    """What a municipality can choose; `conae_layer` is its satellite image, if it has one."""
+    return (*BACKGROUNDS, _satellite(conae_layer)) if conae_layer else BACKGROUNDS
+
+
+def find(key: str, conae_layer: str | None = None) -> Background | None:
+    return next((b for b in offered(conae_layer) if b.key == key), None)
+
+
+def in_use(key: str, conae_layer: str | None = None) -> Background:
+    """The background saved, or the default if it can no longer be chosen."""
+    return find(key, conae_layer) or find(DEFAULT)

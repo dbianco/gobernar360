@@ -63,6 +63,7 @@ it('edits the common and the economic data', async () => {
       first_name: 'Juana',
       last_name: 'Pérez',
       dni: null,
+      cuil: null,
       birth_date: '1990-05-01',
       phone: '3472 555222',
       email: '',

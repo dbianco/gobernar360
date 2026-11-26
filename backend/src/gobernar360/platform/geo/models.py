@@ -15,6 +15,7 @@ from sqlalchemy import (
     Uuid,
     text,
 )
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from gobernar360.core.db import AuditMixin, Base, TenantMixin, uuid_pk
@@ -69,6 +70,9 @@ class ZoneVersion(TenantMixin, AuditMixin, Base):
     valid_from: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     # NULL while this is the zone's boundary.
     valid_to: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    # Where an official boundary comes from, e.g. the law that approves it. Empty for the
+    # ones people drew.
+    source: Mapped[str] = mapped_column(String(300), nullable=False, default="", server_default="")
 
     zone: Mapped[Zone] = relationship(lazy="joined")
 
@@ -85,3 +89,35 @@ class RecordZone(TenantMixin, Base):
     )
     record_table: Mapped[str] = mapped_column(String(63), primary_key=True)
     record_id: Mapped[uuid.UUID] = mapped_column(Uuid, primary_key=True)
+
+
+HEALTH, SCHOOLS = "health", "schools"
+REFERENCE_LAYERS = (HEALTH, SCHOOLS)
+
+
+class ReferenceFeature(TenantMixin, Base):
+    """A public facility published by an official source, shown on the maps for reference.
+
+    Not a record: it has no zones, nobody edits it, and each import of its layer replaces it
+    (`geo/reference_import.py`). It says nothing about any person.
+    """
+
+    __tablename__ = "geo_reference_features"
+    __table_args__ = (
+        UniqueConstraint("municipality_id", "layer", "source_id"),
+        CheckConstraint(f"layer IN {REFERENCE_LAYERS}", name="layer_valid"),
+    )
+
+    id: Mapped[uuid.UUID] = uuid_pk()
+    layer: Mapped[str] = mapped_column(String(20), nullable=False)
+    # What the source calls it, to recognise it in the next import.
+    source_id: Mapped[str] = mapped_column(String(100), nullable=False)
+    name: Mapped[str] = mapped_column(String(300), nullable=False)
+    properties: Mapped[dict[str, str]] = mapped_column(
+        JSONB, nullable=False, default=dict, server_default=text("'{}'::jsonb")
+    )
+    location: Mapped[dict[str, Any]] = mapped_column(
+        Geometry("Point"), nullable=False, deferred=True
+    )
+    source_url: Mapped[str] = mapped_column(String(1000), nullable=False)
+    imported_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)

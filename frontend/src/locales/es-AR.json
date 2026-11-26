@@ -115,7 +115,13 @@
     "zone_name_exists": "Ya hay otra zona con ese nombre.",
     "zone_changed": "Otra persona cambió el límite de esta zona mientras lo editabas. Cancelá y volvé a abrirla para ver el límite actual.",
     "zone_file_invalid": "El archivo no se importó porque algunas zonas tienen problemas.",
-    "map_api_key_required": "Ese mapa necesita una clave de su proveedor."
+    "map_api_key_required": "Ese mapa necesita una clave de su proveedor.",
+    "zone_file_too_large": "El archivo es demasiado grande: el máximo es 10 MB.",
+    "cidi_level_in_person": "Un trámite que solo se hace en persona no tiene ingreso con CiDi: cambiá el canal o quitá el nivel.",
+    "cuil_exists": "Otra persona ya tiene ese CUIL.",
+    "cuil_dni_mismatch": "El CUIL no corresponde a ese DNI.",
+    "cidi_not_ready": "Para usar CiDi falta completar la adhesión o los datos de la conexión.",
+    "secrets_key_missing": "Esta instalación no puede guardar claves: quien opera la plataforma tiene que configurar GOBERNAR360_SECRETS_KEY."
   },
   "login": {
     "title": "Ingresar a gobernar360",
@@ -219,7 +225,11 @@
       "cabinet.pending": "Compromisos pendientes",
       "cabinet.overdue": "Compromisos vencidos",
       "cabinet.done": "Compromisos cumplidos",
-      "cabinet.on_time_ratio": "Cumplidos en término"
+      "cabinet.on_time_ratio": "Cumplidos en término",
+      "procedures.cidi": "Trámites con ingreso por CiDi",
+      "procedures.cidi_ratio": "Proporción de trámites en línea que usan CiDi",
+      "procedures.digital": "Trámites 100 % digitales",
+      "procedures.digital_ratio": "Proporción de trámites 100 % digitales"
     },
     "descriptions": {
       "projects.active": "Proyectos de la gestión más reciente que no están finalizados: sin iniciar, en implementación o retrasados.",
@@ -252,9 +262,13 @@
       "complaints.on_time_ratio": "Parte de los reclamos resueltos en los últimos doce meses que se resolvieron dentro de su plazo.",
       "complaints.median_resolution_days": "Días hábiles que tardó en resolverse el reclamo del medio, entre los resueltos en los últimos doce meses. Más bajo es mejor.",
       "cabinet.pending": "Compromisos tomados en reuniones de gabinete que todavía no se cumplieron ni se descartaron, vencidos o no. Más bajo es mejor.",
-      "cabinet.overdue": "Compromisos tomados en reuniones de gabinete cuya fecha ya pasó y siguen sin cumplirse. Más bajo es mejor.",
+      "cabinet.overdue": "Compromisos tomados en reuniones de gabinete cuya fecha acordada ya pasó y siguen sin cumplirse, aunque después se haya puesto otra fecha. Más bajo es mejor.",
       "cabinet.done": "Compromisos tomados en reuniones de gabinete que ya se cumplieron.",
-      "cabinet.on_time_ratio": "De los compromisos de gabinete cumplidos o ya vencidos, la parte que se cumplió hasta su fecha. Los vencidos cuentan en contra."
+      "cabinet.on_time_ratio": "De los compromisos de gabinete cumplidos o ya vencidos, la parte que se cumplió hasta la fecha acordada en la reunión. Los vencidos cuentan en contra, y cambiar la fecha no los mejora.",
+      "procedures.cidi": "Trámites vigentes en los que se ingresa con la cuenta provincial Ciudadano Digital (CiDi).",
+      "procedures.cidi_ratio": "De los trámites vigentes que se pueden hacer en línea, la parte en la que se ingresa con CiDi.",
+      "procedures.digital": "Trámites vigentes que se pueden iniciar en línea, tienen dirección web y no piden ningún requisito obligatorio en papel.",
+      "procedures.digital_ratio": "De todos los trámites vigentes, la parte que se puede hacer por completo desde la casa."
     },
     "lights": "Estado de los tableros",
     "combined": {
@@ -680,7 +694,9 @@
       }
     },
     "searchHint": "Nombre o email",
-    "removeTitle": "Quitar usuario"
+    "removeTitle": "Quitar usuario",
+    "removedWithCommitments_one": "{{name}} ya no es usuario del municipio y dejó {{count}} compromiso sin cumplir.",
+    "removedWithCommitments_other": "{{name}} ya no es usuario del municipio y dejó {{count}} compromisos sin cumplir."
   },
   "admin": {
     "tabs": {
@@ -715,12 +731,12 @@
     "map": {
       "title": "Mapas y zonas",
       "background": "Fondo de los mapas",
-      "backgroundHint": "El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Todos usan los datos abiertos de OpenStreetMap.",
+      "backgroundHint": "El mapa que se ve detrás de las zonas y los registros, para todas las personas del municipio. Los mapas usan los datos abiertos de OpenStreetMap; la imagen satelital, si la hay, es de la CONAE.",
       "withoutKey": "Sin clave",
       "withKey": "Con clave del proveedor",
       "preview": "Vista previa del mapa",
       "apiKey": "Clave de {{provider}}",
-      "apiKeyHint": "La da {{provider}} al registrarse; los planes gratuitos tienen límites de uso. No es secreta: los navegadores la envían con cada parte del mapa, así que conviene limitarla en el sitio del proveedor a la dirección de esta aplicación.",
+      "apiKeyHint": "La da {{provider}} al registrarse; los planes gratuitos tienen límites de uso. No es secreta: el navegador de cada persona del municipio la recibe y la envía con cada parte del mapa. Por eso hay que restringirla, en el sitio del proveedor, al dominio de esta aplicación.",
       "apiKeyInvalid": "La clave solo puede tener letras, números, puntos y guiones.",
       "previewNeedsKey": "Escribí la clave para ver cómo queda.",
       "threshold": "Cantidad mínima para mostrar una zona",
@@ -771,6 +787,10 @@
         "maptiler": {
           "name": "MapTiler",
           "description": "Un mapa de calles claro y actual, de MapTiler."
+        },
+        "satellite": {
+          "name": "Satélite (CONAE)",
+          "description": "La localidad en color verdadero, de cerca; más allá no hay imagen. Las imágenes se piden a un servidor de la agencia espacial nacional (CONAE) cada vez que alguien abre el mapa: un uso intenso conviene acordarlo antes con ellos."
         }
       }
     },
@@ -815,6 +835,16 @@
         "milestone_overdue": {
           "label": "Aviso: hitos vencidos",
           "description": "Lo reciben los destinatarios de los avisos cuando un hito de un proyecto pasa su fecha sin completarse."
+        },
+        "notice": {
+          "complaint_resolved": {
+            "label": "Aviso al vecino: reclamo resuelto",
+            "description": "Le llega a quien hizo un reclamo cuando se resuelve, por CiDi o por correo según lo que elijas en Avisos a vecinos. A CiDi va solo el texto, sin formato."
+          },
+          "complaint_rejected": {
+            "label": "Aviso al vecino: reclamo rechazado",
+            "description": "Le llega a quien hizo un reclamo cuando se rechaza, por CiDi o por correo según lo que elijas en Avisos a vecinos. A CiDi va solo el texto, sin formato."
+          }
         }
       },
       "discardTitle": "Cambios sin guardar",
@@ -828,7 +858,10 @@
       "expires": "Vencimiento del enlace",
       "month": "Mes",
       "items": "Lista de avisos",
-      "account_link": "Enlace a Mi cuenta"
+      "account_link": "Enlace a Mi cuenta",
+      "code": "Número de reclamo",
+      "type": "Tipo de reclamo",
+      "message": "Mensaje para el vecino"
     },
     "editor": {
       "toolbar": "Formato del texto",
@@ -846,6 +879,73 @@
       "linkAddress": "Dirección del enlace",
       "linkHint": "Para el enlace del correo usá {{suggestion}}.",
       "apply": "Aplicar"
+    },
+    "geography": {
+      "title": "Fuentes oficiales",
+      "intro": "Identifican al municipio en los servicios geográficos oficiales. Sus administradores los ven y no los pueden cambiar.",
+      "introReadOnly": "Identifican al municipio en los servicios geográficos oficiales. Los carga quien opera la plataforma.",
+      "idecorKey": "Clave en IDECOR",
+      "idecorKeyHint": "Seis números, por ejemplo 360124. Con ella se traen el radio urbano y el equipamiento.",
+      "idecorKeyInvalid": "Tiene que tener seis números.",
+      "conaeLayer": "Capa de la CONAE",
+      "conaeLayerHint": "Nombre de la capa con la imagen satelital de la localidad, por ejemplo Localidades:Cordoba_Noetinger_2023. Sin ella no se ofrece el fondo Satélite.",
+      "conaeLayerInvalid": "Solo puede tener letras, números, dos puntos, guiones y guiones bajos.",
+      "notSet": "Sin cargar",
+      "save": "Guardar fuentes oficiales"
+    },
+    "notices": {
+      "title": "Avisos a vecinos",
+      "intro": "Cómo se le avisa a un vecino que su reclamo se resolvió o se rechazó.",
+      "channel": "Medio para avisar a los vecinos",
+      "channels": {
+        "email": "Solo correo",
+        "cidi_then_email": "CiDi y, si no, correo",
+        "cidi": "Solo CiDi"
+      },
+      "channelHint": "«Entregado a CiDi» significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.",
+      "unavailable": "CiDi no está conectado en esta instalación. Hasta que lo esté, los avisos salen por correo si el medio elegido lo permite.",
+      "missing": "Para poder elegir CiDi falta: {{fields}}.",
+      "missingFields": {
+        "adhesion": "que la adhesión esté aprobada",
+        "system_name": "el nombre del sistema",
+        "publication_url": "la dirección de publicación",
+        "contact": "el contacto"
+      },
+      "ordinance": "Ordenanza que respalda el uso de CiDi",
+      "ordinanceHint": "Opcional, por ejemplo Ordenanza 12.985. Es solo información.",
+      "connection": "Conexión con CiDi",
+      "adhesionIntro": "La adhesión a CiDi la hace el municipio ante la Provincia, con este formulario firmado por su máxima autoridad.",
+      "adhesionRequest": "Ver e imprimir la solicitud de adhesión",
+      "adhesionState": "Estado de la adhesión",
+      "adhesionStates": {
+        "not_requested": "Sin pedir",
+        "requested": "Pedida",
+        "approved": "Aprobada"
+      },
+      "adhesionDate": "Fecha",
+      "adhesionFile": "Número de expediente",
+      "systemName": "Nombre del sistema",
+      "systemNameHint": "Como figura en la solicitud, por ejemplo gobernar360 – Noetinger.",
+      "publicationUrl": "Dirección de publicación",
+      "contact": "Contacto",
+      "contactHint": "Quién responde por la conexión en el municipio.",
+      "secrets": "Claves de la conexión",
+      "secretsHint": "Las que entrega la Provincia al aprobar la adhesión. Se guardan cifradas y no se vuelven a mostrar: solo se ve que están cargadas.",
+      "secretsUnavailable": "Esta instalación no puede guardar claves todavía: quien opera la plataforma tiene que configurarlo.",
+      "secretSet": "Cargado el {{date}}",
+      "secretRemoved": "Se quita al guardar",
+      "removeSecret": "Quitar",
+      "removeSecretNamed": "Quitar la clave {{name}}",
+      "keepSecret": "No quitar",
+      "keepSecretNamed": "No quitar la clave {{name}}",
+      "noSecrets": "Ninguna clave cargada.",
+      "secretName": "Nombre de la clave nueva",
+      "secretNameHint": "En minúsculas, sin espacios, por ejemplo api_key. Con el nombre de una cargada, la reemplaza.",
+      "secretNameInvalid": "Usá letras minúsculas, números y guiones bajos, empezando con una letra.",
+      "secretNamePlain": "Ese dato no es una clave: tiene su propio campo.",
+      "secretValue": "Valor de la clave nueva",
+      "save": "Guardar avisos a vecinos",
+      "urlInvalid": "Tiene que empezar con http:// o https://."
     }
   },
   "platform": {
@@ -1136,7 +1236,11 @@
     "alreadyRegistered": "{{name}} ya está registrada en este tablero.",
     "openExisting": "Abrir su ficha",
     "commonHint": "Estos datos son del padrón del municipio: los comparten todos los tableros que trabajan con esta persona.",
-    "fullName": "Apellido y nombre"
+    "fullName": "Apellido y nombre",
+    "cuil": "CUIL",
+    "cuilHint": "Opcional, con o sin guiones. Es el usuario de la cuenta de CiDi.",
+    "cuilInvalid": "El CUIL no es válido: revisá sus 11 números.",
+    "cuilMismatch": "El CUIL no corresponde a ese DNI."
   },
   "social": {
     "title": "Social",
@@ -1500,7 +1604,9 @@
       "free": "Gratuito",
       "inactive": "Dado de baja",
       "daysValue_one": "{{count}} día",
-      "daysValue_other": "{{count}} días"
+      "daysValue_other": "{{count}} días",
+      "cidi": "CiDi",
+      "allCidi": "Todos los niveles"
     },
     "form": {
       "name": "Nombre",
@@ -1514,7 +1620,9 @@
       "cost": "Costo en pesos",
       "days": "Plazo estimado en días",
       "volume": "Cantidad estimada por año",
-      "isActive": "Vigente"
+      "isActive": "Vigente",
+      "cidi": "Ingreso con CiDi",
+      "cidiHint": "El nivel mínimo de la cuenta con la que se ingresa. Solo para trámites en línea."
     },
     "detail": {
       "back": "Volver a trámites",
@@ -1545,7 +1653,8 @@
       "noSource": "Lo aporta el solicitante",
       "editNamed": "Cambiar requisito: {{name}}",
       "removeNamed": "Quitar requisito: {{name}}",
-      "remove": "Quitar"
+      "remove": "Quitar",
+      "cidi": "Ingreso con CiDi"
     },
     "summary": {
       "downloadProcedures": "Descargar trámites",
@@ -1568,7 +1677,16 @@
       "requirement": "Requisito",
       "source": "Fuente",
       "count": "Trámites",
-      "noSource": "Lo aporta el solicitante"
+      "noSource": "Lo aporta el solicitante",
+      "digitalization": "Digitalización",
+      "cidi": "Con ingreso por CiDi",
+      "cidiRatio": "Parte de los en línea con CiDi",
+      "cidiRatioHint": "Sobre los trámites con canal en línea",
+      "digital": "100 % digitales",
+      "digitalRatio": "Parte 100 % digital",
+      "digitalRatioHint": "Sobre todos los trámites vigentes",
+      "byCidiLevel": "Trámites por nivel de CiDi",
+      "cidiLevel": "Nivel de CiDi"
     },
     "opportunities": {
       "intro": "Cada fuente con lo que se le pide al solicitante que ella ya tiene. Arriba, las del propio municipio: son datos que ya están en casa.",
@@ -1596,13 +1714,14 @@
         "usage": "En cuántos trámites se pide, incluidos los dados de baja."
       },
       "proceduresPage": {
-        "name": "Nombre del trámite. Al hacer clic se abre su ficha.",
+        "name": "Nombre del trámite. Al hacer clic se abre su ficha. «100 % digital»: se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.",
         "area": "Área del municipio responsable del trámite.",
         "channel": "Cómo se hace: en una oficina, por internet o de las dos formas.",
         "cost": "Lo que paga el solicitante, o si es gratuito.",
         "days": "Días estimados desde que se inicia hasta que se resuelve.",
         "volume": "Cuántas veces se hace el trámite en un año, estimado.",
-        "requirements": "Cantidad de requisitos que se piden."
+        "requirements": "Cantidad de requisitos que se piden.",
+        "cidi": "Nivel mínimo de la cuenta provincial (CiDi) con la que se ingresa para hacerlo en línea."
       },
       "procedureDetailPage": {
         "requirement": "Documento o dato que se pide.",
@@ -1614,7 +1733,9 @@
       "summaryPage": {
         "requirement": "Documento o dato que se pide.",
         "source": "Quién emite o guarda ese dato.",
-        "count": "Trámites vigentes que lo piden."
+        "count": "Trámites vigentes que lo piden.",
+        "cidiLevel": "Nivel mínimo de la cuenta provincial (CiDi) que pide el trámite.",
+        "cidiCount": "Trámites vigentes de ese nivel."
       },
       "opportunitiesPage": {
         "source": "Organismo u oficina que ya tiene el dato.",
@@ -1624,6 +1745,20 @@
         "procedures": "En cuántos trámites vigentes distintos se pide algo de esta fuente.",
         "volume": "Suma de la cantidad anual estimada de esos trámites. Cada trámite cuenta una sola vez."
       }
+    },
+    "digital": "100 % digital",
+    "digitalRule": "Se puede iniciar en línea, tiene dirección web y no pide ningún requisito obligatorio en papel.",
+    "cidiLevels": {
+      "1": "Nivel 1 – Confirmado",
+      "2": "Nivel 2 – Verificado",
+      "3": "Nivel 3 – Autenticado",
+      "none": "Sin CiDi"
+    },
+    "cidiOptions": {
+      "none": "No usa CiDi o no se sabe",
+      "1": "Nivel 1 – Confirmado: cuenta con correo confirmado",
+      "2": "Nivel 2 – Verificado: identidad verificada (DNI, selfie o Clave Fiscal)",
+      "3": "Nivel 3 – Autenticado: firma digital"
     }
   },
   "indicators": {
@@ -1840,11 +1975,13 @@
       "complainant": "Quién reclama",
       "anonymous": "Anónimo",
       "identified": "Vecino con DNI",
-      "dni": "DNI del vecino",
+      "dni": "DNI o CUIL del vecino",
       "dniHint": "Se busca en el padrón del municipio.",
       "lookup": "Buscar en el padrón",
       "found": "Se registra a nombre de {{name}} (DNI {{dni}}).",
-      "notFound": "No está en el padrón: completá sus datos y se lo agrega con el reclamo."
+      "notFound": "No está en el padrón: completá sus datos y se lo agrega con el reclamo.",
+      "dniInvalid": "El DNI tiene que tener entre 6 y 9 dígitos; el CUIL, 11 y ser válido.",
+      "foundByCuil": "Se registra a nombre de {{name}} (CUIL {{cuil}})."
     },
     "detail": {
       "back": "Volver a reclamos",
@@ -1883,7 +2020,11 @@
       "comment": "Agregar nota",
       "edit": "Corregir datos",
       "editTitle": "Corregir datos del reclamo",
-      "retypeHint": "Si cambia el tipo, el reclamo toma el plazo del tipo nuevo. El área no cambia: para eso, reasignalo."
+      "retypeHint": "Si cambia el tipo, el reclamo toma el plazo del tipo nuevo. El área no cambia: para eso, reasignalo.",
+      "messageToResident": "Mensaje para el vecino (opcional)",
+      "messageHint": "Lo que escribas acá le llega al vecino. La nota interna no.",
+      "messageLeft_one": "Queda {{count}} carácter.",
+      "messageLeft_other": "Quedan {{count}} caracteres."
     },
     "timeline": {
       "created": "Recibido y derivado a {{area}}",
@@ -2066,6 +2207,23 @@
         "last": "Día en que se recibió el último de la serie.",
         "numbers": "Números de los reclamos de la serie."
       }
+    },
+    "notices": {
+      "title": "Avisos al vecino",
+      "none": "Todavía no se le avisó nada.",
+      "states": {
+        "queued": "En cola",
+        "handed_over_cidi": "Entregado a CiDi",
+        "handed_over_email": "Enviado por correo",
+        "failed": "Falló",
+        "no_channel": "Sin medio para avisar"
+      },
+      "kinds": {
+        "complaint_resolved": "Reclamo resuelto",
+        "complaint_rejected": "Reclamo rechazado"
+      },
+      "cidiHelp": "Entregado a CiDi significa que el aviso se envió a la cuenta del vecino; no afirma efectos legales.",
+      "noChannelHelp": "El vecino no tiene el CUIL o el correo que hace falta para avisarle por el medio que eligió el municipio."
     }
   },
   "subjects": {
@@ -2141,7 +2299,8 @@
       "addNote": "Agregar nota",
       "history": "Avance e historial",
       "textOfMeeting": "Lo acordado se cambia desde la reunión mientras está abierta. Acá se pueden cambiar el responsable, la fecha y a quién se avisa.",
-      "textOfCreator": "Lo acordado lo cambia quien asignó el compromiso. Se pueden cambiar el responsable, la fecha y a quién se avisa."
+      "textOfCreator": "Lo acordado lo cambia quien asignó el compromiso. Se pueden cambiar el responsable, la fecha y a quién se avisa.",
+      "agreedDate": "Fecha acordada"
     },
     "history": {
       "empty": "Todavía no hay notas ni cambios.",
@@ -2179,6 +2338,17 @@
       "state": "Pendiente, vencido, cumplido o descartado.",
       "subject": "De qué trata: el estado mensual de un tablero o un registro, por ejemplo un proyecto.",
       "origin": "La reunión en la que se tomó, o informal si alguien lo asignó fuera de una reunión."
+    },
+    "ownerLeft": "El responsable ya no está",
+    "agreedFor": "(se acordó para el {{date}})",
+    "left": {
+      "title": "Compromisos sin responsable",
+      "intro": "Quienes los tenían a cargo ya no son usuarios del municipio. Elegí quién los toma: le llega el aviso.",
+      "newOwner": "Nuevo responsable de: {{name}}",
+      "reassign": "Reasignar",
+      "reassignNamed": "Reasignar: {{name}}",
+      "hidden_one": "Hay {{count}} más que no podés ver: quien lo asignó ya fue avisado y es quien puede reasignarlo.",
+      "hidden_other": "Hay {{count}} más que no podés ver: quienes los asignaron ya fueron avisados y son quienes pueden reasignarlos."
     }
   },
   "cabinet": {
@@ -2288,7 +2458,7 @@
         "dropped": "Descartados"
       },
       "onTime": "Cumplidos en término",
-      "onTimeHint": "De los cumplidos y los vencidos.",
+      "onTimeHint": "De los cumplidos y los vencidos, según la fecha acordada en la reunión.",
       "byOwner": "Por responsable",
       "owner": "Responsable",
       "searchOwner": "Responsable",
@@ -2353,7 +2523,8 @@
     },
     "kinds": {
       "assigned": "{{actor}} te lo asignó",
-      "done": "{{actor}} lo cumplió"
+      "done": "{{actor}} lo cumplió",
+      "owner_left": "Quien lo tenía a cargo ya no está en el municipio"
     },
     "someone": "Alguien sin cuenta",
     "noNews": "No hay novedades.",
@@ -2391,7 +2562,8 @@
         "social": {
           "households": "Mapa de grupos familiares"
         }
-      }
+      },
+      "noSatellite": "La imagen satelital cubre solo la localidad: donde no hay imagen, las zonas y los registros se muestran igual."
     },
     "location": {
       "title": "Ubicación",
@@ -2439,7 +2611,7 @@
       "outside": "Fuera de todas las zonas",
       "unlocated": "Sin ubicación",
       "total": "Total",
-      "zoneHelp": "Barrio o distrito. Lo que está en más de una zona cuenta en cada una, y una sola vez en el total.",
+      "zoneHelp": "Barrio o distrito. Lo que está en más de una zona, o justo sobre el borde entre dos, cuenta en cada una, y una sola vez en el total.",
       "hidden": "Reservado",
       "hiddenNote_one": "Las cantidades menores a {{count}} no se muestran, ni las que permitirían deducirlas.",
       "hiddenNote_other": "Las cantidades menores a {{count}} no se muestran, ni las que permitirían deducirlas.",
@@ -2539,7 +2711,7 @@
       "to": "Vigente hasta",
       "current": "Actual",
       "help": {
-        "name": "Nombre del barrio o distrito.",
+        "name": "Nombre del barrio o distrito. Un punto justo sobre el borde entre dos zonas cuenta en las dos. Si el límite es oficial, debajo dice de dónde sale.",
         "version": "Cuántas veces se definió el límite de la zona.",
         "from": "Día desde el que rige este límite.",
         "to": "Día hasta el que rigió el límite."
@@ -2594,6 +2766,27 @@
           "zone_not_closed": "el límite no está cerrado.",
           "zone_self_intersects": "el límite se cruza consigo mismo."
         }
+      },
+      "official": "Límite oficial: {{source}}"
+    },
+    "reference": {
+      "show": "Equipamiento",
+      "hint": "Centros de salud y escuelas, de los datos oficiales de la Provincia.",
+      "credit": "Equipamiento: IDECOR",
+      "source": "Fuente: IDECOR",
+      "layers": {
+        "health": "Salud: {{name}}",
+        "schools": "Escuela: {{name}}"
+      },
+      "marks": {
+        "health": "+",
+        "schools": "E"
+      },
+      "properties": {
+        "type": "Tipo: {{value}}",
+        "level": "Nivel: {{value}}",
+        "sector": "Gestión: {{value}}",
+        "address": "Dirección: {{value}}"
       }
     }
   }
